@@ -117,8 +117,7 @@ router.post(
 router.get(
   '/export',
   authenticate,
-  [query('platform').optional().isString()]),
-  
+  [query('platform').optional().isString()],
   blacklistController.exportToCSV
 );
 
@@ -154,8 +153,7 @@ router.get(
 router.delete(
   '/clear',
   authenticate,
-  [query('platform').optional().isString()]),
-  
+  [query('platform').optional().isString()],
   blacklistController.clearBlacklist
 );
 
