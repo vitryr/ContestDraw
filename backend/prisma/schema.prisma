@@ -1,0 +1,336 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String               @id @default(uuid())
+  email                   String               @unique
+  password                String
+  firstName               String?
+  lastName                String?
+  emailVerified           Boolean              @default(false)
+  role                    String               @default("user")
+  language                String               @default("en")
+  timezone                String               @default("UTC")
+  credits                 Int                  @default(3)
+  trial_used              Boolean              @default(false)
+  bonus_granted           Boolean              @default(true)
+  createdAt               DateTime             @default(now())
+  updatedAt               DateTime             @updatedAt
+  blacklists              Blacklist[]
+  brands                  Brand[]
+  creditTransactions      CreditTransaction[]
+  draws                   Draw[]
+  organizationMemberships OrganizationMember[] @relation("OrganizationMembers")
+  ownedOrganizations      Organization[]       @relation("OrganizationOwner")
+  socialAccounts          SocialAccount[]
+  subscription            Subscription?
+
+  @@index([email])
+  @@map("users")
+}
+
+model Draw {
+  id              String        @id @default(uuid())
+  userId          String
+  title           String
+  description     String?
+  numberOfWinners Int
+  allowDuplicates Boolean       @default(false)
+  status          DrawStatus    @default(DRAFT)
+  algorithm       String?
+  seed            String?
+  certificateHash String?
+  completedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  brandDraws      BrandDraw[]
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  participants    Participant[]
+  winners         Winner[]
+
+  @@index([userId, status])
+  @@index([createdAt])
+  @@map("draws")
+}
+
+model Participant {
+  id         String   @id @default(uuid())
+  drawId     String
+  name       String
+  identifier String
+  source     String   @default("MANUAL")
+  metadata   Json?
+  createdAt  DateTime @default(now())
+  draw       Draw     @relation(fields: [drawId], references: [id], onDelete: Cascade)
+  Winner     Winner[]
+
+  @@index([drawId])
+  @@map("participants")
+}
+
+model Winner {
+  id            String      @id @default(uuid())
+  drawId        String
+  participantId String
+  position      Int
+  createdAt     DateTime    @default(now())
+  draw          Draw        @relation(fields: [drawId], references: [id], onDelete: Cascade)
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+
+  @@unique([drawId, participantId, position])
+  @@index([drawId])
+  @@map("winners")
+}
+
+model CreditTransaction {
+  id          String                @id @default(uuid())
+  userId      String
+  type        CreditTransactionType
+  credits     Int
+  amount      Decimal?              @db.Decimal(10, 2)
+  currency    String?               @default("USD")
+  description String?
+  metadata    Json?
+  createdAt   DateTime              @default(now())
+  user        User                  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("credit_transactions")
+}
+
+model SocialAccount {
+  id                  String               @id @default(uuid())
+  userId              String
+  platform            String
+  platformUserId      String
+  platformUsername    String
+  accessToken         String
+  refreshToken        String?
+  tokenExpiresAt      DateTime?
+  connectedAt         DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  brandSocialAccounts BrandSocialAccount[]
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, platform])
+  @@index([userId])
+  @@map("social_accounts")
+}
+
+model Subscription {
+  id                   String             @id @default(uuid())
+  userId               String             @unique
+  organizationId       String?
+  planId               String
+  planType             String             @default("monthly")
+  status               SubscriptionStatus @default(ACTIVE)
+  currentPeriodStart   DateTime
+  currentPeriodEnd     DateTime
+  monthlyCredits       Int
+  cancelAtPeriodEnd    Boolean            @default(false)
+  is48HPass            Boolean            @default(false)
+  stripeSubscriptionId String?            @unique
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+  organization         Organization?      @relation(fields: [organizationId], references: [id])
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, status])
+  @@index([organizationId])
+  @@index([is48HPass, currentPeriodEnd])
+  @@map("subscriptions")
+}
+
+model Organization {
+  id               String               @id @default(uuid())
+  name             String
+  slug             String               @unique
+  ownerId          String
+  subscriptionTier String               @default("ENTERPRISE")
+  maxSubAccounts   Int                  @default(10)
+  billingEmail     String
+  settings         Json?
+  createdAt        DateTime             @default(now())
+  updatedAt        DateTime             @updatedAt
+  branding         Branding?
+  brands           Brand[]
+  members          OrganizationMember[]
+  owner            User                 @relation("OrganizationOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+  subscriptions    Subscription[]
+
+  @@index([ownerId])
+  @@index([slug])
+  @@map("organizations")
+}
+
+model OrganizationMember {
+  id             String       @id @default(uuid())
+  organizationId String
+  userId         String
+  role           String       @default("member")
+  permissions    Json?
+  invitedBy      String?
+  joinedAt       DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User         @relation("OrganizationMembers", fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, userId])
+  @@index([organizationId])
+  @@index([userId])
+  @@map("organization_members")
+}
+
+model Brand {
+  id             String               @id @default(uuid())
+  organizationId String
+  userId         String
+  name           String
+  slug           String
+  description    String?
+  settings       Json?
+  isActive       Boolean              @default(true)
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  draws          BrandDraw[]
+  socialAccounts BrandSocialAccount[]
+  organization   Organization         @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+  user           User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([organizationId, slug])
+  @@index([organizationId])
+  @@index([userId])
+  @@map("brands")
+}
+
+model BrandDraw {
+  id        String   @id @default(uuid())
+  brandId   String
+  drawId    String
+  createdAt DateTime @default(now())
+  brand     Brand    @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  draw      Draw     @relation(fields: [drawId], references: [id], onDelete: Cascade)
+
+  @@unique([brandId, drawId])
+  @@index([brandId])
+  @@index([drawId])
+  @@map("brand_draws")
+}
+
+model BrandSocialAccount {
+  id              String        @id @default(uuid())
+  brandId         String
+  socialAccountId String
+  isActive        Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  brand           Brand         @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  socialAccount   SocialAccount @relation(fields: [socialAccountId], references: [id], onDelete: Cascade)
+
+  @@unique([brandId, socialAccountId])
+  @@index([brandId])
+  @@index([socialAccountId])
+  @@map("brand_social_accounts")
+}
+
+model Branding {
+  id             String       @id @default(uuid())
+  organizationId String       @unique
+  logoUrl        String?
+  faviconUrl     String?
+  primaryColor   String       @default("#1976d2")
+  secondaryColor String       @default("#dc004e")
+  accentColor    String?
+  customDomain   String?      @unique
+  removeBranding Boolean      @default(false)
+  customCss      String?
+  emailFromName  String?
+  emailReplyTo   String?
+  settings       Json?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  organization   Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId])
+  @@index([customDomain])
+  @@map("brandings")
+}
+
+model StoryMention {
+  id               String   @id @default(uuid())
+  drawId           String
+  instagramMediaId String
+  username         String
+  userId           String?
+  mentionedAt      DateTime
+  verified         Boolean  @default(false)
+  bonusApplied     Boolean  @default(false)
+  metadata         Json?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([drawId, username])
+  @@index([instagramMediaId])
+  @@index([mentionedAt])
+  @@map("story_mentions")
+}
+
+model Blacklist {
+  id        String   @id @default(uuid())
+  userId    String
+  username  String
+  platform  String   @default("INSTAGRAM")
+  reason    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, username, platform])
+  @@index([userId])
+  @@index([username, platform])
+  @@map("blacklists")
+}
+
+model FollowerVerification {
+  id            String   @id @default(uuid())
+  drawId        String
+  username      String
+  platform      String
+  targetAccount String
+  isFollowing   Boolean
+  verifiedAt    DateTime
+  metadata      Json?
+  createdAt     DateTime @default(now())
+
+  @@index([drawId, username])
+  @@index([username, platform])
+  @@map("follower_verifications")
+}
+
+enum DrawStatus {
+  DRAFT
+  READY
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum CreditTransactionType {
+  PURCHASE
+  CONSUMPTION
+  REFUND
+  SUBSCRIPTION
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  CANCELLED
+  EXPIRED
+  PAST_DUE
+}

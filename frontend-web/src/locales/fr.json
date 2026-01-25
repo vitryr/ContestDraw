@@ -1,0 +1,142 @@
+{
+  "app": {
+    "name": "ContestDraw",
+    "tagline": "Tirages au Sort Équitables, Automatisés"
+  },
+  "nav": {
+    "dashboard": "Tableau de bord",
+    "pricing": "Tarifs",
+    "profile": "Profil",
+    "signIn": "Se connecter",
+    "logout": "Déconnexion",
+    "profileSettings": "Paramètres du profil",
+    "credits": "crédits"
+  },
+  "landing": {
+    "hero": {
+      "title": "Tirages au Sort Équitables,",
+      "titleHighlight": "Automatisés",
+      "subtitle": "Créez des tirages au sort transparents avec des vidéos animées professionnelles et des certificats. Parfait pour les concours sur les réseaux sociaux.",
+      "ctaStart": "Commencer Gratuitement",
+      "ctaLearn": "En Savoir Plus",
+      "stat1": "50k+",
+      "stat1Label": "Tirages Effectués",
+      "stat2": "100%",
+      "stat2Label": "Équitable & Transparent",
+      "stat3": "24/7",
+      "stat3Label": "Automatisé"
+    },
+    "features": {
+      "title": "Tout Ce Dont Vous Avez Besoin",
+      "subtitle": "Des fonctionnalités puissantes pour rendre vos tirages au sort équitables, engageants et professionnels",
+      "smartFiltering": {
+        "title": "Filtrage Intelligent",
+        "description": "Filtres avancés pour garantir des tirages équitables avec des règles d'abonnés minimum, d'engagement et de vérification des doublons."
+      },
+      "animatedVideos": {
+        "title": "Vidéos Animées",
+        "description": "Vidéos professionnelles au format story 9:16 avec animations fluides et effets de confettis."
+      },
+      "certificates": {
+        "title": "Certificats Numériques",
+        "description": "Certificats générés automatiquement pour les gagnants avec votre image de marque personnalisée."
+      },
+      "socialIntegration": {
+        "title": "Intégration Sociale",
+        "description": "Connectez Instagram, Twitter et TikTok pour importer les participants automatiquement."
+      },
+      "transparent": {
+        "title": "Transparent & Équitable",
+        "description": "Tirages prouvablement équitables avec un journal d'audit complet et une vérification."
+      },
+      "fast": {
+        "title": "Ultra Rapide",
+        "description": "Traitez des milliers de participants en quelques secondes avec notre moteur optimisé."
+      }
+    },
+    "howItWorks": {
+      "title": "Comment Ça Marche",
+      "subtitle": "Quatre étapes simples pour un tirage au sort équitable",
+      "step1": {
+        "title": "Connecter",
+        "description": "Liez vos comptes de réseaux sociaux"
+      },
+      "step2": {
+        "title": "Importer",
+        "description": "Récupérez automatiquement les participants"
+      },
+      "step3": {
+        "title": "Configurer",
+        "description": "Définissez les filtres et les règles"
+      },
+      "step4": {
+        "title": "Tirer",
+        "description": "Exécutez un tirage équitable et transparent"
+      }
+    },
+    "social": {
+      "title": "Approuvé par les Influenceurs & Marques",
+      "subtitle": "Rejoignez des milliers de créateurs de contenu et de marques organisant des concours équitables",
+      "badge1": "Sans Biais",
+      "badge2": "100% Transparent",
+      "badge3": "Résultats Instantanés",
+      "cta": "Commencer Gratuitement"
+    },
+    "cta": {
+      "title": "Prêt à Lancer Votre Premier Tirage ?",
+      "subtitle": "Créez des tirages au sort équitables et transparents en quelques minutes. Aucune carte bancaire requise pour commencer.",
+      "startButton": "Commencer Gratuitement",
+      "pricingButton": "Voir les Tarifs"
+    }
+  },
+  "credits": {
+    "title": "Solde de Crédits",
+    "subtitle": "Disponibles pour les tirages",
+    "currentBalance": "Solde Actuel",
+    "credits": "crédits",
+    "thisMonth": "Ce Mois-ci",
+    "drawsUsed": "tirages utilisés",
+    "costPerDraw": "Coût par Tirage",
+    "credit": "crédit",
+    "buyMore": "Acheter Plus de Crédits",
+    "howItWorks": "Fonctionnement des Crédits",
+    "info1": "Chaque tirage coûte 1 crédit, quel que soit le nombre de participants",
+    "info2": "Les crédits n'expirent jamais",
+    "info3": "Remises sur volume disponibles pour les packs plus importants",
+    "welcomeBonus": "Bonus de Bienvenue",
+    "freeCreditsBadge": "3 CRÉDITS GRATUITS",
+    "welcomeMessage": "Bienvenue ! Vous avez reçu 3 crédits gratuits pour commencer !"
+  },
+  "onboarding": {
+    "skip": "Passer",
+    "next": "Suivant",
+    "done": "Commencer",
+    "screen1": {
+      "title": "Connectez Votre Compte Social",
+      "description": "Liez votre compte Instagram, Twitter ou TikTok pour importer automatiquement les participants au concours. Authentification rapide et sécurisée."
+    },
+    "screen2": {
+      "title": "Choisissez Votre Publication Concours",
+      "description": "Sélectionnez la publication ou le tweet où les utilisateurs ont commenté pour participer. Notre système récupérera automatiquement tous les participants éligibles."
+    },
+    "screen3": {
+      "title": "Tirez les Gagnants en 1 Clic",
+      "description": "Configurez vos filtres, choisissez le nombre de gagnants et exécutez un tirage équitable. Obtenez des résultats instantanés avec des vidéos partageables !"
+    }
+  },
+  "footer": {
+    "tagline": "Tirages au sort équitables et transparents avec génération de vidéos automatisée.",
+    "product": "Produit",
+    "features": "Fonctionnalités",
+    "documentation": "Documentation",
+    "company": "Entreprise",
+    "about": "À propos",
+    "blog": "Blog",
+    "contact": "Contact",
+    "legal": "Légal",
+    "privacy": "Confidentialité",
+    "terms": "Conditions",
+    "security": "Sécurité",
+    "copyright": "Tous droits réservés."
+  }
+}

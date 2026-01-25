@@ -1,0 +1,142 @@
+{
+  "app": {
+    "name": "ContestDraw",
+    "tagline": "Fair Contest Draws, Automated"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "pricing": "Pricing",
+    "profile": "Profile",
+    "signIn": "Sign In",
+    "logout": "Logout",
+    "profileSettings": "Profile Settings",
+    "credits": "credits"
+  },
+  "landing": {
+    "hero": {
+      "title": "Fair Contest Draws,",
+      "titleHighlight": "Automated",
+      "subtitle": "Create transparent contest draws with professional animated videos and certificates. Perfect for social media giveaways.",
+      "ctaStart": "Start Free Draw",
+      "ctaLearn": "Learn More",
+      "stat1": "50k+",
+      "stat1Label": "Draws Executed",
+      "stat2": "100%",
+      "stat2Label": "Fair & Transparent",
+      "stat3": "24/7",
+      "stat3Label": "Automated"
+    },
+    "features": {
+      "title": "Everything You Need",
+      "subtitle": "Powerful features to make your contest draws fair, engaging, and professional",
+      "smartFiltering": {
+        "title": "Smart Filtering",
+        "description": "Advanced filters to ensure fair draws with minimum followers, engagement rules, and duplicate checking."
+      },
+      "animatedVideos": {
+        "title": "Animated Videos",
+        "description": "Professional 9:16 story format videos with smooth animations and confetti effects."
+      },
+      "certificates": {
+        "title": "Digital Certificates",
+        "description": "Automatically generated certificates for winners with custom branding."
+      },
+      "socialIntegration": {
+        "title": "Social Integration",
+        "description": "Connect Instagram, Twitter, and TikTok to import participants automatically."
+      },
+      "transparent": {
+        "title": "Transparent & Fair",
+        "description": "Provably fair draws with complete audit trail and verification."
+      },
+      "fast": {
+        "title": "Lightning Fast",
+        "description": "Process thousands of participants in seconds with our optimized engine."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Four simple steps to a fair contest draw",
+      "step1": {
+        "title": "Connect",
+        "description": "Link your social media accounts"
+      },
+      "step2": {
+        "title": "Import",
+        "description": "Automatically fetch participants"
+      },
+      "step3": {
+        "title": "Configure",
+        "description": "Set filters and rules"
+      },
+      "step4": {
+        "title": "Draw",
+        "description": "Execute fair, transparent draw"
+      }
+    },
+    "social": {
+      "title": "Trusted by Influencers & Brands",
+      "subtitle": "Join thousands of content creators and brands running fair contests",
+      "badge1": "No Bias",
+      "badge2": "100% Transparent",
+      "badge3": "Instant Results",
+      "cta": "Get Started Free"
+    },
+    "cta": {
+      "title": "Ready to Start Your First Draw?",
+      "subtitle": "Create fair, transparent contest draws in minutes. No credit card required to start.",
+      "startButton": "Start Free Draw",
+      "pricingButton": "View Pricing"
+    }
+  },
+  "credits": {
+    "title": "Credit Balance",
+    "subtitle": "Available for draws",
+    "currentBalance": "Current Balance",
+    "credits": "credits",
+    "thisMonth": "This Month",
+    "drawsUsed": "draws used",
+    "costPerDraw": "Cost per Draw",
+    "credit": "credit",
+    "buyMore": "Buy More Credits",
+    "howItWorks": "How Credits Work",
+    "info1": "Each draw costs 1 credit, regardless of participants",
+    "info2": "Credits never expire",
+    "info3": "Volume discounts available for larger packs",
+    "welcomeBonus": "Welcome Bonus",
+    "freeCreditsBadge": "3 FREE CREDITS",
+    "welcomeMessage": "Welcome! You've received 3 free credits to get started!"
+  },
+  "onboarding": {
+    "skip": "Skip",
+    "next": "Next",
+    "done": "Get Started",
+    "screen1": {
+      "title": "Connect Your Social Account",
+      "description": "Link your Instagram, Twitter, or TikTok account to automatically import contest participants. Fast and secure authentication."
+    },
+    "screen2": {
+      "title": "Choose Your Contest Post",
+      "description": "Select the post or tweet where users commented to participate. Our system will automatically fetch all eligible participants."
+    },
+    "screen3": {
+      "title": "Draw Winners in 1 Click",
+      "description": "Configure your filters, choose the number of winners, and execute a fair draw. Get instant results with shareable videos!"
+    }
+  },
+  "footer": {
+    "tagline": "Fair and transparent contest draws with automated video generation.",
+    "product": "Product",
+    "features": "Features",
+    "documentation": "Documentation",
+    "company": "Company",
+    "about": "About",
+    "blog": "Blog",
+    "contact": "Contact",
+    "legal": "Legal",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "security": "Security",
+    "copyright": "All rights reserved."
+  }
+}

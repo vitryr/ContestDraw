@@ -1,0 +1,32 @@
+{
+  "name": "e2e",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:debug": "playwright test --debug",
+    "test:signup": "playwright test specs/signup-workflow.spec.ts",
+    "test:navigation": "playwright test specs/home-navigation.spec.ts",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:mobile": "playwright test --project='Mobile Chrome' --project='Mobile Safari'",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "codegen": "playwright codegen http://localhost:3001"
+  },
+  "keywords": [
+    "playwright",
+    "e2e",
+    "testing",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "End-to-end tests for ContestDraw platform using Playwright",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "playwright": "^1.56.1"
+  }
+}

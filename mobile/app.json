@@ -1,0 +1,77 @@
+{
+  "expo": {
+    "name": "ContestDraw",
+    "slug": "contestdraw",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6366F1"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.contestdraw.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "We need access to your camera to save draw animations.",
+        "NSPhotoLibraryUsageDescription": "We need access to your photo library to save draw videos.",
+        "NSPhotoLibraryAddUsageDescription": "We need access to save draw videos to your library.",
+        "NSFaceIDUsageDescription": "We use Face ID to secure your account."
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#6366F1"
+      },
+      "package": "com.contestdraw.app",
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#6366F1"
+        }
+      ],
+      [
+        "expo-media-library",
+        {
+          "photosPermission": "Allow ContestDraw to save draw videos.",
+          "savePhotosPermission": "Allow ContestDraw to save draw videos to your photos.",
+          "isAccessMediaLocationEnabled": true
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow ContestDraw to use Face ID for secure authentication."
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "contestdraw-project-id"
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+*.zip
+
+# Screenshots
+screenshots/
+*.png
+*.jpg
+
+# Videos
+videos/
+*.webm
+*.mp4
+
+# Node modules
+node_modules/
+
+# Test artifacts
+test-results.json
+trace.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

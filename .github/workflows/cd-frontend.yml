@@ -1,0 +1,230 @@
+name: Deploy Frontend
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'frontend-web/**'
+      - '.github/workflows/cd-frontend.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+
+env:
+  AWS_REGION: eu-west-1
+  NODE_VERSION: '18'
+
+jobs:
+  build-and-deploy-staging:
+    name: Build and Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging')
+    environment:
+      name: staging
+      url: https://staging.contestdraw.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend-web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend-web
+        run: npm ci
+
+      - name: Build React app
+        working-directory: frontend-web
+        env:
+          REACT_APP_API_URL: https://api-staging.contestdraw.com
+          REACT_APP_WS_URL: wss://api-staging.contestdraw.com
+          REACT_APP_ENVIRONMENT: staging
+          REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          NODE_ENV: production
+        run: npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync to S3
+        working-directory: frontend-web
+        run: |
+          aws s3 sync build/ s3://contestdraw-staging \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "*.html" \
+            --exclude "service-worker.js"
+
+          # HTML files and service worker with no cache
+          aws s3 sync build/ s3://contestdraw-staging \
+            --exclude "*" \
+            --include "*.html" \
+            --include "service-worker.js" \
+            --cache-control "no-cache, no-store, must-revalidate"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_STAGING }} \
+            --paths "/*"
+
+      - name: Run smoke tests
+        run: |
+          sleep 30
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://staging.contestdraw.com)
+          if [ $STATUS -ne 200 ]; then
+            echo "❌ Smoke test failed"
+            exit 1
+          fi
+          echo "✅ Smoke tests passed"
+
+  build-and-deploy-production:
+    name: Build and Deploy to Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || (github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production')
+    environment:
+      name: production
+      url: https://contestdraw.com
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: frontend-web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend-web
+        run: npm ci
+
+      - name: Build React app
+        working-directory: frontend-web
+        env:
+          REACT_APP_API_URL: https://api.contestdraw.com
+          REACT_APP_WS_URL: wss://api.contestdraw.com
+          REACT_APP_ENVIRONMENT: production
+          REACT_APP_SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          NODE_ENV: production
+          GENERATE_SOURCEMAP: false
+        run: npm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Create backup of current deployment
+        run: |
+          TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+          aws s3 sync s3://contestdraw-prod s3://contestdraw-prod-backups/${TIMESTAMP}/ \
+            --only-show-errors
+
+      - name: Sync to S3
+        working-directory: frontend-web
+        run: |
+          # Static assets with long cache
+          aws s3 sync build/ s3://contestdraw-prod \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "*.html" \
+            --exclude "service-worker.js"
+
+          # HTML files and service worker with no cache
+          aws s3 sync build/ s3://contestdraw-prod \
+            --exclude "*" \
+            --include "*.html" \
+            --include "service-worker.js" \
+            --cache-control "no-cache, no-store, must-revalidate"
+
+      - name: Invalidate CloudFront cache
+        run: |
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} \
+            --paths "/*" \
+            --query 'Invalidation.Id' \
+            --output text)
+
+          echo "Waiting for CloudFront invalidation to complete..."
+          aws cloudfront wait invalidation-completed \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} \
+            --id $INVALIDATION_ID
+
+      - name: Run comprehensive smoke tests
+        run: |
+          # Wait for CloudFront propagation
+          sleep 60
+
+          # Check homepage
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://contestdraw.com)
+          if [ $STATUS -ne 200 ]; then
+            echo "❌ Homepage check failed"
+            exit 1
+          fi
+
+          # Check critical paths
+          for path in "/contests" "/auth/login" "/dashboard"; do
+            STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://contestdraw.com${path})
+            if [ $STATUS -ne 200 ]; then
+              echo "❌ Failed on path: ${path}"
+              exit 1
+            fi
+          done
+
+          echo "✅ All smoke tests passed"
+
+      - name: Rollback on failure
+        if: failure()
+        run: |
+          echo "⚠️ Deployment failed, rolling back..."
+
+          # Find latest backup
+          LATEST_BACKUP=$(aws s3 ls s3://contestdraw-prod-backups/ | sort | tail -n 1 | awk '{print $2}')
+
+          # Restore from backup
+          aws s3 sync s3://contestdraw-prod-backups/${LATEST_BACKUP} s3://contestdraw-prod/ \
+            --delete
+
+          # Invalidate CloudFront
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID_PROD }} \
+            --paths "/*"
+
+          echo "⚠️ Rolled back to backup: ${LATEST_BACKUP}"
+
+      - name: Create Sentry release
+        if: success()
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: contestdraw
+          SENTRY_PROJECT: frontend-web
+        with:
+          environment: production
+          sourcemaps: './frontend-web/build/static/js'
+
+      - name: Notify deployment
+        if: always()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ job.status }}
+          text: 'Frontend deployment to production: ${{ job.status }}'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}

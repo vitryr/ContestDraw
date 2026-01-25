@@ -1,0 +1,131 @@
+# Local Development Environment
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: contestdraw-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: contestdraw
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: dev_password_123
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backend/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - contestdraw-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: contestdraw-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    networks:
+      - contestdraw-network
+
+  # Backend API
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+      target: production
+    container_name: contestdraw-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://postgres:dev_password_123@postgres:5432/contestdraw
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: dev_jwt_secret_change_in_production
+      AWS_REGION: eu-west-1
+      AWS_S3_BUCKET: contestdraw-dev
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+      FACEBOOK_APP_ID: ${FACEBOOK_APP_ID}
+      FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET}
+      CORS_ORIGIN: http://localhost:3001
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+      - backend_uploads:/app/uploads
+    networks:
+      - contestdraw-network
+    command: npm run dev
+
+  # Frontend Web
+  frontend-web:
+    build:
+      context: ./frontend-web
+      dockerfile: Dockerfile
+      target: builder
+      args:
+        REACT_APP_API_URL: http://localhost:3000
+        REACT_APP_WS_URL: ws://localhost:3000
+    container_name: contestdraw-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NODE_ENV: development
+      REACT_APP_API_URL: http://localhost:3000
+      REACT_APP_WS_URL: ws://localhost:3000
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./frontend-web:/app
+      - /app/node_modules
+    networks:
+      - contestdraw-network
+    command: npm start
+
+  # PgAdmin (Database Management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: contestdraw-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@contestdraw.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - contestdraw-network
+
+networks:
+  contestdraw-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  backend_uploads:
+  pgadmin_data:
