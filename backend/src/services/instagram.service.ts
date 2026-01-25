@@ -233,33 +233,70 @@ export class InstagramService {
 
   /**
    * Verify if a user is following a target account
+   * Uses Instagram Graph API to check followers list
+   * Requires Business/Creator account with instagram_business_manage_messages permission
+   * 
    * @param username - Username to check
-   * @param targetAccount - Target account username
-   * @param accessToken - User access token
-   * @returns True if following
+   * @param targetAccountId - Target Instagram Business Account ID (not username)
+   * @param accessToken - User access token with appropriate permissions
+   * @returns True if following, false otherwise
    */
   async verifyFollowing(
     username: string,
-    targetAccount: string,
+    targetAccountId: string,
     accessToken: string
   ): Promise<boolean> {
-    const cacheKey = `instagram:following:${username}:${targetAccount}`;
+    const cacheKey = `instagram:following:${username}:${targetAccountId}`;
 
     return Cache.getOrSet(cacheKey, async () => {
       return RetryHandler.withRetry(async () => {
-        // Get user's following list
-        const response = await this.client.get('/me', {
-          params: {
-            fields: 'follows',
-            access_token: accessToken,
-          },
-        });
+        try {
+          // Use Instagram Graph API to check followers
+          // This requires the target account to be a Business/Creator account
+          let nextCursor: string | undefined;
+          let hasMore = true;
 
-        // Note: Instagram Basic Display API has limited access to follows
-        // This would require Instagram Graph API with proper permissions
-        // For now, return true as a placeholder
-        console.warn('Instagram following verification requires Graph API permissions');
-        return true;
+          while (hasMore) {
+            const params: any = {
+              fields: 'username',
+              access_token: accessToken,
+              limit: 100,
+            };
+
+            if (nextCursor) {
+              params.after = nextCursor;
+            }
+
+            const response = await this.client.get(`/${targetAccountId}/followers`, { params });
+
+            // Check if username exists in current page
+            const follower = response.data.data?.find(
+              (f: { username: string }) => f.username.toLowerCase() === username.toLowerCase()
+            );
+
+            if (follower) {
+              return true;
+            }
+
+            // Check for pagination
+            nextCursor = response.data.paging?.cursors?.after;
+            hasMore = !!response.data.paging?.next && !!nextCursor;
+          }
+
+          return false;
+        } catch (error: any) {
+          // Handle permission errors gracefully
+          if (error.response?.status === 403 || error.response?.data?.error?.code === 190) {
+            console.warn(
+              'Instagram follower verification requires Business account with proper permissions. ' +
+              'Falling back to unverified mode.'
+            );
+            // Return undefined to indicate verification not possible
+            // Caller should handle this case appropriately
+            throw new Error('FOLLOWER_VERIFICATION_NOT_AVAILABLE');
+          }
+          throw error;
+        }
       });
     }, 600);
   }
