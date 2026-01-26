@@ -10,6 +10,7 @@ import { InstagramService } from '../services/instagram.service';
 import { FacebookService } from '../services/facebook.service';
 import { TwitterService } from '../services/twitter.service';
 import { TikTokService } from '../services/tiktok.service';
+import { YouTubeService } from '../services/youtube.service';
 import { logger } from '../utils/logger';
 import config from '../config/config';
 
@@ -20,6 +21,7 @@ const instagramService = new InstagramService();
 const facebookService = new FacebookService();
 const twitterService = new TwitterService();
 const tiktokService = new TikTokService();
+const youtubeService = new YouTubeService();
 
 // Create Bull queue for comment fetching
 export const commentFetcherQueue = new Queue('comment-fetcher', {
@@ -273,9 +275,23 @@ async function fetchYouTubeComments(
   postUrl: string,
   maxComments?: number
 ): Promise<FetchedComment[]> {
-  // TODO: Implement YouTube Data API v3 integration
-  logger.warn('YouTube comment fetching not yet implemented');
-  return [];
+  if (!youtubeService.isConfigured()) {
+    logger.error('YouTube API key not configured');
+    throw new Error('YouTube API key not configured. Set YOUTUBE_API_KEY in environment.');
+  }
+
+  const response = await youtubeService.fetchComments(postUrl, maxComments);
+
+  return response.data.map((comment) => ({
+    id: comment.id,
+    text: comment.text,
+    username: comment.username,
+    userId: comment.userId,
+    timestamp: comment.timestamp,
+    likes: comment.likes,
+    mentions: extractMentions(comment.text),
+    hashtags: extractHashtags(comment.text),
+  }));
 }
 
 /**
