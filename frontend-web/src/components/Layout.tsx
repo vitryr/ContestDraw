@@ -294,6 +294,11 @@ export default function Layout({ children }: LayoutProps = {}) {
               </h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
+                  <Link to="/legal" className="hover:text-primary-600">
+                    {t("footer.legalNotice")}
+                  </Link>
+                </li>
+                <li>
                   <Link to="/privacy" className="hover:text-primary-600">
                     {t("footer.privacy")}
                   </Link>
@@ -303,18 +308,31 @@ export default function Layout({ children }: LayoutProps = {}) {
                     {t("footer.terms")}
                   </Link>
                 </li>
-                <li>
-                  <Link to="/security" className="hover:text-primary-600">
-                    {t("footer.security")}
-                  </Link>
-                </li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
-            © {new Date().getFullYear()} {t("app.name")}.{" "}
-            {t("footer.copyright")}
+          <div className="mt-8 pt-8 border-t border-gray-200">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+              <div className="text-center md:text-left">
+                <p>
+                  © {new Date().getFullYear()} {t("app.name")}.{" "}
+                  {t("footer.copyright")}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Flowrigin OÜ • Reg. 17371835 • Sepapaja tn 6, Tallinn 15551,
+                  Estonia
+                </p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <a
+                  href="mailto:contact@contestdraw.com"
+                  className="hover:text-primary-600"
+                >
+                  contact@contestdraw.com
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
