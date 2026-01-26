@@ -76,8 +76,8 @@ export default function PrivacyPolicyPage() {
                 d'entreprise (optionnel)
               </li>
               <li>
-                <strong>Données de paiement :</strong> traitées par Stripe
-                (nous ne stockons pas vos données bancaires)
+                <strong>Données de paiement :</strong> traitées par Stripe (nous
+                ne stockons pas vos données bancaires)
               </li>
               <li>
                 <strong>Données des tirages :</strong> titre, description,
@@ -132,12 +132,12 @@ export default function PrivacyPolicyPage() {
                 sur vos tirages, répondre à vos demandes
               </li>
               <li>
-                <strong>Amélioration du service :</strong> analyser l'utilisation
-                pour améliorer ContestDraw
+                <strong>Amélioration du service :</strong> analyser
+                l'utilisation pour améliorer ContestDraw
               </li>
               <li>
-                <strong>Sécurité :</strong> détecter et prévenir la fraude et les
-                abus
+                <strong>Sécurité :</strong> détecter et prévenir la fraude et
+                les abus
               </li>
               <li>
                 <strong>Obligations légales :</strong> respecter nos obligations
@@ -153,16 +153,16 @@ export default function PrivacyPolicyPage() {
             </h2>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
               <li>
-                <strong>Exécution du contrat :</strong> pour fournir nos services
-                (Art. 6.1.b RGPD)
+                <strong>Exécution du contrat :</strong> pour fournir nos
+                services (Art. 6.1.b RGPD)
               </li>
               <li>
                 <strong>Consentement :</strong> pour certaines communications
                 marketing (Art. 6.1.a RGPD)
               </li>
               <li>
-                <strong>Intérêts légitimes :</strong> pour améliorer nos services
-                et assurer la sécurité (Art. 6.1.f RGPD)
+                <strong>Intérêts légitimes :</strong> pour améliorer nos
+                services et assurer la sécurité (Art. 6.1.f RGPD)
               </li>
               <li>
                 <strong>Obligation légale :</strong> pour respecter nos
@@ -193,8 +193,9 @@ export default function PrivacyPolicyPage() {
                 <strong>Autorités légales :</strong> si requis par la loi
               </li>
               <li>
-                <strong>Participants publics :</strong> les résultats des tirages
-                peuvent être rendus publics (noms d'utilisateur des gagnants)
+                <strong>Participants publics :</strong> les résultats des
+                tirages peuvent être rendus publics (noms d'utilisateur des
+                gagnants)
               </li>
             </ul>
           </section>
@@ -256,7 +257,9 @@ export default function PrivacyPolicyPage() {
                 <thead className="bg-gray-100">
                   <tr>
                     <th className="px-4 py-3 text-left text-gray-700">Type</th>
-                    <th className="px-4 py-3 text-left text-gray-700">Finalité</th>
+                    <th className="px-4 py-3 text-left text-gray-700">
+                      Finalité
+                    </th>
                     <th className="px-4 py-3 text-left text-gray-700">Durée</th>
                   </tr>
                 </thead>
@@ -294,7 +297,8 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
               <li>
-                <strong>Droit d'accès :</strong> obtenir une copie de vos données
+                <strong>Droit d'accès :</strong> obtenir une copie de vos
+                données
               </li>
               <li>
                 <strong>Droit de rectification :</strong> corriger vos données
@@ -393,7 +397,9 @@ export default function PrivacyPolicyPage() {
                   privacy@contestdraw.com
                 </a>
               </p>
-              <p>Adresse : Flowrigin OÜ, Sepapaja tn 6, Tallinn 15551, Estonia</p>
+              <p>
+                Adresse : Flowrigin OÜ, Sepapaja tn 6, Tallinn 15551, Estonia
+              </p>
             </div>
           </section>
         </div>

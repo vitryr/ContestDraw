@@ -45,12 +45,12 @@ export default function TermsOfServicePage() {
                 Plateforme
               </li>
               <li>
-                <strong>"Organisateur" :</strong> Utilisateur créant et gérant des
-                tirages au sort
+                <strong>"Organisateur" :</strong> Utilisateur créant et gérant
+                des tirages au sort
               </li>
               <li>
-                <strong>"Participant" :</strong> personne participant à un tirage
-                au sort
+                <strong>"Participant" :</strong> personne participant à un
+                tirage au sort
               </li>
               <li>
                 <strong>"Tirage" :</strong> opération de sélection aléatoire de
@@ -76,18 +76,10 @@ export default function TermsOfServicePage() {
                 Importer automatiquement les participants depuis les réseaux
                 sociaux (Instagram, YouTube, TikTok, Facebook)
               </li>
-              <li>
-                Effectuer des tirages au sort certifiés et transparents
-              </li>
-              <li>
-                Appliquer des filtres (followers, hashtags, mentions)
-              </li>
-              <li>
-                Générer des certificats de conformité légale
-              </li>
-              <li>
-                Créer des pages de vérification publique des résultats
-              </li>
+              <li>Effectuer des tirages au sort certifiés et transparents</li>
+              <li>Appliquer des filtres (followers, hashtags, mentions)</li>
+              <li>Générer des certificats de conformité légale</li>
+              <li>Créer des pages de vérification publique des résultats</li>
             </ul>
           </section>
 
@@ -130,36 +122,24 @@ export default function TermsOfServicePage() {
               5.1 Utilisations autorisées
             </h3>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-              <li>
-                Organisation de jeux-concours et tirages au sort légaux
-              </li>
+              <li>Organisation de jeux-concours et tirages au sort légaux</li>
               <li>
                 Promotion commerciale ou personnelle dans le respect des lois
               </li>
-              <li>
-                Sélection aléatoire de participants pour des événements
-              </li>
+              <li>Sélection aléatoire de participants pour des événements</li>
             </ul>
 
             <h3 className="text-xl font-medium text-gray-700 mb-3">
               5.2 Utilisations interdites
             </h3>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
-              <li>
-                Organisation de loteries ou jeux d'argent illégaux
-              </li>
-              <li>
-                Utilisation frauduleuse ou manipulation des tirages
-              </li>
+              <li>Organisation de loteries ou jeux d'argent illégaux</li>
+              <li>Utilisation frauduleuse ou manipulation des tirages</li>
               <li>
                 Violation des conditions d'utilisation des réseaux sociaux
               </li>
-              <li>
-                Collecte de données personnelles sans consentement
-              </li>
-              <li>
-                Tout usage contraire aux lois applicables
-              </li>
+              <li>Collecte de données personnelles sans consentement</li>
+              <li>Tout usage contraire aux lois applicables</li>
               <li>
                 Création de faux participants ou manipulation des résultats
               </li>
@@ -179,21 +159,15 @@ export default function TermsOfServicePage() {
                 La conformité de vos jeux-concours avec les lois applicables
                 (France, UE, pays des participants)
               </li>
-              <li>
-                La rédaction d'un règlement de jeu complet et légal
-              </li>
+              <li>La rédaction d'un règlement de jeu complet et légal</li>
               <li>
                 Le dépôt du règlement chez un huissier si requis par la loi
               </li>
               <li>
                 La déclaration éventuelle auprès des autorités compétentes
               </li>
-              <li>
-                La remise effective des lots aux gagnants
-              </li>
-              <li>
-                Le respect des CGU des plateformes sociales utilisées
-              </li>
+              <li>La remise effective des lots aux gagnants</li>
+              <li>Le respect des CGU des plateformes sociales utilisées</li>
             </ul>
             <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mt-4">
               <p className="text-yellow-800 text-sm">
@@ -271,9 +245,7 @@ export default function TermsOfServicePage() {
               ContestDraw est fourni "tel quel". Flowrigin OÜ ne garantit pas :
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
-              <li>
-                Un fonctionnement ininterrompu ou exempt d'erreurs
-              </li>
+              <li>Un fonctionnement ininterrompu ou exempt d'erreurs</li>
               <li>
                 La disponibilité permanente des API tierces (Instagram, etc.)
               </li>
