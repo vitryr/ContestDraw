@@ -1,0 +1,1261 @@
+openapi: 3.0.0
+info:
+  title: ContestDraw API
+  version: 1.0.0
+  description: |
+    RESTful API for ContestDraw - A platform for running social media contests and giveaways.
+
+    ## Authentication
+    All authenticated endpoints require a Bearer token in the Authorization header.
+
+    ## Rate Limiting
+    - Free tier: 100 requests/hour
+    - Pro tier: 1000 requests/hour
+    - Enterprise: Unlimited
+
+    ## Pagination
+    List endpoints support pagination via `page` and `limit` query parameters.
+
+  contact:
+    name: ContestDraw API Support
+    email: api@contestdraw.com
+    url: https://contestdraw.com/support
+  license:
+    name: Proprietary
+    url: https://contestdraw.com/legal/terms
+
+servers:
+  - url: https://api.contestdraw.com/v1
+    description: Production server
+  - url: https://api-staging.contestdraw.com/v1
+    description: Staging server
+  - url: http://localhost:3000/v1
+    description: Local development server
+
+tags:
+  - name: Authentication
+    description: User authentication and authorization
+  - name: Users
+    description: User account management
+  - name: Draws
+    description: Contest draw management
+  - name: Participants
+    description: Contest participant management
+  - name: Social Media
+    description: Social media platform integrations
+  - name: Credits
+    description: Credit system and payments
+  - name: Analytics
+    description: Contest analytics and reporting
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT token obtained from /auth/login or /auth/register
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        email:
+          type: string
+          format: email
+          example: "user@example.com"
+        firstName:
+          type: string
+          example: "John"
+        lastName:
+          type: string
+          example: "Doe"
+        company:
+          type: string
+          example: "Acme Corp"
+        role:
+          type: string
+          enum: [user, admin]
+          example: "user"
+        tier:
+          type: string
+          enum: [free, pro, enterprise]
+          example: "pro"
+        credits:
+          type: integer
+          minimum: 0
+          example: 50
+        emailVerified:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          format: date-time
+          example: "2025-01-15T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2025-01-20T14:45:00Z"
+      required:
+        - id
+        - email
+        - firstName
+        - lastName
+        - role
+        - tier
+        - credits
+        - emailVerified
+
+    Draw:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "660e8400-e29b-41d4-a716-446655440001"
+        userId:
+          type: string
+          format: uuid
+          example: "550e8400-e29b-41d4-a716-446655440000"
+        title:
+          type: string
+          example: "Win a MacBook Pro!"
+        description:
+          type: string
+          example: "Enter to win the latest MacBook Pro 16-inch"
+        platform:
+          type: string
+          enum: [instagram, facebook, twitter, tiktok, youtube]
+          example: "instagram"
+        postUrl:
+          type: string
+          format: uri
+          example: "https://instagram.com/p/ABC123"
+        postId:
+          type: string
+          example: "ABC123"
+        status:
+          type: string
+          enum: [draft, active, processing, completed, cancelled]
+          example: "active"
+        participantCount:
+          type: integer
+          minimum: 0
+          example: 1250
+        winnerCount:
+          type: integer
+          minimum: 1
+          example: 3
+        winners:
+          type: array
+          items:
+            $ref: '#/components/schemas/Winner'
+        filters:
+          $ref: '#/components/schemas/DrawFilters'
+        scheduledDate:
+          type: string
+          format: date-time
+          example: "2025-02-01T18:00:00Z"
+        completedDate:
+          type: string
+          format: date-time
+          example: "2025-02-01T18:05:00Z"
+        creditsUsed:
+          type: integer
+          example: 10
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - userId
+        - title
+        - platform
+        - postUrl
+        - status
+        - winnerCount
+
+    DrawFilters:
+      type: object
+      properties:
+        excludeMultipleComments:
+          type: boolean
+          description: Exclude users who commented multiple times
+          example: true
+        minimumFollowers:
+          type: integer
+          minimum: 0
+          description: Minimum follower count required
+          example: 100
+        mustFollowAccount:
+          type: boolean
+          description: Participant must follow the account
+          example: true
+        mustTagFriends:
+          type: integer
+          minimum: 0
+          description: Minimum number of friends that must be tagged
+          example: 2
+        mustLikePost:
+          type: boolean
+          description: Participant must have liked the post
+          example: true
+        excludeBusinessAccounts:
+          type: boolean
+          description: Exclude business/brand accounts
+          example: false
+        minimumAccountAge:
+          type: integer
+          minimum: 0
+          description: Minimum account age in days
+          example: 30
+        excludeKeywords:
+          type: array
+          items:
+            type: string
+          description: Exclude comments containing these keywords
+          example: ["spam", "bot"]
+
+    Participant:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        drawId:
+          type: string
+          format: uuid
+        username:
+          type: string
+          example: "john_doe_123"
+        displayName:
+          type: string
+          example: "John Doe"
+        profileUrl:
+          type: string
+          format: uri
+        avatarUrl:
+          type: string
+          format: uri
+        followerCount:
+          type: integer
+          example: 1500
+        commentText:
+          type: string
+          example: "I love this! @friend1 @friend2"
+        commentDate:
+          type: string
+          format: date-time
+        isFollowing:
+          type: boolean
+        hasLiked:
+          type: boolean
+        taggedFriends:
+          type: array
+          items:
+            type: string
+        isQualified:
+          type: boolean
+          description: Whether participant meets all filter criteria
+        disqualificationReason:
+          type: string
+          example: "Does not follow account"
+
+    Winner:
+      type: object
+      properties:
+        participantId:
+          type: string
+          format: uuid
+        username:
+          type: string
+        displayName:
+          type: string
+        profileUrl:
+          type: string
+          format: uri
+        avatarUrl:
+          type: string
+          format: uri
+        selectedAt:
+          type: string
+          format: date-time
+        notified:
+          type: boolean
+        notifiedAt:
+          type: string
+          format: date-time
+
+    SocialConnection:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        platform:
+          type: string
+          enum: [instagram, facebook, twitter, tiktok, youtube]
+        platformUserId:
+          type: string
+        platformUsername:
+          type: string
+        accessToken:
+          type: string
+          description: Encrypted access token (not returned in API)
+        refreshToken:
+          type: string
+          description: Encrypted refresh token (not returned in API)
+        tokenExpiresAt:
+          type: string
+          format: date-time
+        isActive:
+          type: boolean
+        lastSyncedAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    CreditTransaction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        userId:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [purchase, usage, refund, bonus]
+        amount:
+          type: integer
+          description: Positive for credits added, negative for credits used
+          example: -10
+        balance:
+          type: integer
+          description: Balance after transaction
+          example: 40
+        description:
+          type: string
+          example: "Contest draw #660e8400"
+        metadata:
+          type: object
+          additionalProperties: true
+        createdAt:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              example: "INVALID_REQUEST"
+            message:
+              type: string
+              example: "Validation failed"
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                  message:
+                    type: string
+      required:
+        - error
+
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Authentication
+      summary: Register new user account
+      description: Create a new user account with email and password
+      operationId: registerUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+                - firstName
+                - lastName
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                company:
+                  type: string
+            example:
+              email: "user@example.com"
+              password: "SecurePass123!"
+              firstName: "John"
+              lastName: "Doe"
+              company: "Acme Corp"
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+                    description: JWT authentication token
+              example:
+                user:
+                  id: "550e8400-e29b-41d4-a716-446655440000"
+                  email: "user@example.com"
+                  firstName: "John"
+                  lastName: "Doe"
+                  company: "Acme Corp"
+                  role: "user"
+                  tier: "free"
+                  credits: 10
+                  emailVerified: false
+                token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '409':
+          description: Email already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/login:
+    post:
+      tags:
+        - Authentication
+      summary: Login user
+      description: Authenticate user and receive JWT token
+      operationId: loginUser
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - password
+              properties:
+                email:
+                  type: string
+                  format: email
+                password:
+                  type: string
+                  format: password
+            example:
+              email: "user@example.com"
+              password: "SecurePass123!"
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    $ref: '#/components/schemas/User'
+                  token:
+                    type: string
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/verify-email:
+    post:
+      tags:
+        - Authentication
+      summary: Verify email address
+      description: Verify user email with token sent via email
+      operationId: verifyEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Email verified successfully
+        '400':
+          description: Invalid or expired token
+
+  /auth/forgot-password:
+    post:
+      tags:
+        - Authentication
+      summary: Request password reset
+      description: Send password reset email
+      operationId: forgotPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Reset email sent if account exists
+
+  /auth/reset-password:
+    post:
+      tags:
+        - Authentication
+      summary: Reset password
+      description: Reset password with token from email
+      operationId: resetPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - token
+                - password
+              properties:
+                token:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                  minLength: 8
+      responses:
+        '200':
+          description: Password reset successful
+        '400':
+          description: Invalid or expired token
+
+  /users/me:
+    get:
+      tags:
+        - Users
+      summary: Get current user profile
+      description: Retrieve authenticated user's profile information
+      operationId: getCurrentUser
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: User profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+
+    patch:
+      tags:
+        - Users
+      summary: Update current user profile
+      description: Update authenticated user's profile information
+      operationId: updateCurrentUser
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstName:
+                  type: string
+                lastName:
+                  type: string
+                company:
+                  type: string
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '401':
+          description: Unauthorized
+
+  /draws:
+    get:
+      tags:
+        - Draws
+      summary: List user's draws
+      description: Retrieve paginated list of draws created by authenticated user
+      operationId: listDraws
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [draft, active, processing, completed, cancelled]
+        - name: platform
+          in: query
+          schema:
+            type: string
+            enum: [instagram, facebook, twitter, tiktok, youtube]
+      responses:
+        '200':
+          description: Draws retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Draw'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+                      totalPages:
+                        type: integer
+
+    post:
+      tags:
+        - Draws
+      summary: Create new draw
+      description: Create a new contest draw
+      operationId: createDraw
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - platform
+                - postUrl
+                - winnerCount
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                platform:
+                  type: string
+                  enum: [instagram, facebook, twitter, tiktok, youtube]
+                postUrl:
+                  type: string
+                  format: uri
+                winnerCount:
+                  type: integer
+                  minimum: 1
+                scheduledDate:
+                  type: string
+                  format: date-time
+                filters:
+                  $ref: '#/components/schemas/DrawFilters'
+            example:
+              title: "Win a MacBook Pro!"
+              description: "Enter to win the latest MacBook Pro"
+              platform: "instagram"
+              postUrl: "https://instagram.com/p/ABC123"
+              winnerCount: 3
+              filters:
+                excludeMultipleComments: true
+                minimumFollowers: 100
+                mustFollowAccount: true
+                mustTagFriends: 2
+      responses:
+        '201':
+          description: Draw created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Draw'
+        '400':
+          description: Invalid request
+        '402':
+          description: Insufficient credits
+        '401':
+          description: Unauthorized
+
+  /draws/{drawId}:
+    get:
+      tags:
+        - Draws
+      summary: Get draw details
+      description: Retrieve detailed information about a specific draw
+      operationId: getDraw
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Draw retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Draw'
+        '404':
+          description: Draw not found
+        '401':
+          description: Unauthorized
+
+    patch:
+      tags:
+        - Draws
+      summary: Update draw
+      description: Update draw details (only draft draws can be fully updated)
+      operationId: updateDraw
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                winnerCount:
+                  type: integer
+                scheduledDate:
+                  type: string
+                  format: date-time
+                filters:
+                  $ref: '#/components/schemas/DrawFilters'
+      responses:
+        '200':
+          description: Draw updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Draw'
+        '400':
+          description: Invalid request
+        '404':
+          description: Draw not found
+
+    delete:
+      tags:
+        - Draws
+      summary: Cancel draw
+      description: Cancel a draw (only draft or active draws)
+      operationId: cancelDraw
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Draw cancelled successfully
+        '400':
+          description: Cannot cancel completed draw
+        '404':
+          description: Draw not found
+
+  /draws/{drawId}/execute:
+    post:
+      tags:
+        - Draws
+      summary: Execute draw
+      description: Execute the draw and select winners
+      operationId: executeDraw
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Draw executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Draw'
+        '400':
+          description: Draw cannot be executed (wrong status, no participants, etc.)
+        '402':
+          description: Insufficient credits
+        '404':
+          description: Draw not found
+
+  /draws/{drawId}/participants:
+    get:
+      tags:
+        - Participants
+      summary: List draw participants
+      description: Retrieve paginated list of participants for a draw
+      operationId: listParticipants
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 50
+        - name: qualified
+          in: query
+          description: Filter by qualification status
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Participants retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Participant'
+                  pagination:
+                    type: object
+                    properties:
+                      page:
+                        type: integer
+                      limit:
+                        type: integer
+                      total:
+                        type: integer
+
+  /draws/{drawId}/sync:
+    post:
+      tags:
+        - Draws
+      summary: Sync participants
+      description: Fetch and sync participants from social media platform
+      operationId: syncParticipants
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Sync initiated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  participantCount:
+                    type: integer
+        '404':
+          description: Draw not found
+
+  /social/connections:
+    get:
+      tags:
+        - Social Media
+      summary: List social connections
+      description: List all connected social media accounts
+      operationId: listSocialConnections
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Connections retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SocialConnection'
+
+  /social/connect/{platform}:
+    get:
+      tags:
+        - Social Media
+      summary: Initiate OAuth connection
+      description: Get OAuth URL to connect social media account
+      operationId: initiateOAuthConnection
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: platform
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [instagram, facebook, twitter, tiktok, youtube]
+      responses:
+        '200':
+          description: OAuth URL generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authUrl:
+                    type: string
+                    format: uri
+                  state:
+                    type: string
+                    description: CSRF token
+
+  /social/callback/{platform}:
+    get:
+      tags:
+        - Social Media
+      summary: OAuth callback
+      description: Handle OAuth callback from social platform
+      operationId: handleOAuthCallback
+      parameters:
+        - name: platform
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [instagram, facebook, twitter, tiktok, youtube]
+        - name: code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to frontend with connection status
+
+  /social/disconnect/{platform}:
+    delete:
+      tags:
+        - Social Media
+      summary: Disconnect social account
+      description: Remove connection to social media platform
+      operationId: disconnectSocialAccount
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: platform
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [instagram, facebook, twitter, tiktok, youtube]
+      responses:
+        '200':
+          description: Account disconnected successfully
+        '404':
+          description: Connection not found
+
+  /credits:
+    get:
+      tags:
+        - Credits
+      summary: Get credit balance
+      description: Get current credit balance
+      operationId: getCreditBalance
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Credit balance retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  balance:
+                    type: integer
+                  tier:
+                    type: string
+
+  /credits/transactions:
+    get:
+      tags:
+        - Credits
+      summary: List credit transactions
+      description: Retrieve paginated credit transaction history
+      operationId: listCreditTransactions
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [purchase, usage, refund, bonus]
+      responses:
+        '200':
+          description: Transactions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CreditTransaction'
+                  pagination:
+                    type: object
+
+  /credits/purchase:
+    post:
+      tags:
+        - Credits
+      summary: Purchase credits
+      description: Initiate credit purchase via payment provider
+      operationId: purchaseCredits
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - amount
+              properties:
+                amount:
+                  type: integer
+                  minimum: 10
+                  description: Number of credits to purchase
+                paymentMethod:
+                  type: string
+                  enum: [stripe, paypal]
+                  default: stripe
+      responses:
+        '200':
+          description: Payment session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+                  paymentUrl:
+                    type: string
+                    format: uri
+
+  /analytics/draws/{drawId}:
+    get:
+      tags:
+        - Analytics
+      summary: Get draw analytics
+      description: Retrieve analytics data for a specific draw
+      operationId: getDrawAnalytics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: drawId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalParticipants:
+                    type: integer
+                  qualifiedParticipants:
+                    type: integer
+                  disqualifiedParticipants:
+                    type: integer
+                  averageFollowerCount:
+                    type: number
+                  engagementRate:
+                    type: number
+                  participantsByCountry:
+                    type: object
+                    additionalProperties:
+                      type: integer
+                  participantGrowthOverTime:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date:
+                          type: string
+                          format: date
+                        count:
+                          type: integer
+
+  /analytics/overview:
+    get:
+      tags:
+        - Analytics
+      summary: Get account analytics overview
+      description: Retrieve overall analytics for user account
+      operationId: getAccountAnalytics
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Analytics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalDraws:
+                    type: integer
+                  totalParticipants:
+                    type: integer
+                  totalWinners:
+                    type: integer
+                  creditsUsed:
+                    type: integer
+                  mostPopularPlatform:
+                    type: string
+                  averageParticipantsPerDraw:
+                    type: number
+
+security:
+  - bearerAuth: []
