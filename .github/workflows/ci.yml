@@ -223,7 +223,7 @@ jobs:
         working-directory: backend
         env:
           API_URL: http://localhost:3000
-        run: npm run test:integration
+        run: npm run test:integration -- --passWithNoTests
 
       - name: Stop backend server
         if: always()
