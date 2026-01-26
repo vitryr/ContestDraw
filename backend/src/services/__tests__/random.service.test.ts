@@ -3,15 +3,15 @@ import {
   generateRandomSeed,
   verifyDrawResult,
 } from "../random.service";
-import { DrawParticipant } from "../../types";
+import { DrawParticipant, SocialPlatform } from "../../types";
 
 describe("RandomService", () => {
   const mockParticipants: DrawParticipant[] = [
-    { id: "1", name: "Alice", identifier: "@alice", source: "INSTAGRAM" },
-    { id: "2", name: "Bob", identifier: "@bob", source: "INSTAGRAM" },
-    { id: "3", name: "Charlie", identifier: "@charlie", source: "YOUTUBE" },
-    { id: "4", name: "Diana", identifier: "@diana", source: "TIKTOK" },
-    { id: "5", name: "Eve", identifier: "@eve", source: "FACEBOOK" },
+    { id: "1", name: "Alice", identifier: "@alice", source: SocialPlatform.INSTAGRAM },
+    { id: "2", name: "Bob", identifier: "@bob", source: SocialPlatform.INSTAGRAM },
+    { id: "3", name: "Charlie", identifier: "@charlie", source: SocialPlatform.YOUTUBE },
+    { id: "4", name: "Diana", identifier: "@diana", source: SocialPlatform.TIKTOK },
+    { id: "5", name: "Eve", identifier: "@eve", source: SocialPlatform.FACEBOOK },
   ];
 
   describe("selectWinners", () => {
