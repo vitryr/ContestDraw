@@ -4,12 +4,12 @@
 
 import { Router } from "express";
 import brandsController from "./brands.controller";
-import { authMiddleware } from "../../middleware/auth.middleware";
+import { authenticate } from "../../middleware/auth.middleware";
 
 const router = Router();
 
 // All routes require authentication
-router.use(authMiddleware);
+router.use(authenticate);
 
 // Brand CRUD
 router.post("/", brandsController.create.bind(brandsController));

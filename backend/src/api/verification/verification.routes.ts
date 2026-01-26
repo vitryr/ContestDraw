@@ -6,8 +6,8 @@
 import { Router } from "express";
 import { body, query } from "express-validator";
 import * as verificationController from "./verification.controller";
-import { authenticateToken } from "../../middleware/auth.middleware";
-import { validateRequest } from "../../middleware/validation.middleware";
+import { authenticate } from "../../middleware/auth.middleware";
+import { validate } from "../../middleware/validation.middleware";
 
 const router = Router();
 
@@ -17,13 +17,13 @@ const router = Router();
  */
 router.post(
   "/instagram/follower",
-  authenticateToken,
+  authenticate,
   [
     body("username").notEmpty().isString().trim(),
     body("targetAccountId").notEmpty().isString().trim(),
     body("accessToken").notEmpty().isString(),
   ],
-  validateRequest,
+  validate,
   verificationController.verifyInstagramFollower,
 );
 
@@ -33,13 +33,13 @@ router.post(
  */
 router.post(
   "/facebook/page-like",
-  authenticateToken,
+  authenticate,
   [
     body("userId").notEmpty().isString().trim(),
     body("pageId").notEmpty().isString().trim(),
     body("accessToken").notEmpty().isString(),
   ],
-  validateRequest,
+  validate,
   verificationController.verifyFacebookPageLike,
 );
 
@@ -49,7 +49,7 @@ router.post(
  */
 router.post(
   "/batch",
-  authenticateToken,
+  authenticate,
   [
     body("drawId").notEmpty().isString(),
     body("requests").isArray().notEmpty(),
@@ -58,7 +58,7 @@ router.post(
     body("requests.*.targetAccount").notEmpty().isString(),
     body("accessTokens").isObject(),
   ],
-  validateRequest,
+  validate,
   verificationController.batchVerify,
 );
 
@@ -68,7 +68,7 @@ router.post(
  */
 router.get(
   "/results/:drawId",
-  authenticateToken,
+  authenticate,
   verificationController.getVerificationResults,
 );
 
@@ -78,12 +78,12 @@ router.get(
  */
 router.get(
   "/instagram/followers-count",
-  authenticateToken,
+  authenticate,
   [
     query("accountId").notEmpty().isString(),
     query("accessToken").notEmpty().isString(),
   ],
-  validateRequest,
+  validate,
   verificationController.getInstagramFollowersCount,
 );
 
@@ -93,12 +93,12 @@ router.get(
  */
 router.get(
   "/facebook/page-likes-count",
-  authenticateToken,
+  authenticate,
   [
     query("pageId").notEmpty().isString(),
     query("accessToken").notEmpty().isString(),
   ],
-  validateRequest,
+  validate,
   verificationController.getFacebookPageLikesCount,
 );
 

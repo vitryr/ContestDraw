@@ -4,7 +4,7 @@
 
 import { Router } from "express";
 import brandingController from "./branding.controller";
-import { authMiddleware } from "../../middleware/auth.middleware";
+import { authenticate } from "../../middleware/auth.middleware";
 
 const router = Router();
 
@@ -15,7 +15,7 @@ router.get(
 );
 
 // All other routes require authentication
-router.use(authMiddleware);
+router.use(authenticate);
 
 // Branding CRUD
 router.get("/:organizationId", brandingController.get.bind(brandingController));

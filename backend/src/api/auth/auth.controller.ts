@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import crypto from "crypto";
 import { asyncHandler, AppError } from "../../middleware/error.middleware";
 import { logger } from "../../utils/logger";
@@ -25,16 +25,24 @@ const generateTokens = (
   email: string,
   role: string = "user",
 ): TokenResponse => {
+  // Cast expiresIn to the expected type (string like "15m", "7d")
+  const accessTokenOptions: SignOptions = {
+    expiresIn: config.jwt.expiresIn,
+  } as SignOptions;
+  const refreshTokenOptions: SignOptions = {
+    expiresIn: config.jwt.refreshExpiresIn,
+  } as SignOptions;
+
   const accessToken = jwt.sign(
     { userId, email, role } as JWTPayload,
     config.jwt.secret,
-    { expiresIn: config.jwt.expiresIn },
+    accessTokenOptions,
   );
 
   const refreshToken = jwt.sign(
     { userId, email, role } as JWTPayload,
     config.jwt.refreshSecret,
-    { expiresIn: config.jwt.refreshExpiresIn },
+    refreshTokenOptions,
   );
 
   return {

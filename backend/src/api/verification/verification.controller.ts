@@ -5,7 +5,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import followerVerificationService from "../../services/follower-verification.service";
-import logger from "../../utils/logger";
+import { logger } from "../../utils/logger";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
