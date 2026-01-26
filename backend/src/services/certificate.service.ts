@@ -239,7 +239,9 @@ export class CertificateService {
 const certificateService = new CertificateService();
 
 // Export convenience function
-export async function generateCertificatePDF(drawResult: DrawResult): Promise<{ buffer: Buffer; hash: string }> {
+export async function generateCertificatePDF(
+  drawResult: DrawResult,
+): Promise<{ buffer: Buffer; hash: string }> {
   return certificateService.generateCertificate(drawResult);
 }
 
