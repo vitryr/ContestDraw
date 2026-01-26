@@ -103,7 +103,7 @@ const faqData: FAQItem[] = [
   },
   {
     id: 'filters-4',
-    question: 'What are \"required hashtags\" and \"required mentions\"?',
+    question: 'What are "required hashtags" and "required mentions"?',
     answer: 'Required hashtags: Only count entries that include specific hashtags (e.g., #contest, #giveaway). Required mentions: Only count entries that tag X number of friends (e.g., "Tag 2 friends"). Example: Require #MyBrandContest + @friend1 @friend2 to qualify.',
     category: 'filters'
   },
