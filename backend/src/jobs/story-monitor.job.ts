@@ -7,7 +7,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Queue, Worker, Job } from "bull";
 import { InstagramService } from "../services/instagram.service";
-import logger from "../utils/logger";
+import { logger } from "../utils/logger";
 import config from "../config/config";
 
 const prisma = new PrismaClient();

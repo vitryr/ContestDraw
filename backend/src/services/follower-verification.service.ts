@@ -8,7 +8,7 @@ import { PrismaClient } from "@prisma/client";
 import axios, { AxiosInstance } from "axios";
 import { RetryHandler } from "../utils/retry.util";
 import { Cache } from "../utils/cache.util";
-import logger from "../utils/logger";
+import { logger } from "../utils/logger";
 
 const prisma = new PrismaClient();
 

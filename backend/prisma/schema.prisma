@@ -20,6 +20,11 @@ model User {
   credits                 Int                  @default(3)
   trial_used              Boolean              @default(false)
   bonus_granted           Boolean              @default(true)
+  // Stripe fields
+  stripeCustomerId        String?              @unique
+  stripeSubscriptionId    String?              @unique
+  subscriptionType        String? // "monthly", "annual", "48h_pass"
+  subscriptionExpiresAt   DateTime?
   createdAt               DateTime             @default(now())
   updatedAt               DateTime             @updatedAt
   blacklists              Blacklist[]
@@ -32,30 +37,37 @@ model User {
   subscription            Subscription?
 
   @@index([email])
+  @@index([stripeCustomerId])
   @@map("users")
 }
 
 model Draw {
-  id              String        @id @default(uuid())
-  userId          String
-  title           String
-  description     String?
-  numberOfWinners Int
-  allowDuplicates Boolean       @default(false)
-  status          DrawStatus    @default(DRAFT)
-  algorithm       String?
-  seed            String?
-  certificateHash String?
-  completedAt     DateTime?
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  brandDraws      BrandDraw[]
-  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  participants    Participant[]
-  winners         Winner[]
+  id               String        @id @default(uuid())
+  userId           String
+  title            String
+  description      String?
+  numberOfWinners  Int
+  allowDuplicates  Boolean       @default(false)
+  status           DrawStatus    @default(DRAFT)
+  algorithm        String?
+  seed             String?
+  certificateHash  String?
+  verificationHash String?
+  platform         String? // "INSTAGRAM", "FACEBOOK", "TWITTER", "TIKTOK", "YOUTUBE", "MANUAL"
+  postUrl          String?
+  filters          Json? // Filters applied (hashtag, mentions, etc.)
+  executedAt       DateTime?
+  completedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  brandDraws       BrandDraw[]
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  participants     Participant[]
+  winners          Winner[]
 
   @@index([userId, status])
   @@index([createdAt])
+  @@index([verificationHash])
   @@map("draws")
 }
 
@@ -63,7 +75,8 @@ model Participant {
   id         String   @id @default(uuid())
   drawId     String
   name       String
-  identifier String
+  username   String? // Social media username (without @)
+  identifier String // Email or unique ID
   source     String   @default("MANUAL")
   metadata   Json?
   createdAt  DateTime @default(now())
@@ -71,17 +84,21 @@ model Participant {
   Winner     Winner[]
 
   @@index([drawId])
+  @@index([username])
   @@map("participants")
 }
 
 model Winner {
-  id            String      @id @default(uuid())
-  drawId        String
-  participantId String
-  position      Int
-  createdAt     DateTime    @default(now())
-  draw          Draw        @relation(fields: [drawId], references: [id], onDelete: Cascade)
-  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  id             String      @id @default(uuid())
+  drawId         String
+  participantId  String
+  position       Int
+  certificateUrl String? // URL to individual winner certificate
+  notifiedAt     DateTime? // When winner was notified
+  claimedAt      DateTime? // When winner claimed prize
+  createdAt      DateTime    @default(now())
+  draw           Draw        @relation(fields: [drawId], references: [id], onDelete: Cascade)
+  participant    Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
 
   @@unique([drawId, participantId, position])
   @@index([drawId])
@@ -318,7 +335,9 @@ enum DrawStatus {
   READY
   PROCESSING
   COMPLETED
+  EXECUTED // Alias for COMPLETED (legacy)
   FAILED
+  CANCELLED
 }
 
 enum CreditTransactionType {

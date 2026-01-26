@@ -6,7 +6,7 @@
 
 import { PrismaClient, Blacklist } from "@prisma/client";
 import * as XLSX from "xlsx";
-import logger from "../utils/logger";
+import { logger } from "../utils/logger";
 
 const prisma = new PrismaClient();
 
