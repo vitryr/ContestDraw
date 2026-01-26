@@ -123,16 +123,18 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
-      - name: Install dependencies
-        run: |
-          npm ci
-          cd backend && npm ci
-          cd ../frontend-web && npm ci
-          cd ../tests/e2e && npm ci
+      - name: Install backend dependencies
+        run: cd backend && npm ci
+
+      - name: Install frontend dependencies
+        run: cd frontend-web && npm ci
+
+      - name: Install E2E test dependencies
+        run: cd tests/e2e && npm ci
 
       - name: Install Playwright browsers
         run: |
