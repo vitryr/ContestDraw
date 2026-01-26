@@ -47,6 +47,8 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.28.6",
+    "@faker-js/faker": "^10.2.0",
     "@types/bcrypt": "^5.0.2",
     "@types/bull": "^4.10.0",
     "@types/cookie-parser": "^1.4.6",

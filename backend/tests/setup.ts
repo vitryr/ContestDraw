@@ -1,4 +1,11 @@
-import { PrismaClient } from '@prisma/client';
+// Set test environment variables
+process.env.STRIPE_SECRET_KEY = 'sk_test_mock_key_for_testing';
+process.env.STRIPE_WEBHOOK_SECRET = 'whsec_mock_webhook_secret';
+process.env.JWT_SECRET = 'test-jwt-secret';
+process.env.JWT_REFRESH_SECRET = 'test-jwt-refresh-secret';
+process.env.DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
+process.env.REDIS_HOST = 'localhost';
+process.env.REDIS_PORT = '6379';
 
 // Mock Prisma Client
 jest.mock('@prisma/client', () => {
@@ -42,19 +49,6 @@ jest.mock('@prisma/client', () => {
     PrismaClient: jest.fn(() => mockPrismaClient),
   };
 });
-
-// Mock Instagram API
-jest.mock('instagram-private-api', () => ({
-  IgApiClient: jest.fn().mockImplementation(() => ({
-    account: {
-      login: jest.fn().mockResolvedValue({}),
-    },
-    media: {
-      likers: jest.fn().mockResolvedValue([]),
-      comments: jest.fn().mockResolvedValue([]),
-    },
-  })),
-}));
 
 // Mock Stripe
 jest.mock('stripe', () => {
