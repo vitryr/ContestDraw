@@ -1,5 +1,5 @@
-import crypto from 'crypto';
-import { DrawParticipant } from '../types';
+import crypto from "crypto";
+import { DrawParticipant } from "../types";
 
 /**
  * Cryptographically secure random number generator
@@ -58,23 +58,30 @@ export const selectWinners = (
   participants: DrawParticipant[],
   numberOfWinners: number,
   allowDuplicates: boolean = false,
-  seed?: string
+  seed?: string,
 ): DrawParticipant[] => {
   if (participants.length === 0) {
-    throw new Error('No participants provided');
+    throw new Error("No participants provided");
   }
 
   if (numberOfWinners < 1) {
-    throw new Error('Number of winners must be at least 1');
+    throw new Error("Number of winners must be at least 1");
   }
 
   if (!allowDuplicates && numberOfWinners > participants.length) {
-    throw new Error('Number of winners cannot exceed number of participants when duplicates are not allowed');
+    throw new Error(
+      "Number of winners cannot exceed number of participants when duplicates are not allowed",
+    );
   }
 
   // If seed is provided, use it for deterministic selection (for testing/verification)
   if (seed) {
-    return selectWinnersWithSeed(participants, numberOfWinners, allowDuplicates, seed);
+    return selectWinnersWithSeed(
+      participants,
+      numberOfWinners,
+      allowDuplicates,
+      seed,
+    );
   }
 
   // Cryptographically secure random selection
@@ -107,13 +114,13 @@ const selectWinnersWithSeed = (
   participants: DrawParticipant[],
   numberOfWinners: number,
   allowDuplicates: boolean,
-  seed: string
+  seed: string,
 ): DrawParticipant[] => {
   // Create a seeded PRNG using hash of seed
-  let hash = crypto.createHash('sha256').update(seed).digest();
+  let hash = crypto.createHash("sha256").update(seed).digest();
 
   const seededRandom = (): number => {
-    hash = crypto.createHash('sha256').update(hash).digest();
+    hash = crypto.createHash("sha256").update(hash).digest();
     return hash.readUInt32BE(0) / 0xffffffff;
   };
 
@@ -140,7 +147,7 @@ const selectWinnersWithSeed = (
  * @returns Random seed string
  */
 export const generateRandomSeed = (): string => {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString("hex");
 };
 
 /**
@@ -157,10 +164,15 @@ export const verifyDrawResult = (
   numberOfWinners: number,
   allowDuplicates: boolean,
   seed: string,
-  winners: DrawParticipant[]
+  winners: DrawParticipant[],
 ): boolean => {
   try {
-    const recomputedWinners = selectWinnersWithSeed(participants, numberOfWinners, allowDuplicates, seed);
+    const recomputedWinners = selectWinnersWithSeed(
+      participants,
+      numberOfWinners,
+      allowDuplicates,
+      seed,
+    );
 
     // Compare winners
     if (recomputedWinners.length !== winners.length) {

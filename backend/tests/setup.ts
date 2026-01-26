@@ -1,14 +1,14 @@
 // Set test environment variables
-process.env.STRIPE_SECRET_KEY = 'sk_test_mock_key_for_testing';
-process.env.STRIPE_WEBHOOK_SECRET = 'whsec_mock_webhook_secret';
-process.env.JWT_SECRET = 'test-jwt-secret';
-process.env.JWT_REFRESH_SECRET = 'test-jwt-refresh-secret';
-process.env.DATABASE_URL = 'postgresql://test:test@localhost:5432/test';
-process.env.REDIS_HOST = 'localhost';
-process.env.REDIS_PORT = '6379';
+process.env.STRIPE_SECRET_KEY = "sk_test_mock_key_for_testing";
+process.env.STRIPE_WEBHOOK_SECRET = "whsec_mock_webhook_secret";
+process.env.JWT_SECRET = "test-jwt-secret";
+process.env.JWT_REFRESH_SECRET = "test-jwt-refresh-secret";
+process.env.DATABASE_URL = "postgresql://test:test@localhost:5432/test";
+process.env.REDIS_HOST = "localhost";
+process.env.REDIS_PORT = "6379";
 
 // Mock Prisma Client
-jest.mock('@prisma/client', () => {
+jest.mock("@prisma/client", () => {
   const mockPrismaClient = {
     user: {
       create: jest.fn(),
@@ -51,7 +51,7 @@ jest.mock('@prisma/client', () => {
 });
 
 // Mock Stripe
-jest.mock('stripe', () => {
+jest.mock("stripe", () => {
   return jest.fn().mockImplementation(() => ({
     checkout: {
       sessions: {
@@ -76,5 +76,5 @@ afterEach(() => {
 // Clean up after all tests
 afterAll(async () => {
   // Close any open connections
-  await new Promise(resolve => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 500));
 });

@@ -13,7 +13,7 @@ export interface PaginatedResponse<T> {
 
 export interface SocialAccount {
   userId: string;
-  platform: 'instagram' | 'facebook' | 'twitter' | 'tiktok';
+  platform: "instagram" | "facebook" | "twitter" | "tiktok";
   accountId: string;
   username: string;
   accessToken: string;

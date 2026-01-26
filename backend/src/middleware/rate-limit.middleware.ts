@@ -1,5 +1,5 @@
-import rateLimit from 'express-rate-limit';
-import config from '../config/config';
+import rateLimit from "express-rate-limit";
+import config from "../config/config";
 
 /**
  * General API rate limiter
@@ -9,12 +9,12 @@ export const apiLimiter = rateLimit({
   windowMs: config.rateLimit.windowMs,
   max: config.rateLimit.maxRequests,
   message: {
-    status: 'error',
-    message: 'Too many requests from this IP, please try again later',
-    code: 'RATE_LIMIT_EXCEEDED'
+    status: "error",
+    message: "Too many requests from this IP, please try again later",
+    code: "RATE_LIMIT_EXCEEDED",
   },
   standardHeaders: true,
-  legacyHeaders: false
+  legacyHeaders: false,
 });
 
 /**
@@ -26,10 +26,10 @@ export const authLimiter = rateLimit({
   max: 5, // 5 requests per window
   skipSuccessfulRequests: true,
   message: {
-    status: 'error',
-    message: 'Too many authentication attempts, please try again later',
-    code: 'AUTH_RATE_LIMIT_EXCEEDED'
-  }
+    status: "error",
+    message: "Too many authentication attempts, please try again later",
+    code: "AUTH_RATE_LIMIT_EXCEEDED",
+  },
 });
 
 /**
@@ -40,10 +40,10 @@ export const drawExecutionLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 20, // 20 draws per hour
   message: {
-    status: 'error',
-    message: 'Draw execution limit reached, please try again later',
-    code: 'DRAW_LIMIT_EXCEEDED'
-  }
+    status: "error",
+    message: "Draw execution limit reached, please try again later",
+    code: "DRAW_LIMIT_EXCEEDED",
+  },
 });
 
 /**
@@ -54,8 +54,8 @@ export const emailLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
   max: 10, // 10 emails per hour
   message: {
-    status: 'error',
-    message: 'Email limit reached, please try again later',
-    code: 'EMAIL_LIMIT_EXCEEDED'
-  }
+    status: "error",
+    message: "Email limit reached, please try again later",
+    code: "EMAIL_LIMIT_EXCEEDED",
+  },
 });

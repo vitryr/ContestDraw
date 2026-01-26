@@ -1,7 +1,7 @@
-import Stripe from 'stripe';
-import config from '../config/config';
-import { logger } from '../utils/logger';
-import { prisma } from '../utils/prisma';
+import Stripe from "stripe";
+import config from "../config/config";
+import { logger } from "../utils/logger";
+import { prisma } from "../utils/prisma";
 
 /**
  * Payment service using Stripe
@@ -12,7 +12,7 @@ class StripeService {
 
   constructor() {
     this.stripe = new Stripe(config.payment.stripe.secretKey, {
-      apiVersion: '2024-11-20.acacia'
+      apiVersion: "2024-11-20.acacia",
     });
   }
 
@@ -23,52 +23,55 @@ class StripeService {
     userId: string,
     priceId: string,
     successUrl: string,
-    cancelUrl: string
+    cancelUrl: string,
   ): Promise<Stripe.Checkout.Session> {
     try {
       // Get user email from database
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { email: true }
+        select: { email: true },
       });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new Error("User not found");
       }
 
       const session = await this.stripe.checkout.sessions.create({
         customer_email: user.email,
         client_reference_id: userId,
-        payment_method_types: ['card'],
+        payment_method_types: ["card"],
         line_items: [
           {
             price: priceId,
-            quantity: 1
-          }
+            quantity: 1,
+          },
         ],
-        mode: 'subscription',
+        mode: "subscription",
         success_url: successUrl,
         cancel_url: cancelUrl,
         subscription_data: {
           metadata: {
-            userId
-          }
+            userId,
+          },
         },
         metadata: {
-          userId
-        }
+          userId,
+        },
       });
 
-      logger.info('Checkout session created', { userId, sessionId: session.id });
+      logger.info("Checkout session created", {
+        userId,
+        sessionId: session.id,
+      });
 
       return session;
     } catch (error: any) {
-      logger.error('Failed to create checkout session', {
+      logger.error("Failed to create checkout session", {
         error: error.message,
         userId,
-        priceId
+        priceId,
       });
-      throw new Error('Failed to create checkout session');
+      throw new Error("Failed to create checkout session");
     }
   }
 
@@ -79,66 +82,72 @@ class StripeService {
     userId: string,
     priceId: string,
     successUrl: string,
-    cancelUrl: string
+    cancelUrl: string,
   ): Promise<Stripe.Checkout.Session> {
     try {
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { email: true }
+        select: { email: true },
       });
 
       if (!user) {
-        throw new Error('User not found');
+        throw new Error("User not found");
       }
 
       const session = await this.stripe.checkout.sessions.create({
         customer_email: user.email,
         client_reference_id: userId,
-        payment_method_types: ['card'],
+        payment_method_types: ["card"],
         line_items: [
           {
             price: priceId,
-            quantity: 1
-          }
+            quantity: 1,
+          },
         ],
-        mode: 'payment',
+        mode: "payment",
         success_url: successUrl,
         cancel_url: cancelUrl,
         metadata: {
           userId,
-          type: '48h_pass'
-        }
+          type: "48h_pass",
+        },
       });
 
-      logger.info('One-time payment session created', { userId, sessionId: session.id });
+      logger.info("One-time payment session created", {
+        userId,
+        sessionId: session.id,
+      });
 
       return session;
     } catch (error: any) {
-      logger.error('Failed to create payment session', {
+      logger.error("Failed to create payment session", {
         error: error.message,
         userId,
-        priceId
+        priceId,
       });
-      throw new Error('Failed to create payment session');
+      throw new Error("Failed to create payment session");
     }
   }
 
   /**
    * Cancel a subscription
    */
-  async cancelSubscription(subscriptionId: string): Promise<Stripe.Subscription> {
+  async cancelSubscription(
+    subscriptionId: string,
+  ): Promise<Stripe.Subscription> {
     try {
-      const subscription = await this.stripe.subscriptions.cancel(subscriptionId);
+      const subscription =
+        await this.stripe.subscriptions.cancel(subscriptionId);
 
-      logger.info('Subscription cancelled', { subscriptionId });
+      logger.info("Subscription cancelled", { subscriptionId });
 
       return subscription;
     } catch (error: any) {
-      logger.error('Failed to cancel subscription', {
+      logger.error("Failed to cancel subscription", {
         error: error.message,
-        subscriptionId
+        subscriptionId,
       });
-      throw new Error('Failed to cancel subscription');
+      throw new Error("Failed to cancel subscription");
     }
   }
 
@@ -147,99 +156,121 @@ class StripeService {
    */
   async getSubscription(subscriptionId: string): Promise<Stripe.Subscription> {
     try {
-      const subscription = await this.stripe.subscriptions.retrieve(subscriptionId);
+      const subscription =
+        await this.stripe.subscriptions.retrieve(subscriptionId);
       return subscription;
     } catch (error: any) {
-      logger.error('Failed to retrieve subscription', {
+      logger.error("Failed to retrieve subscription", {
         error: error.message,
-        subscriptionId
+        subscriptionId,
       });
-      throw new Error('Failed to retrieve subscription');
+      throw new Error("Failed to retrieve subscription");
     }
   }
 
   /**
    * Create a portal session for subscription management
    */
-  async createPortalSession(customerId: string, returnUrl: string): Promise<Stripe.BillingPortal.Session> {
+  async createPortalSession(
+    customerId: string,
+    returnUrl: string,
+  ): Promise<Stripe.BillingPortal.Session> {
     try {
       const session = await this.stripe.billingPortal.sessions.create({
         customer: customerId,
-        return_url: returnUrl
+        return_url: returnUrl,
       });
 
-      logger.info('Portal session created', { customerId });
+      logger.info("Portal session created", { customerId });
 
       return session;
     } catch (error: any) {
-      logger.error('Failed to create portal session', {
+      logger.error("Failed to create portal session", {
         error: error.message,
-        customerId
+        customerId,
       });
-      throw new Error('Failed to create portal session');
+      throw new Error("Failed to create portal session");
     }
   }
 
   /**
    * Handle webhook events from Stripe
    */
-  async handleWebhook(payload: string | Buffer, signature: string): Promise<void> {
+  async handleWebhook(
+    payload: string | Buffer,
+    signature: string,
+  ): Promise<void> {
     try {
       const event = this.stripe.webhooks.constructEvent(
         payload,
         signature,
-        config.payment.stripe.webhookSecret
+        config.payment.stripe.webhookSecret,
       );
 
-      logger.info('Stripe webhook received', { type: event.type, id: event.id });
+      logger.info("Stripe webhook received", {
+        type: event.type,
+        id: event.id,
+      });
 
       switch (event.type) {
-        case 'checkout.session.completed':
-          await this.handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+        case "checkout.session.completed":
+          await this.handleCheckoutCompleted(
+            event.data.object as Stripe.Checkout.Session,
+          );
           break;
 
-        case 'customer.subscription.created':
-        case 'customer.subscription.updated':
-          await this.handleSubscriptionUpdate(event.data.object as Stripe.Subscription);
+        case "customer.subscription.created":
+        case "customer.subscription.updated":
+          await this.handleSubscriptionUpdate(
+            event.data.object as Stripe.Subscription,
+          );
           break;
 
-        case 'customer.subscription.deleted':
-          await this.handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
+        case "customer.subscription.deleted":
+          await this.handleSubscriptionDeleted(
+            event.data.object as Stripe.Subscription,
+          );
           break;
 
-        case 'invoice.payment_succeeded':
-          await this.handleInvoicePaymentSucceeded(event.data.object as Stripe.Invoice);
+        case "invoice.payment_succeeded":
+          await this.handleInvoicePaymentSucceeded(
+            event.data.object as Stripe.Invoice,
+          );
           break;
 
-        case 'invoice.payment_failed':
-          await this.handleInvoicePaymentFailed(event.data.object as Stripe.Invoice);
+        case "invoice.payment_failed":
+          await this.handleInvoicePaymentFailed(
+            event.data.object as Stripe.Invoice,
+          );
           break;
 
         default:
-          logger.info('Unhandled webhook event type', { type: event.type });
+          logger.info("Unhandled webhook event type", { type: event.type });
       }
     } catch (error: any) {
-      logger.error('Webhook handling failed', {
-        error: error.message
+      logger.error("Webhook handling failed", {
+        error: error.message,
       });
-      throw new Error('Webhook handling failed');
+      throw new Error("Webhook handling failed");
     }
   }
 
   /**
    * Handle successful checkout completion
    */
-  private async handleCheckoutCompleted(session: Stripe.Checkout.Session): Promise<void> {
+  private async handleCheckoutCompleted(
+    session: Stripe.Checkout.Session,
+  ): Promise<void> {
     const userId = session.metadata?.userId || session.client_reference_id;
 
     if (!userId) {
-      logger.error('No userId in checkout session');
+      logger.error("No userId in checkout session");
       return;
     }
 
     try {
       // Check if this is a one-time payment (48h pass)
-      if (session.metadata?.type === '48h_pass') {
+      if (session.metadata?.type === "48h_pass") {
         // Grant 48h access
         const expiresAt = new Date();
         expiresAt.setHours(expiresAt.getHours() + 48);
@@ -247,16 +278,18 @@ class StripeService {
         await prisma.user.update({
           where: { id: userId },
           data: {
-            subscriptionStatus: 'active',
-            subscriptionType: '48h_pass',
-            subscriptionExpiresAt: expiresAt
-          }
+            subscriptionStatus: "active",
+            subscriptionType: "48h_pass",
+            subscriptionExpiresAt: expiresAt,
+          },
         });
 
-        logger.info('48h pass activated', { userId, expiresAt });
+        logger.info("48h pass activated", { userId, expiresAt });
       } else if (session.subscription) {
         // Handle subscription
-        const subscription = await this.stripe.subscriptions.retrieve(session.subscription as string);
+        const subscription = await this.stripe.subscriptions.retrieve(
+          session.subscription as string,
+        );
 
         await prisma.user.update({
           where: { id: userId },
@@ -265,17 +298,22 @@ class StripeService {
             stripeSubscriptionId: subscription.id,
             subscriptionStatus: subscription.status,
             subscriptionType: this.getSubscriptionType(subscription),
-            subscriptionExpiresAt: new Date(subscription.current_period_end * 1000)
-          }
+            subscriptionExpiresAt: new Date(
+              subscription.current_period_end * 1000,
+            ),
+          },
         });
 
-        logger.info('Subscription activated', { userId, subscriptionId: subscription.id });
+        logger.info("Subscription activated", {
+          userId,
+          subscriptionId: subscription.id,
+        });
       }
     } catch (error: any) {
-      logger.error('Failed to handle checkout completion', {
+      logger.error("Failed to handle checkout completion", {
         error: error.message,
         userId,
-        sessionId: session.id
+        sessionId: session.id,
       });
     }
   }
@@ -283,11 +321,13 @@ class StripeService {
   /**
    * Handle subscription updates
    */
-  private async handleSubscriptionUpdate(subscription: Stripe.Subscription): Promise<void> {
+  private async handleSubscriptionUpdate(
+    subscription: Stripe.Subscription,
+  ): Promise<void> {
     const userId = subscription.metadata?.userId;
 
     if (!userId) {
-      logger.error('No userId in subscription metadata');
+      logger.error("No userId in subscription metadata");
       return;
     }
 
@@ -299,15 +339,20 @@ class StripeService {
           stripeSubscriptionId: subscription.id,
           subscriptionStatus: subscription.status,
           subscriptionType: this.getSubscriptionType(subscription),
-          subscriptionExpiresAt: new Date(subscription.current_period_end * 1000)
-        }
+          subscriptionExpiresAt: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
       });
 
-      logger.info('Subscription updated', { userId, subscriptionId: subscription.id });
+      logger.info("Subscription updated", {
+        userId,
+        subscriptionId: subscription.id,
+      });
     } catch (error: any) {
-      logger.error('Failed to handle subscription update', {
+      logger.error("Failed to handle subscription update", {
         error: error.message,
-        subscriptionId: subscription.id
+        subscriptionId: subscription.id,
       });
     }
   }
@@ -315,11 +360,13 @@ class StripeService {
   /**
    * Handle subscription deletion
    */
-  private async handleSubscriptionDeleted(subscription: Stripe.Subscription): Promise<void> {
+  private async handleSubscriptionDeleted(
+    subscription: Stripe.Subscription,
+  ): Promise<void> {
     const userId = subscription.metadata?.userId;
 
     if (!userId) {
-      logger.error('No userId in subscription metadata');
+      logger.error("No userId in subscription metadata");
       return;
     }
 
@@ -327,16 +374,21 @@ class StripeService {
       await prisma.user.update({
         where: { id: userId },
         data: {
-          subscriptionStatus: 'cancelled',
-          subscriptionExpiresAt: new Date(subscription.current_period_end * 1000)
-        }
+          subscriptionStatus: "cancelled",
+          subscriptionExpiresAt: new Date(
+            subscription.current_period_end * 1000,
+          ),
+        },
       });
 
-      logger.info('Subscription deleted', { userId, subscriptionId: subscription.id });
+      logger.info("Subscription deleted", {
+        userId,
+        subscriptionId: subscription.id,
+      });
     } catch (error: any) {
-      logger.error('Failed to handle subscription deletion', {
+      logger.error("Failed to handle subscription deletion", {
         error: error.message,
-        subscriptionId: subscription.id
+        subscriptionId: subscription.id,
       });
     }
   }
@@ -344,10 +396,12 @@ class StripeService {
   /**
    * Handle successful invoice payment
    */
-  private async handleInvoicePaymentSucceeded(invoice: Stripe.Invoice): Promise<void> {
-    logger.info('Invoice payment succeeded', {
+  private async handleInvoicePaymentSucceeded(
+    invoice: Stripe.Invoice,
+  ): Promise<void> {
+    logger.info("Invoice payment succeeded", {
       invoiceId: invoice.id,
-      customerId: invoice.customer
+      customerId: invoice.customer,
     });
 
     // Optionally send payment confirmation email
@@ -357,10 +411,12 @@ class StripeService {
   /**
    * Handle failed invoice payment
    */
-  private async handleInvoicePaymentFailed(invoice: Stripe.Invoice): Promise<void> {
-    logger.warn('Invoice payment failed', {
+  private async handleInvoicePaymentFailed(
+    invoice: Stripe.Invoice,
+  ): Promise<void> {
+    logger.warn("Invoice payment failed", {
       invoiceId: invoice.id,
-      customerId: invoice.customer
+      customerId: invoice.customer,
     });
 
     // Optionally send payment failure email
@@ -373,11 +429,12 @@ class StripeService {
   private getSubscriptionType(subscription: Stripe.Subscription): string {
     const priceId = subscription.items.data[0]?.price.id;
 
-    if (priceId === config.payment.stripe.prices.monthly) return 'monthly';
-    if (priceId === config.payment.stripe.prices.annual) return 'annual';
-    if (priceId === config.payment.stripe.prices.enterprise) return 'enterprise';
+    if (priceId === config.payment.stripe.prices.monthly) return "monthly";
+    if (priceId === config.payment.stripe.prices.annual) return "annual";
+    if (priceId === config.payment.stripe.prices.enterprise)
+      return "enterprise";
 
-    return 'unknown';
+    return "unknown";
   }
 
   /**
@@ -387,13 +444,13 @@ class StripeService {
     try {
       const products = await this.stripe.products.list({
         active: true,
-        expand: ['data.default_price']
+        expand: ["data.default_price"],
       });
 
       return products.data;
     } catch (error: any) {
-      logger.error('Failed to retrieve products', { error: error.message });
-      throw new Error('Failed to retrieve products');
+      logger.error("Failed to retrieve products", { error: error.message });
+      throw new Error("Failed to retrieve products");
     }
   }
 
@@ -404,13 +461,16 @@ class StripeService {
     try {
       const prices = await this.stripe.prices.list({
         product: productId,
-        active: true
+        active: true,
       });
 
       return prices.data;
     } catch (error: any) {
-      logger.error('Failed to retrieve prices', { error: error.message, productId });
-      throw new Error('Failed to retrieve prices');
+      logger.error("Failed to retrieve prices", {
+        error: error.message,
+        productId,
+      });
+      throw new Error("Failed to retrieve prices");
     }
   }
 }

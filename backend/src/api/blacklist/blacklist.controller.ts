@@ -3,9 +3,9 @@
  * Handles HTTP requests for blacklist management
  */
 
-import { Request, Response, NextFunction } from 'express';
-import blacklistService from '../../services/blacklist.service';
-import { logger } from '../../utils/logger';
+import { Request, Response, NextFunction } from "express";
+import blacklistService from "../../services/blacklist.service";
+import { logger } from "../../utils/logger";
 
 /**
  * Get all blacklisted users
@@ -13,12 +13,12 @@ import { logger } from '../../utils/logger';
 export async function getBlacklist(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -35,7 +35,7 @@ export async function getBlacklist(
       count: blacklist.length,
     });
   } catch (error) {
-    logger.error('Get blacklist failed', {
+    logger.error("Get blacklist failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -48,19 +48,19 @@ export async function getBlacklist(
 export async function addToBlacklist(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
     const { username, platform, reason } = req.body;
 
     if (!username) {
-      res.status(400).json({ error: 'Username is required' });
+      res.status(400).json({ error: "Username is required" });
       return;
     }
 
@@ -73,15 +73,15 @@ export async function addToBlacklist(
     res.status(201).json({
       success: true,
       data: blacklist,
-      message: 'User added to blacklist successfully',
+      message: "User added to blacklist successfully",
     });
   } catch (error) {
-    if (error instanceof Error && error.message.includes('already exists')) {
+    if (error instanceof Error && error.message.includes("already exists")) {
       res.status(409).json({ error: error.message });
       return;
     }
 
-    logger.error('Add to blacklist failed', {
+    logger.error("Add to blacklist failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -94,12 +94,12 @@ export async function addToBlacklist(
 export async function removeFromBlacklist(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -109,10 +109,10 @@ export async function removeFromBlacklist(
 
     res.json({
       success: true,
-      message: 'User removed from blacklist successfully',
+      message: "User removed from blacklist successfully",
     });
   } catch (error) {
-    logger.error('Remove from blacklist failed', {
+    logger.error("Remove from blacklist failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -125,12 +125,12 @@ export async function removeFromBlacklist(
 export async function updateBlacklistEntry(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -146,10 +146,10 @@ export async function updateBlacklistEntry(
     res.json({
       success: true,
       data: blacklist,
-      message: 'Blacklist entry updated successfully',
+      message: "Blacklist entry updated successfully",
     });
   } catch (error) {
-    logger.error('Update blacklist entry failed', {
+    logger.error("Update blacklist entry failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -162,19 +162,19 @@ export async function updateBlacklistEntry(
 export async function bulkAddToBlacklist(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
     const { entries } = req.body;
 
     if (!Array.isArray(entries) || entries.length === 0) {
-      res.status(400).json({ error: 'Entries array is required' });
+      res.status(400).json({ error: "Entries array is required" });
       return;
     }
 
@@ -186,7 +186,7 @@ export async function bulkAddToBlacklist(
       message: `Bulk operation completed: ${result.successCount} added, ${result.errorCount} failed`,
     });
   } catch (error) {
-    logger.error('Bulk add to blacklist failed', {
+    logger.error("Bulk add to blacklist failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -199,21 +199,24 @@ export async function bulkAddToBlacklist(
 export async function importFromCSV(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
     if (!req.file) {
-      res.status(400).json({ error: 'CSV file is required' });
+      res.status(400).json({ error: "CSV file is required" });
       return;
     }
 
-    const result = await blacklistService.importFromCSV(userId, req.file.buffer);
+    const result = await blacklistService.importFromCSV(
+      userId,
+      req.file.buffer,
+    );
 
     res.json({
       success: true,
@@ -221,7 +224,7 @@ export async function importFromCSV(
       message: `Import completed: ${result.successCount} added, ${result.errorCount} failed`,
     });
   } catch (error) {
-    logger.error('CSV import failed', {
+    logger.error("CSV import failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -234,12 +237,12 @@ export async function importFromCSV(
 export async function exportToCSV(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -247,17 +250,17 @@ export async function exportToCSV(
 
     const csvBuffer = await blacklistService.exportToCSV(
       userId,
-      platform as string
+      platform as string,
     );
 
-    res.setHeader('Content-Type', 'text/csv');
+    res.setHeader("Content-Type", "text/csv");
     res.setHeader(
-      'Content-Disposition',
-      'attachment; filename="blacklist.csv"'
+      "Content-Disposition",
+      'attachment; filename="blacklist.csv"',
     );
     res.send(csvBuffer);
   } catch (error) {
-    logger.error('CSV export failed', {
+    logger.error("CSV export failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -270,38 +273,38 @@ export async function exportToCSV(
 export async function checkBlacklisted(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
     const { username, platform } = req.query;
 
     if (!username) {
-      res.status(400).json({ error: 'Username is required' });
+      res.status(400).json({ error: "Username is required" });
       return;
     }
 
     const isBlacklisted = await blacklistService.isBlacklisted(
       userId,
       username as string,
-      (platform as string) || 'INSTAGRAM'
+      (platform as string) || "INSTAGRAM",
     );
 
     res.json({
       success: true,
       data: {
         username,
-        platform: platform || 'INSTAGRAM',
+        platform: platform || "INSTAGRAM",
         isBlacklisted,
       },
     });
   } catch (error) {
-    logger.error('Check blacklisted failed', {
+    logger.error("Check blacklisted failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -314,12 +317,12 @@ export async function checkBlacklisted(
 export async function getBlacklistStats(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -330,7 +333,7 @@ export async function getBlacklistStats(
       data: stats,
     });
   } catch (error) {
-    logger.error('Get blacklist stats failed', {
+    logger.error("Get blacklist stats failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -343,12 +346,12 @@ export async function getBlacklistStats(
 export async function clearBlacklist(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -356,7 +359,7 @@ export async function clearBlacklist(
 
     const deletedCount = await blacklistService.clearBlacklist(
       userId,
-      platform as string
+      platform as string,
     );
 
     res.json({
@@ -367,7 +370,7 @@ export async function clearBlacklist(
       message: `Cleared ${deletedCount} entries from blacklist`,
     });
   } catch (error) {
-    logger.error('Clear blacklist failed', {
+    logger.error("Clear blacklist failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);

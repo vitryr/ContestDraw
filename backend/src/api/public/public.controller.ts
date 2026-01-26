@@ -1,8 +1,18 @@
-import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
-import { generateQRCode, resolveShortCode, createShareableLink, generateSocialShareUrls, generateEmbedCode } from '../../services/sharing.service';
-import { verifyDrawHash, formatHashForDisplay, generateVerificationCode } from '../../utils/hash.util';
-import { CertificateService } from '../../services/certificate.service';
+import { Request, Response, NextFunction } from "express";
+import { PrismaClient } from "@prisma/client";
+import {
+  generateQRCode,
+  resolveShortCode,
+  createShareableLink,
+  generateSocialShareUrls,
+  generateEmbedCode,
+} from "../../services/sharing.service";
+import {
+  verifyDrawHash,
+  formatHashForDisplay,
+  generateVerificationCode,
+} from "../../utils/hash.util";
+import { CertificateService } from "../../services/certificate.service";
 
 const prisma = new PrismaClient();
 const certificateService = new CertificateService();
@@ -19,7 +29,7 @@ const certificateService = new CertificateService();
 export async function getDrawVerification(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { drawId } = req.params;
@@ -40,7 +50,7 @@ export async function getDrawVerification(
             participant: true,
           },
           orderBy: {
-            position: 'asc',
+            position: "asc",
           },
         },
         participants: {
@@ -58,23 +68,23 @@ export async function getDrawVerification(
 
     if (!draw) {
       res.status(404).json({
-        error: 'Draw not found',
-        message: 'The requested draw does not exist or has been deleted',
+        error: "Draw not found",
+        message: "The requested draw does not exist or has been deleted",
       });
       return;
     }
 
     // Only show completed draws
-    if (draw.status !== 'executed' && draw.status !== 'completed') {
+    if (draw.status !== "executed" && draw.status !== "completed") {
       res.status(403).json({
-        error: 'Draw not accessible',
-        message: 'This draw has not been executed yet',
+        error: "Draw not accessible",
+        message: "This draw has not been executed yet",
       });
       return;
     }
 
     // Build verification data
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
     const verificationUrl = `${baseUrl}/verify/${drawId}`;
 
     // Generate shareable link
@@ -119,12 +129,12 @@ export async function getDrawVerification(
         platform: p.platform,
       })),
       verification: {
-        hash: draw.verificationHash || 'N/A',
+        hash: draw.verificationHash || "N/A",
         verificationCode: draw.verificationHash
           ? generateVerificationCode(draw.verificationHash)
-          : 'N/A',
-        algorithm: 'Cryptographically Secure PRNG (crypto.randomBytes)',
-        hashAlgorithm: 'SHA-256',
+          : "N/A",
+        algorithm: "Cryptographically Secure PRNG (crypto.randomBytes)",
+        hashAlgorithm: "SHA-256",
         verified: !!draw.verificationHash,
       },
       sharing: {
@@ -149,7 +159,7 @@ export async function getDrawVerification(
 export async function verifyHash(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { drawId } = req.params;
@@ -157,8 +167,8 @@ export async function verifyHash(
 
     if (!hash) {
       res.status(400).json({
-        error: 'Hash required',
-        message: 'Please provide a hash to verify',
+        error: "Hash required",
+        message: "Please provide a hash to verify",
       });
       return;
     }
@@ -178,7 +188,7 @@ export async function verifyHash(
 
     if (!draw) {
       res.status(404).json({
-        error: 'Draw not found',
+        error: "Draw not found",
       });
       return;
     }
@@ -189,8 +199,8 @@ export async function verifyHash(
     res.json({
       verified: hashMatches,
       message: hashMatches
-        ? 'Hash verification successful - certificate is authentic'
-        : 'Hash verification failed - certificate may be tampered with',
+        ? "Hash verification successful - certificate is authentic"
+        : "Hash verification failed - certificate may be tampered with",
       expectedHash: draw.verificationHash,
       providedHash: hash,
     });
@@ -206,7 +216,7 @@ export async function verifyHash(
 export async function getQRCode(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { shortCode } = req.params;
@@ -216,18 +226,18 @@ export async function getQRCode(
 
     if (!drawId) {
       res.status(404).json({
-        error: 'Invalid or expired code',
+        error: "Invalid or expired code",
       });
       return;
     }
 
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
     const verificationUrl = `${baseUrl}/verify/${drawId}`;
 
     // Generate QR code
     const qrSvg = generateQRCode(verificationUrl);
 
-    res.setHeader('Content-Type', 'image/svg+xml');
+    res.setHeader("Content-Type", "image/svg+xml");
     res.send(qrSvg);
   } catch (error) {
     next(error);
@@ -241,7 +251,7 @@ export async function getQRCode(
 export async function redirectShortCode(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { shortCode } = req.params;
@@ -250,7 +260,7 @@ export async function redirectShortCode(
 
     if (!drawId) {
       res.status(404).json({
-        error: 'Invalid or expired code',
+        error: "Invalid or expired code",
       });
       return;
     }
@@ -268,14 +278,14 @@ export async function redirectShortCode(
 export async function getEmbedCode(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { drawId } = req.params;
     const {
       width = 600,
       height = 400,
-      theme = 'light',
+      theme = "light",
       showParticipants = false,
     } = req.query;
 
@@ -285,23 +295,23 @@ export async function getEmbedCode(
       select: { id: true, status: true },
     });
 
-    if (!draw || draw.status !== 'executed') {
+    if (!draw || draw.status !== "executed") {
       res.status(404).json({
-        error: 'Draw not found or not executed',
+        error: "Draw not found or not executed",
       });
       return;
     }
 
-    const baseUrl = `${req.protocol}://${req.get('host')}`;
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
     const embedCode = generateEmbedCode(
       {
         drawId,
         width: Number(width),
         height: Number(height),
-        theme: theme as 'light' | 'dark',
-        showParticipants: showParticipants === 'true',
+        theme: theme as "light" | "dark",
+        showParticipants: showParticipants === "true",
       },
-      baseUrl
+      baseUrl,
     );
 
     res.json({
@@ -321,7 +331,7 @@ export async function getEmbedCode(
 export async function downloadCertificate(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const { drawId, winnerId } = req.params;
@@ -344,7 +354,7 @@ export async function downloadCertificate(
 
     if (!winner) {
       res.status(404).json({
-        error: 'Winner not found',
+        error: "Winner not found",
       });
       return;
     }
@@ -357,8 +367,8 @@ export async function downloadCertificate(
 
     // Generate certificate (implementation depends on your certificate service)
     res.status(501).json({
-      error: 'Certificate generation not implemented',
-      message: 'Please contact support',
+      error: "Certificate generation not implemented",
+      message: "Please contact support",
     });
   } catch (error) {
     next(error);
@@ -372,11 +382,11 @@ export async function downloadCertificate(
 export async function getPublicStats(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const [totalDraws, totalWinners, totalParticipants] = await Promise.all([
-      prisma.draw.count({ where: { status: 'executed' } }),
+      prisma.draw.count({ where: { status: "executed" } }),
       prisma.winner.count(),
       prisma.participant.count(),
     ]);

@@ -3,8 +3,8 @@
  * White-label customization for enterprise organizations
  */
 
-import { PrismaClient } from '@prisma/client';
-import { Branding, UpdateBrandingDTO } from '../types/enterprise.types';
+import { PrismaClient } from "@prisma/client";
+import { Branding, UpdateBrandingDTO } from "../types/enterprise.types";
 
 export class BrandingService {
   constructor(private prisma: PrismaClient) {}
@@ -14,7 +14,7 @@ export class BrandingService {
    */
   async getOrCreateBranding(organizationId: string): Promise<Branding> {
     let branding = await this.prisma.branding.findUnique({
-      where: { organizationId }
+      where: { organizationId },
     });
 
     if (!branding) {
@@ -22,11 +22,11 @@ export class BrandingService {
       branding = await this.prisma.branding.create({
         data: {
           organizationId,
-          primaryColor: '#1976d2',
-          secondaryColor: '#dc004e',
+          primaryColor: "#1976d2",
+          secondaryColor: "#dc004e",
           removeBranding: false,
-          settings: {}
-        }
+          settings: {},
+        },
       });
     }
 
@@ -38,7 +38,7 @@ export class BrandingService {
    */
   async updateBranding(
     organizationId: string,
-    data: UpdateBrandingDTO
+    data: UpdateBrandingDTO,
   ): Promise<Branding> {
     // Ensure branding exists
     await this.getOrCreateBranding(organizationId);
@@ -47,26 +47,23 @@ export class BrandingService {
       where: { organizationId },
       data: {
         ...data,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
   /**
    * Upload logo for organization
    */
-  async uploadLogo(
-    organizationId: string,
-    logoUrl: string
-  ): Promise<Branding> {
+  async uploadLogo(organizationId: string, logoUrl: string): Promise<Branding> {
     await this.getOrCreateBranding(organizationId);
 
     return this.prisma.branding.update({
       where: { organizationId },
       data: {
         logoUrl,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -75,7 +72,7 @@ export class BrandingService {
    */
   async uploadFavicon(
     organizationId: string,
-    faviconUrl: string
+    faviconUrl: string,
   ): Promise<Branding> {
     await this.getOrCreateBranding(organizationId);
 
@@ -83,8 +80,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         faviconUrl,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -93,15 +90,15 @@ export class BrandingService {
    */
   async setCustomDomain(
     organizationId: string,
-    customDomain: string
+    customDomain: string,
   ): Promise<Branding> {
     // Check if domain is already in use
     const existing = await this.prisma.branding.findUnique({
-      where: { customDomain }
+      where: { customDomain },
     });
 
     if (existing && existing.organizationId !== organizationId) {
-      throw new Error('Custom domain already in use by another organization');
+      throw new Error("Custom domain already in use by another organization");
     }
 
     await this.getOrCreateBranding(organizationId);
@@ -110,8 +107,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         customDomain,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -123,8 +120,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         customDomain: null,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -137,7 +134,7 @@ export class BrandingService {
       primaryColor?: string;
       secondaryColor?: string;
       accentColor?: string;
-    }
+    },
   ): Promise<Branding> {
     await this.getOrCreateBranding(organizationId);
 
@@ -145,8 +142,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         ...colors,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -155,21 +152,23 @@ export class BrandingService {
    */
   async toggleBrandingRemoval(
     organizationId: string,
-    removeBranding: boolean
+    removeBranding: boolean,
   ): Promise<Branding> {
     // Check if organization has premium subscription
     const org = await this.prisma.organization.findUnique({
       where: { id: organizationId },
       include: {
         subscriptions: {
-          where: { status: 'ACTIVE' },
-          take: 1
-        }
-      }
+          where: { status: "ACTIVE" },
+          take: 1,
+        },
+      },
     });
 
     if (!org || org.subscriptions.length === 0) {
-      throw new Error('Active enterprise subscription required to remove branding');
+      throw new Error(
+        "Active enterprise subscription required to remove branding",
+      );
     }
 
     await this.getOrCreateBranding(organizationId);
@@ -178,8 +177,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         removeBranding,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -188,11 +187,11 @@ export class BrandingService {
    */
   async setCustomCSS(
     organizationId: string,
-    customCss: string
+    customCss: string,
   ): Promise<Branding> {
     // Validate CSS (basic check)
     if (customCss.length > 50000) {
-      throw new Error('Custom CSS exceeds maximum size (50KB)');
+      throw new Error("Custom CSS exceeds maximum size (50KB)");
     }
 
     await this.getOrCreateBranding(organizationId);
@@ -201,8 +200,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         customCss,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -214,7 +213,7 @@ export class BrandingService {
     data: {
       emailFromName?: string;
       emailReplyTo?: string;
-    }
+    },
   ): Promise<Branding> {
     await this.getOrCreateBranding(organizationId);
 
@@ -222,8 +221,8 @@ export class BrandingService {
       where: { organizationId },
       data: {
         ...data,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -234,8 +233,8 @@ export class BrandingService {
     return this.prisma.branding.findUnique({
       where: { customDomain: domain },
       include: {
-        organization: true
-      }
+        organization: true,
+      },
     });
   }
 
@@ -248,14 +247,14 @@ export class BrandingService {
       data: {
         logoUrl: null,
         faviconUrl: null,
-        primaryColor: '#1976d2',
-        secondaryColor: '#dc004e',
+        primaryColor: "#1976d2",
+        secondaryColor: "#dc004e",
         accentColor: null,
         customCss: null,
         removeBranding: false,
         settings: {},
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -269,7 +268,7 @@ export class BrandingService {
         --secondary-color: ${branding.secondaryColor};
         --accent-color: ${branding.accentColor || branding.primaryColor};
       }
-      ${branding.customCss || ''}
+      ${branding.customCss || ""}
     `.trim();
   }
 
@@ -293,12 +292,12 @@ export class BrandingService {
       colors: {
         primary: branding.primaryColor,
         secondary: branding.secondaryColor,
-        accent: branding.accentColor || undefined
+        accent: branding.accentColor || undefined,
       },
       logo: branding.logoUrl || undefined,
       favicon: branding.faviconUrl || undefined,
       removeBranding: branding.removeBranding,
-      customCSS: branding.customCss || undefined
+      customCSS: branding.customCss || undefined,
     };
   }
 }

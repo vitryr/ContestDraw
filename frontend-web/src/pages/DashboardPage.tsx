@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Plus, Trophy, Clock, CheckCircle2, Calendar } from 'lucide-react';
-import { useDrawStore } from '../store/useDrawStore';
-import { useCreditsStore } from '../store/useCreditsStore';
-import { format } from '../utils/date';
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Plus, Trophy, Clock, CheckCircle2, Calendar } from "lucide-react";
+import { useDrawStore } from "../store/useDrawStore";
+import { useCreditsStore } from "../store/useCreditsStore";
+import { format } from "../utils/date";
 
 export default function DashboardPage() {
   const { draws, fetchDraws, isLoading } = useDrawStore();
@@ -16,12 +16,12 @@ export default function DashboardPage() {
 
   const getStatusColor = (status: string) => {
     const colors = {
-      draft: 'bg-gray-100 text-gray-800',
-      configured: 'bg-blue-100 text-blue-800',
-      executed: 'bg-green-100 text-green-800',
-      completed: 'bg-purple-100 text-purple-800',
+      draft: "bg-gray-100 text-gray-800",
+      configured: "bg-blue-100 text-blue-800",
+      executed: "bg-green-100 text-green-800",
+      completed: "bg-purple-100 text-purple-800",
     };
-    return colors[status as keyof typeof colors] || 'bg-gray-100 text-gray-800';
+    return colors[status as keyof typeof colors] || "bg-gray-100 text-gray-800";
   };
 
   const getStatusIcon = (status: string) => {
@@ -60,7 +60,9 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Total Draws</p>
-                <p className="text-2xl font-bold text-gray-900">{draws.length}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {draws.length}
+                </p>
               </div>
               <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
                 <Trophy className="w-6 h-6 text-primary-600" />
@@ -78,7 +80,7 @@ export default function DashboardPage() {
               <div>
                 <p className="text-sm text-gray-600 mb-1">Completed</p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {draws.filter((d) => d.status === 'completed').length}
+                  {draws.filter((d) => d.status === "completed").length}
                 </p>
               </div>
               <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
@@ -97,7 +99,11 @@ export default function DashboardPage() {
               <div>
                 <p className="text-sm text-gray-600 mb-1">In Progress</p>
                 <p className="text-2xl font-bold text-gray-900">
-                  {draws.filter((d) => ['draft', 'configured'].includes(d.status)).length}
+                  {
+                    draws.filter((d) =>
+                      ["draft", "configured"].includes(d.status),
+                    ).length
+                  }
                 </p>
               </div>
               <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -115,7 +121,9 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Credits</p>
-                <p className="text-2xl font-bold text-gray-900">{balance || 0}</p>
+                <p className="text-2xl font-bold text-gray-900">
+                  {balance || 0}
+                </p>
               </div>
               <Link
                 to="/pricing"
@@ -129,7 +137,9 @@ export default function DashboardPage() {
 
         {/* Draws List */}
         <div className="card">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">Recent Draws</h2>
+          <h2 className="text-xl font-semibold text-gray-900 mb-6">
+            Recent Draws
+          </h2>
 
           {isLoading ? (
             <div className="text-center py-12">
@@ -155,23 +165,25 @@ export default function DashboardPage() {
                 >
                   <Link
                     to={
-                      draw.status === 'completed'
+                      draw.status === "completed"
                         ? `/draw/${draw.id}/results`
-                        : draw.status === 'executed'
-                        ? `/draw/${draw.id}/results`
-                        : draw.status === 'configured'
-                        ? `/draw/${draw.id}/execute`
-                        : `/draw/${draw.id}/config`
+                        : draw.status === "executed"
+                          ? `/draw/${draw.id}/results`
+                          : draw.status === "configured"
+                            ? `/draw/${draw.id}/execute`
+                            : `/draw/${draw.id}/config`
                     }
                     className="block p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
                   >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-3 mb-2">
-                          <h3 className="text-lg font-semibold text-gray-900">{draw.title}</h3>
+                          <h3 className="text-lg font-semibold text-gray-900">
+                            {draw.title}
+                          </h3>
                           <span
                             className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(
-                              draw.status
+                              draw.status,
                             )}`}
                           >
                             {getStatusIcon(draw.status)}
@@ -179,14 +191,21 @@ export default function DashboardPage() {
                           </span>
                         </div>
                         {draw.description && (
-                          <p className="text-gray-600 text-sm mb-2">{draw.description}</p>
+                          <p className="text-gray-600 text-sm mb-2">
+                            {draw.description}
+                          </p>
                         )}
                         <div className="flex items-center gap-4 text-sm text-gray-500">
-                          <span>{draw.participants?.length || 0} participants</span>
+                          <span>
+                            {draw.participants?.length || 0} participants
+                          </span>
                           <span>•</span>
                           <span>{draw.numberOfWinners} winner(s)</span>
                           <span>•</span>
-                          <span>Created {format(new Date(draw.createdAt), 'MMM d, yyyy')}</span>
+                          <span>
+                            Created{" "}
+                            {format(new Date(draw.createdAt), "MMM d, yyyy")}
+                          </span>
                         </div>
                       </div>
                       <div className="text-right">

@@ -1,4 +1,4 @@
-import { faker } from '@faker-js/faker';
+import { faker } from "@faker-js/faker";
 
 export class TestFactories {
   static createUser(overrides = {}) {
@@ -22,7 +22,7 @@ export class TestFactories {
       instagramPostUrl: faker.internet.url(),
       winnerCount: faker.number.int({ min: 1, max: 10 }),
       filters: {},
-      status: 'pending' as const,
+      status: "pending" as const,
       createdAt: new Date(),
       updatedAt: new Date(),
       ...overrides,
@@ -64,7 +64,7 @@ export class TestFactories {
       id: faker.string.uuid(),
       userId: faker.string.uuid(),
       amount: faker.number.int({ min: 1, max: 100 }),
-      type: 'purchase' as const,
+      type: "purchase" as const,
       stripeSessionId: faker.string.alphanumeric(32),
       createdAt: new Date(),
       ...overrides,

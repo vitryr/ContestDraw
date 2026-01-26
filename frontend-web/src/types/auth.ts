@@ -69,7 +69,7 @@ export interface ApiError {
 }
 
 export interface ApiResponse<T> {
-  status: 'success' | 'error';
+  status: "success" | "error";
   message?: string;
   data: T;
 }

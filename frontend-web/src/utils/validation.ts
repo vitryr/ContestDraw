@@ -4,7 +4,7 @@
 
 export interface PasswordStrength {
   score: number; // 0-4
-  label: 'Weak' | 'Fair' | 'Good' | 'Strong' | 'Very Strong';
+  label: "Weak" | "Fair" | "Good" | "Strong" | "Very Strong";
   color: string;
   suggestions: string[];
 }
@@ -14,22 +14,24 @@ export interface PasswordStrength {
  * @param password - Password to analyze
  * @returns Password strength object
  */
-export const calculatePasswordStrength = (password: string): PasswordStrength => {
+export const calculatePasswordStrength = (
+  password: string,
+): PasswordStrength => {
   let score = 0;
   const suggestions: string[] = [];
 
   if (!password) {
     return {
       score: 0,
-      label: 'Weak',
-      color: 'text-red-600',
-      suggestions: ['Enter a password'],
+      label: "Weak",
+      color: "text-red-600",
+      suggestions: ["Enter a password"],
     };
   }
 
   // Length check
   if (password.length >= 8) score++;
-  else suggestions.push('Use at least 8 characters');
+  else suggestions.push("Use at least 8 characters");
 
   if (password.length >= 12) score++;
 
@@ -37,29 +39,32 @@ export const calculatePasswordStrength = (password: string): PasswordStrength =>
   if (/[a-z]/.test(password) && /[A-Z]/.test(password)) {
     score++;
   } else {
-    suggestions.push('Mix uppercase and lowercase letters');
+    suggestions.push("Mix uppercase and lowercase letters");
   }
 
   if (/\d/.test(password)) {
     score++;
   } else {
-    suggestions.push('Include numbers');
+    suggestions.push("Include numbers");
   }
 
   if (/[@$!%*?&#]/.test(password)) {
     score++;
   } else {
-    suggestions.push('Add special characters (@$!%*?&#)');
+    suggestions.push("Add special characters (@$!%*?&#)");
   }
 
   // Determine label and color
-  const strengthMap: Record<number, { label: PasswordStrength['label']; color: string }> = {
-    0: { label: 'Weak', color: 'text-red-600' },
-    1: { label: 'Weak', color: 'text-red-600' },
-    2: { label: 'Fair', color: 'text-orange-600' },
-    3: { label: 'Good', color: 'text-yellow-600' },
-    4: { label: 'Strong', color: 'text-green-600' },
-    5: { label: 'Very Strong', color: 'text-green-700' },
+  const strengthMap: Record<
+    number,
+    { label: PasswordStrength["label"]; color: string }
+  > = {
+    0: { label: "Weak", color: "text-red-600" },
+    1: { label: "Weak", color: "text-red-600" },
+    2: { label: "Fair", color: "text-orange-600" },
+    3: { label: "Good", color: "text-yellow-600" },
+    4: { label: "Strong", color: "text-green-600" },
+    5: { label: "Very Strong", color: "text-green-700" },
   };
 
   const strength = strengthMap[score] || strengthMap[0];
@@ -87,33 +92,38 @@ export const isValidEmail = (email: string): boolean => {
  * @param password - Password to validate
  * @returns Object with valid flag and error message
  */
-export const validatePassword = (password: string): { valid: boolean; error?: string } => {
+export const validatePassword = (
+  password: string,
+): { valid: boolean; error?: string } => {
   if (!password) {
-    return { valid: false, error: 'Password is required' };
+    return { valid: false, error: "Password is required" };
   }
 
   if (password.length < 8) {
-    return { valid: false, error: 'Password must be at least 8 characters' };
+    return { valid: false, error: "Password must be at least 8 characters" };
   }
 
   if (password.length > 128) {
-    return { valid: false, error: 'Password must be less than 128 characters' };
+    return { valid: false, error: "Password must be less than 128 characters" };
   }
 
   if (!/[a-z]/.test(password)) {
-    return { valid: false, error: 'Password must contain lowercase letters' };
+    return { valid: false, error: "Password must contain lowercase letters" };
   }
 
   if (!/[A-Z]/.test(password)) {
-    return { valid: false, error: 'Password must contain uppercase letters' };
+    return { valid: false, error: "Password must contain uppercase letters" };
   }
 
   if (!/\d/.test(password)) {
-    return { valid: false, error: 'Password must contain numbers' };
+    return { valid: false, error: "Password must contain numbers" };
   }
 
   if (!/[@$!%*?&#]/.test(password)) {
-    return { valid: false, error: 'Password must contain special characters (@$!%*?&#)' };
+    return {
+      valid: false,
+      error: "Password must contain special characters (@$!%*?&#)",
+    };
   }
 
   return { valid: true };
@@ -125,7 +135,7 @@ export const validatePassword = (password: string): { valid: boolean; error?: st
  * @returns Sanitized name
  */
 export const sanitizeName = (name: string): string => {
-  return name.trim().replace(/\s+/g, ' ');
+  return name.trim().replace(/\s+/g, " ");
 };
 
 /**
@@ -134,6 +144,9 @@ export const sanitizeName = (name: string): string => {
  * @param confirmPassword - Confirmation password
  * @returns True if they match
  */
-export const passwordsMatch = (password: string, confirmPassword: string): boolean => {
+export const passwordsMatch = (
+  password: string,
+  confirmPassword: string,
+): boolean => {
   return password === confirmPassword && password.length > 0;
 };

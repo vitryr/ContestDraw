@@ -3,10 +3,10 @@
  * Handles HTTP requests for follower/like verification
  */
 
-import { Request, Response, NextFunction } from 'express';
-import followerVerificationService from '../../services/follower-verification.service';
-import logger from '../../utils/logger';
-import { PrismaClient } from '@prisma/client';
+import { Request, Response, NextFunction } from "express";
+import followerVerificationService from "../../services/follower-verification.service";
+import logger from "../../utils/logger";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -16,12 +16,12 @@ const prisma = new PrismaClient();
 export async function verifyInstagramFollower(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -29,16 +29,17 @@ export async function verifyInstagramFollower(
 
     if (!username || !targetAccountId || !accessToken) {
       res.status(400).json({
-        error: 'Username, targetAccountId, and accessToken are required',
+        error: "Username, targetAccountId, and accessToken are required",
       });
       return;
     }
 
-    const isFollowing = await followerVerificationService.verifyInstagramFollower(
-      username,
-      targetAccountId,
-      accessToken
-    );
+    const isFollowing =
+      await followerVerificationService.verifyInstagramFollower(
+        username,
+        targetAccountId,
+        accessToken,
+      );
 
     res.json({
       success: true,
@@ -46,11 +47,11 @@ export async function verifyInstagramFollower(
         username,
         targetAccountId,
         isFollowing,
-        platform: 'instagram',
+        platform: "instagram",
       },
     });
   } catch (error) {
-    logger.error('Instagram follower verification failed', {
+    logger.error("Instagram follower verification failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -63,12 +64,12 @@ export async function verifyInstagramFollower(
 export async function verifyFacebookPageLike(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -76,7 +77,7 @@ export async function verifyFacebookPageLike(
 
     if (!fbUserId || !pageId || !accessToken) {
       res.status(400).json({
-        error: 'userId, pageId, and accessToken are required',
+        error: "userId, pageId, and accessToken are required",
       });
       return;
     }
@@ -84,7 +85,7 @@ export async function verifyFacebookPageLike(
     const isLiking = await followerVerificationService.verifyFacebookPageLike(
       fbUserId,
       pageId,
-      accessToken
+      accessToken,
     );
 
     res.json({
@@ -93,11 +94,11 @@ export async function verifyFacebookPageLike(
         userId: fbUserId,
         pageId,
         isLiking,
-        platform: 'facebook',
+        platform: "facebook",
       },
     });
   } catch (error) {
-    logger.error('Facebook page like verification failed', {
+    logger.error("Facebook page like verification failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -110,12 +111,12 @@ export async function verifyFacebookPageLike(
 export async function batchVerify(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -123,14 +124,14 @@ export async function batchVerify(
 
     if (!drawId || !Array.isArray(requests) || requests.length === 0) {
       res.status(400).json({
-        error: 'drawId and requests array are required',
+        error: "drawId and requests array are required",
       });
       return;
     }
 
     if (!accessTokens || (!accessTokens.instagram && !accessTokens.facebook)) {
       res.status(400).json({
-        error: 'At least one access token (instagram or facebook) is required',
+        error: "At least one access token (instagram or facebook) is required",
       });
       return;
     }
@@ -138,7 +139,7 @@ export async function batchVerify(
     const results = await followerVerificationService.batchVerify(
       drawId,
       requests,
-      accessTokens
+      accessTokens,
     );
 
     const successCount = results.filter((r) => !r.error).length;
@@ -157,7 +158,7 @@ export async function batchVerify(
       },
     });
   } catch (error) {
-    logger.error('Batch verification failed', {
+    logger.error("Batch verification failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -170,12 +171,12 @@ export async function batchVerify(
 export async function getVerificationResults(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -190,13 +191,12 @@ export async function getVerificationResults(
     });
 
     if (!draw) {
-      res.status(404).json({ error: 'Draw not found' });
+      res.status(404).json({ error: "Draw not found" });
       return;
     }
 
-    const results = await followerVerificationService.getVerificationResults(
-      drawId
-    );
+    const results =
+      await followerVerificationService.getVerificationResults(drawId);
 
     const followingCount = results.filter((r) => r.isFollowing).length;
 
@@ -210,7 +210,7 @@ export async function getVerificationResults(
       },
     });
   } catch (error) {
-    logger.error('Get verification results failed', {
+    logger.error("Get verification results failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -223,12 +223,12 @@ export async function getVerificationResults(
 export async function getInstagramFollowersCount(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -236,7 +236,7 @@ export async function getInstagramFollowersCount(
 
     if (!accountId || !accessToken) {
       res.status(400).json({
-        error: 'accountId and accessToken are required',
+        error: "accountId and accessToken are required",
       });
       return;
     }
@@ -244,7 +244,7 @@ export async function getInstagramFollowersCount(
     const followersCount =
       await followerVerificationService.getInstagramFollowersCount(
         accountId as string,
-        accessToken as string
+        accessToken as string,
       );
 
     res.json({
@@ -252,11 +252,11 @@ export async function getInstagramFollowersCount(
       data: {
         accountId,
         followersCount,
-        platform: 'instagram',
+        platform: "instagram",
       },
     });
   } catch (error) {
-    logger.error('Get Instagram followers count failed', {
+    logger.error("Get Instagram followers count failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);
@@ -269,12 +269,12 @@ export async function getInstagramFollowersCount(
 export async function getFacebookPageLikesCount(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> {
   try {
     const userId = req.user?.id;
     if (!userId) {
-      res.status(401).json({ error: 'Unauthorized' });
+      res.status(401).json({ error: "Unauthorized" });
       return;
     }
 
@@ -282,26 +282,27 @@ export async function getFacebookPageLikesCount(
 
     if (!pageId || !accessToken) {
       res.status(400).json({
-        error: 'pageId and accessToken are required',
+        error: "pageId and accessToken are required",
       });
       return;
     }
 
-    const likesCount = await followerVerificationService.getFacebookPageLikesCount(
-      pageId as string,
-      accessToken as string
-    );
+    const likesCount =
+      await followerVerificationService.getFacebookPageLikesCount(
+        pageId as string,
+        accessToken as string,
+      );
 
     res.json({
       success: true,
       data: {
         pageId,
         likesCount,
-        platform: 'facebook',
+        platform: "facebook",
       },
     });
   } catch (error) {
-    logger.error('Get Facebook page likes count failed', {
+    logger.error("Get Facebook page likes count failed", {
       error: error instanceof Error ? error.message : String(error),
     });
     next(error);

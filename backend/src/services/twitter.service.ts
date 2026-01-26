@@ -3,10 +3,15 @@
  * Handles authentication, tweets, replies, retweets, and follows
  */
 
-import axios, { AxiosInstance } from 'axios';
-import { PaginatedResponse, Comment, SocialAccount, APIError } from '../types/social.types';
-import { RetryHandler } from '../utils/retry.util';
-import { Cache } from '../utils/cache.util';
+import axios, { AxiosInstance } from "axios";
+import {
+  PaginatedResponse,
+  Comment,
+  SocialAccount,
+  APIError,
+} from "../types/social.types";
+import { RetryHandler } from "../utils/retry.util";
+import { Cache } from "../utils/cache.util";
 
 interface TwitterTweet {
   id: string;
@@ -29,7 +34,7 @@ interface TwitterUser {
 
 export class TwitterService {
   private client: AxiosInstance;
-  private readonly baseUrl = 'https://api.twitter.com/2';
+  private readonly baseUrl = "https://api.twitter.com/2";
 
   constructor() {
     this.client = axios.create({
@@ -40,7 +45,7 @@ export class TwitterService {
     // Add response interceptor for error handling
     this.client.interceptors.response.use(
       (response) => response,
-      (error) => this.handleError(error)
+      (error) => this.handleError(error),
     );
   }
 
@@ -52,11 +57,11 @@ export class TwitterService {
    */
   async connectAccount(
     userId: string,
-    oauthTokens: { accessToken: string; refreshToken?: string }
+    oauthTokens: { accessToken: string; refreshToken?: string },
   ): Promise<SocialAccount> {
     return RetryHandler.withRetry(async () => {
       // Get authenticated user information
-      const response = await this.client.get('/users/me', {
+      const response = await this.client.get("/users/me", {
         headers: {
           Authorization: `Bearer ${oauthTokens.accessToken}`,
         },
@@ -64,7 +69,7 @@ export class TwitterService {
 
       return {
         userId,
-        platform: 'twitter' as const,
+        platform: "twitter" as const,
         accountId: response.data.data.id,
         username: response.data.data.username,
         accessToken: oauthTokens.accessToken,
@@ -84,7 +89,7 @@ export class TwitterService {
   async fetchReplies(
     tweetId: string,
     bearerToken: string,
-    maxReplies?: number
+    maxReplies?: number,
   ): Promise<PaginatedResponse<Comment>> {
     const cacheKey = `twitter:replies:${tweetId}`;
 
@@ -103,9 +108,9 @@ export class TwitterService {
         // Search for tweets that are replies to the target tweet
         const params: any = {
           query: `conversation_id:${tweetId}`,
-          'tweet.fields': 'author_id,created_at,public_metrics',
-          'user.fields': 'username',
-          expansions: 'author_id',
+          "tweet.fields": "author_id,created_at,public_metrics",
+          "user.fields": "username",
+          expansions: "author_id",
           max_results: 100,
         };
 
@@ -113,7 +118,7 @@ export class TwitterService {
           params.next_token = nextToken;
         }
 
-        const response = await this.client.get('/tweets/search/recent', {
+        const response = await this.client.get("/tweets/search/recent", {
           params,
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -128,17 +133,19 @@ export class TwitterService {
           });
         }
 
-        const replies = (response.data.data || []).map((tweet: TwitterTweet) => {
-          const user = users.get(tweet.author_id);
-          return {
-            id: tweet.id,
-            text: tweet.text,
-            username: user?.username || 'unknown',
-            userId: tweet.author_id,
-            timestamp: new Date(tweet.created_at),
-            likes: tweet.public_metrics.like_count,
-          };
-        });
+        const replies = (response.data.data || []).map(
+          (tweet: TwitterTweet) => {
+            const user = users.get(tweet.author_id);
+            return {
+              id: tweet.id,
+              text: tweet.text,
+              username: user?.username || "unknown",
+              userId: tweet.author_id,
+              timestamp: new Date(tweet.created_at),
+              likes: tweet.public_metrics.like_count,
+            };
+          },
+        );
 
         allReplies.push(...replies);
 
@@ -176,54 +183,63 @@ export class TwitterService {
    */
   async fetchRetweets(
     tweetId: string,
-    bearerToken: string
+    bearerToken: string,
   ): Promise<PaginatedResponse<{ userId: string; username: string }>> {
     const cacheKey = `twitter:retweets:${tweetId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const allRetweets: { userId: string; username: string }[] = [];
-        let nextToken: string | undefined;
-        let hasMore = true;
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const allRetweets: { userId: string; username: string }[] = [];
+          let nextToken: string | undefined;
+          let hasMore = true;
 
-        while (hasMore) {
-          const params: any = {
-            'user.fields': 'username',
-            max_results: 100,
-          };
+          while (hasMore) {
+            const params: any = {
+              "user.fields": "username",
+              max_results: 100,
+            };
 
-          if (nextToken) {
-            params.pagination_token = nextToken;
+            if (nextToken) {
+              params.pagination_token = nextToken;
+            }
+
+            const response = await this.client.get(
+              `/tweets/${tweetId}/retweeted_by`,
+              {
+                params,
+                headers: {
+                  Authorization: `Bearer ${bearerToken}`,
+                },
+              },
+            );
+
+            const retweets = (response.data.data || []).map(
+              (user: TwitterUser) => ({
+                userId: user.id,
+                username: user.username,
+              }),
+            );
+
+            allRetweets.push(...retweets);
+
+            // Check for pagination
+            nextToken = response.data.meta?.next_token;
+            hasMore = !!nextToken;
           }
 
-          const response = await this.client.get(`/tweets/${tweetId}/retweeted_by`, {
-            params,
-            headers: {
-              Authorization: `Bearer ${bearerToken}`,
+          return {
+            data: allRetweets,
+            pagination: {
+              hasMore: false,
+              total: allRetweets.length,
             },
-          });
-
-          const retweets = (response.data.data || []).map((user: TwitterUser) => ({
-            userId: user.id,
-            username: user.username,
-          }));
-
-          allRetweets.push(...retweets);
-
-          // Check for pagination
-          nextToken = response.data.meta?.next_token;
-          hasMore = !!nextToken;
-        }
-
-        return {
-          data: allRetweets,
-          pagination: {
-            hasMore: false,
-            total: allRetweets.length,
-          },
-        };
-      });
-    }, 300);
+          };
+        });
+      },
+      300,
+    );
   }
 
   /**
@@ -236,35 +252,41 @@ export class TwitterService {
   async verifyFollowing(
     username: string,
     targetUsername: string,
-    bearerToken: string
+    bearerToken: string,
   ): Promise<boolean> {
     const cacheKey = `twitter:following:${username}:${targetUsername}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        // First, get user IDs from usernames
-        const [sourceUser, targetUser] = await Promise.all([
-          this.getUserByUsername(username, bearerToken),
-          this.getUserByUsername(targetUsername, bearerToken),
-        ]);
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          // First, get user IDs from usernames
+          const [sourceUser, targetUser] = await Promise.all([
+            this.getUserByUsername(username, bearerToken),
+            this.getUserByUsername(targetUsername, bearerToken),
+          ]);
 
-        // Check if source user follows target user
-        const response = await this.client.get(
-          `/users/${sourceUser.id}/following`,
-          {
-            params: {
-              max_results: 1000, // Maximum allowed
+          // Check if source user follows target user
+          const response = await this.client.get(
+            `/users/${sourceUser.id}/following`,
+            {
+              params: {
+                max_results: 1000, // Maximum allowed
+              },
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+              },
             },
-            headers: {
-              Authorization: `Bearer ${bearerToken}`,
-            },
-          }
-        );
+          );
 
-        const following = response.data.data || [];
-        return following.some((user: TwitterUser) => user.id === targetUser.id);
-      });
-    }, 600);
+          const following = response.data.data || [];
+          return following.some(
+            (user: TwitterUser) => user.id === targetUser.id,
+          );
+        });
+      },
+      600,
+    );
   }
 
   /**
@@ -275,21 +297,28 @@ export class TwitterService {
    */
   async getUserByUsername(
     username: string,
-    bearerToken: string
+    bearerToken: string,
   ): Promise<TwitterUser> {
     const cacheKey = `twitter:user:${username}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const response = await this.client.get(`/users/by/username/${username}`, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
-        });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const response = await this.client.get(
+            `/users/by/username/${username}`,
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+              },
+            },
+          );
 
-        return response.data.data;
-      });
-    }, 3600);
+          return response.data.data;
+        });
+      },
+      3600,
+    );
   }
 
   /**
@@ -301,20 +330,24 @@ export class TwitterService {
   async getTweet(tweetId: string, bearerToken: string): Promise<TwitterTweet> {
     const cacheKey = `twitter:tweet:${tweetId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const response = await this.client.get(`/tweets/${tweetId}`, {
-          params: {
-            'tweet.fields': 'author_id,created_at,public_metrics',
-          },
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-          },
-        });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const response = await this.client.get(`/tweets/${tweetId}`, {
+            params: {
+              "tweet.fields": "author_id,created_at,public_metrics",
+            },
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+            },
+          });
 
-        return response.data.data;
-      });
-    }, 300);
+          return response.data.data;
+        });
+      },
+      300,
+    );
   }
 
   /**
@@ -329,7 +362,7 @@ export class TwitterService {
     const match = url.match(/(?:twitter\.com|x\.com)\/\w+\/status\/(\d+)/);
 
     if (!match) {
-      throw new Error('Invalid Twitter URL');
+      throw new Error("Invalid Twitter URL");
     }
 
     return match[1];
@@ -348,23 +381,23 @@ export class TwitterService {
     const clientSecret = process.env.TWITTER_CLIENT_SECRET;
 
     if (!clientId || !clientSecret) {
-      throw new Error('Twitter OAuth credentials not configured');
+      throw new Error("Twitter OAuth credentials not configured");
     }
 
     return RetryHandler.withRetry(async () => {
       const response = await axios.post(
-        'https://api.twitter.com/2/oauth2/token',
+        "https://api.twitter.com/2/oauth2/token",
         new URLSearchParams({
-          grant_type: 'refresh_token',
+          grant_type: "refresh_token",
           refresh_token: refreshToken,
           client_id: clientId,
         }),
         {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString('base64')}`,
+            "Content-Type": "application/x-www-form-urlencoded",
+            Authorization: `Basic ${Buffer.from(`${clientId}:${clientSecret}`).toString("base64")}`,
           },
-        }
+        },
       );
 
       return {
@@ -379,20 +412,21 @@ export class TwitterService {
    */
   private handleError(error: any): never {
     const apiError: APIError = {
-      code: error.response?.data?.errors?.[0]?.code || 'UNKNOWN_ERROR',
+      code: error.response?.data?.errors?.[0]?.code || "UNKNOWN_ERROR",
       message: error.response?.data?.errors?.[0]?.message || error.message,
       statusCode: error.response?.status || 500,
-      retryable: error.response?.status >= 500 || error.response?.status === 429,
+      retryable:
+        error.response?.status >= 500 || error.response?.status === 429,
     };
 
     // Parse rate limit info
     if (error.response?.status === 429) {
       const headers = error.response.headers;
       apiError.rateLimit = {
-        limit: parseInt(headers['x-rate-limit-limit'] || '0'),
-        remaining: parseInt(headers['x-rate-limit-remaining'] || '0'),
+        limit: parseInt(headers["x-rate-limit-limit"] || "0"),
+        remaining: parseInt(headers["x-rate-limit-remaining"] || "0"),
         resetAt: new Date(
-          parseInt(headers['x-rate-limit-reset'] || '0') * 1000
+          parseInt(headers["x-rate-limit-reset"] || "0") * 1000,
         ),
       };
     }

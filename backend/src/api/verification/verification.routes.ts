@@ -3,11 +3,11 @@
  * API endpoints for follower/like verification
  */
 
-import { Router } from 'express';
-import { body, query } from 'express-validator';
-import * as verificationController from './verification.controller';
-import { authenticateToken } from '../../middleware/auth.middleware';
-import { validateRequest } from '../../middleware/validation.middleware';
+import { Router } from "express";
+import { body, query } from "express-validator";
+import * as verificationController from "./verification.controller";
+import { authenticateToken } from "../../middleware/auth.middleware";
+import { validateRequest } from "../../middleware/validation.middleware";
 
 const router = Router();
 
@@ -16,15 +16,15 @@ const router = Router();
  * Verify Instagram follower
  */
 router.post(
-  '/instagram/follower',
+  "/instagram/follower",
   authenticateToken,
   [
-    body('username').notEmpty().isString().trim(),
-    body('targetAccountId').notEmpty().isString().trim(),
-    body('accessToken').notEmpty().isString(),
+    body("username").notEmpty().isString().trim(),
+    body("targetAccountId").notEmpty().isString().trim(),
+    body("accessToken").notEmpty().isString(),
   ],
   validateRequest,
-  verificationController.verifyInstagramFollower
+  verificationController.verifyInstagramFollower,
 );
 
 /**
@@ -32,15 +32,15 @@ router.post(
  * Verify Facebook page like
  */
 router.post(
-  '/facebook/page-like',
+  "/facebook/page-like",
   authenticateToken,
   [
-    body('userId').notEmpty().isString().trim(),
-    body('pageId').notEmpty().isString().trim(),
-    body('accessToken').notEmpty().isString(),
+    body("userId").notEmpty().isString().trim(),
+    body("pageId").notEmpty().isString().trim(),
+    body("accessToken").notEmpty().isString(),
   ],
   validateRequest,
-  verificationController.verifyFacebookPageLike
+  verificationController.verifyFacebookPageLike,
 );
 
 /**
@@ -48,18 +48,18 @@ router.post(
  * Batch verify multiple users
  */
 router.post(
-  '/batch',
+  "/batch",
   authenticateToken,
   [
-    body('drawId').notEmpty().isString(),
-    body('requests').isArray().notEmpty(),
-    body('requests.*.username').notEmpty().isString(),
-    body('requests.*.platform').notEmpty().isIn(['instagram', 'facebook']),
-    body('requests.*.targetAccount').notEmpty().isString(),
-    body('accessTokens').isObject(),
+    body("drawId").notEmpty().isString(),
+    body("requests").isArray().notEmpty(),
+    body("requests.*.username").notEmpty().isString(),
+    body("requests.*.platform").notEmpty().isIn(["instagram", "facebook"]),
+    body("requests.*.targetAccount").notEmpty().isString(),
+    body("accessTokens").isObject(),
   ],
   validateRequest,
-  verificationController.batchVerify
+  verificationController.batchVerify,
 );
 
 /**
@@ -67,9 +67,9 @@ router.post(
  * Get verification results for a draw
  */
 router.get(
-  '/results/:drawId',
+  "/results/:drawId",
   authenticateToken,
-  verificationController.getVerificationResults
+  verificationController.getVerificationResults,
 );
 
 /**
@@ -77,14 +77,14 @@ router.get(
  * Get Instagram followers count
  */
 router.get(
-  '/instagram/followers-count',
+  "/instagram/followers-count",
   authenticateToken,
   [
-    query('accountId').notEmpty().isString(),
-    query('accessToken').notEmpty().isString(),
+    query("accountId").notEmpty().isString(),
+    query("accessToken").notEmpty().isString(),
   ],
   validateRequest,
-  verificationController.getInstagramFollowersCount
+  verificationController.getInstagramFollowersCount,
 );
 
 /**
@@ -92,14 +92,14 @@ router.get(
  * Get Facebook page likes count
  */
 router.get(
-  '/facebook/page-likes-count',
+  "/facebook/page-likes-count",
   authenticateToken,
   [
-    query('pageId').notEmpty().isString(),
-    query('accessToken').notEmpty().isString(),
+    query("pageId").notEmpty().isString(),
+    query("accessToken").notEmpty().isString(),
   ],
   validateRequest,
-  verificationController.getFacebookPageLikesCount
+  verificationController.getFacebookPageLikesCount,
 );
 
 export default router;

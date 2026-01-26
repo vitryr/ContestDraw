@@ -1,11 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Shield, Calendar, Users, Trophy, Filter, CheckCircle, ExternalLink, Home } from 'lucide-react';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { Helmet } from 'react-helmet-async';
-import VerifyHash from '../components/VerifyHash';
-import SocialShare from '../components/SocialShare';
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import {
+  Shield,
+  Calendar,
+  Users,
+  Trophy,
+  Filter,
+  CheckCircle,
+  ExternalLink,
+  Home,
+} from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
+import VerifyHash from "../components/VerifyHash";
+import SocialShare from "../components/SocialShare";
 
 interface VerificationData {
   draw: {
@@ -83,12 +92,14 @@ export default function PublicVerifyPage() {
     try {
       setLoading(true);
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/api/public/verify/${drawId}`
+        `${import.meta.env.VITE_API_URL}/api/public/verify/${drawId}`,
       );
       setData(response.data);
     } catch (err: any) {
-      setError(err.response?.data?.message || 'Failed to load verification data');
-      toast.error('Failed to load draw verification');
+      setError(
+        err.response?.data?.message || "Failed to load verification data",
+      );
+      toast.error("Failed to load draw verification");
     } finally {
       setLoading(false);
     }
@@ -112,8 +123,10 @@ export default function PublicVerifyPage() {
           <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <Shield className="w-8 h-8 text-red-600" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Verification Failed</h2>
-          <p className="text-gray-600 mb-6">{error || 'Draw not found'}</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Verification Failed
+          </h2>
+          <p className="text-gray-600 mb-6">{error || "Draw not found"}</p>
           <Link
             to="/"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
@@ -146,7 +159,10 @@ export default function PublicVerifyPage() {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={data.sharing.verificationUrl} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`Verify Draw: ${data.draw.title}`} />
+        <meta
+          name="twitter:title"
+          content={`Verify Draw: ${data.draw.title}`}
+        />
         <meta
           name="twitter:description"
           content={`Transparent and verifiable draw results. ${data.draw.numberOfWinners} winners selected from ${data.draw.participantsCount} participants.`}
@@ -156,14 +172,14 @@ export default function PublicVerifyPage() {
         {/* Structured Data for SEO */}
         <script type="application/ld+json">
           {JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Event',
+            "@context": "https://schema.org",
+            "@type": "Event",
             name: data.draw.title,
             description: data.draw.description,
             startDate: data.draw.createdAt,
             endDate: data.draw.executedAt,
             organizer: {
-              '@type': 'Person',
+              "@type": "Person",
               name: data.draw.organizer.name,
             },
             attendeeCount: data.draw.participantsCount,
@@ -179,7 +195,9 @@ export default function PublicVerifyPage() {
               <div>
                 <div className="flex items-center gap-2 mb-2">
                   <Shield className="w-6 h-6 text-blue-600" />
-                  <h1 className="text-3xl font-bold text-gray-900">Draw Verification</h1>
+                  <h1 className="text-3xl font-bold text-gray-900">
+                    Draw Verification
+                  </h1>
                   {data.verification.verified && (
                     <span className="flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold">
                       <CheckCircle className="w-4 h-4" />
@@ -209,7 +227,9 @@ export default function PublicVerifyPage() {
                 <Users className="w-5 h-5" />
                 <div>
                   <p className="text-xs text-gray-500">Participants</p>
-                  <p className="text-sm font-medium">{data.draw.participantsCount}</p>
+                  <p className="text-sm font-medium">
+                    {data.draw.participantsCount}
+                  </p>
                 </div>
               </div>
 
@@ -217,7 +237,9 @@ export default function PublicVerifyPage() {
                 <Trophy className="w-5 h-5" />
                 <div>
                   <p className="text-xs text-gray-500">Winners</p>
-                  <p className="text-sm font-medium">{data.draw.numberOfWinners}</p>
+                  <p className="text-sm font-medium">
+                    {data.draw.numberOfWinners}
+                  </p>
                 </div>
               </div>
 
@@ -225,7 +247,9 @@ export default function PublicVerifyPage() {
                 <Filter className="w-5 h-5" />
                 <div>
                   <p className="text-xs text-gray-500">Platform</p>
-                  <p className="text-sm font-medium capitalize">{data.draw.platform}</p>
+                  <p className="text-sm font-medium capitalize">
+                    {data.draw.platform}
+                  </p>
                 </div>
               </div>
             </div>
@@ -261,8 +285,12 @@ export default function PublicVerifyPage() {
                       />
                     )}
                     <div>
-                      <p className="font-semibold text-gray-900">{winner.participant.name}</p>
-                      <p className="text-sm text-gray-600">@{winner.participant.username}</p>
+                      <p className="font-semibold text-gray-900">
+                        {winner.participant.name}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        @{winner.participant.username}
+                      </p>
                       <p className="text-xs text-gray-500">
                         Selected: {new Date(winner.selectedAt).toLocaleString()}
                       </p>
@@ -304,8 +332,12 @@ export default function PublicVerifyPage() {
                     />
                   )}
                   <div>
-                    <p className="font-medium text-gray-900">{participant.name}</p>
-                    <p className="text-sm text-gray-600">@{participant.username}</p>
+                    <p className="font-medium text-gray-900">
+                      {participant.name}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      @{participant.username}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -316,7 +348,7 @@ export default function PublicVerifyPage() {
                 className="mt-4 w-full py-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
               >
                 {showAllParticipants
-                  ? 'Show Less'
+                  ? "Show Less"
                   : `Show All ${data.participants.length} Participants`}
               </button>
             )}

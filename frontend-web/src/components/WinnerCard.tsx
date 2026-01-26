@@ -1,13 +1,16 @@
-import { motion } from 'framer-motion';
-import { Trophy, Download, ExternalLink } from 'lucide-react';
-import type { Winner } from '../types';
+import { motion } from "framer-motion";
+import { Trophy, Download, ExternalLink } from "lucide-react";
+import type { Winner } from "../types";
 
 interface WinnerCardProps {
   winner: Winner;
   onDownloadCertificate: () => void;
 }
 
-export default function WinnerCard({ winner, onDownloadCertificate }: WinnerCardProps) {
+export default function WinnerCard({
+  winner,
+  onDownloadCertificate,
+}: WinnerCardProps) {
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -15,7 +18,9 @@ export default function WinnerCard({ winner, onDownloadCertificate }: WinnerCard
     >
       <div className="flex items-center gap-2 mb-4">
         <Trophy className="w-5 h-5 text-yellow-500" />
-        <span className="font-semibold text-gray-900">Winner #{winner.position}</span>
+        <span className="font-semibold text-gray-900">
+          Winner #{winner.position}
+        </span>
       </div>
 
       <div className="flex flex-col items-center text-center mb-6">
@@ -33,7 +38,9 @@ export default function WinnerCard({ winner, onDownloadCertificate }: WinnerCard
           </div>
         )}
 
-        <h3 className="text-xl font-bold text-gray-900 mb-1">{winner.participant.name}</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-1">
+          {winner.participant.name}
+        </h3>
         <p className="text-gray-600 mb-2">@{winner.participant.username}</p>
 
         <span className="inline-block px-3 py-1 text-xs font-medium rounded-full bg-primary-100 text-primary-700 capitalize">
@@ -50,7 +57,7 @@ export default function WinnerCard({ winner, onDownloadCertificate }: WinnerCard
           Download Certificate
         </button>
 
-        {winner.participant.platform === 'instagram' && (
+        {winner.participant.platform === "instagram" && (
           <a
             href={`https://instagram.com/${winner.participant.username}`}
             target="_blank"

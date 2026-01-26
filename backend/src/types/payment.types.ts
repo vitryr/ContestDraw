@@ -4,41 +4,41 @@
  */
 
 export enum PaymentProvider {
-  STRIPE = 'stripe',
-  APPLE_IAP = 'apple_iap'
+  STRIPE = "stripe",
+  APPLE_IAP = "apple_iap",
 }
 
 export enum TransactionType {
-  ONE_SHOT_PURCHASE = 'one_shot_purchase',
-  SUBSCRIPTION_CHARGE = 'subscription_charge',
-  SUBSCRIPTION_RENEWAL = 'subscription_renewal',
-  REFUND = 'refund',
-  CREDIT_ADJUSTMENT = 'credit_adjustment'
+  ONE_SHOT_PURCHASE = "one_shot_purchase",
+  SUBSCRIPTION_CHARGE = "subscription_charge",
+  SUBSCRIPTION_RENEWAL = "subscription_renewal",
+  REFUND = "refund",
+  CREDIT_ADJUSTMENT = "credit_adjustment",
 }
 
 export enum TransactionStatus {
-  PENDING = 'pending',
-  PROCESSING = 'processing',
-  COMPLETED = 'completed',
-  FAILED = 'failed',
-  REFUNDED = 'refunded',
-  CANCELLED = 'cancelled'
+  PENDING = "pending",
+  PROCESSING = "processing",
+  COMPLETED = "completed",
+  FAILED = "failed",
+  REFUNDED = "refunded",
+  CANCELLED = "cancelled",
 }
 
 export enum SubscriptionPlan {
-  MONTHLY = 'monthly',
-  ANNUAL = 'annual',
-  ENTERPRISE = 'enterprise',
-  PASS_48H = 'pass_48h'
+  MONTHLY = "monthly",
+  ANNUAL = "annual",
+  ENTERPRISE = "enterprise",
+  PASS_48H = "pass_48h",
 }
 
 export enum SubscriptionStatus {
-  ACTIVE = 'active',
-  PAST_DUE = 'past_due',
-  CANCELLED = 'cancelled',
-  EXPIRED = 'expired',
-  TRIALING = 'trialing',
-  GRACE_PERIOD = 'grace_period'
+  ACTIVE = "active",
+  PAST_DUE = "past_due",
+  CANCELLED = "cancelled",
+  EXPIRED = "expired",
+  TRIALING = "trialing",
+  GRACE_PERIOD = "grace_period",
 }
 
 export interface CreditPack {
@@ -63,9 +63,9 @@ export interface PricingConfig {
 }
 
 export enum Platform {
-  WEB = 'web',
-  IOS = 'ios',
-  ANDROID = 'android'
+  WEB = "web",
+  IOS = "ios",
+  ANDROID = "android",
 }
 
 export interface PlatformPrice {

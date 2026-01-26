@@ -1,14 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Download, Video, FileText, Share2, Trophy } from 'lucide-react';
-import { useDrawStore } from '../store/useDrawStore';
-import WinnerCard from '../components/WinnerCard';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Download, Video, FileText, Share2, Trophy } from "lucide-react";
+import { useDrawStore } from "../store/useDrawStore";
+import WinnerCard from "../components/WinnerCard";
+import toast from "react-hot-toast";
 
 export default function ResultsPage() {
   const { id } = useParams<{ id: string }>();
-  const { currentDraw, winners, fetchDraw, fetchWinners, generateVideo, generateCertificate, isLoading } = useDrawStore();
+  const {
+    currentDraw,
+    winners,
+    fetchDraw,
+    fetchWinners,
+    generateVideo,
+    generateCertificate,
+    isLoading,
+  } = useDrawStore();
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
   const [isGeneratingVideo, setIsGeneratingVideo] = useState(false);
 
@@ -26,7 +34,7 @@ export default function ResultsPage() {
     try {
       const url = await generateVideo(id);
       setVideoUrl(url);
-      toast.success('Video generated successfully!');
+      toast.success("Video generated successfully!");
     } catch (error) {
       // Error handled by store
     } finally {
@@ -37,8 +45,8 @@ export default function ResultsPage() {
   const handleDownloadCertificate = async (winnerId: string) => {
     try {
       const url = await generateCertificate(winnerId);
-      window.open(url, '_blank');
-      toast.success('Certificate downloaded!');
+      window.open(url, "_blank");
+      toast.success("Certificate downloaded!");
     } catch (error) {
       // Error handled by store
     }
@@ -48,12 +56,12 @@ export default function ResultsPage() {
     if (navigator.share && videoUrl) {
       navigator.share({
         title: `${currentDraw?.title} - Winners`,
-        text: 'Check out the winners of our contest!',
+        text: "Check out the winners of our contest!",
         url: videoUrl,
       });
     } else {
       navigator.clipboard.writeText(window.location.href);
-      toast.success('Link copied to clipboard!');
+      toast.success("Link copied to clipboard!");
     }
   };
 
@@ -91,7 +99,9 @@ export default function ResultsPage() {
             <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-600 to-accent-600 rounded-full mb-4">
               <Trophy className="w-10 h-10 text-white" />
             </div>
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">Contest Results</h1>
+            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+              Contest Results
+            </h1>
             <p className="text-xl text-gray-600">{currentDraw.title}</p>
           </div>
 
@@ -103,23 +113,20 @@ export default function ResultsPage() {
               className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Video className="w-5 h-5 mr-2 inline" />
-              {isGeneratingVideo ? 'Generating...' : videoUrl ? 'Video Generated' : 'Generate Video'}
+              {isGeneratingVideo
+                ? "Generating..."
+                : videoUrl
+                  ? "Video Generated"
+                  : "Generate Video"}
             </button>
 
             {videoUrl && (
               <>
-                <a
-                  href={videoUrl}
-                  download
-                  className="btn-secondary"
-                >
+                <a href={videoUrl} download className="btn-secondary">
                   <Download className="w-5 h-5 mr-2 inline" />
                   Download Video
                 </a>
-                <button
-                  onClick={handleShare}
-                  className="btn-secondary"
-                >
+                <button onClick={handleShare} className="btn-secondary">
                   <Share2 className="w-5 h-5 mr-2 inline" />
                   Share
                 </button>
@@ -135,7 +142,9 @@ export default function ResultsPage() {
               className="mb-12"
             >
               <div className="card max-w-md mx-auto">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">Video Preview</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                  Video Preview
+                </h3>
                 <div className="aspect-[9/16] bg-gray-900 rounded-lg overflow-hidden">
                   <video
                     src={videoUrl}
@@ -150,7 +159,7 @@ export default function ResultsPage() {
           {/* Winners */}
           <div className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-              {winners.length === 1 ? 'Winner' : 'Winners'}
+              {winners.length === 1 ? "Winner" : "Winners"}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -163,7 +172,9 @@ export default function ResultsPage() {
                 >
                   <WinnerCard
                     winner={winner}
-                    onDownloadCertificate={() => handleDownloadCertificate(winner.id)}
+                    onDownloadCertificate={() =>
+                      handleDownloadCertificate(winner.id)
+                    }
                   />
                 </motion.div>
               ))}
@@ -172,7 +183,9 @@ export default function ResultsPage() {
 
           {/* Stats */}
           <div className="card mb-8">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Draw Statistics</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-6">
+              Draw Statistics
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               <div>
                 <div className="text-3xl font-bold text-primary-600 mb-1">

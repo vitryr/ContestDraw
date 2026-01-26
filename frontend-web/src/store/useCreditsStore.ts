@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { creditsApi } from '../services/api';
-import type { Transaction, CreditPack } from '../types';
+import { create } from "zustand";
+import { creditsApi } from "../services/api";
+import type { Transaction, CreditPack } from "../types";
 
 interface CreditsStore {
   balance: number;
@@ -28,7 +28,9 @@ export const useCreditsStore = create<CreditsStore>((set) => ({
       const { balance } = await creditsApi.getBalance();
       set({ balance });
     } catch (error: any) {
-      set({ error: error.response?.data?.message || 'Failed to fetch balance' });
+      set({
+        error: error.response?.data?.message || "Failed to fetch balance",
+      });
     }
   },
 
@@ -39,8 +41,8 @@ export const useCreditsStore = create<CreditsStore>((set) => ({
       set({ history, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to fetch history',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to fetch history",
+        isLoading: false,
       });
     }
   },
@@ -52,8 +54,8 @@ export const useCreditsStore = create<CreditsStore>((set) => ({
       set({ packs, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to fetch packs',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to fetch packs",
+        isLoading: false,
       });
     }
   },
@@ -65,12 +67,12 @@ export const useCreditsStore = create<CreditsStore>((set) => ({
       set((state) => ({
         balance: state.balance + transaction.amount,
         history: [transaction, ...state.history],
-        isLoading: false
+        isLoading: false,
       }));
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to purchase credits',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to purchase credits",
+        isLoading: false,
       });
       throw error;
     }

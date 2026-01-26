@@ -3,16 +3,16 @@
  * Provides filtering logic for draw participants including blacklist
  */
 
-import { Participant } from '@prisma/client';
-import blacklistService from '../services/blacklist.service';
-import followerVerificationService from '../services/follower-verification.service';
-import logger from './logger';
+import { Participant } from "@prisma/client";
+import blacklistService from "../services/blacklist.service";
+import followerVerificationService from "../services/follower-verification.service";
+import logger from "./logger";
 
 interface FilterOptions {
   drawId: string;
   userId: string;
   requireFollowing?: {
-    platform: 'instagram' | 'facebook';
+    platform: "instagram" | "facebook";
     targetAccount: string;
     accessToken: string;
   };
@@ -38,9 +38,9 @@ interface FilterResult {
  */
 export async function filterParticipants(
   participants: Participant[],
-  options: FilterOptions
+  options: FilterOptions,
 ): Promise<FilterResult> {
-  logger.info('Filtering participants', {
+  logger.info("Filtering participants", {
     drawId: options.drawId,
     participantCount: participants.length,
     excludeBlacklisted: options.excludeBlacklisted,
@@ -58,20 +58,23 @@ export async function filterParticipants(
   let blacklistedUsernames = new Set<string>();
   if (options.excludeBlacklisted) {
     const blacklist = await blacklistService.getBlacklist(options.userId, {
-      platform: options.platform || 'INSTAGRAM',
+      platform: options.platform || "INSTAGRAM",
     });
-    blacklistedUsernames = new Set(blacklist.map((b) => b.username.toLowerCase()));
+    blacklistedUsernames = new Set(
+      blacklist.map((b) => b.username.toLowerCase()),
+    );
   }
 
   // Get follower verification results if needed
   let followerMap = new Map<string, boolean>();
   if (options.requireFollowing) {
-    const verificationResults = await followerVerificationService.filterVerifiedFollowers(
-      options.drawId,
-      participants.map((p) => ({ username: p.identifier }))
-    );
+    const verificationResults =
+      await followerVerificationService.filterVerifiedFollowers(
+        options.drawId,
+        participants.map((p) => ({ username: p.identifier })),
+      );
     followerMap = new Map(
-      verificationResults.map((v) => [v.username.toLowerCase(), v.isFollowing])
+      verificationResults.map((v) => [v.username.toLowerCase(), v.isFollowing]),
     );
   }
 
@@ -82,7 +85,7 @@ export async function filterParticipants(
 
     // Check blacklist
     if (options.excludeBlacklisted && blacklistedUsernames.has(username)) {
-      reasons.push('blacklisted');
+      reasons.push("blacklisted");
       blacklistedCount++;
     }
 
@@ -90,7 +93,7 @@ export async function filterParticipants(
     if (options.requireFollowing) {
       const isFollowing = followerMap.get(username);
       if (isFollowing === false) {
-        reasons.push('not_following');
+        reasons.push("not_following");
         notFollowingCount++;
       }
     }
@@ -117,7 +120,7 @@ export async function filterParticipants(
     },
   };
 
-  logger.info('Participant filtering completed', {
+  logger.info("Participant filtering completed", {
     drawId: options.drawId,
     ...result.summary,
   });
@@ -133,10 +136,10 @@ export async function validateParticipantsForDraw(
   userId: string,
   participants: Participant[],
   options?: {
-    requireFollowing?: FilterOptions['requireFollowing'];
+    requireFollowing?: FilterOptions["requireFollowing"];
     excludeBlacklisted?: boolean;
     platform?: string;
-  }
+  },
 ): Promise<{
   isValid: boolean;
   errors: string[];
@@ -148,7 +151,7 @@ export async function validateParticipantsForDraw(
 
   // Minimum participants check
   if (participants.length === 0) {
-    errors.push('No participants found for draw');
+    errors.push("No participants found for draw");
   }
 
   // Filter participants
@@ -162,21 +165,21 @@ export async function validateParticipantsForDraw(
 
   // Check if enough valid participants remain
   if (filterResult.validParticipants.length === 0) {
-    errors.push('No valid participants remain after filtering');
+    errors.push("No valid participants remain after filtering");
   } else if (filterResult.validParticipants.length < 2) {
-    warnings.push('Only one valid participant found');
+    warnings.push("Only one valid participant found");
   }
 
   // Add warnings for excluded participants
   if (filterResult.summary.blacklisted > 0) {
     warnings.push(
-      `${filterResult.summary.blacklisted} participant(s) excluded due to blacklist`
+      `${filterResult.summary.blacklisted} participant(s) excluded due to blacklist`,
     );
   }
 
   if (filterResult.summary.notFollowing > 0) {
     warnings.push(
-      `${filterResult.summary.notFollowing} participant(s) excluded for not following required account`
+      `${filterResult.summary.notFollowing} participant(s) excluded for not following required account`,
     );
   }
 
@@ -193,26 +196,26 @@ export async function validateParticipantsForDraw(
  */
 export function generateExcludedReport(filterResult: FilterResult): string {
   const lines: string[] = [
-    '=== Excluded Participants Report ===',
+    "=== Excluded Participants Report ===",
     `Total Participants: ${filterResult.summary.total}`,
     `Valid Participants: ${filterResult.summary.valid}`,
     `Excluded Participants: ${filterResult.summary.excluded}`,
-    '',
-    'Exclusion Breakdown:',
+    "",
+    "Exclusion Breakdown:",
     `- Blacklisted: ${filterResult.summary.blacklisted}`,
     `- Not Following: ${filterResult.summary.notFollowing}`,
-    '',
+    "",
   ];
 
   if (filterResult.excludedParticipants.length > 0) {
-    lines.push('Excluded Participants:');
+    lines.push("Excluded Participants:");
     for (const participant of filterResult.excludedParticipants) {
       const reasons = filterResult.excludedReasons.get(participant.id) || [];
-      lines.push(`- ${participant.identifier} (${reasons.join(', ')})`);
+      lines.push(`- ${participant.identifier} (${reasons.join(", ")})`);
     }
   }
 
-  return lines.join('\n');
+  return lines.join("\n");
 }
 
 /**
@@ -222,12 +225,12 @@ export async function applyFiltersAndUpdateDraw(
   drawId: string,
   userId: string,
   options?: {
-    requireFollowing?: FilterOptions['requireFollowing'];
+    requireFollowing?: FilterOptions["requireFollowing"];
     excludeBlacklisted?: boolean;
     platform?: string;
-  }
+  },
 ): Promise<FilterResult> {
-  const { PrismaClient } = await import('@prisma/client');
+  const { PrismaClient } = await import("@prisma/client");
   const prisma = new PrismaClient();
 
   try {
@@ -261,7 +264,7 @@ export async function applyFiltersAndUpdateDraw(
       });
     }
 
-    logger.info('Filters applied and draw updated', {
+    logger.info("Filters applied and draw updated", {
       drawId,
       ...filterResult.summary,
     });

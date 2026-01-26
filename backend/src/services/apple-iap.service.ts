@@ -3,8 +3,8 @@
  * Handles iOS receipt validation, subscription management, and credit synchronization
  */
 
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import {
   PaymentProvider,
   TransactionType,
@@ -13,8 +13,8 @@ import {
   AppleReceipt,
   Transaction,
   Subscription,
-  PaymentError
-} from '../types/payment.types';
+  PaymentError,
+} from "../types/payment.types";
 
 interface AppleVerificationResponse {
   status: number;
@@ -24,18 +24,20 @@ interface AppleVerificationResponse {
 }
 
 export class AppleIAPService {
-  private readonly APPLE_PRODUCTION_URL = 'https://buy.itunes.apple.com/verifyReceipt';
-  private readonly APPLE_SANDBOX_URL = 'https://sandbox.itunes.apple.com/verifyReceipt';
-  private readonly IOS_MARKUP = 1.30; // +30% Apple commission
+  private readonly APPLE_PRODUCTION_URL =
+    "https://buy.itunes.apple.com/verifyReceipt";
+  private readonly APPLE_SANDBOX_URL =
+    "https://sandbox.itunes.apple.com/verifyReceipt";
+  private readonly IOS_MARKUP = 1.3; // +30% Apple commission
 
   private readonly PRODUCT_IDS = {
-    ONE_SHOT: 'com.contestdraw.credits.oneshot',
-    PACK_5: 'com.contestdraw.credits.pack5',
-    PACK_10: 'com.contestdraw.credits.pack10',
-    PACK_20: 'com.contestdraw.credits.pack20',
-    MONTHLY_SUB: 'com.contestdraw.subscription.monthly',
-    ANNUAL_SUB: 'com.contestdraw.subscription.annual',
-    ENTERPRISE_SUB: 'com.contestdraw.subscription.enterprise'
+    ONE_SHOT: "com.contestdraw.credits.oneshot",
+    PACK_5: "com.contestdraw.credits.pack5",
+    PACK_10: "com.contestdraw.credits.pack10",
+    PACK_20: "com.contestdraw.credits.pack20",
+    MONTHLY_SUB: "com.contestdraw.subscription.monthly",
+    ANNUAL_SUB: "com.contestdraw.subscription.annual",
+    ENTERPRISE_SUB: "com.contestdraw.subscription.enterprise",
   };
 
   private readonly PRODUCT_CREDITS: Record<string, number> = {
@@ -45,26 +47,35 @@ export class AppleIAPService {
     [this.PRODUCT_IDS.PACK_20]: 20,
     [this.PRODUCT_IDS.MONTHLY_SUB]: 10,
     [this.PRODUCT_IDS.ANNUAL_SUB]: 120,
-    [this.PRODUCT_IDS.ENTERPRISE_SUB]: 30
+    [this.PRODUCT_IDS.ENTERPRISE_SUB]: 30,
   };
 
   constructor(
     private db: any,
     private paymentService: any, // Reference to PaymentService for credit management
-    private emailService: any
+    private emailService: any,
   ) {
     if (!process.env.APPLE_SHARED_SECRET) {
-      console.warn('APPLE_SHARED_SECRET not set - Apple IAP validation will fail');
+      console.warn(
+        "APPLE_SHARED_SECRET not set - Apple IAP validation will fail",
+      );
     }
   }
 
   /**
    * Validate iOS receipt with Apple servers
    */
-  async validateReceipt(receiptData: string, userId: string): Promise<AppleVerificationResponse> {
+  async validateReceipt(
+    receiptData: string,
+    userId: string,
+  ): Promise<AppleVerificationResponse> {
     const sharedSecret = process.env.APPLE_SHARED_SECRET;
     if (!sharedSecret) {
-      throw this.createError('Apple shared secret not configured', 'CONFIG_ERROR', 500);
+      throw this.createError(
+        "Apple shared secret not configured",
+        "CONFIG_ERROR",
+        500,
+      );
     }
 
     try {
@@ -72,16 +83,18 @@ export class AppleIAPService {
       let response = await this.verifyWithApple(
         this.APPLE_PRODUCTION_URL,
         receiptData,
-        sharedSecret
+        sharedSecret,
       );
 
       // If production returns sandbox receipt error, try sandbox
       if (response.data.status === 21007) {
-        console.log('[Apple IAP] Production returned sandbox receipt, retrying with sandbox');
+        console.log(
+          "[Apple IAP] Production returned sandbox receipt, retrying with sandbox",
+        );
         response = await this.verifyWithApple(
           this.APPLE_SANDBOX_URL,
           receiptData,
-          sharedSecret
+          sharedSecret,
         );
       }
 
@@ -91,8 +104,8 @@ export class AppleIAPService {
       if (result.status !== 0) {
         throw this.createError(
           `Apple receipt validation failed: ${this.getAppleErrorMessage(result.status)}`,
-          'VALIDATION_FAILED',
-          400
+          "VALIDATION_FAILED",
+          400,
         );
       }
 
@@ -102,7 +115,11 @@ export class AppleIAPService {
       return result;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        throw this.createError('Apple verification service unavailable', 'SERVICE_UNAVAILABLE', 503);
+        throw this.createError(
+          "Apple verification service unavailable",
+          "SERVICE_UNAVAILABLE",
+          503,
+        );
       }
       throw error;
     }
@@ -113,7 +130,7 @@ export class AppleIAPService {
    */
   private async processValidatedReceipt(
     verificationResponse: AppleVerificationResponse,
-    userId: string
+    userId: string,
   ): Promise<void> {
     const latestReceiptInfo = verificationResponse.latest_receipt_info || [];
 
@@ -129,12 +146,14 @@ export class AppleIAPService {
       const existing = await this.db.transaction.findFirst({
         where: {
           providerTransactionId: transactionId,
-          provider: PaymentProvider.APPLE_IAP
-        }
+          provider: PaymentProvider.APPLE_IAP,
+        },
       });
 
       if (existing) {
-        console.log(`[Apple IAP] Transaction ${transactionId} already processed`);
+        console.log(
+          `[Apple IAP] Transaction ${transactionId} already processed`,
+        );
         continue;
       }
 
@@ -147,7 +166,7 @@ export class AppleIAPService {
           productId,
           transactionId,
           purchaseDate,
-          expiresDate
+          expiresDate,
         );
       } else {
         await this.processOneTimePurchase(
@@ -155,7 +174,7 @@ export class AppleIAPService {
           productId,
           transactionId,
           credits,
-          purchaseDate
+          purchaseDate,
         );
       }
     }
@@ -169,7 +188,7 @@ export class AppleIAPService {
     productId: string,
     transactionId: string,
     credits: number,
-    purchaseDate: Date
+    purchaseDate: Date,
   ): Promise<void> {
     await this.db.$transaction(async (tx: any) => {
       // Create transaction record
@@ -181,12 +200,12 @@ export class AppleIAPService {
         provider: PaymentProvider.APPLE_IAP,
         providerTransactionId: transactionId,
         amount: 0, // Amount not available from Apple
-        currency: 'USD',
+        currency: "USD",
         credits,
         description: `Apple IAP: ${productId}`,
         metadata: { productId, purchaseDate: purchaseDate.toISOString() },
         createdAt: new Date(),
-        updatedAt: new Date()
+        updatedAt: new Date(),
       };
 
       await tx.transaction.create({ data: transaction });
@@ -195,17 +214,19 @@ export class AppleIAPService {
       await this.paymentService.addCredits(
         userId,
         credits,
-        'Apple IAP purchase',
-        { transactionId, productId }
+        "Apple IAP purchase",
+        { transactionId, productId },
       );
 
       // Send confirmation email
       await this.emailService.sendPaymentSuccess(userId, {
         credits,
-        provider: 'Apple App Store'
+        provider: "Apple App Store",
       });
 
-      console.log(`[Apple IAP] Processed one-time purchase: ${credits} credits for user ${userId}`);
+      console.log(
+        `[Apple IAP] Processed one-time purchase: ${credits} credits for user ${userId}`,
+      );
     });
   }
 
@@ -217,10 +238,14 @@ export class AppleIAPService {
     productId: string,
     transactionId: string,
     purchaseDate: Date,
-    expiresDate: Date | null
+    expiresDate: Date | null,
   ): Promise<void> {
     if (!expiresDate) {
-      throw this.createError('Subscription must have expiration date', 'INVALID_SUBSCRIPTION', 400);
+      throw this.createError(
+        "Subscription must have expiration date",
+        "INVALID_SUBSCRIPTION",
+        400,
+      );
     }
 
     const plan = this.mapProductIdToSubscriptionPlan(productId);
@@ -233,8 +258,8 @@ export class AppleIAPService {
         where: {
           userId,
           providerSubscriptionId: transactionId,
-          provider: PaymentProvider.APPLE_IAP
-        }
+          provider: PaymentProvider.APPLE_IAP,
+        },
       });
 
       if (existingSubscription) {
@@ -245,8 +270,8 @@ export class AppleIAPService {
             status: SubscriptionStatus.ACTIVE,
             currentPeriodStart: purchaseDate,
             currentPeriodEnd: expiresDate,
-            updatedAt: new Date()
-          }
+            updatedAt: new Date(),
+          },
         });
 
         console.log(`[Apple IAP] Updated subscription ${transactionId}`);
@@ -266,7 +291,7 @@ export class AppleIAPService {
           connectedAccountsLimit: accountsLimit,
           metadata: { productId },
           createdAt: new Date(),
-          updatedAt: new Date()
+          updatedAt: new Date(),
         };
 
         await tx.subscription.create({ data: subscription });
@@ -275,8 +300,8 @@ export class AppleIAPService {
         await this.paymentService.addCredits(
           userId,
           credits,
-          'Subscription activation',
-          { subscriptionId: subscription.id, productId }
+          "Subscription activation",
+          { subscriptionId: subscription.id, productId },
         );
 
         // Send welcome email
@@ -295,13 +320,13 @@ export class AppleIAPService {
           provider: PaymentProvider.APPLE_IAP,
           providerTransactionId: transactionId,
           amount: 0,
-          currency: 'USD',
+          currency: "USD",
           credits,
           description: `Apple IAP Subscription: ${productId}`,
           metadata: { productId, expiresDate: expiresDate.toISOString() },
           createdAt: new Date(),
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       });
     });
   }
@@ -315,8 +340,8 @@ export class AppleIAPService {
       where: {
         userId,
         provider: PaymentProvider.APPLE_IAP,
-        status: SubscriptionStatus.ACTIVE
-      }
+        status: SubscriptionStatus.ACTIVE,
+      },
     });
 
     for (const subscription of subscriptions) {
@@ -328,15 +353,18 @@ export class AppleIAPService {
         // Enter grace period
         await this.db.subscription.update({
           where: { id: subscription.id },
-          data: { status: SubscriptionStatus.GRACE_PERIOD }
+          data: { status: SubscriptionStatus.GRACE_PERIOD },
         });
 
-        await this.emailService.sendSubscriptionGracePeriod(userId, subscription);
+        await this.emailService.sendSubscriptionGracePeriod(
+          userId,
+          subscription,
+        );
       } else if (now > gracePeriodEnd) {
         // Expire subscription
         await this.db.subscription.update({
           where: { id: subscription.id },
-          data: { status: SubscriptionStatus.EXPIRED }
+          data: { status: SubscriptionStatus.EXPIRED },
         });
 
         await this.emailService.sendSubscriptionExpired(userId, subscription);
@@ -351,12 +379,14 @@ export class AppleIAPService {
     const subscription = await this.db.subscription.findFirst({
       where: {
         providerSubscriptionId: transactionId,
-        provider: PaymentProvider.APPLE_IAP
-      }
+        provider: PaymentProvider.APPLE_IAP,
+      },
     });
 
     if (!subscription) {
-      console.warn(`[Apple IAP] Subscription not found for transaction ${transactionId}`);
+      console.warn(
+        `[Apple IAP] Subscription not found for transaction ${transactionId}`,
+      );
       return;
     }
 
@@ -364,12 +394,17 @@ export class AppleIAPService {
       where: { id: subscription.id },
       data: {
         cancelAtPeriodEnd: true,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
 
-    await this.emailService.sendSubscriptionCancelled(subscription.userId, subscription);
-    console.log(`[Apple IAP] Subscription ${transactionId} marked for cancellation`);
+    await this.emailService.sendSubscriptionCancelled(
+      subscription.userId,
+      subscription,
+    );
+    console.log(
+      `[Apple IAP] Subscription ${transactionId} marked for cancellation`,
+    );
   }
 
   /**
@@ -389,50 +424,50 @@ export class AppleIAPService {
           productId: this.PRODUCT_IDS.ONE_SHOT,
           credits: 1,
           price: this.getIOSPricing(2.49),
-          currency: 'EUR'
+          currency: "EUR",
         },
         {
           productId: this.PRODUCT_IDS.PACK_5,
           credits: 5,
-          price: this.getIOSPricing(8.00),
-          currency: 'EUR'
+          price: this.getIOSPricing(8.0),
+          currency: "EUR",
         },
         {
           productId: this.PRODUCT_IDS.PACK_10,
           credits: 10,
-          price: this.getIOSPricing(15.00),
-          currency: 'EUR'
+          price: this.getIOSPricing(15.0),
+          currency: "EUR",
         },
         {
           productId: this.PRODUCT_IDS.PACK_20,
           credits: 20,
-          price: this.getIOSPricing(28.00),
-          currency: 'EUR'
-        }
+          price: this.getIOSPricing(28.0),
+          currency: "EUR",
+        },
       ],
       subscriptions: [
         {
           productId: this.PRODUCT_IDS.MONTHLY_SUB,
-          plan: 'monthly',
+          plan: "monthly",
           credits: 10,
           price: this.getIOSPricing(19.99),
-          currency: 'EUR'
+          currency: "EUR",
         },
         {
           productId: this.PRODUCT_IDS.ANNUAL_SUB,
-          plan: 'annual',
+          plan: "annual",
           credits: 120,
-          price: this.getIOSPricing(199.00),
-          currency: 'EUR'
+          price: this.getIOSPricing(199.0),
+          currency: "EUR",
         },
         {
           productId: this.PRODUCT_IDS.ENTERPRISE_SUB,
-          plan: 'enterprise',
+          plan: "enterprise",
           credits: 30,
-          price: this.getIOSPricing(49.00),
-          currency: 'EUR'
-        }
-      ]
+          price: this.getIOSPricing(49.0),
+          currency: "EUR",
+        },
+      ],
     };
   }
 
@@ -441,12 +476,12 @@ export class AppleIAPService {
   private async verifyWithApple(
     url: string,
     receiptData: string,
-    sharedSecret: string
+    sharedSecret: string,
   ): Promise<any> {
     return await axios.post(url, {
-      'receipt-data': receiptData,
-      'password': sharedSecret,
-      'exclude-old-transactions': false
+      "receipt-data": receiptData,
+      password: sharedSecret,
+      "exclude-old-transactions": false,
     });
   }
 
@@ -454,44 +489,49 @@ export class AppleIAPService {
     return [
       this.PRODUCT_IDS.MONTHLY_SUB,
       this.PRODUCT_IDS.ANNUAL_SUB,
-      this.PRODUCT_IDS.ENTERPRISE_SUB
+      this.PRODUCT_IDS.ENTERPRISE_SUB,
     ].includes(productId);
   }
 
   private mapProductIdToSubscriptionPlan(productId: string): string {
     const mapping: Record<string, string> = {
-      [this.PRODUCT_IDS.MONTHLY_SUB]: 'monthly',
-      [this.PRODUCT_IDS.ANNUAL_SUB]: 'annual',
-      [this.PRODUCT_IDS.ENTERPRISE_SUB]: 'enterprise'
+      [this.PRODUCT_IDS.MONTHLY_SUB]: "monthly",
+      [this.PRODUCT_IDS.ANNUAL_SUB]: "annual",
+      [this.PRODUCT_IDS.ENTERPRISE_SUB]: "enterprise",
     };
-    return mapping[productId] || 'monthly';
+    return mapping[productId] || "monthly";
   }
 
   private getAccountsLimitForProduct(productId: string): number {
     const limits: Record<string, number> = {
       [this.PRODUCT_IDS.MONTHLY_SUB]: 3,
       [this.PRODUCT_IDS.ANNUAL_SUB]: 5,
-      [this.PRODUCT_IDS.ENTERPRISE_SUB]: 10
+      [this.PRODUCT_IDS.ENTERPRISE_SUB]: 10,
     };
     return limits[productId] || 3;
   }
 
   private getAppleErrorMessage(status: number): string {
     const messages: Record<number, string> = {
-      21000: 'The App Store could not read the JSON object you provided.',
-      21002: 'The data in the receipt-data property was malformed or missing.',
-      21003: 'The receipt could not be authenticated.',
-      21004: 'The shared secret you provided does not match the shared secret on file.',
-      21005: 'The receipt server is not currently available.',
-      21006: 'This receipt is valid but the subscription has expired.',
-      21007: 'This receipt is from the test environment.',
-      21008: 'This receipt is from the production environment.',
-      21010: 'This receipt could not be authorized.'
+      21000: "The App Store could not read the JSON object you provided.",
+      21002: "The data in the receipt-data property was malformed or missing.",
+      21003: "The receipt could not be authenticated.",
+      21004:
+        "The shared secret you provided does not match the shared secret on file.",
+      21005: "The receipt server is not currently available.",
+      21006: "This receipt is valid but the subscription has expired.",
+      21007: "This receipt is from the test environment.",
+      21008: "This receipt is from the production environment.",
+      21010: "This receipt could not be authorized.",
     };
     return messages[status] || `Unknown error (status ${status})`;
   }
 
-  private createError(message: string, code: string, statusCode: number): PaymentError {
+  private createError(
+    message: string,
+    code: string,
+    statusCode: number,
+  ): PaymentError {
     const error = new Error(message) as PaymentError;
     error.code = code;
     error.statusCode = statusCode;

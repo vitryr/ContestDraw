@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+import * as crypto from "crypto";
 
 /**
  * Shareable links service for draw verification
@@ -17,12 +17,15 @@ export interface EmbedConfig {
   drawId: string;
   width?: number;
   height?: number;
-  theme?: 'light' | 'dark';
+  theme?: "light" | "dark";
   showParticipants?: boolean;
 }
 
 // In-memory store for short codes (in production, use Redis or database)
-const shortCodeStore = new Map<string, { drawId: string; createdAt: Date; expiresAt?: Date }>();
+const shortCodeStore = new Map<
+  string,
+  { drawId: string; createdAt: Date; expiresAt?: Date }
+>();
 
 /**
  * Generate short verification code for URLs
@@ -31,10 +34,7 @@ const shortCodeStore = new Map<string, { drawId: string; createdAt: Date; expire
  */
 export function generateShortCode(drawId: string): string {
   // Generate deterministic short code based on draw ID
-  const hash = crypto
-    .createHash('sha256')
-    .update(drawId)
-    .digest('hex');
+  const hash = crypto.createHash("sha256").update(drawId).digest("hex");
 
   return hash.substring(0, 8);
 }
@@ -49,7 +49,7 @@ export function generateShortCode(drawId: string): string {
 export async function createShareableLink(
   drawId: string,
   baseUrl: string,
-  expiresInDays?: number
+  expiresInDays?: number,
 ): Promise<ShareableLink> {
   const shortCode = generateShortCode(drawId);
   const expiresAt = expiresInDays
@@ -113,10 +113,10 @@ export function generateQRCode(url: string): string {
   return `
     <svg width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
       <rect width="${size}" height="${size}" fill="white"/>
-      <text x="${size/2}" y="${size/2}" text-anchor="middle" font-size="12" fill="black">
+      <text x="${size / 2}" y="${size / 2}" text-anchor="middle" font-size="12" fill="black">
         QR Code for: ${url.substring(0, 30)}...
       </text>
-      <text x="${size/2}" y="${size/2 + 20}" text-anchor="middle" font-size="10" fill="gray">
+      <text x="${size / 2}" y="${size / 2 + 20}" text-anchor="middle" font-size="10" fill="gray">
         (Use QR library in production)
       </text>
     </svg>
@@ -129,12 +129,15 @@ export function generateQRCode(url: string): string {
  * @param baseUrl - Base URL for the application
  * @returns HTML embed code
  */
-export function generateEmbedCode(config: EmbedConfig, baseUrl: string): string {
+export function generateEmbedCode(
+  config: EmbedConfig,
+  baseUrl: string,
+): string {
   const {
     drawId,
     width = 600,
     height = 400,
-    theme = 'light',
+    theme = "light",
     showParticipants = false,
   } = config;
 
@@ -164,7 +167,7 @@ export function generateEmbedCode(config: EmbedConfig, baseUrl: string): string 
 export function generateSocialShareUrls(
   drawId: string,
   title: string,
-  baseUrl: string
+  baseUrl: string,
 ): {
   twitter: string;
   facebook: string;
@@ -199,5 +202,5 @@ export function cleanupExpiredCodes(): void {
     }
   }
 
-  toDelete.forEach(code => shortCodeStore.delete(code));
+  toDelete.forEach((code) => shortCodeStore.delete(code));
 }

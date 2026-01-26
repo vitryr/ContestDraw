@@ -4,17 +4,17 @@
  * Provides batch verification endpoint for efficient processing
  */
 
-import { PrismaClient } from '@prisma/client';
-import axios, { AxiosInstance } from 'axios';
-import { RetryHandler } from '../utils/retry.util';
-import { Cache } from '../utils/cache.util';
-import logger from '../utils/logger';
+import { PrismaClient } from "@prisma/client";
+import axios, { AxiosInstance } from "axios";
+import { RetryHandler } from "../utils/retry.util";
+import { Cache } from "../utils/cache.util";
+import logger from "../utils/logger";
 
 const prisma = new PrismaClient();
 
 interface VerificationRequest {
   username: string;
-  platform: 'instagram' | 'facebook';
+  platform: "instagram" | "facebook";
   targetAccount: string;
 }
 
@@ -61,12 +61,12 @@ export class FollowerVerificationService {
 
   constructor() {
     this.instagramClient = axios.create({
-      baseURL: 'https://graph.instagram.com/v18.0',
+      baseURL: "https://graph.instagram.com/v18.0",
       timeout: 30000,
     });
 
     this.facebookClient = axios.create({
-      baseURL: 'https://graph.facebook.com/v18.0',
+      baseURL: "https://graph.facebook.com/v18.0",
       timeout: 30000,
     });
   }
@@ -77,7 +77,7 @@ export class FollowerVerificationService {
   async verifyInstagramFollower(
     username: string,
     targetAccountId: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<boolean> {
     const cacheKey = `instagram:follower:${username}:${targetAccountId}`;
 
@@ -90,10 +90,10 @@ export class FollowerVerificationService {
             const isFollowing = await this.checkInstagramFollower(
               targetAccountId,
               username,
-              accessToken
+              accessToken,
             );
 
-            logger.info('Instagram follower verification completed', {
+            logger.info("Instagram follower verification completed", {
               username,
               targetAccountId,
               isFollowing,
@@ -101,7 +101,7 @@ export class FollowerVerificationService {
 
             return isFollowing;
           } catch (error) {
-            logger.error('Instagram follower verification failed', {
+            logger.error("Instagram follower verification failed", {
               username,
               targetAccountId,
               error: error instanceof Error ? error.message : String(error),
@@ -110,7 +110,7 @@ export class FollowerVerificationService {
           }
         });
       },
-      600 // Cache for 10 minutes
+      600, // Cache for 10 minutes
     );
   }
 
@@ -120,14 +120,14 @@ export class FollowerVerificationService {
   private async checkInstagramFollower(
     accountId: string,
     username: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<boolean> {
     let nextCursor: string | undefined;
     let hasMore = true;
 
     while (hasMore) {
       const params: any = {
-        fields: 'id,username',
+        fields: "id,username",
         access_token: accessToken,
         limit: 100,
       };
@@ -136,14 +136,15 @@ export class FollowerVerificationService {
         params.after = nextCursor;
       }
 
-      const response = await this.instagramClient.get<InstagramFollowersResponse>(
-        `/${accountId}/followers`,
-        { params }
-      );
+      const response =
+        await this.instagramClient.get<InstagramFollowersResponse>(
+          `/${accountId}/followers`,
+          { params },
+        );
 
       // Check if username exists in current page
       const follower = response.data.data.find(
-        (f) => f.username.toLowerCase() === username.toLowerCase()
+        (f) => f.username.toLowerCase() === username.toLowerCase(),
       );
 
       if (follower) {
@@ -164,7 +165,7 @@ export class FollowerVerificationService {
   async verifyFacebookPageLike(
     userId: string,
     pageId: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<boolean> {
     const cacheKey = `facebook:page-like:${userId}:${pageId}`;
 
@@ -180,12 +181,12 @@ export class FollowerVerificationService {
                 params: {
                   access_token: accessToken,
                 },
-              }
+              },
             );
 
             const isLiking = response.data.data === true;
 
-            logger.info('Facebook page like verification completed', {
+            logger.info("Facebook page like verification completed", {
               userId,
               pageId,
               isLiking,
@@ -198,7 +199,7 @@ export class FollowerVerificationService {
               return false;
             }
 
-            logger.error('Facebook page like verification failed', {
+            logger.error("Facebook page like verification failed", {
               userId,
               pageId,
               error: error instanceof Error ? error.message : String(error),
@@ -207,7 +208,7 @@ export class FollowerVerificationService {
           }
         });
       },
-      600 // Cache for 10 minutes
+      600, // Cache for 10 minutes
     );
   }
 
@@ -217,9 +218,9 @@ export class FollowerVerificationService {
   async batchVerify(
     drawId: string,
     requests: VerificationRequest[],
-    accessTokens: { instagram?: string; facebook?: string }
+    accessTokens: { instagram?: string; facebook?: string },
   ): Promise<VerificationResult[]> {
-    logger.info('Starting batch verification', {
+    logger.info("Starting batch verification", {
       drawId,
       requestCount: requests.length,
     });
@@ -236,17 +237,20 @@ export class FollowerVerificationService {
           try {
             let isFollowing = false;
 
-            if (request.platform === 'instagram' && accessTokens.instagram) {
+            if (request.platform === "instagram" && accessTokens.instagram) {
               isFollowing = await this.verifyInstagramFollower(
                 request.username,
                 request.targetAccount,
-                accessTokens.instagram
+                accessTokens.instagram,
               );
-            } else if (request.platform === 'facebook' && accessTokens.facebook) {
+            } else if (
+              request.platform === "facebook" &&
+              accessTokens.facebook
+            ) {
               isFollowing = await this.verifyFacebookPageLike(
                 request.username,
                 request.targetAccount,
-                accessTokens.facebook
+                accessTokens.facebook,
               );
             }
 
@@ -263,7 +267,7 @@ export class FollowerVerificationService {
 
             return result;
           } catch (error) {
-            logger.error('Verification failed for user', {
+            logger.error("Verification failed for user", {
               username: request.username,
               platform: request.platform,
               error: error instanceof Error ? error.message : String(error),
@@ -275,10 +279,10 @@ export class FollowerVerificationService {
               targetAccount: request.targetAccount,
               isFollowing: false,
               verifiedAt: new Date(),
-              error: error instanceof Error ? error.message : 'Unknown error',
+              error: error instanceof Error ? error.message : "Unknown error",
             };
           }
-        })
+        }),
       );
 
       results.push(...batchResults);
@@ -289,7 +293,7 @@ export class FollowerVerificationService {
       }
     }
 
-    logger.info('Batch verification completed', {
+    logger.info("Batch verification completed", {
       drawId,
       totalRequests: requests.length,
       successCount: results.filter((r) => !r.error).length,
@@ -304,7 +308,7 @@ export class FollowerVerificationService {
    */
   private async storeVerificationResult(
     drawId: string,
-    result: VerificationResult
+    result: VerificationResult,
   ): Promise<void> {
     try {
       await prisma.followerVerification.create({
@@ -319,7 +323,7 @@ export class FollowerVerificationService {
         },
       });
     } catch (error) {
-      logger.error('Failed to store verification result', {
+      logger.error("Failed to store verification result", {
         drawId,
         username: result.username,
         error: error instanceof Error ? error.message : String(error),
@@ -333,7 +337,7 @@ export class FollowerVerificationService {
   async getVerificationResults(drawId: string): Promise<VerificationResult[]> {
     const verifications = await prisma.followerVerification.findMany({
       where: { drawId },
-      orderBy: { verifiedAt: 'desc' },
+      orderBy: { verifiedAt: "desc" },
     });
 
     return verifications.map((v) => ({
@@ -342,9 +346,10 @@ export class FollowerVerificationService {
       targetAccount: v.targetAccount,
       isFollowing: v.isFollowing,
       verifiedAt: v.verifiedAt,
-      error: v.metadata && typeof v.metadata === 'object' && 'error' in v.metadata
-        ? String((v.metadata as any).error)
-        : undefined,
+      error:
+        v.metadata && typeof v.metadata === "object" && "error" in v.metadata
+          ? String((v.metadata as any).error)
+          : undefined,
     }));
   }
 
@@ -353,7 +358,7 @@ export class FollowerVerificationService {
    */
   async filterVerifiedFollowers(
     drawId: string,
-    participants: Array<{ username: string }>
+    participants: Array<{ username: string }>,
   ): Promise<Array<{ username: string; isFollowing: boolean }>> {
     const verifications = await prisma.followerVerification.findMany({
       where: {
@@ -365,7 +370,7 @@ export class FollowerVerificationService {
     });
 
     const verificationMap = new Map(
-      verifications.map((v) => [v.username.toLowerCase(), v.isFollowing])
+      verifications.map((v) => [v.username.toLowerCase(), v.isFollowing]),
     );
 
     return participants.map((p) => ({
@@ -379,7 +384,7 @@ export class FollowerVerificationService {
    */
   async getInstagramFollowersCount(
     accountId: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<number> {
     const cacheKey = `instagram:followers-count:${accountId}`;
 
@@ -389,21 +394,21 @@ export class FollowerVerificationService {
         try {
           const response = await this.instagramClient.get(`/${accountId}`, {
             params: {
-              fields: 'followers_count',
+              fields: "followers_count",
               access_token: accessToken,
             },
           });
 
           return response.data.followers_count || 0;
         } catch (error) {
-          logger.error('Failed to get Instagram followers count', {
+          logger.error("Failed to get Instagram followers count", {
             accountId,
             error: error instanceof Error ? error.message : String(error),
           });
           return 0;
         }
       },
-      3600 // Cache for 1 hour
+      3600, // Cache for 1 hour
     );
   }
 
@@ -412,7 +417,7 @@ export class FollowerVerificationService {
    */
   async getFacebookPageLikesCount(
     pageId: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<number> {
     const cacheKey = `facebook:page-likes:${pageId}`;
 
@@ -422,21 +427,21 @@ export class FollowerVerificationService {
         try {
           const response = await this.facebookClient.get(`/${pageId}`, {
             params: {
-              fields: 'fan_count',
+              fields: "fan_count",
               access_token: accessToken,
             },
           });
 
           return response.data.fan_count || 0;
         } catch (error) {
-          logger.error('Failed to get Facebook page likes count', {
+          logger.error("Failed to get Facebook page likes count", {
             pageId,
             error: error instanceof Error ? error.message : String(error),
           });
           return 0;
         }
       },
-      3600 // Cache for 1 hour
+      3600, // Cache for 1 hour
     );
   }
 }

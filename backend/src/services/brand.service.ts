@@ -3,12 +3,12 @@
  * Multi-brand account management for organizations
  */
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 import {
   Brand,
   CreateBrandDTO,
-  UpdateBrandDTO
-} from '../types/enterprise.types';
+  UpdateBrandDTO,
+} from "../types/enterprise.types";
 
 export class BrandService {
   constructor(private prisma: PrismaClient) {}
@@ -19,20 +19,20 @@ export class BrandService {
   async createBrand(
     organizationId: string,
     userId: string,
-    data: CreateBrandDTO
+    data: CreateBrandDTO,
   ): Promise<Brand> {
     // Check if slug is unique within organization
     const existing = await this.prisma.brand.findUnique({
       where: {
         organizationId_slug: {
           organizationId,
-          slug: data.slug
-        }
-      }
+          slug: data.slug,
+        },
+      },
     });
 
     if (existing) {
-      throw new Error('Brand slug already exists in this organization');
+      throw new Error("Brand slug already exists in this organization");
     }
 
     return this.prisma.brand.create({
@@ -43,8 +43,8 @@ export class BrandService {
         slug: data.slug,
         description: data.description,
         settings: data.settings || {},
-        isActive: true
-      }
+        isActive: true,
+      },
     });
   }
 
@@ -57,19 +57,19 @@ export class BrandService {
       include: {
         organization: true,
         user: {
-          select: { id: true, email: true, firstName: true, lastName: true }
+          select: { id: true, email: true, firstName: true, lastName: true },
         },
         socialAccounts: {
           include: {
-            socialAccount: true
-          }
+            socialAccount: true,
+          },
         },
         draws: {
           include: {
-            draw: true
-          }
-        }
-      }
+            draw: true,
+          },
+        },
+      },
     });
   }
 
@@ -81,8 +81,8 @@ export class BrandService {
       where: { id: brandId },
       data: {
         ...data,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -91,7 +91,7 @@ export class BrandService {
    */
   async deleteBrand(brandId: string): Promise<void> {
     await this.prisma.brand.delete({
-      where: { id: brandId }
+      where: { id: brandId },
     });
   }
 
@@ -103,16 +103,16 @@ export class BrandService {
       where: { organizationId },
       include: {
         user: {
-          select: { id: true, email: true, firstName: true, lastName: true }
+          select: { id: true, email: true, firstName: true, lastName: true },
         },
         _count: {
           select: {
             socialAccounts: true,
-            draws: true
-          }
-        }
+            draws: true,
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: "desc" },
     });
   }
 
@@ -123,30 +123,30 @@ export class BrandService {
     // Get user's organization memberships
     const memberships = await this.prisma.organizationMember.findMany({
       where: { userId },
-      select: { organizationId: true }
+      select: { organizationId: true },
     });
 
-    const orgIds = memberships.map(m => m.organizationId);
+    const orgIds = memberships.map((m) => m.organizationId);
 
     return this.prisma.brand.findMany({
       where: {
         OR: [
           { userId }, // Brands created by user
-          { organizationId: { in: orgIds } } // Brands in user's organizations
-        ]
+          { organizationId: { in: orgIds } }, // Brands in user's organizations
+        ],
       },
       include: {
         organization: {
-          select: { name: true, slug: true }
+          select: { name: true, slug: true },
         },
         _count: {
           select: {
             socialAccounts: true,
-            draws: true
-          }
-        }
+            draws: true,
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: "desc" },
     });
   }
 
@@ -155,28 +155,28 @@ export class BrandService {
    */
   async connectSocialAccount(
     brandId: string,
-    socialAccountId: string
+    socialAccountId: string,
   ): Promise<void> {
     // Check if connection already exists
     const existing = await this.prisma.brandSocialAccount.findUnique({
       where: {
         brandId_socialAccountId: {
           brandId,
-          socialAccountId
-        }
-      }
+          socialAccountId,
+        },
+      },
     });
 
     if (existing) {
-      throw new Error('Social account already connected to this brand');
+      throw new Error("Social account already connected to this brand");
     }
 
     await this.prisma.brandSocialAccount.create({
       data: {
         brandId,
         socialAccountId,
-        isActive: true
-      }
+        isActive: true,
+      },
     });
   }
 
@@ -185,15 +185,15 @@ export class BrandService {
    */
   async disconnectSocialAccount(
     brandId: string,
-    socialAccountId: string
+    socialAccountId: string,
   ): Promise<void> {
     await this.prisma.brandSocialAccount.delete({
       where: {
         brandId_socialAccountId: {
           brandId,
-          socialAccountId
-        }
-      }
+          socialAccountId,
+        },
+      },
     });
   }
 
@@ -209,13 +209,13 @@ export class BrandService {
             id: true,
             platform: true,
             platformUsername: true,
-            connectedAt: true
-          }
-        }
-      }
+            connectedAt: true,
+          },
+        },
+      },
     });
 
-    return connections.map(c => c.socialAccount);
+    return connections.map((c) => c.socialAccount);
   }
 
   /**
@@ -227,9 +227,9 @@ export class BrandService {
       where: {
         brandId_drawId: {
           brandId,
-          drawId
-        }
-      }
+          drawId,
+        },
+      },
     });
 
     if (existing) {
@@ -239,8 +239,8 @@ export class BrandService {
     await this.prisma.brandDraw.create({
       data: {
         brandId,
-        drawId
-      }
+        drawId,
+      },
     });
   }
 
@@ -252,9 +252,9 @@ export class BrandService {
       where: {
         brandId_drawId: {
           brandId,
-          drawId
-        }
-      }
+          drawId,
+        },
+      },
     });
   }
 
@@ -268,21 +268,26 @@ export class BrandService {
         draw: {
           include: {
             user: {
-              select: { id: true, email: true, firstName: true, lastName: true }
+              select: {
+                id: true,
+                email: true,
+                firstName: true,
+                lastName: true,
+              },
             },
             _count: {
               select: {
                 participants: true,
-                winners: true
-              }
-            }
-          }
-        }
+                winners: true,
+              },
+            },
+          },
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: "desc" },
     });
 
-    return brandDraws.map(bd => bd.draw);
+    return brandDraws.map((bd) => bd.draw);
   }
 
   /**
@@ -304,39 +309,39 @@ export class BrandService {
               _count: {
                 select: {
                   participants: true,
-                  winners: true
-                }
-              }
-            }
-          }
-        }
+                  winners: true,
+                },
+              },
+            },
+          },
+        },
       }),
       this.prisma.brandSocialAccount.count({
-        where: { brandId, isActive: true }
-      })
+        where: { brandId, isActive: true },
+      }),
     ]);
 
     const totalDraws = brandDraws.length;
     const totalParticipants = brandDraws.reduce(
       (sum, bd) => sum + bd.draw._count.participants,
-      0
+      0,
     );
     const totalWinners = brandDraws.reduce(
       (sum, bd) => sum + bd.draw._count.winners,
-      0
+      0,
     );
 
     const recentDraws = brandDraws
       .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
       .slice(0, 5)
-      .map(bd => bd.draw);
+      .map((bd) => bd.draw);
 
     return {
       totalDraws,
       totalParticipants,
       totalWinners,
       connectedAccounts: socialAccounts,
-      recentDraws
+      recentDraws,
     };
   }
 
@@ -348,8 +353,8 @@ export class BrandService {
       where: { id: brandId },
       data: {
         isActive,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 }

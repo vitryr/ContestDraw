@@ -1,7 +1,18 @@
-import { useState } from 'react';
-import { Share2, Twitter, Facebook, Linkedin, MessageCircle, Send, QrCode, Copy, Check, Code } from 'lucide-react';
-import toast from 'react-hot-toast';
-import * as Dialog from '@radix-ui/react-dialog';
+import { useState } from "react";
+import {
+  Share2,
+  Twitter,
+  Facebook,
+  Linkedin,
+  MessageCircle,
+  Send,
+  QrCode,
+  Copy,
+  Check,
+  Code,
+} from "lucide-react";
+import toast from "react-hot-toast";
+import * as Dialog from "@radix-ui/react-dialog";
 
 interface SocialShareProps {
   drawId: string;
@@ -37,26 +48,29 @@ export default function SocialShare({
   const [showQR, setShowQR] = useState(false);
   const [showEmbed, setShowEmbed] = useState(false);
 
-  const copyToClipboard = async (text: string, type: 'link' | 'embed' = 'link') => {
+  const copyToClipboard = async (
+    text: string,
+    type: "link" | "embed" = "link",
+  ) => {
     try {
       await navigator.clipboard.writeText(text);
 
-      if (type === 'link') {
+      if (type === "link") {
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-        toast.success('Link copied to clipboard!');
+        toast.success("Link copied to clipboard!");
       } else {
         setEmbedCopied(true);
         setTimeout(() => setEmbedCopied(false), 2000);
-        toast.success('Embed code copied!');
+        toast.success("Embed code copied!");
       }
     } catch (err) {
-      toast.error('Failed to copy');
+      toast.error("Failed to copy");
     }
   };
 
   const shareVia = (platform: string, url: string) => {
-    window.open(url, '_blank', 'width=600,height=400');
+    window.open(url, "_blank", "width=600,height=400");
   };
 
   return (
@@ -107,7 +121,7 @@ export default function SocialShare({
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           <button
-            onClick={() => shareVia('Twitter', socialUrls.twitter)}
+            onClick={() => shareVia("Twitter", socialUrls.twitter)}
             className="flex items-center justify-center gap-2 px-4 py-3 bg-[#1DA1F2] text-white rounded-lg hover:bg-[#1a8cd8] transition-colors"
           >
             <Twitter className="w-4 h-4" />
@@ -115,7 +129,7 @@ export default function SocialShare({
           </button>
 
           <button
-            onClick={() => shareVia('Facebook', socialUrls.facebook)}
+            onClick={() => shareVia("Facebook", socialUrls.facebook)}
             className="flex items-center justify-center gap-2 px-4 py-3 bg-[#1877F2] text-white rounded-lg hover:bg-[#166fe5] transition-colors"
           >
             <Facebook className="w-4 h-4" />
@@ -123,7 +137,7 @@ export default function SocialShare({
           </button>
 
           <button
-            onClick={() => shareVia('LinkedIn', socialUrls.linkedin)}
+            onClick={() => shareVia("LinkedIn", socialUrls.linkedin)}
             className="flex items-center justify-center gap-2 px-4 py-3 bg-[#0A66C2] text-white rounded-lg hover:bg-[#095196] transition-colors"
           >
             <Linkedin className="w-4 h-4" />
@@ -131,7 +145,7 @@ export default function SocialShare({
           </button>
 
           <button
-            onClick={() => shareVia('WhatsApp', socialUrls.whatsapp)}
+            onClick={() => shareVia("WhatsApp", socialUrls.whatsapp)}
             className="flex items-center justify-center gap-2 px-4 py-3 bg-[#25D366] text-white rounded-lg hover:bg-[#20bd5a] transition-colors"
           >
             <MessageCircle className="w-4 h-4" />
@@ -139,7 +153,7 @@ export default function SocialShare({
           </button>
 
           <button
-            onClick={() => shareVia('Telegram', socialUrls.telegram)}
+            onClick={() => shareVia("Telegram", socialUrls.telegram)}
             className="flex items-center justify-center gap-2 px-4 py-3 bg-[#0088cc] text-white rounded-lg hover:bg-[#0077b5] transition-colors"
           >
             <Send className="w-4 h-4" />
@@ -169,7 +183,9 @@ export default function SocialShare({
                   alt="Verification QR Code"
                   className="w-64 h-64"
                   onError={(e) => {
-                    e.currentTarget.src = 'data:image/svg+xml,' + encodeURIComponent(`
+                    e.currentTarget.src =
+                      "data:image/svg+xml," +
+                      encodeURIComponent(`
                       <svg width="256" height="256" xmlns="http://www.w3.org/2000/svg">
                         <rect width="256" height="256" fill="#f3f4f6"/>
                         <text x="128" y="128" text-anchor="middle" font-size="14" fill="#6b7280">
@@ -207,7 +223,8 @@ export default function SocialShare({
                   Embed Verification Widget
                 </Dialog.Title>
                 <p className="text-sm text-gray-600 mb-4">
-                  Copy this code and paste it into your website to display the verification widget
+                  Copy this code and paste it into your website to display the
+                  verification widget
                 </p>
                 <div className="bg-gray-900 rounded-lg p-4 mb-4">
                   <pre className="text-xs text-gray-100 overflow-x-auto font-mono">
@@ -216,7 +233,7 @@ export default function SocialShare({
                 </div>
                 <div className="flex gap-3">
                   <button
-                    onClick={() => copyToClipboard(embedCode, 'embed')}
+                    onClick={() => copyToClipboard(embedCode, "embed")}
                     className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center gap-2"
                   >
                     {embedCopied ? (
@@ -246,8 +263,9 @@ export default function SocialShare({
       {/* Info */}
       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
         <p className="text-xs text-blue-900">
-          <strong>Tip:</strong> Share the verification link to build trust and transparency with your
-          participants. Anyone can verify the authenticity of the draw results.
+          <strong>Tip:</strong> Share the verification link to build trust and
+          transparency with your participants. Anyone can verify the
+          authenticity of the draw results.
         </p>
       </div>
     </div>

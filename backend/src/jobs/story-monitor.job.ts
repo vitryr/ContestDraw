@@ -4,17 +4,17 @@
  * Implements 24h time window tracking and bonus participation logic
  */
 
-import { PrismaClient } from '@prisma/client';
-import { Queue, Worker, Job } from 'bull';
-import { InstagramService } from '../services/instagram.service';
-import logger from '../utils/logger';
-import config from '../config/config';
+import { PrismaClient } from "@prisma/client";
+import { Queue, Worker, Job } from "bull";
+import { InstagramService } from "../services/instagram.service";
+import logger from "../utils/logger";
+import config from "../config/config";
 
 const prisma = new PrismaClient();
 const instagramService = new InstagramService();
 
 // Create Bull queue for story monitoring
-export const storyMonitorQueue = new Queue('story-monitor', {
+export const storyMonitorQueue = new Queue("story-monitor", {
   redis: {
     host: config.redis.host,
     port: config.redis.port,
@@ -43,8 +43,17 @@ interface StoryMentionData {
  * Process story monitoring job
  * Fetches mentions from Instagram API and stores them in database
  */
-async function processStoryMonitor(job: Job<StoryMonitorJobData>): Promise<void> {
-  const { drawId, userId, instagramAccountId, accessToken, startTime, endTime } = job.data;
+async function processStoryMonitor(
+  job: Job<StoryMonitorJobData>,
+): Promise<void> {
+  const {
+    drawId,
+    userId,
+    instagramAccountId,
+    accessToken,
+    startTime,
+    endTime,
+  } = job.data;
 
   try {
     logger.info(`Processing story monitor for draw ${drawId}`, {
@@ -61,7 +70,11 @@ async function processStoryMonitor(job: Job<StoryMonitorJobData>): Promise<void>
     await job.progress(40);
 
     // Filter mentions within the 24h time window
-    const validMentions = filterMentionsByTimeWindow(mentions, startTime, endTime);
+    const validMentions = filterMentionsByTimeWindow(
+      mentions,
+      startTime,
+      endTime,
+    );
     await job.progress(60);
 
     // Store mentions in database
@@ -92,10 +105,13 @@ async function processStoryMonitor(job: Job<StoryMonitorJobData>): Promise<void>
  */
 async function fetchStoryMentions(
   accountId: string,
-  accessToken: string
+  accessToken: string,
 ): Promise<StoryMentionData[]> {
   try {
-    const response = await instagramService.fetchStoryMentions(accountId, accessToken);
+    const response = await instagramService.fetchStoryMentions(
+      accountId,
+      accessToken,
+    );
 
     return response.data.map((mention) => ({
       id: mention.id,
@@ -104,11 +120,11 @@ async function fetchStoryMentions(
       mediaType: mention.media_type,
     }));
   } catch (error) {
-    logger.error('Failed to fetch story mentions from Instagram', {
+    logger.error("Failed to fetch story mentions from Instagram", {
       accountId,
       error: error instanceof Error ? error.message : String(error),
     });
-    throw new Error('Failed to fetch story mentions from Instagram API');
+    throw new Error("Failed to fetch story mentions from Instagram API");
   }
 }
 
@@ -118,7 +134,7 @@ async function fetchStoryMentions(
 function filterMentionsByTimeWindow(
   mentions: StoryMentionData[],
   startTime: Date,
-  endTime: Date
+  endTime: Date,
 ): StoryMentionData[] {
   const now = new Date();
   const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
@@ -141,7 +157,7 @@ function filterMentionsByTimeWindow(
  */
 async function storeMentions(
   drawId: string,
-  mentions: StoryMentionData[]
+  mentions: StoryMentionData[],
 ): Promise<number> {
   let storedCount = 0;
 
@@ -174,7 +190,7 @@ async function storeMentions(
         storedCount++;
       }
     } catch (error) {
-      logger.error('Failed to store story mention', {
+      logger.error("Failed to store story mention", {
         drawId,
         mentionId: mention.id,
         username: mention.username,
@@ -192,7 +208,7 @@ async function storeMentions(
  */
 async function applyBonusParticipations(
   drawId: string,
-  mentions: StoryMentionData[]
+  mentions: StoryMentionData[],
 ): Promise<void> {
   const BONUS_ENTRIES = 3; // Each story share gives 3 bonus entries
 
@@ -224,7 +240,7 @@ async function applyBonusParticipations(
                 drawId,
                 name: participant.name,
                 identifier: participant.identifier,
-                source: 'STORY_BONUS',
+                source: "STORY_BONUS",
                 metadata: {
                   originalParticipantId: participant.id,
                   storyMentionId: mention.id,
@@ -245,7 +261,7 @@ async function applyBonusParticipations(
             },
           });
 
-          logger.info('Applied bonus participations for story share', {
+          logger.info("Applied bonus participations for story share", {
             drawId,
             username: mention.username,
             bonusEntries: BONUS_ENTRIES,
@@ -253,7 +269,7 @@ async function applyBonusParticipations(
         }
       }
     } catch (error) {
-      logger.error('Failed to apply bonus participation', {
+      logger.error("Failed to apply bonus participation", {
         drawId,
         username: mention.username,
         error: error instanceof Error ? error.message : String(error),
@@ -271,7 +287,7 @@ export async function scheduleStoryMonitoring(
   instagramAccountId: string,
   accessToken: string,
   startTime: Date,
-  endTime: Date
+  endTime: Date,
 ): Promise<Job<StoryMonitorJobData>> {
   const jobData: StoryMonitorJobData = {
     drawId,
@@ -291,7 +307,7 @@ export async function scheduleStoryMonitoring(
     jobId: `story-monitor-${drawId}`,
   });
 
-  logger.info('Scheduled story monitoring job', {
+  logger.info("Scheduled story monitoring job", {
     drawId,
     jobId: job.id,
     startTime,
@@ -310,7 +326,7 @@ export async function cancelStoryMonitoring(drawId: string): Promise<void> {
 
   if (job) {
     await job.remove();
-    logger.info('Cancelled story monitoring job', { drawId, jobId });
+    logger.info("Cancelled story monitoring job", { drawId, jobId });
   }
 }
 
@@ -334,14 +350,14 @@ export async function getStoryMonitoringStatus(drawId: string): Promise<{
   });
 
   return {
-    isActive: !!job && (await job.getState()) === 'active',
+    isActive: !!job && (await job.getState()) === "active",
     mentionCount: mentions,
     bonusEntriesApplied: bonusApplied,
   };
 }
 
 // Initialize worker to process jobs
-const storyMonitorWorker = new Worker('story-monitor', processStoryMonitor, {
+const storyMonitorWorker = new Worker("story-monitor", processStoryMonitor, {
   connection: {
     host: config.redis.host,
     port: config.redis.port,
@@ -350,12 +366,12 @@ const storyMonitorWorker = new Worker('story-monitor', processStoryMonitor, {
   concurrency: 5,
 });
 
-storyMonitorWorker.on('completed', (job) => {
-  logger.info('Story monitor job completed', { jobId: job.id });
+storyMonitorWorker.on("completed", (job) => {
+  logger.info("Story monitor job completed", { jobId: job.id });
 });
 
-storyMonitorWorker.on('failed', (job, error) => {
-  logger.error('Story monitor job failed', {
+storyMonitorWorker.on("failed", (job, error) => {
+  logger.error("Story monitor job failed", {
     jobId: job?.id,
     error: error.message,
   });

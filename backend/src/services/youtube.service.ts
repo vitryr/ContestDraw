@@ -3,11 +3,11 @@
  * Handles fetching comments from YouTube videos for contest draws
  */
 
-import axios, { AxiosInstance } from 'axios';
-import { PaginatedResponse, Comment, APIError } from '../types/social.types';
-import { RetryHandler } from '../utils/retry.util';
-import { Cache } from '../utils/cache.util';
-import { logger } from '../utils/logger';
+import axios, { AxiosInstance } from "axios";
+import { PaginatedResponse, Comment, APIError } from "../types/social.types";
+import { RetryHandler } from "../utils/retry.util";
+import { Cache } from "../utils/cache.util";
+import { logger } from "../utils/logger";
 
 interface YouTubeComment {
   id: string;
@@ -60,14 +60,16 @@ interface YouTubeVideoResponse {
 
 export class YouTubeService {
   private client: AxiosInstance;
-  private readonly baseUrl = 'https://www.googleapis.com/youtube/v3';
+  private readonly baseUrl = "https://www.googleapis.com/youtube/v3";
   private apiKey: string;
 
   constructor() {
-    this.apiKey = process.env.YOUTUBE_API_KEY || '';
-    
+    this.apiKey = process.env.YOUTUBE_API_KEY || "";
+
     if (!this.apiKey) {
-      logger.warn('YouTube API key not configured. YouTube features will be disabled.');
+      logger.warn(
+        "YouTube API key not configured. YouTube features will be disabled.",
+      );
     }
 
     this.client = axios.create({
@@ -81,7 +83,7 @@ export class YouTubeService {
     // Add response interceptor for error handling
     this.client.interceptors.response.use(
       (response) => response,
-      (error) => this.handleError(error)
+      (error) => this.handleError(error),
     );
   }
 
@@ -114,7 +116,7 @@ export class YouTubeService {
       }
     }
 
-    throw new Error('Invalid YouTube URL or video ID');
+    throw new Error("Invalid YouTube URL or video ID");
   }
 
   /**
@@ -128,36 +130,43 @@ export class YouTubeService {
     commentCount: number;
   }> {
     if (!this.isConfigured()) {
-      throw new Error('YouTube API key not configured');
+      throw new Error("YouTube API key not configured");
     }
 
     const videoId = this.parseVideoUrl(videoUrl);
     const cacheKey = `youtube:video:${videoId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const response = await this.client.get<YouTubeVideoResponse>('/videos', {
-          params: {
-            part: 'snippet,statistics',
-            id: videoId,
-          },
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const response = await this.client.get<YouTubeVideoResponse>(
+            "/videos",
+            {
+              params: {
+                part: "snippet,statistics",
+                id: videoId,
+              },
+            },
+          );
+
+          if (!response.data.items || response.data.items.length === 0) {
+            throw new Error("Video not found");
+          }
+
+          const video = response.data.items[0];
+
+          return {
+            id: video.id,
+            title: video.snippet.title,
+            channelId: video.snippet.channelId,
+            channelTitle: video.snippet.channelTitle,
+            commentCount: parseInt(video.statistics.commentCount, 10) || 0,
+          };
         });
-
-        if (!response.data.items || response.data.items.length === 0) {
-          throw new Error('Video not found');
-        }
-
-        const video = response.data.items[0];
-
-        return {
-          id: video.id,
-          title: video.snippet.title,
-          channelId: video.snippet.channelId,
-          channelTitle: video.snippet.channelTitle,
-          commentCount: parseInt(video.statistics.commentCount, 10) || 0,
-        };
-      });
-    }, 300); // Cache for 5 minutes
+      },
+      300,
+    ); // Cache for 5 minutes
   }
 
   /**
@@ -168,14 +177,14 @@ export class YouTubeService {
    */
   async fetchComments(
     videoUrl: string,
-    maxComments?: number
+    maxComments?: number,
   ): Promise<PaginatedResponse<Comment>> {
     if (!this.isConfigured()) {
-      throw new Error('YouTube API key not configured');
+      throw new Error("YouTube API key not configured");
     }
 
     const videoId = this.parseVideoUrl(videoUrl);
-    const cacheKey = `youtube:comments:${videoId}:${maxComments || 'all'}`;
+    const cacheKey = `youtube:comments:${videoId}:${maxComments || "all"}`;
 
     // Check cache first
     const cached = Cache.get<PaginatedResponse<Comment>>(cacheKey);
@@ -190,11 +199,11 @@ export class YouTubeService {
 
       while (hasMore && (!maxComments || allComments.length < maxComments)) {
         const params: any = {
-          part: 'snippet',
+          part: "snippet",
           videoId: videoId,
           maxResults: 100, // Max allowed by API
-          order: 'time', // Most recent first
-          textFormat: 'plainText',
+          order: "time", // Most recent first
+          textFormat: "plainText",
         };
 
         if (nextPageToken) {
@@ -202,11 +211,13 @@ export class YouTubeService {
         }
 
         const response = await this.client.get<YouTubeCommentThreadResponse>(
-          '/commentThreads',
-          { params }
+          "/commentThreads",
+          { params },
         );
 
-        const comments = response.data.items.map((item) => this.mapComment(item));
+        const comments = response.data.items.map((item) =>
+          this.mapComment(item),
+        );
         allComments.push(...comments);
 
         // Check for pagination
@@ -220,9 +231,12 @@ export class YouTubeService {
 
         // Log progress for large fetches
         if (allComments.length % 500 === 0) {
-          logger.info(`YouTube comment fetch progress: ${allComments.length} comments`, {
-            videoId,
-          });
+          logger.info(
+            `YouTube comment fetch progress: ${allComments.length} comments`,
+            {
+              videoId,
+            },
+          );
         }
 
         // Small delay between requests to be nice to the API
@@ -257,10 +271,10 @@ export class YouTubeService {
    */
   async fetchCommentReplies(
     commentId: string,
-    maxReplies?: number
+    maxReplies?: number,
   ): Promise<Comment[]> {
     if (!this.isConfigured()) {
-      throw new Error('YouTube API key not configured');
+      throw new Error("YouTube API key not configured");
     }
 
     return RetryHandler.withRetry(async () => {
@@ -270,17 +284,17 @@ export class YouTubeService {
 
       while (hasMore && (!maxReplies || allReplies.length < maxReplies)) {
         const params: any = {
-          part: 'snippet',
+          part: "snippet",
           parentId: commentId,
           maxResults: 100,
-          textFormat: 'plainText',
+          textFormat: "plainText",
         };
 
         if (nextPageToken) {
           params.pageToken = nextPageToken;
         }
 
-        const response = await this.client.get('/comments', { params });
+        const response = await this.client.get("/comments", { params });
 
         const replies = response.data.items.map((item: any) => ({
           id: item.id,
@@ -307,15 +321,15 @@ export class YouTubeService {
   async searchComments(
     videoUrl: string,
     searchTerms: string[],
-    maxComments?: number
+    maxComments?: number,
   ): Promise<Comment[]> {
     const allComments = await this.fetchComments(videoUrl, maxComments);
-    
-    const searchLower = searchTerms.map(t => t.toLowerCase());
-    
-    return allComments.data.filter(comment => {
+
+    const searchLower = searchTerms.map((t) => t.toLowerCase());
+
+    return allComments.data.filter((comment) => {
       const textLower = comment.text.toLowerCase();
-      return searchLower.some(term => textLower.includes(term));
+      return searchLower.some((term) => textLower.includes(term));
     });
   }
 
@@ -324,19 +338,19 @@ export class YouTubeService {
    */
   async getUniqueCommenters(
     videoUrl: string,
-    maxComments?: number
+    maxComments?: number,
   ): Promise<Map<string, Comment>> {
     const allComments = await this.fetchComments(videoUrl, maxComments);
-    
+
     const uniqueMap = new Map<string, Comment>();
-    
+
     for (const comment of allComments.data) {
       const key = comment.username.toLowerCase();
       if (!uniqueMap.has(key)) {
         uniqueMap.set(key, comment);
       }
     }
-    
+
     return uniqueMap;
   }
 
@@ -345,7 +359,7 @@ export class YouTubeService {
    */
   private mapComment(item: YouTubeComment): Comment {
     const snippet = item.snippet.topLevelComment.snippet;
-    
+
     return {
       id: item.snippet.topLevelComment.id,
       text: snippet.textOriginal,
@@ -353,9 +367,10 @@ export class YouTubeService {
       userId: snippet.authorChannelId?.value,
       timestamp: new Date(snippet.publishedAt),
       likes: snippet.likeCount,
-      replies: item.snippet.totalReplyCount > 0 
-        ? [] // Replies fetched separately if needed
-        : undefined,
+      replies:
+        item.snippet.totalReplyCount > 0
+          ? [] // Replies fetched separately if needed
+          : undefined,
     };
   }
 
@@ -364,35 +379,37 @@ export class YouTubeService {
    */
   private handleError(error: any): never {
     const apiError: APIError = {
-      code: error.response?.data?.error?.code?.toString() || 'UNKNOWN_ERROR',
+      code: error.response?.data?.error?.code?.toString() || "UNKNOWN_ERROR",
       message: error.response?.data?.error?.message || error.message,
       statusCode: error.response?.status || 500,
-      retryable: error.response?.status >= 500 || error.response?.status === 429,
+      retryable:
+        error.response?.status >= 500 || error.response?.status === 429,
     };
 
     // Handle specific YouTube API errors
     if (error.response?.status === 403) {
       const reason = error.response?.data?.error?.errors?.[0]?.reason;
-      
-      if (reason === 'quotaExceeded') {
-        apiError.code = 'QUOTA_EXCEEDED';
-        apiError.message = 'YouTube API daily quota exceeded. Try again tomorrow.';
+
+      if (reason === "quotaExceeded") {
+        apiError.code = "QUOTA_EXCEEDED";
+        apiError.message =
+          "YouTube API daily quota exceeded. Try again tomorrow.";
         apiError.retryable = false;
-      } else if (reason === 'commentsDisabled') {
-        apiError.code = 'COMMENTS_DISABLED';
-        apiError.message = 'Comments are disabled for this video.';
+      } else if (reason === "commentsDisabled") {
+        apiError.code = "COMMENTS_DISABLED";
+        apiError.message = "Comments are disabled for this video.";
         apiError.retryable = false;
       }
     }
 
     if (error.response?.status === 404) {
-      apiError.code = 'NOT_FOUND';
-      apiError.message = 'Video not found or is private.';
+      apiError.code = "NOT_FOUND";
+      apiError.message = "Video not found or is private.";
       apiError.retryable = false;
     }
 
     // Log error
-    logger.error('YouTube API error', {
+    logger.error("YouTube API error", {
       code: apiError.code,
       message: apiError.message,
       statusCode: apiError.statusCode,
@@ -405,6 +422,6 @@ export class YouTubeService {
    * Helper to add delay between API calls
    */
   private delay(ms: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

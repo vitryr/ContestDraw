@@ -3,7 +3,7 @@
  * Handles multi-tenant organization operations, hierarchical permissions
  */
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 import {
   Organization,
   OrganizationMember,
@@ -12,8 +12,8 @@ import {
   UpdateOrganizationDTO,
   InviteMemberDTO,
   OrganizationDashboard,
-  OrganizationPermissions
-} from '../types/enterprise.types';
+  OrganizationPermissions,
+} from "../types/enterprise.types";
 
 export class OrganizationService {
   constructor(private prisma: PrismaClient) {}
@@ -23,15 +23,15 @@ export class OrganizationService {
    */
   async createOrganization(
     ownerId: string,
-    data: CreateOrganizationDTO
+    data: CreateOrganizationDTO,
   ): Promise<Organization> {
     // Check if slug is already taken
     const existing = await this.prisma.organization.findUnique({
-      where: { slug: data.slug }
+      where: { slug: data.slug },
     });
 
     if (existing) {
-      throw new Error('Organization slug already exists');
+      throw new Error("Organization slug already exists");
     }
 
     // Create organization with owner as first member
@@ -42,9 +42,9 @@ export class OrganizationService {
         ownerId,
         billingEmail: data.billingEmail,
         maxSubAccounts: data.maxSubAccounts || 10,
-        subscriptionTier: 'ENTERPRISE',
-        settings: data.settings || {}
-      }
+        subscriptionTier: "ENTERPRISE",
+        settings: data.settings || {},
+      },
     });
 
     // Automatically add owner as admin member
@@ -53,8 +53,8 @@ export class OrganizationService {
         organizationId: organization.id,
         userId: ownerId,
         role: OrganizationRole.OWNER,
-        permissions: ['*'] // Full permissions
-      }
+        permissions: ["*"], // Full permissions
+      },
     });
 
     return organization;
@@ -68,18 +68,23 @@ export class OrganizationService {
       where: { id: organizationId },
       include: {
         owner: {
-          select: { id: true, email: true, firstName: true, lastName: true }
+          select: { id: true, email: true, firstName: true, lastName: true },
         },
         members: {
           include: {
             user: {
-              select: { id: true, email: true, firstName: true, lastName: true }
-            }
-          }
+              select: {
+                id: true,
+                email: true,
+                firstName: true,
+                lastName: true,
+              },
+            },
+          },
         },
         brands: true,
-        branding: true
-      }
+        branding: true,
+      },
     });
   }
 
@@ -88,14 +93,14 @@ export class OrganizationService {
    */
   async updateOrganization(
     organizationId: string,
-    data: UpdateOrganizationDTO
+    data: UpdateOrganizationDTO,
   ): Promise<Organization> {
     return this.prisma.organization.update({
       where: { id: organizationId },
       data: {
         ...data,
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -104,7 +109,7 @@ export class OrganizationService {
    */
   async deleteOrganization(organizationId: string): Promise<void> {
     await this.prisma.organization.delete({
-      where: { id: organizationId }
+      where: { id: organizationId },
     });
   }
 
@@ -121,15 +126,15 @@ export class OrganizationService {
             _count: {
               select: {
                 members: true,
-                brands: true
-              }
-            }
-          }
-        }
-      }
+                brands: true,
+              },
+            },
+          },
+        },
+      },
     });
 
-    return memberships.map(m => m.organization);
+    return memberships.map((m) => m.organization);
   }
 
   /**
@@ -138,15 +143,15 @@ export class OrganizationService {
   async inviteMember(
     organizationId: string,
     invitedBy: string,
-    data: InviteMemberDTO
+    data: InviteMemberDTO,
   ): Promise<OrganizationMember> {
     // Find user by email
     const user = await this.prisma.user.findUnique({
-      where: { email: data.email }
+      where: { email: data.email },
     });
 
     if (!user) {
-      throw new Error('User not found with this email');
+      throw new Error("User not found with this email");
     }
 
     // Check if already a member
@@ -154,23 +159,23 @@ export class OrganizationService {
       where: {
         organizationId_userId: {
           organizationId,
-          userId: user.id
-        }
-      }
+          userId: user.id,
+        },
+      },
     });
 
     if (existing) {
-      throw new Error('User is already a member of this organization');
+      throw new Error("User is already a member of this organization");
     }
 
     // Check sub-account limit
     const org = await this.prisma.organization.findUnique({
       where: { id: organizationId },
-      include: { _count: { select: { members: true } } }
+      include: { _count: { select: { members: true } } },
     });
 
     if (org && org._count.members >= org.maxSubAccounts) {
-      throw new Error('Organization has reached maximum sub-accounts limit');
+      throw new Error("Organization has reached maximum sub-accounts limit");
     }
 
     // Create membership
@@ -180,34 +185,31 @@ export class OrganizationService {
         userId: user.id,
         role: data.role,
         permissions: data.permissions || [],
-        invitedBy
-      }
+        invitedBy,
+      },
     });
   }
 
   /**
    * Remove member from organization
    */
-  async removeMember(
-    organizationId: string,
-    userId: string
-  ): Promise<void> {
+  async removeMember(organizationId: string, userId: string): Promise<void> {
     // Cannot remove owner
     const org = await this.prisma.organization.findUnique({
-      where: { id: organizationId }
+      where: { id: organizationId },
     });
 
     if (org && org.ownerId === userId) {
-      throw new Error('Cannot remove organization owner');
+      throw new Error("Cannot remove organization owner");
     }
 
     await this.prisma.organizationMember.delete({
       where: {
         organizationId_userId: {
           organizationId,
-          userId
-        }
-      }
+          userId,
+        },
+      },
     });
   }
 
@@ -218,20 +220,20 @@ export class OrganizationService {
     organizationId: string,
     userId: string,
     role: OrganizationRole,
-    permissions?: string[]
+    permissions?: string[],
   ): Promise<OrganizationMember> {
     return this.prisma.organizationMember.update({
       where: {
         organizationId_userId: {
           organizationId,
-          userId
-        }
+          userId,
+        },
       },
       data: {
         role,
         permissions: permissions || [],
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
   }
 
@@ -248,11 +250,11 @@ export class OrganizationService {
             email: true,
             firstName: true,
             lastName: true,
-            createdAt: true
-          }
-        }
+            createdAt: true,
+          },
+        },
       },
-      orderBy: { joinedAt: 'desc' }
+      orderBy: { joinedAt: "desc" },
     });
   }
 
@@ -262,23 +264,23 @@ export class OrganizationService {
   async getDashboard(organizationId: string): Promise<OrganizationDashboard> {
     const org = await this.getOrganization(organizationId);
     if (!org) {
-      throw new Error('Organization not found');
+      throw new Error("Organization not found");
     }
 
     const [members, brands, draws, creditTransactions] = await Promise.all([
       this.prisma.organizationMember.count({
-        where: { organizationId }
+        where: { organizationId },
       }),
       this.prisma.brand.count({
-        where: { organizationId }
+        where: { organizationId },
       }),
       this.prisma.brand.findMany({
         where: { organizationId },
         include: {
           draws: {
-            include: { draw: true }
-          }
-        }
+            include: { draw: true },
+          },
+        },
       }),
       this.prisma.organizationMember.findMany({
         where: { organizationId },
@@ -286,25 +288,28 @@ export class OrganizationService {
           user: {
             include: {
               creditTransactions: {
-                where: { type: 'CONSUMPTION' },
-                orderBy: { createdAt: 'desc' },
-                take: 10
-              }
-            }
-          }
-        }
-      })
+                where: { type: "CONSUMPTION" },
+                orderBy: { createdAt: "desc" },
+                take: 10,
+              },
+            },
+          },
+        },
+      }),
     ]);
 
-    const totalDraws = draws.reduce((sum, brand) => sum + brand.draws.length, 0);
+    const totalDraws = draws.reduce(
+      (sum, brand) => sum + brand.draws.length,
+      0,
+    );
     const creditsUsed = creditTransactions.reduce(
       (sum, member) =>
         sum +
         member.user.creditTransactions.reduce(
           (total, tx) => total + Math.abs(tx.credits),
-          0
+          0,
         ),
-      0
+      0,
     );
 
     // Recent activity (last 10 events)
@@ -316,7 +321,7 @@ export class OrganizationService {
       totalBrands: brands,
       totalDraws,
       creditsUsed,
-      recentActivity
+      recentActivity,
     };
   }
 
@@ -325,34 +330,34 @@ export class OrganizationService {
    */
   private async getRecentActivity(
     organizationId: string,
-    limit: number
+    limit: number,
   ): Promise<any[]> {
     const brands = await this.prisma.brand.findMany({
       where: { organizationId },
-      select: { id: true }
+      select: { id: true },
     });
 
-    const brandIds = brands.map(b => b.id);
+    const brandIds = brands.map((b) => b.id);
 
     const recentDraws = await this.prisma.brandDraw.findMany({
       where: { brandId: { in: brandIds } },
       include: {
         draw: {
-          include: { user: { select: { id: true, email: true } } }
+          include: { user: { select: { id: true, email: true } } },
         },
-        brand: { select: { name: true } }
+        brand: { select: { name: true } },
       },
-      orderBy: { createdAt: 'desc' },
-      take: limit
+      orderBy: { createdAt: "desc" },
+      take: limit,
     });
 
-    return recentDraws.map(bd => ({
+    return recentDraws.map((bd) => ({
       id: bd.id,
-      type: 'draw' as const,
+      type: "draw" as const,
       description: `Draw "${bd.draw.title}" created in brand "${bd.brand.name}"`,
       userId: bd.draw.userId,
       brandId: bd.brandId,
-      timestamp: bd.createdAt
+      timestamp: bd.createdAt,
     }));
   }
 
@@ -361,15 +366,15 @@ export class OrganizationService {
    */
   async getUserPermissions(
     organizationId: string,
-    userId: string
+    userId: string,
   ): Promise<OrganizationPermissions> {
     const member = await this.prisma.organizationMember.findUnique({
       where: {
         organizationId_userId: {
           organizationId,
-          userId
-        }
-      }
+          userId,
+        },
+      },
     });
 
     if (!member) {
@@ -379,7 +384,7 @@ export class OrganizationService {
         canManageBilling: false,
         canManageBranding: false,
         canCreateDraws: false,
-        canViewAnalytics: false
+        canViewAnalytics: false,
       };
     }
 
@@ -393,7 +398,7 @@ export class OrganizationService {
       canManageBilling: member.role === OrganizationRole.OWNER,
       canManageBranding: hasFullAccess,
       canCreateDraws: member.role !== OrganizationRole.VIEWER,
-      canViewAnalytics: true
+      canViewAnalytics: true,
     };
   }
 
@@ -405,9 +410,9 @@ export class OrganizationService {
       where: {
         organizationId_userId: {
           organizationId,
-          userId
-        }
-      }
+          userId,
+        },
+      },
     });
 
     return member !== null;

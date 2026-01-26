@@ -3,16 +3,16 @@
  * Handles Stripe and Apple IAP webhook endpoints
  */
 
-import { Router, Request, Response, NextFunction } from 'express';
-import { PaymentService } from '../../services/payment.service';
-import { AppleIAPService } from '../../services/apple-iap.service';
+import { Router, Request, Response, NextFunction } from "express";
+import { PaymentService } from "../../services/payment.service";
+import { AppleIAPService } from "../../services/apple-iap.service";
 
 export class WebhookController {
   public router: Router;
 
   constructor(
     private paymentService: PaymentService,
-    private appleIAPService: AppleIAPService
+    private appleIAPService: AppleIAPService,
   ) {
     this.router = Router();
     this.setupRoutes();
@@ -21,20 +21,17 @@ export class WebhookController {
   private setupRoutes(): void {
     // Stripe webhook (requires raw body for signature verification)
     this.router.post(
-      '/webhook/stripe',
+      "/webhook/stripe",
       this.rawBodyParser,
-      this.handleStripeWebhook.bind(this)
+      this.handleStripeWebhook.bind(this),
     );
 
     // Apple IAP webhook
-    this.router.post(
-      '/webhook/apple',
-      this.handleAppleWebhook.bind(this)
-    );
+    this.router.post("/webhook/apple", this.handleAppleWebhook.bind(this));
 
     // Health check
-    this.router.get('/webhook/health', (req, res) => {
-      res.json({ status: 'ok', timestamp: new Date().toISOString() });
+    this.router.get("/webhook/health", (req, res) => {
+      res.json({ status: "ok", timestamp: new Date().toISOString() });
     });
   }
 
@@ -42,18 +39,18 @@ export class WebhookController {
    * Middleware to parse raw body for Stripe signature verification
    */
   private rawBodyParser(req: Request, res: Response, next: NextFunction): void {
-    if (req.headers['content-type'] === 'application/json') {
-      let data = '';
-      req.setEncoding('utf8');
-      req.on('data', (chunk) => {
+    if (req.headers["content-type"] === "application/json") {
+      let data = "";
+      req.setEncoding("utf8");
+      req.on("data", (chunk) => {
         data += chunk;
       });
-      req.on('end', () => {
-        (req as any).rawBody = Buffer.from(data, 'utf8');
+      req.on("end", () => {
+        (req as any).rawBody = Buffer.from(data, "utf8");
         try {
           req.body = JSON.parse(data);
         } catch (error) {
-          return res.status(400).json({ error: 'Invalid JSON' });
+          return res.status(400).json({ error: "Invalid JSON" });
         }
         next();
       });
@@ -65,18 +62,21 @@ export class WebhookController {
   /**
    * Handle Stripe webhook events
    */
-  private async handleStripeWebhook(req: Request, res: Response): Promise<void> {
-    const signature = req.headers['stripe-signature'] as string;
+  private async handleStripeWebhook(
+    req: Request,
+    res: Response,
+  ): Promise<void> {
+    const signature = req.headers["stripe-signature"] as string;
 
     if (!signature) {
-      res.status(400).json({ error: 'Missing Stripe signature' });
+      res.status(400).json({ error: "Missing Stripe signature" });
       return;
     }
 
     try {
       const rawBody = (req as any).rawBody;
       if (!rawBody) {
-        res.status(400).json({ error: 'Missing request body' });
+        res.status(400).json({ error: "Missing request body" });
         return;
       }
 
@@ -85,16 +85,16 @@ export class WebhookController {
       // Return 200 immediately to acknowledge receipt
       res.json({ received: true });
     } catch (error) {
-      console.error('[Webhook] Stripe webhook error:', error);
+      console.error("[Webhook] Stripe webhook error:", error);
 
       if (error instanceof Error) {
-        if (error.message.includes('signature')) {
-          res.status(400).json({ error: 'Invalid signature' });
+        if (error.message.includes("signature")) {
+          res.status(400).json({ error: "Invalid signature" });
           return;
         }
       }
 
-      res.status(500).json({ error: 'Webhook processing failed' });
+      res.status(500).json({ error: "Webhook processing failed" });
     }
   }
 
@@ -108,7 +108,7 @@ export class WebhookController {
 
       // Verify shared secret (basic authentication)
       if (password !== process.env.APPLE_SHARED_SECRET) {
-        res.status(401).json({ error: 'Invalid credentials' });
+        res.status(401).json({ error: "Invalid credentials" });
         return;
       }
 
@@ -117,7 +117,7 @@ export class WebhookController {
       // Extract receipt data
       const latestReceiptInfo = unified_receipt?.latest_receipt_info?.[0];
       if (!latestReceiptInfo) {
-        res.status(400).json({ error: 'Missing receipt info' });
+        res.status(400).json({ error: "Missing receipt info" });
         return;
       }
 
@@ -126,41 +126,49 @@ export class WebhookController {
 
       // Handle different notification types
       switch (notification_type) {
-        case 'INITIAL_BUY':
-        case 'DID_RENEW':
+        case "INITIAL_BUY":
+        case "DID_RENEW":
           // Validate and process receipt
           await this.appleIAPService.validateReceipt(
             unified_receipt.latest_receipt,
-            userId
+            userId,
           );
           break;
 
-        case 'CANCEL':
+        case "CANCEL":
           // Handle subscription cancellation
-          await this.appleIAPService.handleSubscriptionCancellation(transactionId);
+          await this.appleIAPService.handleSubscriptionCancellation(
+            transactionId,
+          );
           break;
 
-        case 'DID_FAIL_TO_RENEW':
-        case 'GRACE_PERIOD_EXPIRED':
+        case "DID_FAIL_TO_RENEW":
+        case "GRACE_PERIOD_EXPIRED":
           // Handle payment failures
-          console.log(`[Webhook] Apple subscription payment failed: ${transactionId}`);
+          console.log(
+            `[Webhook] Apple subscription payment failed: ${transactionId}`,
+          );
           await this.appleIAPService.checkSubscriptionRenewals(userId);
           break;
 
-        case 'REFUND':
+        case "REFUND":
           // Handle refund (requires manual review)
-          console.log(`[Webhook] Apple refund issued for transaction: ${transactionId}`);
+          console.log(
+            `[Webhook] Apple refund issued for transaction: ${transactionId}`,
+          );
           // TODO: Implement refund handling
           break;
 
         default:
-          console.log(`[Webhook] Unhandled Apple notification type: ${notification_type}`);
+          console.log(
+            `[Webhook] Unhandled Apple notification type: ${notification_type}`,
+          );
       }
 
       res.json({ received: true });
     } catch (error) {
-      console.error('[Webhook] Apple webhook error:', error);
-      res.status(500).json({ error: 'Webhook processing failed' });
+      console.error("[Webhook] Apple webhook error:", error);
+      res.status(500).json({ error: "Webhook processing failed" });
     }
   }
 
@@ -175,9 +183,9 @@ export class WebhookController {
 
       const logs = await (this.paymentService as any).db.webhookEvent.findMany({
         where,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: "desc" },
         take: parseInt(limit as string),
-        skip: parseInt(offset as string)
+        skip: parseInt(offset as string),
       });
 
       res.json({
@@ -185,12 +193,12 @@ export class WebhookController {
         pagination: {
           limit: parseInt(limit as string),
           offset: parseInt(offset as string),
-          total: logs.length
-        }
+          total: logs.length,
+        },
       });
     } catch (error) {
-      console.error('[Webhook] Error fetching logs:', error);
-      res.status(500).json({ error: 'Failed to fetch webhook logs' });
+      console.error("[Webhook] Error fetching logs:", error);
+      res.status(500).json({ error: "Failed to fetch webhook logs" });
     }
   }
 }
@@ -200,7 +208,7 @@ export class WebhookController {
  */
 export function createWebhookRouter(
   paymentService: PaymentService,
-  appleIAPService: AppleIAPService
+  appleIAPService: AppleIAPService,
 ): Router {
   const controller = new WebhookController(paymentService, appleIAPService);
   return controller.router;

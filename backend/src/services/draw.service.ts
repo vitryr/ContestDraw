@@ -3,7 +3,7 @@
  * Advanced draw engine with comprehensive filtering and random selection
  */
 
-import crypto from 'crypto';
+import crypto from "crypto";
 import {
   DrawFilters,
   Participant,
@@ -11,9 +11,9 @@ import {
   DrawResult,
   DrawConfig,
   FilterResult,
-  ValidationResult
-} from '../types/draw.types';
-import { CertificateService } from './certificate.service';
+  ValidationResult,
+} from "../types/draw.types";
+import { CertificateService } from "./certificate.service";
 
 export class DrawService {
   private certificateService: CertificateService;
@@ -30,12 +30,14 @@ export class DrawService {
     rawComments: any[],
     config: DrawConfig,
     userId?: string,
-    db?: any
+    db?: any,
   ): Promise<DrawResult> {
     // Validate configuration
     const validation = this.validateDrawConfig(config);
     if (!validation.valid) {
-      throw new Error(`Invalid draw configuration: ${validation.errors.join(', ')}`);
+      throw new Error(
+        `Invalid draw configuration: ${validation.errors.join(", ")}`,
+      );
     }
 
     // Check free trial eligibility if userId provided
@@ -49,17 +51,17 @@ export class DrawService {
     // Apply all filters
     const eligibleParticipants = await this.processParticipants(
       participants,
-      config.filters
+      config.filters,
     );
 
     // Validate we have enough participants
     if (eligibleParticipants.length === 0) {
-      throw new Error('No eligible participants after applying filters');
+      throw new Error("No eligible participants after applying filters");
     }
 
     if (eligibleParticipants.length < config.winnersCount) {
       throw new Error(
-        `Not enough eligible participants (${eligibleParticipants.length}) for requested winners (${config.winnersCount})`
+        `Not enough eligible participants (${eligibleParticipants.length}) for requested winners (${config.winnersCount})`,
       );
     }
 
@@ -67,7 +69,7 @@ export class DrawService {
     const { winners, alternates } = this.selectWinners(
       eligibleParticipants,
       config.winnersCount,
-      config.alternatesCount
+      config.alternatesCount,
     );
 
     // Generate draw result
@@ -79,7 +81,7 @@ export class DrawService {
       winners,
       alternates,
       filters: config.filters,
-      algorithm: 'Fisher-Yates Shuffle with Crypto Random'
+      algorithm: "Fisher-Yates Shuffle with Crypto Random",
     };
 
     // Generate certificate
@@ -104,10 +106,12 @@ export class DrawService {
       return {
         id: comment.id || `participant-${index}`,
         username: comment.username || comment.user || `user-${index}`,
-        comment: comment.text || comment.comment || '',
-        timestamp: new Date(comment.timestamp || comment.created_at || Date.now()),
+        comment: comment.text || comment.comment || "",
+        timestamp: new Date(
+          comment.timestamp || comment.created_at || Date.now(),
+        ),
         mentions,
-        hashtags
+        hashtags,
       };
     });
   }
@@ -118,7 +122,7 @@ export class DrawService {
   private extractMentions(text: string): string[] {
     const mentionRegex = /@(\w+)/g;
     const matches = text.match(mentionRegex);
-    return matches ? matches.map(m => m.substring(1)) : [];
+    return matches ? matches.map((m) => m.substring(1)) : [];
   }
 
   /**
@@ -127,7 +131,7 @@ export class DrawService {
   private extractHashtags(text: string): string[] {
     const hashtagRegex = /#(\w+)/g;
     const matches = text.match(hashtagRegex);
-    return matches ? matches.map(h => h.substring(1)) : [];
+    return matches ? matches.map((h) => h.substring(1)) : [];
   }
 
   /**
@@ -135,7 +139,7 @@ export class DrawService {
    */
   async processParticipants(
     participants: Participant[],
-    filters: DrawFilters
+    filters: DrawFilters,
   ): Promise<Participant[]> {
     let eligible = [...participants];
 
@@ -151,7 +155,10 @@ export class DrawService {
 
     // Apply entries limit per user
     if (filters.maxEntriesPerUser !== null && filters.maxEntriesPerUser > 0) {
-      eligible = this.applyEntriesLimitFilter(eligible, filters.maxEntriesPerUser);
+      eligible = this.applyEntriesLimitFilter(
+        eligible,
+        filters.maxEntriesPerUser,
+      );
     }
 
     // Apply mentions filter
@@ -170,8 +177,15 @@ export class DrawService {
     }
 
     // Apply following verification (async)
-    if (filters.verifyFollowing && filters.followingAccounts && filters.followingAccounts.length > 0) {
-      eligible = await this.applyFollowingFilter(eligible, filters.followingAccounts);
+    if (
+      filters.verifyFollowing &&
+      filters.followingAccounts &&
+      filters.followingAccounts.length > 0
+    ) {
+      eligible = await this.applyFollowingFilter(
+        eligible,
+        filters.followingAccounts,
+      );
     }
 
     return eligible;
@@ -182,7 +196,7 @@ export class DrawService {
    */
   private applyDuplicateFilter(participants: Participant[]): Participant[] {
     const seen = new Set<string>();
-    return participants.filter(p => {
+    return participants.filter((p) => {
       const key = p.username.toLowerCase();
       if (seen.has(key)) {
         return false;
@@ -197,11 +211,11 @@ export class DrawService {
    */
   private applyEntriesLimitFilter(
     participants: Participant[],
-    maxEntries: number
+    maxEntries: number,
   ): Participant[] {
     const userEntries = new Map<string, number>();
 
-    return participants.filter(p => {
+    return participants.filter((p) => {
       const username = p.username.toLowerCase();
       const count = userEntries.get(username) || 0;
 
@@ -220,9 +234,9 @@ export class DrawService {
    */
   private applyMentionsFilter(
     participants: Participant[],
-    minMentions: number
+    minMentions: number,
   ): Participant[] {
-    return participants.filter(p => p.mentions.length >= minMentions);
+    return participants.filter((p) => p.mentions.length >= minMentions);
   }
 
   /**
@@ -230,11 +244,11 @@ export class DrawService {
    */
   private applyHashtagFilter(
     participants: Participant[],
-    requiredHashtag: string
+    requiredHashtag: string,
   ): Participant[] {
-    const normalizedHashtag = requiredHashtag.toLowerCase().replace(/^#/, '');
-    return participants.filter(p =>
-      p.hashtags.some(h => h.toLowerCase() === normalizedHashtag)
+    const normalizedHashtag = requiredHashtag.toLowerCase().replace(/^#/, "");
+    return participants.filter((p) =>
+      p.hashtags.some((h) => h.toLowerCase() === normalizedHashtag),
     );
   }
 
@@ -243,12 +257,14 @@ export class DrawService {
    */
   private applyKeywordFilter(
     participants: Participant[],
-    keywords: string[]
+    keywords: string[],
   ): Participant[] {
-    const normalizedKeywords = keywords.map(k => k.toLowerCase());
-    return participants.filter(p => {
+    const normalizedKeywords = keywords.map((k) => k.toLowerCase());
+    return participants.filter((p) => {
       const commentLower = p.comment.toLowerCase();
-      return normalizedKeywords.some(keyword => commentLower.includes(keyword));
+      return normalizedKeywords.some((keyword) =>
+        commentLower.includes(keyword),
+      );
     });
   }
 
@@ -258,7 +274,7 @@ export class DrawService {
    */
   private async applyFollowingFilter(
     participants: Participant[],
-    followingAccounts: string[]
+    followingAccounts: string[],
   ): Promise<Participant[]> {
     // TODO: Integrate with social media API (Twitter, Instagram, etc.)
     // For now, return all participants (implement in production)
@@ -272,7 +288,7 @@ export class DrawService {
     // );
     // return verified.filter(p => p !== null);
 
-    console.warn('Following verification not implemented - skipping filter');
+    console.warn("Following verification not implemented - skipping filter");
     return participants;
   }
 
@@ -281,14 +297,14 @@ export class DrawService {
    */
   private applyBlacklist(
     participants: Participant[],
-    blacklist: string[]
+    blacklist: string[],
   ): Participant[] {
     const normalizedBlacklist = new Set(
-      blacklist.map(username => username.toLowerCase().replace(/^@/, ''))
+      blacklist.map((username) => username.toLowerCase().replace(/^@/, "")),
     );
 
-    return participants.filter(p =>
-      !normalizedBlacklist.has(p.username.toLowerCase())
+    return participants.filter(
+      (p) => !normalizedBlacklist.has(p.username.toLowerCase()),
     );
   }
 
@@ -299,18 +315,18 @@ export class DrawService {
   selectWinners(
     eligibleParticipants: Participant[],
     winnersCount: number,
-    alternatesCount: number
+    alternatesCount: number,
   ): { winners: Winner[]; alternates: Winner[] } {
     const totalNeeded = winnersCount + alternatesCount;
 
     if (eligibleParticipants.length < totalNeeded) {
       throw new Error(
-        `Not enough participants (${eligibleParticipants.length}) for winners + alternates (${totalNeeded})`
+        `Not enough participants (${eligibleParticipants.length}) for winners + alternates (${totalNeeded})`,
       );
     }
 
     // Generate seed for reproducibility in audit trail
-    const seed = crypto.randomBytes(32).toString('hex');
+    const seed = crypto.randomBytes(32).toString("hex");
 
     // Create shuffled copy
     const shuffled = [...eligibleParticipants];
@@ -322,12 +338,14 @@ export class DrawService {
     }
 
     // Select winners
-    const winners: Winner[] = shuffled.slice(0, winnersCount).map((participant, index) => ({
-      participant,
-      position: index + 1,
-      selectedAt: new Date(),
-      seed: `${seed}-winner-${index}`
-    }));
+    const winners: Winner[] = shuffled
+      .slice(0, winnersCount)
+      .map((participant, index) => ({
+        participant,
+        position: index + 1,
+        selectedAt: new Date(),
+        seed: `${seed}-winner-${index}`,
+      }));
 
     // Select alternates
     const alternates: Winner[] = shuffled
@@ -336,7 +354,7 @@ export class DrawService {
         participant,
         position: index + 1,
         selectedAt: new Date(),
-        seed: `${seed}-alternate-${index}`
+        seed: `${seed}-alternate-${index}`,
       }));
 
     return { winners, alternates };
@@ -346,7 +364,7 @@ export class DrawService {
    * Generate certificate with hash
    */
   private async generateCertificate(
-    drawResult: DrawResult
+    drawResult: DrawResult,
   ): Promise<{ buffer: Buffer; hash: string }> {
     return await this.certificateService.generateCertificate(drawResult);
   }
@@ -356,14 +374,14 @@ export class DrawService {
    */
   private async saveDrawHistory(
     drawId: string,
-    result: DrawResult
+    result: DrawResult,
   ): Promise<void> {
     // TODO: Implement database storage
     // For now, save to file system
-    const fs = await import('fs/promises');
-    const path = await import('path');
+    const fs = await import("fs/promises");
+    const path = await import("path");
 
-    const historyDir = path.join(process.cwd(), '.swarm', 'draw-history');
+    const historyDir = path.join(process.cwd(), ".swarm", "draw-history");
     await fs.mkdir(historyDir, { recursive: true });
 
     const historyFile = path.join(historyDir, `${drawId}.json`);
@@ -374,7 +392,7 @@ export class DrawService {
     await fs.writeFile(
       historyFile,
       JSON.stringify(resultToSave, null, 2),
-      'utf-8'
+      "utf-8",
     );
   }
 
@@ -384,33 +402,44 @@ export class DrawService {
   validateDrawConfig(config: DrawConfig): ValidationResult {
     const errors: string[] = [];
 
-    if (!config.drawId || config.drawId.trim() === '') {
-      errors.push('Draw ID is required');
+    if (!config.drawId || config.drawId.trim() === "") {
+      errors.push("Draw ID is required");
     }
 
     if (config.winnersCount < 1) {
-      errors.push('Winners count must be at least 1');
+      errors.push("Winners count must be at least 1");
     }
 
     if (config.alternatesCount < 0) {
-      errors.push('Alternates count cannot be negative');
+      errors.push("Alternates count cannot be negative");
     }
 
-    if (config.filters.maxEntriesPerUser !== null && config.filters.maxEntriesPerUser < 1) {
-      errors.push('Max entries per user must be at least 1 or null (unlimited)');
+    if (
+      config.filters.maxEntriesPerUser !== null &&
+      config.filters.maxEntriesPerUser < 1
+    ) {
+      errors.push(
+        "Max entries per user must be at least 1 or null (unlimited)",
+      );
     }
 
     if (config.filters.minMentions < 0) {
-      errors.push('Minimum mentions cannot be negative');
+      errors.push("Minimum mentions cannot be negative");
     }
 
-    if (config.filters.verifyFollowing && (!config.filters.followingAccounts || config.filters.followingAccounts.length === 0)) {
-      errors.push('Following accounts must be specified when verifyFollowing is enabled');
+    if (
+      config.filters.verifyFollowing &&
+      (!config.filters.followingAccounts ||
+        config.filters.followingAccounts.length === 0)
+    ) {
+      errors.push(
+        "Following accounts must be specified when verifyFollowing is enabled",
+      );
     }
 
     return {
       valid: errors.length === 0,
-      errors
+      errors,
     };
   }
 
@@ -421,20 +450,22 @@ export class DrawService {
     const errors: string[] = [];
 
     if (participants.length === 0) {
-      errors.push('No participants provided');
+      errors.push("No participants provided");
     }
 
     const invalidParticipants = participants.filter(
-      p => !p.username || !p.comment
+      (p) => !p.username || !p.comment,
     );
 
     if (invalidParticipants.length > 0) {
-      errors.push(`${invalidParticipants.length} participants have missing username or comment`);
+      errors.push(
+        `${invalidParticipants.length} participants have missing username or comment`,
+      );
     }
 
     return {
       valid: errors.length === 0,
-      errors
+      errors,
     };
   }
 
@@ -445,26 +476,28 @@ export class DrawService {
   async checkFreeTrialEligibility(
     userId: string,
     participantCount: number,
-    db: any
+    db: any,
   ): Promise<{ canUseTrial: boolean; reason?: string }> {
     // Get user info
     const user = await db.user.findUnique({
       where: { id: userId },
-      select: { credits: true, trial_used: true }
+      select: { credits: true, trial_used: true },
     });
 
     if (!user) {
-      throw new Error('User not found');
+      throw new Error("User not found");
     }
 
     // If user has credits, they don't need trial
     if (user.credits > 0) {
-      return { canUseTrial: false, reason: 'User has credits available' };
+      return { canUseTrial: false, reason: "User has credits available" };
     }
 
     // Check if trial already used
     if (user.trial_used) {
-      throw new Error('Free trial already used. Please purchase credits to continue.');
+      throw new Error(
+        "Free trial already used. Please purchase credits to continue.",
+      );
     }
 
     // Validate participant count for trial (100-200 limit)
@@ -473,23 +506,25 @@ export class DrawService {
 
     if (participantCount < MIN_TRIAL_PARTICIPANTS) {
       throw new Error(
-        `Free trial requires at least ${MIN_TRIAL_PARTICIPANTS} participants. Current: ${participantCount}`
+        `Free trial requires at least ${MIN_TRIAL_PARTICIPANTS} participants. Current: ${participantCount}`,
       );
     }
 
     if (participantCount > MAX_TRIAL_PARTICIPANTS) {
       throw new Error(
-        `Free trial limited to ${MAX_TRIAL_PARTICIPANTS} participants. Current: ${participantCount}. Please purchase credits for larger draws.`
+        `Free trial limited to ${MAX_TRIAL_PARTICIPANTS} participants. Current: ${participantCount}. Please purchase credits for larger draws.`,
       );
     }
 
     // Mark trial as used
     await db.user.update({
       where: { id: userId },
-      data: { trial_used: true }
+      data: { trial_used: true },
     });
 
-    console.log(`[Draw] User ${userId} using free trial for draw with ${participantCount} participants`);
+    console.log(
+      `[Draw] User ${userId} using free trial for draw with ${participantCount} participants`,
+    );
 
     return { canUseTrial: true };
   }
@@ -500,42 +535,43 @@ export class DrawService {
   async canPerformDraw(
     userId: string,
     db: any,
-    subscriptionService?: any
+    subscriptionService?: any,
   ): Promise<{ allowed: boolean; reason?: string; useTrial?: boolean }> {
     const user = await db.user.findUnique({
       where: { id: userId },
-      select: { credits: true, trial_used: true }
+      select: { credits: true, trial_used: true },
     });
 
     if (!user) {
-      return { allowed: false, reason: 'User not found' };
+      return { allowed: false, reason: "User not found" };
     }
 
     // Check for active 48h pass (unlimited draws)
     if (subscriptionService) {
       const hasPass = await subscriptionService.allowsUnlimitedDraws(userId);
       if (hasPass) {
-        return { allowed: true, reason: '48h pass active - unlimited draws' };
+        return { allowed: true, reason: "48h pass active - unlimited draws" };
       }
     }
 
     // Check if user has credits
     if (user.credits > 0) {
-      return { allowed: true, reason: 'Credits available' };
+      return { allowed: true, reason: "Credits available" };
     }
 
     // Check if eligible for free trial
     if (!user.trial_used) {
       return {
         allowed: true,
-        reason: 'Free trial available (100-200 participants)',
-        useTrial: true
+        reason: "Free trial available (100-200 participants)",
+        useTrial: true,
       };
     }
 
     return {
       allowed: false,
-      reason: 'No credits available and trial already used. Please purchase credits or subscribe.'
+      reason:
+        "No credits available and trial already used. Please purchase credits or subscribe.",
     };
   }
 
@@ -544,7 +580,7 @@ export class DrawService {
    */
   validateWinnerEligibility(
     winners: Winner[],
-    filters: DrawFilters
+    filters: DrawFilters,
   ): ValidationResult {
     const errors: string[] = [];
 
@@ -552,40 +588,57 @@ export class DrawService {
       const { participant } = winner;
 
       // Check blacklist
-      if (filters.blacklist && filters.blacklist.some(
-        username => username.toLowerCase() === participant.username.toLowerCase()
-      )) {
+      if (
+        filters.blacklist &&
+        filters.blacklist.some(
+          (username) =>
+            username.toLowerCase() === participant.username.toLowerCase(),
+        )
+      ) {
         errors.push(`Winner ${participant.username} is in blacklist`);
       }
 
       // Check mentions
-      if (filters.minMentions > 0 && participant.mentions.length < filters.minMentions) {
+      if (
+        filters.minMentions > 0 &&
+        participant.mentions.length < filters.minMentions
+      ) {
         errors.push(`Winner ${participant.username} has insufficient mentions`);
       }
 
       // Check hashtag
       if (filters.requiredHashtag) {
-        const normalizedHashtag = filters.requiredHashtag.toLowerCase().replace(/^#/, '');
-        if (!participant.hashtags.some(h => h.toLowerCase() === normalizedHashtag)) {
-          errors.push(`Winner ${participant.username} missing required hashtag`);
+        const normalizedHashtag = filters.requiredHashtag
+          .toLowerCase()
+          .replace(/^#/, "");
+        if (
+          !participant.hashtags.some(
+            (h) => h.toLowerCase() === normalizedHashtag,
+          )
+        ) {
+          errors.push(
+            `Winner ${participant.username} missing required hashtag`,
+          );
         }
       }
 
       // Check keywords
       if (filters.requiredKeywords && filters.requiredKeywords.length > 0) {
         const commentLower = participant.comment.toLowerCase();
-        const hasKeyword = filters.requiredKeywords.some(
-          k => commentLower.includes(k.toLowerCase())
+        const hasKeyword = filters.requiredKeywords.some((k) =>
+          commentLower.includes(k.toLowerCase()),
         );
         if (!hasKeyword) {
-          errors.push(`Winner ${participant.username} missing required keywords`);
+          errors.push(
+            `Winner ${participant.username} missing required keywords`,
+          );
         }
       }
     }
 
     return {
       valid: errors.length === 0,
-      errors
+      errors,
     };
   }
 }

@@ -1,4 +1,4 @@
-import * as crypto from 'crypto';
+import * as crypto from "crypto";
 
 /**
  * Hash verification utility for draw results transparency
@@ -26,10 +26,14 @@ export function generateDrawHash(data: DrawHashData): string {
     drawId: data.drawId,
     timestamp: data.timestamp,
     participants: data.participants
-      .map(p => ({ id: p.id, name: p.name, username: p.username }))
+      .map((p) => ({ id: p.id, name: p.name, username: p.username }))
       .sort((a, b) => a.id.localeCompare(b.id)), // Sort for consistency
     winners: data.winners
-      .map(w => ({ id: w.id, position: w.position, participantId: w.participantId }))
+      .map((w) => ({
+        id: w.id,
+        position: w.position,
+        participantId: w.participantId,
+      }))
       .sort((a, b) => a.position - b.position),
     randomSeed: data.randomSeed,
     filters: data.filters,
@@ -37,13 +41,16 @@ export function generateDrawHash(data: DrawHashData): string {
   };
 
   // Convert to deterministic JSON string
-  const dataString = JSON.stringify(normalizedData, Object.keys(normalizedData).sort());
+  const dataString = JSON.stringify(
+    normalizedData,
+    Object.keys(normalizedData).sort(),
+  );
 
   // Generate SHA-256 hash
   const hash = crypto
-    .createHash('sha256')
-    .update(dataString, 'utf8')
-    .digest('hex');
+    .createHash("sha256")
+    .update(dataString, "utf8")
+    .digest("hex");
 
   return hash;
 }
@@ -54,7 +61,10 @@ export function generateDrawHash(data: DrawHashData): string {
  * @param expectedHash - Expected hash value
  * @returns True if hash matches
  */
-export function verifyDrawHash(data: DrawHashData, expectedHash: string): boolean {
+export function verifyDrawHash(
+  data: DrawHashData,
+  expectedHash: string,
+): boolean {
   const computedHash = generateDrawHash(data);
   return computedHash === expectedHash;
 }
@@ -82,7 +92,7 @@ export function generateTimestamp(): string {
  * @returns Formatted hash (e.g., "A1B2 C3D4 E5F6...")
  */
 export function formatHashForDisplay(hash: string): string {
-  return hash.match(/.{1,4}/g)?.join(' ') || hash;
+  return hash.match(/.{1,4}/g)?.join(" ") || hash;
 }
 
 /**
@@ -90,8 +100,9 @@ export function formatHashForDisplay(hash: string): string {
  * @returns Hex-encoded random seed
  */
 export function generateRandomSeed(): string {
-  return crypto.randomBytes(32).toString('hex');
+  return crypto.randomBytes(32).toString("hex");
 }
 
-export const HASH_ALGORITHM = 'SHA-256';
-export const PRNG_ALGORITHM = 'Cryptographically Secure PRNG (crypto.randomBytes)';
+export const HASH_ALGORITHM = "SHA-256";
+export const PRNG_ALGORITHM =
+  "Cryptographically Secure PRNG (crypto.randomBytes)";

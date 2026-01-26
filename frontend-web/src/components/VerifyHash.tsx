@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { CheckCircle, XCircle, Shield, Copy, Check } from 'lucide-react';
-import toast from 'react-hot-toast';
-import axios from 'axios';
+import { useState } from "react";
+import { CheckCircle, XCircle, Shield, Copy, Check } from "lucide-react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 interface VerifyHashProps {
   drawId: string;
@@ -13,18 +13,24 @@ interface VerifyHashProps {
  * Hash Verification Component
  * Allows users to verify the authenticity of draw certificates
  */
-export default function VerifyHash({ drawId, expectedHash, verified = false }: VerifyHashProps) {
+export default function VerifyHash({
+  drawId,
+  expectedHash,
+  verified = false,
+}: VerifyHashProps) {
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationResult, setVerificationResult] = useState<{
     verified: boolean;
     message: string;
-  } | null>(verified ? { verified: true, message: 'Certificate is authentic' } : null);
-  const [inputHash, setInputHash] = useState('');
+  } | null>(
+    verified ? { verified: true, message: "Certificate is authentic" } : null,
+  );
+  const [inputHash, setInputHash] = useState("");
   const [copied, setCopied] = useState(false);
 
   const handleVerify = async () => {
     if (!inputHash.trim()) {
-      toast.error('Please enter a hash to verify');
+      toast.error("Please enter a hash to verify");
       return;
     }
 
@@ -33,7 +39,7 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/public/verify-hash/${drawId}`,
-        { hash: inputHash }
+        { hash: inputHash },
       );
 
       setVerificationResult({
@@ -42,13 +48,13 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
       });
 
       if (response.data.verified) {
-        toast.success('Certificate verified successfully!');
+        toast.success("Certificate verified successfully!");
       } else {
-        toast.error('Verification failed - hash mismatch');
+        toast.error("Verification failed - hash mismatch");
       }
     } catch (error) {
-      toast.error('Failed to verify hash');
-      console.error('Verification error:', error);
+      toast.error("Failed to verify hash");
+      console.error("Verification error:", error);
     } finally {
       setIsVerifying(false);
     }
@@ -58,16 +64,16 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
     try {
       await navigator.clipboard.writeText(expectedHash);
       setCopied(true);
-      toast.success('Hash copied to clipboard');
+      toast.success("Hash copied to clipboard");
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      toast.error('Failed to copy hash');
+      toast.error("Failed to copy hash");
     }
   };
 
   const formatHash = (hash: string): string => {
     // Format hash in blocks of 4 characters for readability
-    return hash.match(/.{1,4}/g)?.join(' ') || hash;
+    return hash.match(/.{1,4}/g)?.join(" ") || hash;
   };
 
   const getVerificationCode = (hash: string): string => {
@@ -124,7 +130,10 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
 
       {/* Hash Input for Verification */}
       <div className="mb-4">
-        <label htmlFor="hash-input" className="block text-sm font-medium text-gray-700 mb-2">
+        <label
+          htmlFor="hash-input"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
           Verify Certificate Authenticity
         </label>
         <div className="flex gap-2">
@@ -141,7 +150,7 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
             disabled={isVerifying || !inputHash.trim()}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
           >
-            {isVerifying ? 'Verifying...' : 'Verify'}
+            {isVerifying ? "Verifying..." : "Verify"}
           </button>
         </div>
       </div>
@@ -151,8 +160,8 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
         <div
           className={`rounded-lg p-4 flex items-start gap-3 ${
             verificationResult.verified
-              ? 'bg-green-50 border border-green-200'
-              : 'bg-red-50 border border-red-200'
+              ? "bg-green-50 border border-green-200"
+              : "bg-red-50 border border-red-200"
           }`}
         >
           {verificationResult.verified ? (
@@ -163,14 +172,16 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
           <div>
             <h4
               className={`font-semibold mb-1 ${
-                verificationResult.verified ? 'text-green-900' : 'text-red-900'
+                verificationResult.verified ? "text-green-900" : "text-red-900"
               }`}
             >
-              {verificationResult.verified ? 'Verification Successful' : 'Verification Failed'}
+              {verificationResult.verified
+                ? "Verification Successful"
+                : "Verification Failed"}
             </h4>
             <p
               className={`text-sm ${
-                verificationResult.verified ? 'text-green-700' : 'text-red-700'
+                verificationResult.verified ? "text-green-700" : "text-red-700"
               }`}
             >
               {verificationResult.message}
@@ -181,7 +192,9 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
 
       {/* Information */}
       <div className="mt-4 pt-4 border-t border-gray-200">
-        <h4 className="text-sm font-semibold text-gray-700 mb-2">How Hash Verification Works</h4>
+        <h4 className="text-sm font-semibold text-gray-700 mb-2">
+          How Hash Verification Works
+        </h4>
         <ul className="text-sm text-gray-600 space-y-1">
           <li className="flex items-start gap-2">
             <span className="text-blue-600 mt-1">•</span>
@@ -189,15 +202,22 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
           </li>
           <li className="flex items-start gap-2">
             <span className="text-blue-600 mt-1">•</span>
-            <span>The hash is generated from draw results and cannot be tampered with</span>
+            <span>
+              The hash is generated from draw results and cannot be tampered
+              with
+            </span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-blue-600 mt-1">•</span>
-            <span>Compare your certificate's hash with the one shown above</span>
+            <span>
+              Compare your certificate's hash with the one shown above
+            </span>
           </li>
           <li className="flex items-start gap-2">
             <span className="text-blue-600 mt-1">•</span>
-            <span>If they match, the certificate is authentic and unmodified</span>
+            <span>
+              If they match, the certificate is authentic and unmodified
+            </span>
           </li>
         </ul>
       </div>
@@ -205,8 +225,8 @@ export default function VerifyHash({ drawId, expectedHash, verified = false }: V
       {/* Algorithm Info */}
       <div className="mt-3 p-3 bg-blue-50 rounded-lg">
         <p className="text-xs text-blue-900">
-          <strong>Algorithm:</strong> Cryptographically Secure PRNG (crypto.randomBytes) + SHA-256
-          hashing
+          <strong>Algorithm:</strong> Cryptographically Secure PRNG
+          (crypto.randomBytes) + SHA-256 hashing
         </p>
       </div>
     </div>

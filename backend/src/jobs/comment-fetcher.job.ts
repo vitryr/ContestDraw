@@ -4,15 +4,15 @@
  * Supports Instagram, Facebook, Twitter, TikTok, YouTube
  */
 
-import { PrismaClient } from '@prisma/client';
-import Queue, { Job } from 'bull';
-import { InstagramService } from '../services/instagram.service';
-import { FacebookService } from '../services/facebook.service';
-import { TwitterService } from '../services/twitter.service';
-import { TikTokService } from '../services/tiktok.service';
-import { YouTubeService } from '../services/youtube.service';
-import { logger } from '../utils/logger';
-import config from '../config/config';
+import { PrismaClient } from "@prisma/client";
+import Queue, { Job } from "bull";
+import { InstagramService } from "../services/instagram.service";
+import { FacebookService } from "../services/facebook.service";
+import { TwitterService } from "../services/twitter.service";
+import { TikTokService } from "../services/tiktok.service";
+import { YouTubeService } from "../services/youtube.service";
+import { logger } from "../utils/logger";
+import config from "../config/config";
 
 const prisma = new PrismaClient();
 
@@ -24,7 +24,7 @@ const tiktokService = new TikTokService();
 const youtubeService = new YouTubeService();
 
 // Create Bull queue for comment fetching
-export const commentFetcherQueue = new Queue('comment-fetcher', {
+export const commentFetcherQueue = new Queue("comment-fetcher", {
   redis: {
     host: config.redis.host,
     port: config.redis.port,
@@ -32,7 +32,12 @@ export const commentFetcherQueue = new Queue('comment-fetcher', {
   },
 });
 
-export type SocialPlatform = 'instagram' | 'facebook' | 'twitter' | 'tiktok' | 'youtube';
+export type SocialPlatform =
+  | "instagram"
+  | "facebook"
+  | "twitter"
+  | "tiktok"
+  | "youtube";
 
 interface CommentFetcherJobData {
   drawId: string;
@@ -71,8 +76,18 @@ interface FetchResult {
 /**
  * Process comment fetching job
  */
-async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<FetchResult> {
-  const { drawId, userId, platform, postUrl, accessToken, maxComments, filters } = job.data;
+async function processCommentFetcher(
+  job: Job<CommentFetcherJobData>,
+): Promise<FetchResult> {
+  const {
+    drawId,
+    userId,
+    platform,
+    postUrl,
+    accessToken,
+    maxComments,
+    filters,
+  } = job.data;
 
   const result: FetchResult = {
     total: 0,
@@ -91,13 +106,18 @@ async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<F
     // Update draw status to PROCESSING
     await prisma.draw.update({
       where: { id: drawId },
-      data: { status: 'PROCESSING' },
+      data: { status: "PROCESSING" },
     });
 
     await job.progress(10);
 
     // Fetch comments from the appropriate platform
-    const comments = await fetchComments(platform, postUrl, accessToken, maxComments);
+    const comments = await fetchComments(
+      platform,
+      postUrl,
+      accessToken,
+      maxComments,
+    );
     result.total = comments.length;
 
     await job.progress(40);
@@ -106,7 +126,7 @@ async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<F
     const { validComments, filteredCount, duplicateCount } = await applyFilters(
       drawId,
       comments,
-      filters
+      filters,
     );
     result.filtered = filteredCount;
     result.duplicates = duplicateCount;
@@ -114,7 +134,11 @@ async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<F
     await job.progress(70);
 
     // Store participants in database
-    const storedCount = await storeParticipants(drawId, platform, validComments);
+    const storedCount = await storeParticipants(
+      drawId,
+      platform,
+      validComments,
+    );
     result.valid = storedCount;
 
     await job.progress(90);
@@ -122,7 +146,7 @@ async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<F
     // Update draw status to READY
     await prisma.draw.update({
       where: { id: drawId },
-      data: { status: 'READY' },
+      data: { status: "READY" },
     });
 
     await job.progress(100);
@@ -137,7 +161,7 @@ async function processCommentFetcher(job: Job<CommentFetcherJobData>): Promise<F
     // Update draw status to FAILED
     await prisma.draw.update({
       where: { id: drawId },
-      data: { status: 'FAILED' },
+      data: { status: "FAILED" },
     });
 
     logger.error(`Comment fetch failed for draw ${drawId}`, {
@@ -156,22 +180,22 @@ async function fetchComments(
   platform: SocialPlatform,
   postUrl: string,
   accessToken?: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
   switch (platform) {
-    case 'instagram':
+    case "instagram":
       return fetchInstagramComments(postUrl, accessToken!, maxComments);
 
-    case 'facebook':
+    case "facebook":
       return fetchFacebookComments(postUrl, accessToken!, maxComments);
 
-    case 'twitter':
+    case "twitter":
       return fetchTwitterComments(postUrl, accessToken, maxComments);
 
-    case 'tiktok':
+    case "tiktok":
       return fetchTikTokComments(postUrl, accessToken, maxComments);
 
-    case 'youtube':
+    case "youtube":
       return fetchYouTubeComments(postUrl, maxComments);
 
     default:
@@ -185,9 +209,13 @@ async function fetchComments(
 async function fetchInstagramComments(
   postUrl: string,
   accessToken: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
-  const response = await instagramService.fetchComments(postUrl, accessToken, maxComments);
+  const response = await instagramService.fetchComments(
+    postUrl,
+    accessToken,
+    maxComments,
+  );
 
   return response.data.map((comment) => ({
     id: comment.id,
@@ -207,9 +235,13 @@ async function fetchInstagramComments(
 async function fetchFacebookComments(
   postUrl: string,
   accessToken: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
-  const response = await facebookService.fetchComments(postUrl, accessToken, maxComments);
+  const response = await facebookService.fetchComments(
+    postUrl,
+    accessToken,
+    maxComments,
+  );
 
   return response.data.map((comment) => ({
     id: comment.id,
@@ -229,9 +261,13 @@ async function fetchFacebookComments(
 async function fetchTwitterComments(
   postUrl: string,
   accessToken?: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
-  const response = await twitterService.fetchReplies(postUrl, accessToken, maxComments);
+  const response = await twitterService.fetchReplies(
+    postUrl,
+    accessToken,
+    maxComments,
+  );
 
   return response.data.map((reply) => ({
     id: reply.id,
@@ -251,9 +287,13 @@ async function fetchTwitterComments(
 async function fetchTikTokComments(
   postUrl: string,
   accessToken?: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
-  const response = await tiktokService.fetchComments(postUrl, accessToken, maxComments);
+  const response = await tiktokService.fetchComments(
+    postUrl,
+    accessToken,
+    maxComments,
+  );
 
   return response.data.map((comment) => ({
     id: comment.id,
@@ -273,11 +313,13 @@ async function fetchTikTokComments(
  */
 async function fetchYouTubeComments(
   postUrl: string,
-  maxComments?: number
+  maxComments?: number,
 ): Promise<FetchedComment[]> {
   if (!youtubeService.isConfigured()) {
-    logger.error('YouTube API key not configured');
-    throw new Error('YouTube API key not configured. Set YOUTUBE_API_KEY in environment.');
+    logger.error("YouTube API key not configured");
+    throw new Error(
+      "YouTube API key not configured. Set YOUTUBE_API_KEY in environment.",
+    );
   }
 
   const response = await youtubeService.fetchComments(postUrl, maxComments);
@@ -318,7 +360,7 @@ function extractHashtags(text: string): string[] {
 async function applyFilters(
   drawId: string,
   comments: FetchedComment[],
-  filters?: CommentFetcherJobData['filters']
+  filters?: CommentFetcherJobData["filters"],
 ): Promise<{
   validComments: FetchedComment[];
   filteredCount: number;
@@ -349,7 +391,7 @@ async function applyFilters(
   if (filters?.minMentions && filters.minMentions > 0) {
     const before = validComments.length;
     validComments = validComments.filter(
-      (c) => c.mentions && c.mentions.length >= filters.minMentions!
+      (c) => c.mentions && c.mentions.length >= filters.minMentions!,
     );
     filteredCount += before - validComments.length;
   }
@@ -381,7 +423,9 @@ async function applyFilters(
     where: { drawId },
     select: { identifier: true },
   });
-  const existingSet = new Set(existingParticipants.map((p) => p.identifier.toLowerCase()));
+  const existingSet = new Set(
+    existingParticipants.map((p) => p.identifier.toLowerCase()),
+  );
 
   const newComments: FetchedComment[] = [];
   for (const comment of validComments) {
@@ -402,7 +446,7 @@ async function applyFilters(
 async function storeParticipants(
   drawId: string,
   platform: SocialPlatform,
-  comments: FetchedComment[]
+  comments: FetchedComment[],
 ): Promise<number> {
   let storedCount = 0;
 
@@ -426,7 +470,7 @@ async function storeParticipants(
       });
       storedCount++;
     } catch (error) {
-      logger.error('Failed to store participant', {
+      logger.error("Failed to store participant", {
         drawId,
         username: comment.username,
         error: error instanceof Error ? error.message : String(error),
@@ -448,9 +492,9 @@ export async function scheduleCommentFetch(
   accessToken?: string,
   options?: {
     maxComments?: number;
-    filters?: CommentFetcherJobData['filters'];
+    filters?: CommentFetcherJobData["filters"];
     delay?: number; // Delay in ms before starting
-  }
+  },
 ): Promise<Job<CommentFetcherJobData>> {
   const jobData: CommentFetcherJobData = {
     drawId,
@@ -467,12 +511,12 @@ export async function scheduleCommentFetch(
     delay: options?.delay || 0,
     attempts: 3,
     backoff: {
-      type: 'exponential',
+      type: "exponential",
       delay: 5000,
     },
   });
 
-  logger.info('Scheduled comment fetch job', {
+  logger.info("Scheduled comment fetch job", {
     drawId,
     jobId: job.id,
     platform,
@@ -491,7 +535,11 @@ export async function getCommentFetchStatus(drawId: string): Promise<{
   participantCount: number;
 }> {
   // Find any active job for this draw
-  const jobs = await commentFetcherQueue.getJobs(['active', 'waiting', 'delayed']);
+  const jobs = await commentFetcherQueue.getJobs([
+    "active",
+    "waiting",
+    "delayed",
+  ]);
   const activeJob = jobs.find((j) => j.data.drawId === drawId);
 
   const participantCount = await prisma.participant.count({
@@ -509,12 +557,16 @@ export async function getCommentFetchStatus(drawId: string): Promise<{
  * Cancel comment fetch for a draw
  */
 export async function cancelCommentFetch(drawId: string): Promise<boolean> {
-  const jobs = await commentFetcherQueue.getJobs(['active', 'waiting', 'delayed']);
+  const jobs = await commentFetcherQueue.getJobs([
+    "active",
+    "waiting",
+    "delayed",
+  ]);
   const matchingJobs = jobs.filter((j) => j.data.drawId === drawId);
 
   for (const job of matchingJobs) {
     await job.remove();
-    logger.info('Cancelled comment fetch job', { drawId, jobId: job.id });
+    logger.info("Cancelled comment fetch job", { drawId, jobId: job.id });
   }
 
   return matchingJobs.length > 0;
@@ -523,24 +575,24 @@ export async function cancelCommentFetch(drawId: string): Promise<boolean> {
 // Initialize worker to process jobs using Bull v4 API
 commentFetcherQueue.process(3, processCommentFetcher); // concurrency: 3
 
-commentFetcherQueue.on('completed', (job, result) => {
-  logger.info('Comment fetch job completed', {
+commentFetcherQueue.on("completed", (job, result) => {
+  logger.info("Comment fetch job completed", {
     jobId: job.id,
     drawId: job.data.drawId,
     result,
   });
 });
 
-commentFetcherQueue.on('failed', (job, error) => {
-  logger.error('Comment fetch job failed', {
+commentFetcherQueue.on("failed", (job, error) => {
+  logger.error("Comment fetch job failed", {
     jobId: job?.id,
     drawId: job?.data.drawId,
     error: error.message,
   });
 });
 
-commentFetcherQueue.on('progress', (job, progress) => {
-  logger.debug('Comment fetch progress', {
+commentFetcherQueue.on("progress", (job, progress) => {
+  logger.debug("Comment fetch progress", {
     jobId: job.id,
     drawId: job.data.drawId,
     progress,

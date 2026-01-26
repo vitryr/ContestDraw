@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response } from "express";
 
 /**
  * 404 Not Found middleware
@@ -6,8 +6,8 @@ import { Request, Response } from 'express';
  */
 export const notFoundMiddleware = (req: Request, res: Response): void => {
   res.status(404).json({
-    status: 'error',
+    status: "error",
     message: `Route ${req.method} ${req.path} not found`,
-    code: 'ROUTE_NOT_FOUND'
+    code: "ROUTE_NOT_FOUND",
   });
 };

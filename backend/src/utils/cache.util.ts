@@ -68,7 +68,7 @@ export class Cache {
   static async getOrSet<T>(
     key: string,
     fn: () => Promise<T>,
-    ttlSeconds: number = 300
+    ttlSeconds: number = 300,
   ): Promise<T> {
     const cached = this.get<T>(key);
     if (cached !== null) {

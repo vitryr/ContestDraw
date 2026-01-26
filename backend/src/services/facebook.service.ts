@@ -3,10 +3,15 @@
  * Handles authentication, post fetching, comments, and reactions
  */
 
-import axios, { AxiosInstance } from 'axios';
-import { PaginatedResponse, Comment, SocialAccount, APIError } from '../types/social.types';
-import { RetryHandler } from '../utils/retry.util';
-import { Cache } from '../utils/cache.util';
+import axios, { AxiosInstance } from "axios";
+import {
+  PaginatedResponse,
+  Comment,
+  SocialAccount,
+  APIError,
+} from "../types/social.types";
+import { RetryHandler } from "../utils/retry.util";
+import { Cache } from "../utils/cache.util";
 
 interface FacebookPost {
   id: string;
@@ -30,13 +35,13 @@ interface FacebookComment {
 interface FacebookReaction {
   id: string;
   name: string;
-  type: 'LIKE' | 'LOVE' | 'WOW' | 'HAHA' | 'SAD' | 'ANGRY' | 'CARE';
+  type: "LIKE" | "LOVE" | "WOW" | "HAHA" | "SAD" | "ANGRY" | "CARE";
 }
 
 export class FacebookService {
   private client: AxiosInstance;
-  private readonly baseUrl = 'https://graph.facebook.com';
-  private readonly apiVersion = 'v18.0';
+  private readonly baseUrl = "https://graph.facebook.com";
+  private readonly apiVersion = "v18.0";
 
   constructor() {
     this.client = axios.create({
@@ -47,7 +52,7 @@ export class FacebookService {
     // Add response interceptor for error handling
     this.client.interceptors.response.use(
       (response) => response,
-      (error) => this.handleError(error)
+      (error) => this.handleError(error),
     );
   }
 
@@ -57,18 +62,21 @@ export class FacebookService {
    * @param authCode - OAuth authorization code
    * @returns Connected account information
    */
-  async connectAccount(userId: string, authCode: string): Promise<SocialAccount> {
+  async connectAccount(
+    userId: string,
+    authCode: string,
+  ): Promise<SocialAccount> {
     const appId = process.env.FACEBOOK_APP_ID;
     const appSecret = process.env.FACEBOOK_APP_SECRET;
     const redirectUri = process.env.FACEBOOK_REDIRECT_URI;
 
     if (!appId || !appSecret || !redirectUri) {
-      throw new Error('Facebook OAuth credentials not configured');
+      throw new Error("Facebook OAuth credentials not configured");
     }
 
     return RetryHandler.withRetry(async () => {
       // Exchange code for access token
-      const tokenResponse = await this.client.get('/oauth/access_token', {
+      const tokenResponse = await this.client.get("/oauth/access_token", {
         params: {
           client_id: appId,
           client_secret: appSecret,
@@ -80,9 +88,9 @@ export class FacebookService {
       const { access_token } = tokenResponse.data;
 
       // Exchange short-lived token for long-lived token
-      const longLivedResponse = await this.client.get('/oauth/access_token', {
+      const longLivedResponse = await this.client.get("/oauth/access_token", {
         params: {
-          grant_type: 'fb_exchange_token',
+          grant_type: "fb_exchange_token",
           client_id: appId,
           client_secret: appSecret,
           fb_exchange_token: access_token,
@@ -92,16 +100,16 @@ export class FacebookService {
       const longLivedToken = longLivedResponse.data.access_token;
 
       // Get user information
-      const userResponse = await this.client.get('/me', {
+      const userResponse = await this.client.get("/me", {
         params: {
-          fields: 'id,name',
+          fields: "id,name",
           access_token: longLivedToken,
         },
       });
 
       return {
         userId,
-        platform: 'facebook' as const,
+        platform: "facebook" as const,
         accountId: userResponse.data.id,
         username: userResponse.data.name,
         accessToken: longLivedToken,
@@ -120,7 +128,7 @@ export class FacebookService {
   async fetchComments(
     postUrl: string,
     pageAccessToken: string,
-    maxComments?: number
+    maxComments?: number,
   ): Promise<PaginatedResponse<Comment>> {
     const postId = this.parsePostUrl(postUrl);
     const cacheKey = `facebook:comments:${postId}`;
@@ -141,7 +149,8 @@ export class FacebookService {
         const params = nextUrl
           ? {}
           : {
-              fields: 'id,message,from,created_time,like_count,comment_count,comments{id,message,from,created_time,like_count}',
+              fields:
+                "id,message,from,created_time,like_count,comment_count,comments{id,message,from,created_time,like_count}",
               access_token: pageAccessToken,
               limit: 100,
             };
@@ -155,9 +164,7 @@ export class FacebookService {
           userId: comment.from.id,
           timestamp: new Date(comment.created_time),
           likes: comment.like_count,
-          replies: comment.comment_count
-            ? []
-            : undefined, // Nested comments available
+          replies: comment.comment_count ? [] : undefined, // Nested comments available
         }));
 
         allComments.push(...comments);
@@ -195,37 +202,42 @@ export class FacebookService {
    */
   async fetchReactions(
     postUrl: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<Record<string, number>> {
     const postId = this.parsePostUrl(postUrl);
     const cacheKey = `facebook:reactions:${postId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const response = await this.client.get(`/${postId}`, {
-          params: {
-            fields: 'reactions.type(LIKE).limit(0).summary(true).as(like),' +
-                   'reactions.type(LOVE).limit(0).summary(true).as(love),' +
-                   'reactions.type(WOW).limit(0).summary(true).as(wow),' +
-                   'reactions.type(HAHA).limit(0).summary(true).as(haha),' +
-                   'reactions.type(SAD).limit(0).summary(true).as(sad),' +
-                   'reactions.type(ANGRY).limit(0).summary(true).as(angry),' +
-                   'reactions.type(CARE).limit(0).summary(true).as(care)',
-            access_token: accessToken,
-          },
-        });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const response = await this.client.get(`/${postId}`, {
+            params: {
+              fields:
+                "reactions.type(LIKE).limit(0).summary(true).as(like)," +
+                "reactions.type(LOVE).limit(0).summary(true).as(love)," +
+                "reactions.type(WOW).limit(0).summary(true).as(wow)," +
+                "reactions.type(HAHA).limit(0).summary(true).as(haha)," +
+                "reactions.type(SAD).limit(0).summary(true).as(sad)," +
+                "reactions.type(ANGRY).limit(0).summary(true).as(angry)," +
+                "reactions.type(CARE).limit(0).summary(true).as(care)",
+              access_token: accessToken,
+            },
+          });
 
-        return {
-          like: response.data.like?.summary?.total_count || 0,
-          love: response.data.love?.summary?.total_count || 0,
-          wow: response.data.wow?.summary?.total_count || 0,
-          haha: response.data.haha?.summary?.total_count || 0,
-          sad: response.data.sad?.summary?.total_count || 0,
-          angry: response.data.angry?.summary?.total_count || 0,
-          care: response.data.care?.summary?.total_count || 0,
-        };
-      });
-    }, 300);
+          return {
+            like: response.data.like?.summary?.total_count || 0,
+            love: response.data.love?.summary?.total_count || 0,
+            wow: response.data.wow?.summary?.total_count || 0,
+            haha: response.data.haha?.summary?.total_count || 0,
+            sad: response.data.sad?.summary?.total_count || 0,
+            angry: response.data.angry?.summary?.total_count || 0,
+            care: response.data.care?.summary?.total_count || 0,
+          };
+        });
+      },
+      300,
+    );
   }
 
   /**
@@ -238,29 +250,36 @@ export class FacebookService {
   async verifyPageLike(
     userId: string,
     pageId: string,
-    accessToken: string
+    accessToken: string,
   ): Promise<boolean> {
     const cacheKey = `facebook:page-like:${userId}:${pageId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        try {
-          const response = await this.client.get(`/${userId}/likes/${pageId}`, {
-            params: {
-              access_token: accessToken,
-            },
-          });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          try {
+            const response = await this.client.get(
+              `/${userId}/likes/${pageId}`,
+              {
+                params: {
+                  access_token: accessToken,
+                },
+              },
+            );
 
-          return response.data.data && response.data.data.length > 0;
-        } catch (error: any) {
-          // If the endpoint returns 404, user doesn't like the page
-          if (error.statusCode === 404) {
-            return false;
+            return response.data.data && response.data.data.length > 0;
+          } catch (error: any) {
+            // If the endpoint returns 404, user doesn't like the page
+            if (error.statusCode === 404) {
+              return false;
+            }
+            throw error;
           }
-          throw error;
-        }
-      });
-    }, 600);
+        });
+      },
+      600,
+    );
   }
 
   /**
@@ -272,22 +291,26 @@ export class FacebookService {
    */
   async getPageAccessToken(
     pageId: string,
-    userAccessToken: string
+    userAccessToken: string,
   ): Promise<string> {
     const cacheKey = `facebook:page-token:${pageId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        const response = await this.client.get(`/${pageId}`, {
-          params: {
-            fields: 'access_token',
-            access_token: userAccessToken,
-          },
-        });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          const response = await this.client.get(`/${pageId}`, {
+            params: {
+              fields: "access_token",
+              access_token: userAccessToken,
+            },
+          });
 
-        return response.data.access_token;
-      });
-    }, 3600); // Cache for 1 hour
+          return response.data.access_token;
+        });
+      },
+      3600,
+    ); // Cache for 1 hour
   }
 
   /**
@@ -297,7 +320,7 @@ export class FacebookService {
    */
   parsePostUrl(url: string): string {
     // If already a post ID format (page_id_post_id)
-    if (url.includes('_') && !url.includes('/')) {
+    if (url.includes("_") && !url.includes("/")) {
       return url;
     }
 
@@ -320,7 +343,7 @@ export class FacebookService {
     if (match) return match[1];
 
     // If no pattern matches, assume it's already a post ID
-    throw new Error('Invalid Facebook post URL or unable to parse post ID');
+    throw new Error("Invalid Facebook post URL or unable to parse post ID");
   }
 
   /**
@@ -337,7 +360,7 @@ export class FacebookService {
     const appSecret = process.env.FACEBOOK_APP_SECRET;
 
     return RetryHandler.withRetry(async () => {
-      const response = await this.client.get('/debug_token', {
+      const response = await this.client.get("/debug_token", {
         params: {
           input_token: accessToken,
           access_token: `${appId}|${appSecret}`,
@@ -348,7 +371,9 @@ export class FacebookService {
 
       return {
         isValid: data.is_valid,
-        expiresAt: data.expires_at ? new Date(data.expires_at * 1000) : undefined,
+        expiresAt: data.expires_at
+          ? new Date(data.expires_at * 1000)
+          : undefined,
         scopes: data.scopes || [],
       };
     });
@@ -359,18 +384,19 @@ export class FacebookService {
    */
   private handleError(error: any): never {
     const apiError: APIError = {
-      code: error.response?.data?.error?.code || 'UNKNOWN_ERROR',
+      code: error.response?.data?.error?.code || "UNKNOWN_ERROR",
       message: error.response?.data?.error?.message || error.message,
       statusCode: error.response?.status || 500,
-      retryable: error.response?.status >= 500 || error.response?.status === 429,
+      retryable:
+        error.response?.status >= 500 || error.response?.status === 429,
     };
 
     // Parse rate limit info
     if (error.response?.status === 429) {
       const headers = error.response.headers;
       apiError.rateLimit = {
-        limit: parseInt(headers['x-app-usage'] || '0'),
-        remaining: 100 - parseInt(headers['x-app-usage'] || '0'),
+        limit: parseInt(headers["x-app-usage"] || "0"),
+        remaining: 100 - parseInt(headers["x-app-usage"] || "0"),
         resetAt: new Date(Date.now() + 3600000), // Facebook resets hourly
       };
     }

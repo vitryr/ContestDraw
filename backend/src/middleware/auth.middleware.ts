@@ -1,8 +1,8 @@
-import { Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { AuthRequest, JWTPayload } from '../types';
-import config from '../config/config';
-import { logger } from '../utils/logger';
+import { Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { AuthRequest, JWTPayload } from "../types";
+import config from "../config/config";
+import { logger } from "../utils/logger";
 
 /**
  * Middleware to authenticate JWT tokens
@@ -12,16 +12,16 @@ import { logger } from '../utils/logger';
 export const authenticate = async (
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     // Extract token from Authorization header
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       res.status(401).json({
-        status: 'error',
-        message: 'No token provided'
+        status: "error",
+        message: "No token provided",
       });
       return;
     }
@@ -35,34 +35,34 @@ export const authenticate = async (
     req.user = {
       id: decoded.userId,
       email: decoded.email,
-      role: decoded.role
+      role: decoded.role,
     };
 
     next();
   } catch (error: any) {
-    logger.error('Authentication error', { error: error.message });
+    logger.error("Authentication error", { error: error.message });
 
-    if (error.name === 'TokenExpiredError') {
+    if (error.name === "TokenExpiredError") {
       res.status(401).json({
-        status: 'error',
-        message: 'Token expired',
-        code: 'TOKEN_EXPIRED'
+        status: "error",
+        message: "Token expired",
+        code: "TOKEN_EXPIRED",
       });
       return;
     }
 
-    if (error.name === 'JsonWebTokenError') {
+    if (error.name === "JsonWebTokenError") {
       res.status(401).json({
-        status: 'error',
-        message: 'Invalid token',
-        code: 'INVALID_TOKEN'
+        status: "error",
+        message: "Invalid token",
+        code: "INVALID_TOKEN",
       });
       return;
     }
 
     res.status(401).json({
-      status: 'error',
-      message: 'Authentication failed'
+      status: "error",
+      message: "Authentication failed",
     });
   }
 };
@@ -75,16 +75,16 @@ export const authorize = (...roles: string[]) => {
   return (req: AuthRequest, res: Response, next: NextFunction): void => {
     if (!req.user) {
       res.status(401).json({
-        status: 'error',
-        message: 'Not authenticated'
+        status: "error",
+        message: "Not authenticated",
       });
       return;
     }
 
     if (!roles.includes(req.user.role)) {
       res.status(403).json({
-        status: 'error',
-        message: 'Insufficient permissions'
+        status: "error",
+        message: "Insufficient permissions",
       });
       return;
     }
@@ -100,12 +100,12 @@ export const authorize = (...roles: string[]) => {
 export const optionalAuth = async (
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       next();
       return;
     }
@@ -116,7 +116,7 @@ export const optionalAuth = async (
     req.user = {
       id: decoded.userId,
       email: decoded.email,
-      role: decoded.role
+      role: decoded.role,
     };
 
     next();

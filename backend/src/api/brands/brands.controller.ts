@@ -3,12 +3,12 @@
  * Multi-brand account management
  */
 
-import { Request, Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
-import { BrandService } from '../../services/brand.service';
-import { OrganizationService } from '../../services/organization.service';
-import { AuthRequest } from '../../types';
-import { CreateBrandDTO, UpdateBrandDTO } from '../../types/enterprise.types';
+import { Request, Response, NextFunction } from "express";
+import { PrismaClient } from "@prisma/client";
+import { BrandService } from "../../services/brand.service";
+import { OrganizationService } from "../../services/organization.service";
+import { AuthRequest } from "../../types";
+import { CreateBrandDTO, UpdateBrandDTO } from "../../types/enterprise.types";
 
 const prisma = new PrismaClient();
 const brandService = new BrandService(prisma);
@@ -24,39 +24,46 @@ export class BrandsController {
       const userId = req.user?.id;
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
-      const { organizationId, ...data }: CreateBrandDTO & { organizationId: string } = req.body;
+      const {
+        organizationId,
+        ...data
+      }: CreateBrandDTO & { organizationId: string } = req.body;
 
       if (!organizationId) {
         return res.status(400).json({
-          status: 'error',
-          message: 'organizationId is required'
+          status: "error",
+          message: "organizationId is required",
         });
       }
 
       // Check permissions
       const permissions = await organizationService.getUserPermissions(
         organizationId,
-        userId
+        userId,
       );
 
       if (!permissions.canManageBrands) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Insufficient permissions'
+          status: "error",
+          message: "Insufficient permissions",
         });
       }
 
-      const brand = await brandService.createBrand(organizationId, userId, data);
+      const brand = await brandService.createBrand(
+        organizationId,
+        userId,
+        data,
+      );
 
       res.status(201).json({
-        status: 'success',
+        status: "success",
         data: brand,
-        message: 'Brand created successfully'
+        message: "Brand created successfully",
       });
     } catch (error: any) {
       next(error);
@@ -74,8 +81,8 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
@@ -83,27 +90,27 @@ export class BrandsController {
 
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check if user has access
       const isMember = await organizationService.isMember(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!isMember) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Access denied'
+          status: "error",
+          message: "Access denied",
         });
       }
 
       res.json({
-        status: 'success',
-        data: brand
+        status: "success",
+        data: brand,
       });
     } catch (error: any) {
       next(error);
@@ -120,16 +127,16 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brands = await brandService.getUserBrands(userId);
 
       res.json({
-        status: 'success',
-        data: brands
+        status: "success",
+        data: brands,
       });
     } catch (error: any) {
       next(error);
@@ -148,38 +155,38 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check permissions
       const permissions = await organizationService.getUserPermissions(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!permissions.canManageBrands) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Insufficient permissions'
+          status: "error",
+          message: "Insufficient permissions",
         });
       }
 
       const updatedBrand = await brandService.updateBrand(id, data);
 
       res.json({
-        status: 'success',
+        status: "success",
         data: updatedBrand,
-        message: 'Brand updated successfully'
+        message: "Brand updated successfully",
       });
     } catch (error: any) {
       next(error);
@@ -197,37 +204,37 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check permissions
       const permissions = await organizationService.getUserPermissions(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!permissions.canManageBrands) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Insufficient permissions'
+          status: "error",
+          message: "Insufficient permissions",
         });
       }
 
       await brandService.deleteBrand(id);
 
       res.json({
-        status: 'success',
-        message: 'Brand deleted successfully'
+        status: "success",
+        message: "Brand deleted successfully",
       });
     } catch (error: any) {
       next(error);
@@ -241,7 +248,7 @@ export class BrandsController {
   async connectSocialAccount(
     req: AuthRequest,
     res: Response,
-    next: NextFunction
+    next: NextFunction,
   ) {
     try {
       const { id } = req.params;
@@ -250,37 +257,37 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check permissions
       const permissions = await organizationService.getUserPermissions(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!permissions.canManageBrands) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Insufficient permissions'
+          status: "error",
+          message: "Insufficient permissions",
         });
       }
 
       await brandService.connectSocialAccount(id, socialAccountId);
 
       res.json({
-        status: 'success',
-        message: 'Social account connected successfully'
+        status: "success",
+        message: "Social account connected successfully",
       });
     } catch (error: any) {
       next(error);
@@ -291,48 +298,44 @@ export class BrandsController {
    * Get brand social accounts
    * GET /api/brands/:id/social-accounts
    */
-  async getSocialAccounts(
-    req: AuthRequest,
-    res: Response,
-    next: NextFunction
-  ) {
+  async getSocialAccounts(req: AuthRequest, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;
       const userId = req.user?.id;
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check access
       const isMember = await organizationService.isMember(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!isMember) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Access denied'
+          status: "error",
+          message: "Access denied",
         });
       }
 
       const accounts = await brandService.getBrandSocialAccounts(id);
 
       res.json({
-        status: 'success',
-        data: accounts
+        status: "success",
+        data: accounts,
       });
     } catch (error: any) {
       next(error);
@@ -350,37 +353,37 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check access
       const isMember = await organizationService.isMember(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!isMember) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Access denied'
+          status: "error",
+          message: "Access denied",
         });
       }
 
       const draws = await brandService.getBrandDraws(id);
 
       res.json({
-        status: 'success',
-        data: draws
+        status: "success",
+        data: draws,
       });
     } catch (error: any) {
       next(error);
@@ -399,37 +402,37 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check permissions
       const permissions = await organizationService.getUserPermissions(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!permissions.canManageBrands) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Insufficient permissions'
+          status: "error",
+          message: "Insufficient permissions",
         });
       }
 
       await brandService.assignDrawToBrand(id, drawId);
 
       res.json({
-        status: 'success',
-        message: 'Draw assigned to brand successfully'
+        status: "success",
+        message: "Draw assigned to brand successfully",
       });
     } catch (error: any) {
       next(error);
@@ -447,37 +450,37 @@ export class BrandsController {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const brand = await brandService.getBrand(id);
       if (!brand) {
         return res.status(404).json({
-          status: 'error',
-          message: 'Brand not found'
+          status: "error",
+          message: "Brand not found",
         });
       }
 
       // Check access
       const isMember = await organizationService.isMember(
         brand.organizationId,
-        userId
+        userId,
       );
 
       if (!isMember) {
         return res.status(403).json({
-          status: 'error',
-          message: 'Access denied'
+          status: "error",
+          message: "Access denied",
         });
       }
 
       const analytics = await brandService.getBrandAnalytics(id);
 
       res.json({
-        status: 'success',
-        data: analytics
+        status: "success",
+        data: analytics,
       });
     } catch (error: any) {
       next(error);

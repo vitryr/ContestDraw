@@ -1,68 +1,68 @@
-import { motion } from 'framer-motion';
-import { Check, Zap } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useAuthStore } from '../store/useAuthStore';
+import { motion } from "framer-motion";
+import { Check, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useAuthStore } from "../store/useAuthStore";
 
 export default function PricingPage() {
   const { user } = useAuthStore();
 
   const packs = [
     {
-      id: 'starter',
-      name: 'Starter',
+      id: "starter",
+      name: "Starter",
       credits: 10,
       price: 9,
       popular: false,
       features: [
-        '10 contest draws',
-        'Up to 1,000 participants per draw',
-        'Basic filters',
-        'Video export',
-        'Digital certificates',
+        "10 contest draws",
+        "Up to 1,000 participants per draw",
+        "Basic filters",
+        "Video export",
+        "Digital certificates",
       ],
     },
     {
-      id: 'pro',
-      name: 'Professional',
+      id: "pro",
+      name: "Professional",
       credits: 50,
       price: 39,
       popular: true,
       features: [
-        '50 contest draws',
-        'Up to 10,000 participants per draw',
-        'Advanced filters',
-        'Priority video export',
-        'Custom certificates',
-        'Email support',
+        "50 contest draws",
+        "Up to 10,000 participants per draw",
+        "Advanced filters",
+        "Priority video export",
+        "Custom certificates",
+        "Email support",
       ],
     },
     {
-      id: 'business',
-      name: 'Business',
+      id: "business",
+      name: "Business",
       credits: 200,
       price: 129,
       popular: false,
       features: [
-        '200 contest draws',
-        'Unlimited participants',
-        'All filter options',
-        'Instant video export',
-        'Custom branding',
-        'Priority support',
-        'API access',
+        "200 contest draws",
+        "Unlimited participants",
+        "All filter options",
+        "Instant video export",
+        "Custom branding",
+        "Priority support",
+        "API access",
       ],
     },
   ];
 
   const features = [
-    'Fair and transparent draws',
-    'Automated video generation',
-    'Digital certificates',
-    'Social media integration',
-    'Advanced filtering',
-    'Duplicate detection',
-    'Audit trail',
-    'Export results',
+    "Fair and transparent draws",
+    "Automated video generation",
+    "Digital certificates",
+    "Social media integration",
+    "Advanced filtering",
+    "Duplicate detection",
+    "Audit trail",
+    "Export results",
   ];
 
   return (
@@ -97,8 +97,8 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className={`relative rounded-2xl border-2 p-8 ${
                   pack.popular
-                    ? 'border-primary-600 shadow-xl scale-105'
-                    : 'border-gray-200 shadow-lg'
+                    ? "border-primary-600 shadow-xl scale-105"
+                    : "border-gray-200 shadow-lg"
                 }`}
               >
                 {pack.popular && (
@@ -109,9 +109,13 @@ export default function PricingPage() {
                 )}
 
                 <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">{pack.name}</h3>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    {pack.name}
+                  </h3>
                   <div className="flex items-baseline justify-center gap-2 mb-4">
-                    <span className="text-5xl font-bold text-gray-900">${pack.price}</span>
+                    <span className="text-5xl font-bold text-gray-900">
+                      ${pack.price}
+                    </span>
                   </div>
                   <p className="text-gray-600">{pack.credits} credits</p>
                 </div>
@@ -126,14 +130,14 @@ export default function PricingPage() {
                 </ul>
 
                 <Link
-                  to={user ? '/dashboard' : '/auth'}
+                  to={user ? "/dashboard" : "/auth"}
                   className={`block w-full text-center py-3 rounded-lg font-semibold transition-colors ${
                     pack.popular
-                      ? 'bg-primary-600 text-white hover:bg-primary-700'
-                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
+                      ? "bg-primary-600 text-white hover:bg-primary-700"
+                      : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                   }`}
                 >
-                  {user ? 'Buy Credits' : 'Get Started'}
+                  {user ? "Buy Credits" : "Get Started"}
                 </Link>
               </motion.div>
             ))}
@@ -188,8 +192,9 @@ export default function PricingPage() {
                 How do credits work?
               </h3>
               <p className="text-gray-600">
-                Each contest draw uses 1 credit. You can run draws for any number of participants
-                and winners with a single credit. Credits never expire.
+                Each contest draw uses 1 credit. You can run draws for any
+                number of participants and winners with a single credit. Credits
+                never expire.
               </p>
             </div>
 
@@ -198,8 +203,8 @@ export default function PricingPage() {
                 Can I get a refund?
               </h3>
               <p className="text-gray-600">
-                Yes! We offer a 30-day money-back guarantee. If you're not satisfied, contact us
-                for a full refund.
+                Yes! We offer a 30-day money-back guarantee. If you're not
+                satisfied, contact us for a full refund.
               </p>
             </div>
 
@@ -208,7 +213,8 @@ export default function PricingPage() {
                 What payment methods do you accept?
               </h3>
               <p className="text-gray-600">
-                We accept all major credit cards (Visa, Mastercard, American Express) and PayPal.
+                We accept all major credit cards (Visa, Mastercard, American
+                Express) and PayPal.
               </p>
             </div>
 
@@ -217,8 +223,8 @@ export default function PricingPage() {
                 Is there a free trial?
               </h3>
               <p className="text-gray-600">
-                Yes! New users get 3 free credits to try the service. No credit card required for
-                the trial.
+                Yes! New users get 3 free credits to try the service. No credit
+                card required for the trial.
               </p>
             </div>
           </div>
@@ -235,10 +241,10 @@ export default function PricingPage() {
             Create fair, transparent contest draws in minutes
           </p>
           <Link
-            to={user ? '/dashboard' : '/auth'}
+            to={user ? "/dashboard" : "/auth"}
             className="inline-block bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
-            {user ? 'Go to Dashboard' : 'Start Free Trial'}
+            {user ? "Go to Dashboard" : "Start Free Trial"}
           </Link>
         </div>
       </section>

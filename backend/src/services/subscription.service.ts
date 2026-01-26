@@ -3,18 +3,18 @@
  * Handles subscription status checks, grace periods, limits, and credit allocation
  */
 
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import {
   SubscriptionStatus,
   SubscriptionPlan,
-  Subscription
-} from '../types/payment.types';
+  Subscription,
+} from "../types/payment.types";
 
 export class SubscriptionService {
   constructor(
     private db: any,
     private paymentService: any,
-    private emailService: any
+    private emailService: any,
   ) {}
 
   /**
@@ -33,10 +33,14 @@ export class SubscriptionService {
       where: {
         userId,
         status: {
-          in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING, SubscriptionStatus.GRACE_PERIOD]
-        }
+          in: [
+            SubscriptionStatus.ACTIVE,
+            SubscriptionStatus.TRIALING,
+            SubscriptionStatus.GRACE_PERIOD,
+          ],
+        },
       },
-      orderBy: { createdAt: 'desc' }
+      orderBy: { createdAt: "desc" },
     });
 
     return subscription;
@@ -62,13 +66,15 @@ export class SubscriptionService {
         plan: null,
         daysRemaining: 0,
         connectedAccountsLimit: 0,
-        creditsPerMonth: 0
+        creditsPerMonth: 0,
       };
     }
 
     const now = new Date();
     const endDate = new Date(subscription.currentPeriodEnd);
-    const daysRemaining = Math.ceil((endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    const daysRemaining = Math.ceil(
+      (endDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+    );
 
     return {
       hasSubscription: true,
@@ -76,7 +82,7 @@ export class SubscriptionService {
       plan: subscription.plan,
       daysRemaining,
       connectedAccountsLimit: subscription.connectedAccountsLimit || 0,
-      creditsPerMonth: subscription.creditsPerMonth || 0
+      creditsPerMonth: subscription.creditsPerMonth || 0,
     };
   }
 
@@ -89,13 +95,13 @@ export class SubscriptionService {
     if (!subscription) {
       // Free users can connect 1 account
       const connectedAccounts = await this.db.connectedAccount.count({
-        where: { userId }
+        where: { userId },
       });
       return connectedAccounts < 1;
     }
 
     const connectedAccounts = await this.db.connectedAccount.count({
-      where: { userId }
+      where: { userId },
     });
 
     return connectedAccounts < (subscription.connectedAccountsLimit || 0);
@@ -115,15 +121,17 @@ export class SubscriptionService {
    */
   async allocateMonthlyCredits(subscriptionId: string): Promise<void> {
     const subscription = await this.db.subscription.findUnique({
-      where: { id: subscriptionId }
+      where: { id: subscriptionId },
     });
 
     if (!subscription) {
-      throw new Error('Subscription not found');
+      throw new Error("Subscription not found");
     }
 
     if (subscription.status !== SubscriptionStatus.ACTIVE) {
-      console.log(`[Subscription] Skipping credit allocation for inactive subscription ${subscriptionId}`);
+      console.log(
+        `[Subscription] Skipping credit allocation for inactive subscription ${subscriptionId}`,
+      );
       return;
     }
 
@@ -132,11 +140,13 @@ export class SubscriptionService {
       await this.paymentService.addCredits(
         subscription.userId,
         credits,
-        'Monthly subscription credits',
-        { subscriptionId, period: new Date().toISOString() }
+        "Monthly subscription credits",
+        { subscriptionId, period: new Date().toISOString() },
       );
 
-      console.log(`[Subscription] Allocated ${credits} credits to user ${subscription.userId}`);
+      console.log(
+        `[Subscription] Allocated ${credits} credits to user ${subscription.userId}`,
+      );
     }
   }
 
@@ -152,9 +162,9 @@ export class SubscriptionService {
       where: {
         status: SubscriptionStatus.ACTIVE,
         currentPeriodEnd: {
-          lt: now
-        }
-      }
+          lt: now,
+        },
+      },
     });
 
     for (const subscription of pastDueSubscriptions) {
@@ -167,29 +177,31 @@ export class SubscriptionService {
           where: { id: subscription.id },
           data: {
             status: SubscriptionStatus.GRACE_PERIOD,
-            updatedAt: new Date()
-          }
+            updatedAt: new Date(),
+          },
         });
 
         await this.emailService.sendSubscriptionGracePeriod(
           subscription.userId,
-          subscription
+          subscription,
         );
 
-        console.log(`[Subscription] Subscription ${subscription.id} entered grace period`);
+        console.log(
+          `[Subscription] Subscription ${subscription.id} entered grace period`,
+        );
       } else {
         // Grace period expired
         await this.db.subscription.update({
           where: { id: subscription.id },
           data: {
             status: SubscriptionStatus.EXPIRED,
-            updatedAt: new Date()
-          }
+            updatedAt: new Date(),
+          },
         });
 
         await this.emailService.sendSubscriptionExpired(
           subscription.userId,
-          subscription
+          subscription,
         );
 
         console.log(`[Subscription] Subscription ${subscription.id} expired`);
@@ -200,13 +212,16 @@ export class SubscriptionService {
   /**
    * Handle failed subscription payment
    */
-  async handleFailedPayment(subscriptionId: string, reason: string): Promise<void> {
+  async handleFailedPayment(
+    subscriptionId: string,
+    reason: string,
+  ): Promise<void> {
     const subscription = await this.db.subscription.findUnique({
-      where: { id: subscriptionId }
+      where: { id: subscriptionId },
     });
 
     if (!subscription) {
-      throw new Error('Subscription not found');
+      throw new Error("Subscription not found");
     }
 
     await this.db.subscription.update({
@@ -217,16 +232,18 @@ export class SubscriptionService {
           ...subscription.metadata,
           lastPaymentFailure: {
             date: new Date().toISOString(),
-            reason
-          }
+            reason,
+          },
         },
-        updatedAt: new Date()
-      }
+        updatedAt: new Date(),
+      },
     });
 
     await this.emailService.sendPaymentFailed(subscription.userId, { reason });
 
-    console.log(`[Subscription] Payment failed for subscription ${subscriptionId}: ${reason}`);
+    console.log(
+      `[Subscription] Payment failed for subscription ${subscriptionId}: ${reason}`,
+    );
   }
 
   /**
@@ -242,32 +259,39 @@ export class SubscriptionService {
       where: {
         userId,
         type: {
-          in: ['SUBSCRIPTION_CHARGE', 'SUBSCRIPTION_RENEWAL']
+          in: ["SUBSCRIPTION_CHARGE", "SUBSCRIPTION_RENEWAL"],
         },
-        status: 'COMPLETED'
-      }
+        status: "COMPLETED",
+      },
     });
 
     const totalSpent = transactions.reduce((sum, tx) => sum + tx.amount, 0);
-    const totalCreditsReceived = transactions.reduce((sum, tx) => sum + tx.credits, 0);
+    const totalCreditsReceived = transactions.reduce(
+      (sum, tx) => sum + tx.credits,
+      0,
+    );
 
     const firstSubscription = await this.db.subscription.findFirst({
       where: { userId },
-      orderBy: { createdAt: 'asc' }
+      orderBy: { createdAt: "asc" },
     });
 
     const subscriptionDuration = firstSubscription
-      ? Math.ceil((Date.now() - firstSubscription.createdAt.getTime()) / (1000 * 60 * 60 * 24))
+      ? Math.ceil(
+          (Date.now() - firstSubscription.createdAt.getTime()) /
+            (1000 * 60 * 60 * 24),
+        )
       : 0;
 
     const monthsActive = subscriptionDuration / 30;
-    const averageCreditsPerMonth = monthsActive > 0 ? totalCreditsReceived / monthsActive : 0;
+    const averageCreditsPerMonth =
+      monthsActive > 0 ? totalCreditsReceived / monthsActive : 0;
 
     return {
       totalSpent,
       totalCreditsReceived,
       subscriptionDuration,
-      averageCreditsPerMonth: Math.round(averageCreditsPerMonth)
+      averageCreditsPerMonth: Math.round(averageCreditsPerMonth),
     };
   }
 
@@ -291,21 +315,23 @@ export class SubscriptionService {
           status: SubscriptionStatus.ACTIVE,
           currentPeriodEnd: {
             gte: targetDate,
-            lt: nextDay
+            lt: nextDay,
           },
-          cancelAtPeriodEnd: false
-        }
+          cancelAtPeriodEnd: false,
+        },
       });
 
       for (const subscription of subscriptions) {
         // Check if reminder already sent
-        const reminderSent = subscription.metadata?.remindersSent?.includes(`${days}days`);
+        const reminderSent = subscription.metadata?.remindersSent?.includes(
+          `${days}days`,
+        );
 
         if (!reminderSent) {
           await this.emailService.sendSubscriptionRenewalReminder(
             subscription.userId,
             subscription,
-            days
+            days,
           );
 
           // Mark reminder as sent
@@ -316,13 +342,15 @@ export class SubscriptionService {
                 ...subscription.metadata,
                 remindersSent: [
                   ...(subscription.metadata?.remindersSent || []),
-                  `${days}days`
-                ]
-              }
-            }
+                  `${days}days`,
+                ],
+              },
+            },
           });
 
-          console.log(`[Subscription] Sent ${days}-day renewal reminder for subscription ${subscription.id}`);
+          console.log(
+            `[Subscription] Sent ${days}-day renewal reminder for subscription ${subscription.id}`,
+          );
         }
       }
     }
@@ -346,14 +374,14 @@ export class SubscriptionService {
         connectedAccounts: 3,
         prioritySupport: false,
         advancedAnalytics: true,
-        apiAccess: false
+        apiAccess: false,
       },
       [SubscriptionPlan.ANNUAL]: {
         creditsPerMonth: 120,
         connectedAccounts: 5,
         prioritySupport: true,
         advancedAnalytics: true,
-        apiAccess: true
+        apiAccess: true,
       },
       [SubscriptionPlan.ENTERPRISE]: {
         creditsPerMonth: 30,
@@ -362,7 +390,7 @@ export class SubscriptionService {
         advancedAnalytics: true,
         apiAccess: true,
         whiteLabelBranding: true,
-        maxSubAccounts: 10
+        maxSubAccounts: 10,
       },
       [SubscriptionPlan.PASS_48H]: {
         creditsPerMonth: 0,
@@ -371,8 +399,8 @@ export class SubscriptionService {
         advancedAnalytics: false,
         apiAccess: false,
         unlimitedDraws: true,
-        duration: '48 hours'
-      }
+        duration: "48 hours",
+      },
     };
 
     return features[plan];
@@ -387,12 +415,12 @@ export class SubscriptionService {
         userId,
         plan: SubscriptionPlan.PASS_48H,
         status: {
-          in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING]
+          in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING],
         },
         currentPeriodEnd: {
-          gte: new Date()
-        }
-      }
+          gte: new Date(),
+        },
+      },
     });
 
     return subscription !== null;
@@ -409,12 +437,12 @@ export class SubscriptionService {
       where: {
         plan: SubscriptionPlan.PASS_48H,
         status: {
-          in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING]
+          in: [SubscriptionStatus.ACTIVE, SubscriptionStatus.TRIALING],
         },
         currentPeriodEnd: {
-          lt: now
-        }
-      }
+          lt: now,
+        },
+      },
     });
 
     for (const pass of expiredPasses) {
@@ -422,13 +450,15 @@ export class SubscriptionService {
         where: { id: pass.id },
         data: {
           status: SubscriptionStatus.EXPIRED,
-          updatedAt: new Date()
-        }
+          updatedAt: new Date(),
+        },
       });
 
       await this.emailService.send48HPassExpired(pass.userId, pass);
 
-      console.log(`[Subscription] 48h pass ${pass.id} expired for user ${pass.userId}`);
+      console.log(
+        `[Subscription] 48h pass ${pass.id} expired for user ${pass.userId}`,
+      );
     }
   }
 
@@ -445,7 +475,7 @@ export class SubscriptionService {
   async createEnterpriseSubscription(
     organizationId: string,
     ownerId: string,
-    stripeSubscriptionId?: string
+    stripeSubscriptionId?: string,
   ): Promise<Subscription> {
     const now = new Date();
     const periodEnd = new Date(now);
@@ -462,10 +492,10 @@ export class SubscriptionService {
         monthlyCredits: 30,
         stripeSubscriptionId,
         metadata: {
-          tier: 'enterprise',
-          features: this.getSubscriptionFeatures(SubscriptionPlan.ENTERPRISE)
-        }
-      }
+          tier: "enterprise",
+          features: this.getSubscriptionFeatures(SubscriptionPlan.ENTERPRISE),
+        },
+      },
     });
   }
 
@@ -479,18 +509,18 @@ export class SubscriptionService {
   } {
     return {
       monthly: 49, // €49/month
-      currency: 'EUR',
+      currency: "EUR",
       features: [
-        'Up to 10 sub-accounts',
-        'Multi-brand management',
-        'White-label customization',
-        'Custom domain',
-        'Priority support',
-        'Advanced analytics',
-        'API access',
-        'Centralized billing',
-        'Custom branding removal'
-      ]
+        "Up to 10 sub-accounts",
+        "Multi-brand management",
+        "White-label customization",
+        "Custom domain",
+        "Priority support",
+        "Advanced analytics",
+        "API access",
+        "Centralized billing",
+        "Custom branding removal",
+      ],
     };
   }
 }

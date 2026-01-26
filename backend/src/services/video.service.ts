@@ -18,7 +18,9 @@ export const generateDrawVideo = async (draw: any): Promise<Buffer> => {
   // 4. Encode frames to MP4 using ffmpeg
   // 5. Return video buffer
 
-  throw new Error('Video generation not yet implemented. Requires ffmpeg integration.');
+  throw new Error(
+    "Video generation not yet implemented. Requires ffmpeg integration.",
+  );
 };
 
 /**
@@ -34,7 +36,9 @@ export const generateDrawThumbnail = async (draw: any): Promise<Buffer> => {
   // 3. Render to PNG
   // 4. Return image buffer
 
-  throw new Error('Thumbnail generation not yet implemented. Requires canvas library.');
+  throw new Error(
+    "Thumbnail generation not yet implemented. Requires canvas library.",
+  );
 };
 
 /**
@@ -47,7 +51,7 @@ export interface VideoConfig {
   duration: number;
   backgroundColor: string;
   textColor: string;
-  animationSpeed: 'slow' | 'medium' | 'fast';
+  animationSpeed: "slow" | "medium" | "fast";
 }
 
 /**
@@ -58,7 +62,7 @@ export const defaultVideoConfig: VideoConfig = {
   height: 1080,
   fps: 30,
   duration: 10, // seconds
-  backgroundColor: '#1a1a2e',
-  textColor: '#ffffff',
-  animationSpeed: 'medium'
+  backgroundColor: "#1a1a2e",
+  textColor: "#ffffff",
+  animationSpeed: "medium",
 };

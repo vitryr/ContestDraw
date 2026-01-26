@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { body, param, query } from 'express-validator';
-import { authenticate } from '../../middleware/auth.middleware';
-import { validate } from '../../middleware/validation.middleware';
-import { drawExecutionLimiter } from '../../middleware/rate-limit.middleware';
-import * as drawsController from './draws.controller';
+import { Router } from "express";
+import { body, param, query } from "express-validator";
+import { authenticate } from "../../middleware/auth.middleware";
+import { validate } from "../../middleware/validation.middleware";
+import { drawExecutionLimiter } from "../../middleware/rate-limit.middleware";
+import * as drawsController from "./draws.controller";
 
 const router = Router();
 
@@ -15,20 +15,41 @@ router.use(authenticate);
  * Create a new draw
  */
 router.post(
-  '/',
+  "/",
   validate([
-    body('title').trim().notEmpty().withMessage('Title is required').isLength({ max: 200 }),
-    body('description').optional().trim().isLength({ max: 1000 }),
-    body('numberOfWinners').isInt({ min: 1, max: 100 }).withMessage('Number of winners must be between 1 and 100'),
-    body('participants').optional().isArray().withMessage('Participants must be an array'),
-    body('participants.*.name').optional().trim().notEmpty().withMessage('Participant name is required'),
-    body('participants.*.identifier').optional().trim().notEmpty().withMessage('Participant identifier is required'),
-    body('allowDuplicates').optional().isBoolean(),
-    body('status').optional().isIn(['draft', 'configured', 'ready']),
-    body('platform').optional().trim(),
-    body('postUrl').optional().trim().isURL().withMessage('Post URL must be valid')
+    body("title")
+      .trim()
+      .notEmpty()
+      .withMessage("Title is required")
+      .isLength({ max: 200 }),
+    body("description").optional().trim().isLength({ max: 1000 }),
+    body("numberOfWinners")
+      .isInt({ min: 1, max: 100 })
+      .withMessage("Number of winners must be between 1 and 100"),
+    body("participants")
+      .optional()
+      .isArray()
+      .withMessage("Participants must be an array"),
+    body("participants.*.name")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Participant name is required"),
+    body("participants.*.identifier")
+      .optional()
+      .trim()
+      .notEmpty()
+      .withMessage("Participant identifier is required"),
+    body("allowDuplicates").optional().isBoolean(),
+    body("status").optional().isIn(["draft", "configured", "ready"]),
+    body("platform").optional().trim(),
+    body("postUrl")
+      .optional()
+      .trim()
+      .isURL()
+      .withMessage("Post URL must be valid"),
   ]),
-  drawsController.createDraw
+  drawsController.createDraw,
 );
 
 /**
@@ -36,15 +57,17 @@ router.post(
  * List user draws with pagination
  */
 router.get(
-  '/',
+  "/",
   validate([
-    query('page').optional().isInt({ min: 1 }).toInt(),
-    query('limit').optional().isInt({ min: 1, max: 100 }).toInt(),
-    query('status').optional().isIn(['DRAFT', 'READY', 'PROCESSING', 'COMPLETED', 'FAILED']),
-    query('sortBy').optional().isIn(['createdAt', 'title', 'numberOfWinners']),
-    query('sortOrder').optional().isIn(['asc', 'desc'])
+    query("page").optional().isInt({ min: 1 }).toInt(),
+    query("limit").optional().isInt({ min: 1, max: 100 }).toInt(),
+    query("status")
+      .optional()
+      .isIn(["DRAFT", "READY", "PROCESSING", "COMPLETED", "FAILED"]),
+    query("sortBy").optional().isIn(["createdAt", "title", "numberOfWinners"]),
+    query("sortOrder").optional().isIn(["asc", "desc"]),
   ]),
-  drawsController.listDraws
+  drawsController.listDraws,
 );
 
 /**
@@ -52,11 +75,9 @@ router.get(
  * Get draw details
  */
 router.get(
-  '/:id',
-  validate([
-    param('id').isUUID().withMessage('Invalid draw ID')
-  ]),
-  drawsController.getDrawById
+  "/:id",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.getDrawById,
 );
 
 /**
@@ -64,11 +85,9 @@ router.get(
  * Delete a draw
  */
 router.delete(
-  '/:id',
-  validate([
-    param('id').isUUID().withMessage('Invalid draw ID')
-  ]),
-  drawsController.deleteDraw
+  "/:id",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.deleteDraw,
 );
 
 /**
@@ -76,14 +95,14 @@ router.delete(
  * Execute the draw algorithm
  */
 router.post(
-  '/:id/execute',
+  "/:id/execute",
   drawExecutionLimiter,
   validate([
-    param('id').isUUID().withMessage('Invalid draw ID'),
-    body('algorithm').optional().isIn(['crypto-random', 'fisher-yates']),
-    body('seed').optional().trim()
+    param("id").isUUID().withMessage("Invalid draw ID"),
+    body("algorithm").optional().isIn(["crypto-random", "fisher-yates"]),
+    body("seed").optional().trim(),
   ]),
-  drawsController.executeDraw
+  drawsController.executeDraw,
 );
 
 /**
@@ -91,11 +110,9 @@ router.post(
  * Generate certificate PDF
  */
 router.get(
-  '/:id/certificate',
-  validate([
-    param('id').isUUID().withMessage('Invalid draw ID')
-  ]),
-  drawsController.generateCertificate
+  "/:id/certificate",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.generateCertificate,
 );
 
 /**
@@ -103,12 +120,14 @@ router.get(
  * Export draw results to CSV/XLS
  */
 router.post(
-  '/:id/export',
+  "/:id/export",
   validate([
-    param('id').isUUID().withMessage('Invalid draw ID'),
-    body('format').isIn(['csv', 'xlsx']).withMessage('Format must be csv or xlsx')
+    param("id").isUUID().withMessage("Invalid draw ID"),
+    body("format")
+      .isIn(["csv", "xlsx"])
+      .withMessage("Format must be csv or xlsx"),
   ]),
-  drawsController.exportResults
+  drawsController.exportResults,
 );
 
 export default router;

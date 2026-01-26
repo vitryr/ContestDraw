@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { logError } from '../utils/logger';
-import { ErrorResponse } from '../types';
+import { Request, Response, NextFunction } from "express";
+import { logError } from "../utils/logger";
+import { ErrorResponse } from "../types";
 
 /**
  * Custom application error class
@@ -27,7 +27,7 @@ export class ValidationError extends AppError {
   public errors: Array<{ field: string; message: string }>;
 
   constructor(errors: Array<{ field: string; message: string }>) {
-    super('Validation failed', 400, 'VALIDATION_ERROR');
+    super("Validation failed", 400, "VALIDATION_ERROR");
     this.errors = errors;
   }
 }
@@ -40,11 +40,11 @@ export const errorMiddleware = (
   err: Error | AppError | ValidationError,
   req: Request,
   res: Response,
-  _next: NextFunction
+  _next: NextFunction,
 ): void => {
   // Default error values
   let statusCode = 500;
-  let message = 'Internal server error';
+  let message = "Internal server error";
   let code: string | undefined;
   let errors: Array<{ field: string; message: string }> | undefined;
 
@@ -58,35 +58,35 @@ export const errorMiddleware = (
     statusCode = err.statusCode;
     message = err.message;
     code = err.code;
-  } else if (err.name === 'JsonWebTokenError') {
+  } else if (err.name === "JsonWebTokenError") {
     statusCode = 401;
-    message = 'Invalid token';
-    code = 'INVALID_TOKEN';
-  } else if (err.name === 'TokenExpiredError') {
+    message = "Invalid token";
+    code = "INVALID_TOKEN";
+  } else if (err.name === "TokenExpiredError") {
     statusCode = 401;
-    message = 'Token expired';
-    code = 'TOKEN_EXPIRED';
+    message = "Token expired";
+    code = "TOKEN_EXPIRED";
   }
 
   // Log error
-  logError('Error occurred', err, {
+  logError("Error occurred", err, {
     statusCode,
     code,
     path: req.path,
     method: req.method,
-    ip: req.ip
+    ip: req.ip,
   });
 
   // Send error response
   const response: ErrorResponse = {
-    status: 'error',
+    status: "error",
     message,
     ...(code && { code }),
-    ...(errors && { errors })
+    ...(errors && { errors }),
   };
 
   // Include stack trace in development
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV === "development") {
     (response as any).stack = err.stack;
   }
 
@@ -97,7 +97,7 @@ export const errorMiddleware = (
  * Async handler wrapper to catch errors in async route handlers
  */
 export const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>
+  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>,
 ) => {
   return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);

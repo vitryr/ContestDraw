@@ -1,19 +1,19 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { useAuthStore } from './store/useAuthStore';
-import Layout from './components/Layout';
-import LandingPage from './pages/LandingPage';
-import AuthPageEnhanced from './pages/AuthPageEnhanced';
-import EmailVerificationPage from './pages/EmailVerificationPage';
-import DashboardPage from './pages/DashboardPage';
-import NewDrawPage from './pages/NewDrawPage';
-import DrawConfigPage from './pages/DrawConfigPage';
-import DrawExecutionPage from './pages/DrawExecutionPage';
-import ResultsPage from './pages/ResultsPage';
-import PricingPage from './pages/PricingPage';
-import ProfilePage from './pages/ProfilePage';
-import PublicVerifyPage from './pages/PublicVerifyPage';
-import EmbedVerifyPage from './pages/EmbedVerifyPage';
-import FAQPage from './pages/FAQPage';
+import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuthStore } from "./store/useAuthStore";
+import Layout from "./components/Layout";
+import LandingPage from "./pages/LandingPage";
+import AuthPageEnhanced from "./pages/AuthPageEnhanced";
+import EmailVerificationPage from "./pages/EmailVerificationPage";
+import DashboardPage from "./pages/DashboardPage";
+import NewDrawPage from "./pages/NewDrawPage";
+import DrawConfigPage from "./pages/DrawConfigPage";
+import DrawExecutionPage from "./pages/DrawExecutionPage";
+import ResultsPage from "./pages/ResultsPage";
+import PricingPage from "./pages/PricingPage";
+import ProfilePage from "./pages/ProfilePage";
+import PublicVerifyPage from "./pages/PublicVerifyPage";
+import EmbedVerifyPage from "./pages/EmbedVerifyPage";
+import FAQPage from "./pages/FAQPage";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuthStore();

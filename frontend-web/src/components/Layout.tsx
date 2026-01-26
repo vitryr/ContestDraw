@@ -1,13 +1,13 @@
-import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Trophy, Menu, X, User, LogOut, CreditCard } from 'lucide-react';
-import { useEffect, useState, ReactNode } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
-import { useCreditsStore } from '../store/useCreditsStore';
-import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
-import OnboardingModal from './OnboardingModal';
-import { navigateAndScroll } from '../utils/scrollUtils';
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { Trophy, Menu, X, User, LogOut, CreditCard } from "lucide-react";
+import { useEffect, useState, ReactNode } from "react";
+import { useAuthStore } from "../store/useAuthStore";
+import { useCreditsStore } from "../store/useCreditsStore";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
+import OnboardingModal from "./OnboardingModal";
+import { navigateAndScroll } from "../utils/scrollUtils";
 
 interface LayoutProps {
   children?: ReactNode;
@@ -33,10 +33,10 @@ export default function Layout({ children }: LayoutProps = {}) {
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
   };
 
-  const isLandingPage = location.pathname === '/';
+  const isLandingPage = location.pathname === "/";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -48,23 +48,33 @@ export default function Layout({ children }: LayoutProps = {}) {
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
               <Trophy className="w-8 h-8 text-primary-600" />
-              <span className="text-xl font-bold text-gray-900">{t('app.name')}</span>
+              <span className="text-xl font-bold text-gray-900">
+                {t("app.name")}
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-6">
               {user ? (
                 <>
-                  <Link to="/dashboard" className="text-gray-700 hover:text-primary-600 transition-colors">
-                    {t('nav.dashboard')}
+                  <Link
+                    to="/dashboard"
+                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                  >
+                    {t("nav.dashboard")}
                   </Link>
-                  <Link to="/pricing" className="text-gray-700 hover:text-primary-600 transition-colors">
-                    {t('nav.pricing')}
+                  <Link
+                    to="/pricing"
+                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                  >
+                    {t("nav.pricing")}
                   </Link>
 
                   <div className="flex items-center space-x-2 px-4 py-2 bg-primary-50 rounded-lg">
                     <CreditCard className="w-4 h-4 text-primary-600" />
-                    <span className="font-medium text-primary-900">{balance || 0} {t('nav.credits')}</span>
+                    <span className="font-medium text-primary-900">
+                      {balance || 0} {t("nav.credits")}
+                    </span>
                   </div>
 
                   <div className="relative group">
@@ -78,14 +88,14 @@ export default function Layout({ children }: LayoutProps = {}) {
                         to="/profile"
                         className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-t-lg"
                       >
-                        {t('nav.profileSettings')}
+                        {t("nav.profileSettings")}
                       </Link>
                       <button
                         onClick={handleLogout}
                         className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-50 rounded-b-lg flex items-center space-x-2"
                       >
                         <LogOut className="w-4 h-4" />
-                        <span>{t('nav.logout')}</span>
+                        <span>{t("nav.logout")}</span>
                       </button>
                     </div>
                   </div>
@@ -93,12 +103,15 @@ export default function Layout({ children }: LayoutProps = {}) {
                 </>
               ) : (
                 <>
-                  <Link to="/pricing" className="text-gray-700 hover:text-primary-600 transition-colors">
-                    {t('nav.pricing')}
+                  <Link
+                    to="/pricing"
+                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                  >
+                    {t("nav.pricing")}
                   </Link>
                   <LanguageSwitcher />
                   <Link to="/auth" className="btn-secondary">
-                    {t('nav.signIn')}
+                    {t("nav.signIn")}
                   </Link>
                 </>
               )}
@@ -109,7 +122,11 @@ export default function Layout({ children }: LayoutProps = {}) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
 
@@ -128,24 +145,26 @@ export default function Layout({ children }: LayoutProps = {}) {
                     className="block px-4 py-2 rounded-lg hover:bg-gray-100"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t('nav.dashboard')}
+                    {t("nav.dashboard")}
                   </Link>
                   <Link
                     to="/pricing"
                     className="block px-4 py-2 rounded-lg hover:bg-gray-100"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t('nav.pricing')}
+                    {t("nav.pricing")}
                   </Link>
                   <Link
                     to="/profile"
                     className="block px-4 py-2 rounded-lg hover:bg-gray-100"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t('nav.profile')}
+                    {t("nav.profile")}
                   </Link>
                   <div className="px-4 py-2 bg-primary-50 rounded-lg">
-                    <span className="font-medium text-primary-900">{balance || 0} {t('nav.credits')}</span>
+                    <span className="font-medium text-primary-900">
+                      {balance || 0} {t("nav.credits")}
+                    </span>
                   </div>
                   <div className="px-4 py-2">
                     <LanguageSwitcher />
@@ -157,7 +176,7 @@ export default function Layout({ children }: LayoutProps = {}) {
                     }}
                     className="w-full text-left px-4 py-2 text-red-600 rounded-lg hover:bg-gray-100"
                   >
-                    {t('nav.logout')}
+                    {t("nav.logout")}
                   </button>
                 </>
               ) : (
@@ -167,7 +186,7 @@ export default function Layout({ children }: LayoutProps = {}) {
                     className="block px-4 py-2 rounded-lg hover:bg-gray-100"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t('nav.pricing')}
+                    {t("nav.pricing")}
                   </Link>
                   <div className="px-4 py-2">
                     <LanguageSwitcher />
@@ -177,7 +196,7 @@ export default function Layout({ children }: LayoutProps = {}) {
                     className="block px-4 py-2 text-primary-600 font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t('nav.signIn')}
+                    {t("nav.signIn")}
                   </Link>
                 </>
               )}
@@ -187,9 +206,7 @@ export default function Layout({ children }: LayoutProps = {}) {
       </header>
 
       {/* Main Content */}
-      <main className="flex-1">
-        {children || <Outlet />}
-      </main>
+      <main className="flex-1">{children || <Outlet />}</main>
 
       {/* Footer */}
       <footer className="bg-gray-50 border-t border-gray-200">
@@ -198,46 +215,56 @@ export default function Layout({ children }: LayoutProps = {}) {
             <div>
               <div className="flex items-center space-x-2 mb-4">
                 <Trophy className="w-6 h-6 text-primary-600" />
-                <span className="font-bold text-gray-900">{t('app.name')}</span>
+                <span className="font-bold text-gray-900">{t("app.name")}</span>
               </div>
-              <p className="text-sm text-gray-600">
-                {t('footer.tagline')}
-              </p>
+              <p className="text-sm text-gray-600">{t("footer.tagline")}</p>
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">{t('footer.product')}</h4>
+              <h4 className="font-semibold text-gray-900 mb-4">
+                {t("footer.product")}
+              </h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link to="/pricing" className="hover:text-primary-600">{t('nav.pricing')}</Link></li>
+                <li>
+                  <Link to="/pricing" className="hover:text-primary-600">
+                    {t("nav.pricing")}
+                  </Link>
+                </li>
                 <li>
                   <a
                     href="#features"
                     onClick={(e) => {
                       e.preventDefault();
-                      navigateAndScroll(navigate, '/', 'features');
+                      navigateAndScroll(navigate, "/", "features");
                     }}
                     className="hover:text-primary-600 cursor-pointer"
                   >
-                    {t('footer.features')}
+                    {t("footer.features")}
                   </a>
                 </li>
-                <li><Link to="/faq" className="hover:text-primary-600">{t('footer.documentation')}</Link></li>
+                <li>
+                  <Link to="/faq" className="hover:text-primary-600">
+                    {t("footer.documentation")}
+                  </Link>
+                </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">{t('footer.company')}</h4>
+              <h4 className="font-semibold text-gray-900 mb-4">
+                {t("footer.company")}
+              </h4>
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <a
                     href="#"
                     onClick={(e) => {
                       e.preventDefault();
-                      window.location.href = 'mailto:contact@contestdraw.com';
+                      window.location.href = "mailto:contact@contestdraw.com";
                     }}
                     className="hover:text-primary-600 cursor-pointer"
                   >
-                    {t('footer.about')}
+                    {t("footer.about")}
                   </a>
                 </li>
                 <li>
@@ -247,7 +274,7 @@ export default function Layout({ children }: LayoutProps = {}) {
                     rel="noopener noreferrer"
                     className="hover:text-primary-600"
                   >
-                    {t('footer.blog')}
+                    {t("footer.blog")}
                   </a>
                 </li>
                 <li>
@@ -255,24 +282,39 @@ export default function Layout({ children }: LayoutProps = {}) {
                     href="mailto:contact@contestdraw.com"
                     className="hover:text-primary-600"
                   >
-                    {t('footer.contact')}
+                    {t("footer.contact")}
                   </a>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="font-semibold text-gray-900 mb-4">{t('footer.legal')}</h4>
+              <h4 className="font-semibold text-gray-900 mb-4">
+                {t("footer.legal")}
+              </h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li><Link to="/privacy" className="hover:text-primary-600">{t('footer.privacy')}</Link></li>
-                <li><Link to="/terms" className="hover:text-primary-600">{t('footer.terms')}</Link></li>
-                <li><Link to="/security" className="hover:text-primary-600">{t('footer.security')}</Link></li>
+                <li>
+                  <Link to="/privacy" className="hover:text-primary-600">
+                    {t("footer.privacy")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/terms" className="hover:text-primary-600">
+                    {t("footer.terms")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/security" className="hover:text-primary-600">
+                    {t("footer.security")}
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
 
           <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-600">
-            © {new Date().getFullYear()} {t('app.name')}. {t('footer.copyright')}
+            © {new Date().getFullYear()} {t("app.name")}.{" "}
+            {t("footer.copyright")}
           </div>
         </div>
       </footer>

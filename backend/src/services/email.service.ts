@@ -1,6 +1,6 @@
-import * as SibApiV3Sdk from 'sib-api-v3-sdk';
-import config from '../config/config';
-import { logger } from '../utils/logger';
+import * as SibApiV3Sdk from "sib-api-v3-sdk";
+import config from "../config/config";
+import { logger } from "../utils/logger";
 
 /**
  * Email service using Brevo (formerly Sendinblue)
@@ -13,7 +13,7 @@ class EmailService {
   constructor() {
     // Configure Brevo API client
     const defaultClient = SibApiV3Sdk.ApiClient.instance;
-    const apiKey = defaultClient.authentications['api-key'];
+    const apiKey = defaultClient.authentications["api-key"];
     apiKey.apiKey = config.email.brevo.apiKey;
 
     // Initialize API instance
@@ -22,7 +22,7 @@ class EmailService {
     // Configure sender
     this.fromSender = {
       name: config.email.brevo.fromName,
-      email: config.email.brevo.fromEmail
+      email: config.email.brevo.fromEmail,
     };
   }
 
@@ -35,7 +35,7 @@ class EmailService {
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     sendSmtpEmail.sender = this.fromSender;
     sendSmtpEmail.to = [{ email }];
-    sendSmtpEmail.subject = 'Verify Your Email - Contest Draw';
+    sendSmtpEmail.subject = "Verify Your Email - Contest Draw";
     sendSmtpEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">Verify Your Email Address</h2>
@@ -57,12 +57,12 @@ class EmailService {
       await this.apiInstance.sendTransacEmail(sendSmtpEmail);
       logger.info(`Verification email sent to ${email} via Brevo`);
     } catch (error: any) {
-      logger.error('Failed to send verification email via Brevo', {
+      logger.error("Failed to send verification email via Brevo", {
         error: error.message,
         email,
-        response: error.response?.text
+        response: error.response?.text,
       });
-      throw new Error('Failed to send verification email');
+      throw new Error("Failed to send verification email");
     }
   }
 
@@ -75,7 +75,7 @@ class EmailService {
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     sendSmtpEmail.sender = this.fromSender;
     sendSmtpEmail.to = [{ email }];
-    sendSmtpEmail.subject = 'Reset Your Password - Contest Draw';
+    sendSmtpEmail.subject = "Reset Your Password - Contest Draw";
     sendSmtpEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #333;">Reset Your Password</h2>
@@ -97,19 +97,23 @@ class EmailService {
       await this.apiInstance.sendTransacEmail(sendSmtpEmail);
       logger.info(`Password reset email sent to ${email} via Brevo`);
     } catch (error: any) {
-      logger.error('Failed to send password reset email via Brevo', {
+      logger.error("Failed to send password reset email via Brevo", {
         error: error.message,
         email,
-        response: error.response?.text
+        response: error.response?.text,
       });
-      throw new Error('Failed to send password reset email');
+      throw new Error("Failed to send password reset email");
     }
   }
 
   /**
    * Send draw completion notification
    */
-  async sendDrawCompletionEmail(email: string, drawTitle: string, drawId: string): Promise<void> {
+  async sendDrawCompletionEmail(
+    email: string,
+    drawTitle: string,
+    drawId: string,
+  ): Promise<void> {
     const drawUrl = `${config.server.frontendUrl}/draws/${drawId}`;
 
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
@@ -134,12 +138,12 @@ class EmailService {
       await this.apiInstance.sendTransacEmail(sendSmtpEmail);
       logger.info(`Draw completion email sent to ${email} via Brevo`);
     } catch (error: any) {
-      logger.error('Failed to send draw completion email via Brevo', {
+      logger.error("Failed to send draw completion email via Brevo", {
         error: error.message,
         email,
-        response: error.response?.text
+        response: error.response?.text,
       });
-      throw new Error('Failed to send draw completion email');
+      throw new Error("Failed to send draw completion email");
     }
   }
 
@@ -147,12 +151,12 @@ class EmailService {
    * Send welcome email after registration
    */
   async sendWelcomeEmail(email: string, firstName?: string): Promise<void> {
-    const name = firstName || 'there';
+    const name = firstName || "there";
 
     const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail();
     sendSmtpEmail.sender = this.fromSender;
     sendSmtpEmail.to = [{ email }];
-    sendSmtpEmail.subject = 'Welcome to Contest Draw!';
+    sendSmtpEmail.subject = "Welcome to Contest Draw!";
     sendSmtpEmail.htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
         <h2 style="color: #6366F1;">Welcome to Contest Draw, ${name}! 👋</h2>
@@ -178,12 +182,12 @@ class EmailService {
       await this.apiInstance.sendTransacEmail(sendSmtpEmail);
       logger.info(`Welcome email sent to ${email} via Brevo`);
     } catch (error: any) {
-      logger.error('Failed to send welcome email via Brevo', {
+      logger.error("Failed to send welcome email via Brevo", {
         error: error.message,
         email,
-        response: error.response?.text
+        response: error.response?.text,
       });
-      throw new Error('Failed to send welcome email');
+      throw new Error("Failed to send welcome email");
     }
   }
 }

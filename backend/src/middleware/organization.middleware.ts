@@ -3,10 +3,10 @@
  * Handles hierarchical permissions and multi-tenant access control
  */
 
-import { Response, NextFunction } from 'express';
-import { PrismaClient } from '@prisma/client';
-import { AuthRequest } from '../types';
-import { OrganizationService } from '../services/organization.service';
+import { Response, NextFunction } from "express";
+import { PrismaClient } from "@prisma/client";
+import { AuthRequest } from "../types";
+import { OrganizationService } from "../services/organization.service";
 
 const prisma = new PrismaClient();
 const organizationService = new OrganizationService(prisma);
@@ -17,7 +17,7 @@ const organizationService = new OrganizationService(prisma);
 export async function requireOrganizationMember(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const organizationId = req.params.organizationId || req.params.id;
@@ -25,15 +25,15 @@ export async function requireOrganizationMember(
 
     if (!userId) {
       return res.status(401).json({
-        status: 'error',
-        message: 'Unauthorized'
+        status: "error",
+        message: "Unauthorized",
       });
     }
 
     if (!organizationId) {
       return res.status(400).json({
-        status: 'error',
-        message: 'Organization ID required'
+        status: "error",
+        message: "Organization ID required",
       });
     }
 
@@ -41,8 +41,8 @@ export async function requireOrganizationMember(
 
     if (!isMember) {
       return res.status(403).json({
-        status: 'error',
-        message: 'Access denied - not a member of this organization'
+        status: "error",
+        message: "Access denied - not a member of this organization",
       });
     }
 
@@ -55,7 +55,9 @@ export async function requireOrganizationMember(
 /**
  * Check if user has specific permission in organization
  */
-export function requireOrganizationPermission(permission: keyof import('../types/enterprise.types').OrganizationPermissions) {
+export function requireOrganizationPermission(
+  permission: keyof import("../types/enterprise.types").OrganizationPermissions,
+) {
   return async (req: AuthRequest, res: Response, next: NextFunction) => {
     try {
       const organizationId = req.params.organizationId || req.params.id;
@@ -63,27 +65,27 @@ export function requireOrganizationPermission(permission: keyof import('../types
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       if (!organizationId) {
         return res.status(400).json({
-          status: 'error',
-          message: 'Organization ID required'
+          status: "error",
+          message: "Organization ID required",
         });
       }
 
       const permissions = await organizationService.getUserPermissions(
         organizationId,
-        userId
+        userId,
       );
 
       if (!permissions[permission]) {
         return res.status(403).json({
-          status: 'error',
-          message: `Insufficient permissions - requires: ${permission}`
+          status: "error",
+          message: `Insufficient permissions - requires: ${permission}`,
         });
       }
 
@@ -100,7 +102,7 @@ export function requireOrganizationPermission(permission: keyof import('../types
 export async function requireOrganizationOwner(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const organizationId = req.params.organizationId || req.params.id;
@@ -108,24 +110,25 @@ export async function requireOrganizationOwner(
 
     if (!userId) {
       return res.status(401).json({
-        status: 'error',
-        message: 'Unauthorized'
+        status: "error",
+        message: "Unauthorized",
       });
     }
 
     if (!organizationId) {
       return res.status(400).json({
-        status: 'error',
-        message: 'Organization ID required'
+        status: "error",
+        message: "Organization ID required",
       });
     }
 
-    const organization = await organizationService.getOrganization(organizationId);
+    const organization =
+      await organizationService.getOrganization(organizationId);
 
     if (!organization || organization.ownerId !== userId) {
       return res.status(403).json({
-        status: 'error',
-        message: 'Access denied - must be organization owner'
+        status: "error",
+        message: "Access denied - must be organization owner",
       });
     }
 
@@ -141,7 +144,7 @@ export async function requireOrganizationOwner(
 export async function attachOrganizationContext(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const organizationId = req.params.organizationId || req.params.id;
@@ -150,13 +153,13 @@ export async function attachOrganizationContext(
     if (organizationId && userId) {
       const [organization, permissions] = await Promise.all([
         organizationService.getOrganization(organizationId),
-        organizationService.getUserPermissions(organizationId, userId)
+        organizationService.getUserPermissions(organizationId, userId),
       ]);
 
       // Attach to request for downstream use
       (req as any).organizationContext = {
         organization,
-        permissions
+        permissions,
       };
     }
 
@@ -172,24 +175,25 @@ export async function attachOrganizationContext(
 export async function requireEnterpriseSubscription(
   req: AuthRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
   try {
     const organizationId = req.params.organizationId || req.params.id;
 
     if (!organizationId) {
       return res.status(400).json({
-        status: 'error',
-        message: 'Organization ID required'
+        status: "error",
+        message: "Organization ID required",
       });
     }
 
-    const organization = await organizationService.getOrganization(organizationId);
+    const organization =
+      await organizationService.getOrganization(organizationId);
 
     if (!organization) {
       return res.status(404).json({
-        status: 'error',
-        message: 'Organization not found'
+        status: "error",
+        message: "Organization not found",
       });
     }
 
@@ -197,15 +201,15 @@ export async function requireEnterpriseSubscription(
     const hasActiveSubscription = await prisma.subscription.findFirst({
       where: {
         organizationId,
-        status: 'ACTIVE',
-        planId: 'enterprise'
-      }
+        status: "ACTIVE",
+        planId: "enterprise",
+      },
     });
 
     if (!hasActiveSubscription) {
       return res.status(403).json({
-        status: 'error',
-        message: 'Active enterprise subscription required'
+        status: "error",
+        message: "Active enterprise subscription required",
       });
     }
 

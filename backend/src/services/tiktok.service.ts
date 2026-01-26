@@ -4,10 +4,14 @@
  * with Playwright for reliability
  */
 
-import axios, { AxiosInstance } from 'axios';
-import { PaginatedResponse, Comment, SocialAccount } from '../types/social.types';
-import { RetryHandler } from '../utils/retry.util';
-import { Cache } from '../utils/cache.util';
+import axios, { AxiosInstance } from "axios";
+import {
+  PaginatedResponse,
+  Comment,
+  SocialAccount,
+} from "../types/social.types";
+import { RetryHandler } from "../utils/retry.util";
+import { Cache } from "../utils/cache.util";
 
 interface TikTokVideo {
   id: string;
@@ -41,14 +45,15 @@ interface TikTokComment {
 
 export class TikTokService {
   private client: AxiosInstance;
-  private readonly baseUrl = 'https://www.tiktok.com/api';
+  private readonly baseUrl = "https://www.tiktok.com/api";
 
   constructor() {
     this.client = axios.create({
       baseURL: this.baseUrl,
       timeout: 30000,
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
       },
     });
   }
@@ -62,7 +67,7 @@ export class TikTokService {
    */
   async fetchComments(
     videoUrl: string,
-    maxComments?: number
+    maxComments?: number,
   ): Promise<PaginatedResponse<Comment>> {
     const videoId = this.parseVideoUrl(videoUrl);
     const cacheKey = `tiktok:comments:${videoId}`;
@@ -82,7 +87,7 @@ export class TikTokService {
 
       try {
         while (hasMore && (!maxComments || allComments.length < maxComments)) {
-          const response = await this.client.get('/comment/list/', {
+          const response = await this.client.get("/comment/list/", {
             params: {
               aweme_id: videoId,
               cursor: cursor,
@@ -95,14 +100,16 @@ export class TikTokService {
             break;
           }
 
-          const comments = response.data.comments.map((comment: TikTokComment) => ({
-            id: comment.cid,
-            text: comment.text,
-            username: comment.user.unique_id || comment.user.nickname,
-            userId: comment.user.uid,
-            timestamp: new Date(comment.create_time * 1000),
-            likes: comment.digg_count,
-          }));
+          const comments = response.data.comments.map(
+            (comment: TikTokComment) => ({
+              id: comment.cid,
+              text: comment.text,
+              username: comment.user.unique_id || comment.user.nickname,
+              userId: comment.user.uid,
+              timestamp: new Date(comment.create_time * 1000),
+              likes: comment.digg_count,
+            }),
+          );
 
           allComments.push(...comments);
 
@@ -117,7 +124,10 @@ export class TikTokService {
         }
       } catch (error: any) {
         // If API fails, fall back to Playwright scraping
-        console.warn('TikTok API failed, falling back to scraping:', error.message);
+        console.warn(
+          "TikTok API failed, falling back to scraping:",
+          error.message,
+        );
         return this.fetchCommentsWithPlaywright(videoUrl, maxComments);
       }
 
@@ -145,24 +155,27 @@ export class TikTokService {
    */
   private async fetchCommentsWithPlaywright(
     videoUrl: string,
-    maxComments?: number
+    maxComments?: number,
   ): Promise<PaginatedResponse<Comment>> {
     // This requires Playwright to be installed
     // npm install playwright
 
     try {
-      const { chromium } = await import('playwright');
+      const { chromium } = await import("playwright");
 
       const browser = await chromium.launch({ headless: true });
       const context = await browser.newContext({
-        userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36',
+        userAgent:
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
       });
       const page = await context.newPage();
 
-      await page.goto(videoUrl, { waitUntil: 'networkidle' });
+      await page.goto(videoUrl, { waitUntil: "networkidle" });
 
       // Wait for comments to load
-      await page.waitForSelector('[data-e2e="comment-item"]', { timeout: 10000 });
+      await page.waitForSelector('[data-e2e="comment-item"]', {
+        timeout: 10000,
+      });
 
       // Scroll to load more comments
       const scrollCount = maxComments ? Math.ceil(maxComments / 20) : 10;
@@ -174,22 +187,30 @@ export class TikTokService {
       }
 
       // Extract comments
-      const comments = await page.$$eval('[data-e2e="comment-item"]', (elements) => {
-        return elements.map((el) => {
-          const username = el.querySelector('[data-e2e="comment-username"]')?.textContent || 'unknown';
-          const text = el.querySelector('[data-e2e="comment-text"]')?.textContent || '';
-          const likes = el.querySelector('[data-e2e="comment-like-count"]')?.textContent || '0';
+      const comments = await page.$$eval(
+        '[data-e2e="comment-item"]',
+        (elements) => {
+          return elements.map((el) => {
+            const username =
+              el.querySelector('[data-e2e="comment-username"]')?.textContent ||
+              "unknown";
+            const text =
+              el.querySelector('[data-e2e="comment-text"]')?.textContent || "";
+            const likes =
+              el.querySelector('[data-e2e="comment-like-count"]')
+                ?.textContent || "0";
 
-          return {
-            id: Math.random().toString(36).substring(7), // Generate random ID
-            text: text.trim(),
-            username: username.trim(),
-            userId: username.trim(),
-            timestamp: new Date(),
-            likes: parseInt(likes) || 0,
-          };
-        });
-      });
+            return {
+              id: Math.random().toString(36).substring(7), // Generate random ID
+              text: text.trim(),
+              username: username.trim(),
+              userId: username.trim(),
+              timestamp: new Date(),
+              likes: parseInt(likes) || 0,
+            };
+          });
+        },
+      );
 
       await browser.close();
 
@@ -201,9 +222,9 @@ export class TikTokService {
         },
       };
     } catch (error: any) {
-      console.error('Playwright scraping failed:', error.message);
+      console.error("Playwright scraping failed:", error.message);
       throw new Error(
-        'TikTok comments unavailable. Please install Playwright: npm install playwright'
+        "TikTok comments unavailable. Please install Playwright: npm install playwright",
       );
     }
   }
@@ -228,11 +249,11 @@ export class TikTokService {
     match = url.match(/vm\.tiktok\.com\/([A-Za-z0-9]+)/);
     if (match) {
       throw new Error(
-        'Short TikTok URLs need to be resolved to full URLs first. Please use the full video URL.'
+        "Short TikTok URLs need to be resolved to full URLs first. Please use the full video URL.",
       );
     }
 
-    throw new Error('Invalid TikTok video URL');
+    throw new Error("Invalid TikTok video URL");
   }
 
   /**
@@ -244,22 +265,26 @@ export class TikTokService {
     const videoId = this.parseVideoUrl(videoUrl);
     const cacheKey = `tiktok:video:${videoId}`;
 
-    return Cache.getOrSet(cacheKey, async () => {
-      return RetryHandler.withRetry(async () => {
-        try {
-          const response = await this.client.get('/item/detail/', {
-            params: {
-              itemId: videoId,
-            },
-          });
+    return Cache.getOrSet(
+      cacheKey,
+      async () => {
+        return RetryHandler.withRetry(async () => {
+          try {
+            const response = await this.client.get("/item/detail/", {
+              params: {
+                itemId: videoId,
+              },
+            });
 
-          return response.data.itemInfo?.itemStruct || null;
-        } catch (error) {
-          console.warn('Failed to fetch TikTok video info:', error);
-          return null;
-        }
-      });
-    }, 600);
+            return response.data.itemInfo?.itemStruct || null;
+          } catch (error) {
+            console.warn("Failed to fetch TikTok video info:", error);
+            return null;
+          }
+        });
+      },
+      600,
+    );
   }
 
   /**
@@ -295,20 +320,23 @@ export class TikTokService {
    * - video.list
    * - video.comment
    */
-  async connectAccount(userId: string, authCode: string): Promise<SocialAccount> {
+  async connectAccount(
+    userId: string,
+    authCode: string,
+  ): Promise<SocialAccount> {
     const clientKey = process.env.TIKTOK_CLIENT_KEY;
     const clientSecret = process.env.TIKTOK_CLIENT_SECRET;
 
     if (!clientKey || !clientSecret) {
       throw new Error(
-        'TikTok OAuth not configured. Please set TIKTOK_CLIENT_KEY and TIKTOK_CLIENT_SECRET'
+        "TikTok OAuth not configured. Please set TIKTOK_CLIENT_KEY and TIKTOK_CLIENT_SECRET",
       );
     }
 
     // Placeholder for OAuth implementation
     throw new Error(
-      'TikTok OAuth integration requires approved developer account. ' +
-      'Please apply at https://developers.tiktok.com/'
+      "TikTok OAuth integration requires approved developer account. " +
+        "Please apply at https://developers.tiktok.com/",
     );
   }
 

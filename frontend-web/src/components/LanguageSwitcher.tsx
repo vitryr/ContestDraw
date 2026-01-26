@@ -1,12 +1,12 @@
-import { useTranslation } from 'react-i18next';
-import { Globe } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useTranslation } from "react-i18next";
+import { Globe } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function LanguageSwitcher() {
   const { i18n } = useTranslation();
 
   const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'fr' : 'en';
+    const newLang = i18n.language === "en" ? "fr" : "en";
     i18n.changeLanguage(newLang);
   };
 
@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
     >
       <Globe className="w-4 h-4 text-gray-600" />
       <span className="text-sm font-medium text-gray-700 uppercase">
-        {i18n.language === 'en' ? 'FR' : 'EN'}
+        {i18n.language === "en" ? "FR" : "EN"}
       </span>
     </motion.button>
   );

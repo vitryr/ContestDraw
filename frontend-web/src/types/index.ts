@@ -15,7 +15,7 @@ export interface Participant {
   name: string;
   username: string;
   avatar?: string;
-  platform: 'instagram' | 'twitter' | 'tiktok' | 'manual';
+  platform: "instagram" | "twitter" | "tiktok" | "manual";
   metadata?: Record<string, any>;
 }
 
@@ -38,7 +38,7 @@ export interface Draw {
   participants: Participant[];
   filters: DrawFilters;
   numberOfWinners: number;
-  status: 'draft' | 'configured' | 'executed' | 'completed';
+  status: "draft" | "configured" | "executed" | "completed";
   createdAt: string;
   executedAt?: string;
 }
@@ -55,7 +55,7 @@ export interface Transaction {
   id: string;
   userId: string;
   amount: number;
-  type: 'purchase' | 'usage' | 'refund';
+  type: "purchase" | "usage" | "refund";
   description: string;
   createdAt: string;
 }

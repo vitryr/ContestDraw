@@ -1,27 +1,29 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Trophy } from 'lucide-react';
-import { useAuthStore } from '../store/useAuthStore';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { Trophy } from "lucide-react";
+import { useAuthStore } from "../store/useAuthStore";
+import toast from "react-hot-toast";
 
 const loginSchema = z.object({
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
 });
 
-const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().email('Invalid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-  confirmPassword: z.string(),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ['confirmPassword'],
-});
+const registerSchema = z
+  .object({
+    name: z.string().min(2, "Name must be at least 2 characters"),
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
 
 type LoginForm = z.infer<typeof loginSchema>;
 type RegisterForm = z.infer<typeof registerSchema>;
@@ -42,8 +44,8 @@ export default function AuthPage() {
   const handleLogin = async (data: LoginForm) => {
     try {
       await login(data.email, data.password);
-      toast.success('Welcome back!');
-      navigate('/dashboard');
+      toast.success("Welcome back!");
+      navigate("/dashboard");
     } catch (error) {
       // Error handled by store/api
     }
@@ -56,8 +58,8 @@ export default function AuthPage() {
         email: data.email,
         password: data.password,
       });
-      toast.success('Account created successfully!');
-      navigate('/dashboard');
+      toast.success("Account created successfully!");
+      navigate("/dashboard");
     } catch (error) {
       // Error handled by store/api
     }
@@ -76,12 +78,12 @@ export default function AuthPage() {
             <Trophy className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+            {isLogin ? "Welcome Back" : "Create Account"}
           </h1>
           <p className="text-gray-600">
             {isLogin
-              ? 'Sign in to continue to your draws'
-              : 'Start creating fair contest draws today'}
+              ? "Sign in to continue to your draws"
+              : "Start creating fair contest draws today"}
           </p>
         </div>
 
@@ -91,8 +93,8 @@ export default function AuthPage() {
               onClick={() => setIsLogin(true)}
               className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
                 isLogin
-                  ? 'bg-white text-primary-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? "bg-white text-primary-600 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
             >
               Sign In
@@ -101,8 +103,8 @@ export default function AuthPage() {
               onClick={() => setIsLogin(false)}
               className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors ${
                 !isLogin
-                  ? 'bg-white text-primary-600 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? "bg-white text-primary-600 shadow-sm"
+                  : "text-gray-600 hover:text-gray-900"
               }`}
             >
               Sign Up
@@ -110,14 +112,17 @@ export default function AuthPage() {
           </div>
 
           {isLogin ? (
-            <form onSubmit={loginForm.handleSubmit(handleLogin)} className="space-y-4">
+            <form
+              onSubmit={loginForm.handleSubmit(handleLogin)}
+              className="space-y-4"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Email Address
                 </label>
                 <input
                   type="email"
-                  {...loginForm.register('email')}
+                  {...loginForm.register("email")}
                   className="input-field"
                   placeholder="you@example.com"
                 />
@@ -134,7 +139,7 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="password"
-                  {...loginForm.register('password')}
+                  {...loginForm.register("password")}
                   className="input-field"
                   placeholder="••••••••"
                 />
@@ -150,18 +155,21 @@ export default function AuthPage() {
                 disabled={isLoading}
                 className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Signing in...' : 'Sign In'}
+                {isLoading ? "Signing in..." : "Sign In"}
               </button>
             </form>
           ) : (
-            <form onSubmit={registerForm.handleSubmit(handleRegister)} className="space-y-4">
+            <form
+              onSubmit={registerForm.handleSubmit(handleRegister)}
+              className="space-y-4"
+            >
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Full Name
                 </label>
                 <input
                   type="text"
-                  {...registerForm.register('name')}
+                  {...registerForm.register("name")}
                   className="input-field"
                   placeholder="John Doe"
                 />
@@ -178,7 +186,7 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="email"
-                  {...registerForm.register('email')}
+                  {...registerForm.register("email")}
                   className="input-field"
                   placeholder="you@example.com"
                 />
@@ -195,7 +203,7 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="password"
-                  {...registerForm.register('password')}
+                  {...registerForm.register("password")}
                   className="input-field"
                   placeholder="••••••••"
                 />
@@ -212,7 +220,7 @@ export default function AuthPage() {
                 </label>
                 <input
                   type="password"
-                  {...registerForm.register('confirmPassword')}
+                  {...registerForm.register("confirmPassword")}
                   className="input-field"
                   placeholder="••••••••"
                 />
@@ -228,18 +236,18 @@ export default function AuthPage() {
                 disabled={isLoading}
                 className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Creating account...' : 'Create Account'}
+                {isLoading ? "Creating account..." : "Create Account"}
               </button>
             </form>
           )}
 
           <div className="mt-6 text-center text-sm text-gray-600">
-            {isLogin ? "Don't have an account? " : 'Already have an account? '}
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-primary-600 hover:text-primary-700 font-medium"
             >
-              {isLogin ? 'Sign up' : 'Sign in'}
+              {isLogin ? "Sign up" : "Sign in"}
             </button>
           </div>
         </div>

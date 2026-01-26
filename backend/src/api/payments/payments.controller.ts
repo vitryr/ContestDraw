@@ -1,8 +1,8 @@
-import { Request, Response } from 'express';
-import { stripeService } from '../../services/stripe.service';
-import { logger } from '../../utils/logger';
-import config from '../../config/config';
-import { prisma } from '../../utils/prisma';
+import { Request, Response } from "express";
+import { stripeService } from "../../services/stripe.service";
+import { logger } from "../../utils/logger";
+import config from "../../config/config";
+import { prisma } from "../../utils/prisma";
 
 /**
  * Payment controller for Stripe integration
@@ -18,15 +18,15 @@ export const paymentsController = {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       if (!priceId) {
         return res.status(400).json({
-          status: 'error',
-          message: 'Price ID is required'
+          status: "error",
+          message: "Price ID is required",
         });
       }
 
@@ -37,21 +37,23 @@ export const paymentsController = {
         userId,
         priceId,
         successUrl,
-        cancelUrl
+        cancelUrl,
       );
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
           sessionId: session.id,
-          url: session.url
-        }
+          url: session.url,
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to create checkout session', { error: error.message });
+      logger.error("Failed to create checkout session", {
+        error: error.message,
+      });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to create checkout session'
+        status: "error",
+        message: "Failed to create checkout session",
       });
     }
   },
@@ -65,8 +67,8 @@ export const paymentsController = {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
@@ -74,8 +76,8 @@ export const paymentsController = {
 
       if (!priceId) {
         return res.status(500).json({
-          status: 'error',
-          message: '48h pass not configured'
+          status: "error",
+          message: "48h pass not configured",
         });
       }
 
@@ -86,21 +88,23 @@ export const paymentsController = {
         userId,
         priceId,
         successUrl,
-        cancelUrl
+        cancelUrl,
       );
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
           sessionId: session.id,
-          url: session.url
-        }
+          url: session.url,
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to create 48h pass session', { error: error.message });
+      logger.error("Failed to create 48h pass session", {
+        error: error.message,
+      });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to create payment session'
+        status: "error",
+        message: "Failed to create payment session",
       });
     }
   },
@@ -114,40 +118,42 @@ export const paymentsController = {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { stripeSubscriptionId: true }
+        select: { stripeSubscriptionId: true },
       });
 
       if (!user?.stripeSubscriptionId) {
         return res.status(404).json({
-          status: 'error',
-          message: 'No active subscription found'
+          status: "error",
+          message: "No active subscription found",
         });
       }
 
-      const subscription = await stripeService.cancelSubscription(user.stripeSubscriptionId);
+      const subscription = await stripeService.cancelSubscription(
+        user.stripeSubscriptionId,
+      );
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
           subscription: {
             id: subscription.id,
             status: subscription.status,
-            canceledAt: subscription.canceled_at
-          }
-        }
+            canceledAt: subscription.canceled_at,
+          },
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to cancel subscription', { error: error.message });
+      logger.error("Failed to cancel subscription", { error: error.message });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to cancel subscription'
+        status: "error",
+        message: "Failed to cancel subscription",
       });
     }
   },
@@ -161,8 +167,8 @@ export const paymentsController = {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
@@ -172,21 +178,23 @@ export const paymentsController = {
           stripeSubscriptionId: true,
           subscriptionStatus: true,
           subscriptionType: true,
-          subscriptionExpiresAt: true
-        }
+          subscriptionExpiresAt: true,
+        },
       });
 
       if (!user?.stripeSubscriptionId) {
         return res.status(404).json({
-          status: 'error',
-          message: 'No active subscription found'
+          status: "error",
+          message: "No active subscription found",
         });
       }
 
-      const subscription = await stripeService.getSubscription(user.stripeSubscriptionId);
+      const subscription = await stripeService.getSubscription(
+        user.stripeSubscriptionId,
+      );
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
           subscription: {
             id: subscription.id,
@@ -194,15 +202,15 @@ export const paymentsController = {
             type: user.subscriptionType,
             currentPeriodEnd: subscription.current_period_end,
             cancelAtPeriodEnd: subscription.cancel_at_period_end,
-            expiresAt: user.subscriptionExpiresAt
-          }
-        }
+            expiresAt: user.subscriptionExpiresAt,
+          },
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to get subscription', { error: error.message });
+      logger.error("Failed to get subscription", { error: error.message });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to retrieve subscription'
+        status: "error",
+        message: "Failed to retrieve subscription",
       });
     }
   },
@@ -216,37 +224,40 @@ export const paymentsController = {
 
       if (!userId) {
         return res.status(401).json({
-          status: 'error',
-          message: 'Unauthorized'
+          status: "error",
+          message: "Unauthorized",
         });
       }
 
       const user = await prisma.user.findUnique({
         where: { id: userId },
-        select: { stripeCustomerId: true }
+        select: { stripeCustomerId: true },
       });
 
       if (!user?.stripeCustomerId) {
         return res.status(404).json({
-          status: 'error',
-          message: 'No customer found'
+          status: "error",
+          message: "No customer found",
         });
       }
 
       const returnUrl = `${config.server.frontendUrl}/account/subscription`;
-      const session = await stripeService.createPortalSession(user.stripeCustomerId, returnUrl);
+      const session = await stripeService.createPortalSession(
+        user.stripeCustomerId,
+        returnUrl,
+      );
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
-          url: session.url
-        }
+          url: session.url,
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to create portal session', { error: error.message });
+      logger.error("Failed to create portal session", { error: error.message });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to create portal session'
+        status: "error",
+        message: "Failed to create portal session",
       });
     }
   },
@@ -259,21 +270,21 @@ export const paymentsController = {
       const products = await stripeService.getProducts();
 
       res.status(200).json({
-        status: 'success',
+        status: "success",
         data: {
-          products: products.map(product => ({
+          products: products.map((product) => ({
             id: product.id,
             name: product.name,
             description: product.description,
-            defaultPrice: product.default_price
-          }))
-        }
+            defaultPrice: product.default_price,
+          })),
+        },
       });
     } catch (error: any) {
-      logger.error('Failed to get products', { error: error.message });
+      logger.error("Failed to get products", { error: error.message });
       res.status(500).json({
-        status: 'error',
-        message: 'Failed to retrieve products'
+        status: "error",
+        message: "Failed to retrieve products",
       });
     }
   },
@@ -283,12 +294,12 @@ export const paymentsController = {
    */
   handleWebhook: async (req: Request, res: Response) => {
     try {
-      const signature = req.headers['stripe-signature'] as string;
+      const signature = req.headers["stripe-signature"] as string;
 
       if (!signature) {
         return res.status(400).json({
-          status: 'error',
-          message: 'Missing stripe-signature header'
+          status: "error",
+          message: "Missing stripe-signature header",
         });
       }
 
@@ -296,11 +307,11 @@ export const paymentsController = {
 
       res.status(200).json({ received: true });
     } catch (error: any) {
-      logger.error('Webhook processing failed', { error: error.message });
+      logger.error("Webhook processing failed", { error: error.message });
       res.status(400).json({
-        status: 'error',
-        message: 'Webhook processing failed'
+        status: "error",
+        message: "Webhook processing failed",
       });
     }
-  }
+  },
 };

@@ -2,7 +2,7 @@
  * Utility for handling retries with exponential backoff
  */
 
-import { RetryConfig } from '../types/social.types';
+import { RetryConfig } from "../types/social.types";
 
 export class RetryHandler {
   private static defaultConfig: RetryConfig = {
@@ -20,7 +20,7 @@ export class RetryHandler {
    */
   static async withRetry<T>(
     fn: () => Promise<T>,
-    config: Partial<RetryConfig> = {}
+    config: Partial<RetryConfig> = {},
   ): Promise<T> {
     const finalConfig = { ...this.defaultConfig, ...config };
     let lastError: Error;
@@ -40,7 +40,7 @@ export class RetryHandler {
         // Last attempt, throw error
         if (attempt === finalConfig.maxRetries) {
           throw new Error(
-            `Max retries (${finalConfig.maxRetries}) exceeded: ${lastError.message}`
+            `Max retries (${finalConfig.maxRetries}) exceeded: ${lastError.message}`,
           );
         }
 
@@ -50,11 +50,11 @@ export class RetryHandler {
         // Calculate next delay with exponential backoff
         delay = Math.min(
           delay * finalConfig.backoffFactor,
-          finalConfig.maxDelay
+          finalConfig.maxDelay,
         );
 
         console.warn(
-          `Retry attempt ${attempt + 1}/${finalConfig.maxRetries} after ${delay}ms`
+          `Retry attempt ${attempt + 1}/${finalConfig.maxRetries} after ${delay}ms`,
         );
       }
     }
@@ -67,7 +67,7 @@ export class RetryHandler {
    */
   private static isRetryable(error: any): boolean {
     // Network errors
-    if (error.code === 'ECONNRESET' || error.code === 'ETIMEDOUT') {
+    if (error.code === "ECONNRESET" || error.code === "ETIMEDOUT") {
       return true;
     }
 
@@ -96,8 +96,10 @@ export class RetryHandler {
    * Parse rate limit headers and calculate wait time
    */
   static getRateLimitWaitTime(headers: any): number {
-    const resetTime = headers['x-ratelimit-reset'] || headers['x-rate-limit-reset'];
-    const remaining = headers['x-ratelimit-remaining'] || headers['x-rate-limit-remaining'];
+    const resetTime =
+      headers["x-ratelimit-reset"] || headers["x-rate-limit-reset"];
+    const remaining =
+      headers["x-ratelimit-remaining"] || headers["x-rate-limit-remaining"];
 
     if (remaining && parseInt(remaining) === 0 && resetTime) {
       const resetDate = new Date(parseInt(resetTime) * 1000);

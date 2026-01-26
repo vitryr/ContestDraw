@@ -4,9 +4,9 @@
  * Provides CRUD operations and CSV import/export functionality
  */
 
-import { PrismaClient, Blacklist } from '@prisma/client';
-import * as XLSX from 'xlsx';
-import logger from '../utils/logger';
+import { PrismaClient, Blacklist } from "@prisma/client";
+import * as XLSX from "xlsx";
+import logger from "../utils/logger";
 
 const prisma = new PrismaClient();
 
@@ -34,19 +34,19 @@ export class BlacklistService {
    */
   async addToBlacklist(
     userId: string,
-    entry: BlacklistCreateInput
+    entry: BlacklistCreateInput,
   ): Promise<Blacklist> {
     try {
       const blacklist = await prisma.blacklist.create({
         data: {
           userId,
           username: entry.username.toLowerCase(),
-          platform: entry.platform || 'INSTAGRAM',
+          platform: entry.platform || "INSTAGRAM",
           reason: entry.reason,
         },
       });
 
-      logger.info('User added to blacklist', {
+      logger.info("User added to blacklist", {
         userId,
         username: entry.username,
         platform: entry.platform,
@@ -55,11 +55,11 @@ export class BlacklistService {
       return blacklist;
     } catch (error) {
       // Handle unique constraint violation
-      if (error instanceof Error && 'code' in error && error.code === 'P2002') {
-        throw new Error('User already exists in blacklist');
+      if (error instanceof Error && "code" in error && error.code === "P2002") {
+        throw new Error("User already exists in blacklist");
       }
 
-      logger.error('Failed to add user to blacklist', {
+      logger.error("Failed to add user to blacklist", {
         userId,
         username: entry.username,
         error: error instanceof Error ? error.message : String(error),
@@ -72,7 +72,10 @@ export class BlacklistService {
   /**
    * Remove user from blacklist
    */
-  async removeFromBlacklist(userId: string, blacklistId: string): Promise<void> {
+  async removeFromBlacklist(
+    userId: string,
+    blacklistId: string,
+  ): Promise<void> {
     try {
       await prisma.blacklist.delete({
         where: {
@@ -81,12 +84,12 @@ export class BlacklistService {
         },
       });
 
-      logger.info('User removed from blacklist', {
+      logger.info("User removed from blacklist", {
         userId,
         blacklistId,
       });
     } catch (error) {
-      logger.error('Failed to remove user from blacklist', {
+      logger.error("Failed to remove user from blacklist", {
         userId,
         blacklistId,
         error: error instanceof Error ? error.message : String(error),
@@ -101,7 +104,7 @@ export class BlacklistService {
    */
   async getBlacklist(
     userId: string,
-    filter?: BlacklistFilter
+    filter?: BlacklistFilter,
   ): Promise<Blacklist[]> {
     try {
       const where: any = { userId };
@@ -118,12 +121,12 @@ export class BlacklistService {
 
       const blacklist = await prisma.blacklist.findMany({
         where,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: "desc" },
       });
 
       return blacklist;
     } catch (error) {
-      logger.error('Failed to get blacklist', {
+      logger.error("Failed to get blacklist", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });
@@ -138,7 +141,7 @@ export class BlacklistService {
   async isBlacklisted(
     userId: string,
     username: string,
-    platform: string = 'INSTAGRAM'
+    platform: string = "INSTAGRAM",
   ): Promise<boolean> {
     try {
       const entry = await prisma.blacklist.findFirst({
@@ -151,7 +154,7 @@ export class BlacklistService {
 
       return !!entry;
     } catch (error) {
-      logger.error('Failed to check blacklist', {
+      logger.error("Failed to check blacklist", {
         userId,
         username,
         error: error instanceof Error ? error.message : String(error),
@@ -167,7 +170,7 @@ export class BlacklistService {
   async updateBlacklistEntry(
     userId: string,
     blacklistId: string,
-    updates: Partial<BlacklistCreateInput>
+    updates: Partial<BlacklistCreateInput>,
   ): Promise<Blacklist> {
     try {
       const blacklist = await prisma.blacklist.update({
@@ -182,14 +185,14 @@ export class BlacklistService {
         },
       });
 
-      logger.info('Blacklist entry updated', {
+      logger.info("Blacklist entry updated", {
         userId,
         blacklistId,
       });
 
       return blacklist;
     } catch (error) {
-      logger.error('Failed to update blacklist entry', {
+      logger.error("Failed to update blacklist entry", {
         userId,
         blacklistId,
         error: error instanceof Error ? error.message : String(error),
@@ -204,7 +207,7 @@ export class BlacklistService {
    */
   async bulkAddToBlacklist(
     userId: string,
-    entries: BlacklistCreateInput[]
+    entries: BlacklistCreateInput[],
   ): Promise<{ successCount: number; errorCount: number; errors: string[] }> {
     let successCount = 0;
     let errorCount = 0;
@@ -219,12 +222,12 @@ export class BlacklistService {
         errors.push(
           `Failed to add ${entry.username}: ${
             error instanceof Error ? error.message : String(error)
-          }`
+          }`,
         );
       }
     }
 
-    logger.info('Bulk blacklist operation completed', {
+    logger.info("Bulk blacklist operation completed", {
       userId,
       totalEntries: entries.length,
       successCount,
@@ -239,35 +242,35 @@ export class BlacklistService {
    */
   async importFromCSV(
     userId: string,
-    csvBuffer: Buffer
+    csvBuffer: Buffer,
   ): Promise<{ successCount: number; errorCount: number; errors: string[] }> {
     try {
       // Parse CSV using xlsx
-      const workbook = XLSX.read(csvBuffer, { type: 'buffer' });
+      const workbook = XLSX.read(csvBuffer, { type: "buffer" });
       const sheetName = workbook.SheetNames[0];
       const worksheet = workbook.Sheets[sheetName];
       const data = XLSX.utils.sheet_to_json<any>(worksheet);
 
       // Validate and transform data
       const entries: BlacklistCreateInput[] = data.map((row) => ({
-        username: row.username || row.Username || row.USERNAME || '',
-        platform: row.platform || row.Platform || row.PLATFORM || 'INSTAGRAM',
+        username: row.username || row.Username || row.USERNAME || "",
+        platform: row.platform || row.Platform || row.PLATFORM || "INSTAGRAM",
         reason: row.reason || row.Reason || row.REASON || undefined,
       }));
 
       // Filter out invalid entries
       const validEntries = entries.filter(
-        (entry) => entry.username && entry.username.trim() !== ''
+        (entry) => entry.username && entry.username.trim() !== "",
       );
 
       if (validEntries.length === 0) {
-        throw new Error('No valid entries found in CSV file');
+        throw new Error("No valid entries found in CSV file");
       }
 
       // Bulk add to blacklist
       const result = await this.bulkAddToBlacklist(userId, validEntries);
 
-      logger.info('CSV import completed', {
+      logger.info("CSV import completed", {
         userId,
         totalRows: data.length,
         validEntries: validEntries.length,
@@ -276,7 +279,7 @@ export class BlacklistService {
 
       return result;
     } catch (error) {
-      logger.error('Failed to import CSV', {
+      logger.error("Failed to import CSV", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });
@@ -297,29 +300,29 @@ export class BlacklistService {
       const data = blacklist.map((entry) => ({
         Username: entry.username,
         Platform: entry.platform,
-        Reason: entry.reason || '',
-        'Added Date': entry.createdAt.toISOString(),
+        Reason: entry.reason || "",
+        "Added Date": entry.createdAt.toISOString(),
       }));
 
       // Create workbook and worksheet
       const worksheet = XLSX.utils.json_to_sheet(data);
       const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, 'Blacklist');
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Blacklist");
 
       // Generate CSV buffer
       const csvBuffer = XLSX.write(workbook, {
-        type: 'buffer',
-        bookType: 'csv',
+        type: "buffer",
+        bookType: "csv",
       });
 
-      logger.info('CSV export completed', {
+      logger.info("CSV export completed", {
         userId,
         entryCount: blacklist.length,
       });
 
       return csvBuffer;
     } catch (error) {
-      logger.error('Failed to export CSV', {
+      logger.error("Failed to export CSV", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });
@@ -334,7 +337,7 @@ export class BlacklistService {
   async filterParticipants(
     userId: string,
     participants: Array<{ username: string; platform?: string }>,
-    platform: string = 'INSTAGRAM'
+    platform: string = "INSTAGRAM",
   ): Promise<Array<{ username: string; isBlacklisted: boolean }>> {
     try {
       // Get all blacklisted usernames for the platform
@@ -349,18 +352,18 @@ export class BlacklistService {
       });
 
       const blacklistedUsernames = new Set(
-        blacklist.map((entry) => entry.username.toLowerCase())
+        blacklist.map((entry) => entry.username.toLowerCase()),
       );
 
       // Check each participant
       return participants.map((participant) => ({
         username: participant.username,
         isBlacklisted: blacklistedUsernames.has(
-          participant.username.toLowerCase()
+          participant.username.toLowerCase(),
         ),
       }));
     } catch (error) {
-      logger.error('Failed to filter participants', {
+      logger.error("Failed to filter participants", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });
@@ -394,7 +397,7 @@ export class BlacklistService {
         byPlatform,
       };
     } catch (error) {
-      logger.error('Failed to get blacklist stats', {
+      logger.error("Failed to get blacklist stats", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });
@@ -418,7 +421,7 @@ export class BlacklistService {
         where,
       });
 
-      logger.info('Blacklist cleared', {
+      logger.info("Blacklist cleared", {
         userId,
         platform,
         deletedCount: result.count,
@@ -426,7 +429,7 @@ export class BlacklistService {
 
       return result.count;
     } catch (error) {
-      logger.error('Failed to clear blacklist', {
+      logger.error("Failed to clear blacklist", {
         userId,
         error: error instanceof Error ? error.message : String(error),
       });

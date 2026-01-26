@@ -1,34 +1,36 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Users, Search, Download } from 'lucide-react';
-import type { Participant } from '../types';
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Users, Search, Download } from "lucide-react";
+import type { Participant } from "../types";
 
 interface ParticipantsListProps {
   participants: Participant[];
 }
 
-export default function ParticipantsList({ participants }: ParticipantsListProps) {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function ParticipantsList({
+  participants,
+}: ParticipantsListProps) {
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredParticipants = participants.filter(
     (p) =>
       p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.username.toLowerCase().includes(searchTerm.toLowerCase())
+      p.username.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const handleExportCSV = () => {
     const csvContent = [
-      ['Name', 'Username', 'Platform'],
+      ["Name", "Username", "Platform"],
       ...participants.map((p) => [p.name, p.username, p.platform]),
     ]
-      .map((row) => row.join(','))
-      .join('\n');
+      .map((row) => row.join(","))
+      .join("\n");
 
-    const blob = new Blob([csvContent], { type: 'text/csv' });
+    const blob = new Blob([csvContent], { type: "text/csv" });
     const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    const a = document.createElement("a");
     a.href = url;
-    a.download = 'participants.csv';
+    a.download = "participants.csv";
     a.click();
   };
 
@@ -98,8 +100,12 @@ export default function ParticipantsList({ participants }: ParticipantsListProps
                 )}
 
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-gray-900 truncate">{participant.name}</div>
-                  <div className="text-sm text-gray-600">@{participant.username}</div>
+                  <div className="font-medium text-gray-900 truncate">
+                    {participant.name}
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    @{participant.username}
+                  </div>
                 </div>
 
                 <div className="flex-shrink-0">
@@ -112,7 +118,9 @@ export default function ParticipantsList({ participants }: ParticipantsListProps
           </div>
 
           {filteredParticipants.length === 0 && searchTerm && (
-            <p className="text-center text-gray-600 py-4">No participants found</p>
+            <p className="text-center text-gray-600 py-4">
+              No participants found
+            </p>
           )}
         </>
       )}

@@ -12,17 +12,17 @@ export const scrollToSection = (sectionId: string, offset: number = 80) => {
 
     window.scrollTo({
       top: offsetPosition,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   }
 };
 
 export const handleAnchorClick = (
   event: React.MouseEvent<HTMLAnchorElement>,
-  href: string
+  href: string,
 ) => {
   // Check if it's an anchor link (starts with #)
-  if (href.startsWith('#')) {
+  if (href.startsWith("#")) {
     event.preventDefault();
     const sectionId = href.substring(1);
 
@@ -30,7 +30,7 @@ export const handleAnchorClick = (
       scrollToSection(sectionId);
 
       // Update URL without scrolling
-      window.history.pushState(null, '', href);
+      window.history.pushState(null, "", href);
     }
   }
 };
@@ -42,7 +42,7 @@ export const handleAnchorClick = (
 export const navigateAndScroll = (
   navigate: (path: string) => void,
   path: string,
-  sectionId?: string
+  sectionId?: string,
 ) => {
   if (path === window.location.pathname && sectionId) {
     // Same page, just scroll

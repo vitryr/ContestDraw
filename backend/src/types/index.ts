@@ -1,4 +1,4 @@
-import { Request } from 'express';
+import { Request } from "express";
 
 /**
  * Extended Express Request with authenticated user
@@ -53,32 +53,32 @@ export interface TokenResponse {
  * Credit transaction types
  */
 export enum CreditTransactionType {
-  PURCHASE = 'PURCHASE',
-  CONSUMPTION = 'CONSUMPTION',
-  REFUND = 'REFUND',
-  SUBSCRIPTION = 'SUBSCRIPTION'
+  PURCHASE = "PURCHASE",
+  CONSUMPTION = "CONSUMPTION",
+  REFUND = "REFUND",
+  SUBSCRIPTION = "SUBSCRIPTION",
 }
 
 /**
  * Draw status
  */
 export enum DrawStatus {
-  DRAFT = 'DRAFT',
-  READY = 'READY',
-  PROCESSING = 'PROCESSING',
-  COMPLETED = 'COMPLETED',
-  FAILED = 'FAILED'
+  DRAFT = "DRAFT",
+  READY = "READY",
+  PROCESSING = "PROCESSING",
+  COMPLETED = "COMPLETED",
+  FAILED = "FAILED",
 }
 
 /**
  * Social platform types
  */
 export enum SocialPlatform {
-  INSTAGRAM = 'INSTAGRAM',
-  FACEBOOK = 'FACEBOOK',
-  TWITTER = 'TWITTER',
-  TIKTOK = 'TIKTOK',
-  YOUTUBE = 'YOUTUBE'
+  INSTAGRAM = "INSTAGRAM",
+  FACEBOOK = "FACEBOOK",
+  TWITTER = "TWITTER",
+  TIKTOK = "TIKTOK",
+  YOUTUBE = "YOUTUBE",
 }
 
 /**
@@ -88,7 +88,7 @@ export interface DrawParticipant {
   id: string;
   name: string;
   identifier: string;
-  source: SocialPlatform | 'MANUAL';
+  source: SocialPlatform | "MANUAL";
   metadata?: Record<string, any>;
 }
 
@@ -110,7 +110,7 @@ export interface PaginationParams {
   page: number;
   limit: number;
   sortBy?: string;
-  sortOrder?: 'asc' | 'desc';
+  sortOrder?: "asc" | "desc";
 }
 
 /**
@@ -130,7 +130,7 @@ export interface PaginatedResponse<T> {
  * API Error response
  */
 export interface ErrorResponse {
-  status: 'error';
+  status: "error";
   message: string;
   code?: string;
   errors?: Array<{
@@ -143,7 +143,7 @@ export interface ErrorResponse {
  * API Success response
  */
 export interface SuccessResponse<T = any> {
-  status: 'success';
+  status: "success";
   data: T;
   message?: string;
 }

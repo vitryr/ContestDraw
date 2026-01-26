@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { authApi } from '../services/api';
-import type { User } from '../types';
+import { create } from "zustand";
+import { authApi } from "../services/api";
+import type { User } from "../types";
 
 interface AuthStore {
   user: User | null;
@@ -8,7 +8,11 @@ interface AuthStore {
   error: string | null;
 
   login: (email: string, password: string) => Promise<void>;
-  register: (data: { email: string; password: string; name: string }) => Promise<void>;
+  register: (data: {
+    email: string;
+    password: string;
+    name: string;
+  }) => Promise<void>;
   logout: () => void;
   loadUser: () => Promise<void>;
   clearError: () => void;
@@ -26,8 +30,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
       set({ user, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Login failed',
-        isLoading: false
+        error: error.response?.data?.message || "Login failed",
+        isLoading: false,
       });
       throw error;
     }
@@ -40,8 +44,8 @@ export const useAuthStore = create<AuthStore>((set) => ({
       set({ user, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Registration failed',
-        isLoading: false
+        error: error.response?.data?.message || "Registration failed",
+        isLoading: false,
       });
       throw error;
     }
@@ -53,7 +57,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
   },
 
   loadUser: async () => {
-    const token = localStorage.getItem('auth_token');
+    const token = localStorage.getItem("auth_token");
     if (!token) return;
 
     set({ isLoading: true });
@@ -62,7 +66,7 @@ export const useAuthStore = create<AuthStore>((set) => ({
       set({ user, isLoading: false });
     } catch (error) {
       set({ user: null, isLoading: false });
-      localStorage.removeItem('auth_token');
+      localStorage.removeItem("auth_token");
     }
   },
 

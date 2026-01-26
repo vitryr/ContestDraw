@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
-import { Trophy, Sparkles } from 'lucide-react';
-import type { Participant, Winner } from '../types';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import confetti from "canvas-confetti";
+import { Trophy, Sparkles } from "lucide-react";
+import type { Participant, Winner } from "../types";
 
 interface DrawAnimationProps {
   participants: Participant[];
@@ -10,15 +10,21 @@ interface DrawAnimationProps {
   drawTitle: string;
 }
 
-export default function DrawAnimation({ participants, winners, drawTitle }: DrawAnimationProps) {
-  const [currentPhase, setCurrentPhase] = useState<'intro' | 'scrolling' | 'winner'>('intro');
+export default function DrawAnimation({
+  participants,
+  winners,
+  drawTitle,
+}: DrawAnimationProps) {
+  const [currentPhase, setCurrentPhase] = useState<
+    "intro" | "scrolling" | "winner"
+  >("intro");
   const [currentWinnerIndex, setCurrentWinnerIndex] = useState(0);
   const [scrollingNames, setScrollingNames] = useState<string[]>([]);
 
   useEffect(() => {
     // Phase 1: Intro (2s)
     const introTimer = setTimeout(() => {
-      setCurrentPhase('scrolling');
+      setCurrentPhase("scrolling");
       // Create scrolling names list
       const names = participants.map((p) => p.name);
       const repeatedNames = Array(10).fill(names).flat();
@@ -29,10 +35,10 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
   }, [participants]);
 
   useEffect(() => {
-    if (currentPhase === 'scrolling') {
+    if (currentPhase === "scrolling") {
       // Phase 2: Scrolling (3s)
       const scrollTimer = setTimeout(() => {
-        setCurrentPhase('winner');
+        setCurrentPhase("winner");
         // Fire confetti
         fireConfetti();
       }, 3000);
@@ -42,7 +48,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
   }, [currentPhase]);
 
   useEffect(() => {
-    if (currentPhase === 'winner' && winners.length > 1) {
+    if (currentPhase === "winner" && winners.length > 1) {
       // Cycle through winners if multiple
       if (currentWinnerIndex < winners.length - 1) {
         const winnerTimer = setTimeout(() => {
@@ -93,7 +99,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
         <div className="aspect-[9/16] bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden relative">
           <AnimatePresence mode="wait">
             {/* Phase 1: Intro */}
-            {currentPhase === 'intro' && (
+            {currentPhase === "intro" && (
               <motion.div
                 key="intro"
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -109,13 +115,15 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
                   transition={{
                     duration: 2,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                   className="mb-8"
                 >
                   <Trophy className="w-24 h-24 text-white" />
                 </motion.div>
-                <h1 className="text-4xl font-bold text-white mb-4">{drawTitle}</h1>
+                <h1 className="text-4xl font-bold text-white mb-4">
+                  {drawTitle}
+                </h1>
                 <p className="text-2xl text-white/80">Drawing Winners...</p>
                 <motion.div
                   animate={{ scale: [1, 1.1, 1] }}
@@ -128,7 +136,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
             )}
 
             {/* Phase 2: Scrolling Names */}
-            {currentPhase === 'scrolling' && (
+            {currentPhase === "scrolling" && (
               <motion.div
                 key="scrolling"
                 initial={{ opacity: 0 }}
@@ -150,7 +158,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
                       transition={{
                         duration: 2,
                         repeat: Infinity,
-                        ease: "linear"
+                        ease: "linear",
                       }}
                       className="space-y-6"
                     >
@@ -169,7 +177,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
             )}
 
             {/* Phase 3: Winner Reveal */}
-            {currentPhase === 'winner' && winners[currentWinnerIndex] && (
+            {currentPhase === "winner" && winners[currentWinnerIndex] && (
               <motion.div
                 key={`winner-${currentWinnerIndex}`}
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -185,7 +193,7 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
                   transition={{
                     duration: 1,
                     repeat: Infinity,
-                    repeatDelay: 2
+                    repeatDelay: 2,
                   }}
                   className="mb-8"
                 >
@@ -198,7 +206,9 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
                   transition={{ delay: 0.3 }}
                 >
                   <h2 className="text-2xl font-semibold text-white/80 mb-4">
-                    {winners.length > 1 ? `Winner #${currentWinnerIndex + 1}` : 'Winner'}
+                    {winners.length > 1
+                      ? `Winner #${currentWinnerIndex + 1}`
+                      : "Winner"}
                   </h2>
 
                   {winners[currentWinnerIndex].participant.avatar && (
@@ -231,16 +241,17 @@ export default function DrawAnimation({ participants, winners, drawTitle }: Draw
                   </motion.p>
                 </motion.div>
 
-                {winners.length > 1 && currentWinnerIndex < winners.length - 1 && (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 2 }}
-                    className="absolute bottom-8 text-white/60 text-sm"
-                  >
-                    Next winner in 3 seconds...
-                  </motion.p>
-                )}
+                {winners.length > 1 &&
+                  currentWinnerIndex < winners.length - 1 && (
+                    <motion.p
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 2 }}
+                      className="absolute bottom-8 text-white/60 text-sm"
+                    >
+                      Next winner in 3 seconds...
+                    </motion.p>
+                  )}
               </motion.div>
             )}
           </AnimatePresence>

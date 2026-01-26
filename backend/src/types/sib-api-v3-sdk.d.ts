@@ -2,11 +2,11 @@
  * Type declarations for sib-api-v3-sdk (Brevo Node.js SDK)
  * The package doesn't include TypeScript definitions
  */
-declare module 'sib-api-v3-sdk' {
+declare module "sib-api-v3-sdk" {
   export class ApiClient {
     static instance: ApiClient;
     authentications: {
-      'api-key': {
+      "api-key": {
         apiKey: string;
       };
     };

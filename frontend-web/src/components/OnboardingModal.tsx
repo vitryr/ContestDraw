@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Instagram, FileText, Sparkles } from 'lucide-react';
-import { useTranslation } from 'react-i18next';
-import * as Dialog from '@radix-ui/react-dialog';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, Instagram, FileText, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import * as Dialog from "@radix-ui/react-dialog";
 
-const ONBOARDING_KEY = 'contestdraw_onboarding_completed';
+const ONBOARDING_KEY = "contestdraw_onboarding_completed";
 
 export default function OnboardingModal() {
   const { t } = useTranslation();
@@ -19,7 +19,7 @@ export default function OnboardingModal() {
   }, []);
 
   const handleClose = () => {
-    localStorage.setItem(ONBOARDING_KEY, 'true');
+    localStorage.setItem(ONBOARDING_KEY, "true");
     setIsOpen(false);
   };
 
@@ -38,22 +38,22 @@ export default function OnboardingModal() {
   const screens = [
     {
       icon: <Instagram className="w-16 h-16" />,
-      color: 'from-pink-500 to-purple-500',
-      title: t('onboarding.screen1.title'),
-      description: t('onboarding.screen1.description')
+      color: "from-pink-500 to-purple-500",
+      title: t("onboarding.screen1.title"),
+      description: t("onboarding.screen1.description"),
     },
     {
       icon: <FileText className="w-16 h-16" />,
-      color: 'from-cyan-500 to-blue-500',
-      title: t('onboarding.screen2.title'),
-      description: t('onboarding.screen2.description')
+      color: "from-cyan-500 to-blue-500",
+      title: t("onboarding.screen2.title"),
+      description: t("onboarding.screen2.description"),
     },
     {
       icon: <Sparkles className="w-16 h-16" />,
-      color: 'from-purple-500 to-pink-500',
-      title: t('onboarding.screen3.title'),
-      description: t('onboarding.screen3.description')
-    }
+      color: "from-purple-500 to-pink-500",
+      title: t("onboarding.screen3.title"),
+      description: t("onboarding.screen3.description"),
+    },
   ];
 
   return (
@@ -87,7 +87,9 @@ export default function OnboardingModal() {
                   transition={{ duration: 0.3 }}
                   className="text-center"
                 >
-                  <div className={`w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${screens[currentScreen].color} flex items-center justify-center text-white`}>
+                  <div
+                    className={`w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br ${screens[currentScreen].color} flex items-center justify-center text-white`}
+                  >
                     {screens[currentScreen].icon}
                   </div>
 
@@ -105,8 +107,8 @@ export default function OnboardingModal() {
                         key={index}
                         className={`h-2 rounded-full transition-all ${
                           index === currentScreen
-                            ? 'w-8 bg-primary-600'
-                            : 'w-2 bg-gray-300'
+                            ? "w-8 bg-primary-600"
+                            : "w-2 bg-gray-300"
                         }`}
                       />
                     ))}
@@ -119,13 +121,13 @@ export default function OnboardingModal() {
                           onClick={handleSkip}
                           className="flex-1 px-6 py-3 rounded-lg border border-gray-300 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
                         >
-                          {t('onboarding.skip')}
+                          {t("onboarding.skip")}
                         </button>
                         <button
                           onClick={handleNext}
                           className="flex-1 px-6 py-3 rounded-lg bg-gradient-to-r from-primary-600 to-accent-600 text-white font-medium hover:opacity-90 transition-opacity"
                         >
-                          {t('onboarding.next')}
+                          {t("onboarding.next")}
                         </button>
                       </>
                     ) : (
@@ -133,7 +135,7 @@ export default function OnboardingModal() {
                         onClick={handleClose}
                         className="w-full px-6 py-3 rounded-lg bg-gradient-to-r from-primary-600 to-accent-600 text-white font-medium hover:opacity-90 transition-opacity"
                       >
-                        {t('onboarding.done')}
+                        {t("onboarding.done")}
                       </button>
                     )}
                   </div>

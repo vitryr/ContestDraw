@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 export class MockHelpers {
   static mockPrismaTransaction(results: any[]) {
@@ -24,8 +24,8 @@ export class MockHelpers {
 
   static mockStripeSession(sessionData: any = {}) {
     return {
-      id: 'cs_test_123',
-      payment_status: 'paid',
+      id: "cs_test_123",
+      payment_status: "paid",
       amount_total: 1000,
       metadata: {},
       ...sessionData,

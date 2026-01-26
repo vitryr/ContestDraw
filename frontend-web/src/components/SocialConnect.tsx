@@ -1,27 +1,32 @@
-import { useState } from 'react';
-import { Instagram, Twitter } from 'lucide-react';
-import toast from 'react-hot-toast';
+import { useState } from "react";
+import { Instagram, Twitter } from "lucide-react";
+import toast from "react-hot-toast";
 
 interface SocialConnectProps {
   drawId: string;
   onImport: (platform: string, url: string) => Promise<void>;
 }
 
-export default function SocialConnect({ drawId, onImport }: SocialConnectProps) {
-  const [platform, setPlatform] = useState<'instagram' | 'twitter'>('instagram');
-  const [url, setUrl] = useState('');
+export default function SocialConnect({
+  drawId,
+  onImport,
+}: SocialConnectProps) {
+  const [platform, setPlatform] = useState<"instagram" | "twitter">(
+    "instagram",
+  );
+  const [url, setUrl] = useState("");
   const [isImporting, setIsImporting] = useState(false);
 
   const handleImport = async () => {
     if (!url) {
-      toast.error('Please enter a post URL');
+      toast.error("Please enter a post URL");
       return;
     }
 
     setIsImporting(true);
     try {
       await onImport(platform, url);
-      setUrl('');
+      setUrl("");
     } catch (error) {
       // Error handled by parent
     } finally {
@@ -35,11 +40,11 @@ export default function SocialConnect({ drawId, onImport }: SocialConnectProps) 
       <div className="flex gap-2">
         <button
           type="button"
-          onClick={() => setPlatform('instagram')}
+          onClick={() => setPlatform("instagram")}
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 transition-colors ${
-            platform === 'instagram'
-              ? 'border-primary-600 bg-primary-50 text-primary-700'
-              : 'border-gray-200 hover:border-gray-300 text-gray-700'
+            platform === "instagram"
+              ? "border-primary-600 bg-primary-50 text-primary-700"
+              : "border-gray-200 hover:border-gray-300 text-gray-700"
           }`}
         >
           <Instagram className="w-5 h-5" />
@@ -47,11 +52,11 @@ export default function SocialConnect({ drawId, onImport }: SocialConnectProps) 
         </button>
         <button
           type="button"
-          onClick={() => setPlatform('twitter')}
+          onClick={() => setPlatform("twitter")}
           className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 transition-colors ${
-            platform === 'twitter'
-              ? 'border-primary-600 bg-primary-50 text-primary-700'
-              : 'border-gray-200 hover:border-gray-300 text-gray-700'
+            platform === "twitter"
+              ? "border-primary-600 bg-primary-50 text-primary-700"
+              : "border-gray-200 hover:border-gray-300 text-gray-700"
           }`}
         >
           <Twitter className="w-5 h-5" />
@@ -76,7 +81,7 @@ export default function SocialConnect({ drawId, onImport }: SocialConnectProps) 
         disabled={isImporting || !url}
         className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {isImporting ? 'Importing...' : 'Import Participants'}
+        {isImporting ? "Importing..." : "Import Participants"}
       </button>
 
       {/* Instructions */}

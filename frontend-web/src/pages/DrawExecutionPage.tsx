@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Download } from 'lucide-react';
-import { useDrawStore } from '../store/useDrawStore';
-import DrawAnimation from '../components/DrawAnimation';
-import toast from 'react-hot-toast';
+import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { Play, Download } from "lucide-react";
+import { useDrawStore } from "../store/useDrawStore";
+import DrawAnimation from "../components/DrawAnimation";
+import toast from "react-hot-toast";
 
 export default function DrawExecutionPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const { currentDraw, fetchDraw, executeDraw, winners, isLoading } = useDrawStore();
+  const { currentDraw, fetchDraw, executeDraw, winners, isLoading } =
+    useDrawStore();
   const [isExecuting, setIsExecuting] = useState(false);
   const [showAnimation, setShowAnimation] = useState(false);
 
@@ -27,7 +28,7 @@ export default function DrawExecutionPage() {
 
     try {
       await executeDraw(id);
-      toast.success('Draw completed successfully!');
+      toast.success("Draw completed successfully!");
 
       // Wait for animation to complete before navigating
       setTimeout(() => {
@@ -90,7 +91,9 @@ export default function DrawExecutionPage() {
                   </h1>
 
                   {currentDraw.description && (
-                    <p className="text-gray-600 mb-6">{currentDraw.description}</p>
+                    <p className="text-gray-600 mb-6">
+                      {currentDraw.description}
+                    </p>
                   )}
 
                   <div className="grid grid-cols-3 gap-4 mb-8">
@@ -115,25 +118,33 @@ export default function DrawExecutionPage() {
                   </div>
 
                   {/* Applied Filters */}
-                  {currentDraw.filters && Object.keys(currentDraw.filters).length > 0 && (
-                    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-                      <h3 className="font-semibold text-blue-900 mb-2">Applied Filters:</h3>
-                      <ul className="text-sm text-blue-800 space-y-1">
-                        {currentDraw.filters.minFollowers && (
-                          <li>• Minimum {currentDraw.filters.minFollowers} followers</li>
-                        )}
-                        {currentDraw.filters.minLikes && (
-                          <li>• Minimum {currentDraw.filters.minLikes} likes</li>
-                        )}
-                        {currentDraw.filters.requireFollowing && (
-                          <li>• Must be following</li>
-                        )}
-                        {currentDraw.filters.duplicateCheck && (
-                          <li>• Duplicate checking enabled</li>
-                        )}
-                      </ul>
-                    </div>
-                  )}
+                  {currentDraw.filters &&
+                    Object.keys(currentDraw.filters).length > 0 && (
+                      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                        <h3 className="font-semibold text-blue-900 mb-2">
+                          Applied Filters:
+                        </h3>
+                        <ul className="text-sm text-blue-800 space-y-1">
+                          {currentDraw.filters.minFollowers && (
+                            <li>
+                              • Minimum {currentDraw.filters.minFollowers}{" "}
+                              followers
+                            </li>
+                          )}
+                          {currentDraw.filters.minLikes && (
+                            <li>
+                              • Minimum {currentDraw.filters.minLikes} likes
+                            </li>
+                          )}
+                          {currentDraw.filters.requireFollowing && (
+                            <li>• Must be following</li>
+                          )}
+                          {currentDraw.filters.duplicateCheck && (
+                            <li>• Duplicate checking enabled</li>
+                          )}
+                        </ul>
+                      </div>
+                    )}
 
                   <button
                     onClick={handleExecuteDraw}
@@ -141,19 +152,17 @@ export default function DrawExecutionPage() {
                     className="btn-primary w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Play className="w-6 h-6 inline mr-2" />
-                    {isExecuting ? 'Executing Draw...' : 'Start Draw'}
+                    {isExecuting ? "Executing Draw..." : "Start Draw"}
                   </button>
                 </div>
 
                 {/* Instructions */}
                 <div className="text-white space-y-4">
-                  <p className="text-lg">
-                    Ready to execute your draw?
-                  </p>
+                  <p className="text-lg">Ready to execute your draw?</p>
                   <p className="text-gray-400">
-                    We'll randomly select {currentDraw.numberOfWinners} winner(s) from{' '}
-                    {currentDraw.participants?.length || 0} participants with a fair and
-                    transparent algorithm.
+                    We'll randomly select {currentDraw.numberOfWinners}{" "}
+                    winner(s) from {currentDraw.participants?.length || 0}{" "}
+                    participants with a fair and transparent algorithm.
                   </p>
                 </div>
               </motion.div>

@@ -1,6 +1,6 @@
-import { create } from 'zustand';
-import { drawApi, participantsApi, winnersApi } from '../services/api';
-import type { Draw, Participant, DrawFilters, Winner } from '../types';
+import { create } from "zustand";
+import { drawApi, participantsApi, winnersApi } from "../services/api";
+import type { Draw, Participant, DrawFilters, Winner } from "../types";
 
 interface DrawStore {
   draws: Draw[];
@@ -19,7 +19,11 @@ interface DrawStore {
   deleteDraw: (id: string) => Promise<void>;
 
   // Participants operations
-  importParticipants: (drawId: string, source: string, url?: string) => Promise<void>;
+  importParticipants: (
+    drawId: string,
+    source: string,
+    url?: string,
+  ) => Promise<void>;
   uploadParticipantsCSV: (drawId: string, file: File) => Promise<void>;
   setParticipants: (participants: Participant[]) => void;
 
@@ -56,8 +60,8 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       set({ draws, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to fetch draws',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to fetch draws",
+        isLoading: false,
       });
     }
   },
@@ -70,12 +74,12 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
         currentDraw: draw,
         participants: draw.participants || [],
         filters: draw.filters || {},
-        isLoading: false
+        isLoading: false,
       });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to fetch draw',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to fetch draw",
+        isLoading: false,
       });
     }
   },
@@ -87,13 +91,13 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       set((state) => ({
         draws: [...state.draws, draw],
         currentDraw: draw,
-        isLoading: false
+        isLoading: false,
       }));
       return draw;
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to create draw',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to create draw",
+        isLoading: false,
       });
       throw error;
     }
@@ -105,13 +109,14 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       const updatedDraw = await drawApi.update(id, updates);
       set((state) => ({
         draws: state.draws.map((d) => (d.id === id ? updatedDraw : d)),
-        currentDraw: state.currentDraw?.id === id ? updatedDraw : state.currentDraw,
-        isLoading: false
+        currentDraw:
+          state.currentDraw?.id === id ? updatedDraw : state.currentDraw,
+        isLoading: false,
       }));
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to update draw',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to update draw",
+        isLoading: false,
       });
     }
   },
@@ -122,12 +127,12 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       await drawApi.delete(id);
       set((state) => ({
         draws: state.draws.filter((d) => d.id !== id),
-        isLoading: false
+        isLoading: false,
       }));
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to delete draw',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to delete draw",
+        isLoading: false,
       });
     }
   },
@@ -135,12 +140,16 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
   importParticipants: async (drawId, source, url) => {
     set({ isLoading: true, error: null });
     try {
-      const { participants } = await participantsApi.import(drawId, source, url);
+      const { participants } = await participantsApi.import(
+        drawId,
+        source,
+        url,
+      );
       set({ participants, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to import participants',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to import participants",
+        isLoading: false,
       });
       throw error;
     }
@@ -153,8 +162,8 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       set({ participants, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to upload participants',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to upload participants",
+        isLoading: false,
       });
       throw error;
     }
@@ -166,7 +175,7 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
 
   updateFilters: (updates) =>
     set((state) => ({
-      filters: { ...state.filters, ...updates }
+      filters: { ...state.filters, ...updates },
     })),
 
   executeDraw: async (drawId) => {
@@ -177,8 +186,8 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       return winners;
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to execute draw',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to execute draw",
+        isLoading: false,
       });
       throw error;
     }
@@ -191,8 +200,8 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       set({ winners, isLoading: false });
     } catch (error: any) {
       set({
-        error: error.response?.data?.message || 'Failed to fetch winners',
-        isLoading: false
+        error: error.response?.data?.message || "Failed to fetch winners",
+        isLoading: false,
       });
     }
   },
@@ -202,7 +211,10 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       const { url } = await winnersApi.generateCertificate(winnerId);
       return url;
     } catch (error: any) {
-      set({ error: error.response?.data?.message || 'Failed to generate certificate' });
+      set({
+        error:
+          error.response?.data?.message || "Failed to generate certificate",
+      });
       throw error;
     }
   },
@@ -212,17 +224,20 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
       const { url } = await winnersApi.generateVideo(drawId);
       return url;
     } catch (error: any) {
-      set({ error: error.response?.data?.message || 'Failed to generate video' });
+      set({
+        error: error.response?.data?.message || "Failed to generate video",
+      });
       throw error;
     }
   },
 
-  clearCurrentDraw: () => set({
-    currentDraw: null,
-    participants: [],
-    filters: {},
-    winners: []
-  }),
+  clearCurrentDraw: () =>
+    set({
+      currentDraw: null,
+      participants: [],
+      filters: {},
+      winners: [],
+    }),
 
   clearError: () => set({ error: null }),
 }));

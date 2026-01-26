@@ -4,15 +4,15 @@
  */
 
 export enum OrganizationRole {
-  OWNER = 'owner',
-  ADMIN = 'admin',
-  MEMBER = 'member',
-  VIEWER = 'viewer'
+  OWNER = "owner",
+  ADMIN = "admin",
+  MEMBER = "member",
+  VIEWER = "viewer",
 }
 
 export enum OrganizationTier {
-  ENTERPRISE = 'ENTERPRISE',
-  ENTERPRISE_PLUS = 'ENTERPRISE_PLUS'
+  ENTERPRISE = "ENTERPRISE",
+  ENTERPRISE_PLUS = "ENTERPRISE_PLUS",
 }
 
 export interface Organization {
@@ -149,7 +149,7 @@ export interface OrganizationDashboard {
 
 export interface ActivityItem {
   id: string;
-  type: 'draw' | 'brand' | 'member' | 'subscription';
+  type: "draw" | "brand" | "member" | "subscription";
   description: string;
   userId: string;
   brandId?: string;
