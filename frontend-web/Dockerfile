@@ -1,4 +1,4 @@
-# Multi-stage React Dockerfile for Frontend
+# Multi-stage Vite Dockerfile for Frontend
 # Stage 1: Build
 FROM node:18-alpine AS builder
 
@@ -13,11 +13,11 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build React app with production environment
-ARG REACT_APP_API_URL
-ARG REACT_APP_WS_URL
-ENV REACT_APP_API_URL=$REACT_APP_API_URL
-ENV REACT_APP_WS_URL=$REACT_APP_WS_URL
+# Build Vite app with production environment
+ARG VITE_API_URL
+ARG VITE_WS_URL
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_WS_URL=$VITE_WS_URL
 ENV NODE_ENV=production
 
 RUN npm run build
@@ -32,8 +32,8 @@ RUN apk update && apk upgrade && apk add --no-cache tzdata
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/conf.d/default.conf
 
-# Copy built app from builder stage
-COPY --from=builder /app/build /usr/share/nginx/html
+# Copy built app from builder stage (Vite outputs to /dist)
+COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Add health check script
 RUN echo '#!/bin/sh' > /healthcheck.sh && \
