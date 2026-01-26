@@ -14,6 +14,9 @@ import ProfilePage from "./pages/ProfilePage";
 import PublicVerifyPage from "./pages/PublicVerifyPage";
 import EmbedVerifyPage from "./pages/EmbedVerifyPage";
 import FAQPage from "./pages/FAQPage";
+import LegalNoticePage from "./pages/LegalNoticePage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user } = useAuthStore();
@@ -29,6 +32,11 @@ function App() {
         <Route path="verify-email" element={<EmailVerificationPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="faq" element={<FAQPage />} />
+
+        {/* Legal pages - no auth required */}
+        <Route path="legal" element={<LegalNoticePage />} />
+        <Route path="privacy" element={<PrivacyPolicyPage />} />
+        <Route path="terms" element={<TermsOfServicePage />} />
 
         {/* Public verification routes - no auth required */}
         <Route path="verify/:drawId" element={<PublicVerifyPage />} />
