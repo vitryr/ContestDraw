@@ -115,7 +115,7 @@ export default function DashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600 mb-1">Credits</p>
-                <p className="text-2xl font-bold text-gray-900">{balance?.totalCredits || 0}</p>
+                <p className="text-2xl font-bold text-gray-900">{balance || 0}</p>
               </div>
               <Link
                 to="/pricing"

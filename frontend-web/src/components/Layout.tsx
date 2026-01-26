@@ -64,7 +64,7 @@ export default function Layout({ children }: LayoutProps = {}) {
 
                   <div className="flex items-center space-x-2 px-4 py-2 bg-primary-50 rounded-lg">
                     <CreditCard className="w-4 h-4 text-primary-600" />
-                    <span className="font-medium text-primary-900">{balance?.totalCredits || 0} {t('nav.credits')}</span>
+                    <span className="font-medium text-primary-900">{balance || 0} {t('nav.credits')}</span>
                   </div>
 
                   <div className="relative group">
@@ -145,7 +145,7 @@ export default function Layout({ children }: LayoutProps = {}) {
                     {t('nav.profile')}
                   </Link>
                   <div className="px-4 py-2 bg-primary-50 rounded-lg">
-                    <span className="font-medium text-primary-900">{balance?.totalCredits || 0} {t('nav.credits')}</span>
+                    <span className="font-medium text-primary-900">{balance || 0} {t('nav.credits')}</span>
                   </div>
                   <div className="px-4 py-2">
                     <LanguageSwitcher />

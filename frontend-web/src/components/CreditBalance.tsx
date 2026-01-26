@@ -15,7 +15,7 @@ export default function CreditBalance() {
 
   useEffect(() => {
     const bonusShown = localStorage.getItem(WELCOME_BONUS_KEY);
-    const credits = balance?.totalCredits || balance?.credits || 0;
+    const credits = balance || 0;
     if (!bonusShown && credits >= 3) {
       setShowWelcomeBonus(true);
       confetti({
@@ -73,7 +73,7 @@ export default function CreditBalance() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-white/80 text-sm mb-1">{t('credits.currentBalance')}</p>
-            <p className="text-4xl font-bold text-white">{balance?.totalCredits || balance?.credits || 0}</p>
+            <p className="text-4xl font-bold text-white">{balance || 0}</p>
             <p className="text-white/80 text-sm mt-1">{t('credits.credits')}</p>
           </div>
           <TrendingUp className="w-12 h-12 text-white/30" />
