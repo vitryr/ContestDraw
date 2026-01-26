@@ -1,32 +1,39 @@
 {
-  "name": "e2e",
+  "name": "contestdraw-e2e",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "End-to-end tests for ContestDraw platform using Playwright",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "test:signup": "playwright test specs/signup-workflow.spec.ts",
-    "test:navigation": "playwright test specs/home-navigation.spec.ts",
+    "test:ui": "playwright test --ui",
     "test:chromium": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
     "test:mobile": "playwright test --project='Mobile Chrome' --project='Mobile Safari'",
-    "test:ui": "playwright test --ui",
+    "test:registration": "playwright test specs/01-registration.spec.ts",
+    "test:auth": "playwright test specs/02-authentication.spec.ts",
+    "test:draw": "playwright test specs/04-manual-draw.spec.ts specs/06-draw-execution.spec.ts",
+    "test:payment": "playwright test specs/07-payment-credits.spec.ts specs/08-subscription.spec.ts",
+    "test:profile": "playwright test specs/13-profile-management.spec.ts",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:critical": "playwright test --grep @critical",
     "report": "playwright show-report",
-    "codegen": "playwright codegen http://localhost:3001"
+    "codegen": "playwright codegen http://localhost:3000",
+    "install-browsers": "playwright install --with-deps"
   },
   "keywords": [
     "playwright",
     "e2e",
     "testing",
-    "automation"
+    "automation",
+    "contestdraw"
   ],
-  "author": "",
-  "license": "ISC",
-  "description": "End-to-end tests for ContestDraw platform using Playwright",
+  "author": "ContestDraw Team",
+  "license": "UNLICENSED",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "playwright": "^1.56.1"
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
   }
 }
