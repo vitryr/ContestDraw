@@ -12,7 +12,7 @@ import type {
 import type { LoginResponse, RegisterResponse } from "../types/auth";
 
 const api = axios.create({
-  baseURL: "/api",
+  baseURL: `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/api`,
   headers: {
     "Content-Type": "application/json",
   },
@@ -172,8 +172,11 @@ export const authApi = {
 // Draw API
 export const drawApi = {
   create: async (drawData: Partial<Draw>) => {
-    const { data } = await api.post<ApiResponse<Draw>>("/draws", drawData);
-    return data.data;
+    const { data } = await api.post<ApiResponse<{ draw: Draw }>>(
+      "/draws",
+      drawData,
+    );
+    return data.data.draw;
   },
 
   getAll: async () => {
@@ -182,8 +185,10 @@ export const drawApi = {
   },
 
   getById: async (id: string) => {
-    const { data } = await api.get<ApiResponse<Draw>>(`/draws/${id}`);
-    return data.data;
+    const { data } = await api.get<ApiResponse<{ draw: Draw }>>(
+      `/draws/${id}`,
+    );
+    return data.data.draw;
   },
 
   update: async (id: string, updates: Partial<Draw>) => {
@@ -259,9 +264,21 @@ export const winnersApi = {
 // Credits API
 export const creditsApi = {
   getBalance: async () => {
-    const { data } =
-      await api.get<ApiResponse<{ balance: number }>>("/credits/balance");
-    return data.data;
+    const { data } = await api.get<
+      ApiResponse<{
+        balance: {
+          credits: number;
+          subscriptionCredits?: number;
+          totalCredits?: number;
+        };
+      }>
+    >("/credits/balance");
+    // Extract the numeric balance from the backend response object
+    const balanceData = data.data.balance;
+    return {
+      balance:
+        balanceData.totalCredits ?? balanceData.credits ?? balanceData ?? 0,
+    };
   },
 
   getHistory: async () => {

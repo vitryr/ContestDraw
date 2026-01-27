@@ -59,7 +59,8 @@ export default function NewDrawPage() {
         title: data.title,
         description: data.description,
         platform: data.platform,
-        postUrl: data.postUrl,
+        // Only send postUrl if it's a non-empty string
+        ...(data.postUrl ? { postUrl: data.postUrl } : {}),
         numberOfWinners: data.numberOfWinners,
         status: "draft",
       });

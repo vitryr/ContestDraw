@@ -111,16 +111,14 @@ export default function AuthPageEnhanced() {
       });
 
       setShowSuccess(true);
-      toast.success("Account created successfully! Welcome aboard! 🎉", {
+      toast.success("Account created successfully! Welcome aboard!", {
         duration: 3000,
-        icon: "🎊",
       });
 
       // Show welcome message about free credits
       setTimeout(() => {
         toast.success("You received 3 free credits to get started!", {
           duration: 4000,
-          icon: "🎁",
         });
       }, 1500);
 
@@ -384,6 +382,15 @@ export default function AuthPageEnhanced() {
                             {loginForm.formState.errors.password.message}
                           </p>
                         )}
+                        <div className="text-right">
+                          <button
+                            type="button"
+                            onClick={() => navigate("/forgot-password")}
+                            className="text-sm text-primary-600 hover:text-primary-700 hover:underline"
+                          >
+                            Forgot password?
+                          </button>
+                        </div>
                       </div>
 
                       {/* Submit Button */}
