@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
@@ -34,6 +34,8 @@ export default function DrawConfigPage() {
     "participants",
   );
   const [isEditingBasicInfo, setIsEditingBasicInfo] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const fileInputRefSocial = useRef<HTMLInputElement>(null);
   const [editTitle, setEditTitle] = useState("");
   const [editNumberOfWinners, setEditNumberOfWinners] = useState(1);
   const [editPlatform, setEditPlatform] = useState<string>("instagram");
@@ -417,14 +419,15 @@ export default function DrawConfigPage() {
                             accept=".csv"
                             onChange={handleFileUpload}
                             className="hidden"
-                            id="csv-upload-manual"
+                            ref={fileInputRef}
                           />
-                          <label
-                            htmlFor="csv-upload-manual"
-                            className="btn-primary cursor-pointer inline-block"
+                          <button
+                            type="button"
+                            onClick={() => fileInputRef.current?.click()}
+                            className="btn-primary"
                           >
                             Choose CSV File
-                          </label>
+                          </button>
                           <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4 text-left max-w-md mx-auto">
                             <p className="text-xs font-medium text-gray-700 mb-2">
                               Expected CSV format:
@@ -471,14 +474,15 @@ export default function DrawConfigPage() {
                               accept=".csv"
                               onChange={handleFileUpload}
                               className="hidden"
-                              id="csv-upload-social"
+                              ref={fileInputRefSocial}
                             />
-                            <label
-                              htmlFor="csv-upload-social"
-                              className="btn-secondary cursor-pointer inline-block"
+                            <button
+                              type="button"
+                              onClick={() => fileInputRefSocial.current?.click()}
+                              className="btn-secondary"
                             >
                               Choose File
-                            </label>
+                            </button>
                           </div>
 
                           {/* Social Import */}
