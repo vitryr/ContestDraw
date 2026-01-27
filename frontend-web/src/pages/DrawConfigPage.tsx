@@ -417,10 +417,10 @@ export default function DrawConfigPage() {
                             accept=".csv"
                             onChange={handleFileUpload}
                             className="hidden"
-                            id="csv-upload"
+                            id="csv-upload-manual"
                           />
                           <label
-                            htmlFor="csv-upload"
+                            htmlFor="csv-upload-manual"
                             className="btn-primary cursor-pointer inline-block"
                           >
                             Choose CSV File
@@ -471,10 +471,10 @@ export default function DrawConfigPage() {
                               accept=".csv"
                               onChange={handleFileUpload}
                               className="hidden"
-                              id="csv-upload"
+                              id="csv-upload-social"
                             />
                             <label
-                              htmlFor="csv-upload"
+                              htmlFor="csv-upload-social"
                               className="btn-secondary cursor-pointer inline-block"
                             >
                               Choose File
