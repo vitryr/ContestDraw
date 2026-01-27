@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
+import { usePageTracking } from "./hooks/useAnalytics";
 import Layout from "./components/Layout";
 import LandingPage from "./pages/LandingPage";
 import AuthPageEnhanced from "./pages/AuthPageEnhanced";
@@ -14,6 +15,8 @@ import ProfilePage from "./pages/ProfilePage";
 import PublicVerifyPage from "./pages/PublicVerifyPage";
 import EmbedVerifyPage from "./pages/EmbedVerifyPage";
 import FAQPage from "./pages/FAQPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import LegalNoticePage from "./pages/LegalNoticePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
@@ -23,12 +26,21 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   return user ? <>{children}</> : <Navigate to="/auth" replace />;
 };
 
+// Analytics page tracking wrapper
+const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
+  usePageTracking();
+  return <>{children}</>;
+};
+
 function App() {
   return (
+    <AnalyticsWrapper>
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<LandingPage />} />
         <Route path="auth" element={<AuthPageEnhanced />} />
+        <Route path="forgot-password" element={<ForgotPasswordPage />} />
+        <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="verify-email" element={<EmailVerificationPage />} />
         <Route path="pricing" element={<PricingPage />} />
         <Route path="faq" element={<FAQPage />} />
@@ -95,6 +107,7 @@ function App() {
       {/* Embed route - minimal layout */}
       <Route path="embed/:drawId" element={<EmbedVerifyPage />} />
     </Routes>
+    </AnalyticsWrapper>
   );
 }
 
