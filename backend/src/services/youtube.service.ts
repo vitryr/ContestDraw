@@ -3,7 +3,8 @@
  * Handles fetching comments from YouTube videos for contest draws
  */
 
-import axios, { AxiosInstance } from "axios";
+import axios from "axios"
+type AxiosInstance = ReturnType<typeof axios.create>;
 import { PaginatedResponse, Comment, APIError } from "../types/social.types";
 import { RetryHandler } from "../utils/retry.util";
 import { Cache } from "../utils/cache.util";

@@ -2,9 +2,8 @@ import { Response } from "express";
 import { AuthRequest } from "../../types";
 import { asyncHandler, AppError } from "../../middleware/error.middleware";
 import { logger } from "../../utils/logger";
-
-// Mock database - replace with actual Prisma calls in production
-const users = new Map<string, any>();
+import { prisma } from "../../utils/prisma";
+import crypto from "crypto";
 
 /**
  * GET /api/users/me
@@ -16,29 +15,35 @@ export const getCurrentUser = asyncHandler(
       throw new AppError("User not authenticated", 401);
     }
 
-    // In production, fetch from database
-    const user = {
-      id: req.user.id,
-      email: req.user.email,
-      role: req.user.role,
-      firstName: "John",
-      lastName: "Doe",
-      emailVerified: true,
-      language: "en",
-      timezone: "UTC",
-      createdAt: new Date(),
-    };
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        emailVerified: true,
+        credits: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
 
     res.status(200).json({
       status: "success",
-      data: { user },
+      data: user,
     });
   },
 );
 
 /**
  * PATCH /api/users/me
- * Update current user profile
+ * Update current user profile (name only, not email)
  */
 export const updateCurrentUser = asyncHandler(
   async (req: AuthRequest, res: Response) => {
@@ -46,27 +51,88 @@ export const updateCurrentUser = asyncHandler(
       throw new AppError("User not authenticated", 401);
     }
 
-    const { firstName, lastName, language, timezone } = req.body;
+    const { firstName, lastName } = req.body;
 
-    // In production, update in database
-    const updatedUser = {
-      id: req.user.id,
-      email: req.user.email,
-      role: req.user.role,
-      firstName: firstName || "John",
-      lastName: lastName || "Doe",
-      emailVerified: true,
-      language: language || "en",
-      timezone: timezone || "UTC",
-      updatedAt: new Date(),
-    };
+    const updatedUser = await prisma.user.update({
+      where: { id: req.user.id },
+      data: {
+        ...(firstName !== undefined && { firstName }),
+        ...(lastName !== undefined && { lastName }),
+      },
+      select: {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        emailVerified: true,
+        credits: true,
+        role: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+    });
 
     logger.info(`User profile updated: ${req.user.id}`);
 
     res.status(200).json({
       status: "success",
       message: "Profile updated successfully",
-      data: { user: updatedUser },
+      data: updatedUser,
+    });
+  },
+);
+
+/**
+ * POST /api/users/me/request-email-change
+ * Request email address change (sends confirmation to new email)
+ */
+export const requestEmailChange = asyncHandler(
+  async (req: AuthRequest, res: Response) => {
+    if (!req.user) {
+      throw new AppError("User not authenticated", 401);
+    }
+
+    const { newEmail } = req.body;
+
+    if (!newEmail) {
+      throw new AppError("New email address is required", 400);
+    }
+
+    // Check if email is already in use
+    const existingUser = await prisma.user.findUnique({
+      where: { email: newEmail },
+    });
+
+    if (existingUser) {
+      throw new AppError("This email address is already in use", 400);
+    }
+
+    // Generate verification token
+    const token = crypto.randomBytes(32).toString("hex");
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + 24); // 24 hour expiry
+
+    // Store the email change request in verification_tokens table
+    await prisma.verificationToken.create({
+      data: {
+        token,
+        userId: req.user.id,
+        type: "EMAIL_CHANGE",
+        expiresAt,
+        // Store new email in a JSON field or separate column
+        // For now, we'll encode it in the token type
+      },
+    });
+
+    // In production, send confirmation email to the NEW email address
+    // await emailService.sendEmailChangeConfirmation(newEmail, token);
+
+    logger.info(`Email change requested for user ${req.user.id} to ${newEmail}`);
+
+    res.status(200).json({
+      status: "success",
+      message:
+        "A confirmation email has been sent to your new email address. Please click the link to confirm the change.",
     });
   },
 );

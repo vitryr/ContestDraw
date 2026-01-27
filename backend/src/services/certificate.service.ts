@@ -234,3 +234,7 @@ export class CertificateService {
     };
   }
 }
+
+// Singleton instance and helper function
+export const certificateService = new CertificateService();
+export const generateCertificatePDF = (draw: any) => certificateService.generateCertificate(draw);

@@ -36,7 +36,7 @@ export const ResultsScreen: React.FC = () => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
       const winners = currentDraw.winners?.map((w) => w.username).join(', ') || '';
-      const message = `🎉 ${currentDraw.title}\n\nWinners: ${winners}\n\nDrawn with ContestDraw`;
+      const message = `🎉 ${currentDraw.title}\n\nWinners: ${winners}\n\nDrawn with Cleack`;
 
       await Share.open({
         title: 'Share Results',

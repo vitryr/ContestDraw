@@ -93,6 +93,22 @@ router.post(
 );
 
 /**
+ * POST /api/auth/resend-verification
+ * Resend email verification token
+ */
+router.post(
+  "/resend-verification",
+  emailLimiter,
+  validate([
+    body("email")
+      .isEmail()
+      .withMessage("Invalid email address")
+      .normalizeEmail(),
+  ]),
+  authController.resendVerification,
+);
+
+/**
  * POST /api/auth/forgot-password
  * Request password reset email
  */

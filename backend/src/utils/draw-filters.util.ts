@@ -6,7 +6,7 @@
 import { Participant } from "@prisma/client";
 import blacklistService from "../services/blacklist.service";
 import followerVerificationService from "../services/follower-verification.service";
-import logger from "./logger";
+import { logger } from "./logger";
 
 interface FilterOptions {
   drawId: string;

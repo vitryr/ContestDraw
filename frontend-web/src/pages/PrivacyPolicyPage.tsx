@@ -17,14 +17,14 @@ export default function PrivacyPolicyPage() {
               1. Introduction
             </h2>
             <p className="text-gray-600 mb-4">
-              Flowrigin OÜ ("nous", "notre", "ContestDraw") s'engage à protéger
+              Flowrigin OÜ ("nous", "notre", "Cleack") s'engage à protéger
               votre vie privée. Cette politique de confidentialité explique
               comment nous collectons, utilisons, stockons et protégeons vos
               données personnelles lorsque vous utilisez notre plateforme
-              ContestDraw.
+              Cleack.
             </p>
             <p className="text-gray-600">
-              En utilisant ContestDraw, vous acceptez les pratiques décrites
+              En utilisant Cleack, vous acceptez les pratiques décrites
               dans cette politique. Nous vous encourageons à la lire
               attentivement.
             </p>
@@ -48,10 +48,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 <strong>Email DPO :</strong>{" "}
                 <a
-                  href="mailto:privacy@contestdraw.com"
+                  href="mailto:privacy@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  privacy@contestdraw.com
+                  privacy@cleack.io
                 </a>
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
               </li>
               <li>
                 <strong>Amélioration du service :</strong> analyser
-                l'utilisation pour améliorer ContestDraw
+                l'utilisation pour améliorer Cleack
               </li>
               <li>
                 <strong>Sécurité :</strong> détecter et prévenir la fraude et
@@ -186,7 +186,7 @@ export default function PrivacyPolicyPage() {
                 <ul className="list-circle pl-6 mt-2 space-y-1">
                   <li>Stripe (paiements) - États-Unis</li>
                   <li>Vercel (hébergement) - États-Unis</li>
-                  <li>Brevo (emails transactionnels) - France</li>
+                  <li>Resend (emails transactionnels) - France</li>
                 </ul>
               </li>
               <li>
@@ -328,10 +328,10 @@ export default function PrivacyPolicyPage() {
             <p className="text-gray-600 mb-4">
               Pour exercer vos droits, contactez-nous à{" "}
               <a
-                href="mailto:privacy@contestdraw.com"
+                href="mailto:privacy@cleack.io"
                 className="text-blue-600 hover:underline"
               >
-                privacy@contestdraw.com
+                privacy@cleack.io
               </a>
             </p>
             <p className="text-gray-600">
@@ -391,10 +391,10 @@ export default function PrivacyPolicyPage() {
               <p>
                 Email :{" "}
                 <a
-                  href="mailto:privacy@contestdraw.com"
+                  href="mailto:privacy@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  privacy@contestdraw.com
+                  privacy@cleack.io
                 </a>
               </p>
               <p>

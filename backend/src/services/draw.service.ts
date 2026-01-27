@@ -14,6 +14,7 @@ import {
   ValidationResult,
 } from "../types/draw.types";
 import { CertificateService } from "./certificate.service";
+import { analyticsService } from "./analytics.service";
 
 export class DrawService {
   private certificateService: CertificateService;
@@ -91,6 +92,18 @@ export class DrawService {
 
     // Save to history
     await this.saveDrawHistory(config.drawId, drawResult);
+
+    // Track draw completion in analytics
+    if (userId) {
+      analyticsService.trackDrawCompleted(userId, {
+        drawId: config.drawId,
+        platform: config.platform || "unknown",
+        participantCount: participants.length,
+        winnerCount: winners.length,
+        durationMs: Date.now() - drawResult.timestamp.getTime(),
+        filteredOutCount: participants.length - eligibleParticipants.length,
+      });
+    }
 
     return drawResult;
   }

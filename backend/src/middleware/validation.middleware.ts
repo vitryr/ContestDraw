@@ -72,3 +72,22 @@ export const validationRules = {
     },
   },
 };
+
+/**
+ * Middleware to check validation results
+ * Used after express-validator rules
+ */
+export const validateRequest = (req: Request, _res: Response, next: NextFunction) => {
+  const errors = validationResult(req);
+
+  if (errors.isEmpty()) {
+    return next();
+  }
+
+  const formattedErrors = errors.array().map((err) => ({
+    field: err.type === "field" ? (err as any).path : "unknown",
+    message: err.msg,
+  }));
+
+  next(new ValidationError(formattedErrors));
+};

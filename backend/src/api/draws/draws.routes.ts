@@ -1,9 +1,23 @@
 import { Router } from "express";
 import { body, param, query } from "express-validator";
+import multer from "multer";
 import { authenticate } from "../../middleware/auth.middleware";
 import { validate } from "../../middleware/validation.middleware";
 import { drawExecutionLimiter } from "../../middleware/rate-limit.middleware";
 import * as drawsController from "./draws.controller";
+
+// Configure multer for CSV uploads
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (_req, file, cb) => {
+    if (file.mimetype === "text/csv" || file.originalname.endsWith(".csv")) {
+      cb(null, true);
+    } else {
+      cb(new Error("Only CSV files are allowed"));
+    }
+  },
+});
 
 const router = Router();
 
@@ -81,6 +95,32 @@ router.get(
 );
 
 /**
+ * PUT /api/draws/:id
+ * Update a draw
+ */
+router.put(
+  "/:id",
+  validate([
+    param("id").isUUID().withMessage("Invalid draw ID"),
+    body("title").optional().trim().notEmpty().isLength({ max: 200 }),
+    body("description").optional().trim().isLength({ max: 1000 }),
+    body("numberOfWinners")
+      .optional()
+      .isInt({ min: 1, max: 100 })
+      .withMessage("Number of winners must be between 1 and 100"),
+    body("allowDuplicates").optional().isBoolean(),
+    body("status").optional().isIn(["draft", "configured", "ready"]),
+    body("platform").optional().trim(),
+    body("postUrl")
+      .optional()
+      .trim()
+      .isURL()
+      .withMessage("Post URL must be valid"),
+  ]),
+  drawsController.updateDraw,
+);
+
+/**
  * DELETE /api/draws/:id
  * Delete a draw
  */
@@ -88,6 +128,41 @@ router.delete(
   "/:id",
   validate([param("id").isUUID().withMessage("Invalid draw ID")]),
   drawsController.deleteDraw,
+);
+
+/**
+ * POST /api/draws/:id/upload
+ * Upload participants from CSV file
+ */
+router.post(
+  "/:id/upload",
+  upload.single("file"),
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.uploadParticipants,
+);
+
+/**
+ * POST /api/draws/:id/import
+ * Import participants from social media URL
+ */
+router.post(
+  "/:id/import",
+  validate([
+    param("id").isUUID().withMessage("Invalid draw ID"),
+    body("source").trim().notEmpty().withMessage("Source is required"),
+    body("url").optional().trim().isURL().withMessage("URL must be valid"),
+  ]),
+  drawsController.importParticipants,
+);
+
+/**
+ * GET /api/draws/:id/winners
+ * Get winners for a completed draw
+ */
+router.get(
+  "/:id/winners",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.getWinners,
 );
 
 /**
@@ -113,6 +188,49 @@ router.get(
   "/:id/certificate",
   validate([param("id").isUUID().withMessage("Invalid draw ID")]),
   drawsController.generateCertificate,
+);
+
+/**
+ * GET /api/draws/:id/video
+ * Generate video/animation for the draw
+ */
+router.get(
+  "/:id/video",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.generateDrawVideo,
+);
+
+/**
+ * POST /api/draws/:id/video/generate
+ * Queue background video generation (MP4)
+ */
+router.post(
+  "/:id/video/generate",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.queueVideoGeneration,
+);
+
+/**
+ * GET /api/draws/:id/video/status
+ * Get the latest video job status for a draw
+ */
+router.get(
+  "/:id/video/status",
+  validate([param("id").isUUID().withMessage("Invalid draw ID")]),
+  drawsController.getDrawVideoStatus,
+);
+
+/**
+ * GET /api/draws/:id/video/status/:jobId
+ * Check video generation job status
+ */
+router.get(
+  "/:id/video/status/:jobId",
+  validate([
+    param("id").isUUID().withMessage("Invalid draw ID"),
+    param("jobId").isUUID().withMessage("Invalid job ID"),
+  ]),
+  drawsController.getVideoJobStatus,
 );
 
 /**

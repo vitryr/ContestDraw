@@ -20,6 +20,13 @@ export default function DrawExecutionPage() {
     }
   }, [id, fetchDraw]);
 
+  // Redirect completed draws to results page (cannot re-execute completed draws)
+  useEffect(() => {
+    if (currentDraw && currentDraw.status?.toLowerCase() === "completed") {
+      navigate(`/draw/${id}/results`, { replace: true });
+    }
+  }, [currentDraw, id, navigate]);
+
   const handleExecuteDraw = async () => {
     if (!id) return;
 

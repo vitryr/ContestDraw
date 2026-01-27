@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { usePageTracking } from "./hooks/useAnalytics";
@@ -17,12 +18,26 @@ import EmbedVerifyPage from "./pages/EmbedVerifyPage";
 import FAQPage from "./pages/FAQPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import BuyCreditsPage from "./pages/BuyCreditsPage";
+import PaymentSuccessPage from "./pages/PaymentSuccessPage";
+import PaymentCancelPage from "./pages/PaymentCancelPage";
 import LegalNoticePage from "./pages/LegalNoticePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import ContactPage from "./pages/ContactPage";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const { user } = useAuthStore();
+  const { user, isLoading } = useAuthStore();
+
+  // Show loading while checking auth status
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
+
   return user ? <>{children}</> : <Navigate to="/auth" replace />;
 };
 
@@ -33,6 +48,30 @@ const AnalyticsWrapper = ({ children }: { children: React.ReactNode }) => {
 };
 
 function App() {
+  const { loadUser } = useAuthStore();
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load user from token on app initialization
+  useEffect(() => {
+    const initAuth = async () => {
+      await loadUser();
+      setIsInitialized(true);
+    };
+    initAuth();
+  }, [loadUser]);
+
+  // Show loading screen while initializing auth
+  if (!isInitialized) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <AnalyticsWrapper>
     <Routes>
@@ -43,12 +82,23 @@ function App() {
         <Route path="reset-password" element={<ResetPasswordPage />} />
         <Route path="verify-email" element={<EmailVerificationPage />} />
         <Route path="pricing" element={<PricingPage />} />
+        <Route path="payment/success" element={<PaymentSuccessPage />} />
+        <Route path="payment/cancel" element={<PaymentCancelPage />} />
+        <Route
+          path="buy-credits"
+          element={
+            <ProtectedRoute>
+              <BuyCreditsPage />
+            </ProtectedRoute>
+          }
+        />
         <Route path="faq" element={<FAQPage />} />
 
         {/* Legal pages - no auth required */}
         <Route path="legal" element={<LegalNoticePage />} />
         <Route path="privacy" element={<PrivacyPolicyPage />} />
         <Route path="terms" element={<TermsOfServicePage />} />
+        <Route path="contact" element={<ContactPage />} />
 
         {/* Public verification routes - no auth required */}
         <Route path="verify/:drawId" element={<PublicVerifyPage />} />

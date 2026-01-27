@@ -4,7 +4,7 @@ import { X, Instagram, FileText, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import * as Dialog from "@radix-ui/react-dialog";
 
-const ONBOARDING_KEY = "contestdraw_onboarding_completed";
+const ONBOARDING_KEY = "cleack_onboarding_completed";
 
 export default function OnboardingModal() {
   const { t } = useTranslation();

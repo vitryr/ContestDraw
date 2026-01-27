@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Users, Search, Download } from "lucide-react";
+import { Users, Search } from "lucide-react";
 import type { Participant } from "../types";
 
+// Extended type to handle backend data that may have 'identifier' instead of 'username'
+interface BackendParticipant extends Partial<Participant> {
+  id: string;
+  name: string;
+  identifier?: string;
+  source?: string;
+}
+
 interface ParticipantsListProps {
-  participants: Participant[];
+  participants: (Participant | BackendParticipant)[];
 }
 
 export default function ParticipantsList({
@@ -12,27 +20,22 @@ export default function ParticipantsList({
 }: ParticipantsListProps) {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const filteredParticipants = participants.filter(
-    (p) =>
-      p.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      p.username.toLowerCase().includes(searchTerm.toLowerCase()),
-  );
-
-  const handleExportCSV = () => {
-    const csvContent = [
-      ["Name", "Username", "Platform"],
-      ...participants.map((p) => [p.name, p.username, p.platform]),
-    ]
-      .map((row) => row.join(","))
-      .join("\n");
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "participants.csv";
-    a.click();
+  // Helper to get username (supports both 'username' and 'identifier' fields)
+  const getUsername = (p: Participant | BackendParticipant): string => {
+    return (p as Participant).username || (p as BackendParticipant).identifier || "";
   };
+
+  // Helper to get platform (supports both 'platform' and 'source' fields)
+  const getPlatform = (p: Participant | BackendParticipant): string => {
+    return (p as Participant).platform || (p as BackendParticipant).source || "manual";
+  };
+
+  const filteredParticipants = participants.filter((p) => {
+    const name = p.name?.toLowerCase() || "";
+    const username = getUsername(p).toLowerCase();
+    const search = searchTerm.toLowerCase();
+    return name.includes(search) || username.includes(search);
+  });
 
   return (
     <div className="card">
@@ -43,12 +46,6 @@ export default function ParticipantsList({
             Participants ({participants.length})
           </h2>
         </div>
-        {participants.length > 0 && (
-          <button onClick={handleExportCSV} className="btn-secondary text-sm">
-            <Download className="w-4 h-4 mr-2 inline" />
-            Export CSV
-          </button>
-        )}
       </div>
 
       {participants.length === 0 ? (
@@ -85,16 +82,16 @@ export default function ParticipantsList({
                 transition={{ duration: 0.2, delay: index * 0.02 }}
                 className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
               >
-                {participant.avatar ? (
+                {(participant as Participant).avatar ? (
                   <img
-                    src={participant.avatar}
+                    src={(participant as Participant).avatar}
                     alt={participant.name}
                     className="w-10 h-10 rounded-full object-cover"
                   />
                 ) : (
                   <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center">
                     <span className="text-primary-600 font-semibold">
-                      {participant.name.charAt(0).toUpperCase()}
+                      {participant.name?.charAt(0).toUpperCase() || "?"}
                     </span>
                   </div>
                 )}
@@ -104,13 +101,13 @@ export default function ParticipantsList({
                     {participant.name}
                   </div>
                   <div className="text-sm text-gray-600">
-                    @{participant.username}
+                    @{getUsername(participant)}
                   </div>
                 </div>
 
                 <div className="flex-shrink-0">
                   <span className="inline-block px-2 py-1 text-xs font-medium rounded-full bg-gray-200 text-gray-700 capitalize">
-                    {participant.platform}
+                    {getPlatform(participant)}
                   </span>
                 </div>
               </motion.div>

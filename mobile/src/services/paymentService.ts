@@ -12,10 +12,10 @@ import { apiService } from './apiService';
 
 const productIds = Platform.select({
   ios: [
-    'com.contestdraw.credits.10',
-    'com.contestdraw.credits.25',
-    'com.contestdraw.credits.50',
-    'com.contestdraw.credits.100',
+    'com.cleack.credits.10',
+    'com.cleack.credits.25',
+    'com.cleack.credits.50',
+    'com.cleack.credits.100',
   ],
   android: [
     'credits_10',

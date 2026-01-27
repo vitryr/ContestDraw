@@ -21,15 +21,14 @@ export default function Layout({ children }: LayoutProps = {}) {
   const { balance, fetchBalance } = useCreditsStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    loadUser();
-  }, [loadUser]);
-
+  // Note: loadUser() is called from App.tsx on initialization
+  // We only fetch balance when user changes to avoid duplicate calls
   useEffect(() => {
     if (user) {
       fetchBalance();
     }
-  }, [user, fetchBalance]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]); // Only trigger on user.id change, not on every user object update
 
   const handleLogout = () => {
     logout();
@@ -257,19 +256,7 @@ export default function Layout({ children }: LayoutProps = {}) {
               <ul className="space-y-2 text-sm text-gray-600">
                 <li>
                   <a
-                    href="#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = "mailto:contact@contestdraw.com";
-                    }}
-                    className="hover:text-primary-600 cursor-pointer"
-                  >
-                    {t("footer.about")}
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://blog.contestdraw.com"
+                    href="https://blog.cleack.io"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:text-primary-600"
@@ -278,12 +265,9 @@ export default function Layout({ children }: LayoutProps = {}) {
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="mailto:contact@contestdraw.com"
-                    className="hover:text-primary-600"
-                  >
+                  <Link to="/contact" className="hover:text-primary-600">
                     {t("footer.contact")}
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -326,10 +310,10 @@ export default function Layout({ children }: LayoutProps = {}) {
               </div>
               <div className="flex items-center space-x-4">
                 <a
-                  href="mailto:contact@contestdraw.com"
+                  href="mailto:contact@cleack.io"
                   className="hover:text-primary-600"
                 >
-                  contact@contestdraw.com
+                  contact@cleack.io
                 </a>
               </div>
             </div>

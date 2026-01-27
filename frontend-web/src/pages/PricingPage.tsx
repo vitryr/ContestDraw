@@ -1,17 +1,35 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Zap } from "lucide-react";
+import { Check, Zap, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuthStore } from "../store/useAuthStore";
+import { useTranslation } from "react-i18next";
+
+type Currency = "EUR" | "USD";
+
+interface Pack {
+  id: string;
+  name: string;
+  credits: number;
+  priceEUR: number;
+  priceUSD: number;
+  popular: boolean;
+  features: string[];
+}
 
 export default function PricingPage() {
+  const { t } = useTranslation();
   const { user } = useAuthStore();
+  const [currency, setCurrency] = useState<Currency>("EUR");
+  const [currencyDropdownOpen, setCurrencyDropdownOpen] = useState(false);
 
-  const packs = [
+  const packs: Pack[] = [
     {
       id: "starter",
       name: "Starter",
       credits: 10,
-      price: 9,
+      priceEUR: 9,
+      priceUSD: 10,
       popular: false,
       features: [
         "10 contest draws",
@@ -25,7 +43,8 @@ export default function PricingPage() {
       id: "pro",
       name: "Professional",
       credits: 50,
-      price: 39,
+      priceEUR: 39,
+      priceUSD: 42,
       popular: true,
       features: [
         "50 contest draws",
@@ -40,7 +59,8 @@ export default function PricingPage() {
       id: "business",
       name: "Business",
       credits: 200,
-      price: 129,
+      priceEUR: 129,
+      priceUSD: 139,
       popular: false,
       features: [
         "200 contest draws",
@@ -53,6 +73,14 @@ export default function PricingPage() {
       ],
     },
   ];
+
+  const getPrice = (pack: Pack): number => {
+    return currency === "EUR" ? pack.priceEUR : pack.priceUSD;
+  };
+
+  const formatPrice = (price: number): string => {
+    return currency === "EUR" ? `${price}€` : `$${price}`;
+  };
 
   const features = [
     "Fair and transparent draws",
@@ -76,11 +104,51 @@ export default function PricingPage() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              Simple, Credit-Based Pricing
+              {t("pricing.title", "Simple, Credit-Based Pricing")}
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8">
-              Pay only for what you use. No subscriptions, no hidden fees.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-4">
+              {t(
+                "pricing.subtitle",
+                "Pay only for what you use. No subscriptions, no hidden fees."
+              )}
             </p>
+
+            {/* Currency Selector */}
+            <div className="flex justify-center mt-6">
+              <div className="relative inline-block">
+                <button
+                  onClick={() => setCurrencyDropdownOpen(!currencyDropdownOpen)}
+                  className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors shadow-sm"
+                >
+                  <span className="font-medium">{currency}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${currencyDropdownOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                {currencyDropdownOpen && (
+                  <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-24 bg-white border border-gray-200 rounded-lg shadow-lg z-10">
+                    <button
+                      onClick={() => {
+                        setCurrency("EUR");
+                        setCurrencyDropdownOpen(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left hover:bg-gray-50 rounded-t-lg ${currency === "EUR" ? "bg-primary-50 text-primary-600 font-medium" : ""}`}
+                    >
+                      EUR (€)
+                    </button>
+                    <button
+                      onClick={() => {
+                        setCurrency("USD");
+                        setCurrencyDropdownOpen(false);
+                      }}
+                      className={`w-full px-4 py-2 text-left hover:bg-gray-50 rounded-b-lg ${currency === "USD" ? "bg-primary-50 text-primary-600 font-medium" : ""}`}
+                    >
+                      USD ($)
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -114,10 +182,12 @@ export default function PricingPage() {
                   </h3>
                   <div className="flex items-baseline justify-center gap-2 mb-4">
                     <span className="text-5xl font-bold text-gray-900">
-                      ${pack.price}
+                      {formatPrice(getPrice(pack))}
                     </span>
                   </div>
-                  <p className="text-gray-600">{pack.credits} credits</p>
+                  <p className="text-gray-600">
+                    {pack.credits} {t("pricing.credits", "credits")}
+                  </p>
                 </div>
 
                 <ul className="space-y-4 mb-8">
@@ -130,21 +200,25 @@ export default function PricingPage() {
                 </ul>
 
                 <Link
-                  to={user ? "/dashboard" : "/auth"}
+                  to={user ? "/buy-credits" : "/auth"}
                   className={`block w-full text-center py-3 rounded-lg font-semibold transition-colors ${
                     pack.popular
                       ? "bg-primary-600 text-white hover:bg-primary-700"
                       : "bg-gray-100 text-gray-900 hover:bg-gray-200"
                   }`}
                 >
-                  {user ? "Buy Credits" : "Get Started"}
+                  {user
+                    ? t("pricing.buyCredits", "Buy Credits")
+                    : t("pricing.getStarted", "Get Started")}
                 </Link>
               </motion.div>
             ))}
           </div>
 
           <p className="text-center text-sm text-gray-600 mt-8">
-            All prices in USD. Credits never expire.
+            {t("pricing.priceNote", "All prices in {{currency}}. Credits never expire.", {
+              currency: currency,
+            })}
           </p>
         </div>
       </section>
@@ -241,10 +315,12 @@ export default function PricingPage() {
             Create fair, transparent contest draws in minutes
           </p>
           <Link
-            to={user ? "/dashboard" : "/auth"}
+            to={user ? "/buy-credits" : "/auth"}
             className="inline-block bg-white text-primary-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
           >
-            {user ? "Go to Dashboard" : "Start Free Trial"}
+            {user
+              ? t("pricing.buyCredits", "Buy Credits")
+              : t("pricing.startFreeTrial", "Start Free Trial")}
           </Link>
         </div>
       </section>

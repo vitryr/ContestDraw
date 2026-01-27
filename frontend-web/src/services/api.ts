@@ -30,17 +30,106 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-// Response interceptor - handle errors
+// Track if we're currently refreshing to avoid infinite loops
+let isRefreshing = false;
+let failedQueue: Array<{
+  resolve: (token: string) => void;
+  reject: (error: unknown) => void;
+}> = [];
+
+const processQueue = (error: unknown, token: string | null = null) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token!);
+    }
+  });
+  failedQueue = [];
+};
+
+// Response interceptor - handle errors with automatic token refresh
 api.interceptors.response.use(
   (response) => response,
-  (error: AxiosError<ApiError>) => {
-    const message = error.response?.data?.message || "An error occurred";
+  async (error: AxiosError<ApiError>) => {
+    const originalRequest = error.config as typeof error.config & {
+      _retry?: boolean;
+    };
 
-    if (error.response?.status === 401) {
-      localStorage.removeItem("auth_token");
-      window.location.href = "/auth";
-      toast.error("Session expired. Please login again.");
-    } else {
+    // Handle 401 with automatic token refresh
+    if (error.response?.status === 401 && !originalRequest?._retry) {
+      // Don't redirect for auth endpoints (login/register) - let the form handle the error
+      const isAuthEndpoint = originalRequest?.url?.includes("/auth/login") ||
+                             originalRequest?.url?.includes("/auth/register");
+      if (isAuthEndpoint) {
+        return Promise.reject(error);
+      }
+
+      const refreshToken = localStorage.getItem("refresh_token");
+
+      // No refresh token available, redirect to login
+      if (!refreshToken) {
+        localStorage.removeItem("auth_token");
+        window.location.href = "/auth";
+        toast.error("Session expired. Please login again.");
+        return Promise.reject(error);
+      }
+
+      // If already refreshing, queue this request
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            if (originalRequest) {
+              originalRequest.headers.Authorization = `Bearer ${token}`;
+              return api(originalRequest);
+            }
+          })
+          .catch((err) => Promise.reject(err));
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      try {
+        // Try to refresh the token
+        const { data } = await axios.post(
+          `${import.meta.env.VITE_API_URL || "http://localhost:3000"}/api/auth/refresh`,
+          { refreshToken },
+        );
+
+        const newAccessToken = data.data.accessToken;
+        const newRefreshToken = data.data.refreshToken;
+
+        localStorage.setItem("auth_token", newAccessToken);
+        localStorage.setItem("refresh_token", newRefreshToken);
+
+        // Update the authorization header
+        api.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+
+        processQueue(null, newAccessToken);
+
+        // Retry the original request
+        if (originalRequest) {
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          return api(originalRequest);
+        }
+      } catch (refreshError) {
+        processQueue(refreshError, null);
+        localStorage.removeItem("auth_token");
+        localStorage.removeItem("refresh_token");
+        window.location.href = "/auth";
+        toast.error("Session expired. Please login again.");
+        return Promise.reject(refreshError);
+      } finally {
+        isRefreshing = false;
+      }
+    }
+
+    // Handle other errors
+    const message = error.response?.data?.message || "An error occurred";
+    if (error.response?.status !== 401) {
       toast.error(message);
     }
 
@@ -169,6 +258,27 @@ export const authApi = {
   },
 };
 
+// Users API (Profile management)
+export const usersApi = {
+  getProfile: async () => {
+    const { data } = await api.get<ApiResponse<User>>("/users/me");
+    return data.data;
+  },
+
+  updateProfile: async (profileData: { firstName?: string; lastName?: string }) => {
+    const { data } = await api.patch<ApiResponse<User>>("/users/me", profileData);
+    return data.data;
+  },
+
+  requestEmailChange: async (newEmail: string) => {
+    const { data } = await api.post<ApiResponse<{ message: string }>>(
+      "/users/me/request-email-change",
+      { newEmail },
+    );
+    return data;
+  },
+};
+
 // Draw API
 export const drawApi = {
   create: async (drawData: Partial<Draw>) => {
@@ -206,6 +316,32 @@ export const drawApi = {
   delete: async (id: string) => {
     await api.delete(`/draws/${id}`);
   },
+
+  generateVideo: async (id: string) => {
+    const { data } = await api.post<ApiResponse<{ jobId: string; estimatedTime: string }>>(
+      `/draws/${id}/video/generate`,
+    );
+    return data.data;
+  },
+
+  getVideoJobStatus: async (id: string, jobId: string) => {
+    const { data } = await api.get<ApiResponse<{ id: string; status: string; videoUrl?: string; error?: string }>>(
+      `/draws/${id}/video/status/${jobId}`,
+    );
+    return data.data;
+  },
+
+  getVideoStatus: async (id: string) => {
+    const { data } = await api.get<ApiResponse<{
+      id: string;
+      status: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED";
+      videoUrl?: string;
+      error?: string;
+      createdAt: string;
+      completedAt?: string;
+    } | null>>(`/draws/${id}/video/status`);
+    return data.data;
+  },
 };
 
 // Participants API
@@ -224,7 +360,7 @@ export const participantsApi = {
   uploadCSV: async (drawId: string, file: File) => {
     const formData = new FormData();
     formData.append("file", file);
-    const { data } = await api.post<ApiResponse<{ participants: any[] }>>(
+    const { data } = await api.post<ApiResponse<{ draw: any; participants: any[]; addedCount: number; totalParticipants: number }>>(
       `/draws/${drawId}/upload`,
       formData,
       {
@@ -246,18 +382,40 @@ export const winnersApi = {
     return data.data;
   },
 
-  generateCertificate: async (winnerId: string) => {
-    const { data } = await api.post<ApiResponse<{ url: string }>>(
-      `/winners/${winnerId}/certificate`,
-    );
-    return data.data;
+  // Certificate is generated per draw (includes all winners)
+  generateCertificate: async (drawId: string): Promise<string> => {
+    // Returns the PDF as a blob URL
+    const response = await api.get(`/draws/${drawId}/certificate`, {
+      responseType: "blob",
+    });
+    const blob = new Blob([response.data], { type: "application/pdf" });
+    return URL.createObjectURL(blob);
   },
 
-  generateVideo: async (drawId: string) => {
-    const { data } = await api.post<ApiResponse<{ url: string }>>(
-      `/draws/${drawId}/video`,
-    );
-    return data.data;
+  // Video is generated per draw - returns image/animation data
+  generateVideo: async (drawId: string): Promise<string> => {
+    const response = await api.get(`/draws/${drawId}/video`, {
+      responseType: "blob",
+    });
+
+    // Check content type to determine response type
+    const contentType = response.headers["content-type"] || "";
+
+    if (contentType.includes("application/json")) {
+      // JSON response - animation data for frontend rendering
+      const text = await response.data.text();
+      const data = JSON.parse(text);
+      // Return a data URL that frontend can use
+      return `data:application/json;base64,${btoa(JSON.stringify(data))}`;
+    } else if (contentType.includes("image/")) {
+      // Image response - video poster/thumbnail
+      const blob = new Blob([response.data], { type: contentType });
+      return URL.createObjectURL(blob);
+    } else {
+      // Default to video
+      const blob = new Blob([response.data], { type: "video/mp4" });
+      return URL.createObjectURL(blob);
+    }
   },
 };
 

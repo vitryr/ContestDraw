@@ -19,6 +19,13 @@ router.post(
   paymentsController.createCheckoutSession,
 );
 
+// Create checkout session for credit pack purchase
+router.post(
+  "/checkout/credits",
+  authenticate,
+  paymentsController.createCreditPackSession,
+);
+
 // Create checkout session for 48h pass
 router.post(
   "/checkout/48h-pass",

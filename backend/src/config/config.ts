@@ -17,13 +17,13 @@ const config = {
   database: {
     url:
       process.env.DATABASE_URL ||
-      "postgresql://user:password@localhost:5432/contestdraw",
+      "postgresql://user:password@localhost:5432/cleack",
   },
 
   jwt: {
     secret: process.env.JWT_SECRET || "your-secret-key",
     refreshSecret: process.env.JWT_REFRESH_SECRET || "your-refresh-secret",
-    expiresIn: process.env.JWT_EXPIRES_IN || "15m",
+    expiresIn: process.env.JWT_EXPIRES_IN || "1h", // Increased from 15m for better UX
     refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || "7d",
   },
 
@@ -34,10 +34,11 @@ const config = {
   },
 
   email: {
-    brevo: {
-      apiKey: process.env.BREVO_API_KEY || "",
-      fromName: process.env.BREVO_FROM_NAME || "Contest Draw",
-      fromEmail: process.env.BREVO_FROM_EMAIL || "noreply@contestdraw.com",
+    // Resend email provider
+    resend: {
+      apiKey: process.env.RESEND_API_KEY || "",
+      fromName: process.env.RESEND_FROM_NAME || "Cleack",
+      fromEmail: process.env.RESEND_FROM_EMAIL || "noreply@cleack.io",
     },
     smtp: {
       host: process.env.SMTP_HOST || "smtp.gmail.com",
@@ -48,7 +49,7 @@ const config = {
         pass: process.env.SMTP_PASSWORD || "",
       },
     },
-    from: process.env.EMAIL_FROM || "noreply@contestdraw.com",
+    from: process.env.EMAIL_FROM || "noreply@cleack.io",
   },
 
   oauth: {
@@ -94,9 +95,18 @@ const config = {
   },
 
   storage: {
-    type: process.env.STORAGE_TYPE || "local",
+    type: process.env.STORAGE_TYPE || "local", // "local", "s3", "r2"
     path: process.env.STORAGE_PATH || "./uploads",
     maxFileSize: parseInt(process.env.MAX_FILE_SIZE || "10485760", 10), // 10MB
+    // S3-compatible storage (AWS S3 or Cloudflare R2)
+    s3: {
+      endpoint: process.env.S3_ENDPOINT || undefined, // For R2: https://<account_id>.r2.cloudflarestorage.com
+      region: process.env.S3_REGION || "auto",
+      accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+      secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
+      bucket: process.env.S3_BUCKET || "cleack-videos",
+      publicUrl: process.env.S3_PUBLIC_URL || "", // Optional: custom domain for R2
+    },
   },
 
   social: {
@@ -124,12 +134,20 @@ const config = {
     dir: process.env.LOG_DIR || "./logs",
   },
 
+  analytics: {
+    mixpanel: {
+      token: process.env.MIXPANEL_TOKEN || "",
+      euEndpoint: process.env.MIXPANEL_EU_ENDPOINT === "true",
+    },
+    enabled: process.env.ENABLE_ANALYTICS !== "false",
+  },
+
   cors: {
     origin: (() => {
       const corsOrigin =
         process.env.CORS_ORIGIN ||
         process.env.FRONTEND_URL ||
-        "http://localhost:5173";
+        "http://localhost:5173,http://localhost:3000";
       const origins = corsOrigin.split(",").map((origin) => origin.trim());
       return origins.length === 1 ? origins[0] : origins;
     })(),

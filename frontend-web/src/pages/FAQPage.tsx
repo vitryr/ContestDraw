@@ -12,8 +12,6 @@ import {
   FileText,
   Globe,
 } from "lucide-react";
-import Layout from "../components/Layout";
-
 interface FAQItem {
   id: string;
   question: string;
@@ -25,16 +23,16 @@ const faqData: FAQItem[] = [
   // General Questions
   {
     id: "general-1",
-    question: "What is ContestDraw and how does it work?",
+    question: "What is Cleack and how does it work?",
     answer:
-      "ContestDraw is an automated platform for running fair and transparent social media giveaways. Simply paste your Instagram, Facebook, TikTok, Twitter, or YouTube post URL, configure filters to exclude bots and fake accounts, and run a cryptographically secure random draw in under 2 minutes. You get a Story-format video and PDF certificate with SHA-256 hash as proof.",
+      "Cleack is an automated platform for running fair and transparent social media giveaways. Simply paste your Instagram, Facebook, TikTok, Twitter, or YouTube post URL, configure filters to exclude bots and fake accounts, and run a cryptographically secure random draw in under 2 minutes. You get a Story-format video and PDF certificate with SHA-256 hash as proof.",
     category: "general",
   },
   {
     id: "general-2",
-    question: "Why should I use ContestDraw instead of manual drawing?",
+    question: "Why should I use Cleack instead of manual drawing?",
     answer:
-      "Manual drawing takes hours, is prone to errors, and lacks transparency. ContestDraw saves you 95% of the time, automatically filters out bots and fake accounts, provides cryptographic proof of fairness, and ensures GDPR compliance. Your audience trusts the results because they're verifiable.",
+      "Manual drawing takes hours, is prone to errors, and lacks transparency. Cleack saves you 95% of the time, automatically filters out bots and fake accounts, provides cryptographic proof of fairness, and ensures GDPR compliance. Your audience trusts the results because they're verifiable.",
     category: "general",
   },
   {
@@ -55,30 +53,30 @@ const faqData: FAQItem[] = [
   },
   {
     id: "instagram-2",
-    question: "Why can't ContestDraw access my Instagram account?",
+    question: "Why can't Cleack access my Instagram account?",
     answer:
       "Common reasons: 1) Your account is not a Pro account (Business/Creator). 2) You didn't grant all required permissions during OAuth. 3) Instagram is experiencing API issues. 4) Your account was recently converted to Pro (wait 24-48h). Solution: Disconnect and reconnect your account, ensuring you're using a Pro account and granting all permissions.",
     category: "instagram",
   },
   {
     id: "instagram-3",
-    question: "Can ContestDraw post on my behalf?",
+    question: "Can Cleack post on my behalf?",
     answer:
-      "No, never. ContestDraw only has read-only access to your account. We can only: 1) Read comments on your posts, 2) Verify follower status, 3) Check engagement metrics. We cannot and will never: post, delete content, send DMs, or modify your account in any way.",
+      "No, never. Cleack only has read-only access to your account. We can only: 1) Read comments on your posts, 2) Verify follower status, 3) Check engagement metrics. We cannot and will never: post, delete content, send DMs, or modify your account in any way.",
     category: "instagram",
   },
   {
     id: "instagram-4",
     question: "Does this work with Instagram Stories and Reels?",
     answer:
-      "Yes! ContestDraw works with: 1) Feed posts (photos/videos), 2) Reels (short videos), 3) Story mentions (with Business account). For Stories, participants must mention your @username. The system automatically detects all mentions within the contest period.",
+      "Yes! Cleack works with: 1) Feed posts (photos/videos), 2) Reels (short videos), 3) Story mentions (with Business account). For Stories, participants must mention your @username. The system automatically detects all mentions within the contest period.",
     category: "instagram",
   },
   {
     id: "instagram-5",
-    question: "How many comments can ContestDraw handle?",
+    question: "How many comments can Cleack handle?",
     answer:
-      "ContestDraw can handle up to 50,000 comments per draw. Most giveaways have 100-5,000 comments. For extremely viral posts (>50K comments), contact our support team for enterprise solutions.",
+      "Cleack can handle up to 50,000 comments per draw. Most giveaways have 100-5,000 comments. For extremely viral posts (>50K comments), contact our support team for enterprise solutions.",
     category: "instagram",
   },
 
@@ -87,7 +85,7 @@ const faqData: FAQItem[] = [
     id: "platforms-1",
     question: "Which social media platforms are supported?",
     answer:
-      "ContestDraw supports: Instagram (posts, reels, stories), Facebook (posts, comments), TikTok (video comments), Twitter/X (retweets, replies), and YouTube (video comments). More platforms coming soon!",
+      "Cleack supports: Instagram (posts, reels, stories), Facebook (posts, comments), TikTok (video comments), Twitter/X (retweets, replies), and YouTube (video comments). More platforms coming soon!",
     category: "platforms",
   },
   {
@@ -110,7 +108,7 @@ const faqData: FAQItem[] = [
     id: "filters-1",
     question: "How does bot detection work?",
     answer:
-      "ContestDraw uses 7+ advanced filters: 1) Account age (exclude accounts <30 days old), 2) Follower ratio (identify fake/bot accounts), 3) Duplicate entries, 4) Generic spam comments, 5) Following verification, 6) Engagement history, 7) Custom blacklist. Our AI-powered system has a 95%+ accuracy rate.",
+      "Cleack uses 7+ advanced filters: 1) Account age (exclude accounts <30 days old), 2) Follower ratio (identify fake/bot accounts), 3) Duplicate entries, 4) Generic spam comments, 5) Following verification, 6) Engagement history, 7) Custom blacklist. Our AI-powered system has a 95%+ accuracy rate.",
     category: "filters",
   },
   {
@@ -138,7 +136,7 @@ const faqData: FAQItem[] = [
   // Pricing and Credits
   {
     id: "pricing-1",
-    question: "How much does ContestDraw cost?",
+    question: "How much does Cleack cost?",
     answer:
       "Flexible pricing: Pay-per-draw (1 credit = €2.49, or buy packs: 10 credits = €15), OR Unlimited subscriptions (€19.99/month for unlimited draws, €199/year with premium features, €49/month Enterprise for teams). Credits never expire.",
     category: "pricing",
@@ -161,28 +159,28 @@ const faqData: FAQItem[] = [
     id: "pricing-4",
     question: "Why are prices higher on iOS?",
     answer:
-      "Apple charges a 30% commission on all App Store purchases. To maintain our business, iOS prices are approximately 30% higher than web prices. We recommend purchasing credits via our website (contestdraw.com) for the best price.",
+      "Apple charges a 30% commission on all App Store purchases. To maintain our business, iOS prices are approximately 30% higher than web prices. We recommend purchasing credits via our website (cleack.io) for the best price.",
     category: "pricing",
   },
   {
     id: "pricing-5",
     question: "Can I get a refund?",
     answer:
-      "Yes! Refund policy: 1) Full refund if technical issues prevent draw execution, 2) Full refund for duplicate charges, 3) Pro-rated refund within 7 days of first subscription payment. No refunds for: successfully executed draws, user error, or dissatisfaction with results. Contact support@contestdraw.com for refund requests.",
+      "Yes! Refund policy: 1) Full refund if technical issues prevent draw execution, 2) Full refund for duplicate charges, 3) Pro-rated refund within 7 days of first subscription payment. No refunds for: successfully executed draws, user error, or dissatisfaction with results. Contact support@cleack.io for refund requests.",
     category: "pricing",
   },
   {
     id: "pricing-6",
     question: "Is there a free trial?",
     answer:
-      "Yes! New users get 1 free credit to test the platform (no credit card required). You can also request a live demo with our team to see all features: https://contestdraw.com/demo",
+      "Yes! New users get 1 free credit to test the platform (no credit card required). You can also request a live demo with our team to see all features: https://cleack.io/demo",
     category: "pricing",
   },
 
   // GDPR and Legal
   {
     id: "legal-1",
-    question: "Is ContestDraw GDPR compliant?",
+    question: "Is Cleack GDPR compliant?",
     answer:
       "100% GDPR compliant. We ensure: 1) EU hosting (AWS Frankfurt, France), 2) Designated Data Protection Officer (DPO), 3) Encrypted data (SSL/TLS + AES-256), 4) Automatic data deletion (30 days for participants, 1 year for winners), 5) Full data export/deletion on request, 6) Standard Contractual Clauses (SCCs) for any non-EU processing.",
     category: "legal",
@@ -198,7 +196,7 @@ const faqData: FAQItem[] = [
     id: "legal-3",
     question: "Do I need a contest rules document?",
     answer:
-      "Yes! French and EU law requires a complete contest rules document (règlement de jeu-concours) with: organizer info, duration, prizes, GDPR mentions, and participant rights. ContestDraw provides a free rules generator: https://contestdraw.com/tools/rules-generator",
+      "Yes! French and EU law requires a complete contest rules document (règlement de jeu-concours) with: organizer info, duration, prizes, GDPR mentions, and participant rights. Cleack provides a free rules generator: https://cleack.io/tools/rules-generator",
     category: "legal",
   },
   {
@@ -212,7 +210,7 @@ const faqData: FAQItem[] = [
     id: "legal-5",
     question: "Can I use participant emails for marketing?",
     answer:
-      "Only with explicit opt-in consent. You CANNOT automatically add giveaway participants to your email list—this violates GDPR. You must: 1) Include a separate opt-in checkbox (unchecked by default), 2) Clearly explain what they're subscribing to, 3) Provide easy unsubscribe. ContestDraw can help you collect consent during winner notification.",
+      "Only with explicit opt-in consent. You CANNOT automatically add giveaway participants to your email list—this violates GDPR. You must: 1) Include a separate opt-in checkbox (unchecked by default), 2) Clearly explain what they're subscribing to, 3) Provide easy unsubscribe. Cleack can help you collect consent during winner notification.",
     category: "legal",
   },
 
@@ -221,7 +219,7 @@ const faqData: FAQItem[] = [
     id: "technical-1",
     question: "How does the random selection algorithm work?",
     answer:
-      "ContestDraw uses cryptographically secure random number generation (CSRNG) based on /dev/urandom and Web Crypto API. Each draw is seeded with: current timestamp, participant count, and a random salt. The SHA-256 hash of the draw is included in the certificate for independent verification.",
+      "Cleack uses cryptographically secure random number generation (CSRNG) based on /dev/urandom and Web Crypto API. Each draw is seeded with: current timestamp, participant count, and a random salt. The SHA-256 hash of the draw is included in the certificate for independent verification.",
     category: "technical",
   },
   {
@@ -242,7 +240,7 @@ const faqData: FAQItem[] = [
     id: "technical-4",
     question: "What happens if Instagram is down during my draw?",
     answer:
-      "If Instagram's API is down, ContestDraw will: 1) Notify you immediately, 2) Retry automatically (up to 3 times), 3) If still failing after 30 minutes, you can either wait or request a manual CSV import (contact support). No credits are charged for failed draws.",
+      "If Instagram's API is down, Cleack will: 1) Notify you immediately, 2) Retry automatically (up to 3 times), 3) If still failing after 30 minutes, you can either wait or request a manual CSV import (contact support). No credits are charged for failed draws.",
     category: "technical",
   },
 
@@ -251,14 +249,14 @@ const faqData: FAQItem[] = [
     id: "support-1",
     question: "How can I contact support?",
     answer:
-      "Multiple support channels: 1) Live chat (bottom-right corner, 24/7 for Pro users), 2) Email: support@contestdraw.com (response within 24h), 3) Help center: docs.contestdraw.com, 4) Community forum: community.contestdraw.com. Premium users get priority support (response within 2 hours).",
+      "Multiple support channels: 1) Live chat (bottom-right corner, 24/7 for Pro users), 2) Email: support@cleack.io (response within 24h), 3) Help center: docs.cleack.io, 4) Community forum: community.cleack.io. Premium users get priority support (response within 2 hours).",
     category: "support",
   },
   {
     id: "support-2",
     question: "Is support available in my language?",
     answer:
-      "Yes! ContestDraw support is available in: French, English, Spanish, German, and Italian. The platform interface is available in French and English, with more languages coming in 2025.",
+      "Yes! Cleack support is available in: French, English, Spanish, German, and Italian. The platform interface is available in French and English, with more languages coming in 2025.",
     category: "support",
   },
 
@@ -267,14 +265,14 @@ const faqData: FAQItem[] = [
     id: "features-1",
     question: "Can I select multiple winners?",
     answer:
-      "Yes! You can select up to 100 winners per draw. ContestDraw also automatically selects alternates (backup winners) in case your primary winners don't respond. Example: select 3 winners + 3 alternates.",
+      "Yes! You can select up to 100 winners per draw. Cleack also automatically selects alternates (backup winners) in case your primary winners don't respond. Example: select 3 winners + 3 alternates.",
     category: "features",
   },
   {
     id: "features-2",
     question: "What if a winner doesn't respond?",
     answer:
-      "ContestDraw automatically selects alternates. If your winner doesn't respond within your specified timeframe (e.g., 48 hours), you can mark them as non-responsive and draw from your alternate list. The certificate updates automatically.",
+      "Cleack automatically selects alternates. If your winner doesn't respond within your specified timeframe (e.g., 48 hours), you can mark them as non-responsive and draw from your alternate list. The certificate updates automatically.",
     category: "features",
   },
   {
@@ -332,15 +330,14 @@ const FAQPage: React.FC = () => {
   });
 
   return (
-    <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-green-50 py-12 px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="max-w-4xl mx-auto text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">
             Frequently Asked Questions
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Everything you need to know about ContestDraw
+            Everything you need to know about Cleack
           </p>
 
           {/* Search Bar */}
@@ -447,7 +444,7 @@ const FAQPage: React.FC = () => {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="mailto:support@contestdraw.com"
+                href="mailto:support@cleack.io"
                 className="px-6 py-3 bg-white text-blue-600 rounded-full font-semibold hover:shadow-lg transition-all"
               >
                 Email Support
@@ -500,7 +497,6 @@ const FAQPage: React.FC = () => {
           </div>
         </div>
       </div>
-    </Layout>
   );
 };
 

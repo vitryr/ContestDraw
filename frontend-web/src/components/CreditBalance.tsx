@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import confetti from "canvas-confetti";
 
-const WELCOME_BONUS_KEY = "contestdraw_welcome_bonus_shown";
+const WELCOME_BONUS_KEY = "cleack_welcome_bonus_shown";
 
 export default function CreditBalance() {
   const { t } = useTranslation();

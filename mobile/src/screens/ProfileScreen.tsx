@@ -72,7 +72,7 @@ export const ProfileScreen: React.FC = () => {
       icon: 'information-circle-outline',
       title: 'About',
       subtitle: 'App version and info',
-      onPress: () => Alert.alert('ContestDraw', 'Version 1.0.0'),
+      onPress: () => Alert.alert('Cleack', 'Version 1.0.0'),
     },
   ];
 

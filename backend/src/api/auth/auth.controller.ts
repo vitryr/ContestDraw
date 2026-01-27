@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import crypto from "crypto";
+import { PrismaClient } from "@prisma/client";
 import { asyncHandler, AppError } from "../../middleware/error.middleware";
 import { logger } from "../../utils/logger";
 import config from "../../config/config";
+import { emailService } from "../../services/resend-email.service";
 import {
   RegisterData,
   LoginData,
@@ -12,10 +14,11 @@ import {
   JWTPayload,
 } from "../../types";
 
-// Mock database - replace with actual Prisma calls in production
-const users = new Map<string, any>();
-const verificationTokens = new Map<string, string>();
-const resetTokens = new Map<string, string>();
+const prisma = new PrismaClient();
+
+// Token expiration times
+const VERIFICATION_TOKEN_EXPIRY_HOURS = 24;
+const RESET_TOKEN_EXPIRY_HOURS = 1;
 
 /**
  * Generate JWT access and refresh tokens
@@ -25,16 +28,20 @@ const generateTokens = (
   email: string,
   role: string = "user",
 ): TokenResponse => {
+  // Cast expiresIn to satisfy jsonwebtoken types (StringValue branded type)
+  const accessOptions = { expiresIn: config.jwt.expiresIn } as SignOptions;
+  const refreshOptions = { expiresIn: config.jwt.refreshExpiresIn } as SignOptions;
+
   const accessToken = jwt.sign(
     { userId, email, role } as JWTPayload,
     config.jwt.secret,
-    { expiresIn: config.jwt.expiresIn },
+    accessOptions,
   );
 
   const refreshToken = jwt.sign(
     { userId, email, role } as JWTPayload,
     config.jwt.refreshSecret,
-    { expiresIn: config.jwt.refreshExpiresIn },
+    refreshOptions,
   );
 
   return {
@@ -52,7 +59,8 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
   const { email, password, firstName, lastName } = req.body as RegisterData;
 
   // Check if user already exists
-  if (users.has(email)) {
+  const existingUser = await prisma.user.findUnique({ where: { email } });
+  if (existingUser) {
     throw new AppError("Email already registered", 409, "EMAIL_EXISTS");
   }
 
@@ -63,34 +71,45 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
   );
 
   // Create user
-  const userId = crypto.randomUUID();
-  const user = {
-    id: userId,
-    email,
-    password: hashedPassword,
-    firstName: firstName || null,
-    lastName: lastName || null,
-    emailVerified: false,
-    role: "user",
-    credits: 3, // Welcome bonus: 3 free credits
-    trial_used: false, // Track if user has used their free trial
-    createdAt: new Date(),
-  };
-
-  users.set(email, user);
+  const user = await prisma.user.create({
+    data: {
+      email,
+      password: hashedPassword,
+      firstName: firstName || null,
+      lastName: lastName || null,
+      emailVerified: false,
+      role: "user",
+      credits: 3, // Welcome bonus: 3 free credits
+      trial_used: false,
+    },
+  });
 
   // Log welcome bonus
   logger.info(`Welcome bonus: 3 credits granted to new user ${email}`);
 
   // Generate verification token
   const verificationToken = crypto.randomBytes(32).toString("hex");
-  verificationTokens.set(verificationToken, email);
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + VERIFICATION_TOKEN_EXPIRY_HOURS);
 
-  // TODO: Send verification email
-  logger.info(`Verification token for ${email}: ${verificationToken}`);
+  await prisma.verificationToken.create({
+    data: {
+      token: verificationToken,
+      userId: user.id,
+      expiresAt,
+    },
+  });
+
+  // Send verification email
+  try {
+    await emailService.sendVerificationEmail(email, verificationToken);
+  } catch (error) {
+    logger.error(`Failed to send verification email to ${email}`, { error });
+    // Don't fail registration if email fails
+  }
 
   // Generate tokens
-  const tokens = generateTokens(userId, email);
+  const tokens = generateTokens(user.id, email);
 
   res.status(201).json({
     status: "success",
@@ -102,6 +121,7 @@ export const register = asyncHandler(async (req: Request, res: Response) => {
         firstName: user.firstName,
         lastName: user.lastName,
         emailVerified: user.emailVerified,
+        credits: user.credits,
       },
       ...tokens,
     },
@@ -116,7 +136,7 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
   const { email, password } = req.body as LoginData;
 
   // Find user
-  const user = users.get(email);
+  const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
     throw new AppError("Invalid email or password", 401, "INVALID_CREDENTIALS");
   }
@@ -155,8 +175,13 @@ export const login = asyncHandler(async (req: Request, res: Response) => {
 export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
   const { token } = req.body;
 
-  const email = verificationTokens.get(token);
-  if (!email) {
+  // Find verification token
+  const verificationRecord = await prisma.verificationToken.findUnique({
+    where: { token },
+    include: { user: true },
+  });
+
+  if (!verificationRecord) {
     throw new AppError(
       "Invalid or expired verification token",
       400,
@@ -164,19 +189,82 @@ export const verifyEmail = asyncHandler(async (req: Request, res: Response) => {
     );
   }
 
-  const user = users.get(email);
-  if (!user) {
-    throw new AppError("User not found", 404, "USER_NOT_FOUND");
+  // Check if token is expired
+  if (new Date() > verificationRecord.expiresAt) {
+    // Delete expired token
+    await prisma.verificationToken.delete({ where: { id: verificationRecord.id } });
+    throw new AppError(
+      "Verification token has expired",
+      400,
+      "TOKEN_EXPIRED",
+    );
   }
 
-  user.emailVerified = true;
-  verificationTokens.delete(token);
+  // Update user as verified
+  await prisma.user.update({
+    where: { id: verificationRecord.userId },
+    data: { emailVerified: true },
+  });
 
-  logger.info(`Email verified: ${email}`);
+  // Delete used token
+  await prisma.verificationToken.delete({ where: { id: verificationRecord.id } });
+
+  logger.info(`Email verified: ${verificationRecord.user.email}`);
 
   res.status(200).json({
     status: "success",
     message: "Email verified successfully",
+  });
+});
+
+/**
+ * POST /api/auth/resend-verification
+ * Resend email verification token
+ */
+export const resendVerification = asyncHandler(async (req: Request, res: Response) => {
+  const { email } = req.body;
+
+  const user = await prisma.user.findUnique({ where: { email } });
+  if (!user) {
+    // Don't reveal if user exists
+    res.status(200).json({
+      status: "success",
+      message: "If the email exists, a verification link has been sent",
+    });
+    return;
+  }
+
+  if (user.emailVerified) {
+    throw new AppError("Email is already verified", 400, "ALREADY_VERIFIED");
+  }
+
+  // Delete any existing verification tokens for this user
+  await prisma.verificationToken.deleteMany({ where: { userId: user.id } });
+
+  // Generate new verification token
+  const verificationToken = crypto.randomBytes(32).toString("hex");
+  const expiresAt = new Date();
+  expiresAt.setHours(expiresAt.getHours() + VERIFICATION_TOKEN_EXPIRY_HOURS);
+
+  await prisma.verificationToken.create({
+    data: {
+      token: verificationToken,
+      userId: user.id,
+      expiresAt,
+    },
+  });
+
+  // Send verification email
+  try {
+    await emailService.sendVerificationEmail(email, verificationToken);
+  } catch (error) {
+    logger.error(`Failed to resend verification email to ${email}`, { error });
+    throw new AppError("Failed to send verification email", 500, "EMAIL_FAILED");
+  }
+
+  res.status(200).json({
+    status: "success",
+    message: "If the email exists, a verification link has been sent",
   });
 });
 
@@ -188,7 +276,7 @@ export const forgotPassword = asyncHandler(
   async (req: Request, res: Response) => {
     const { email } = req.body;
 
-    const user = users.get(email);
+    const user = await prisma.user.findUnique({ where: { email } });
     if (!user) {
       // Don't reveal if user exists
       res.status(200).json({
@@ -198,12 +286,29 @@ export const forgotPassword = asyncHandler(
       return;
     }
 
+    // Delete any existing reset tokens for this user
+    await prisma.passwordResetToken.deleteMany({ where: { userId: user.id } });
+
     // Generate reset token
     const resetToken = crypto.randomBytes(32).toString("hex");
-    resetTokens.set(resetToken, email);
+    const expiresAt = new Date();
+    expiresAt.setHours(expiresAt.getHours() + RESET_TOKEN_EXPIRY_HOURS);
 
-    // TODO: Send reset email
-    logger.info(`Password reset token for ${email}: ${resetToken}`);
+    await prisma.passwordResetToken.create({
+      data: {
+        token: resetToken,
+        userId: user.id,
+        expiresAt,
+      },
+    });
+
+    // Send reset email
+    try {
+      await emailService.sendPasswordResetEmail(email, resetToken);
+    } catch (error) {
+      logger.error(`Failed to send password reset email to ${email}`, { error });
+      // Don't fail the request if email fails
+    }
 
     res.status(200).json({
       status: "success",
@@ -220,8 +325,13 @@ export const resetPassword = asyncHandler(
   async (req: Request, res: Response) => {
     const { token, password } = req.body;
 
-    const email = resetTokens.get(token);
-    if (!email) {
+    // Find reset token
+    const resetRecord = await prisma.passwordResetToken.findUnique({
+      where: { token },
+      include: { user: true },
+    });
+
+    if (!resetRecord) {
       throw new AppError(
         "Invalid or expired reset token",
         400,
@@ -229,16 +339,30 @@ export const resetPassword = asyncHandler(
       );
     }
 
-    const user = users.get(email);
-    if (!user) {
-      throw new AppError("User not found", 404, "USER_NOT_FOUND");
+    // Check if token is expired
+    if (new Date() > resetRecord.expiresAt) {
+      // Delete expired token
+      await prisma.passwordResetToken.delete({ where: { id: resetRecord.id } });
+      throw new AppError(
+        "Reset token has expired",
+        400,
+        "TOKEN_EXPIRED",
+      );
     }
 
     // Hash new password
-    user.password = await bcrypt.hash(password, config.security.bcryptRounds);
-    resetTokens.delete(token);
+    const hashedPassword = await bcrypt.hash(password, config.security.bcryptRounds);
 
-    logger.info(`Password reset: ${email}`);
+    // Update user password
+    await prisma.user.update({
+      where: { id: resetRecord.userId },
+      data: { password: hashedPassword },
+    });
+
+    // Delete used token
+    await prisma.passwordResetToken.delete({ where: { id: resetRecord.id } });
+
+    logger.info(`Password reset: ${resetRecord.user.email}`);
 
     res.status(200).json({
       status: "success",

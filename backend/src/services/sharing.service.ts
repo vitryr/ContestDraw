@@ -144,14 +144,14 @@ export function generateEmbedCode(
   const embedUrl = `${baseUrl}/embed/${drawId}?theme=${theme}&participants=${showParticipants}`;
 
   return `
-<!-- Contest Draw Verification Widget -->
+<!-- Cleack Verification Widget -->
 <iframe
   src="${embedUrl}"
   width="${width}"
   height="${height}"
   frameborder="0"
   style="border: 1px solid #e2e8f0; border-radius: 8px;"
-  title="Contest Draw Verification"
+  title="Cleack Verification"
   allow="clipboard-read; clipboard-write"
 ></iframe>
   `.trim();

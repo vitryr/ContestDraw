@@ -9,14 +9,14 @@ const ENV = {
     enableDebugLogs: true,
   },
   staging: {
-    apiUrl: 'https://staging-api.contestdraw.com/api',
-    wsUrl: 'wss://staging-api.contestdraw.com',
+    apiUrl: 'https://staging-api.cleack.io/api',
+    wsUrl: 'wss://staging-api.cleack.io',
     stripePublishableKey: 'pk_test_...',
     enableDebugLogs: true,
   },
   prod: {
-    apiUrl: 'https://api.contestdraw.com/api',
-    wsUrl: 'wss://api.contestdraw.com',
+    apiUrl: 'https://api.cleack.io/api',
+    wsUrl: 'wss://api.cleack.io',
     stripePublishableKey: 'pk_live_...',
     enableDebugLogs: false,
   },

@@ -5,6 +5,7 @@
 
 import Stripe from "stripe";
 import { v4 as uuidv4 } from "uuid";
+import { analyticsService } from "./analytics.service";
 import {
   PaymentProvider,
   TransactionType,
@@ -643,7 +644,7 @@ export class PaymentService {
   private async handlePaymentIntentSucceeded(
     paymentIntent: Stripe.PaymentIntent,
   ): Promise<void> {
-    const { userId, credits } = paymentIntent.metadata;
+    const { userId, credits, plan } = paymentIntent.metadata;
 
     await this.db.$transaction(async (tx: any) => {
       // Update transaction status
@@ -663,6 +664,19 @@ export class PaymentService {
         currency: paymentIntent.currency.toUpperCase(),
         credits: parseInt(credits),
       });
+    });
+
+    // Track payment in analytics
+    const existingPayments = await this.db.transaction.count({
+      where: { userId, status: TransactionStatus.COMPLETED },
+    });
+
+    analyticsService.trackPaymentCompleted(userId, {
+      plan: plan || "credits",
+      amount: paymentIntent.amount / 100,
+      currency: paymentIntent.currency.toUpperCase(),
+      isFirstPayment: existingPayments <= 1,
+      paymentMethod: paymentIntent.payment_method_types?.[0] || "card",
     });
   }
 
@@ -767,6 +781,12 @@ export class PaymentService {
         subscription.userId,
         subscription,
       );
+
+      // Track cancellation in analytics
+      analyticsService.trackSubscriptionCancelled(subscription.userId, {
+        plan: subscription.plan,
+        reason: stripeSubscription.cancellation_details?.reason || undefined,
+      });
     }
   }
 

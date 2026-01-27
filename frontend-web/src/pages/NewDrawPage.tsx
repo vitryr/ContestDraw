@@ -4,19 +4,20 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Instagram, Twitter, Upload, Link as LinkIcon } from "lucide-react";
+import { Instagram, Upload, Trophy } from "lucide-react";
 import { useDrawStore } from "../store/useDrawStore";
 import toast from "react-hot-toast";
 
+const WINNER_OPTIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+
 const drawSchema = z.object({
   title: z.string().min(3, "Title must be at least 3 characters"),
-  description: z.string().optional(),
-  platform: z.enum(["instagram", "twitter", "tiktok", "manual"]),
+  platform: z.enum(["instagram", "tiktok", "manual"]),
   postUrl: z.string().url("Invalid URL").optional().or(z.literal("")),
   numberOfWinners: z
     .number()
     .min(1, "At least 1 winner required")
-    .max(100, "Maximum 100 winners"),
+    .max(10, "Maximum 10 winners"),
 });
 
 type DrawForm = z.infer<typeof drawSchema>;
@@ -25,12 +26,14 @@ export default function NewDrawPage() {
   const navigate = useNavigate();
   const { createDraw, isLoading } = useDrawStore();
   const [selectedPlatform, setSelectedPlatform] = useState<string>("instagram");
+  const [selectedWinners, setSelectedWinners] = useState<number>(1);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setValue,
+    trigger,
   } = useForm<DrawForm>({
     resolver: zodResolver(drawSchema),
     defaultValues: {
@@ -45,7 +48,6 @@ export default function NewDrawPage() {
       name: "Instagram",
       icon: <Instagram className="w-6 h-6" />,
     },
-    { id: "twitter", name: "Twitter", icon: <Twitter className="w-6 h-6" /> },
     {
       id: "manual",
       name: "Manual Upload",
@@ -57,7 +59,6 @@ export default function NewDrawPage() {
     try {
       const draw = await createDraw({
         title: data.title,
-        description: data.description,
         platform: data.platform,
         // Only send postUrl if it's a non-empty string
         ...(data.postUrl ? { postUrl: data.postUrl } : {}),
@@ -112,30 +113,35 @@ export default function NewDrawPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Description (optional)
-                  </label>
-                  <textarea
-                    {...register("description")}
-                    rows={3}
-                    className="input-field"
-                    placeholder="Brief description of your contest..."
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    <Trophy className="w-4 h-4 inline mr-2" />
                     Number of Winners *
                   </label>
-                  <input
-                    type="number"
-                    {...register("numberOfWinners", { valueAsNumber: true })}
-                    className="input-field"
-                    min="1"
-                    max="100"
-                  />
+                  <div className="flex flex-wrap gap-2">
+                    {WINNER_OPTIONS.map((num) => (
+                      <button
+                        key={num}
+                        type="button"
+                        onClick={() => {
+                          setSelectedWinners(num);
+                          setValue("numberOfWinners", num, { shouldValidate: true });
+                        }}
+                        className={`
+                          flex items-center justify-center w-12 h-12 rounded-xl
+                          border-2 transition-all duration-200 font-semibold text-lg
+                          ${
+                            selectedWinners === num
+                              ? "border-primary-600 bg-primary-600 text-white shadow-lg shadow-primary-200"
+                              : "border-gray-200 bg-white text-gray-700 hover:border-primary-300 hover:bg-primary-50"
+                          }
+                        `}
+                      >
+                        {num}
+                      </button>
+                    ))}
+                  </div>
                   {errors.numberOfWinners && (
-                    <p className="mt-1 text-sm text-red-600">
+                    <p className="mt-2 text-sm text-red-600">
                       {errors.numberOfWinners.message}
                     </p>
                   )}
@@ -156,7 +162,7 @@ export default function NewDrawPage() {
                     type="button"
                     onClick={() => {
                       setSelectedPlatform(platform.id);
-                      setValue("platform", platform.id as any);
+                      setValue("platform", platform.id as "instagram" | "tiktok" | "manual", { shouldValidate: true });
                     }}
                     className={`p-6 rounded-lg border-2 transition-all ${
                       selectedPlatform === platform.id
@@ -180,25 +186,11 @@ export default function NewDrawPage() {
                 ))}
               </div>
 
-              {selectedPlatform !== "manual" && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    <LinkIcon className="w-4 h-4 inline mr-2" />
-                    Post URL
-                  </label>
-                  <input
-                    type="url"
-                    {...register("postUrl")}
-                    className="input-field"
-                    placeholder={`https://${selectedPlatform}.com/...`}
-                  />
-                  {errors.postUrl && (
-                    <p className="mt-1 text-sm text-red-600">
-                      {errors.postUrl.message}
-                    </p>
-                  )}
-                  <p className="mt-2 text-sm text-gray-600">
-                    We'll automatically import participants from this post
+              {selectedPlatform === "instagram" && (
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <p className="text-sm text-blue-800">
+                    You'll be able to enter the Instagram post URL to import
+                    participants in the next step.
                   </p>
                 </div>
               )}

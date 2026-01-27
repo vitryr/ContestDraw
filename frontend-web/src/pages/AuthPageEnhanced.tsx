@@ -396,7 +396,7 @@ export default function AuthPageEnhanced() {
                       {/* Submit Button */}
                       <button
                         type="submit"
-                        disabled={isLoading || !loginForm.formState.isValid}
+                        disabled={isLoading}
                         className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         aria-busy={isLoading}
                       >
@@ -623,7 +623,7 @@ export default function AuthPageEnhanced() {
                       {/* Submit Button */}
                       <button
                         type="submit"
-                        disabled={isLoading || !registerForm.formState.isValid}
+                        disabled={isLoading}
                         className="w-full btn-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                         aria-busy={isLoading}
                       >

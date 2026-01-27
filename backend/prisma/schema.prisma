@@ -30,9 +30,37 @@ model User {
   ownedOrganizations      Organization[]       @relation("OrganizationOwner")
   socialAccounts          SocialAccount[]
   subscription            Subscription?
+  verificationTokens      VerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
 
   @@index([email])
   @@map("users")
+}
+
+model VerificationToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("password_reset_tokens")
 }
 
 model Draw {
@@ -43,6 +71,9 @@ model Draw {
   numberOfWinners Int
   allowDuplicates Boolean       @default(false)
   status          DrawStatus    @default(DRAFT)
+  platform        String?
+  postUrl         String?
+  filters         Json?
   algorithm       String?
   seed            String?
   certificateHash String?
@@ -333,4 +364,29 @@ enum SubscriptionStatus {
   CANCELLED
   EXPIRED
   PAST_DUE
+}
+
+model VideoJob {
+  id          String         @id @default(uuid())
+  drawId      String
+  userId      String
+  status      VideoJobStatus @default(PENDING)
+  videoUrl    String?
+  s3Key       String?
+  error       String?
+  metadata    Json?
+  completedAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([drawId])
+  @@index([userId, status])
+  @@map("video_jobs")
+}
+
+enum VideoJobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
 }

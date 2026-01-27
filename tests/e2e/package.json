@@ -24,7 +24,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "description": "End-to-end tests for ContestDraw platform using Playwright",
+  "description": "End-to-end tests for Cleack platform using Playwright",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
     "playwright": "^1.56.1"

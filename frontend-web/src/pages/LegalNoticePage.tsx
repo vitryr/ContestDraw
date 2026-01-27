@@ -66,19 +66,19 @@ export default function LegalNoticePage() {
               <p>
                 <strong>Email :</strong>{" "}
                 <a
-                  href="mailto:contact@contestdraw.com"
+                  href="mailto:contact@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  contact@contestdraw.com
+                  contact@cleack.io
                 </a>
               </p>
               <p>
                 <strong>Site web :</strong>{" "}
                 <a
-                  href="https://contestdraw.com"
+                  href="https://cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  https://contestdraw.com
+                  https://cleack.io
                 </a>
               </p>
             </div>
@@ -100,10 +100,10 @@ export default function LegalNoticePage() {
               <p>
                 <strong>Email :</strong>{" "}
                 <a
-                  href="mailto:contact@contestdraw.com"
+                  href="mailto:contact@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  contact@contestdraw.com
+                  contact@cleack.io
                 </a>
               </p>
             </div>
@@ -163,7 +163,7 @@ export default function LegalNoticePage() {
               5. Protection des Données Personnelles
             </h2>
             <p className="text-gray-600 mb-4">
-              ContestDraw accorde une grande importance à la protection de vos
+              Cleack accorde une grande importance à la protection de vos
               données personnelles. Le traitement de vos données personnelles
               est effectué conformément au Règlement Général sur la Protection
               des Données (RGPD).
@@ -191,10 +191,10 @@ export default function LegalNoticePage() {
               <p>
                 <strong>Email DPO :</strong>{" "}
                 <a
-                  href="mailto:privacy@contestdraw.com"
+                  href="mailto:privacy@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  privacy@contestdraw.com
+                  privacy@cleack.io
                 </a>
               </p>
 
@@ -244,10 +244,10 @@ export default function LegalNoticePage() {
               <p>
                 <strong>Email :</strong>{" "}
                 <a
-                  href="mailto:contact@contestdraw.com"
+                  href="mailto:contact@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  contact@contestdraw.com
+                  contact@cleack.io
                 </a>
               </p>
               <p>

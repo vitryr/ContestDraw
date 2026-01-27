@@ -6,7 +6,7 @@ import Stripe from "stripe";
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
 /**
- * Setup Stripe products and prices for ContestDraw
+ * Setup Stripe products and prices for Cleack
  * This script creates all necessary products and their price points
  * Usage: npx ts-node src/scripts/setup-stripe-products.ts
  */
@@ -31,7 +31,7 @@ const products: ProductConfig[] = [
   {
     name: "48H Pass",
     description:
-      "Access to Contest Draw platform for 48 hours - Perfect for running quick contests and giveaways",
+      "Access to Cleack platform for 48 hours - Perfect for running quick contests and giveaways",
     prices: [
       {
         nickname: "48h-pass",
@@ -45,7 +45,7 @@ const products: ProductConfig[] = [
   {
     name: "Monthly Pro Subscription",
     description:
-      "Full access to Contest Draw with unlimited draws, advanced features, and priority support",
+      "Full access to Cleack with unlimited draws, advanced features, and priority support",
     prices: [
       {
         nickname: "monthly-pro",
@@ -58,7 +58,7 @@ const products: ProductConfig[] = [
   {
     name: "Annual Pro Subscription",
     description:
-      "Full year access to Contest Draw with 2 months free - Best value for power users",
+      "Full year access to Cleack with 2 months free - Best value for power users",
     prices: [
       {
         nickname: "annual-pro",
@@ -84,7 +84,7 @@ const products: ProductConfig[] = [
 ];
 
 async function setupStripeProducts() {
-  console.log("\n🚀 Setting up Stripe products for ContestDraw...\n");
+  console.log("\n🚀 Setting up Stripe products for Cleack...\n");
   console.log(
     `🔑 Using Stripe account: ${process.env.STRIPE_SECRET_KEY?.substring(0, 20)}...\n`,
   );
@@ -103,7 +103,7 @@ async function setupStripeProducts() {
         name: productConfig.name,
         description: productConfig.description,
         metadata: {
-          app: "contestdraw",
+          app: "cleack",
           created_by: "setup-script",
         },
       });
@@ -122,7 +122,7 @@ async function setupStripeProducts() {
           currency: priceConfig.currency,
           nickname: priceConfig.nickname,
           metadata: {
-            app: "contestdraw",
+            app: "cleack",
           },
         };
 

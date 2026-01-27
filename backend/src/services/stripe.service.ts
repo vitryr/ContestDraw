@@ -8,12 +8,24 @@ import { prisma } from "../utils/prisma";
  * Handles subscriptions, one-time payments, and webhook processing
  */
 class StripeService {
-  private stripe: Stripe;
+  private stripe: Stripe | null = null;
 
   constructor() {
-    this.stripe = new Stripe(config.payment.stripe.secretKey, {
-      apiVersion: "2024-11-20.acacia",
-    });
+    const secretKey = config.payment?.stripe?.secretKey;
+    if (secretKey) {
+      this.stripe = new Stripe(secretKey, {
+        apiVersion: "2025-10-29.clover",
+      });
+    } else {
+      logger.warn("Stripe API key not configured - payment features disabled");
+    }
+  }
+
+  private ensureStripe(): Stripe {
+    if (!this.stripe) {
+      throw new Error("Stripe is not configured. Set STRIPE_SECRET_KEY environment variable.");
+    }
+    return this.stripe;
   }
 
   /**
@@ -36,7 +48,7 @@ class StripeService {
         throw new Error("User not found");
       }
 
-      const session = await this.stripe.checkout.sessions.create({
+      const session = await this.ensureStripe().checkout.sessions.create({
         customer_email: user.email,
         client_reference_id: userId,
         payment_method_types: ["card"],
@@ -94,7 +106,7 @@ class StripeService {
         throw new Error("User not found");
       }
 
-      const session = await this.stripe.checkout.sessions.create({
+      const session = await this.ensureStripe().checkout.sessions.create({
         customer_email: user.email,
         client_reference_id: userId,
         payment_method_types: ["card"],
@@ -130,6 +142,74 @@ class StripeService {
   }
 
   /**
+   * Create a checkout session for credit pack purchase
+   */
+  async createCreditPackSession(
+    userId: string,
+    packId: string,
+    credits: number,
+    priceInCents: number,
+    packName: string,
+    successUrl: string,
+    cancelUrl: string,
+  ): Promise<Stripe.Checkout.Session> {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { id: userId },
+        select: { email: true },
+      });
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      const session = await this.ensureStripe().checkout.sessions.create({
+        customer_email: user.email,
+        client_reference_id: userId,
+        payment_method_types: ["card"],
+        line_items: [
+          {
+            price_data: {
+              currency: "usd",
+              product_data: {
+                name: `${packName} - ${credits} Credits`,
+                description: `${credits} credits for ContestDraw`,
+              },
+              unit_amount: priceInCents,
+            },
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+        metadata: {
+          userId,
+          type: "credit_pack",
+          packId,
+          credits: credits.toString(),
+        },
+      });
+
+      logger.info("Credit pack checkout session created", {
+        userId,
+        sessionId: session.id,
+        packId,
+        credits,
+      });
+
+      return session;
+    } catch (error: any) {
+      logger.error("Failed to create credit pack session", {
+        error: error.message,
+        userId,
+        packId,
+      });
+      throw new Error("Failed to create credit pack session");
+    }
+  }
+
+  /**
    * Cancel a subscription
    */
   async cancelSubscription(
@@ -137,7 +217,7 @@ class StripeService {
   ): Promise<Stripe.Subscription> {
     try {
       const subscription =
-        await this.stripe.subscriptions.cancel(subscriptionId);
+        await this.ensureStripe().subscriptions.cancel(subscriptionId);
 
       logger.info("Subscription cancelled", { subscriptionId });
 
@@ -157,7 +237,7 @@ class StripeService {
   async getSubscription(subscriptionId: string): Promise<Stripe.Subscription> {
     try {
       const subscription =
-        await this.stripe.subscriptions.retrieve(subscriptionId);
+        await this.ensureStripe().subscriptions.retrieve(subscriptionId);
       return subscription;
     } catch (error: any) {
       logger.error("Failed to retrieve subscription", {
@@ -176,7 +256,7 @@ class StripeService {
     returnUrl: string,
   ): Promise<Stripe.BillingPortal.Session> {
     try {
-      const session = await this.stripe.billingPortal.sessions.create({
+      const session = await this.ensureStripe().billingPortal.sessions.create({
         customer: customerId,
         return_url: returnUrl,
       });
@@ -201,7 +281,7 @@ class StripeService {
     signature: string,
   ): Promise<void> {
     try {
-      const event = this.stripe.webhooks.constructEvent(
+      const event = this.ensureStripe().webhooks.constructEvent(
         payload,
         signature,
         config.payment.stripe.webhookSecret,
@@ -269,38 +349,92 @@ class StripeService {
     }
 
     try {
-      // Check if this is a one-time payment (48h pass)
-      if (session.metadata?.type === "48h_pass") {
-        // Grant 48h access
+      // Check if this is a credit pack purchase
+      if (session.metadata?.type === "credit_pack") {
+        const credits = parseInt(session.metadata.credits || "0", 10);
+        const packId = session.metadata.packId;
+
+        if (credits > 0) {
+          // Add credits to user account
+          await prisma.$transaction([
+            prisma.user.update({
+              where: { id: userId },
+              data: {
+                credits: { increment: credits },
+              },
+            }),
+            prisma.creditTransaction.create({
+              data: {
+                userId,
+                type: "PURCHASE",
+                credits,
+                amount: session.amount_total ? session.amount_total / 100 : null,
+                currency: session.currency?.toUpperCase() || "USD",
+                description: `Credit Pack Purchase - ${packId}`,
+                metadata: {
+                  sessionId: session.id,
+                  packId,
+                  paymentIntent: session.payment_intent,
+                },
+              },
+            }),
+          ]);
+
+          logger.info("Credits added to user account", {
+            userId,
+            credits,
+            packId,
+            sessionId: session.id,
+          });
+        }
+      } else if (session.metadata?.type === "48h_pass") {
+        // Grant 48h access via subscription
         const expiresAt = new Date();
         expiresAt.setHours(expiresAt.getHours() + 48);
 
-        await prisma.user.update({
-          where: { id: userId },
-          data: {
-            subscriptionStatus: "active",
-            subscriptionType: "48h_pass",
-            subscriptionExpiresAt: expiresAt,
+        await prisma.subscription.upsert({
+          where: { userId },
+          update: {
+            status: "ACTIVE",
+            is48HPass: true,
+            currentPeriodEnd: expiresAt,
+          },
+          create: {
+            userId,
+            planId: "48h_pass",
+            planType: "one_time",
+            status: "ACTIVE",
+            is48HPass: true,
+            currentPeriodStart: new Date(),
+            currentPeriodEnd: expiresAt,
+            monthlyCredits: 0,
           },
         });
 
         logger.info("48h pass activated", { userId, expiresAt });
       } else if (session.subscription) {
         // Handle subscription
-        const subscription = await this.stripe.subscriptions.retrieve(
+        const subscription = await this.ensureStripe().subscriptions.retrieve(
           session.subscription as string,
         );
 
-        await prisma.user.update({
-          where: { id: userId },
-          data: {
-            stripeCustomerId: subscription.customer as string,
+        await prisma.subscription.upsert({
+          where: { userId },
+          update: {
             stripeSubscriptionId: subscription.id,
-            subscriptionStatus: subscription.status,
-            subscriptionType: this.getSubscriptionType(subscription),
-            subscriptionExpiresAt: new Date(
-              subscription.current_period_end * 1000,
-            ),
+            status: "ACTIVE",
+            currentPeriodStart: new Date(subscription.current_period_start * 1000),
+            currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+          },
+          create: {
+            userId,
+            planId: this.getSubscriptionType(subscription),
+            planType: "monthly",
+            status: "ACTIVE",
+            stripeSubscriptionId: subscription.id,
+            currentPeriodStart: new Date(subscription.current_period_start * 1000),
+            currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+            monthlyCredits: this.getMonthlyCredits(subscription),
           },
         });
 
@@ -315,6 +449,19 @@ class StripeService {
         userId,
         sessionId: session.id,
       });
+    }
+  }
+
+  /**
+   * Get monthly credits based on subscription type
+   */
+  private getMonthlyCredits(subscription: Stripe.Subscription): number {
+    const type = this.getSubscriptionType(subscription);
+    switch (type) {
+      case "monthly": return 50;
+      case "annual": return 100;
+      case "enterprise": return 500;
+      default: return 0;
     }
   }
 
@@ -442,7 +589,7 @@ class StripeService {
    */
   async getProducts(): Promise<Stripe.Product[]> {
     try {
-      const products = await this.stripe.products.list({
+      const products = await this.ensureStripe().products.list({
         active: true,
         expand: ["data.default_price"],
       });
@@ -459,7 +606,7 @@ class StripeService {
    */
   async getPricesForProduct(productId: string): Promise<Stripe.Price[]> {
     try {
-      const prices = await this.stripe.prices.list({
+      const prices = await this.ensureStripe().prices.list({
         product: productId,
         active: true,
       });

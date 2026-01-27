@@ -5,7 +5,8 @@ import jwt from "jsonwebtoken";
 import { AppError } from "../middleware/error.middleware";
 import { logger } from "../utils/logger";
 import config from "../config/config";
-import { emailService } from "./email.service";
+import { emailService } from "./resend-email.service";
+import { analyticsService } from "./analytics.service";
 import { JWTPayload, TokenResponse } from "../types";
 
 const prisma = new PrismaClient();
@@ -78,6 +79,11 @@ class AuthService {
 
     logger.info(`User registered: ${user.email} (ID: ${user.id})`);
     logger.info(`Welcome bonus: 3 credits granted to ${user.email}`);
+
+    // Track signup in analytics
+    analyticsService.trackSignup(user.id, {
+      method: "email",
+    });
 
     // Generate verification token
     const verificationToken = crypto.randomBytes(32).toString("hex");
@@ -160,6 +166,12 @@ class AuthService {
     }
 
     logger.info(`User logged in: ${email} (ID: ${user.id})`);
+
+    // Track login in analytics
+    analyticsService.trackLogin(user.id, {
+      method: "email",
+      platform: "web",
+    });
 
     // Generate tokens
     const tokens = this.generateTokens(user.id, user.email, user.role);
@@ -273,16 +285,20 @@ class AuthService {
     email: string,
     role: string,
   ): TokenResponse {
+    // Cast expiresIn to satisfy jsonwebtoken types (StringValue branded type)
+    const accessOptions = { expiresIn: config.jwt.expiresIn } as jwt.SignOptions;
+    const refreshOptions = { expiresIn: config.jwt.refreshExpiresIn } as jwt.SignOptions;
+
     const accessToken = jwt.sign(
       { userId, email, role } as JWTPayload,
       config.jwt.secret,
-      { expiresIn: config.jwt.expiresIn },
+      accessOptions,
     );
 
     const refreshToken = jwt.sign(
       { userId, email, role } as JWTPayload,
       config.jwt.refreshSecret,
-      { expiresIn: config.jwt.refreshExpiresIn },
+      refreshOptions,
     );
 
     return {

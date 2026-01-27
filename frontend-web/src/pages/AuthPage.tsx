@@ -46,8 +46,9 @@ export default function AuthPage() {
       await login(data.email, data.password);
       toast.success("Welcome back!");
       navigate("/dashboard");
-    } catch (error) {
-      // Error handled by store/api
+    } catch (error: any) {
+      const message = error.response?.data?.message || "Invalid email or password";
+      toast.error(message);
     }
   };
 
@@ -60,8 +61,9 @@ export default function AuthPage() {
       });
       toast.success("Account created successfully!");
       navigate("/dashboard");
-    } catch (error) {
-      // Error handled by store/api
+    } catch (error: any) {
+      const message = error.response?.data?.message || "Registration failed. Please try again.";
+      toast.error(message);
     }
   };
 

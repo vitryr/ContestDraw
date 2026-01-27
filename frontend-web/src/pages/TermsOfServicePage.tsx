@@ -18,13 +18,13 @@ export default function TermsOfServicePage() {
             </h2>
             <p className="text-gray-600 mb-4">
               Les présentes Conditions Générales d'Utilisation (ci-après "CGU")
-              régissent l'utilisation de la plateforme ContestDraw, éditée par
+              régissent l'utilisation de la plateforme Cleack, éditée par
               Flowrigin OÜ, société de droit estonien immatriculée sous le
               numéro 17371835, dont le siège social est situé à Sepapaja tn 6,
               Tallinn 15551, Estonia.
             </p>
             <p className="text-gray-600">
-              L'utilisation de ContestDraw implique l'acceptation pleine et
+              L'utilisation de Cleack implique l'acceptation pleine et
               entière des présentes CGU. Si vous n'acceptez pas ces conditions,
               veuillez ne pas utiliser nos services.
             </p>
@@ -37,7 +37,7 @@ export default function TermsOfServicePage() {
             </h2>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
               <li>
-                <strong>"Plateforme" :</strong> le site web ContestDraw et ses
+                <strong>"Plateforme" :</strong> le site web Cleack et ses
                 services associés
               </li>
               <li>
@@ -69,7 +69,7 @@ export default function TermsOfServicePage() {
               3. Description du Service
             </h2>
             <p className="text-gray-600 mb-4">
-              ContestDraw est une plateforme SaaS permettant de :
+              Cleack est une plateforme SaaS permettant de :
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2">
               <li>
@@ -92,7 +92,7 @@ export default function TermsOfServicePage() {
               4.1 Conditions d'inscription
             </h3>
             <p className="text-gray-600 mb-4">
-              Pour utiliser ContestDraw, vous devez :
+              Pour utiliser Cleack, vous devez :
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
               <li>Être âgé d'au moins 18 ans ou avoir la majorité légale</li>
@@ -171,7 +171,7 @@ export default function TermsOfServicePage() {
             </ul>
             <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg mt-4">
               <p className="text-yellow-800 text-sm">
-                <strong>Important :</strong> ContestDraw fournit un outil
+                <strong>Important :</strong> Cleack fournit un outil
                 technique et ne peut être tenu responsable du non-respect des
                 obligations légales par l'Organisateur.
               </p>
@@ -187,7 +187,7 @@ export default function TermsOfServicePage() {
               7.1 Système de crédits
             </h3>
             <p className="text-gray-600 mb-4">
-              ContestDraw fonctionne avec un système de crédits. Chaque tirage
+              Cleack fonctionne avec un système de crédits. Chaque tirage
               consomme un certain nombre de crédits selon le nombre de
               participants.
             </p>
@@ -207,13 +207,13 @@ export default function TermsOfServicePage() {
             </h3>
             <p className="text-gray-600">
               Les crédits achetés ne sont pas remboursables sauf en cas de
-              dysfonctionnement technique imputable à ContestDraw. Les demandes
+              dysfonctionnement technique imputable à Cleack. Les demandes
               de remboursement doivent être adressées à{" "}
               <a
-                href="mailto:support@contestdraw.com"
+                href="mailto:support@cleack.io"
                 className="text-blue-600 hover:underline"
               >
-                support@contestdraw.com
+                support@cleack.io
               </a>{" "}
               dans un délai de 14 jours.
             </p>
@@ -242,7 +242,7 @@ export default function TermsOfServicePage() {
               9. Limitation de Responsabilité
             </h2>
             <p className="text-gray-600 mb-4">
-              ContestDraw est fourni "tel quel". Flowrigin OÜ ne garantit pas :
+              Cleack est fourni "tel quel". Flowrigin OÜ ne garantit pas :
             </p>
             <ul className="list-disc pl-6 text-gray-600 space-y-2 mb-4">
               <li>Un fonctionnement ininterrompu ou exempt d'erreurs</li>
@@ -344,10 +344,10 @@ export default function TermsOfServicePage() {
               <p>
                 Email :{" "}
                 <a
-                  href="mailto:legal@contestdraw.com"
+                  href="mailto:legal@cleack.io"
                   className="text-blue-600 hover:underline"
                 >
-                  legal@contestdraw.com
+                  legal@cleack.io
                 </a>
               </p>
               <p>
