@@ -9,6 +9,7 @@ import EmailVerificationPage from "./pages/EmailVerificationPage";
 import DashboardPage from "./pages/DashboardPage";
 import NewDrawPage from "./pages/NewDrawPage";
 import DrawConfigPage from "./pages/DrawConfigPage";
+import DrawFiltersPage from "./pages/DrawFiltersPage";
 import DrawExecutionPage from "./pages/DrawExecutionPage";
 import ResultsPage from "./pages/ResultsPage";
 import PricingPage from "./pages/PricingPage";
@@ -25,6 +26,16 @@ import LegalNoticePage from "./pages/LegalNoticePage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import ContactPage from "./pages/ContactPage";
+
+// Admin pages
+import { AdminLayout } from "./components/admin/AdminLayout";
+import {
+  AdminDashboardPage,
+  AdminUsersPage,
+  AdminDrawsPage,
+  AdminPaymentsPage,
+  AdminStatsPage,
+} from "./pages/admin";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { user, isLoading } = useAuthStore();
@@ -129,6 +140,14 @@ function App() {
           }
         />
         <Route
+          path="draw/:id/filters"
+          element={
+            <ProtectedRoute>
+              <DrawFiltersPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="draw/:id/execute"
           element={
             <ProtectedRoute>
@@ -152,6 +171,15 @@ function App() {
             </ProtectedRoute>
           }
         />
+      </Route>
+
+      {/* Admin routes */}
+      <Route path="admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboardPage />} />
+        <Route path="users" element={<AdminUsersPage />} />
+        <Route path="draws" element={<AdminDrawsPage />} />
+        <Route path="payments" element={<AdminPaymentsPage />} />
+        <Route path="stats" element={<AdminStatsPage />} />
       </Route>
 
       {/* Embed route - minimal layout */}

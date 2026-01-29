@@ -24,6 +24,7 @@ import organizationsRoutes from "./api/organizations/organizations.routes";
 import brandsRoutes from "./api/brands/brands.routes";
 import brandingRoutes from "./api/branding/branding.routes";
 import paymentsRoutes from "./api/payments/payments.routes";
+import adminRoutes from "./api/admin";
 
 // Load environment variables
 dotenv.config();
@@ -127,6 +128,9 @@ class App {
     this.app.use("/api/organizations", organizationsRoutes);
     this.app.use("/api/brands", brandsRoutes);
     this.app.use("/api/branding", brandingRoutes);
+    
+    // Admin panel
+    this.app.use("/api/admin", adminRoutes);
 
     // Static file serving for locally stored videos
     const uploadsPath = join(process.cwd(), config.storage.path || "uploads");
