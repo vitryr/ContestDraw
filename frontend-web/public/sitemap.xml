@@ -49,23 +49,98 @@
   <!-- Hub Pages -->
   <url>
     <loc>https://cleack.io/jeu-concours</loc>
-    <lastmod>2026-01-30</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cleack.io/guide</loc>
-    <lastmod>2026-01-30</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
     <loc>https://cleack.io/outils</loc>
-    <lastmod>2026-01-30</lastmod>
+    <lastmod>2025-01-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://cleack.io/blog</loc>
+    <lastmod>2025-01-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Blog Articles - Tutoriels -->
+  <url>
+    <loc>https://cleack.io/blog/comment-faire-tirage-au-sort-instagram</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://cleack.io/blog/comment-faire-tirage-au-sort-tiktok</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://cleack.io/blog/comment-faire-tirage-au-sort-facebook</loc>
+    <lastmod>2025-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://cleack.io/blog/comment-faire-tirage-au-sort-youtube</loc>
+    <lastmod>2025-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Blog Articles - Idées -->
+  <url>
+    <loc>https://cleack.io/blog/idees-concours-instagram-2025</loc>
+    <lastmod>2025-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Blog Articles - Comparatifs -->
+  <url>
+    <loc>https://cleack.io/blog/meilleur-outil-tirage-au-sort</loc>
+    <lastmod>2025-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Blog Articles - Légal -->
+  <url>
+    <loc>https://cleack.io/blog/regles-jeu-concours-instagram</loc>
+    <lastmod>2025-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://cleack.io/blog/jeu-concours-legal-france</loc>
+    <lastmod>2025-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Blog Articles - Guides Avancés -->
+  <url>
+    <loc>https://cleack.io/blog/eviter-faux-comptes-giveaway</loc>
+    <lastmod>2025-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- Main App Pages -->

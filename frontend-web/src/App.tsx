@@ -91,6 +91,18 @@ const CompteurParticipantsPage = lazy(() => import("./pages/seo/outils/CompteurP
 const VerificateurComptePage = lazy(() => import("./pages/seo/outils/VerificateurComptePage"));
 const CalendrierConcoursPage = lazy(() => import("./pages/seo/outils/CalendrierConcoursPage"));
 
+// Blog Pages
+const BlogHub = lazy(() => import("./pages/seo/blog/BlogHub"));
+const CommentFaireTirageInstagram = lazy(() => import("./pages/seo/blog/CommentFaireTirageInstagram"));
+const CommentFaireTirageTiktok = lazy(() => import("./pages/seo/blog/CommentFaireTirageTiktok"));
+const CommentFaireTirageFacebook = lazy(() => import("./pages/seo/blog/CommentFaireTirageFacebook"));
+const CommentFaireTirageYoutube = lazy(() => import("./pages/seo/blog/CommentFaireTirageYoutube"));
+const IdeesConcoursInstagram = lazy(() => import("./pages/seo/blog/IdeesConcoursInstagram"));
+const ComparatifOutilsTirage = lazy(() => import("./pages/seo/blog/ComparatifOutilsTirage"));
+const ReglesJeuConcoursInstagram = lazy(() => import("./pages/seo/blog/ReglesJeuConcoursInstagram"));
+const JeuConcoursLegalFrance = lazy(() => import("./pages/seo/blog/JeuConcoursLegalFrance"));
+const EviterFauxComptesGiveaway = lazy(() => import("./pages/seo/blog/EviterFauxComptesGiveaway"));
+
 // Loading component for lazy-loaded pages
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -327,10 +339,41 @@ function App() {
             <Route path="outils/verificateur-compte/" element={<VerificateurComptePage />} />
             <Route path="outils/calendrier-concours/" element={<CalendrierConcoursPage />} />
             
-            {/* Blog placeholder */}
-            <Route path="blog" element={<Navigate to="/" replace />} />
-            <Route path="blog/" element={<Navigate to="/" replace />} />
-            <Route path="blog/*" element={<Navigate to="/" replace />} />
+            {/* ============================================ */}
+            {/* SEO PAGES - Blog                            */}
+            {/* ============================================ */}
+            
+            {/* Blog Hub */}
+            <Route path="blog" element={<BlogHub />} />
+            <Route path="blog/" element={<BlogHub />} />
+            
+            {/* Blog Articles - Tutoriels */}
+            <Route path="blog/comment-faire-tirage-au-sort-instagram" element={<CommentFaireTirageInstagram />} />
+            <Route path="blog/comment-faire-tirage-au-sort-instagram/" element={<CommentFaireTirageInstagram />} />
+            <Route path="blog/comment-faire-tirage-au-sort-tiktok" element={<CommentFaireTirageTiktok />} />
+            <Route path="blog/comment-faire-tirage-au-sort-tiktok/" element={<CommentFaireTirageTiktok />} />
+            <Route path="blog/comment-faire-tirage-au-sort-facebook" element={<CommentFaireTirageFacebook />} />
+            <Route path="blog/comment-faire-tirage-au-sort-facebook/" element={<CommentFaireTirageFacebook />} />
+            <Route path="blog/comment-faire-tirage-au-sort-youtube" element={<CommentFaireTirageYoutube />} />
+            <Route path="blog/comment-faire-tirage-au-sort-youtube/" element={<CommentFaireTirageYoutube />} />
+            
+            {/* Blog Articles - Idées */}
+            <Route path="blog/idees-concours-instagram-2025" element={<IdeesConcoursInstagram />} />
+            <Route path="blog/idees-concours-instagram-2025/" element={<IdeesConcoursInstagram />} />
+            
+            {/* Blog Articles - Comparatifs */}
+            <Route path="blog/meilleur-outil-tirage-au-sort" element={<ComparatifOutilsTirage />} />
+            <Route path="blog/meilleur-outil-tirage-au-sort/" element={<ComparatifOutilsTirage />} />
+            
+            {/* Blog Articles - Légal */}
+            <Route path="blog/regles-jeu-concours-instagram" element={<ReglesJeuConcoursInstagram />} />
+            <Route path="blog/regles-jeu-concours-instagram/" element={<ReglesJeuConcoursInstagram />} />
+            <Route path="blog/jeu-concours-legal-france" element={<JeuConcoursLegalFrance />} />
+            <Route path="blog/jeu-concours-legal-france/" element={<JeuConcoursLegalFrance />} />
+            
+            {/* Blog Articles - Guides Avancés */}
+            <Route path="blog/eviter-faux-comptes-giveaway" element={<EviterFauxComptesGiveaway />} />
+            <Route path="blog/eviter-faux-comptes-giveaway/" element={<EviterFauxComptesGiveaway />} />
 
             {/* ============================================ */}
             {/* APP ROUTES - Protected                      */}

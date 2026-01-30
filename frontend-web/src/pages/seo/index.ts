@@ -66,3 +66,17 @@ export {
   VerificateurComptePage,
   CalendrierConcoursPage,
 } from './outils';
+
+// Blog Pages
+export {
+  BlogHub,
+  CommentFaireTirageInstagram,
+  CommentFaireTirageTiktok,
+  CommentFaireTirageFacebook,
+  CommentFaireTirageYoutube,
+  IdeesConcoursInstagram,
+  ComparatifOutilsTirage,
+  ReglesJeuConcoursInstagram,
+  JeuConcoursLegalFrance,
+  EviterFauxComptesGiveaway,
+} from './blog';
