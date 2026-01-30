@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Trophy, Menu, X, User, LogOut, CreditCard } from "lucide-react";
+import { Trophy, Menu, X, User, LogOut, CreditCard, Zap } from "lucide-react";
 import { useEffect, useState, ReactNode } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCreditsStore } from "../store/useCreditsStore";
@@ -21,14 +21,12 @@ export default function Layout({ children }: LayoutProps = {}) {
   const { balance, fetchBalance } = useCreditsStore();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Note: loadUser() is called from App.tsx on initialization
-  // We only fetch balance when user changes to avoid duplicate calls
   useEffect(() => {
     if (user) {
       fetchBalance();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user?.id]); // Only trigger on user.id change, not on every user object update
+  }, [user?.id]);
 
   const handleLogout = () => {
     logout();
@@ -38,60 +36,63 @@ export default function Layout({ children }: LayoutProps = {}) {
   const isLandingPage = location.pathname === "/";
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-bg-primary">
       <OnboardingModal />
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      {/* Header - Dark themed */}
+      <header className="sticky top-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-white/[0.06]">
         <nav className="container-custom py-4">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <Trophy className="w-8 h-8 text-primary-600" />
-              <span className="text-xl font-bold text-gray-900">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-3xl bg-gradient-to-b from-accent-secondary to-accent-tertiary flex items-center justify-center">
+                <Zap className="w-6 h-6 text-white" />
+              </div>
+              <span className="text-xl font-bold text-white">
                 {t("app.name")}
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-6">
+            <div className="hidden md:flex items-center gap-8">
               {user ? (
                 <>
                   <Link
                     to="/dashboard"
-                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                    className="text-ink-secondary hover:text-white transition-colors"
                   >
                     {t("nav.dashboard")}
                   </Link>
                   <Link
                     to="/pricing"
-                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                    className="text-ink-secondary hover:text-white transition-colors"
                   >
                     {t("nav.pricing")}
                   </Link>
 
-                  <div className="flex items-center space-x-2 px-4 py-2 bg-primary-50 rounded-lg">
-                    <CreditCard className="w-4 h-4 text-primary-600" />
-                    <span className="font-medium text-primary-900">
+                  <div className="flex items-center gap-2 px-4 py-2 bg-accent-secondary/10 border border-accent-secondary/30 rounded-full">
+                    <CreditCard className="w-4 h-4 text-accent-secondary" />
+                    <span className="font-medium text-white">
                       {balance || 0} {t("nav.credits")}
                     </span>
                   </div>
 
                   <div className="relative group">
-                    <button className="flex items-center space-x-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-bg-elevated transition-colors text-ink-secondary hover:text-white">
                       <User className="w-4 h-4" />
                       <span>{user.name}</span>
                     </button>
 
-                    <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                    <div className="absolute right-0 mt-2 w-48 bg-bg-elevated rounded-xl border border-white/[0.06] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all shadow-glow-lg">
                       <Link
                         to="/profile"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-t-lg"
+                        className="block px-4 py-3 text-ink-secondary hover:text-white hover:bg-bg-card rounded-t-xl transition-colors"
                       >
                         {t("nav.profileSettings")}
                       </Link>
                       <button
                         onClick={handleLogout}
-                        className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-50 rounded-b-lg flex items-center space-x-2"
+                        className="w-full text-left px-4 py-3 text-error hover:bg-bg-card rounded-b-xl flex items-center gap-2 transition-colors"
                       >
                         <LogOut className="w-4 h-4" />
                         <span>{t("nav.logout")}</span>
@@ -102,15 +103,56 @@ export default function Layout({ children }: LayoutProps = {}) {
                 </>
               ) : (
                 <>
+                  {isLandingPage && (
+                    <>
+                      <a
+                        href="#features"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigateAndScroll(navigate, "/", "features");
+                        }}
+                        className="text-ink-secondary hover:text-white transition-colors"
+                      >
+                        {t("nav.features", "Fonctionnalites")}
+                      </a>
+                      <a
+                        href="#pricing"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigateAndScroll(navigate, "/", "pricing");
+                        }}
+                        className="text-ink-secondary hover:text-white transition-colors"
+                      >
+                        {t("nav.pricing")}
+                      </a>
+                    </>
+                  )}
+                  {!isLandingPage && (
+                    <Link
+                      to="/pricing"
+                      className="text-ink-secondary hover:text-white transition-colors"
+                    >
+                      {t("nav.pricing")}
+                    </Link>
+                  )}
                   <Link
-                    to="/pricing"
-                    className="text-gray-700 hover:text-primary-600 transition-colors"
+                    to="/faq"
+                    className="text-ink-secondary hover:text-white transition-colors"
                   >
-                    {t("nav.pricing")}
+                    FAQ
+                  </Link>
+                  <Link
+                    to="/auth"
+                    className="text-ink-secondary hover:text-white transition-colors"
+                  >
+                    {t("nav.signIn", "Connexion")}
                   </Link>
                   <LanguageSwitcher />
-                  <Link to="/auth" className="btn-secondary">
-                    {t("nav.signIn")}
+                  <Link
+                    to="/auth"
+                    className="btn-gradient"
+                  >
+                    {t("nav.signUp", "S'inscrire")}
                   </Link>
                 </>
               )}
@@ -119,7 +161,7 @@ export default function Layout({ children }: LayoutProps = {}) {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+              className="md:hidden p-2 rounded-lg hover:bg-bg-elevated text-ink-secondary"
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -141,27 +183,27 @@ export default function Layout({ children }: LayoutProps = {}) {
                 <>
                   <Link
                     to="/dashboard"
-                    className="block px-4 py-2 rounded-lg hover:bg-gray-100"
+                    className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t("nav.dashboard")}
                   </Link>
                   <Link
                     to="/pricing"
-                    className="block px-4 py-2 rounded-lg hover:bg-gray-100"
+                    className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t("nav.pricing")}
                   </Link>
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 rounded-lg hover:bg-gray-100"
+                    className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t("nav.profile")}
                   </Link>
-                  <div className="px-4 py-2 bg-primary-50 rounded-lg">
-                    <span className="font-medium text-primary-900">
+                  <div className="px-4 py-3 bg-accent-secondary/10 border border-accent-secondary/30 rounded-lg">
+                    <span className="font-medium text-white">
                       {balance || 0} {t("nav.credits")}
                     </span>
                   </div>
@@ -173,26 +215,61 @@ export default function Layout({ children }: LayoutProps = {}) {
                       handleLogout();
                       setMobileMenuOpen(false);
                     }}
-                    className="w-full text-left px-4 py-2 text-red-600 rounded-lg hover:bg-gray-100"
+                    className="w-full text-left px-4 py-3 text-error rounded-lg hover:bg-bg-elevated transition-colors"
                   >
                     {t("nav.logout")}
                   </button>
                 </>
               ) : (
                 <>
+                  {isLandingPage && (
+                    <>
+                      <a
+                        href="#features"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigateAndScroll(navigate, "/", "features");
+                          setMobileMenuOpen(false);
+                        }}
+                        className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
+                      >
+                        {t("nav.features", "Fonctionnalites")}
+                      </a>
+                      <a
+                        href="#pricing"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          navigateAndScroll(navigate, "/", "pricing");
+                          setMobileMenuOpen(false);
+                        }}
+                        className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
+                      >
+                        {t("nav.pricing")}
+                      </a>
+                    </>
+                  )}
+                  {!isLandingPage && (
+                    <Link
+                      to="/pricing"
+                      className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {t("nav.pricing")}
+                    </Link>
+                  )}
                   <Link
-                    to="/pricing"
-                    className="block px-4 py-2 rounded-lg hover:bg-gray-100"
+                    to="/faq"
+                    className="block px-4 py-3 rounded-lg hover:bg-bg-elevated text-ink-secondary hover:text-white transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    {t("nav.pricing")}
+                    FAQ
                   </Link>
                   <div className="px-4 py-2">
                     <LanguageSwitcher />
                   </div>
                   <Link
                     to="/auth"
-                    className="block px-4 py-2 text-primary-600 font-medium"
+                    className="block px-4 py-3 text-accent-primary font-medium"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {t("nav.signIn")}
@@ -207,115 +284,43 @@ export default function Layout({ children }: LayoutProps = {}) {
       {/* Main Content */}
       <main className="flex-1">{children || <Outlet />}</main>
 
-      {/* Footer */}
-      <footer className="bg-gray-50 border-t border-gray-200">
-        <div className="container-custom py-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-2 mb-4">
-                <Trophy className="w-6 h-6 text-primary-600" />
-                <span className="font-bold text-gray-900">{t("app.name")}</span>
+      {/* Footer - Dark themed */}
+      <footer className="bg-bg-primary border-t border-white/[0.06]">
+        <div className="container-custom py-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            {/* Logo */}
+            <div className="flex items-center gap-3">
+              <div className="w-6 h-6 rounded-lg bg-gradient-to-b from-accent-secondary to-accent-tertiary flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
               </div>
-              <p className="text-sm text-gray-600">{t("footer.tagline")}</p>
+              <span className="font-bold text-white">{t("app.name")}</span>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">
-                {t("footer.product")}
-              </h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <Link to="/pricing" className="hover:text-primary-600">
-                    {t("nav.pricing")}
-                  </Link>
-                </li>
-                <li>
-                  <a
-                    href="#features"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigateAndScroll(navigate, "/", "features");
-                    }}
-                    className="hover:text-primary-600 cursor-pointer"
-                  >
-                    {t("footer.features")}
-                  </a>
-                </li>
-                <li>
-                  <Link to="/faq" className="hover:text-primary-600">
-                    {t("footer.documentation")}
-                  </Link>
-                </li>
-              </ul>
+            {/* Links */}
+            <div className="flex items-center gap-6">
+              <Link
+                to="/terms"
+                className="text-ink-secondary hover:text-white transition-colors text-sm"
+              >
+                {t("footer.terms", "Conditions d'utilisation")}
+              </Link>
+              <Link
+                to="/privacy"
+                className="text-ink-secondary hover:text-white transition-colors text-sm"
+              >
+                {t("footer.privacy", "Confidentialite")}
+              </Link>
+              <Link
+                to="/contact"
+                className="text-ink-secondary hover:text-white transition-colors text-sm"
+              >
+                {t("footer.contact", "Contact")}
+              </Link>
             </div>
 
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">
-                {t("footer.company")}
-              </h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <a
-                    href="https://blog.cleack.io"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-primary-600"
-                  >
-                    {t("footer.blog")}
-                  </a>
-                </li>
-                <li>
-                  <Link to="/contact" className="hover:text-primary-600">
-                    {t("footer.contact")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-semibold text-gray-900 mb-4">
-                {t("footer.legal")}
-              </h4>
-              <ul className="space-y-2 text-sm text-gray-600">
-                <li>
-                  <Link to="/legal" className="hover:text-primary-600">
-                    {t("footer.legalNotice")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/privacy" className="hover:text-primary-600">
-                    {t("footer.privacy")}
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/terms" className="hover:text-primary-600">
-                    {t("footer.terms")}
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
-              <div className="text-center md:text-left">
-                <p>
-                  © {new Date().getFullYear()} {t("app.name")}.{" "}
-                  {t("footer.copyright")}
-                </p>
-                <p className="text-xs text-gray-500 mt-1">
-                  Flowrigin OÜ • Reg. 17371835 • Sepapaja tn 6, Tallinn 15551,
-                  Estonia
-                </p>
-              </div>
-              <div className="flex items-center space-x-4">
-                <a
-                  href="mailto:contact@cleack.io"
-                  className="hover:text-primary-600"
-                >
-                  contact@cleack.io
-                </a>
-              </div>
+            {/* Copyright */}
+            <div className="text-ink-secondary text-sm">
+              © {new Date().getFullYear()} {t("app.name")}. {t("footer.copyright", "Tous droits reserves.")}
             </div>
           </div>
         </div>

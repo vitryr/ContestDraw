@@ -12,7 +12,7 @@ Running an Instagram giveaway can skyrocket your engagement and grow your follow
 
 In this comprehensive guide, we compare **the top Instagram giveaway tools in 2025**, analyzing their features, pricing, pros, cons, and GDPR compliance.
 
-**TL;DR:** ContestDraw is our #1 pick thanks to its full automation, advanced anti-bot filters, complete GDPR compliance, and Story-format video export.
+**TL;DR:** Cleack is our #1 pick thanks to its full automation, advanced anti-bot filters, complete GDPR compliance, and Story-format video export.
 
 ---
 
@@ -65,15 +65,15 @@ We tested each tool based on **8 essential criteria:**
 
 ## Top 10 Instagram Giveaway Tools
 
-### 1. 🏆 ContestDraw (Our #1 Pick)
+### 1. 🏆 Cleack (Our #1 Pick)
 
-**Website:** [contestdraw.com](https://contestdraw.com)
+**Website:** [cleack.io](https://cleack.io)
 
 **Overall Rating:** ⭐⭐⭐⭐⭐ (4.9/5)
 
 #### Why It's Our #1 Pick
 
-ContestDraw is the only tool combining **full automation, advanced anti-bot filters, and complete GDPR compliance**. Perfect for influencers and brands running regular giveaways.
+Cleack is the only tool combining **full automation, advanced anti-bot filters, and complete GDPR compliance**. Perfect for influencers and brands running regular giveaways.
 
 #### Key Features
 
@@ -460,7 +460,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 
 | Tool | Rating | Auto | Filters | GDPR | Video | Price/month | Best For |
 |------|--------|------|---------|------|-------|-------------|----------|
-| **ContestDraw** | ⭐⭐⭐⭐⭐ | ✅ Full | ✅ 7+ | ✅ Complete | ✅ 9:16 Story | €19.99 | Pros & brands |
+| **Cleack** | ⭐⭐⭐⭐⭐ | ✅ Full | ✅ 7+ | ✅ Complete | ✅ 9:16 Story | €19.99 | Pros & brands |
 | Pickaw | ⭐⭐⭐⭐ | ❌ Manual | ⚠️ Basic | ⚠️ Partial | ❌ No | €29 | Beginners |
 | Easypromos | ⭐⭐⭐⭐ | ⚠️ Partial | ✅ Good | ⚠️ Partial | ❌ No | €99 | Enterprises |
 | Woobox | ⭐⭐⭐ | ⚠️ Partial | ⚠️ Basic | ❌ No (US) | ❌ No | $97 | Facebook contests |
@@ -477,7 +477,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 
 ### For Influencers & Content Creators
 
-**Top Pick: ContestDraw**
+**Top Pick: Cleack**
 - Full automation (massive time savings)
 - 9:16 Story video ready to share
 - Multi-language interface
@@ -489,7 +489,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 
 ### For Brands & E-commerce
 
-**Top Pick: ContestDraw**
+**Top Pick: Cleack**
 - GDPR compliance mandatory
 - Anti-bot filters to avoid fake entries
 - PDF certificate to prove fairness
@@ -501,7 +501,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 
 ### For Marketing Agencies
 
-**Top Pick: ContestDraw Enterprise**
+**Top Pick: Cleack Enterprise**
 - 10 social accounts
 - 24/7 priority support
 - Partial white-label
@@ -518,7 +518,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 - No registration required
 - Simple and fast
 
-**Alternative: ContestDraw** (€2.49/draw if filters needed)
+**Alternative: Cleack** (€2.49/draw if filters needed)
 
 ---
 
@@ -528,7 +528,7 @@ Random number generator, not a dedicated Instagram giveaway tool.
 
 | Tool | Hosting | DPO | Certificate | Verdict |
 |------|---------|-----|-------------|---------|
-| **ContestDraw** | 🇫🇷 France (AWS EU) | ✅ Yes | ✅ SHA-256 | ✅ 100% compliant |
+| **Cleack** | 🇫🇷 France (AWS EU) | ✅ Yes | ✅ SHA-256 | ✅ 100% compliant |
 | Pickaw | 🇫🇷 France | ✅ Yes | ⚠️ Basic | ✅ Compliant |
 | Easypromos | 🇪🇸 Spain | ✅ Yes | ❌ No | ⚠️ Partially |
 
@@ -562,7 +562,7 @@ Since the Schrems II decision (2020), data transfers to the US require additiona
 6. [ ] **Automatic data deletion**
 7. [ ] **Local language support**
 
-**ContestDraw checks all boxes ✅**
+**Cleack checks all boxes ✅**
 
 ---
 
@@ -570,7 +570,7 @@ Since the Schrems II decision (2020), data transfers to the US require additiona
 
 ### Do I need an Instagram Pro account?
 
-Yes, for tools using the Instagram API (like ContestDraw). It's free and takes 2 clicks in Instagram settings.
+Yes, for tools using the Instagram API (like Cleack). It's free and takes 2 clicks in Instagram settings.
 
 ### What is GDPR compliance and why is it important?
 
@@ -582,7 +582,7 @@ GDPR (General Data Protection Regulation) imposes strict rules on collecting and
 - Certificate and immutable history
 - Data deletion rights
 
-**GDPR-compliant tools:** ContestDraw, Pickaw, Easypromos
+**GDPR-compliant tools:** Cleack, Pickaw, Easypromos
 **Non-compliant tools:** Woobox, ViralSweep, Gleam (US hosting)
 
 ### Are free tools reliable?
@@ -616,9 +616,9 @@ Yes, but it's **not recommended** for several reasons:
 
 ## Conclusion
 
-After testing these 10 tools, **ContestDraw clearly stands out** as the best solution in 2025 for influencers, brands, and agencies running Instagram giveaways.
+After testing these 10 tools, **Cleack clearly stands out** as the best solution in 2025 for influencers, brands, and agencies running Instagram giveaways.
 
-### Why ContestDraw is #1:
+### Why Cleack is #1:
 
 1. ✅ **Full automation** (2 minutes for a draw vs hours manually)
 2. ✅ **Most advanced anti-bot filters** on the market
@@ -635,11 +635,11 @@ After testing these 10 tools, **ContestDraw clearly stands out** as the best sol
 
 ---
 
-## Try ContestDraw for Free
+## Try Cleack for Free
 
 Ready to run your next Instagram giveaway fairly, quickly, and GDPR-compliant?
 
-👉 [**Try ContestDraw for free**](https://contestdraw.com/register) (1 credit included)
+👉 [**Try Cleack for free**](https://cleack.io/register) (1 credit included)
 
 **Guarantees:**
 - ✅ No credit card required
@@ -653,11 +653,11 @@ Ready to run your next Instagram giveaway fairly, quickly, and GDPR-compliant?
 
 - 📖 [Complete Guide: How to Run a GDPR-Compliant Instagram Giveaway](./instagram-giveaway-gdpr-guide-en.md)
 - 📊 [Les 10 meilleurs outils de tirage au sort Instagram](./top-10-instagram-giveaway-tools-fr.md)
-- ❓ [ContestDraw FAQ](../user-guide/faq.md)
+- ❓ [Cleack FAQ](../user-guide/faq.md)
 - 🎓 [Advanced Filters Guide](../user-guide/filters-guide.md)
 
 ---
 
 **Last Updated:** January 2025
-**Author:** ContestDraw Team
+**Author:** Cleack Team
 **Share:** [Twitter](https://twitter.com/share) | [LinkedIn](https://linkedin.com/share) | [Facebook](https://facebook.com/share)

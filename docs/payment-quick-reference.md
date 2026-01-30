@@ -193,7 +193,7 @@ STRIPE_PRICE_ENTERPRISE=price_...
 
 # Apple
 APPLE_SHARED_SECRET=your_secret
-APPLE_BUNDLE_ID=com.contestdraw.app
+APPLE_BUNDLE_ID=com.cleack.app
 
 # Database
 DATABASE_URL=postgresql://...

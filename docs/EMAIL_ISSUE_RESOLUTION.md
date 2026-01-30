@@ -19,19 +19,19 @@ Looking at `/logs/combined-2025-11-06.log`, we found:
 ```json
 {
   "error": "Unauthorized",
-  "message": "Failed to send verification email via Brevo",
+  "message": "Failed to send verification email via Resend",
   "response": "We have detected you are using an unrecognised IP address 2a01:e0a:b7e:e8a0:b8eb:5e02:d3bb:688c.
   If you performed this action make sure to add the new IP address in this link:
-  https://app.brevo.com/security/authorised_ips"
+  https://app.resend.com/security/authorised_ips"
 }
 ```
 
 **2. Successful Email Sending (16:50:18-22)**
 After IP was whitelisted:
 ```json
-{"level":"info","message":"Verification email sent to romain.vitry@gmail.com via Brevo"}
-{"level":"info","message":"Welcome email sent to romain.vitry@gmail.com via Brevo"}
-{"level":"info","message":"Password reset email sent to romain.vitry@gmail.com via Brevo"}
+{"level":"info","message":"Verification email sent to romain.vitry@gmail.com via Resend"}
+{"level":"info","message":"Welcome email sent to romain.vitry@gmail.com via Resend"}
+{"level":"info","message":"Password reset email sent to romain.vitry@gmail.com via Resend"}
 ```
 
 ✅ **All three email types sent successfully once IP was whitelisted!**
@@ -40,12 +40,12 @@ After IP was whitelisted:
 
 ### Step 1: Whitelist Your IP Address
 
-Go to Brevo's IP whitelist page and add your current IP:
-- **URL:** https://app.brevo.com/security/authorised_ips
+Go to Resend's IP whitelist page and add your current IP:
+- **URL:** https://app.resend.com/security/authorised_ips
 - **IP to add:** `2a01:e0a:b7e:e8a0:b8eb:5e02:d3bb:688c` (or your current IP)
 
 **Alternative (Development Only):**
-Disable IP whitelist restrictions in your Brevo account security settings.
+Disable IP whitelist restrictions in your Resend account security settings.
 
 ### Step 2: Test Email Functionality
 
@@ -79,14 +79,14 @@ Once IP is whitelisted:
 
 **File:** `backend/src/services/email.service.ts`
 
-**Provider:** Brevo (formerly Sendinblue)
-**API Integration:** `sib-api-v3-sdk`
+**Provider:** Resend (formerly Resend)
+**API Integration:** `resend`
 
 **Environment Variables:**
 ```bash
-BREVO_API_KEY=your-brevo-api-key-here
-BREVO_FROM_NAME=Contest Draw
-BREVO_FROM_EMAIL=noreply@contestdraw.com
+RESEND_API_KEY=your-resend-api-key-here
+RESEND_FROM_NAME=Cleack
+RESEND_FROM_EMAIL=noreply@cleack.io
 ```
 
 ### Email Types Configured
@@ -130,7 +130,7 @@ emailService
 **Why?** Prevents unauthorized API usage and protects against stolen API keys.
 
 **Development Workaround:**
-- Add your local/development IPs to Brevo whitelist
+- Add your local/development IPs to Resend whitelist
 - Or disable IP restrictions for development accounts
 
 **Production Best Practice:**
@@ -155,7 +155,7 @@ emailService
 
 ### Immediate Actions
 
-1. ✅ **Whitelist IP in Brevo** (Required to send emails)
+1. ✅ **Whitelist IP in Resend** (Required to send emails)
 2. 🧪 **Test with script:** `npx ts-node scripts/test-email.ts`
 3. ✅ **Try new registration** with fresh email
 
@@ -186,7 +186,7 @@ emailService
 
 ## 📝 Testing Checklist
 
-- [ ] Whitelist current IP in Brevo
+- [ ] Whitelist current IP in Resend
 - [ ] Run email test script successfully
 - [ ] Register new test account
 - [ ] Receive verification email
@@ -198,22 +198,22 @@ emailService
 ## 🚨 Common Issues
 
 ### Issue: "Unauthorized" error
-**Solution:** Add your IP to Brevo whitelist
+**Solution:** Add your IP to Resend whitelist
 
 ### Issue: Emails go to spam
 **Solutions:**
-- Verify sender domain in Brevo
+- Verify sender domain in Resend
 - Add SPF and DKIM records to DNS
 - Use verified sender email
-- Increase Brevo account reputation
+- Increase Resend account reputation
 
 ### Issue: No email received at all
 **Check:**
 1. Backend logs for errors: `tail -f logs/combined-*.log`
-2. Brevo API key is valid
-3. Sender email is verified in Brevo
+2. Resend API key is valid
+3. Sender email is verified in Resend
 4. User's email is valid (check for typos)
-5. Brevo account has sufficient credits
+5. Resend account has sufficient credits
 
 ### Issue: Verification link doesn't work
 **Expected:** Returns 501 Not Implemented
@@ -234,17 +234,17 @@ emailService
 Once IP is whitelisted, you should see in logs:
 
 ```json
-{"level":"info","message":"Verification email sent to user@example.com via Brevo"}
-{"level":"info","message":"Welcome email sent to user@example.com via Brevo"}
+{"level":"info","message":"Verification email sent to user@example.com via Resend"}
+{"level":"info","message":"Welcome email sent to user@example.com via Resend"}
 ```
 
 And in your email inbox:
-- 📧 "Verify Your Email - Contest Draw"
-- 📧 "Welcome to Contest Draw!"
+- 📧 "Verify Your Email - Cleack"
+- 📧 "Welcome to Cleack!"
 
 ---
 
 **Last Updated:** November 6, 2025
 **Resolved By:** Claude Flow Swarm Orchestration
 **Backend Agent:** backend-dev
-**Testing:** Verified via logs and Brevo API
+**Testing:** Verified via logs and Resend API

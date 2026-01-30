@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the public verification and transparency features implemented in ContestDraw to ensure fair and verifiable draw results.
+This document describes the public verification and transparency features implemented in Cleack to ensure fair and verifiable draw results.
 
 ## Features Implemented
 
@@ -41,7 +41,7 @@ This document describes the public verification and transparency features implem
 **Key Features**:
 
 #### Short URLs
-- Format: `contestdraw.com/v/{shortCode}` (8-character code)
+- Format: `cleack.io/v/{shortCode}` (8-character code)
 - Deterministic generation based on draw ID
 - Optional expiration support
 - In-memory storage (use Redis in production)
@@ -107,7 +107,7 @@ Returns complete verification data for a draw.
 {
   "draw": {
     "id": "draw_123",
-    "title": "Contest Draw",
+    "title": "Cleack",
     "participantsCount": 150,
     "winnersCount": 3,
     "filters": {...},
@@ -123,7 +123,7 @@ Returns complete verification data for a draw.
   },
   "sharing": {
     "verificationUrl": "https://...",
-    "shortUrl": "https://contestdraw.com/v/abc123",
+    "shortUrl": "https://cleack.io/v/abc123",
     "qrCodeUrl": "https://.../qr/abc123",
     "socialUrls": {...}
   }
@@ -427,10 +427,10 @@ Create tests for:
 
 ## URLs Structure
 
-- Full verification: `https://contestdraw.com/verify/{drawId}`
-- Short URL: `https://contestdraw.com/v/{shortCode}`
-- Embed widget: `https://contestdraw.com/embed/{drawId}`
-- QR code: `https://contestdraw.com/api/public/qr/{shortCode}`
+- Full verification: `https://cleack.io/verify/{drawId}`
+- Short URL: `https://cleack.io/v/{shortCode}`
+- Embed widget: `https://cleack.io/embed/{drawId}`
+- QR code: `https://cleack.io/api/public/qr/{shortCode}`
 
 ## Future Enhancements
 

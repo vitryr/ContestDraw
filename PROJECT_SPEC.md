@@ -1,4 +1,4 @@
-# 🎯 PROJECT: Multi-Platform Contest Draw Application - Complete Development
+# 🎯 PROJECT: Multi-Platform Cleack Application - Complete Development
 
 ## 📋 GLOBAL CONTEXT
 I want to create a comprehensive contest draw application for social media (Instagram, Facebook, TikTok, Twitter/X). The application must automate the draw process, ensure legal compliance (GDPR), guarantee transparency, and offer excellent UX. Application available as responsive web and native mobile (iOS/Android).

@@ -12,7 +12,7 @@ Organiser un concours Instagram peut sembler simple, mais sélectionner un gagna
 
 Dans ce guide complet, nous comparons **les 10 meilleurs outils de tirage au sort Instagram en 2025**, en analysant leurs fonctionnalités, tarifs, avantages et inconvénients.
 
-**TL;DR:** ContestDraw arrive en tête grâce à son automatisation complète, ses filtres avancés anti-bots, et sa conformité GDPR totale.
+**TL;DR:** Cleack arrive en tête grâce à son automatisation complète, ses filtres avancés anti-bots, et sa conformité GDPR totale.
 
 ---
 
@@ -53,15 +53,15 @@ Nous avons testé chaque outil selon **8 critères essentiels:**
 
 ## Top 10 des Outils de Tirage au Sort Instagram
 
-### 1. 🏆 ContestDraw (Notre choix #1)
+### 1. 🏆 Cleack (Notre choix #1)
 
-**Site:** [contestdraw.com](https://contestdraw.com)
+**Site:** [cleack.io](https://cleack.io)
 
 **Note globale:** ⭐⭐⭐⭐⭐ (4.9/5)
 
 #### Pourquoi c'est notre choix #1
 
-ContestDraw est le seul outil qui combine **automatisation complète, filtres anti-bots avancés, et conformité GDPR totale**. Parfait pour les influenceurs et marques qui organisent régulièrement des concours.
+Cleack est le seul outil qui combine **automatisation complète, filtres anti-bots avancés, et conformité GDPR totale**. Parfait pour les influenceurs et marques qui organisent régulièrement des concours.
 
 #### Fonctionnalités clés
 
@@ -448,7 +448,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 
 | Outil | Note | Auto | Filtres | GDPR | Vidéo | Prix/mois | Meilleur pour |
 |-------|------|------|---------|------|-------|-----------|---------------|
-| **ContestDraw** | ⭐⭐⭐⭐⭐ | ✅ Total | ✅ 7+ | ✅ Complet | ✅ Story 9:16 | 19,99€ | Pros & marques |
+| **Cleack** | ⭐⭐⭐⭐⭐ | ✅ Total | ✅ 7+ | ✅ Complet | ✅ Story 9:16 | 19,99€ | Pros & marques |
 | Pickaw | ⭐⭐⭐⭐ | ❌ Manuel | ⚠️ Basiques | ⚠️ Partiel | ❌ Non | 29€ | Débutants |
 | Easypromos | ⭐⭐⭐⭐ | ⚠️ Partiel | ✅ Bons | ⚠️ Partiel | ❌ Non | 99€ | Entreprises |
 | Woobox | ⭐⭐⭐ | ⚠️ Partiel | ⚠️ Basiques | ❌ Non (US) | ❌ Non | 97$ | Facebook contests |
@@ -465,7 +465,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 
 ### Pour les Influenceurs et Créateurs de Contenu
 
-**Choix #1: ContestDraw**
+**Choix #1: Cleack**
 - Automatisation totale (gain de temps massif)
 - Vidéo Story 9:16 prête à partager
 - Interface en français
@@ -477,7 +477,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 
 ### Pour les Marques et E-commerce
 
-**Choix #1: ContestDraw**
+**Choix #1: Cleack**
 - Conformité GDPR obligatoire
 - Filtres anti-bots pour éviter les faux participants
 - Certificat PDF pour prouver l'équité
@@ -489,7 +489,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 
 ### Pour les Agences Marketing
 
-**Choix #1: ContestDraw Entreprise**
+**Choix #1: Cleack Entreprise**
 - 10 comptes sociaux
 - Support prioritaire 24/7
 - White-label partiel
@@ -506,7 +506,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 - Pas d'inscription requise
 - Simple et rapide
 
-**Alternative: ContestDraw** (2,49€/tirage si besoin de filtres)
+**Alternative: Cleack** (2,49€/tirage si besoin de filtres)
 
 ---
 
@@ -514,7 +514,7 @@ Générateur de nombres aléatoires, pas un outil de tirage Instagram dédié.
 
 ### Ai-je besoin d'un compte Instagram Pro ?
 
-Oui, pour les outils qui utilisent l'API Instagram (comme ContestDraw). C'est gratuit et se fait en 2 clics dans les paramètres Instagram.
+Oui, pour les outils qui utilisent l'API Instagram (comme Cleack). C'est gratuit et se fait en 2 clics dans les paramètres Instagram.
 
 ### Qu'est-ce que la conformité GDPR et pourquoi est-ce important ?
 
@@ -526,7 +526,7 @@ Le GDPR (Règlement Général sur la Protection des Données) impose des règles
 - Certificat et historique immuable
 - Droit à l'effacement des données
 
-**Outils conformes GDPR:** ContestDraw, Pickaw, Easypromos
+**Outils conformes GDPR:** Cleack, Pickaw, Easypromos
 **Outils NON conformes:** Woobox, ViralSweep, Gleam (hébergement US)
 
 ### Les outils gratuits sont-ils fiables ?
@@ -541,7 +541,7 @@ Pour un usage professionnel régulier, un outil payant est indispensable.
 
 ### Quelle est la différence entre tirage automatique et manuel ?
 
-**Tirage automatique (ex: ContestDraw):**
+**Tirage automatique (ex: Cleack):**
 - Récupération automatique des participants via API
 - Pas de copier-coller
 - Filtres appliqués automatiquement
@@ -575,9 +575,9 @@ Oui, mais c'est **déconseillé** pour plusieurs raisons:
 
 ## Conclusion
 
-Après avoir testé ces 10 outils, **ContestDraw se démarque clairement** comme la meilleure solution en 2025 pour les influenceurs, marques, et agences qui organisent des concours Instagram.
+Après avoir testé ces 10 outils, **Cleack se démarque clairement** comme la meilleure solution en 2025 pour les influenceurs, marques, et agences qui organisent des concours Instagram.
 
-### Pourquoi ContestDraw est #1:
+### Pourquoi Cleack est #1:
 
 1. ✅ **Automatisation totale** (2 minutes pour un tirage vs plusieurs heures manuellement)
 2. ✅ **Filtres anti-bots les plus avancés** du marché
@@ -594,11 +594,11 @@ Après avoir testé ces 10 outils, **ContestDraw se démarque clairement** comme
 
 ---
 
-## Essayez ContestDraw Gratuitement
+## Essayez Cleack Gratuitement
 
 Prêt à organiser votre prochain tirage Instagram de manière équitable, rapide, et conforme GDPR ?
 
-👉 [**Essayer ContestDraw gratuitement**](https://contestdraw.com/register) (1 crédit offert)
+👉 [**Essayer Cleack gratuitement**](https://cleack.io/register) (1 crédit offert)
 
 **Garanties:**
 - ✅ Pas de carte bancaire requise
@@ -612,11 +612,11 @@ Prêt à organiser votre prochain tirage Instagram de manière équitable, rapid
 
 - 📖 [Guide complet: Comment faire un concours Instagram conforme RGPD](./instagram-giveaway-gdpr-guide-fr.md)
 - 📊 [Instagram giveaway tools comparison 2025](./instagram-giveaway-tools-comparison-2025-en.md)
-- ❓ [FAQ ContestDraw](../user-guide/faq.md)
+- ❓ [FAQ Cleack](../user-guide/faq.md)
 - 🎓 [Guide des filtres avancés](../user-guide/filters-guide.md)
 
 ---
 
 **Dernière mise à jour:** Janvier 2025
-**Auteur:** Équipe ContestDraw
+**Auteur:** Équipe Cleack
 **Partager:** [Twitter](https://twitter.com/share) | [LinkedIn](https://linkedin.com/share) | [Facebook](https://facebook.com/share)

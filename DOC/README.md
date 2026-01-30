@@ -1,6 +1,6 @@
-# 📚 ContestDraw Documentation
+# 📚 Cleack Documentation
 
-> Documentation complète du projet ContestDraw - Plateforme SaaS de tirage au sort pour réseaux sociaux
+> Documentation complète du projet Cleack - Plateforme SaaS de tirage au sort pour réseaux sociaux
 
 ---
 

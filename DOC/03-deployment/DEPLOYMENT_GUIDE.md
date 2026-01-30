@@ -80,8 +80,8 @@ REDIS_URL=${{Redis.REDIS_URL}}
 # App
 NODE_ENV=production
 PORT=3000
-API_URL=https://api.contestdraw.com
-FRONTEND_URL=https://contestdraw.com
+API_URL=https://api.cleack.io
+FRONTEND_URL=https://cleack.io
 
 # Auth
 JWT_SECRET=<générer avec openssl rand -hex 32>
@@ -92,7 +92,7 @@ STRIPE_SECRET_KEY=sk_live_xxx
 STRIPE_WEBHOOK_SECRET=whsec_xxx
 
 # Email
-BREVO_API_KEY=xkeysib-xxx
+RESEND_API_KEY=xkeysib-xxx
 
 # OAuth (à configurer)
 GOOGLE_CLIENT_ID=xxx
@@ -144,7 +144,7 @@ vercel
 ### 3. Variables d'environnement Vercel
 
 ```bash
-VITE_API_URL=https://api.contestdraw.com
+VITE_API_URL=https://api.cleack.io
 VITE_STRIPE_PUBLISHABLE_KEY=pk_live_xxx
 ```
 
@@ -153,8 +153,8 @@ VITE_STRIPE_PUBLISHABLE_KEY=pk_live_xxx
 ## 🔧 Configuration DNS
 
 ### Domaines recommandés
-- `contestdraw.com` → Frontend (Vercel)
-- `api.contestdraw.com` → Backend (Railway)
+- `cleack.io` → Frontend (Vercel)
+- `api.cleack.io` → Backend (Railway)
 
 ### Cloudflare (recommandé)
 ```

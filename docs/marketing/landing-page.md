@@ -1,4 +1,4 @@
-# ContestDraw - Landing Page Content (FR/EN)
+# Cleack - Landing Page Content (FR/EN)
 
 ## 🇫🇷 Version Française
 
@@ -15,7 +15,7 @@
 
 ---
 
-### Section Problème (Avant ContestDraw)
+### Section Problème (Avant Cleack)
 
 **Titre:** Vous en avez marre des tirages au sort chronophages ?
 
@@ -30,7 +30,7 @@
 
 ---
 
-### Section Solution (Avec ContestDraw)
+### Section Solution (Avec Cleack)
 
 **Titre:** Automatisez vos tirages au sort en 2 minutes chrono
 
@@ -171,10 +171,10 @@
 
 **Témoignages:**
 
-> "ContestDraw a révolutionné mes concours Instagram ! Fini les heures perdues à copier-coller les commentaires. Le tirage est fait en 2 minutes et mes abonnés adorent la vidéo Story."
+> "Cleack a révolutionné mes concours Instagram ! Fini les heures perdues à copier-coller les commentaires. Le tirage est fait en 2 minutes et mes abonnés adorent la vidéo Story."
 > — **Sophie Martin**, Influenceuse Lifestyle (142K abonnés)
 
-> "En tant qu'agence, nous organisons 20-30 concours par mois pour nos clients. ContestDraw nous fait économiser des dizaines d'heures et garantit la conformité RGPD."
+> "En tant qu'agence, nous organisons 20-30 concours par mois pour nos clients. Cleack nous fait économiser des dizaines d'heures et garantit la conformité RGPD."
 > — **Thomas Dubois**, Directeur Marketing, Agence DigitalBoost
 
 > "La transparence apportée par le certificat PDF et le hash cryptographique a considérablement augmenté la confiance de notre communauté."
@@ -224,7 +224,7 @@ R: Oui ! Créez un compte gratuit et testez avec 1 crédit offert (ou offre déc
 R: Les crédits n'expirent jamais. Utilisez-les quand vous voulez.
 
 **Q: Est-ce conforme au règlement des concours Instagram ?**
-R: Oui. ContestDraw respecte 100% les Guidelines Meta pour les promotions.
+R: Oui. Cleack respecte 100% les Guidelines Meta pour les promotions.
 
 **[Voir toutes les FAQ →](./faq.md)**
 
@@ -234,7 +234,7 @@ R: Oui. ContestDraw respecte 100% les Guidelines Meta pour les promotions.
 
 **Titre:** Prêt à organiser votre prochain concours ?
 
-**Sous-titre:** Rejoignez les milliers d'influenceurs et marques qui font confiance à ContestDraw
+**Sous-titre:** Rejoignez les milliers d'influenceurs et marques qui font confiance à Cleack
 
 **CTA Principal:** Commencer gratuitement 🚀
 **CTA Secondaire:** Demander une démo →
@@ -262,7 +262,7 @@ R: Oui. ContestDraw respecte 100% les Guidelines Meta pour les promotions.
 
 ---
 
-### Problem Section (Before ContestDraw)
+### Problem Section (Before Cleack)
 
 **Title:** Tired of Time-Consuming Giveaways?
 
@@ -277,7 +277,7 @@ R: Oui. ContestDraw respecte 100% les Guidelines Meta pour les promotions.
 
 ---
 
-### Solution Section (With ContestDraw)
+### Solution Section (With Cleack)
 
 **Title:** Automate Your Giveaways in 2 Minutes
 
@@ -418,10 +418,10 @@ R: Oui. ContestDraw respecte 100% les Guidelines Meta pour les promotions.
 
 **Testimonials:**
 
-> "ContestDraw revolutionized my Instagram giveaways! No more hours wasted copy-pasting comments. The draw is done in 2 minutes and my followers love the Story video."
+> "Cleack revolutionized my Instagram giveaways! No more hours wasted copy-pasting comments. The draw is done in 2 minutes and my followers love the Story video."
 > — **Sophie Martin**, Lifestyle Influencer (142K followers)
 
-> "As an agency, we run 20-30 contests per month for our clients. ContestDraw saves us dozens of hours and guarantees GDPR compliance."
+> "As an agency, we run 20-30 contests per month for our clients. Cleack saves us dozens of hours and guarantees GDPR compliance."
 > — **Thomas Dubois**, Marketing Director, DigitalBoost Agency
 
 > "The transparency provided by the PDF certificate and cryptographic hash has significantly increased our community's trust."
@@ -471,7 +471,7 @@ A: Yes! Create a free account and test with 1 complimentary credit (or discovery
 A: Credits never expire. Use them whenever you want.
 
 **Q: Is this compliant with Instagram contest rules?**
-A: Yes. ContestDraw 100% respects Meta's Guidelines for promotions.
+A: Yes. Cleack 100% respects Meta's Guidelines for promotions.
 
 **[See All FAQs →](./faq.md)**
 
@@ -481,7 +481,7 @@ A: Yes. ContestDraw 100% respects Meta's Guidelines for promotions.
 
 **Title:** Ready to Run Your Next Contest?
 
-**Subtitle:** Join thousands of influencers and brands who trust ContestDraw
+**Subtitle:** Join thousands of influencers and brands who trust Cleack
 
 **Primary CTA:** Start Free 🚀
 **Secondary CTA:** Request a Demo →
@@ -497,12 +497,12 @@ A: Yes. ContestDraw 100% respects Meta's Guidelines for promotions.
 ## SEO Metadata
 
 ### French
-**Title Tag:** ContestDraw - Tirage au Sort Instagram Automatique et Conforme RGPD
+**Title Tag:** Cleack - Tirage au Sort Instagram Automatique et Conforme RGPD
 **Meta Description:** Organisez des tirages au sort Instagram équitables en 2 minutes. Filtres anti-bots, certificat RGPD, vidéo Story. Essai gratuit. ⭐ 4.9/5
 **Keywords:** tirage au sort instagram, concours instagram, giveaway instagram, tirage au sort facebook, outil concours, RGPD concours, tirage aléatoire
 
 ### English
-**Title Tag:** ContestDraw - Automated Instagram Giveaway Tool | GDPR Compliant
+**Title Tag:** Cleack - Automated Instagram Giveaway Tool | GDPR Compliant
 **Meta Description:** Run fair Instagram giveaways in 2 minutes. Anti-bot filters, GDPR certificate, Story video. Free trial. ⭐ 4.9/5
 **Keywords:** instagram giveaway tool, instagram contest, random picker, giveaway picker, instagram draw, facebook giveaway, GDPR giveaway
 

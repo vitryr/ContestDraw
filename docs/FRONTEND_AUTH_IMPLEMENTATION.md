@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the complete frontend authentication implementation for the ContestDraw application, including signup, login, email verification, and password reset flows.
+This document describes the complete frontend authentication implementation for the Cleack application, including signup, login, email verification, and password reset flows.
 
 ## Architecture
 
@@ -558,4 +558,4 @@ For issues or questions:
 
 **Last Updated**: November 6, 2025
 **Version**: 2.0.0
-**Author**: ContestDraw Development Team
+**Author**: Cleack Development Team

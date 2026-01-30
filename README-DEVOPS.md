@@ -1,8 +1,8 @@
-# ContestDraw DevOps Documentation
+# Cleack DevOps Documentation
 
 ## Overview
 
-Complete DevOps infrastructure for ContestDraw with Docker, CI/CD pipelines, AWS infrastructure, and deployment automation.
+Complete DevOps infrastructure for Cleack with Docker, CI/CD pipelines, AWS infrastructure, and deployment automation.
 
 ## Table of Contents
 
@@ -249,17 +249,17 @@ Access at: AWS Console → CloudWatch → Dashboards
 ### Logs
 
 **CloudWatch Log Groups:**
-- `/ecs/contestdraw-{env}-backend` - Application logs
-- `/aws/waf/contestdraw-{env}` - WAF logs
+- `/ecs/cleack-{env}-backend` - Application logs
+- `/aws/waf/cleack-{env}` - WAF logs
 
 **Access logs:**
 ```bash
 # View recent logs
-aws logs tail /ecs/contestdraw-production-backend --follow
+aws logs tail /ecs/cleack-production-backend --follow
 
 # Search logs
 aws logs filter-log-events \
-  --log-group-name /ecs/contestdraw-production-backend \
+  --log-group-name /ecs/cleack-production-backend \
   --filter-pattern "ERROR"
 ```
 
@@ -290,13 +290,13 @@ aws logs filter-log-events \
 ```bash
 # Restore from snapshot
 aws rds restore-db-instance-from-db-snapshot \
-  --db-instance-identifier contestdraw-production-restored \
-  --db-snapshot-identifier contestdraw-production-YYYYMMDD-HHMMSS
+  --db-instance-identifier cleack-production-restored \
+  --db-snapshot-identifier cleack-production-YYYYMMDD-HHMMSS
 
 # Point-in-time recovery
 aws rds restore-db-instance-to-point-in-time \
-  --source-db-instance-identifier contestdraw-production \
-  --target-db-instance-identifier contestdraw-production-restored \
+  --source-db-instance-identifier cleack-production \
+  --target-db-instance-identifier cleack-production-restored \
   --restore-time 2024-01-15T12:00:00Z
 ```
 
@@ -308,9 +308,9 @@ aws rds restore-db-instance-to-point-in-time \
 
 # Manual rollback
 aws ecs update-service \
-  --cluster contestdraw-production \
-  --service contestdraw-backend-production \
-  --task-definition contestdraw-backend-production:PREVIOUS_REVISION
+  --cluster cleack-production \
+  --service cleack-backend-production \
+  --task-definition cleack-backend-production:PREVIOUS_REVISION
 ```
 
 ## Security
@@ -398,11 +398,11 @@ aws ecs update-service \
 ```bash
 # Check task logs
 aws ecs describe-tasks \
-  --cluster contestdraw-production \
+  --cluster cleack-production \
   --tasks TASK_ID
 
 # Check CloudWatch logs
-aws logs tail /ecs/contestdraw-production-backend --follow
+aws logs tail /ecs/cleack-production-backend --follow
 ```
 
 **Database connection issues:**
@@ -419,8 +419,8 @@ psql $DATABASE_URL -c "SELECT 1;"
 ```bash
 # Check ECS service events
 aws ecs describe-services \
-  --cluster contestdraw-production \
-  --services contestdraw-backend-production
+  --cluster cleack-production \
+  --services cleack-backend-production
 
 # Rollback deployment
 ./scripts/deploy.sh production backend

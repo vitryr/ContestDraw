@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react";
+import { Mail, MessageSquare, Send, CheckCircle, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 
@@ -33,15 +33,11 @@ export default function ContactPage() {
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
     try {
-      // Send email via mailto or backend API
-      // For now, we'll open a mailto link with the form data
       const mailtoLink = `mailto:contact@cleack.io?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
         `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
       )}`;
 
       window.location.href = mailtoLink;
-
-      // Show success state
       setIsSubmitted(true);
       reset();
       toast.success("Opening your email client...");
@@ -54,23 +50,25 @@ export default function ContactPage() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-bg-primary py-12">
         <div className="container-custom max-w-2xl">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="card text-center py-12"
+            className="bg-bg-card border border-white/[0.06] rounded-2xl text-center py-12 px-8"
           >
-            <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <div className="w-16 h-16 rounded-full bg-success/20 flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-8 h-8 text-success" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">
               {t("contact.thankYou", "Thank you!")}
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-ink-secondary mb-6">
               {t("contact.emailOpened", "Your email client should open with your message. If it didn't, please send an email directly to contact@cleack.io")}
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="btn-primary"
+              className="px-6 py-3 bg-gradient-to-r from-accent-secondary to-accent-primary text-white font-medium rounded-xl hover:brightness-110 transition-all"
             >
               {t("contact.sendAnother", "Send Another Message")}
             </button>
@@ -81,8 +79,36 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="container-custom max-w-4xl">
+    <div className="min-h-screen bg-bg-primary py-12">
+      {/* Animated background */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{
+            x: [0, 50, 0, -50, 0],
+            y: [0, -30, 50, 30, 0],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent-secondary/10 rounded-full blur-[120px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, -50, 0, 50, 0],
+            y: [0, 30, -50, -30, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-accent-primary/10 rounded-full blur-[120px]"
+        />
+      </div>
+
+      <div className="container-custom max-w-4xl relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,10 +116,14 @@ export default function ContactPage() {
         >
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium bg-accent-secondary/10 border border-accent-secondary/30 text-accent-secondary mb-6">
+              <Sparkles className="w-4 h-4" />
+              Get in Touch
+            </div>
+            <h1 className="text-4xl font-bold text-white mb-4">
               {t("contact.title", "Contact Us")}
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-ink-secondary max-w-2xl mx-auto">
               {t("contact.subtitle", "Have a question or need help? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.")}
             </p>
           </div>
@@ -101,21 +131,21 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-6">
-              <div className="card">
+              <div className="bg-bg-card border border-white/[0.06] rounded-xl p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-primary-600" />
+                  <div className="w-12 h-12 bg-accent-secondary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-6 h-6 text-accent-secondary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">
+                    <h3 className="font-semibold text-white mb-1">
                       {t("contact.emailUs", "Email Us")}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-2">
+                    <p className="text-ink-muted text-sm mb-2">
                       {t("contact.emailDescription", "For general inquiries and support")}
                     </p>
                     <a
                       href="mailto:contact@cleack.io"
-                      className="text-primary-600 hover:text-primary-700 font-medium"
+                      className="text-accent-secondary hover:text-accent-tertiary font-medium"
                     >
                       contact@cleack.io
                     </a>
@@ -123,21 +153,21 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="card">
+              <div className="bg-bg-card border border-white/[0.06] rounded-xl p-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <MessageSquare className="w-6 h-6 text-green-600" />
+                  <div className="w-12 h-12 bg-success/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <MessageSquare className="w-6 h-6 text-success" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">
+                    <h3 className="font-semibold text-white mb-1">
                       {t("contact.support", "Support")}
                     </h3>
-                    <p className="text-gray-600 text-sm mb-2">
+                    <p className="text-ink-muted text-sm mb-2">
                       {t("contact.supportDescription", "Technical support and help")}
                     </p>
                     <a
                       href="mailto:support@cleack.io"
-                      className="text-green-600 hover:text-green-700 font-medium"
+                      className="text-success hover:brightness-110 font-medium"
                     >
                       support@cleack.io
                     </a>
@@ -145,11 +175,11 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="card bg-gradient-to-br from-primary-50 to-primary-100 border-primary-200">
-                <h3 className="font-semibold text-gray-900 mb-2">
+              <div className="bg-gradient-to-br from-accent-secondary/20 to-accent-primary/20 border border-accent-secondary/30 rounded-xl p-6">
+                <h3 className="font-semibold text-white mb-2">
                   {t("contact.responseTime", "Response Time")}
                 </h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-ink-secondary text-sm">
                   {t("contact.responseTimeDescription", "We typically respond within 24 hours during business days. For urgent matters, please include 'URGENT' in your subject line.")}
                 </p>
               </div>
@@ -157,42 +187,42 @@ export default function ContactPage() {
 
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="card">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">
+              <div className="bg-bg-card border border-white/[0.06] rounded-xl p-6">
+                <h2 className="text-xl font-semibold text-white mb-6">
                   {t("contact.sendMessage", "Send us a message")}
                 </h2>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-ink-secondary mb-2">
                         {t("contact.name", "Your Name")} *
                       </label>
                       <input
                         type="text"
                         {...register("name")}
-                        className="input-field"
+                        className="w-full px-4 py-3 bg-bg-elevated border border-white/10 rounded-xl text-white placeholder-ink-muted focus:ring-2 focus:ring-accent-secondary focus:border-transparent outline-none transition-all"
                         placeholder={t("contact.namePlaceholder", "John Doe")}
                       />
                       {errors.name && (
-                        <p className="mt-1 text-sm text-red-600">
+                        <p className="mt-1 text-sm text-error">
                           {errors.name.message}
                         </p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
+                      <label className="block text-sm font-medium text-ink-secondary mb-2">
                         {t("contact.email", "Email Address")} *
                       </label>
                       <input
                         type="email"
                         {...register("email")}
-                        className="input-field"
+                        className="w-full px-4 py-3 bg-bg-elevated border border-white/10 rounded-xl text-white placeholder-ink-muted focus:ring-2 focus:ring-accent-secondary focus:border-transparent outline-none transition-all"
                         placeholder={t("contact.emailPlaceholder", "john@example.com")}
                       />
                       {errors.email && (
-                        <p className="mt-1 text-sm text-red-600">
+                        <p className="mt-1 text-sm text-error">
                           {errors.email.message}
                         </p>
                       )}
@@ -200,34 +230,34 @@ export default function ContactPage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-ink-secondary mb-2">
                       {t("contact.subject", "Subject")} *
                     </label>
                     <input
                       type="text"
                       {...register("subject")}
-                      className="input-field"
+                      className="w-full px-4 py-3 bg-bg-elevated border border-white/10 rounded-xl text-white placeholder-ink-muted focus:ring-2 focus:ring-accent-secondary focus:border-transparent outline-none transition-all"
                       placeholder={t("contact.subjectPlaceholder", "How can we help you?")}
                     />
                     {errors.subject && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-error">
                         {errors.subject.message}
                       </p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-ink-secondary mb-2">
                       {t("contact.message", "Message")} *
                     </label>
                     <textarea
                       {...register("message")}
                       rows={6}
-                      className="input-field resize-none"
+                      className="w-full px-4 py-3 bg-bg-elevated border border-white/10 rounded-xl text-white placeholder-ink-muted focus:ring-2 focus:ring-accent-secondary focus:border-transparent outline-none transition-all resize-none"
                       placeholder={t("contact.messagePlaceholder", "Tell us more about your question or issue...")}
                     />
                     {errors.message && (
-                      <p className="mt-1 text-sm text-red-600">
+                      <p className="mt-1 text-sm text-error">
                         {errors.message.message}
                       </p>
                     )}
@@ -236,11 +266,11 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary w-full flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full py-4 bg-gradient-to-r from-accent-secondary to-accent-primary text-white font-semibold rounded-xl hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {isSubmitting ? (
                       <>
-                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         {t("contact.sending", "Sending...")}
                       </>
                     ) : (

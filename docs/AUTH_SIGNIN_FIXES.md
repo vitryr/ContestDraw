@@ -4,7 +4,7 @@
 
 ### 1. ✅ Email Sending Temporarily Disabled
 
-**Problem:** Brevo API requires IP whitelist, blocking registration workflow.
+**Problem:** Resend API requires IP whitelist, blocking registration workflow.
 
 **Solution:** Added `ENABLE_EMAIL` environment flag to bypass email sending.
 
@@ -12,7 +12,7 @@
 
 #### `backend/.env`
 ```bash
-# Temporarily disable email sending (set to false to skip Brevo)
+# Temporarily disable email sending (set to false to skip Resend)
 ENABLE_EMAIL=false
 ```
 
@@ -273,9 +273,9 @@ localStorage.getItem('refresh_token')
 - **Status:** Resolved
 
 ### Issue 3: Email Not Received ✅
-- **Diagnosed:** Brevo IP whitelist blocking
+- **Diagnosed:** Resend IP whitelist blocking
 - **Workaround:** ENABLE_EMAIL=false flag
-- **Permanent Fix:** Whitelist IP in Brevo
+- **Permanent Fix:** Whitelist IP in Resend
 - **Status:** Workaround implemented
 
 ### Issue 4: Signin + Refresh Redirect ✅
@@ -289,8 +289,8 @@ localStorage.getItem('refresh_token')
 When ready to enable emails (after whitelisting IP):
 
 ```bash
-# 1. Whitelist your IP in Brevo
-open https://app.brevo.com/security/authorised_ips
+# 1. Whitelist your IP in Resend
+open https://app.resend.com/security/authorised_ips
 
 # 2. Update backend/.env
 ENABLE_EMAIL=true  # Change from false to true

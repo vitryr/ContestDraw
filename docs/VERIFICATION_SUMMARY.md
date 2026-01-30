@@ -2,7 +2,7 @@
 
 ## 📋 Overview
 
-This document summarizes the complete implementation of the public verification and transparency features for ContestDraw.
+This document summarizes the complete implementation of the public verification and transparency features for Cleack.
 
 ## ✅ Completed Features
 
@@ -133,7 +133,7 @@ This document summarizes the complete implementation of the public verification 
 ## 📁 File Structure
 
 ```
-ContestDraw/
+Cleack/
 ├── backend/
 │   └── src/
 │       ├── api/
@@ -305,10 +305,10 @@ npm test tests/verification.test.ts
 
 ## 📝 URLs Structure
 
-- Full verification: `https://contestdraw.com/verify/{drawId}`
-- Short URL: `https://contestdraw.com/v/{shortCode}`
-- Embed widget: `https://contestdraw.com/embed/{drawId}?theme=light&participants=false`
-- QR code: `https://contestdraw.com/api/public/qr/{shortCode}`
+- Full verification: `https://cleack.io/verify/{drawId}`
+- Short URL: `https://cleack.io/v/{shortCode}`
+- Embed widget: `https://cleack.io/embed/{drawId}?theme=light&participants=false`
+- QR code: `https://cleack.io/api/public/qr/{shortCode}`
 
 ## 🎨 UI/UX Features
 

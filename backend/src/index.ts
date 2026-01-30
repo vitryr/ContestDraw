@@ -51,6 +51,12 @@ class App {
   private initializeMiddleware(): void {
     // Security middleware
     this.app.use(helmet());
+    
+    // Anti-crawl headers (test environment)
+    this.app.use((_req, res, next) => {
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+      next();
+    });
     // CORS - handle multiple origins
     const allowedOrigins = [
       "http://localhost:3000",

@@ -1,4 +1,4 @@
-# 🚀 ContestDraw - Production Readiness Report
+# 🚀 Cleack - Production Readiness Report
 
 **Date:** 26 Janvier 2026  
 **Objectif:** Mise en production et génération de revenus
@@ -64,7 +64,7 @@
 - [ ] Provision Redis managé
 - [ ] Configurer variables d'environnement
 - [ ] SSL/HTTPS
-- [ ] Domain name (contestdraw.com?)
+- [ ] Domain name (cleack.io?)
 - [ ] Configurer Stripe webhooks URL
 - [ ] Backup automatique DB
 
@@ -144,7 +144,7 @@
 ✅ YouTube API ← NEW
 ✅ Stripe payments
 ✅ Apple IAP
-✅ Email (Brevo)
+✅ Email (Resend)
 ✅ Blacklist
 ✅ Organizations
 ✅ Subscriptions

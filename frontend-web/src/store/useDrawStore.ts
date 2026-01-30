@@ -70,9 +70,23 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const draw = await drawApi.getById(id);
+      const currentParticipants = get().participants;
+
+      // Keep locally stored participants if the draw doesn't have any
+      // This preserves participants set during import
+      const participants = draw.participants?.length > 0
+        ? draw.participants
+        : currentParticipants;
+
+      // Merge participants into the draw object for consistency
+      const drawWithParticipants = {
+        ...draw,
+        participants: participants,
+      };
+
       set({
-        currentDraw: draw,
-        participants: draw.participants || [],
+        currentDraw: drawWithParticipants,
+        participants: participants,
         filters: draw.filters || {},
         isLoading: false,
       });

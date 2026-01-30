@@ -1,6 +1,6 @@
 # Contest Rules Generator - Template
 
-**ContestDraw | Générateur de Règlement de Jeu-Concours**
+**Cleack | Générateur de Règlement de Jeu-Concours**
 
 ---
 
@@ -9,7 +9,7 @@
 This template generates GDPR-compliant contest rules for your Instagram, Facebook, TikTok, Twitter, or YouTube giveaways. Simply fill in the bracketed fields [LIKE THIS] with your information.
 
 **Available Online:**
-👉 [https://contestdraw.com/tools/rules-generator](https://contestdraw.com/tools/rules-generator)
+👉 [https://cleack.io/tools/rules-generator](https://cleack.io/tools/rules-generator)
 
 ---
 
@@ -109,7 +109,7 @@ En cas d'indisponibilité du lot, l'Organisateur se réserve le droit de le remp
 
 Le gagnant sera désigné par **tirage au sort aléatoire** parmi l'ensemble des participations valides.
 
-Le tirage sera effectué par l'outil **ContestDraw** ([https://contestdraw.com](https://contestdraw.com)), certifié conforme RGPD, utilisant un algorithme de sélection aléatoire cryptographiquement sécurisé.
+Le tirage sera effectué par l'outil **Cleack** ([https://cleack.io](https://cleack.io)), certifié conforme RGPD, utilisant un algorithme de sélection aléatoire cryptographiquement sécurisé.
 
 **Preuve d'équité:**
 
@@ -180,7 +180,7 @@ Le traitement repose sur votre **consentement** (participation volontaire au con
 
 Les données pourront être transmises à:
 - **L'organisateur du concours** (traitement des participations)
-- **ContestDraw** (sous-traitant pour le tirage au sort) – [Politique de confidentialité](https://contestdraw.com/privacy)
+- **Cleack** (sous-traitant pour le tirage au sort) – [Politique de confidentialité](https://cleack.io/privacy)
 - **Transporteur** (uniquement pour la livraison du lot au gagnant)
 
 Aucune donnée ne sera vendue, louée ou transmise à des tiers à des fins commerciales.
@@ -421,7 +421,7 @@ Any entry not meeting the requirements will be considered void.
 ## Available Online
 
 **Generate Your Custom Rules:**
-👉 [https://contestdraw.com/tools/rules-generator](https://contestdraw.com/tools/rules-generator)
+👉 [https://cleack.io/tools/rules-generator](https://cleack.io/tools/rules-generator)
 
 **Features:**
 - ✅ Fill-in form (auto-generated PDF)
@@ -435,9 +435,9 @@ Any entry not meeting the requirements will be considered void.
 
 **Need Help?**
 
-📧 Email: legal@contestdraw.com
-💬 Live Chat: [contestdraw.com](https://contestdraw.com)
-📖 FAQ: [docs.contestdraw.com/faq](https://docs.contestdraw.com/faq)
+📧 Email: legal@cleack.io
+💬 Live Chat: [cleack.io](https://cleack.io)
+📖 FAQ: [docs.cleack.io/faq](https://docs.cleack.io/faq)
 
 ---
 

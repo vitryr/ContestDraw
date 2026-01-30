@@ -135,9 +135,9 @@ router.get('/users', async (req, res) => {
     }
 
     if (filter === 'pro') {
-      where.subscriptionStatus = 'active';
+      where.subscription = { status: 'ACTIVE' };
     } else if (filter === 'free') {
-      where.subscriptionStatus = { not: 'active' };
+      where.subscription = null;
     } else if (filter === 'banned') {
       where.isBanned = true;
     }
@@ -154,10 +154,12 @@ router.get('/users', async (req, res) => {
           firstName: true,
           lastName: true,
           role: true,
-          subscriptionStatus: true,
           createdAt: true,
           lastLoginAt: true,
           isBanned: true,
+          subscription: {
+            select: { status: true, planId: true },
+          },
           _count: { select: { draws: true } },
         },
       }),
@@ -166,8 +168,16 @@ router.get('/users', async (req, res) => {
 
     res.json({
       users: users.map((u) => ({
-        ...u,
-        plan: u.subscriptionStatus === 'active' ? 'pro' : 'free',
+        id: u.id,
+        email: u.email,
+        firstName: u.firstName,
+        lastName: u.lastName,
+        role: u.role,
+        createdAt: u.createdAt,
+        lastLoginAt: u.lastLoginAt,
+        isBanned: u.isBanned,
+        plan: u.subscription?.status === 'ACTIVE' ? 'pro' : 'free',
+        subscriptionStatus: u.subscription?.status || null,
         drawsCount: u._count.draws,
       })),
       totalPages: Math.ceil(total / limit),

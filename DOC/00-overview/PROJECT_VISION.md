@@ -1,8 +1,8 @@
-# 🎯 ContestDraw - Vision Projet
+# 🎯 Cleack - Vision Projet
 
 ## Executive Summary
 
-**ContestDraw** est une plateforme SaaS permettant aux créateurs de contenu, marques et influenceurs d'organiser des tirages au sort transparents et légaux sur les réseaux sociaux.
+**Cleack** est une plateforme SaaS permettant aux créateurs de contenu, marques et influenceurs d'organiser des tirages au sort transparents et légaux sur les réseaux sociaux.
 
 ---
 
@@ -23,7 +23,7 @@
 
 ## 💡 La Solution
 
-ContestDraw automatise tout le processus:
+Cleack automatise tout le processus:
 
 ```
 1. Import automatique des participants (commentaires, likes, tags)

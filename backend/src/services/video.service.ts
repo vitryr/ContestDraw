@@ -140,7 +140,7 @@ function generateSVGFrame(
         </text>
         ${winnersContent}
         <text x="${width / 2}" y="${height - 100}" text-anchor="middle" fill="${textColor}" font-size="24" font-family="Arial, sans-serif" opacity="0.6">
-          Powered by Cleack • Fair & Transparent
+          Powered by Cleack • Fair &amp; Transparent
         </text>
       `;
       break;

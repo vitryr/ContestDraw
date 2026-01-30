@@ -1,4 +1,4 @@
-# ContestDraw - Launch Strategy 2025
+# Cleack - Launch Strategy 2025
 
 **Version:** 1.0
 **Last Updated:** January 15, 2025
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-This document outlines the comprehensive launch strategy for ContestDraw, a SaaS platform for Instagram, Facebook, TikTok, Twitter, and YouTube giveaways. The strategy covers beta testing, influencer partnerships, content marketing, PR, and growth tactics for the first 12 months.
+This document outlines the comprehensive launch strategy for Cleack, a SaaS platform for Instagram, Facebook, TikTok, Twitter, and YouTube giveaways. The strategy covers beta testing, influencer partnerships, content marketing, PR, and growth tactics for the first 12 months.
 
 **Key Objectives:**
 - **Month 1:** 500 active users
@@ -142,11 +142,11 @@ This document outlines the comprehensive launch strategy for ContestDraw, a SaaS
 
 **Invitation Email Template:**
 ```
-Subject: Be among the first to test ContestDraw (Free Beta Access)
+Subject: Be among the first to test Cleack (Free Beta Access)
 
 Hi [Name],
 
-I noticed you run Instagram giveaways regularly, and I wanted to invite you to test our new tool: ContestDraw.
+I noticed you run Instagram giveaways regularly, and I wanted to invite you to test our new tool: Cleack.
 
 What it does:
 - Automates Instagram giveaway draws (no more copy-pasting!)
@@ -164,7 +164,7 @@ Interested? Reply to this email or book a 15-min demo: [Calendly link]
 
 Best,
 [Your Name]
-ContestDraw Team
+Cleack Team
 ```
 
 ### Beta Program Structure
@@ -245,12 +245,12 @@ ContestDraw Team
 
 ### Outreach Template
 
-**Subject:** Partnership Opportunity with ContestDraw
+**Subject:** Partnership Opportunity with Cleack
 
 ```
 Hi [Name],
 
-I'm [Your Name] from ContestDraw, a tool that automates Instagram giveaways.
+I'm [Your Name] from Cleack, a tool that automates Instagram giveaways.
 
 I've been following your content and noticed you run amazing giveaways for your audience. I'd love to partner with you!
 
@@ -261,7 +261,7 @@ What we offer:
 - Featured case study on our website
 
 All you'd need to do:
-- Use ContestDraw for your next giveaway
+- Use Cleack for your next giveaway
 - Share a story/post about your experience
 - Include your affiliate link
 
@@ -273,7 +273,7 @@ Looking forward to collaborating!
 
 Best,
 [Your Name]
-ContestDraw Team
+Cleack Team
 ```
 
 ### Influencer Tracking
@@ -350,7 +350,7 @@ ContestDraw Team
 ### Video Content Strategy
 
 **YouTube Channel:**
-- [ ] ContestDraw demo (5 minutes)
+- [ ] Cleack demo (5 minutes)
 - [ ] How to run an Instagram giveaway (10 minutes)
 - [ ] GDPR compliance explained (8 minutes)
 - [ ] Bot detection tutorial (6 minutes)
@@ -374,13 +374,13 @@ ContestDraw Team
 
 ### Press Release
 
-**Title:** ContestDraw Launches to Revolutionize Instagram Giveaways with AI-Powered Bot Detection and GDPR Compliance
+**Title:** Cleack Launches to Revolutionize Instagram Giveaways with AI-Powered Bot Detection and GDPR Compliance
 
 **Draft:**
 ```
 Paris, France – January 15, 2025
 
-ContestDraw, a new SaaS platform for automated Instagram giveaways, launches today with a mission to make social media contests fair, transparent, and GDPR-compliant.
+Cleack, a new SaaS platform for automated Instagram giveaways, launches today with a mission to make social media contests fair, transparent, and GDPR-compliant.
 
 The platform addresses a critical pain point for influencers and brands: manually selecting winners from hundreds or thousands of comments is time-consuming and prone to fraud.
 
@@ -391,15 +391,15 @@ Key Features:
 - PDF certificate with SHA-256 cryptographic hash
 - 100% GDPR compliant (EU hosting, designated DPO)
 
-"We've seen influencers spend hours copy-pasting comments into Excel, only to have participants question the fairness of the draw," says [Founder Name], CEO of ContestDraw. "Our platform reduces that to 2 minutes while providing cryptographic proof of fairness."
+"We've seen influencers spend hours copy-pasting comments into Excel, only to have participants question the fairness of the draw," says [Founder Name], CEO of Cleack. "Our platform reduces that to 2 minutes while providing cryptographic proof of fairness."
 
-ContestDraw is available now with a free trial. Pricing starts at €2.49 per draw or €19.99/month for unlimited draws.
+Cleack is available now with a free trial. Pricing starts at €2.49 per draw or €19.99/month for unlimited draws.
 
-For more information, visit: https://contestdraw.com
+For more information, visit: https://cleack.io
 
 Contact:
 [Name]
-press@contestdraw.com
+press@cleack.io
 +33 1 23 45 67 89
 ```
 
@@ -447,7 +447,7 @@ press@contestdraw.com
 
 **Campaigns:**
 1. **Branded Search** (€300/month)
-   - Keywords: "contestdraw", "contest draw"
+   - Keywords: "cleack", "contest draw"
    - Goal: Protect brand, 100% SOV
 
 2. **Competitor Search** (€500/month)
@@ -718,9 +718,9 @@ press@contestdraw.com
 ### Viral Loop #1: Social Proof
 
 **Mechanism:**
-1. User runs giveaway with ContestDraw
-2. Winner announced with ContestDraw watermark (subtle)
-3. Winner's followers see ContestDraw branding
+1. User runs giveaway with Cleack
+2. Winner announced with Cleack watermark (subtle)
+3. Winner's followers see Cleack branding
 4. New users sign up to run own giveaways
 
 **Growth Factor:** 1.2-1.5x (each user brings 0.2-0.5 new users)
@@ -747,7 +747,7 @@ press@contestdraw.com
 **Mechanism:**
 1. Each draw gets public verification URL
 2. Participants share verification link (proof of fairness)
-3. Link includes "Powered by ContestDraw"
+3. Link includes "Powered by Cleack"
 4. New visitors discover platform
 
 **Expected Traffic:** 10-20% of draw participants visit verification page
@@ -918,6 +918,6 @@ Expansion (Month 7-12):
 
 ---
 
-**Document Owner:** Marketing Team (marketing@contestdraw.com)
+**Document Owner:** Marketing Team (marketing@cleack.io)
 **Last Review:** January 15, 2025
 **Next Review:** February 15, 2025

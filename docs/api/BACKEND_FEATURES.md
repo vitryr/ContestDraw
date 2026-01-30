@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes the three major backend features implemented for the ContestDraw system:
+This document describes the three major backend features implemented for the Cleack system:
 
 1. **Story Share Detection System** - Real-time monitoring of Instagram story mentions
 2. **Follower Verification API** - Instagram/Facebook follower verification
@@ -640,7 +640,7 @@ Common HTTP status codes:
 
 For issues or questions:
 - GitHub Issues: [repository]/issues
-- Email: support@contestdraw.com
+- Email: support@cleack.io
 - Documentation: /docs
 
 ---

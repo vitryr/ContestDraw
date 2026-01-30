@@ -15,7 +15,7 @@ Add to `/backend/.env`:
 
 ```env
 # Database
-DATABASE_URL="postgresql://user:password@localhost:5432/contestdraw"
+DATABASE_URL="postgresql://user:password@localhost:5432/cleack"
 
 # Redis (for Bull queue)
 REDIS_HOST=localhost

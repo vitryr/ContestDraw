@@ -183,7 +183,7 @@ function secureDraw(participants, numWinners, seed) {
 ## 📁 Structure du Projet
 
 ```
-contestdraw/
+cleack/
 ├── backend/
 │   ├── src/
 │   │   ├── api/           # Routes & Controllers

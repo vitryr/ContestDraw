@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQ)
 
-Quick answers to common questions about ContestDraw.
+Quick answers to common questions about Cleack.
 
 ## Table of Contents
 - [General Questions](#general-questions)
@@ -16,9 +16,9 @@ Quick answers to common questions about ContestDraw.
 
 ## General Questions
 
-### What is ContestDraw?
+### What is Cleack?
 
-ContestDraw is a SaaS platform that automates social media contest draws. We fetch participants from your social media posts, apply filters to ensure fairness, and randomly select winners using cryptographically secure methods.
+Cleack is a SaaS platform that automates social media contest draws. We fetch participants from your social media posts, apply filters to ensure fairness, and randomly select winners using cryptographically secure methods.
 
 ### Which social media platforms do you support?
 
@@ -30,7 +30,7 @@ ContestDraw is a SaaS platform that automates social media contest draws. We fet
 
 More platforms coming soon (LinkedIn, Pinterest).
 
-### Is ContestDraw free?
+### Is Cleack free?
 
 We offer a **free tier** with:
 - 10 welcome credits
@@ -39,13 +39,13 @@ We offer a **free tier** with:
 
 Paid plans start at €29.99/month for higher usage and advanced features.
 
-### Do I need technical knowledge to use ContestDraw?
+### Do I need technical knowledge to use Cleack?
 
-No! ContestDraw is designed for non-technical users. If you can create a social media post, you can use ContestDraw.
+No! Cleack is designed for non-technical users. If you can create a social media post, you can use Cleack.
 
-### Is ContestDraw legal to use?
+### Is Cleack legal to use?
 
-Yes! ContestDraw complies with all social media platform policies and GDPR regulations. However, you're responsible for ensuring your contest follows local laws and platform-specific contest rules.
+Yes! Cleack complies with all social media platform policies and GDPR regulations. However, you're responsible for ensuring your contest follows local laws and platform-specific contest rules.
 
 ---
 
@@ -53,14 +53,14 @@ Yes! ContestDraw complies with all social media platform policies and GDPR regul
 
 ### How do I create an account?
 
-1. Visit [https://contestdraw.com/register](https://contestdraw.com/register)
+1. Visit [https://cleack.io/register](https://cleack.io/register)
 2. Enter your email, password, and name
 3. Verify your email
-4. Start using ContestDraw!
+4. Start using Cleack!
 
 ### What are credits and how do they work?
 
-Credits are ContestDraw's currency. Each draw costs credits depending on complexity (5-25 credits typically). You can purchase credits or subscribe for monthly credit allocations.
+Credits are Cleack's currency. Each draw costs credits depending on complexity (5-25 credits typically). You can purchase credits or subscribe for monthly credit allocations.
 
 See our [Pricing Guide](./pricing.md) for details.
 
@@ -125,7 +125,7 @@ See [Creating Draws Guide](./creating-draws.md) for step-by-step instructions.
 
 ### Can I schedule a draw for later?
 
-Yes! When creating a draw, set a **Scheduled Date** and ContestDraw will automatically execute at that time.
+Yes! When creating a draw, set a **Scheduled Date** and Cleack will automatically execute at that time.
 
 ### How long does it take to sync participants?
 
@@ -195,7 +195,7 @@ We need permissions to:
 
 ### Can I connect multiple accounts?
 
-Not yet. Currently, you can connect one account per platform per ContestDraw account. Enterprise users can contact us for multi-account support.
+Not yet. Currently, you can connect one account per platform per Cleack account. Enterprise users can contact us for multi-account support.
 
 ### What happens if my social media token expires?
 
@@ -289,7 +289,7 @@ Re-draws cost 50% of the original draw cost.
 
 ### How do I contact winners?
 
-ContestDraw provides winner information:
+Cleack provides winner information:
 - Username
 - Profile URL
 - Comment text
@@ -301,7 +301,7 @@ You'll need to contact them via:
 
 We don't provide email addresses (privacy protection).
 
-### Can ContestDraw notify winners automatically?
+### Can Cleack notify winners automatically?
 
 Not yet. Automatic DM notifications are planned for future releases. Currently, you must manually contact winners.
 
@@ -328,7 +328,7 @@ Each completed draw includes a **Certificate of Fairness** with:
 - Timestamp
 - Total participants & winners
 - Filter settings
-- ContestDraw signature
+- Cleack signature
 
 You can share this certificate publicly or provide it to winners upon request.
 
@@ -385,7 +385,7 @@ We'll investigate and re-run the draw if necessary (free of charge).
 
 ### Website is slow or not loading
 
-1. Check [status.contestdraw.com](https://status.contestdraw.com) for outages
+1. Check [status.cleack.io](https://status.cleack.io) for outages
 2. Try clearing browser cache
 3. Try a different browser
 4. Contact support if issue persists
@@ -394,7 +394,7 @@ We'll investigate and re-run the draw if necessary (free of charge).
 
 ## Legal & Compliance
 
-### Is ContestDraw GDPR compliant?
+### Is Cleack GDPR compliant?
 
 Yes! We comply with GDPR regulations:
 - Data minimization (only collect necessary data)
@@ -440,7 +440,7 @@ Pro/Business users can request immediate data deletion.
 
 ### Can participants request data deletion?
 
-Yes. Participants can contact support@contestdraw.com to request deletion. We'll remove their data within 30 days as required by GDPR.
+Yes. Participants can contact support@cleack.io to request deletion. We'll remove their data within 30 days as required by GDPR.
 
 ### Do you sell user data?
 
@@ -455,7 +455,7 @@ It's your responsibility to ensure compliance with each platform's rules:
 - [TikTok Community Guidelines](https://www.tiktok.com/community-guidelines)
 - [YouTube Policies](https://support.google.com/youtube/answer/1620498)
 
-ContestDraw is a tool; how you use it is your responsibility.
+Cleack is a tool; how you use it is your responsibility.
 
 ---
 
@@ -463,10 +463,10 @@ ContestDraw is a tool; how you use it is your responsibility.
 
 ### Contact Support
 
-- 📧 **Email:** support@contestdraw.com
+- 📧 **Email:** support@cleack.io
 - 💬 **Live Chat:** Available in app (Pro/Business users)
 - 📞 **Phone:** +33 1 23 45 67 89 (Business/Enterprise only)
-- 🐛 **Bug Reports:** bugs@contestdraw.com
+- 🐛 **Bug Reports:** bugs@cleack.io
 
 **Response Times:**
 - Free tier: 48 hours
@@ -486,8 +486,8 @@ ContestDraw is a tool; how you use it is your responsibility.
 
 We love hearing your ideas! Submit feature requests via:
 - In-app feedback form
-- Email: features@contestdraw.com
-- Community forum: [community.contestdraw.com](https://community.contestdraw.com)
+- Email: features@cleack.io
+- Community forum: [community.cleack.io](https://community.cleack.io)
 
 ---
 

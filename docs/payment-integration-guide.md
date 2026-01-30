@@ -1,6 +1,6 @@
 # Payment System Integration Guide
 
-Complete guide for integrating the ContestDraw payment system into your application.
+Complete guide for integrating the Cleack payment system into your application.
 
 ## 📋 Table of Contents
 
@@ -618,7 +618,7 @@ describe('Stripe Webhooks', () => {
 
 - Stripe Documentation: https://stripe.com/docs
 - Apple IAP Guide: https://developer.apple.com/in-app-purchase/
-- Support Email: support@contestdraw.com
+- Support Email: support@cleack.io
 
 ---
 

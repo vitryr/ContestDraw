@@ -2,12 +2,12 @@
 
 ## 🎯 Overview
 
-Comprehensive Playwright testing infrastructure has been successfully set up for the ContestDraw platform with **70+ test cases** covering critical user flows.
+Comprehensive Playwright testing infrastructure has been successfully set up for the Cleack platform with **70+ test cases** covering critical user flows.
 
 ## 📁 Project Structure
 
 ```
-/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/
+/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/
 ├── specs/                          # Test Specifications (Test Files)
 │   ├── signup-workflow.spec.ts    # 35+ signup/registration tests
 │   └── home-navigation.spec.ts    # 35+ navigation tests
@@ -240,7 +240,7 @@ Comprehensive Playwright testing infrastructure has been successfully set up for
 ### Quick Start
 
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e
+cd /Users/romainvitry/Documents/Dev/Cleack/tests/e2e
 
 # Run all tests
 npm test
@@ -485,7 +485,7 @@ Features:
 
 All test files are located at:
 ```
-/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/
+/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/
 ```
 
 **Key Files:**

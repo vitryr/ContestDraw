@@ -2,7 +2,7 @@
 
 ## Overview
 
-The ContestDraw application uses **PostgreSQL** as the primary database with **Prisma ORM** for type-safe database access. The schema is designed for scalability, performance, and maintainability.
+The Cleack application uses **PostgreSQL** as the primary database with **Prisma ORM** for type-safe database access. The schema is designed for scalability, performance, and maintainability.
 
 ## Schema Design Principles
 
@@ -255,7 +255,7 @@ npm install -D @types/bcrypt
 cp prisma/.env.example .env
 
 # Edit .env with your database credentials
-DATABASE_URL="postgresql://user:password@localhost:5432/contestdraw"
+DATABASE_URL="postgresql://user:password@localhost:5432/cleack"
 ```
 
 ### 3. Run Migrations
@@ -276,7 +276,7 @@ npx prisma db seed
 docker-compose up -d postgres
 
 # Database will be available at localhost:5432
-# Credentials: contestdraw / password
+# Credentials: cleack / password
 ```
 
 ---
@@ -411,10 +411,10 @@ await prisma.$queryRawUnsafe(`SELECT * FROM users WHERE id = ${userId}`);
 ### Automated Backups
 ```bash
 # Daily backup script
-pg_dump -h localhost -U contestdraw contestdraw > backup_$(date +%Y%m%d).sql
+pg_dump -h localhost -U cleack cleack > backup_$(date +%Y%m%d).sql
 
 # Restore from backup
-psql -h localhost -U contestdraw contestdraw < backup_20250105.sql
+psql -h localhost -U cleack cleack < backup_20250105.sql
 ```
 
 ### Point-in-Time Recovery

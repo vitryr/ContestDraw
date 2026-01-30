@@ -1,4 +1,4 @@
-# 🚀 ContestDraw - Complete Setup Guide
+# 🚀 Cleack - Complete Setup Guide
 
 ## 📋 Prerequisites
 
@@ -38,7 +38,7 @@
 
 ```bash
 # Navigate to project root
-cd ContestDraw
+cd Cleack
 
 # Install backend dependencies
 cd backend
@@ -64,9 +64,9 @@ cd ..
 ```
 
 This script will:
-- ✅ Create PostgreSQL user: `contestdraw_user`
-- ✅ Create development database: `contestdraw_dev`
-- ✅ Create test database: `contestdraw_test`
+- ✅ Create PostgreSQL user: `cleack_user`
+- ✅ Create development database: `cleack_dev`
+- ✅ Create test database: `cleack_test`
 - ✅ Configure Redis with password
 - ✅ Run Prisma migrations
 - ✅ Generate Prisma Client
@@ -76,14 +76,14 @@ This script will:
 ```bash
 # 1. Create PostgreSQL user
 psql -U postgres
-CREATE USER contestdraw_user WITH PASSWORD 'iTxsLHOiQSk9BpAWtAYGlQ78r9hW52I3';
-ALTER USER contestdraw_user CREATEDB;
+CREATE USER cleack_user WITH PASSWORD 'iTxsLHOiQSk9BpAWtAYGlQ78r9hW52I3';
+ALTER USER cleack_user CREATEDB;
 
 # 2. Create databases
-CREATE DATABASE contestdraw_dev OWNER contestdraw_user;
-CREATE DATABASE contestdraw_test OWNER contestdraw_user;
-GRANT ALL PRIVILEGES ON DATABASE contestdraw_dev TO contestdraw_user;
-GRANT ALL PRIVILEGES ON DATABASE contestdraw_test TO contestdraw_user;
+CREATE DATABASE cleack_dev OWNER cleack_user;
+CREATE DATABASE cleack_test OWNER cleack_user;
+GRANT ALL PRIVILEGES ON DATABASE cleack_dev TO cleack_user;
+GRANT ALL PRIVILEGES ON DATABASE cleack_test TO cleack_user;
 \q
 
 # 3. Configure Redis
@@ -110,9 +110,9 @@ This creates:
 - Test organization
 
 **Test Accounts:**
-- Email: `test@contestdraw.local`
-- Email: `admin@contestdraw.local`
-- Email: `premium@contestdraw.local`
+- Email: `test@cleack.local`
+- Email: `admin@cleack.local`
+- Email: `premium@cleack.local`
 - Password: `TestPassword123!`
 
 ### 4. Environment Configuration
@@ -197,7 +197,7 @@ curl http://localhost:8000/health
 curl -X POST http://localhost:8000/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
-    "email": "test@contestdraw.local",
+    "email": "test@cleack.local",
     "password": "TestPassword123!"
   }'
 
@@ -208,7 +208,7 @@ curl -X POST http://localhost:8000/api/auth/login \
 
 1. Open browser: `http://localhost:3001`
 2. Click "Sign In"
-3. Login with: `test@contestdraw.local` / `TestPassword123!`
+3. Login with: `test@cleack.local` / `TestPassword123!`
 4. Should see dashboard with 10 credits
 
 ### 4. Mobile Test
@@ -311,7 +311,7 @@ eas submit --platform android
 ```bash
 # Check all services
 echo "Checking PostgreSQL..."
-psql -U contestdraw_user -d contestdraw_dev -c "SELECT 1;"
+psql -U cleack_user -d cleack_dev -c "SELECT 1;"
 
 echo "Checking Redis..."
 redis-cli -a zsa8oVwtk9zxbqW6SYLBF7EhwKdFuXgF ping

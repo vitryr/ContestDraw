@@ -1,6 +1,6 @@
 # Pricing & Credits Guide
 
-Understanding ContestDraw's credit system, pricing tiers, and how to get the best value.
+Understanding Cleack's credit system, pricing tiers, and how to get the best value.
 
 ## Table of Contents
 - [How Credits Work](#how-credits-work)
@@ -14,7 +14,7 @@ Understanding ContestDraw's credit system, pricing tiers, and how to get the bes
 
 ## How Credits Work
 
-ContestDraw uses a **credit-based system** where you pay for what you use:
+Cleack uses a **credit-based system** where you pay for what you use:
 
 - ✅ **One-time purchases**: Buy credits when you need them
 - ✅ **No expiration**: Credits never expire
@@ -41,7 +41,7 @@ ContestDraw uses a **credit-based system** where you pay for what you use:
 
 ### 🆓 Free Tier
 
-**Perfect for:** Testing ContestDraw, occasional small contests
+**Perfect for:** Testing Cleack, occasional small contests
 
 **Includes:**
 - 10 welcome credits (on signup)
@@ -97,7 +97,7 @@ ContestDraw uses a **credit-based system** where you pay for what you use:
 - 1,000 credits per month (rollover to next month)
 - All Pro tier features PLUS:
   - Unlimited draws
-  - White-label option (remove ContestDraw branding)
+  - White-label option (remove Cleack branding)
   - API access (100,000 requests/month)
   - Dedicated account manager
   - Phone support
@@ -135,7 +135,7 @@ ContestDraw uses a **credit-based system** where you pay for what you use:
   - Compliance certifications (SOC 2, GDPR)
   - Training & onboarding
 
-**Contact us:** sales@contestdraw.com
+**Contact us:** sales@cleack.io
 
 ---
 
@@ -277,7 +277,7 @@ If a draw fails due to our technical issues:
 
 ### How to Request Refund
 
-1. Contact support@contestdraw.com
+1. Contact support@cleack.io
 2. Include:
    - Draw ID (if applicable)
    - Reason for refund
@@ -309,9 +309,9 @@ We offer custom pricing for:
 
 ### Contact Sales
 
-**Email:** sales@contestdraw.com
+**Email:** sales@cleack.io
 **Phone:** +33 1 23 45 67 89
-**Schedule a Demo:** [Book a call](https://calendly.com/contestdraw)
+**Schedule a Demo:** [Book a call](https://calendly.com/cleack)
 
 ---
 
@@ -387,6 +387,6 @@ A: You can run a "redraw" to select a new winner at 50% of the original cost.
 ---
 
 **Ready to get started?**
-- [Create Free Account](https://contestdraw.com/register)
-- [View Pricing Plans](https://contestdraw.com/pricing)
-- [Contact Sales for Enterprise](mailto:sales@contestdraw.com)
+- [Create Free Account](https://cleack.io/register)
+- [View Pricing Plans](https://cleack.io/pricing)
+- [Contact Sales for Enterprise](mailto:sales@cleack.io)

@@ -1,6 +1,6 @@
 # Advanced Filtering Guide
 
-Master ContestDraw's powerful filtering system to ensure fair, high-quality contests and eliminate fake entries, spam, and bots.
+Master Cleack's powerful filtering system to ensure fair, high-quality contests and eliminate fake entries, spam, and bots.
 
 ## Table of Contents
 - [Why Use Filters?](#why-use-filters)

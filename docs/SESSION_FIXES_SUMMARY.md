@@ -97,17 +97,17 @@ if (!bonusShown && credits >= 3) {
 2a01:e0a:b7e:e8a0:b8eb:5e02:d3bb:688c"
 
 # 2. Success after whitelist (16:50:18-22)
-"Verification email sent to romain.vitry@gmail.com via Brevo"
-"Welcome email sent to romain.vitry@gmail.com via Brevo"
-"Password reset email sent to romain.vitry@gmail.com via Brevo"
+"Verification email sent to romain.vitry@gmail.com via Resend"
+"Welcome email sent to romain.vitry@gmail.com via Resend"
+"Password reset email sent to romain.vitry@gmail.com via Resend"
 ```
 
-**Root Cause:** Brevo requires IP address whitelisting for security.
+**Root Cause:** Resend requires IP address whitelisting for security.
 
 **Solution Steps:**
 
-1. **Whitelist IP in Brevo:**
-   - Go to: https://app.brevo.com/security/authorised_ips
+1. **Whitelist IP in Resend:**
+   - Go to: https://app.resend.com/security/authorised_ips
    - Add IP: `2a01:e0a:b7e:e8a0:b8eb:5e02:d3bb:688c`
    - Or disable IP restrictions for development
 
@@ -120,9 +120,9 @@ if (!bonusShown && credits >= 3) {
 3. **Verify Email Configuration:**
    ```bash
    # Environment variables (backend/.env)
-   BREVO_API_KEY=xkeysib-...
-   BREVO_FROM_NAME=Contest Draw
-   BREVO_FROM_EMAIL=noreply@contestdraw.com
+   RESEND_API_KEY=xkeysib-...
+   RESEND_FROM_NAME=Cleack
+   RESEND_FROM_EMAIL=noreply@cleack.io
    ```
 
 **Files Created:**
@@ -218,7 +218,7 @@ docs/
 
 ### ⚠️ Requires User Action
 
-1. **Whitelist IP in Brevo** - Required for email functionality
+1. **Whitelist IP in Resend** - Required for email functionality
 2. **Test Email** - Verify emails working after whitelist
 3. **Update Playwright Selectors** - Fix signup workflow tests
 
@@ -275,8 +275,8 @@ open http://localhost:3000/auth
 ### 3. Email Functionality
 
 ```bash
-# Step 1: Whitelist IP in Brevo
-open https://app.brevo.com/security/authorised_ips
+# Step 1: Whitelist IP in Resend
+open https://app.resend.com/security/authorised_ips
 
 # Step 2: Run email test
 cd backend
@@ -351,4 +351,4 @@ open http://localhost:3000/auth
 
 ---
 
-**Next Immediate Step:** Whitelist IP address in Brevo to enable email functionality.
+**Next Immediate Step:** Whitelist IP address in Resend to enable email functionality.

@@ -1,6 +1,6 @@
 # System Architecture
 
-This document describes the high-level architecture of the ContestDraw platform.
+This document describes the high-level architecture of the Cleack platform.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -15,7 +15,7 @@ This document describes the high-level architecture of the ContestDraw platform.
 
 ## Overview
 
-ContestDraw is built using a modern, cloud-native architecture with the following key principles:
+Cleack is built using a modern, cloud-native architecture with the following key principles:
 
 - **Microservices-oriented**: Modular services with clear responsibilities
 - **API-first**: REST API as the core interface
@@ -309,7 +309,7 @@ async function getDraw(drawId) {
 
 **Bucket Structure:**
 ```
-contestdraw-assets/
+cleack-assets/
 ├── avatars/
 ├── certificates/
 ├── exports/

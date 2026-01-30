@@ -5,7 +5,7 @@
 
 ## Introduction
 
-ContestDraw ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, and services (collectively, the "Service").
+Cleack ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website, mobile application, and services (collectively, the "Service").
 
 **By using the Service, you consent to the data practices described in this policy.**
 
@@ -194,7 +194,7 @@ We may disclose your information if required by law or in response to:
 
 ### 3.5 Business Transfers
 
-If ContestDraw is acquired, merged, or undergoes a business transfer, your information may be transferred to the successor entity. You will be notified via email and/or prominent notice on our website.
+If Cleack is acquired, merged, or undergoes a business transfer, your information may be transferred to the successor entity. You will be notified via email and/or prominent notice on our website.
 
 ### 3.6 With Your Consent
 
@@ -240,7 +240,7 @@ Data in backups is retained for 30 days and then permanently deleted.
 
 **Correction:** You can update your information at any time through account settings.
 
-**Deletion:** You can request account deletion via account settings or by emailing privacy@contestdraw.com.
+**Deletion:** You can request account deletion via account settings or by emailing privacy@cleack.io.
 
 **Opt-out of Marketing:** Unsubscribe from marketing emails via the link in each email.
 
@@ -264,7 +264,7 @@ If you are in the European Economic Area (EEA), you have additional rights under
 
 **Right to Lodge a Complaint:** File a complaint with your local data protection authority.
 
-**To exercise these rights, email privacy@contestdraw.com with your request.**
+**To exercise these rights, email privacy@cleack.io with your request.**
 
 ### 5.3 CCPA Rights (California Users)
 
@@ -278,7 +278,7 @@ If you are a California resident, you have rights under the California Consumer 
 
 **Right to Non-Discrimination:** We will not discriminate against you for exercising your rights.
 
-**To exercise these rights, email privacy@contestdraw.com or call +33 1 23 45 67 89.**
+**To exercise these rights, email privacy@cleack.io or call +33 1 23 45 67 89.**
 
 ### 5.4 Response Time
 
@@ -401,7 +401,7 @@ The Service is NOT intended for children under 18 years old. We do not knowingly
 
 ### 8.2 Parental Notice
 
-If you believe we have collected information from a child under 18, please contact us immediately at privacy@contestdraw.com. We will delete the information promptly.
+If you believe we have collected information from a child under 18, please contact us immediately at privacy@cleack.io. We will delete the information promptly.
 
 ---
 
@@ -453,7 +453,7 @@ Continued use of the Service after changes constitutes acceptance of the updated
 For questions about this Privacy Policy or our data practices, contact:
 
 **Data Protection Officer**
-Email: privacy@contestdraw.com
+Email: privacy@cleack.io
 Address: 123 Rue de la Paix, 75001 Paris, France
 Phone: +33 1 23 45 67 89
 
@@ -483,9 +483,9 @@ When you interact with our social media pages (Facebook, Twitter, Instagram), th
 
 ### 12.3 Data Controller and Processor
 
-**For your account data:** ContestDraw is the data controller.
+**For your account data:** Cleack is the data controller.
 
-**For participant data:** You are the data controller; ContestDraw is the data processor. See our [Data Processing Agreement](./data-processing-agreement.md) for details.
+**For participant data:** You are the data controller; Cleack is the data processor. See our [Data Processing Agreement](./data-processing-agreement.md) for details.
 
 ---
 
@@ -503,6 +503,6 @@ When you interact with our social media pages (Facebook, Twitter, Instagram), th
 
 ---
 
-**By using ContestDraw, you acknowledge that you have read and understood this Privacy Policy.**
+**By using Cleack, you acknowledge that you have read and understood this Privacy Policy.**
 
 **Last Updated:** January 2025

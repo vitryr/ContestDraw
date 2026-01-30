@@ -394,6 +394,6 @@ The frontend signup workflow is **100% complete** and **production-ready**. All 
 
 ---
 
-*Implementation completed by: ContestDraw Development Team*
+*Implementation completed by: Cleack Development Team*
 *Date: November 6, 2025*
 *Version: 2.0.0*

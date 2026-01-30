@@ -2,7 +2,7 @@
 
 ## Overview
 
-Successfully implemented three critical backend features for the ContestDraw system with full test coverage and comprehensive API documentation.
+Successfully implemented three critical backend features for the Cleack system with full test coverage and comprehensive API documentation.
 
 ## Features Implemented
 

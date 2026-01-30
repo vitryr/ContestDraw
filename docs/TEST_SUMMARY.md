@@ -1,4 +1,4 @@
-# Test Infrastructure Summary - ContestDraw
+# Test Infrastructure Summary - Cleack
 
 ## ✅ Mission Completed
 
@@ -501,21 +501,21 @@ k6 run tests/performance/stress-test.js
 ## 🔗 Related Files
 
 ### Primary Test Locations
-- **Backend Unit:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/unit/`
-- **Backend Integration:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/integration/`
-- **Frontend Tests:** `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/tests/`
-- **E2E Tests:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/`
-- **Performance Tests:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/performance/`
+- **Backend Unit:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/unit/`
+- **Backend Integration:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/integration/`
+- **Frontend Tests:** `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/tests/`
+- **E2E Tests:** `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/`
+- **Performance Tests:** `/Users/romainvitry/Documents/Dev/Cleack/tests/performance/`
 
 ### Configuration Files
-- **Backend:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/jest.config.js`
-- **Frontend:** `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/vitest.config.ts`
-- **E2E:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/playwright.config.ts`
-- **CI/CD:** `/Users/romainvitry/Documents/Dev/ContestDraw/.github/workflows/test.yml`
+- **Backend:** `/Users/romainvitry/Documents/Dev/Cleack/backend/jest.config.js`
+- **Frontend:** `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/vitest.config.ts`
+- **E2E:** `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/playwright.config.ts`
+- **CI/CD:** `/Users/romainvitry/Documents/Dev/Cleack/.github/workflows/test.yml`
 
 ### Documentation
-- **Full Guide:** `/Users/romainvitry/Documents/Dev/ContestDraw/docs/TESTING.md`
-- **This Summary:** `/Users/romainvitry/Documents/Dev/ContestDraw/docs/TEST_SUMMARY.md`
+- **Full Guide:** `/Users/romainvitry/Documents/Dev/Cleack/docs/TESTING.md`
+- **This Summary:** `/Users/romainvitry/Documents/Dev/Cleack/docs/TEST_SUMMARY.md`
 
 ---
 
@@ -569,7 +569,7 @@ Performance:
 
 **Testing Infrastructure Status: ✅ PRODUCTION READY**
 
-The ContestDraw project now has enterprise-grade testing infrastructure with comprehensive coverage, automated CI/CD, and performance validation. All test suites are ready to run and integrate with your development workflow.
+The Cleack project now has enterprise-grade testing infrastructure with comprehensive coverage, automated CI/CD, and performance validation. All test suites are ready to run and integrate with your development workflow.
 
 ---
 
