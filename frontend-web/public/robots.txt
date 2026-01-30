@@ -1,45 +1,65 @@
-# Robots.txt for Cleack.io
-# https://cleack.io
+# Robots.txt for Cleack.io - DEVELOPMENT/STAGING
+# Block all crawlers until production launch
 
+# Block all search engines
 User-agent: *
-Allow: /
+Disallow: /
 
-# Block non-SEO pages
-Disallow: /api/
-Disallow: /admin/
-Disallow: /app/
-Disallow: /_next/
-Disallow: /checkout/
-Disallow: /account/
-Disallow: /draw/*/execute
-Disallow: /draw/*/filters
-Disallow: /draw/*/config
-Disallow: /embed/
-Disallow: /auth
-Disallow: /dashboard
-Disallow: /profile
-Disallow: /buy-credits
-Disallow: /payment/
-Disallow: /forgot-password
-Disallow: /reset-password
-Disallow: /verify-email
+# Block AI/LLM crawlers specifically
+User-agent: GPTBot
+Disallow: /
 
-# Block query parameters (tracking, etc.)
-Disallow: /*?ref=
-Disallow: /*?utm_*
-Disallow: /*?fbclid=
-Disallow: /*?gclid=
+User-agent: ChatGPT-User
+Disallow: /
 
-# Block duplicate content
-Disallow: /*?sort=
-Disallow: /*?filter=
-Disallow: /*?page=
+User-agent: Google-Extended
+Disallow: /
 
-# Crawl-delay (optional - be gentle with the server)
-# Crawl-delay: 1
+User-agent: CCBot
+Disallow: /
 
-# Sitemaps
-Sitemap: https://cleack.io/sitemap.xml
+User-agent: anthropic-ai
+Disallow: /
 
-# Note: Uncomment the following line before production launch to block all crawlers during development
-# Disallow: /
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# No sitemap until production
+# Sitemap: https://cleack.io/sitemap.xml
+
+# ============================================
+# PRODUCTION CONFIG (uncomment when ready):
+# ============================================
+# User-agent: *
+# Allow: /
+# 
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /auth
+# Disallow: /dashboard
+# Disallow: /profile
+# Disallow: /draw/*/execute
+# Disallow: /draw/*/filters
+# Disallow: /draw/*/config
+# Disallow: /embed/
+# Disallow: /buy-credits
+# Disallow: /payment/
+# Disallow: /forgot-password
+# Disallow: /reset-password
+# Disallow: /verify-email
+# Disallow: /*?ref=
+# Disallow: /*?utm_*
+# 
+# Sitemap: https://cleack.io/sitemap.xml
