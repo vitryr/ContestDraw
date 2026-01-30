@@ -1,6 +1,6 @@
 # 📋 Overview
 
-Documentation générale du projet ContestDraw.
+Documentation générale du projet Cleack.
 
 ## Contenu
 

@@ -70,9 +70,23 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
     set({ isLoading: true, error: null });
     try {
       const draw = await drawApi.getById(id);
+      const currentParticipants = get().participants;
+
+      // Keep locally stored participants if the draw doesn't have any
+      // This preserves participants set during import
+      const participants = draw.participants?.length > 0
+        ? draw.participants
+        : currentParticipants;
+
+      // Merge participants into the draw object for consistency
+      const drawWithParticipants = {
+        ...draw,
+        participants: participants,
+      };
+
       set({
-        currentDraw: draw,
-        participants: draw.participants || [],
+        currentDraw: drawWithParticipants,
+        participants: participants,
         filters: draw.filters || {},
         isLoading: false,
       });
@@ -158,8 +172,12 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
   uploadParticipantsCSV: async (drawId, file) => {
     set({ isLoading: true, error: null });
     try {
-      const { participants } = await participantsApi.uploadCSV(drawId, file);
-      set({ participants, isLoading: false });
+      const { participants, draw } = await participantsApi.uploadCSV(drawId, file);
+      set((state) => ({
+        participants,
+        currentDraw: draw || (state.currentDraw ? { ...state.currentDraw, participants } : null),
+        isLoading: false,
+      }));
     } catch (error: any) {
       set({
         error: error.response?.data?.message || "Failed to upload participants",
@@ -206,9 +224,10 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
     }
   },
 
-  generateCertificate: async (winnerId) => {
+  // Certificate is per-draw (includes all winners)
+  generateCertificate: async (drawId) => {
     try {
-      const { url } = await winnersApi.generateCertificate(winnerId);
+      const url = await winnersApi.generateCertificate(drawId);
       return url;
     } catch (error: any) {
       set({
@@ -221,7 +240,7 @@ export const useDrawStore = create<DrawStore>((set, get) => ({
 
   generateVideo: async (drawId) => {
     try {
-      const { url } = await winnersApi.generateVideo(drawId);
+      const url = await winnersApi.generateVideo(drawId);
       return url;
     } catch (error: any) {
       set({

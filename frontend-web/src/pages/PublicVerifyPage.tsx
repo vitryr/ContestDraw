@@ -146,7 +146,7 @@ export default function PublicVerifyPage() {
   return (
     <>
       <Helmet>
-        <title>{`Verify Draw: ${data.draw.title} | ContestDraw`}</title>
+        <title>{`Verify Draw: ${data.draw.title} | Cleack`}</title>
         <meta
           name="description"
           content={`Verify the results of "${data.draw.title}" - a transparent and fair draw with ${data.draw.participantsCount} participants and ${data.draw.numberOfWinners} winners.`}

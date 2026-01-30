@@ -1,4 +1,4 @@
-# ContestDraw - Product Roadmap 2025-2026
+# Cleack - Product Roadmap 2025-2026
 
 **Last Updated:** January 15, 2025
 **Version:** 1.0
@@ -269,7 +269,7 @@ Q4 2025: Innovation & Growth
 - Partner program (build integrations)
 
 **Use Cases:**
-- Integrate ContestDraw into your SaaS
+- Integrate Cleack into your SaaS
 - Build custom workflows
 - Automate giveaways programmatically
 
@@ -283,7 +283,7 @@ Q4 2025: Innovation & Growth
 - Fully branded platform (your logo, colors, domain)
 - Custom email templates
 - Whitelabel certificates & videos
-- Resell ContestDraw as your own product
+- Resell Cleack as your own product
 - Revenue share model (50/50 split)
 - Dedicated onboarding & training
 
@@ -374,7 +374,7 @@ Q4 2025: Innovation & Growth
 4. **Feedback:** Beta access for top voters
 
 **Submit Your Idea:**
-👉 [https://contestdraw.com/roadmap/submit](https://contestdraw.com/roadmap/submit)
+👉 [https://cleack.io/roadmap/submit](https://cleack.io/roadmap/submit)
 
 ---
 
@@ -394,7 +394,7 @@ Based on user feedback and votes:
 10. **Twitch integration** (87 votes) → 🎯 Planned Q2 2026
 
 **Vote on Features:**
-👉 [https://contestdraw.com/roadmap](https://contestdraw.com/roadmap)
+👉 [https://cleack.io/roadmap](https://cleack.io/roadmap)
 
 ---
 
@@ -417,10 +417,10 @@ Based on user feedback and votes:
 Have an idea? We'd love to hear it!
 
 **Submit Feature Request:**
-- 🌐 [Public roadmap](https://contestdraw.com/roadmap)
-- 📧 Email: features@contestdraw.com
-- 💬 Community forum: [community.contestdraw.com](https://community.contestdraw.com)
-- 🐦 Twitter: [@ContestDraw](https://twitter.com/contestdraw)
+- 🌐 [Public roadmap](https://cleack.io/roadmap)
+- 📧 Email: features@cleack.io
+- 💬 Community forum: [community.cleack.io](https://community.cleack.io)
+- 🐦 Twitter: [@Cleack](https://twitter.com/cleack)
 
 **Response Time:**
 - All requests reviewed within 7 days
@@ -451,7 +451,7 @@ We rarely deprecate features, but when necessary:
 Want early access to upcoming features?
 
 **Join the Beta Program:**
-1. Sign up: [contestdraw.com/beta](https://contestdraw.com/beta)
+1. Sign up: [cleack.io/beta](https://cleack.io/beta)
 2. Get access to features 4-6 weeks early
 3. Provide feedback and shape the product
 4. Exclusive beta tester benefits (discounts, swag)
@@ -520,13 +520,13 @@ Effort: Engineering time (1-100 days)
 
 ## Questions?
 
-- 📧 **Email:** product@contestdraw.com
+- 📧 **Email:** product@cleack.io
 - 💬 **Live Chat:** Available 24/7 in app
-- 🌐 **Community:** [community.contestdraw.com](https://community.contestdraw.com)
-- 📖 **Help Center:** [docs.contestdraw.com](https://docs.contestdraw.com)
+- 🌐 **Community:** [community.cleack.io](https://community.cleack.io)
+- 📖 **Help Center:** [docs.cleack.io](https://docs.cleack.io)
 
 ---
 
-**Made with ❤️ by the ContestDraw team**
+**Made with ❤️ by the Cleack team**
 
-[Vote on Features](https://contestdraw.com/roadmap) | [Submit Ideas](https://contestdraw.com/roadmap/submit) | [Join Beta](https://contestdraw.com/beta)
+[Vote on Features](https://cleack.io/roadmap) | [Submit Ideas](https://cleack.io/roadmap/submit) | [Join Beta](https://cleack.io/beta)

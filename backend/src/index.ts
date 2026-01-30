@@ -4,6 +4,7 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import { createServer } from "http";
+import { join } from "path";
 
 import { logger } from "./utils/logger";
 import { errorMiddleware } from "./middleware/error.middleware";
@@ -23,6 +24,7 @@ import organizationsRoutes from "./api/organizations/organizations.routes";
 import brandsRoutes from "./api/brands/brands.routes";
 import brandingRoutes from "./api/branding/branding.routes";
 import paymentsRoutes from "./api/payments/payments.routes";
+import adminRoutes from "./api/admin";
 
 // Load environment variables
 dotenv.config();
@@ -49,13 +51,44 @@ class App {
   private initializeMiddleware(): void {
     // Security middleware
     this.app.use(helmet());
+    
+    // Anti-crawl headers (test environment)
+    this.app.use((_req, res, next) => {
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
+      next();
+    });
+    // CORS - handle multiple origins
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "http://localhost:5173",
+      "http://localhost:8080",
+      ...(Array.isArray(config.cors.origin) ? config.cors.origin : [config.cors.origin]),
+    ];
     this.app.use(
       cors({
-        origin: config.cors.origin,
+        origin: (origin, callback) => {
+          // Allow requests with no origin (like mobile apps or curl)
+          if (!origin) return callback(null, true);
+          if (allowedOrigins.includes(origin)) {
+            return callback(null, true);
+          }
+          // In development, allow all origins
+          if (process.env.NODE_ENV === "development") {
+            return callback(null, true);
+          }
+          return callback(new Error("Not allowed by CORS"));
+        },
         credentials: true,
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
       }),
+    );
+
+    // Stripe webhook needs raw body for signature verification
+    // Must be before express.json() middleware
+    this.app.use(
+      "/api/payments/webhook",
+      express.raw({ type: "application/json" }),
     );
 
     // Body parsing middleware
@@ -101,6 +134,20 @@ class App {
     this.app.use("/api/organizations", organizationsRoutes);
     this.app.use("/api/brands", brandsRoutes);
     this.app.use("/api/branding", brandingRoutes);
+    
+    // Admin panel
+    this.app.use("/api/admin", adminRoutes);
+
+    // Static file serving for locally stored videos
+    const uploadsPath = join(process.cwd(), config.storage.path || "uploads");
+    this.app.use("/api/videos/download", express.static(uploadsPath, {
+      setHeaders: (res, filePath) => {
+        if (filePath.endsWith(".mp4")) {
+          res.setHeader("Content-Type", "video/mp4");
+          res.setHeader("Content-Disposition", "attachment");
+        }
+      },
+    }));
   }
 
   /**

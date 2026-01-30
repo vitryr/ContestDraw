@@ -1,33 +1,32 @@
-# Local Development Environment
+# Cleack - Local Development Environment
 version: '3.8'
 
 services:
   # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
-    container_name: contestdraw-db
+    container_name: cleack-db
     restart: unless-stopped
     environment:
-      POSTGRES_DB: contestdraw
+      POSTGRES_DB: cleack
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: dev_password_123
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./backend/migrations:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
     networks:
-      - contestdraw-network
+      - cleack-network
 
   # Redis Cache
   redis:
     image: redis:7-alpine
-    container_name: contestdraw-redis
+    container_name: cleack-redis
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -40,92 +39,100 @@ services:
       timeout: 3s
       retries: 5
     networks:
-      - contestdraw-network
+      - cleack-network
 
   # Backend API
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
-      target: production
-    container_name: contestdraw-backend
+      target: development
+    container_name: cleack-backend
     restart: unless-stopped
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
+    env_file:
+      - ./backend/.env
     environment:
       NODE_ENV: development
       PORT: 3000
-      DATABASE_URL: postgresql://postgres:dev_password_123@postgres:5432/contestdraw
+      DATABASE_URL: postgresql://postgres:dev_password_123@postgres:5432/cleack
       REDIS_URL: redis://redis:6379
       JWT_SECRET: dev_jwt_secret_change_in_production
-      AWS_REGION: eu-west-1
-      AWS_S3_BUCKET: contestdraw-dev
-      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
-      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
-      FACEBOOK_APP_ID: ${FACEBOOK_APP_ID}
-      FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET}
-      CORS_ORIGIN: http://localhost:3001
+      JWT_REFRESH_SECRET: dev_jwt_refresh_secret_change_in_production
+      CORS_ORIGIN: http://localhost:5173
+      FRONTEND_URL: http://localhost:5173
+      API_URL: http://localhost:3000
+      # Email (Resend)
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      RESEND_FROM_EMAIL: "Cleack <noreply@cleack.io>"
+      # Stripe keys loaded from ./backend/.env
+      # Facebook/Instagram
+      FACEBOOK_APP_ID: ${FACEBOOK_APP_ID:-}
+      FACEBOOK_APP_SECRET: ${FACEBOOK_APP_SECRET:-}
+      FACEBOOK_CALLBACK_URL: http://localhost:3000/api/auth/oauth/facebook/callback
+      INSTAGRAM_CLIENT_ID: ${INSTAGRAM_CLIENT_ID:-}
+      INSTAGRAM_CLIENT_SECRET: ${INSTAGRAM_CLIENT_SECRET:-}
+      INSTAGRAM_REDIRECT_URI: http://localhost:3000/api/auth/oauth/instagram/callback
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/app
-      - /app/node_modules
-      - backend_uploads:/app/uploads
+      - ./backend/src:/app/src
+      - ./backend/prisma:/app/prisma
+      - backend_node_modules:/app/node_modules
     networks:
-      - contestdraw-network
-    command: npm run dev
+      - cleack-network
 
   # Frontend Web
-  frontend-web:
+  frontend:
     build:
       context: ./frontend-web
       dockerfile: Dockerfile
-      target: builder
-      args:
-        REACT_APP_API_URL: http://localhost:3000
-        REACT_APP_WS_URL: ws://localhost:3000
-    container_name: contestdraw-frontend
+      target: development
+    container_name: cleack-frontend
     restart: unless-stopped
     depends_on:
       - backend
     environment:
-      NODE_ENV: development
-      REACT_APP_API_URL: http://localhost:3000
-      REACT_APP_WS_URL: ws://localhost:3000
+      VITE_API_URL: http://localhost:3000
+      VITE_WS_URL: ws://localhost:3000
     ports:
-      - "3001:3000"
+      - "5173:3000"
     volumes:
-      - ./frontend-web:/app
-      - /app/node_modules
+      - ./frontend-web/src:/app/src
+      - ./frontend-web/public:/app/public
+      - frontend_node_modules:/app/node_modules
     networks:
-      - contestdraw-network
-    command: npm start
+      - cleack-network
 
   # PgAdmin (Database Management)
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: contestdraw-pgadmin
+    container_name: cleack-pgadmin
     restart: unless-stopped
     environment:
-      PGADMIN_DEFAULT_EMAIL: admin@contestdraw.com
-      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_DEFAULT_EMAIL: admin@cleack.io
+      PGADMIN_DEFAULT_PASSWORD: Rhum1429912!
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
       - "5050:80"
     volumes:
       - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
     networks:
-      - contestdraw-network
+      - cleack-network
 
 networks:
-  contestdraw-network:
+  cleack-network:
     driver: bridge
 
 volumes:
   postgres_data:
   redis_data:
-  backend_uploads:
+  backend_node_modules:
+  frontend_node_modules:
   pgadmin_data:

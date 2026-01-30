@@ -1,8 +1,12 @@
 import { Router } from "express";
 import { paymentsController } from "./payments.controller";
 import { authenticate } from "../../middleware/auth.middleware";
+import promoRouter from "./promo.controller";
 
 const router = Router();
+
+// Promo code routes
+router.use("/promo", promoRouter);
 
 /**
  * Payment routes
@@ -17,6 +21,13 @@ router.post(
   "/checkout",
   authenticate,
   paymentsController.createCheckoutSession,
+);
+
+// Create checkout session for credit pack purchase
+router.post(
+  "/checkout/credits",
+  authenticate,
+  paymentsController.createCreditPackSession,
 );
 
 // Create checkout session for 48h pass

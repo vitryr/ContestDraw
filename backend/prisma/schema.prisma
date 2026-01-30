@@ -20,11 +20,8 @@ model User {
   credits                 Int                  @default(3)
   trial_used              Boolean              @default(false)
   bonus_granted           Boolean              @default(true)
-  // Stripe fields
-  stripeCustomerId        String?              @unique
-  stripeSubscriptionId    String?              @unique
-  subscriptionType        String? // "monthly", "annual", "48h_pass"
-  subscriptionExpiresAt   DateTime?
+  isBanned                Boolean              @default(false)
+  lastLoginAt             DateTime?
   createdAt               DateTime             @default(now())
   updatedAt               DateTime             @updatedAt
   blacklists              Blacklist[]
@@ -35,39 +32,64 @@ model User {
   ownedOrganizations      Organization[]       @relation("OrganizationOwner")
   socialAccounts          SocialAccount[]
   subscription            Subscription?
+  verificationTokens      VerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  promoCodeUsages         PromoCodeUsage[]
 
   @@index([email])
-  @@index([stripeCustomerId])
   @@map("users")
 }
 
+model VerificationToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("verification_tokens")
+}
+
+model PasswordResetToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([token])
+  @@index([userId])
+  @@map("password_reset_tokens")
+}
+
 model Draw {
-  id               String        @id @default(uuid())
-  userId           String
-  title            String
-  description      String?
-  numberOfWinners  Int
-  allowDuplicates  Boolean       @default(false)
-  status           DrawStatus    @default(DRAFT)
-  algorithm        String?
-  seed             String?
-  certificateHash  String?
-  verificationHash String?
-  platform         String? // "INSTAGRAM", "FACEBOOK", "TWITTER", "TIKTOK", "YOUTUBE", "MANUAL"
-  postUrl          String?
-  filters          Json? // Filters applied (hashtag, mentions, etc.)
-  executedAt       DateTime?
-  completedAt      DateTime?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
-  brandDraws       BrandDraw[]
-  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  participants     Participant[]
-  winners          Winner[]
+  id              String        @id @default(uuid())
+  userId          String
+  title           String
+  description     String?
+  numberOfWinners Int
+  allowDuplicates Boolean       @default(false)
+  status          DrawStatus    @default(DRAFT)
+  platform        String?
+  postUrl         String?
+  filters         Json?
+  algorithm       String?
+  seed            String?
+  certificateHash String?
+  completedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  brandDraws      BrandDraw[]
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  participants    Participant[]
+  winners         Winner[]
 
   @@index([userId, status])
   @@index([createdAt])
-  @@index([verificationHash])
   @@map("draws")
 }
 
@@ -75,8 +97,7 @@ model Participant {
   id         String   @id @default(uuid())
   drawId     String
   name       String
-  username   String? // Social media username (without @)
-  identifier String // Email or unique ID
+  identifier String
   source     String   @default("MANUAL")
   metadata   Json?
   createdAt  DateTime @default(now())
@@ -84,21 +105,17 @@ model Participant {
   Winner     Winner[]
 
   @@index([drawId])
-  @@index([username])
   @@map("participants")
 }
 
 model Winner {
-  id             String      @id @default(uuid())
-  drawId         String
-  participantId  String
-  position       Int
-  certificateUrl String? // URL to individual winner certificate
-  notifiedAt     DateTime? // When winner was notified
-  claimedAt      DateTime? // When winner claimed prize
-  createdAt      DateTime    @default(now())
-  draw           Draw        @relation(fields: [drawId], references: [id], onDelete: Cascade)
-  participant    Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  id            String      @id @default(uuid())
+  drawId        String
+  participantId String
+  position      Int
+  createdAt     DateTime    @default(now())
+  draw          Draw        @relation(fields: [drawId], references: [id], onDelete: Cascade)
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
 
   @@unique([drawId, participantId, position])
   @@index([drawId])
@@ -335,9 +352,7 @@ enum DrawStatus {
   READY
   PROCESSING
   COMPLETED
-  EXECUTED // Alias for COMPLETED (legacy)
   FAILED
-  CANCELLED
 }
 
 enum CreditTransactionType {
@@ -352,4 +367,114 @@ enum SubscriptionStatus {
   CANCELLED
   EXPIRED
   PAST_DUE
+}
+
+model VideoJob {
+  id          String         @id @default(uuid())
+  drawId      String
+  userId      String
+  status      VideoJobStatus @default(PENDING)
+  videoUrl    String?
+  s3Key       String?
+  error       String?
+  metadata    Json?
+  completedAt DateTime?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([drawId])
+  @@index([userId, status])
+  @@map("video_jobs")
+}
+
+enum VideoJobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+// ============================================
+// PROMO CODES
+// ============================================
+
+model PromoCode {
+  id                String           @id @default(uuid())
+  code              String           @unique
+  
+  // Discount type
+  discountType      DiscountType     @default(PERCENTAGE)
+  discountValue     Decimal          @db.Decimal(10, 2)
+  
+  // Constraints
+  maxUses           Int?
+  maxUsesPerUser    Int              @default(1)
+  currentUses       Int              @default(0)
+  
+  // Validity
+  validFrom         DateTime         @default(now())
+  validUntil        DateTime?
+  isActive          Boolean          @default(true)
+  
+  // Restrictions
+  minPurchaseAmount Decimal?         @db.Decimal(10, 2)
+  applicableTo      ApplicableTo     @default(ALL)
+  allowedPlans      String[]         @default([])
+  
+  // Stripe sync
+  stripeCouponId    String?          @unique
+  stripePromoId     String?          @unique
+  
+  // Metadata
+  description       String?
+  createdBy         String?
+  metadata          Json?
+  
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  
+  // Relations
+  usages            PromoCodeUsage[]
+
+  @@index([code])
+  @@index([isActive, validUntil])
+  @@map("promo_codes")
+}
+
+model PromoCodeUsage {
+  id              String      @id @default(uuid())
+  promoCodeId     String
+  userId          String
+  
+  // Transaction
+  transactionType String
+  transactionId   String?
+  
+  // Amounts
+  discountAmount  Decimal     @db.Decimal(10, 2)
+  originalAmount  Decimal     @db.Decimal(10, 2)
+  finalAmount     Decimal     @db.Decimal(10, 2)
+  
+  usedAt          DateTime    @default(now())
+  
+  // Relations
+  promoCode       PromoCode   @relation(fields: [promoCodeId], references: [id], onDelete: Cascade)
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([promoCodeId, userId, transactionId])
+  @@index([promoCodeId])
+  @@index([userId])
+  @@map("promo_code_usages")
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+enum ApplicableTo {
+  ALL
+  SUBSCRIPTION
+  CREDITS
+  PASS_48H
 }

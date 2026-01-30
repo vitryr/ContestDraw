@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Instagram, Twitter } from "lucide-react";
+import { Instagram } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface SocialConnectProps {
@@ -11,9 +11,6 @@ export default function SocialConnect({
   drawId,
   onImport,
 }: SocialConnectProps) {
-  const [platform, setPlatform] = useState<"instagram" | "twitter">(
-    "instagram",
-  );
   const [url, setUrl] = useState("");
   const [isImporting, setIsImporting] = useState(false);
 
@@ -25,7 +22,7 @@ export default function SocialConnect({
 
     setIsImporting(true);
     try {
-      await onImport(platform, url);
+      await onImport("instagram", url);
       setUrl("");
     } catch (error) {
       // Error handled by parent
@@ -36,32 +33,10 @@ export default function SocialConnect({
 
   return (
     <div className="space-y-4">
-      {/* Platform Selection */}
-      <div className="flex gap-2">
-        <button
-          type="button"
-          onClick={() => setPlatform("instagram")}
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 transition-colors ${
-            platform === "instagram"
-              ? "border-primary-600 bg-primary-50 text-primary-700"
-              : "border-gray-200 hover:border-gray-300 text-gray-700"
-          }`}
-        >
-          <Instagram className="w-5 h-5" />
-          <span className="font-medium">Instagram</span>
-        </button>
-        <button
-          type="button"
-          onClick={() => setPlatform("twitter")}
-          className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 transition-colors ${
-            platform === "twitter"
-              ? "border-primary-600 bg-primary-50 text-primary-700"
-              : "border-gray-200 hover:border-gray-300 text-gray-700"
-          }`}
-        >
-          <Twitter className="w-5 h-5" />
-          <span className="font-medium">Twitter</span>
-        </button>
+      {/* Platform indicator */}
+      <div className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg border-2 border-primary-600 bg-primary-50 text-primary-700">
+        <Instagram className="w-5 h-5" />
+        <span className="font-medium">Instagram</span>
       </div>
 
       {/* URL Input */}
@@ -70,7 +45,7 @@ export default function SocialConnect({
           type="url"
           value={url}
           onChange={(e) => setUrl(e.target.value)}
-          placeholder={`Enter ${platform} post URL...`}
+          placeholder="Enter Instagram post URL..."
           className="input-field"
         />
       </div>

@@ -13,7 +13,7 @@ FRONTEND_URL=http://localhost:5173
 ### Database
 ```bash
 # PostgreSQL connection string
-DATABASE_URL=postgresql://user:password@localhost:5432/contestdraw
+DATABASE_URL=postgresql://user:password@localhost:5432/cleack
 
 # Redis
 REDIS_HOST=localhost
@@ -69,10 +69,10 @@ STRIPE_WEBHOOK_SECRET=whsec_xxx
 
 ### Email
 ```bash
-# Brevo (ex-Sendinblue) - Primary
-BREVO_API_KEY=xkeysib-xxx
-BREVO_FROM_NAME=ContestDraw
-BREVO_FROM_EMAIL=noreply@contestdraw.com
+# Resend (ex-Resend) - Primary
+RESEND_API_KEY=xkeysib-xxx
+RESEND_FROM_NAME=Cleack
+RESEND_FROM_EMAIL=noreply@cleack.io
 
 # SMTP Fallback
 SMTP_HOST=smtp.gmail.com
@@ -80,7 +80,7 @@ SMTP_PORT=587
 SMTP_SECURE=false
 SMTP_USER=your-email@gmail.com
 SMTP_PASSWORD=your-app-password
-EMAIL_FROM=noreply@contestdraw.com
+EMAIL_FROM=noreply@cleack.io
 ```
 
 ### Security
@@ -100,7 +100,7 @@ MAX_FILE_SIZE=10485760         # 10MB
 AWS_ACCESS_KEY_ID=xxx
 AWS_SECRET_ACCESS_KEY=xxx
 AWS_REGION=eu-west-1
-AWS_BUCKET=contestdraw-uploads
+AWS_BUCKET=cleack-uploads
 ```
 
 ### Logging
@@ -121,7 +121,7 @@ VITE_API_URL=http://localhost:3000
 VITE_STRIPE_PUBLISHABLE_KEY=pk_test_xxx
 
 # Analytics (optionnel)
-VITE_PLAUSIBLE_DOMAIN=contestdraw.com
+VITE_PLAUSIBLE_DOMAIN=cleack.io
 VITE_SENTRY_DSN=https://xxx@sentry.io/xxx
 ```
 
@@ -190,7 +190,7 @@ openssl rand -base64 32
 [x] JWT secrets (générés)
 [x] OAuth keys (dev apps)
 [x] Stripe test keys
-[x] Brevo API key
+[x] Resend API key
 ```
 
 ### Production
@@ -200,7 +200,7 @@ openssl rand -base64 32
 [x] JWT secrets (rotatés)
 [x] OAuth keys (production apps)
 [x] Stripe live keys
-[x] Brevo API key
+[x] Resend API key
 [x] Sentry DSN
 [x] Rate limiting activé
 ```
@@ -217,5 +217,5 @@ openssl rand -base64 32
 | Twitter | https://developer.twitter.com/en/portal |
 | TikTok | https://developers.tiktok.com |
 | YouTube | https://console.cloud.google.com/apis/credentials |
-| Brevo | https://app.brevo.com/settings/keys/api |
+| Resend | https://app.resend.com/settings/keys/api |
 | Sentry | https://sentry.io/settings/account/api/auth-tokens |

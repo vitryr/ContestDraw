@@ -1,4 +1,4 @@
-# ContestDraw Codebase Analysis Report
+# Cleack Codebase Analysis Report
 **Generated:** 2025-11-06
 **Status:** Complete Analysis
 
@@ -20,7 +20,7 @@
 
 ## Executive Summary
 
-**ContestDraw** is a full-stack web application for managing fair and transparent contest drawings with social media integration. The architecture follows modern React/TypeScript frontend patterns with Express.js/TypeScript backend.
+**Cleack** is a full-stack web application for managing fair and transparent contest drawings with social media integration. The architecture follows modern React/TypeScript frontend patterns with Express.js/TypeScript backend.
 
 **Key Stats:**
 - Frontend: React 18.2 + TypeScript + Vite + TailwindCSS
@@ -1015,17 +1015,17 @@ Component receives response
 ## File Locations
 
 **Frontend Source:**
-- `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/`
+- `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/`
 
 **Backend Source:**
-- `/Users/romainvitry/Documents/Dev/ContestDraw/backend/src/`
+- `/Users/romainvitry/Documents/Dev/Cleack/backend/src/`
 
 **Configuration:**
 - Frontend: `frontend-web/vite.config.ts`, `frontend-web/vitest.config.ts`, `frontend-web/tsconfig.json`
 - Backend: `backend/jest.config.js`, `backend/tsconfig.json`
 
 **Tests:**
-- `/Users/romainvitry/Documents/Dev/ContestDraw/tests/verification.test.ts`
+- `/Users/romainvitry/Documents/Dev/Cleack/tests/verification.test.ts`
 
 ---
 

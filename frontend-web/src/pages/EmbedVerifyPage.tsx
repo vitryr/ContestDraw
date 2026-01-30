@@ -261,7 +261,7 @@ export default function EmbedVerifyPage() {
                   : "text-blue-600 hover:underline"
               }
             >
-              ContestDraw
+              Cleack
             </a>
           </p>
         </div>

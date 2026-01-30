@@ -16,8 +16,8 @@
 ### 1. Cloner le projet
 
 ```bash
-git clone git@github.com:vitryr/ContestDraw.git
-cd ContestDraw
+git clone git@github.com:vitryr/Cleack.git
+cd Cleack
 ```
 
 ### 2. Backend
@@ -33,10 +33,10 @@ cp .env.example .env
 
 # Configurer la base de données
 # Éditer .env avec vos credentials PostgreSQL
-DATABASE_URL="postgresql://user:password@localhost:5432/contestdraw"
+DATABASE_URL="postgresql://user:password@localhost:5432/cleack"
 
 # Créer la base de données
-createdb contestdraw
+createdb cleack
 
 # Appliquer les migrations
 npx prisma migrate dev
@@ -89,7 +89,7 @@ docker-compose down
 ## 📁 Structure du Projet
 
 ```
-ContestDraw/
+Cleack/
 ├── backend/           # API Node.js/Express
 │   ├── src/
 │   │   ├── api/       # Routes & Controllers

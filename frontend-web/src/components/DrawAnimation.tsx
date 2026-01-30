@@ -1,81 +1,105 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
 import { Trophy, Sparkles } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import type { Participant, Winner } from "../types";
 
 interface DrawAnimationProps {
   participants: Participant[];
   winners: Winner[];
   drawTitle: string;
+  onComplete?: () => void;
 }
+
+// Sparkle component for decorations
+const SparkleIcon = ({ className }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 0L14.59 8.41L23 11L14.59 13.59L12 22L9.41 13.59L1 11L9.41 8.41L12 0Z" />
+  </svg>
+);
 
 export default function DrawAnimation({
   participants,
   winners,
   drawTitle,
+  onComplete,
 }: DrawAnimationProps) {
-  const [currentPhase, setCurrentPhase] = useState<
-    "intro" | "scrolling" | "winner"
-  >("intro");
+  const { t } = useTranslation();
+  const [currentPhase, setCurrentPhase] = useState<"shuffling" | "winner">("shuffling");
   const [currentWinnerIndex, setCurrentWinnerIndex] = useState(0);
-  const [scrollingNames, setScrollingNames] = useState<string[]>([]);
+  const [shuffleIndex, setShuffleIndex] = useState(0);
+  const [isShuffling, setIsShuffling] = useState(true);
 
-  useEffect(() => {
-    // Phase 1: Intro (2s)
-    const introTimer = setTimeout(() => {
-      setCurrentPhase("scrolling");
-      // Create scrolling names list
-      const names = participants.map((p) => p.name);
-      const repeatedNames = Array(10).fill(names).flat();
-      setScrollingNames(repeatedNames);
-    }, 2000);
-
-    return () => clearTimeout(introTimer);
+  // Create shuffled participants for animation
+  const shuffledParticipants = useMemo(() => {
+    if (!participants.length) return [];
+    const shuffled = [...participants].sort(() => Math.random() - 0.5);
+    return shuffled;
   }, [participants]);
 
+  // Shuffling animation
   useEffect(() => {
-    if (currentPhase === "scrolling") {
-      // Phase 2: Scrolling (3s)
-      const scrollTimer = setTimeout(() => {
+    if (currentPhase !== "shuffling" || !isShuffling) return;
+
+    const shuffleInterval = setInterval(() => {
+      setShuffleIndex((prev) => (prev + 1) % Math.max(shuffledParticipants.length, 1));
+    }, 80); // Fast shuffle speed
+
+    // Stop shuffling and reveal winner after 3.5 seconds
+    const stopTimer = setTimeout(() => {
+      setIsShuffling(false);
+      clearInterval(shuffleInterval);
+
+      // Brief pause before winner reveal
+      setTimeout(() => {
         setCurrentPhase("winner");
-        // Fire confetti
         fireConfetti();
-      }, 3000);
+      }, 500);
+    }, 3500);
 
-      return () => clearTimeout(scrollTimer);
-    }
-  }, [currentPhase]);
+    return () => {
+      clearInterval(shuffleInterval);
+      clearTimeout(stopTimer);
+    };
+  }, [currentPhase, isShuffling, shuffledParticipants.length]);
 
+  // Handle multiple winners
   useEffect(() => {
     if (currentPhase === "winner" && winners.length > 1) {
-      // Cycle through winners if multiple
       if (currentWinnerIndex < winners.length - 1) {
         const winnerTimer = setTimeout(() => {
-          setCurrentWinnerIndex(currentWinnerIndex + 1);
+          setCurrentWinnerIndex((prev) => prev + 1);
           fireConfetti();
-        }, 3000);
+        }, 4000);
 
         return () => clearTimeout(winnerTimer);
+      } else if (onComplete) {
+        const completeTimer = setTimeout(onComplete, 4000);
+        return () => clearTimeout(completeTimer);
       }
+    } else if (currentPhase === "winner" && winners.length === 1 && onComplete) {
+      const completeTimer = setTimeout(onComplete, 4000);
+      return () => clearTimeout(completeTimer);
     }
-  }, [currentPhase, currentWinnerIndex, winners]);
+  }, [currentPhase, currentWinnerIndex, winners.length, onComplete]);
 
   const fireConfetti = () => {
     const duration = 3000;
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
-
-    const randomInRange = (min: number, max: number) => {
-      return Math.random() * (max - min) + min;
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 100,
+      colors: ["#ec4899", "#7c3aed", "#a855f7", "#ffffff", "#ffd700"],
     };
+
+    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
     const interval = setInterval(() => {
       const timeLeft = animationEnd - Date.now();
-
-      if (timeLeft <= 0) {
-        return clearInterval(interval);
-      }
+      if (timeLeft <= 0) return clearInterval(interval);
 
       const particleCount = 50 * (timeLeft / duration);
 
@@ -92,170 +116,252 @@ export default function DrawAnimation({
     }, 250);
   };
 
+  const currentShuffleParticipant = shuffledParticipants[shuffleIndex] || participants[0];
+  const currentWinner = winners[currentWinnerIndex];
+
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-primary-600 via-accent-600 to-primary-900 flex items-center justify-center overflow-hidden">
-      <div className="w-full max-w-md mx-auto px-4">
-        {/* Story Format Container (9:16 aspect ratio) */}
-        <div className="aspect-[9/16] bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden relative">
-          <AnimatePresence mode="wait">
-            {/* Phase 1: Intro */}
-            {currentPhase === "intro" && (
-              <motion.div
-                key="intro"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
+    <div className="fixed inset-0 bg-bg-primary flex items-center justify-center overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          animate={{
+            x: [0, 100, 0, -100, 0],
+            y: [0, -50, 100, 50, 0],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-primary/30 rounded-full blur-[150px]"
+        />
+        <motion.div
+          animate={{
+            x: [0, -100, 0, 100, 0],
+            y: [0, 50, -100, -50, 0],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+          className="absolute top-1/3 left-1/3 w-[500px] h-[500px] bg-accent-secondary/30 rounded-full blur-[150px]"
+        />
+      </div>
+
+      <div className="relative z-10 w-full max-w-2xl mx-auto px-4">
+        <AnimatePresence mode="wait">
+          {/* Shuffling Phase */}
+          {currentPhase === "shuffling" && (
+            <motion.div
+              key="shuffling"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="text-center"
+            >
+              {/* Title */}
+              <motion.p
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="text-2xl text-ink-secondary mb-12"
               >
+                {t("draw.shuffling", "Mélange des participants...")}
+              </motion.p>
+
+              {/* Shuffling Avatar Card */}
+              <div className="relative">
                 <motion.div
                   animate={{
-                    rotate: [0, 360],
-                    scale: [1, 1.2, 1],
+                    scale: [1, 1.02, 1],
+                    opacity: [0.8, 1, 0.8],
                   }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="mb-8"
+                  transition={{ duration: 0.3, repeat: Infinity }}
+                  className="flex flex-col items-center"
                 >
-                  <Trophy className="w-24 h-24 text-white" />
-                </motion.div>
-                <h1 className="text-4xl font-bold text-white mb-4">
-                  {drawTitle}
-                </h1>
-                <p className="text-2xl text-white/80">Drawing Winners...</p>
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                  className="mt-8"
-                >
-                  <Sparkles className="w-12 h-12 text-yellow-300" />
-                </motion.div>
-              </motion.div>
-            )}
-
-            {/* Phase 2: Scrolling Names */}
-            {currentPhase === "scrolling" && (
-              <motion.div
-                key="scrolling"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden"
-              >
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="relative h-full w-full flex flex-col justify-center items-center py-20">
-                    {/* Gradient overlays */}
-                    <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-white/10 to-transparent z-10"></div>
-                    <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/10 to-transparent z-10"></div>
-
-                    {/* Scrolling names */}
-                    <motion.div
-                      animate={{
-                        y: [0, -1000],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "linear",
-                      }}
-                      className="space-y-6"
-                    >
-                      {scrollingNames.map((name, index) => (
-                        <div
-                          key={index}
-                          className="text-3xl font-bold text-white text-center opacity-80"
-                        >
-                          {name}
+                  {/* Avatar */}
+                  <div className="relative mb-6">
+                    <div className="w-28 h-28 rounded-full bg-bg-elevated border-2 border-accent-secondary/50 overflow-hidden">
+                      {currentShuffleParticipant?.avatar ? (
+                        <img
+                          src={currentShuffleParticipant.avatar}
+                          alt=""
+                          className="w-full h-full object-cover opacity-70"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-4xl text-ink-muted">
+                          {currentShuffleParticipant?.name?.charAt(0) || "?"}
                         </div>
-                      ))}
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <motion.h2
+                    key={shuffleIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 0.7, y: 0 }}
+                    className="text-3xl font-bold text-white/70 mb-2"
+                  >
+                    {currentShuffleParticipant?.name || "..."}
+                  </motion.h2>
+
+                  {/* Username */}
+                  <motion.p
+                    key={`username-${shuffleIndex}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 0.5 }}
+                    className="text-lg text-ink-muted"
+                  >
+                    @{currentShuffleParticipant?.username || "..."}
+                  </motion.p>
+                </motion.div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Winner Reveal Phase */}
+          {currentPhase === "winner" && currentWinner && (
+            <motion.div
+              key={`winner-${currentWinnerIndex}`}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="text-center"
+            >
+              {/* Winner Title */}
+              <motion.div
+                initial={{ y: -20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.2 }}
+                className="flex items-center justify-center gap-3 mb-8"
+              >
+                <Trophy className="w-8 h-8 text-accent-primary" />
+                <h1 className="text-3xl md:text-4xl font-bold text-gradient">
+                  {winners.length > 1
+                    ? t("draw.winnerNumber", "Gagnant #{{number}} sélectionné !", { number: currentWinnerIndex + 1 })
+                    : t("draw.winnerSelected", "Gagnant sélectionné !")}
+                </h1>
+                <Trophy className="w-8 h-8 text-accent-primary" />
+              </motion.div>
+
+              {/* Winner Card */}
+              <motion.div
+                initial={{ y: 30, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="relative"
+              >
+                {/* Glowing border card */}
+                <div className="relative p-[2px] rounded-2xl bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary">
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary blur-lg opacity-50" />
+
+                  {/* Card content */}
+                  <div className="relative bg-bg-card rounded-2xl p-8 md:p-12">
+                    {/* Sparkle decorations */}
+                    <motion.div
+                      animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                      className="absolute top-6 left-6"
+                    >
+                      <SparkleIcon className="w-5 h-5 text-accent-secondary/60" />
                     </motion.div>
+                    <motion.div
+                      animate={{ rotate: -360, scale: [1, 1.3, 1] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="absolute top-6 right-6"
+                    >
+                      <SparkleIcon className="w-6 h-6 text-accent-primary/60" />
+                    </motion.div>
+                    <motion.div
+                      animate={{ rotate: 360, scale: [1, 1.2, 1] }}
+                      transition={{ duration: 3.5, repeat: Infinity }}
+                      className="absolute bottom-6 left-6"
+                    >
+                      <SparkleIcon className="w-4 h-4 text-accent-primary/50" />
+                    </motion.div>
+                    <motion.div
+                      animate={{ rotate: -360, scale: [1, 1.4, 1] }}
+                      transition={{ duration: 5, repeat: Infinity }}
+                      className="absolute bottom-6 right-6"
+                    >
+                      <SparkleIcon className="w-5 h-5 text-accent-secondary/50" />
+                    </motion.div>
+
+                    {/* Winner Avatar */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ delay: 0.6, type: "spring", stiffness: 200 }}
+                      className="relative w-32 h-32 mx-auto mb-6"
+                    >
+                      {/* Purple ring */}
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-secondary to-accent-tertiary p-1">
+                        <div className="w-full h-full rounded-full bg-bg-card overflow-hidden">
+                          {currentWinner.participant.avatar ? (
+                            <img
+                              src={currentWinner.participant.avatar}
+                              alt={currentWinner.participant.name}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-5xl text-white bg-bg-elevated">
+                              {currentWinner.participant.name.charAt(0)}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Trophy badge */}
+                      <motion.div
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ delay: 0.9, type: "spring" }}
+                        className="absolute -top-1 -right-1 w-10 h-10 rounded-full bg-accent-primary flex items-center justify-center shadow-lg"
+                      >
+                        <Trophy className="w-5 h-5 text-white" />
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Winner Name */}
+                    <motion.h2
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.8 }}
+                      className="text-3xl md:text-4xl font-bold text-gradient mb-2"
+                    >
+                      {currentWinner.participant.name}
+                    </motion.h2>
+
+                    {/* Username */}
+                    <motion.p
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 1 }}
+                      className="text-lg text-ink-secondary"
+                    >
+                      @{currentWinner.participant.username}
+                    </motion.p>
                   </div>
                 </div>
               </motion.div>
-            )}
 
-            {/* Phase 3: Winner Reveal */}
-            {currentPhase === "winner" && winners[currentWinnerIndex] && (
-              <motion.div
-                key={`winner-${currentWinnerIndex}`}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.5 }}
-                className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center"
-              >
-                <motion.div
-                  animate={{
-                    rotate: [0, 10, -10, 10, 0],
-                    scale: [1, 1.1, 1],
-                  }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                  }}
-                  className="mb-8"
+              {/* Next winner indicator */}
+              {winners.length > 1 && currentWinnerIndex < winners.length - 1 && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2 }}
+                  className="mt-8 text-ink-muted text-sm"
                 >
-                  <Trophy className="w-32 h-32 text-yellow-300" />
-                </motion.div>
-
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <h2 className="text-2xl font-semibold text-white/80 mb-4">
-                    {winners.length > 1
-                      ? `Winner #${currentWinnerIndex + 1}`
-                      : "Winner"}
-                  </h2>
-
-                  {winners[currentWinnerIndex].participant.avatar && (
-                    <motion.img
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      transition={{ delay: 0.5, type: "spring" }}
-                      src={winners[currentWinnerIndex].participant.avatar}
-                      alt={winners[currentWinnerIndex].participant.name}
-                      className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-white shadow-2xl"
-                    />
-                  )}
-
-                  <motion.h1
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.7 }}
-                    className="text-5xl font-bold text-white mb-4"
-                  >
-                    {winners[currentWinnerIndex].participant.name}
-                  </motion.h1>
-
-                  <motion.p
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.9 }}
-                    className="text-2xl text-white/80"
-                  >
-                    @{winners[currentWinnerIndex].participant.username}
-                  </motion.p>
-                </motion.div>
-
-                {winners.length > 1 &&
-                  currentWinnerIndex < winners.length - 1 && (
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 2 }}
-                      className="absolute bottom-8 text-white/60 text-sm"
-                    >
-                      Next winner in 3 seconds...
-                    </motion.p>
-                  )}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
+                  {t("draw.nextWinner", "Prochain gagnant dans 3 secondes...")}
+                </motion.p>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

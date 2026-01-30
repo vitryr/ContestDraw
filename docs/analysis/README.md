@@ -1,6 +1,6 @@
-# ContestDraw Codebase Analysis Documentation
+# Cleack Codebase Analysis Documentation
 
-This directory contains comprehensive analysis of the ContestDraw application codebase, designed to help agents understand the project structure, identify issues, and implement fixes efficiently.
+This directory contains comprehensive analysis of the Cleack application codebase, designed to help agents understand the project structure, identify issues, and implement fixes efficiently.
 
 ## Documents Included
 
@@ -134,7 +134,7 @@ Winston Logging | Stripe 19.3 | Nodemailer 6.9
 
 **This Analysis:**
 ```
-/Users/romainvitry/Documents/Dev/ContestDraw/docs/analysis/
+/Users/romainvitry/Documents/Dev/Cleack/docs/analysis/
 ├── README.md (this file)
 ├── CODEBASE_ANALYSIS.md (comprehensive analysis)
 └── AGENT_QUICK_REFERENCE.md (quick start guide)
@@ -142,7 +142,7 @@ Winston Logging | Stripe 19.3 | Nodemailer 6.9
 
 **Source Code:**
 ```
-/Users/romainvitry/Documents/Dev/ContestDraw/
+/Users/romainvitry/Documents/Dev/Cleack/
 ├── frontend-web/src/     (React app)
 ├── backend/src/          (Express API)
 ├── mobile/               (React Native)
@@ -154,7 +154,7 @@ Winston Logging | Stripe 19.3 | Nodemailer 6.9
 
 **Analysis Tool:** Claude Code Codebase Analysis
 **Analysis Date:** 2025-11-06
-**Repository:** ContestDraw (Full Stack)
+**Repository:** Cleack (Full Stack)
 **Scope:** Complete frontend and backend analysis
 
 ## Next Steps for Teams

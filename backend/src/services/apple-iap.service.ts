@@ -31,13 +31,13 @@ export class AppleIAPService {
   private readonly IOS_MARKUP = 1.3; // +30% Apple commission
 
   private readonly PRODUCT_IDS = {
-    ONE_SHOT: "com.contestdraw.credits.oneshot",
-    PACK_5: "com.contestdraw.credits.pack5",
-    PACK_10: "com.contestdraw.credits.pack10",
-    PACK_20: "com.contestdraw.credits.pack20",
-    MONTHLY_SUB: "com.contestdraw.subscription.monthly",
-    ANNUAL_SUB: "com.contestdraw.subscription.annual",
-    ENTERPRISE_SUB: "com.contestdraw.subscription.enterprise",
+    ONE_SHOT: "com.cleack.credits.oneshot",
+    PACK_5: "com.cleack.credits.pack5",
+    PACK_10: "com.cleack.credits.pack10",
+    PACK_20: "com.cleack.credits.pack20",
+    MONTHLY_SUB: "com.cleack.subscription.monthly",
+    ANNUAL_SUB: "com.cleack.subscription.annual",
+    ENTERPRISE_SUB: "com.cleack.subscription.enterprise",
   };
 
   private readonly PRODUCT_CREDITS: Record<string, number> = {

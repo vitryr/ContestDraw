@@ -1,16 +1,12 @@
 import { motion } from "framer-motion";
-import { Trophy, Download, ExternalLink } from "lucide-react";
+import { Trophy, ExternalLink } from "lucide-react";
 import type { Winner } from "../types";
 
 interface WinnerCardProps {
   winner: Winner;
-  onDownloadCertificate: () => void;
 }
 
-export default function WinnerCard({
-  winner,
-  onDownloadCertificate,
-}: WinnerCardProps) {
+export default function WinnerCard({ winner }: WinnerCardProps) {
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -23,7 +19,7 @@ export default function WinnerCard({
         </span>
       </div>
 
-      <div className="flex flex-col items-center text-center mb-6">
+      <div className="flex flex-col items-center text-center mb-4">
         {winner.participant.avatar ? (
           <img
             src={winner.participant.avatar}
@@ -48,39 +44,16 @@ export default function WinnerCard({
         </span>
       </div>
 
-      <div className="space-y-2">
-        <button
-          onClick={onDownloadCertificate}
-          className="w-full btn-primary text-sm py-2"
+      {winner.participant.platform === "instagram" && (
+        <a
+          href={`https://instagram.com/${winner.participant.username}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full btn-secondary text-sm py-2 block text-center"
         >
-          <Download className="w-4 h-4 mr-2 inline" />
-          Download Certificate
-        </button>
-
-        {winner.participant.platform === "instagram" && (
-          <a
-            href={`https://instagram.com/${winner.participant.username}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full btn-secondary text-sm py-2 block text-center"
-          >
-            <ExternalLink className="w-4 h-4 mr-2 inline" />
-            View Profile
-          </a>
-        )}
-      </div>
-
-      {winner.certificateUrl && (
-        <div className="mt-4 pt-4 border-t border-gray-200">
-          <a
-            href={winner.certificateUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-primary-600 hover:text-primary-700 font-medium"
-          >
-            View Certificate →
-          </a>
-        </div>
+          <ExternalLink className="w-4 h-4 mr-2 inline" />
+          View Profile
+        </a>
       )}
     </motion.div>
   );

@@ -59,6 +59,59 @@ export const paymentsController = {
   },
 
   /**
+   * Create checkout session for credit pack purchase
+   */
+  createCreditPackSession: async (req: Request, res: Response) => {
+    try {
+      const { packId, credits, price, name } = req.body;
+      const userId = req.user?.id;
+
+      if (!userId) {
+        return res.status(401).json({
+          status: "error",
+          message: "Unauthorized",
+        });
+      }
+
+      if (!packId || !credits || !price) {
+        return res.status(400).json({
+          status: "error",
+          message: "Pack ID, credits, and price are required",
+        });
+      }
+
+      const successUrl = `${config.server.frontendUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}`;
+      const cancelUrl = `${config.server.frontendUrl}/payment/cancel`;
+
+      const session = await stripeService.createCreditPackSession(
+        userId,
+        packId,
+        credits,
+        Math.round(price * 100), // Convert to cents
+        name || `${credits} Credits Pack`,
+        successUrl,
+        cancelUrl,
+      );
+
+      res.status(200).json({
+        status: "success",
+        data: {
+          sessionId: session.id,
+          url: session.url,
+        },
+      });
+    } catch (error: any) {
+      logger.error("Failed to create credit pack checkout session", {
+        error: error.message,
+      });
+      res.status(500).json({
+        status: "error",
+        message: "Failed to create checkout session",
+      });
+    }
+  },
+
+  /**
    * Create checkout session for 48h pass
    */
   create48hPassSession: async (req: Request, res: Response) => {

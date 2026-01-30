@@ -17,17 +17,25 @@ router.get("/me", usersController.getCurrentUser);
 
 /**
  * PATCH /api/users/me
- * Update current user profile
+ * Update current user profile (name only)
  */
 router.patch(
   "/me",
   validate([
     body("firstName").optional().trim().isLength({ min: 1, max: 50 }),
     body("lastName").optional().trim().isLength({ min: 1, max: 50 }),
-    body("language").optional().isIn(["en", "fr", "es", "de"]),
-    body("timezone").optional().trim(),
   ]),
   usersController.updateCurrentUser,
+);
+
+/**
+ * POST /api/users/me/request-email-change
+ * Request email address change (sends confirmation email)
+ */
+router.post(
+  "/me/request-email-change",
+  validate([body("newEmail").isEmail().withMessage("Valid email is required")]),
+  usersController.requestEmailChange,
 );
 
 /**

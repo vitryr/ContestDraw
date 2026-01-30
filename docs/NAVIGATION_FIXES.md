@@ -1,7 +1,7 @@
 # Navigation and Anchor Link Fixes - Complete Documentation
 
 ## Overview
-This document details all fixes applied to anchor links and page navigation on the ContestDraw home page and throughout the application.
+This document details all fixes applied to anchor links and page navigation on the Cleack home page and throughout the application.
 
 ## Issues Identified
 
@@ -23,7 +23,7 @@ This document details all fixes applied to anchor links and page navigation on t
 ## Solutions Implemented
 
 ### 1. Smooth Scroll Utility ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/utils/scrollUtils.ts`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/utils/scrollUtils.ts`
 
 Created a reusable utility module with three key functions:
 
@@ -57,7 +57,7 @@ import { handleAnchorClick } from '../utils/scrollUtils';
 ```
 
 ### 2. LandingPage Fixes ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/pages/LandingPage.tsx`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/pages/LandingPage.tsx`
 
 #### Changes:
 1. **Imported scrollUtils**:
@@ -73,7 +73,7 @@ import { handleAnchorClick } from '../utils/scrollUtils';
 **Impact**: Users now experience smooth scrolling when clicking "Learn More" button in hero section.
 
 ### 3. Layout Footer Navigation Fixes ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/components/Layout.tsx`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/components/Layout.tsx`
 
 #### Product Section:
 1. **Pricing**: Already using `<Link to="/pricing">` ✅
@@ -86,13 +86,13 @@ import { handleAnchorClick } from '../utils/scrollUtils';
 
 #### Company Section:
 1. **About**:
-   - Opens email client: `mailto:contact@contestdraw.com`
+   - Opens email client: `mailto:contact@cleack.io`
    - Prevents default and uses `window.location.href`
 2. **Blog**:
-   - External link: `https://blog.contestdraw.com`
+   - External link: `https://blog.cleack.io`
    - Opens in new tab: `target="_blank" rel="noopener noreferrer"`
 3. **Contact**:
-   - Direct mailto link: `mailto:contact@contestdraw.com`
+   - Direct mailto link: `mailto:contact@cleack.io`
 
 #### Legal Section:
 1. **Privacy**: Routes to `/privacy` page
@@ -102,7 +102,7 @@ import { handleAnchorClick } from '../utils/scrollUtils';
 **Note**: Privacy, Terms, and Security pages need to be created. Routes added to App.tsx.
 
 ### 4. FAQ Page Created ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/pages/FAQPage.tsx`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/pages/FAQPage.tsx`
 
 Comprehensive FAQ page with:
 - **45+ frequently asked questions**
@@ -127,7 +127,7 @@ Comprehensive FAQ page with:
 **Route**: `/faq`
 
 ### 5. Smooth Scroll CSS ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/index.css`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/index.css`
 
 Added global CSS rule:
 ```css
@@ -139,7 +139,7 @@ html {
 **Purpose**: Provides native smooth scrolling for all anchor links as fallback/enhancement.
 
 ### 6. App Router Updated ✅
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/App.tsx`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/App.tsx`
 
 #### Changes:
 1. **Imported FAQPage**: `import FAQPage from './pages/FAQPage';`
@@ -185,15 +185,15 @@ html {
 ## Files Modified
 
 ### Created:
-1. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/utils/scrollUtils.ts`
-2. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/pages/FAQPage.tsx` (already existed, now linked)
-3. `/Users/romainvitry/Documents/Dev/ContestDraw/docs/NAVIGATION_FIXES.md` (this file)
+1. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/utils/scrollUtils.ts`
+2. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/pages/FAQPage.tsx` (already existed, now linked)
+3. `/Users/romainvitry/Documents/Dev/Cleack/docs/NAVIGATION_FIXES.md` (this file)
 
 ### Modified:
-1. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/pages/LandingPage.tsx`
-2. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/components/Layout.tsx`
-3. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/App.tsx`
-4. `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/src/index.css`
+1. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/pages/LandingPage.tsx`
+2. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/components/Layout.tsx`
+3. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/App.tsx`
+4. `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/src/index.css`
 
 ## Next Steps (Recommendations)
 
@@ -306,7 +306,7 @@ The codebase is now more maintainable, user-friendly, and follows React best pra
 ## Support
 
 For questions or issues:
-- Email: contact@contestdraw.com
+- Email: contact@cleack.io
 - Documentation: /faq
 - GitHub Issues: [Repository URL]
 

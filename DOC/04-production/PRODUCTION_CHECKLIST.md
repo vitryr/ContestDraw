@@ -1,6 +1,6 @@
 # ✅ Production Checklist
 
-> Checklist complète avant mise en production de ContestDraw
+> Checklist complète avant mise en production de Cleack
 
 ---
 
@@ -11,7 +11,7 @@
 - [ ] PostgreSQL managé avec backup automatique
 - [ ] Redis configuré
 - [ ] SSL/HTTPS sur tous les domaines
-- [ ] DNS configuré (contestdraw.com, api.contestdraw.com)
+- [ ] DNS configuré (cleack.io, api.cleack.io)
 
 ### Paiements
 - [ ] Compte Stripe vérifié (KYC complété)
@@ -26,7 +26,7 @@
 - [ ] Cookies sécurisés (HttpOnly, Secure, SameSite)
 
 ### Email
-- [ ] Domaine vérifié dans Brevo
+- [ ] Domaine vérifié dans Resend
 - [ ] Templates emails créés (welcome, reset password, receipt)
 - [ ] SPF/DKIM/DMARC configurés
 

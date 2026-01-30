@@ -6,6 +6,7 @@ import {
 } from "../../types";
 import { asyncHandler, AppError } from "../../middleware/error.middleware";
 import { logger } from "../../utils/logger";
+import { prisma } from "../../utils/prisma";
 
 /**
  * GET /api/credits/balance
@@ -17,15 +18,37 @@ export const getBalance = asyncHandler(
       throw new AppError("User not authenticated", 401);
     }
 
-    // In production, fetch from database
+    // Fetch real balance from database
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      select: {
+        credits: true,
+        subscription: {
+          select: {
+            status: true,
+            planId: true,
+            monthlyCredits: true,
+            currentPeriodEnd: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      throw new AppError("User not found", 404);
+    }
+
+    const subscriptionActive = user.subscription?.status === "ACTIVE";
+    const subscriptionCredits = subscriptionActive ? (user.subscription?.monthlyCredits || 0) : 0;
+
     const balance = {
       userId: req.user.id,
-      credits: 150,
-      subscriptionCredits: 50,
-      totalCredits: 200,
-      subscriptionActive: true,
-      subscriptionPlan: "pro",
-      nextRenewal: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
+      credits: user.credits,
+      subscriptionCredits,
+      totalCredits: user.credits + subscriptionCredits,
+      subscriptionActive,
+      subscriptionPlan: user.subscription?.planId || null,
+      nextRenewal: user.subscription?.currentPeriodEnd || null,
     };
 
     res.status(200).json({
@@ -89,42 +112,46 @@ export const getHistory = asyncHandler(
 
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 20;
-    const type = req.query.type as string | undefined;
+    const type = req.query.type as CreditTransactionType | undefined;
 
-    // In production, fetch from database with pagination
-    const transactions = [
-      {
-        id: "txn_001",
-        type: CreditTransactionType.PURCHASE,
-        credits: 100,
-        amount: 9.99,
-        currency: "USD",
-        description: "Starter Pack",
-        createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
-      },
-      {
-        id: "txn_002",
-        type: CreditTransactionType.CONSUMPTION,
-        credits: -10,
-        description: "Instagram Draw - 500 participants",
-        createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
-      },
-      {
-        id: "txn_003",
-        type: CreditTransactionType.SUBSCRIPTION,
-        credits: 50,
-        description: "Monthly Pro Subscription",
-        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
-      },
-    ];
+    const skip = (page - 1) * limit;
+
+    // Build where clause
+    const where: any = { userId: req.user.id };
+    if (type) {
+      where.type = type;
+    }
+
+    // Fetch from database with pagination
+    const [transactions, total] = await Promise.all([
+      prisma.creditTransaction.findMany({
+        where,
+        orderBy: { createdAt: "desc" },
+        skip,
+        take: limit,
+        select: {
+          id: true,
+          type: true,
+          credits: true,
+          amount: true,
+          currency: true,
+          description: true,
+          createdAt: true,
+        },
+      }),
+      prisma.creditTransaction.count({ where }),
+    ]);
 
     const response: PaginatedResponse<any> = {
-      data: transactions,
+      data: transactions.map((t) => ({
+        ...t,
+        amount: t.amount ? Number(t.amount) : null,
+      })),
       meta: {
-        total: transactions.length,
+        total,
         page,
         limit,
-        totalPages: Math.ceil(transactions.length / limit),
+        totalPages: Math.ceil(total / limit),
       },
     };
 

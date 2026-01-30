@@ -1,6 +1,6 @@
 # Social Platform Integration Guide
 
-Learn how to connect and run contests on each social media platform supported by ContestDraw.
+Learn how to connect and run contests on each social media platform supported by Cleack.
 
 ## Instagram
 
@@ -57,7 +57,7 @@ Helps prevent fake/bot accounts (we recommend 100+ followers).
 **✅ DO:**
 - Post clear contest rules in the caption
 - Use Instagram's "Branded Content" tools if required
-- Tag ContestDraw in your story when announcing winners
+- Tag Cleack in your story when announcing winners
 - Respond to participants' comments
 
 **❌ DON'T:**
@@ -332,7 +332,7 @@ You can run parallel contests on multiple platforms:
 
 1. **Create separate draws** for each platform
 2. **Use consistent rules** across all platforms
-3. **Track results** in your ContestDraw dashboard
+3. **Track results** in your Cleack dashboard
 4. **Announce winners** simultaneously
 
 ### Cross-Platform Requirements
@@ -369,7 +369,7 @@ Example: "Follow us on Instagram AND comment on YouTube"
 ## Frequently Asked Questions
 
 **Q: Can I connect multiple accounts from the same platform?**
-A: Not yet. You can only connect one account per platform per ContestDraw account. Enterprise users can contact us for multi-account support.
+A: Not yet. You can only connect one account per platform per Cleack account. Enterprise users can contact us for multi-account support.
 
 **Q: Do I need a business account?**
 A: For Instagram and TikTok, yes (for follower verification). Facebook requires a Page. Twitter and YouTube work with regular accounts.
@@ -381,7 +381,7 @@ A: We'll send you an email notification. Simply reconnect the platform in Settin
 A: Yes, your past draws remain intact. However, you won't be able to run new draws until reconnected.
 
 **Q: Are there any costs from social platforms?**
-A: No, connecting platforms is free. ContestDraw only charges credits for executing draws.
+A: No, connecting platforms is free. Cleack only charges credits for executing draws.
 
 ---
 

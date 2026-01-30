@@ -1,8 +1,8 @@
-# ContestDraw - Fair & Automated Social Media Contest Platform
+# Cleack - Fair & Automated Social Media Contest Platform
 
-![ContestDraw Logo](https://contestdraw.com/logo.png)
+![Cleack Logo](https://cleack.io/logo.png)
 
-**ContestDraw** is a SaaS platform that automates social media contest draws across Instagram, Facebook, Twitter, TikTok, and YouTube. Run fair, transparent, and GDPR-compliant giveaways with advanced filtering to ensure genuine participants.
+**Cleack** is a SaaS platform that automates social media contest draws across Instagram, Facebook, Twitter, TikTok, and YouTube. Run fair, transparent, and GDPR-compliant giveaways with advanced filtering to ensure genuine participants.
 
 ## 🚀 Features
 
@@ -28,7 +28,7 @@
 
 ### For Users
 
-1. **Sign up**: [https://contestdraw.com/register](https://contestdraw.com/register)
+1. **Sign up**: [https://cleack.io/register](https://cleack.io/register)
 2. **Connect your social media account**
 3. **Create a draw** with your contest post URL
 4. **Configure filters** (optional)
@@ -40,8 +40,8 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/contestdraw.git
-cd contestdraw
+git clone https://github.com/yourusername/cleack.git
+cd cleack
 
 # Install dependencies
 npm install
@@ -61,7 +61,7 @@ npm run dev
 
 ## 🏗️ Architecture
 
-ContestDraw is built with:
+Cleack is built with:
 
 **Backend:**
 - Node.js + Express
@@ -112,11 +112,11 @@ ContestDraw is built with:
 
 ## 🔌 API
 
-ContestDraw provides a REST API for integration:
+Cleack provides a REST API for integration:
 
 ```javascript
 // Example: Create a draw via API
-const response = await fetch('https://api.contestdraw.com/v1/draws', {
+const response = await fetch('https://api.cleack.io/v1/draws', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_TOKEN',
@@ -203,7 +203,7 @@ npm run deploy:production
 ## 📊 Project Structure
 
 ```
-contestdraw/
+cleack/
 ├── backend/           # Node.js backend
 │   ├── src/
 │   │   ├── api/      # API routes
@@ -282,22 +282,22 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 
 ## 🐛 Bug Reports & Feature Requests
 
-- **Bugs**: [Report an issue](https://github.com/yourusername/contestdraw/issues/new?template=bug_report.md)
-- **Features**: [Request a feature](https://github.com/yourusername/contestdraw/issues/new?template=feature_request.md)
-- **Security**: Email security@contestdraw.com (do not create public issues)
+- **Bugs**: [Report an issue](https://github.com/yourusername/cleack/issues/new?template=bug_report.md)
+- **Features**: [Request a feature](https://github.com/yourusername/cleack/issues/new?template=feature_request.md)
+- **Security**: Email security@cleack.io (do not create public issues)
 
 ## 📜 License
 
-Copyright © 2025 ContestDraw. All rights reserved.
+Copyright © 2025 Cleack. All rights reserved.
 
 This project is proprietary software. See [LICENSE](./LICENSE) for details.
 
 ## 📞 Support
 
-- 📧 **Email**: support@contestdraw.com
-- 💬 **Live Chat**: [https://contestdraw.com](https://contestdraw.com) (Pro users)
-- 📖 **Documentation**: [https://docs.contestdraw.com](https://docs.contestdraw.com)
-- 🐦 **Twitter**: [@ContestDraw](https://twitter.com/contestdraw)
+- 📧 **Email**: support@cleack.io
+- 💬 **Live Chat**: [https://cleack.io](https://cleack.io) (Pro users)
+- 📖 **Documentation**: [https://docs.cleack.io](https://docs.cleack.io)
+- 🐦 **Twitter**: [@Cleack](https://twitter.com/cleack)
 
 ## 🙏 Acknowledgments
 
@@ -313,6 +313,6 @@ Special thanks to all our [contributors](./CONTRIBUTORS.md)!
 
 ---
 
-**Made with ❤️ by the ContestDraw team**
+**Made with ❤️ by the Cleack team**
 
-[Website](https://contestdraw.com) | [Documentation](https://docs.contestdraw.com) | [API](https://api.contestdraw.com) | [Status](https://status.contestdraw.com)
+[Website](https://cleack.io) | [Documentation](https://docs.cleack.io) | [API](https://api.cleack.io) | [Status](https://status.cleack.io)

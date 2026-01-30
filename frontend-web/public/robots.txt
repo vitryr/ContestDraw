@@ -1,0 +1,65 @@
+# Robots.txt for Cleack.io - DEVELOPMENT/STAGING
+# Block all crawlers until production launch
+
+# Block all search engines
+User-agent: *
+Disallow: /
+
+# Block AI/LLM crawlers specifically
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /
+
+# No sitemap until production
+# Sitemap: https://cleack.io/sitemap.xml
+
+# ============================================
+# PRODUCTION CONFIG (uncomment when ready):
+# ============================================
+# User-agent: *
+# Allow: /
+# 
+# Disallow: /api/
+# Disallow: /admin/
+# Disallow: /auth
+# Disallow: /dashboard
+# Disallow: /profile
+# Disallow: /draw/*/execute
+# Disallow: /draw/*/filters
+# Disallow: /draw/*/config
+# Disallow: /embed/
+# Disallow: /buy-credits
+# Disallow: /payment/
+# Disallow: /forgot-password
+# Disallow: /reset-password
+# Disallow: /verify-email
+# Disallow: /*?ref=
+# Disallow: /*?utm_*
+# 
+# Sitemap: https://cleack.io/sitemap.xml

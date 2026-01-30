@@ -4,10 +4,10 @@ import path from "path";
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, "../../.env") });
 
-import { emailService } from "../services/email.service";
+import { emailService } from "../services/resend-email.service";
 
 /**
- * Test script to verify Brevo email service is working
+ * Test script to verify Resend email service is working
  * Usage: npx ts-node src/scripts/test-email.ts <your-email@example.com>
  */
 async function testEmailService() {
@@ -21,10 +21,10 @@ async function testEmailService() {
     process.exit(1);
   }
 
-  console.log("\n🧪 Testing Brevo Email Service...\n");
+  console.log("\n🧪 Testing Resend Email Service...\n");
   console.log(`📧 Test email will be sent to: ${testEmail}`);
   console.log(
-    `🔑 Using Brevo API key: ${process.env.BREVO_API_KEY?.substring(0, 20)}...`,
+    `🔑 Using Resend API key: ${process.env.RESEND_API_KEY?.substring(0, 20)}...`,
   );
   console.log("");
 

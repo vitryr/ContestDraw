@@ -1,6 +1,6 @@
 # Data Protection Officer (DPO) Designation Process
 
-**ContestDraw | Internal Document**
+**Cleack | Internal Document**
 
 **Effective Date:** January 15, 2025
 **Last Updated:** January 15, 2025
@@ -10,7 +10,7 @@
 
 ## Overview
 
-This document outlines ContestDraw's Data Protection Officer (DPO) designation process, responsibilities, and communication procedures in compliance with GDPR Article 37-39.
+This document outlines Cleack's Data Protection Officer (DPO) designation process, responsibilities, and communication procedures in compliance with GDPR Article 37-39.
 
 ---
 
@@ -30,7 +30,7 @@ This document outlines ContestDraw's Data Protection Officer (DPO) designation p
 
 ## 1. DPO Designation Criteria
 
-### Is a DPO Required for ContestDraw?
+### Is a DPO Required for Cleack?
 
 **GDPR Article 37 states that a DPO is mandatory if:**
 
@@ -38,16 +38,16 @@ This document outlines ContestDraw's Data Protection Officer (DPO) designation p
 2. ✅ Core activities require regular and systematic monitoring of data subjects on a large scale
 3. ✅ Core activities consist of large-scale processing of special categories of data
 
-**ContestDraw Analysis:**
+**Cleack Analysis:**
 
-| Criterion | ContestDraw Status | Conclusion |
+| Criterion | Cleack Status | Conclusion |
 |-----------|-------------------|------------|
 | **Public Authority** | ❌ No (private SaaS company) | Not applicable |
 | **Regular & Systematic Monitoring** | ✅ Yes (ongoing giveaway participant tracking) | **DPO REQUIRED** |
 | **Large Scale** | ✅ Yes (projected 10K+ users, 50K+ draws/month) | **DPO REQUIRED** |
 | **Special Categories of Data** | ❌ No (only public social media data) | Not applicable |
 
-**Conclusion:** ContestDraw **requires a designated DPO** due to large-scale, regular, and systematic monitoring of data subjects.
+**Conclusion:** Cleack **requires a designated DPO** due to large-scale, regular, and systematic monitoring of data subjects.
 
 ---
 
@@ -61,14 +61,14 @@ This document outlines ContestDraw's Data Protection Officer (DPO) designation p
 **Location:** Paris, France
 
 **Contact Information:**
-- **Email:** dpo@contestdraw.com
+- **Email:** dpo@cleack.io
 - **Phone:** +33 1 23 45 67 89 (ext. 101)
 - **Office Hours:** Monday-Friday, 9:00 AM - 6:00 PM CET
 - **Response Time:** Within 48 hours (business days)
 
 **Postal Address:**
 ```
-ContestDraw - Data Protection Officer
+Cleack - Data Protection Officer
 123 Rue de la Paix
 75001 Paris, France
 ```
@@ -91,7 +91,7 @@ The DPO is responsible for:
 
 #### A. Informing and Advising
 
-- **Company:** Inform ContestDraw management and employees of GDPR obligations
+- **Company:** Inform Cleack management and employees of GDPR obligations
 - **Training:** Organize regular GDPR training sessions for staff
 - **Advice:** Provide advice on Data Protection Impact Assessments (DPIAs)
 - **Consultations:** Be consulted on all data protection matters
@@ -120,7 +120,7 @@ The DPO is responsible for:
 
 ---
 
-### ContestDraw-Specific Responsibilities
+### Cleack-Specific Responsibilities
 
 In addition to statutory duties, our DPO handles:
 
@@ -152,7 +152,7 @@ In addition to statutory duties, our DPO handles:
 
 **GDPR Article 38(3):** The DPO shall not receive any instructions regarding the exercise of their tasks.
 
-**ContestDraw ensures DPO independence through:**
+**Cleack ensures DPO independence through:**
 
 1. **Direct Reporting:** DPO reports directly to CEO (not to Marketing or Product)
 2. **No Conflicts of Interest:** DPO does not hold positions that determine processing purposes/means
@@ -184,7 +184,7 @@ In addition to statutory duties, our DPO handles:
 
 #### Email (Recommended)
 ```
-To: dpo@contestdraw.com
+To: dpo@cleack.io
 Subject: [GDPR Request] [Nature of Request]
 
 Body:
@@ -200,7 +200,7 @@ Body:
 
 #### Postal Mail
 ```
-ContestDraw
+Cleack
 Data Protection Officer
 123 Rue de la Paix
 75001 Paris, France
@@ -217,10 +217,10 @@ Data Protection Officer
 
 ---
 
-### For ContestDraw Employees
+### For Cleack Employees
 
 **Internal Contact:**
-- **Email:** dpo@contestdraw.com (external) or dpo@internal.contestdraw.com (internal)
+- **Email:** dpo@cleack.io (external) or dpo@internal.cleack.io (internal)
 - **Slack:** #data-protection channel
 - **Office:** Meeting room booking via Calendly
 
@@ -237,7 +237,7 @@ Data Protection Officer
 ### For Supervisory Authorities (CNIL)
 
 **CNIL can contact our DPO:**
-- **Email:** dpo@contestdraw.com
+- **Email:** dpo@cleack.io
 - **Phone:** +33 1 23 45 67 89 (ext. 101)
 - **Portal:** CNIL's online platform (registered)
 
@@ -252,7 +252,7 @@ Data Protection Officer
 ```
 Data Subject Request (DSR)
         ↓
-   DPO Receives Request (dpo@contestdraw.com)
+   DPO Receives Request (dpo@cleack.io)
         ↓
    DPO Validates Request (identity verification)
         ↓
@@ -310,7 +310,7 @@ Data Breach Detected
 
 1. **Website:**
    - Footer: "Data Protection" link → DPO contact page
-   - Privacy Policy: Section "Contact Us" → dpo@contestdraw.com
+   - Privacy Policy: Section "Contact Us" → dpo@cleack.io
    - Terms of Service: GDPR section → DPO mention
 
 2. **In-App:**
@@ -333,14 +333,14 @@ Data Breach Detected
 
 **DPO Registration with CNIL:**
 
-ContestDraw's DPO is registered with the French CNIL (Commission Nationale de l'Informatique et des Libertés):
+Cleack's DPO is registered with the French CNIL (Commission Nationale de l'Informatique et des Libertés):
 
 - **Registration Date:** [DATE]
 - **DPO Registration Number:** [NUMBER]
 - **Public Registry:** [https://www.cnil.fr/fr/recherche-dpo](https://www.cnil.fr/fr/recherche-dpo)
 
 **Verification:**
-Anyone can verify our DPO registration via CNIL's public registry by searching for "ContestDraw".
+Anyone can verify our DPO registration via CNIL's public registry by searching for "Cleack".
 
 ---
 
@@ -350,7 +350,7 @@ Anyone can verify our DPO registration via CNIL's public registry by searching f
 
 **GDPR Article 37(5):** The DPO shall be designated on the basis of professional qualities and, in particular, expert knowledge of data protection law and practices.
 
-**ContestDraw DPO meets these qualifications:**
+**Cleack DPO meets these qualifications:**
 
 #### Certifications
 - ✅ **CIPP/E** (Certified Information Privacy Professional - Europe) by IAPP
@@ -410,7 +410,7 @@ Anyone can verify our DPO registration via CNIL's public registry by searching f
 **Backup DPO (Temporary Coverage):**
 - **Name:** [BACKUP DPO NAME]
 - **Position:** Legal Counsel
-- **Contact:** backup-dpo@contestdraw.com
+- **Contact:** backup-dpo@cleack.io
 
 ---
 
@@ -431,9 +431,9 @@ Anyone can verify our DPO registration via CNIL's public registry by searching f
 
 **For GDPR-related questions or data subject requests:**
 
-📧 **Email:** dpo@contestdraw.com
+📧 **Email:** dpo@cleack.io
 📞 **Phone:** +33 1 23 45 67 89 (ext. 101)
-📬 **Postal:** ContestDraw DPO, 123 Rue de la Paix, 75001 Paris, France
+📬 **Postal:** Cleack DPO, 123 Rue de la Paix, 75001 Paris, France
 
 **Response Time:** Within 30 days (GDPR requirement)
 

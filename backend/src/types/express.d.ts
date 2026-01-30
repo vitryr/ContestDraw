@@ -1,16 +1,12 @@
-/**
- * Type declarations for Express
- * Extends Express Request to include authenticated user
- */
+import { User as PrismaUser } from "@prisma/client";
 
 declare global {
   namespace Express {
-    interface User {
+    interface User extends Partial<PrismaUser> {
       id: string;
       email: string;
-      role: string;
+      role?: string;
     }
-
     interface Request {
       user?: User;
     }

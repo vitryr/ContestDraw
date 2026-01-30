@@ -2,7 +2,7 @@
 
 ## Overview
 
-ContestDraw utilise GitHub Actions pour l'intégration continue (CI) et le déploiement continu (CD).
+Cleack utilise GitHub Actions pour l'intégration continue (CI) et le déploiement continu (CD).
 
 ## Workflows
 
@@ -118,7 +118,7 @@ npm run typecheck        # TypeScript check
 ## Structure des Tests
 
 ```
-contestdraw/
+cleack/
 ├── backend/
 │   ├── src/
 │   │   ├── services/

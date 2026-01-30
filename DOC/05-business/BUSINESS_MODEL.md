@@ -101,9 +101,9 @@
    - "RGPD et jeux concours: le guide complet"
 
 2. **Comparatifs**
-   - ContestDraw vs Woobox
-   - ContestDraw vs Gleam
-   - ContestDraw vs tirage manuel
+   - Cleack vs Woobox
+   - Cleack vs Gleam
+   - Cleack vs tirage manuel
 
 3. **Templates**
    - Règlement jeu concours (PDF)

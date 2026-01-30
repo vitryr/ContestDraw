@@ -1,5 +1,5 @@
 /**
- * Type declarations for sib-api-v3-sdk (Brevo Node.js SDK)
+ * Type declarations for sib-api-v3-sdk (Resend Node.js SDK)
  * The package doesn't include TypeScript definitions
  */
 declare module "sib-api-v3-sdk" {

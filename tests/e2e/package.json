@@ -1,39 +1,32 @@
 {
-  "name": "contestdraw-e2e",
+  "name": "e2e",
   "version": "1.0.0",
-  "description": "End-to-end tests for ContestDraw platform using Playwright",
+  "main": "index.js",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "test:ui": "playwright test --ui",
+    "test:signup": "playwright test specs/signup-workflow.spec.ts",
+    "test:navigation": "playwright test specs/home-navigation.spec.ts",
     "test:chromium": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
     "test:mobile": "playwright test --project='Mobile Chrome' --project='Mobile Safari'",
-    "test:registration": "playwright test specs/01-registration.spec.ts",
-    "test:auth": "playwright test specs/02-authentication.spec.ts",
-    "test:draw": "playwright test specs/04-manual-draw.spec.ts specs/06-draw-execution.spec.ts",
-    "test:payment": "playwright test specs/07-payment-credits.spec.ts specs/08-subscription.spec.ts",
-    "test:profile": "playwright test specs/13-profile-management.spec.ts",
-    "test:smoke": "playwright test --grep @smoke",
-    "test:critical": "playwright test --grep @critical",
+    "test:ui": "playwright test --ui",
     "report": "playwright show-report",
-    "codegen": "playwright codegen http://localhost:3000",
-    "install-browsers": "playwright install --with-deps"
+    "codegen": "playwright codegen http://localhost:3001"
   },
   "keywords": [
     "playwright",
     "e2e",
     "testing",
-    "automation",
-    "contestdraw"
+    "automation"
   ],
-  "author": "ContestDraw Team",
-  "license": "UNLICENSED",
+  "author": "",
+  "license": "ISC",
+  "description": "End-to-end tests for Cleack platform using Playwright",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@types/node": "^20.10.0",
-    "typescript": "^5.3.0"
+    "playwright": "^1.56.1"
   }
 }

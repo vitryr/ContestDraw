@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "ContestDraw",
-    "tagline": "Fair Contest Draws, Automated"
+    "name": "Cleack",
+    "tagline": "Fair Cleacks, Automated"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -14,7 +14,7 @@
   },
   "landing": {
     "hero": {
-      "title": "Fair Contest Draws,",
+      "title": "Fair Cleacks,",
       "titleHighlight": "Automated",
       "subtitle": "Create transparent contest draws with professional animated videos and certificates. Perfect for social media giveaways.",
       "ctaStart": "Start Free Draw",

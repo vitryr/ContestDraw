@@ -12,7 +12,7 @@ Vous voulez organiser un concours Instagram mais craignez les implications RGPD 
 
 Dans ce guide complet, nous vous expliquons **tout ce que vous devez savoir** pour organiser des concours Instagram 100% conformes RGPD en 2025, étape par étape.
 
-**TL;DR:** Utilisez un outil conforme GDPR (hébergement EU, DPO désigné), rédigez un règlement clair, informez les participants, et conservez les preuves. ContestDraw gère tout ça automatiquement.
+**TL;DR:** Utilisez un outil conforme GDPR (hébergement EU, DPO désigné), rédigez un règlement clair, informez les participants, et conservez les preuves. Cleack gère tout ça automatiquement.
 
 ---
 
@@ -146,7 +146,7 @@ Lorsque vous organisez un concours Instagram, vous collectez des **données pers
 - **Gagnants:** 1 an (preuve en cas de litige)
 - **Certificats de tirage:** 3 ans (obligation légale)
 
-**ContestDraw applique ces durées automatiquement.**
+**Cleack applique ces durées automatiquement.**
 
 ---
 
@@ -163,7 +163,7 @@ Lorsque vous organisez un concours Instagram, vous collectez des **données pers
 - 🛡️ Hébergement sécurisé (EU de préférence)
 - 🚨 Notification en cas de faille (72h)
 
-**ContestDraw sécurise vos données avec:**
+**Cleack sécurise vos données avec:**
 - Chiffrement AES-256
 - Hébergement AWS EU (Frankfurt)
 - OAuth2 (pas de stockage de mots de passe)
@@ -184,7 +184,7 @@ Lorsque vous organisez un concours Instagram, vous collectez des **données pers
 - ✅ Preuve de notification du gagnant
 - ✅ DPA (Data Processing Agreement) avec l'outil
 
-**ContestDraw génère automatiquement:**
+**Cleack génère automatiquement:**
 - Certificat PDF avec hash SHA-256
 - Historique complet des tirages
 - DPA signé électroniquement
@@ -207,7 +207,7 @@ Lorsque vous organisez un concours Instagram, vous collectez des **données pers
 - [ ] Certificats de tirage fournis
 - [ ] Suppression automatique des données
 
-**Recommandé:** ContestDraw (conforme RGPD, hébergement France)
+**Recommandé:** Cleack (conforme RGPD, hébergement France)
 
 ---
 
@@ -310,7 +310,7 @@ Remise du lot: [MODALITÉS]
 
 #### Article 5: Sélection du Gagnant
 ```
-Le gagnant sera désigné par tirage au sort aléatoire via l'outil ContestDraw (certifié conforme RGPD).
+Le gagnant sera désigné par tirage au sort aléatoire via l'outil Cleack (certifié conforme RGPD).
 
 Un certificat PDF avec hash cryptographique sera généré comme preuve d'équité.
 
@@ -338,7 +338,7 @@ Données collectées:
 
 Destinataires:
 - Organisateur du concours
-- Outil de tirage au sort: ContestDraw (sous-traitant)
+- Outil de tirage au sort: Cleack (sous-traitant)
 - Transporteur (uniquement pour livraison du lot)
 
 Durée de conservation:
@@ -396,9 +396,9 @@ Tout litige sera soumis aux tribunaux compétents de [VILLE].
 
 ### 📄 Télécharger un Modèle de Règlement Prêt à l'Emploi
 
-ContestDraw propose un **générateur de règlement automatique** conforme RGPD:
+Cleack propose un **générateur de règlement automatique** conforme RGPD:
 
-👉 [Accéder au générateur de règlement](https://contestdraw.com/tools/rules-generator)
+👉 [Accéder au générateur de règlement](https://cleack.io/tools/rules-generator)
 
 **Fonctionnalités:**
 - ✅ Pré-rempli avec vos informations
@@ -471,7 +471,7 @@ Si vous voulez ajouter les participants à votre newsletter:
 
 | Outil | Hébergement | DPO | Certificat | Verdict |
 |-------|-------------|-----|------------|---------|
-| **ContestDraw** | 🇫🇷 France (AWS EU) | ✅ Oui | ✅ SHA-256 | ✅ 100% conforme |
+| **Cleack** | 🇫🇷 France (AWS EU) | ✅ Oui | ✅ SHA-256 | ✅ 100% conforme |
 | Pickaw | 🇫🇷 France | ✅ Oui | ⚠️ Basique | ✅ Conforme |
 | Easypromos | 🇪🇸 Espagne | ✅ Oui | ❌ Non | ⚠️ Partiellement |
 
@@ -505,7 +505,7 @@ Depuis la décision Schrems II (2020), les transferts de données vers les USA s
 6. [ ] **Suppression automatique** des données
 7. [ ] **Support en français**
 
-**ContestDraw coche toutes les cases ✅**
+**Cleack coche toutes les cases ✅**
 
 ---
 
@@ -592,7 +592,7 @@ La CNIL peut infliger les sanctions suivantes:
 - ❌ DPO généralement pas obligatoire
 - ✅ Mais un "Référent RGPD" est recommandé
 
-**Solution ContestDraw:**
+**Solution Cleack:**
 - Nous avons un DPO désigné
 - Vous bénéficiez de notre expertise
 - Conformité garantie
@@ -622,7 +622,7 @@ La CNIL peut infliger les sanctions suivantes:
 - Suppression définitive obligatoire
 - Sauf consentement explicite pour newsletter (opt-in)
 
-**ContestDraw supprime automatiquement les données selon ces délais.**
+**Cleack supprime automatiquement les données selon ces délais.**
 
 ---
 
@@ -667,7 +667,7 @@ Données collectées:
 - Date de participation: 15/01/2025
 
 Finalité: Tirage au sort pour concours Instagram
-Destinataires: ContestDraw (outil de tirage)
+Destinataires: Cleack (outil de tirage)
 Conservation: 30 jours après le tirage (suppression automatique)
 
 Si vous souhaitez supprimer vos données immédiatement, répondez à cet email.
@@ -691,7 +691,7 @@ Cordialement,
 - Fuite de la liste des participants
 - Accès non autorisé aux données
 
-**ContestDraw en cas de faille:**
+**Cleack en cas de faille:**
 - Notification automatique sous 72h
 - Support dédié pour gérer la crise
 - Audit de sécurité immédiat
@@ -718,21 +718,21 @@ Cordialement,
 - Pas d'obligation de partage en story
 - Limite raisonnable de mentions (2-3 amis max)
 
-**ContestDraw respecte 100% les Guidelines Meta.**
+**Cleack respecte 100% les Guidelines Meta.**
 
 ---
 
 ## Conclusion: 5 Actions Immédiates pour être Conforme RGPD
 
 **1. Choisir un outil conforme RGPD**
-👉 [Essayer ContestDraw gratuitement](https://contestdraw.com)
+👉 [Essayer Cleack gratuitement](https://cleack.io)
 - Hébergement France (AWS EU)
 - DPO désigné
 - Certificats SHA-256
 - Suppression automatique des données
 
 **2. Créer un règlement complet**
-👉 [Générateur de règlement gratuit](https://contestdraw.com/tools/rules-generator)
+👉 [Générateur de règlement gratuit](https://cleack.io/tools/rules-generator)
 - Mentions RGPD obligatoires
 - Durées de conservation
 - Droits des participants
@@ -762,10 +762,10 @@ Cordialement,
 - 📋 [RGPD: Texte officiel](https://www.cnil.fr/fr/reglement-europeen-protection-donnees)
 - ⚖️ [Code de la consommation: Jeux-concours](https://www.legifrance.gouv.fr/)
 
-### Outils ContestDraw
+### Outils Cleack
 
-- 🎲 [Essayer ContestDraw gratuitement](https://contestdraw.com/register)
-- 📄 [Générateur de règlement RGPD](https://contestdraw.com/tools/rules-generator)
+- 🎲 [Essayer Cleack gratuitement](https://cleack.io/register)
+- 📄 [Générateur de règlement RGPD](https://cleack.io/tools/rules-generator)
 - 📚 [Guide complet des filtres avancés](../user-guide/filters-guide.md)
 - ❓ [FAQ complète](../user-guide/faq.md)
 
@@ -779,8 +779,8 @@ Cordialement,
 
 **Besoin d'aide pour votre conformité RGPD ?**
 
-Contactez notre équipe support: **support@contestdraw.com**
+Contactez notre équipe support: **support@cleack.io**
 
 **Dernière mise à jour:** Janvier 2025
-**Auteur:** Équipe Juridique ContestDraw (revue par DPO certifié)
+**Auteur:** Équipe Juridique Cleack (revue par DPO certifié)
 **Partager:** [Twitter](https://twitter.com/share) | [LinkedIn](https://linkedin.com/share) | [Facebook](https://facebook.com/share)

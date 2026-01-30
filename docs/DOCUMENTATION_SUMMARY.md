@@ -1,4 +1,4 @@
-# ContestDraw - Documentation & Launch Materials Summary
+# Cleack - Documentation & Launch Materials Summary
 
 **Created:** January 15, 2025
 **Status:** ✅ Complete
@@ -8,7 +8,7 @@
 
 ## Executive Summary
 
-This document provides a comprehensive overview of all documentation and launch materials created for ContestDraw, a SaaS platform for automated social media giveaways. All materials are production-ready, SEO-optimized, and GDPR-compliant.
+This document provides a comprehensive overview of all documentation and launch materials created for Cleack, a SaaS platform for automated social media giveaways. All materials are production-ready, SEO-optimized, and GDPR-compliant.
 
 ---
 
@@ -26,7 +26,7 @@ This document provides a comprehensive overview of all documentation and launch 
 ## 📁 File Structure
 
 ```
-ContestDraw/
+Cleack/
 ├── docs/
 │   ├── marketing/
 │   │   ├── landing-page.md (✅ FR/EN versions)
@@ -92,13 +92,13 @@ ContestDraw/
 **File:** `/docs/marketing/blog/top-10-instagram-giveaway-tools-fr.md`
 
 **Overview:**
-Comprehensive comparison of the top 10 Instagram giveaway tools in 2025, positioning ContestDraw as the #1 choice.
+Comprehensive comparison of the top 10 Instagram giveaway tools in 2025, positioning Cleack as the #1 choice.
 
 **Contents:**
 - **Introduction** with pain points
 - **Methodology** (8 testing criteria)
 - **Top 10 Tools** (detailed reviews):
-  1. **ContestDraw** ⭐⭐⭐⭐⭐ (4.9/5) - #1 Pick
+  1. **Cleack** ⭐⭐⭐⭐⭐ (4.9/5) - #1 Pick
   2. Pickaw ⭐⭐⭐⭐ (4.3/5)
   3. Easypromos ⭐⭐⭐⭐ (4.2/5)
   4. Woobox ⭐⭐⭐ (3.8/5)
@@ -162,7 +162,7 @@ The definitive guide to running GDPR-compliant Instagram giveaways in 2025, addr
 
 **Estimated Organic Traffic:** 300-600 visits/month
 
-**Authority Building:** This positions ContestDraw as the GDPR compliance expert
+**Authority Building:** This positions Cleack as the GDPR compliance expert
 
 ---
 
@@ -293,7 +293,7 @@ Comprehensive template for generating GDPR-compliant contest rules, available in
 - Social media caption templates included
 - Legal disclaimer & consultation recommendation
 
-**Online Tool:** Template available at [contestdraw.com/tools/rules-generator](https://contestdraw.com/tools/rules-generator)
+**Online Tool:** Template available at [cleack.io/tools/rules-generator](https://cleack.io/tools/rules-generator)
 - Auto-generates PDF
 - Multiple languages
 - Platform-specific versions
@@ -311,13 +311,13 @@ Comprehensive template for generating GDPR-compliant contest rules, available in
 **File:** `/docs/legal/dpo-designation-process.md`
 
 **Overview:**
-Internal document outlining ContestDraw's Data Protection Officer (DPO) designation, responsibilities, and procedures in compliance with GDPR Article 37-39.
+Internal document outlining Cleack's Data Protection Officer (DPO) designation, responsibilities, and procedures in compliance with GDPR Article 37-39.
 
 **Contents:**
 
 1. **DPO Designation Criteria**
    - GDPR Article 37 analysis
-   - ContestDraw evaluation (large-scale monitoring)
+   - Cleack evaluation (large-scale monitoring)
    - Conclusion: DPO required
 
 2. **Current DPO Information**
@@ -331,7 +331,7 @@ Internal document outlining ContestDraw's Data Protection Officer (DPO) designat
    - Monitoring compliance (audits, DPIAs)
    - CNIL cooperation
    - Data subject contact point
-   - ContestDraw-specific responsibilities
+   - Cleack-specific responsibilities
 
 4. **DPO Independence**
    - No conflicts of interest
@@ -378,7 +378,7 @@ Internal document outlining ContestDraw's Data Protection Officer (DPO) designat
 **File:** `/docs/LAUNCH_STRATEGY.md`
 
 **Overview:**
-Comprehensive 12-month go-to-market strategy covering all aspects of ContestDraw's launch and growth.
+Comprehensive 12-month go-to-market strategy covering all aspects of Cleack's launch and growth.
 
 **Contents:**
 
@@ -441,7 +441,7 @@ Comprehensive 12-month go-to-market strategy covering all aspects of ContestDraw
 
 **11. Growth Loops & Viral Mechanics**
 - 3 viral loops:
-  1. Social proof (ContestDraw watermark in videos)
+  1. Social proof (Cleack watermark in videos)
   2. Referral program (20% commission)
   3. Public verification page
 
@@ -575,7 +575,7 @@ Public-facing product roadmap showing past, current, and future features with co
 - January 2025: Core platform launch
 
 **Feature Requests:**
-- Submit: contestdraw.com/roadmap
+- Submit: cleack.io/roadmap
 - Response time: 7 days
 - Popular requests (100+ votes) prioritized
 
@@ -648,7 +648,7 @@ Interactive React/TypeScript component with 50+ frequently asked questions, sear
 **Sample Questions:**
 - "Do I need an Instagram Pro account?" (most asked)
 - "How does bot detection work?"
-- "Is ContestDraw GDPR compliant?"
+- "Is Cleack GDPR compliant?"
 - "Do my credits expire?"
 - "Can I export participant data?"
 - "What's the difference between credits and subscriptions?"
@@ -934,21 +934,21 @@ const RoadmapPage = () => {
 ### Documentation Questions
 
 For questions about these materials:
-- **Email:** docs@contestdraw.com
+- **Email:** docs@cleack.io
 - **Slack:** #documentation channel
 - **GitHub:** Open issue in docs repo
 
 ### Content Updates
 
 To request updates to marketing content:
-- **Email:** marketing@contestdraw.com
+- **Email:** marketing@cleack.io
 - **Process:** Submit content change request form
 
 ### Legal Review
 
 For legal document changes:
-- **Email:** legal@contestdraw.com
-- **DPO:** dpo@contestdraw.com
+- **Email:** legal@cleack.io
+- **DPO:** dpo@cleack.io
 - **Process:** Legal review required (3-5 business days)
 
 ---
@@ -977,7 +977,7 @@ For legal document changes:
 
 - **Privacy Policy views:** Track via GA4
 - **Terms acceptance rate:** (goal: 100%)
-- **DPO contact rate:** Track emails to dpo@contestdraw.com
+- **DPO contact rate:** Track emails to dpo@cleack.io
 - **GDPR requests:** Data subject access/deletion requests (goal: <1/month)
 - **Compliance audits:** Quarterly internal audits
 - **Zero CNIL complaints:** Success metric
@@ -1032,7 +1032,7 @@ For legal document changes:
 
 ## 🎉 Conclusion
 
-All documentation and launch materials for ContestDraw are **production-ready and complete**. The comprehensive suite includes:
+All documentation and launch materials for Cleack are **production-ready and complete**. The comprehensive suite includes:
 
 - **SEO-optimized marketing content** targeting 4,700+ monthly searches
 - **GDPR-compliant legal documents** protecting against €20M+ fines
@@ -1063,4 +1063,4 @@ All documentation and launch materials for ContestDraw are **production-ready an
 
 ---
 
-**🚀 ContestDraw is ready to launch!**
+**🚀 Cleack is ready to launch!**

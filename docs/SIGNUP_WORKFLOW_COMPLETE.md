@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides a complete guide to the enhanced signup workflow implementation for the ContestDraw application. The implementation includes comprehensive validation, error handling, accessibility features, and a complete test suite.
+This document provides a complete guide to the enhanced signup workflow implementation for the Cleack application. The implementation includes comprehensive validation, error handling, accessibility features, and a complete test suite.
 
 ## ✅ Completed Features
 
@@ -491,7 +491,7 @@ For questions or issues:
 
 ## ✨ Credits
 
-**Implementation**: ContestDraw Development Team
+**Implementation**: Cleack Development Team
 **Date**: November 6, 2025
 **Version**: 2.0.0
 **License**: MIT

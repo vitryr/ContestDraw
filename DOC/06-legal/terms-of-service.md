@@ -5,7 +5,7 @@
 
 ## 1. Acceptance of Terms
 
-Welcome to ContestDraw ("we," "us," or "our"). By accessing or using our website, mobile application, or services (collectively, the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Service.
+Welcome to Cleack ("we," "us," or "our"). By accessing or using our website, mobile application, or services (collectively, the "Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the Service.
 
 ### 1.1 Eligibility
 
@@ -19,7 +19,7 @@ If you are using the Service on behalf of a business or other entity, you repres
 
 ## 2. Description of Service
 
-ContestDraw provides a platform for organizing, managing, and executing social media contests and giveaways. Our Service includes:
+Cleack provides a platform for organizing, managing, and executing social media contests and giveaways. Our Service includes:
 
 - Integration with social media platforms (Instagram, Facebook, Twitter, TikTok, YouTube)
 - Participant collection and management
@@ -148,13 +148,13 @@ You may disconnect social media accounts at any time through account settings.
 
 ### 6.1 Credit System
 
-ContestDraw uses a credit-based pricing model. Credits are required to execute draws. Credit costs vary based on:
+Cleack uses a credit-based pricing model. Credits are required to execute draws. Credit costs vary based on:
 - Number of participants
 - Filters applied
 - Platform integrations
 - Frequency of use
 
-Current pricing is available at [https://contestdraw.com/pricing](https://contestdraw.com/pricing).
+Current pricing is available at [https://cleack.io/pricing](https://cleack.io/pricing).
 
 ### 6.2 Payment Terms
 
@@ -217,7 +217,7 @@ You are responsible for all applicable taxes (VAT, sales tax, etc.). Prices do n
 ### 7.3 Refund Process
 
 To request a refund:
-1. Email support@contestdraw.com with your draw/transaction ID
+1. Email support@cleack.io with your draw/transaction ID
 2. Explain the reason for the refund request
 3. Provide supporting evidence (screenshots, error messages)
 4. Refunds processed within 5-7 business days
@@ -228,7 +228,7 @@ To request a refund:
 
 ### 8.1 Our Property
 
-The Service, including all content, features, and functionality, is owned by ContestDraw and is protected by:
+The Service, including all content, features, and functionality, is owned by Cleack and is protected by:
 - Copyright laws
 - Trademark laws
 - Patent laws
@@ -325,7 +325,7 @@ Some jurisdictions do not allow limitations on implied warranties or liability f
 
 ## 11. Indemnification
 
-You agree to indemnify, defend, and hold harmless ContestDraw, its officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses (including legal fees) arising from:
+You agree to indemnify, defend, and hold harmless Cleack, its officers, directors, employees, and agents from any claims, liabilities, damages, losses, and expenses (including legal fees) arising from:
 
 - Your use of the Service
 - Your violation of these Terms
@@ -435,7 +435,7 @@ Arbitration does not apply to:
 
 ### 16.1 Entire Agreement
 
-These Terms, together with our Privacy Policy and any other legal notices, constitute the entire agreement between you and ContestDraw.
+These Terms, together with our Privacy Policy and any other legal notices, constitute the entire agreement between you and Cleack.
 
 ### 16.2 Waiver
 
@@ -463,8 +463,8 @@ These Terms do not create rights for any third parties.
 
 For questions about these Terms, please contact us:
 
-**ContestDraw**
-Email: legal@contestdraw.com
+**Cleack**
+Email: legal@cleack.io
 Address: 123 Rue de la Paix, 75001 Paris, France
 Phone: +33 1 23 45 67 89
 
@@ -495,6 +495,6 @@ Additional terms may apply based on your location. Please contact us for jurisdi
 
 ---
 
-**By using ContestDraw, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.**
+**By using Cleack, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.**
 
 **Last Updated:** January 15, 2025

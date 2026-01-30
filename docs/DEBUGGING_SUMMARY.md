@@ -1,4 +1,4 @@
-# ContestDraw Backend & Frontend Debugging Summary
+# Cleack Backend & Frontend Debugging Summary
 
 ## 🎯 Objective
 Debug the backend startup issue completely, ensure it connects to the PostgreSQL database, start the frontend, and test with Playwright.
@@ -73,8 +73,8 @@ cors: {
 
 **Status:** Fully Operational
 - ✅ PostgreSQL 15.14 running on port 5432
-- ✅ Database: `contestdraw_dev` exists and accessible
-- ✅ User: `contestdraw_user` authenticated
+- ✅ Database: `cleack_dev` exists and accessible
+- ✅ User: `cleack_user` authenticated
 - ✅ Prisma Client generated and functional
 - ✅ 17 tables created with test data
 - ✅ All migrations applied successfully
@@ -279,7 +279,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 ps aux | grep vite | grep -v grep | awk '{print $2}' | xargs kill
 
 # Restart frontend
-cd /Users/romainvitry/Documents/Dev/ContestDraw/frontend-web
+cd /Users/romainvitry/Documents/Dev/Cleack/frontend-web
 npm run dev
 ```
 
@@ -334,19 +334,19 @@ npm run dev
 
 ### Start Backend
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/backend
+cd /Users/romainvitry/Documents/Dev/Cleack/backend
 npm run dev
 ```
 
 ### Start Frontend
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/frontend-web
+cd /Users/romainvitry/Documents/Dev/Cleack/frontend-web
 npm run dev
 ```
 
 ### Run Tests
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e
+cd /Users/romainvitry/Documents/Dev/Cleack/tests/e2e
 npx playwright test --project=chromium
 npx playwright show-report  # View HTML report
 ```

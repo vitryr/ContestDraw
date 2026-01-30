@@ -235,14 +235,6 @@ export class CertificateService {
   }
 }
 
-// Singleton instance
-const certificateService = new CertificateService();
-
-// Export convenience function
-export async function generateCertificatePDF(
-  drawResult: DrawResult,
-): Promise<{ buffer: Buffer; hash: string }> {
-  return certificateService.generateCertificate(drawResult);
-}
-
-export default certificateService;
+// Singleton instance and helper function
+export const certificateService = new CertificateService();
+export const generateCertificatePDF = (draw: any) => certificateService.generateCertificate(draw);

@@ -2,7 +2,7 @@
 
 ## 🎯 Overview
 
-This document explains how Instagram draw creation and participant scraping works in ContestDraw.
+This document explains how Instagram draw creation and participant scraping works in Cleack.
 
 ---
 

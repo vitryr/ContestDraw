@@ -20,12 +20,21 @@ export interface Participant {
 }
 
 export interface DrawFilters {
+  // Legacy fields
   minFollowers?: number;
   minLikes?: number;
   minComments?: number;
   excludeKeywords?: string[];
   requireFollowing?: boolean;
   duplicateCheck?: boolean;
+  // New Cleack fields
+  removeDuplicates?: boolean;
+  maxEntriesPerUser?: number;
+  minMentions?: number;
+  requiredKeywords?: string[];
+  requiredHashtags?: string[];
+  verifyFollowers?: boolean;
+  excludedUsers?: string[];
 }
 
 export interface Draw {

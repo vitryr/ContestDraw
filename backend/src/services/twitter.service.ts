@@ -3,7 +3,8 @@
  * Handles authentication, tweets, replies, retweets, and follows
  */
 
-import axios, { AxiosInstance } from "axios";
+import axios from "axios"
+type AxiosInstance = ReturnType<typeof axios.create>;
 import {
   PaginatedResponse,
   Comment,

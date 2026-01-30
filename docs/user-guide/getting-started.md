@@ -1,16 +1,16 @@
-# Getting Started with ContestDraw
+# Getting Started with Cleack
 
-Welcome to ContestDraw! This guide will help you run your first social media contest in minutes.
+Welcome to Cleack! This guide will help you run your first social media contest in minutes.
 
-## What is ContestDraw?
+## What is Cleack?
 
-ContestDraw is a platform that helps you run fair, transparent, and automated contests on social media platforms like Instagram, Facebook, Twitter, TikTok, and YouTube. Our advanced filtering system ensures only genuine, qualified participants are included in your draws.
+Cleack is a platform that helps you run fair, transparent, and automated contests on social media platforms like Instagram, Facebook, Twitter, TikTok, and YouTube. Our advanced filtering system ensures only genuine, qualified participants are included in your draws.
 
 ## Quick Start (5 Minutes)
 
 ### Step 1: Create Your Account
 
-1. Visit [https://contestdraw.com](https://contestdraw.com)
+1. Visit [https://cleack.io](https://cleack.io)
 2. Click **"Sign Up"** in the top right corner
 3. Fill in your details:
    - Email address
@@ -28,19 +28,19 @@ Before running a draw, you need to connect the social media account where your c
 
 1. Go to **Settings** → **Social Connections**
 2. Click **"Connect"** next to your platform (e.g., Instagram)
-3. You'll be redirected to authorize ContestDraw
+3. You'll be redirected to authorize Cleack
 4. Grant the necessary permissions:
    - Read your posts
    - Read comments
    - Read follower information
-5. You'll be redirected back to ContestDraw
+5. You'll be redirected back to Cleack
 
 **Why do we need these permissions?**
 - To fetch comments from your contest post
 - To verify if participants follow your account
 - To ensure fair and accurate draws
 
-### Step 3: Create Your First Contest Draw
+### Step 3: Create Your First Cleack
 
 1. Click **"New Draw"** from your dashboard
 2. Fill in the draw details:
@@ -85,7 +85,7 @@ Configure filters to ensure fair participation:
 
 ## Understanding the Credit System
 
-ContestDraw uses a credit-based pricing model:
+Cleack uses a credit-based pricing model:
 
 | Action | Cost | Free Tier | Pro Tier |
 |--------|------|-----------|----------|
@@ -119,13 +119,13 @@ ContestDraw uses a credit-based pricing model:
 
 ### During Your Contest
 1. **Engage**: Respond to comments and questions
-2. **Monitor**: Check your ContestDraw dashboard for participant stats
+2. **Monitor**: Check your Cleack dashboard for participant stats
 3. **No Changes**: Don't change contest rules after people have entered
 
 ### After Your Contest
 1. **Quick Results**: Execute the draw as soon as possible after the deadline
 2. **Transparency**: Share the winner announcement immediately
-3. **Proof**: Provide the ContestDraw certificate as proof of fairness
+3. **Proof**: Provide the Cleack certificate as proof of fairness
 4. **Follow Up**: Contact winners promptly and set a response deadline
 
 ## Common First-Time Questions
@@ -134,7 +134,7 @@ ContestDraw uses a credit-based pricing model:
 A: Usually 30 seconds to 2 minutes, depending on the number of comments.
 
 **Q: Can I run a draw on a private account?**
-A: No, the post must be public for ContestDraw to access comments.
+A: No, the post must be public for Cleack to access comments.
 
 **Q: What if I don't have enough credits?**
 A: You'll be prompted to purchase more credits before executing the draw.
@@ -171,10 +171,10 @@ A: Yes! We use cryptographically secure random number generation. Each draw incl
 
 ## Need Help?
 
-- 📖 **Documentation**: [docs.contestdraw.com](https://docs.contestdraw.com)
+- 📖 **Documentation**: [docs.cleack.io](https://docs.cleack.io)
 - 💬 **Live Chat**: Available in the bottom-right corner (Pro users)
-- 📧 **Email Support**: support@contestdraw.com (response within 24h)
-- 🐛 **Bug Reports**: bugs@contestdraw.com
+- 📧 **Email Support**: support@cleack.io (response within 24h)
+- 🐛 **Bug Reports**: bugs@cleack.io
 
 ## Next Steps
 
@@ -187,4 +187,4 @@ Now that you've completed your first draw, explore these features:
 
 ---
 
-**Ready to run professional contests?** [Upgrade to Pro](https://contestdraw.com/pricing) for unlimited features and priority support!
+**Ready to run professional contests?** [Upgrade to Pro](https://cleack.io/pricing) for unlimited features and priority support!

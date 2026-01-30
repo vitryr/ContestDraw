@@ -1,4 +1,4 @@
-# Testing Documentation - ContestDraw
+# Testing Documentation - Cleack
 
 ## Overview
 
@@ -7,7 +7,7 @@ Comprehensive testing infrastructure with **>80% code coverage** targeting acros
 ## Test Structure
 
 ```
-ContestDraw/
+Cleack/
 ├── backend/tests/          # Backend tests (Jest)
 │   ├── unit/              # Unit tests
 │   ├── integration/       # API integration tests
@@ -28,7 +28,7 @@ ContestDraw/
 ## Backend Tests (Jest)
 
 ### Configuration
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/jest.config.js`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/jest.config.js`
 
 **Coverage Thresholds:**
 - Branches: 80%
@@ -39,7 +39,7 @@ ContestDraw/
 ### Unit Tests
 
 #### 1. Authentication Service
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/unit/auth.service.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/unit/auth.service.test.ts`
 
 **Tests:**
 - User registration with password hashing
@@ -56,7 +56,7 @@ ContestDraw/
 - ✅ resetPassword()
 
 #### 2. Draw Service
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/unit/draw.service.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/unit/draw.service.test.ts`
 
 **Tests:**
 - Draw creation with validation
@@ -74,7 +74,7 @@ ContestDraw/
 - ✅ getDraw()
 
 #### 3. Payment Service
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/unit/payment.service.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/unit/payment.service.test.ts`
 
 **Tests:**
 - Stripe checkout session creation
@@ -92,7 +92,7 @@ ContestDraw/
 - ✅ deductCredits()
 
 #### 4. Instagram Service
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/unit/instagram.service.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/unit/instagram.service.test.ts`
 
 **Tests:**
 - Fetch post likers with pagination
@@ -114,7 +114,7 @@ ContestDraw/
 ### Integration Tests
 
 #### 1. Auth API Integration
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/integration/api/auth.integration.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/integration/api/auth.integration.test.ts`
 
 **Test Flows:**
 - Complete registration → database verification
@@ -129,7 +129,7 @@ ContestDraw/
 **Database:** PostgreSQL test instance
 
 #### 2. Draws API Integration
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/integration/api/draws.integration.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/integration/api/draws.integration.test.ts`
 
 **Test Flows:**
 - Create draw → database persistence
@@ -145,7 +145,7 @@ ContestDraw/
 ### Test Utilities
 
 #### Test Factories
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/utils/test-factories.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/utils/test-factories.ts`
 
 **Factories:**
 - `TestFactories.createUser()` - Mock user data
@@ -157,7 +157,7 @@ ContestDraw/
 - `TestFactories.createMultiple()` - Bulk generation
 
 #### Mock Helpers
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/tests/utils/mock-helpers.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/backend/tests/utils/mock-helpers.ts`
 
 **Helpers:**
 - `MockHelpers.mockPrismaTransaction()` - Database mocks
@@ -190,7 +190,7 @@ npm run test:integration
 ## Frontend Tests (Vitest + React Testing Library)
 
 ### Configuration
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/vitest.config.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/vitest.config.ts`
 
 **Coverage Thresholds:**
 - Branches: 80%
@@ -201,7 +201,7 @@ npm run test:integration
 ### Component Tests
 
 #### DrawAnimation Component
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/tests/components/DrawAnimation.test.tsx`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/tests/components/DrawAnimation.test.tsx`
 
 **Tests:**
 - Animation container rendering
@@ -213,7 +213,7 @@ npm run test:integration
 ### Hook Tests
 
 #### useAuth Hook
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/frontend-web/tests/hooks/useAuth.test.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/frontend-web/tests/hooks/useAuth.test.ts`
 
 **Tests:**
 - Login with token storage
@@ -244,7 +244,7 @@ npm test -- --ui
 ## E2E Tests (Playwright)
 
 ### Configuration
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/playwright.config.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/playwright.config.ts`
 
 **Browsers:**
 - Chromium (Desktop)
@@ -256,7 +256,7 @@ npm test -- --ui
 ### Test Suites
 
 #### 1. Authentication Flow
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/auth-flow.spec.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/auth-flow.spec.ts`
 
 **Test Scenarios:**
 - Complete registration process
@@ -266,7 +266,7 @@ npm test -- --ui
 - Session persistence after reload
 
 #### 2. Draw Creation Flow
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/draw-creation.spec.ts`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/draw-creation.spec.ts`
 
 **Test Scenarios:**
 - Create new draw with filters
@@ -306,7 +306,7 @@ npx playwright show-report
 ## Performance Tests (K6)
 
 ### Load Test
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/performance/load-test.js`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/tests/performance/load-test.js`
 
 **Scenario:**
 - Ramp up: 10 → 50 → 100 users
@@ -322,7 +322,7 @@ npx playwright show-report
 - Credit balance check
 
 ### Stress Test
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/tests/performance/stress-test.js`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/tests/performance/stress-test.js`
 
 **Scenario:**
 - Ramp up: 100 → 500 → 1000 users
@@ -355,7 +355,7 @@ k6 run --out json=results.json tests/performance/load-test.js
 ## CI/CD Integration (GitHub Actions)
 
 ### Workflow
-**File:** `/Users/romainvitry/Documents/Dev/ContestDraw/.github/workflows/test.yml`
+**File:** `/Users/romainvitry/Documents/Dev/Cleack/.github/workflows/test.yml`
 
 **Jobs:**
 

@@ -48,23 +48,27 @@ const createRotatingFileTransport = (filename: string, level: string) => {
 export const logger = winston.createLogger({
   level: config.logging.level,
   format: logFormat,
-  defaultMeta: { service: "contest-draw-api" },
+  defaultMeta: { service: "cleack-api" },
   transports: [
-    // Console transport for development
-    ...(config.server.env === "development"
+    // Console transport (always enabled for container/cloud logs)
+    new winston.transports.Console({
+      format: consoleFormat,
+    }),
+
+    // File transports for local development only
+    ...(config.server.env !== "production"
       ? [
-          new winston.transports.Console({
-            format: consoleFormat,
-          }),
+          createRotatingFileTransport("error", "error"),
+          createRotatingFileTransport("combined", "info"),
         ]
       : []),
-
-    // File transports for production
-    createRotatingFileTransport("error", "error"),
-    createRotatingFileTransport("combined", "info"),
   ],
-  exceptionHandlers: [createRotatingFileTransport("exceptions", "error")],
-  rejectionHandlers: [createRotatingFileTransport("rejections", "error")],
+  exceptionHandlers: [
+    new winston.transports.Console({ format: consoleFormat }),
+  ],
+  rejectionHandlers: [
+    new winston.transports.Console({ format: consoleFormat }),
+  ],
 });
 
 /**
@@ -101,3 +105,6 @@ export const logWarn = (message: string, meta?: any) => {
 export const logDebug = (message: string, meta?: any) => {
   logger.debug(message, meta);
 };
+
+// Default export for convenience
+export default logger;

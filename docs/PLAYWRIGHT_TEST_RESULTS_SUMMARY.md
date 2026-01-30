@@ -1,4 +1,4 @@
-# Playwright Test Results Summary - ContestDraw Platform
+# Playwright Test Results Summary - Cleack Platform
 
 **Date:** November 6, 2025
 **Test Duration:** ~10 minutes
@@ -9,7 +9,7 @@
 
 ## 🎯 Executive Summary
 
-The Playwright test suite has been successfully executed against the live ContestDraw platform running on `http://localhost:3000`. The tests validate:
+The Playwright test suite has been successfully executed against the live Cleack platform running on `http://localhost:3000`. The tests validate:
 
 1. **✅ Home Page Navigation & Redirections** - **MOSTLY PASSING**
 2. **⚠️ Signup Workflow** - Needs adjustment (test selectors don't match implementation)
@@ -299,7 +299,7 @@ test.skip('should create a new draw', async ({ page }) => {
 
 ### Run All Tests
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e
+cd /Users/romainvitry/Documents/Dev/Cleack/tests/e2e
 npm test
 ```
 

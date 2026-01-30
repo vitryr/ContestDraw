@@ -1,6 +1,6 @@
 # Playwright E2E Testing Setup Report
 
-**Project**: ContestDraw - Multi-Platform Contest Draw Application
+**Project**: Cleack - Multi-Platform Cleack Application
 **Date**: November 5, 2025
 **Analyzed by**: QA Testing Agent
 
@@ -28,7 +28,7 @@ Playwright E2E testing infrastructure is **partially configured** and requires a
 
 ### 2. Configuration Analysis
 
-**File**: `/Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e/playwright.config.ts`
+**File**: `/Users/romainvitry/Documents/Dev/Cleack/tests/e2e/playwright.config.ts`
 
 **Configuration Quality**: ⭐⭐⭐⭐⭐ **Excellent**
 
@@ -302,7 +302,7 @@ API_URL=http://localhost:8000
 API_BASE_PATH=/api
 
 # Database (Test Instance)
-DATABASE_URL=postgresql://postgres:password@localhost:5432/contestdraw_test
+DATABASE_URL=postgresql://postgres:password@localhost:5432/cleack_test
 
 # Redis (Test Instance)
 REDIS_URL=redis://localhost:6380
@@ -435,7 +435,7 @@ export class TestHelpers {
 
 ```bash
 # Navigate to tests directory
-cd /Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e
+cd /Users/romainvitry/Documents/Dev/Cleack/tests/e2e
 
 # Install Playwright (if not in package.json)
 npm init -y
@@ -462,15 +462,15 @@ nano .env.test
 
 ```bash
 # Terminal 1: Start backend
-cd /Users/romainvitry/Documents/Dev/ContestDraw/backend
+cd /Users/romainvitry/Documents/Dev/Cleack/backend
 npm run dev
 
 # Terminal 2: Start frontend
-cd /Users/romainvitry/Documents/Dev/ContestDraw/frontend-web
+cd /Users/romainvitry/Documents/Dev/Cleack/frontend-web
 npm run dev
 
 # Terminal 3: Run tests
-cd /Users/romainvitry/Documents/Dev/ContestDraw/tests/e2e
+cd /Users/romainvitry/Documents/Dev/Cleack/tests/e2e
 npx playwright test
 ```
 

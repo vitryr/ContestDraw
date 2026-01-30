@@ -127,13 +127,13 @@ frontend-web/
    - Check localStorage persistence
 
 2. **Onboarding Modal:**
-   - Clear localStorage: `localStorage.removeItem('contestdraw_onboarding_completed')`
+   - Clear localStorage: `localStorage.removeItem('cleack_onboarding_completed')`
    - Refresh page
    - Navigate through 3 screens
    - Verify skip and done buttons work
 
 3. **Welcome Bonus:**
-   - Clear localStorage: `localStorage.removeItem('contestdraw_welcome_bonus_shown')`
+   - Clear localStorage: `localStorage.removeItem('cleack_welcome_bonus_shown')`
    - Ensure user has 3+ credits
    - Navigate to dashboard
    - Verify confetti animation and badge display

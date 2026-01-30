@@ -1,4 +1,4 @@
-# ContestDraw Mobile App - Complete Implementation & Testing Report
+# Cleack Mobile App - Complete Implementation & Testing Report
 
 **Date:** November 5, 2025
 **Platform:** React Native with Expo SDK 51
@@ -8,7 +8,7 @@
 
 ## 🎯 Executive Summary
 
-The ContestDraw mobile app has been successfully debugged, configured, and tested. All critical issues have been resolved, and the application is ready for development and deployment on iOS and Android platforms.
+The Cleack mobile app has been successfully debugged, configured, and tested. All critical issues have been resolved, and the application is ready for development and deployment on iOS and Android platforms.
 
 ### Key Achievements
 - ✅ **15 critical bugs fixed** across configuration, TypeScript, and backend integration
@@ -323,11 +323,11 @@ CORS_ORIGIN=http://localhost:3001,http://localhost:19006,exp://localhost:19000,h
 **Library:** `react-native-iap@12.13.2`
 
 **Product IDs Configured:**
-- `com.contestdraw.credits.pack10` - 10 credits
-- `com.contestdraw.credits.pack50` - 50 credits
-- `com.contestdraw.credits.pack100` - 100 credits
-- `com.contestdraw.subscription.monthly` - Monthly subscription
-- `com.contestdraw.subscription.annual` - Annual subscription
+- `com.cleack.credits.pack10` - 10 credits
+- `com.cleack.credits.pack50` - 50 credits
+- `com.cleack.credits.pack100` - 100 credits
+- `com.cleack.subscription.monthly` - Monthly subscription
+- `com.cleack.subscription.annual` - Annual subscription
 
 **Flow:**
 1. Fetch available products from App Store
@@ -435,7 +435,7 @@ CORS_ORIGIN=http://localhost:3001,http://localhost:19006,exp://localhost:19000,h
 
 **Testing:**
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/mobile
+cd /Users/romainvitry/Documents/Dev/Cleack/mobile
 npx expo run:ios
 # or
 npm run ios
@@ -457,7 +457,7 @@ npm run ios
 
 **Testing:**
 ```bash
-cd /Users/romainvitry/Documents/Dev/ContestDraw/mobile
+cd /Users/romainvitry/Documents/Dev/Cleack/mobile
 npx expo run:android
 # or
 npm run android
@@ -745,7 +745,7 @@ npm install
 
 ## 🎉 Conclusion
 
-The ContestDraw mobile app has been successfully debugged, configured, and prepared for development. All critical issues have been resolved, and the application is ready for comprehensive testing and deployment.
+The Cleack mobile app has been successfully debugged, configured, and prepared for development. All critical issues have been resolved, and the application is ready for comprehensive testing and deployment.
 
 ### Key Achievements
 

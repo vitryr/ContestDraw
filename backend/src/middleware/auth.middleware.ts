@@ -125,3 +125,31 @@ export const optionalAuth = async (
     next();
   }
 };
+
+// Alias for compatibility
+export const authMiddleware = authenticate;
+export const authenticateToken = authenticate;
+
+/**
+ * Middleware to require admin role
+ * Must be used after authenticate middleware
+ */
+export const requireAdmin = (req: AuthRequest, res: Response, next: NextFunction): void => {
+  if (!req.user) {
+    res.status(401).json({
+      status: "error",
+      message: "Not authenticated",
+    });
+    return;
+  }
+
+  if (req.user.role !== "admin") {
+    res.status(403).json({
+      status: "error",
+      message: "Admin access required",
+    });
+    return;
+  }
+
+  next();
+};

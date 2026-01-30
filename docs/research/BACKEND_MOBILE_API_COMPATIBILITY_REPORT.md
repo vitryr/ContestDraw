@@ -27,7 +27,7 @@ The backend API at `http://localhost:8000` has basic CORS configuration for mobi
 ## 1. CORS Configuration Analysis
 
 ### Backend CORS Settings (.env)
-**Location:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/.env`
+**Location:** `/Users/romainvitry/Documents/Dev/Cleack/backend/.env`
 
 ```bash
 # Current Configuration
@@ -39,7 +39,7 @@ ALLOWED_ORIGINS=http://localhost:3001,http://localhost:19006
 **Issue:** ⚠️ Missing from `ALLOWED_ORIGINS` list
 
 ### Backend CORS Implementation
-**Location:** `/Users/romainvitry/Documents/Dev/ContestDraw/backend/src/config/config.ts`
+**Location:** `/Users/romainvitry/Documents/Dev/Cleack/backend/src/config/config.ts`
 
 ```typescript
 cors: {
@@ -63,7 +63,7 @@ app.use(cors({
 ```
 
 ### Mobile App Configuration
-**Location:** `/Users/romainvitry/Documents/Dev/ContestDraw/mobile/.env`
+**Location:** `/Users/romainvitry/Documents/Dev/Cleack/mobile/.env`
 
 ```bash
 # Mobile API Configuration
@@ -72,7 +72,7 @@ WS_URL=ws://localhost:8000      # ✅ CORRECT for WebSocket
 ```
 
 **Issue:** ⚠️ Mobile environment config hardcodes different URL:
-**Location:** `/Users/romainvitry/Documents/Dev/ContestDraw/mobile/src/config/environment.ts`
+**Location:** `/Users/romainvitry/Documents/Dev/Cleack/mobile/src/config/environment.ts`
 
 ```typescript
 dev: {
@@ -196,21 +196,21 @@ executeDraw: async (id) => await apiService.post(`/draws/${id}/execute`);
 
 **Mobile Configuration:** `/mobile/.env`
 ```bash
-DEEP_LINK_SCHEME=contestdraw
-DEEP_LINK_PREFIX=contestdraw://
-UNIVERSAL_LINK=https://contestdraw.com
+DEEP_LINK_SCHEME=cleack
+DEEP_LINK_PREFIX=cleack://
+UNIVERSAL_LINK=https://cleack.io
 ```
 
 **Backend Configuration:** `/backend/.env`
 ```bash
-MOBILE_DEEP_LINK=contestdraw://  # ✅ CONFIGURED
+MOBILE_DEEP_LINK=cleack://  # ✅ CONFIGURED
 ```
 
 **iOS Configuration:** `/mobile/app.json`
 ```json
 {
   "ios": {
-    "bundleIdentifier": "com.contestdraw.app"
+    "bundleIdentifier": "com.cleack.app"
   }
 }
 ```
@@ -218,7 +218,7 @@ MOBILE_DEEP_LINK=contestdraw://  # ✅ CONFIGURED
 **Backend Apple IAP Configuration:**
 ```bash
 APPLE_IAP_SHARED_SECRET=REPLACE_WITH_APPLE_IAP_SECRET
-APPLE_BUNDLE_ID=com.contestdraw.app  # ✅ MATCHES
+APPLE_BUNDLE_ID=com.cleack.app  # ✅ MATCHES
 ```
 
 **Status:** ✅ Deep linking URLs configured correctly
@@ -381,11 +381,11 @@ ALLOWED_ORIGINS=http://localhost:3001,http://localhost:19006
 
 # Frontend URLs - ✅ CONFIGURED
 FRONTEND_URL=http://localhost:3001
-MOBILE_DEEP_LINK=contestdraw://
+MOBILE_DEEP_LINK=cleack://
 
 # Apple IAP - ⚠️ PLACEHOLDER
 APPLE_IAP_SHARED_SECRET=REPLACE_WITH_APPLE_IAP_SECRET
-APPLE_BUNDLE_ID=com.contestdraw.app
+APPLE_BUNDLE_ID=com.cleack.app
 
 # File Upload - ⚠️ SIZE MISMATCH
 MAX_FILE_SIZE=104857600  # 100MB
@@ -402,18 +402,18 @@ ENABLE_WHITE_LABEL=true
 # Should be added:
 MOBILE_APP_VERSION=1.0.0
 MOBILE_MINIMUM_VERSION=1.0.0
-ANDROID_PACKAGE_NAME=com.contestdraw.app
-IOS_BUNDLE_ID=com.contestdraw.app
+ANDROID_PACKAGE_NAME=com.cleack.app
+IOS_BUNDLE_ID=com.cleack.app
 
 # Push Notifications
 FIREBASE_SERVER_KEY=
 APNS_KEY_ID=
 APNS_TEAM_ID=
-APNS_BUNDLE_ID=com.contestdraw.app
+APNS_BUNDLE_ID=com.cleack.app
 
 # Deep Linking Callbacks
-MOBILE_AUTH_CALLBACK=contestdraw://auth/callback
-MOBILE_PAYMENT_CALLBACK=contestdraw://payment/callback
+MOBILE_AUTH_CALLBACK=cleack://auth/callback
+MOBILE_PAYMENT_CALLBACK=cleack://payment/callback
 ```
 
 ---
