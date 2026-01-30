@@ -55,6 +55,41 @@ const TirageCommentairesInstagramPage = lazy(() => import("./pages/seo/satellite
 const TirageLikesInstagramPage = lazy(() => import("./pages/seo/satellites/TirageLikesInstagramPage"));
 const TirageStoriesInstagramPage = lazy(() => import("./pages/seo/satellites/TirageStoriesInstagramPage"));
 const TirageReelsInstagramPage = lazy(() => import("./pages/seo/satellites/TirageReelsInstagramPage"));
+const TirageAbonnesInstagramPage = lazy(() => import("./pages/seo/satellites/TirageAbonnesInstagramPage"));
+const GiveawayInstagramPage = lazy(() => import("./pages/seo/satellites/GiveawayInstagramPage"));
+
+// Satellite Pages - TikTok
+const TirageCommentairesTiktokPage = lazy(() => import("./pages/seo/satellites/TirageCommentairesTiktokPage"));
+const GiveawayTiktokPage = lazy(() => import("./pages/seo/satellites/GiveawayTiktokPage"));
+const ConcoursTiktokPage = lazy(() => import("./pages/seo/satellites/ConcoursTiktokPage"));
+
+// Satellite Pages - Facebook
+const TirageCommentairesFacebookPage = lazy(() => import("./pages/seo/satellites/TirageCommentairesFacebookPage"));
+const ConcoursPageFacebookPage = lazy(() => import("./pages/seo/satellites/ConcoursPageFacebookPage"));
+const TirageGroupeFacebookPage = lazy(() => import("./pages/seo/satellites/TirageGroupeFacebookPage"));
+
+// Satellite Pages - YouTube
+const TirageCommentairesYoutubePage = lazy(() => import("./pages/seo/satellites/TirageCommentairesYoutubePage"));
+const GiveawayYoutubeShortsPage = lazy(() => import("./pages/seo/satellites/GiveawayYoutubeShortsPage"));
+const ConcoursYoutubePage = lazy(() => import("./pages/seo/satellites/ConcoursYoutubePage"));
+
+// Satellite Pages - Twitter/X
+const TirageRetweetsPage = lazy(() => import("./pages/seo/satellites/TirageRetweetsPage"));
+const TirageLikesTwitterPage = lazy(() => import("./pages/seo/satellites/TirageLikesTwitterPage"));
+const GiveawayTwitterPage = lazy(() => import("./pages/seo/satellites/GiveawayTwitterPage"));
+
+// Guide Pages
+const OrganiserJeuConcoursPage = lazy(() => import("./pages/seo/guides/OrganiserJeuConcoursPage"));
+const ReglementJeuConcoursPage = lazy(() => import("./pages/seo/guides/ReglementJeuConcoursPage"));
+const LegalJeuConcoursFrancePage = lazy(() => import("./pages/seo/guides/LegalJeuConcoursFrancePage"));
+const AugmenterEngagementPage = lazy(() => import("./pages/seo/guides/AugmenterEngagementPage"));
+const MeilleursOutilsTiragePage = lazy(() => import("./pages/seo/guides/MeilleursOutilsTiragePage"));
+
+// Outils Pages
+const GenerateurReglementPage = lazy(() => import("./pages/seo/outils/GenerateurReglementPage"));
+const CompteurParticipantsPage = lazy(() => import("./pages/seo/outils/CompteurParticipantsPage"));
+const VerificateurComptePage = lazy(() => import("./pages/seo/outils/VerificateurComptePage"));
+const CalendrierConcoursPage = lazy(() => import("./pages/seo/outils/CalendrierConcoursPage"));
 
 // Loading component for lazy-loaded pages
 const PageLoader = () => (
@@ -181,84 +216,116 @@ function App() {
             <Route path="tirage-likes-instagram" element={<TirageLikesInstagramPage />} />
             <Route path="tirage-stories-instagram" element={<TirageStoriesInstagramPage />} />
             <Route path="tirage-reels-instagram" element={<TirageReelsInstagramPage />} />
+            <Route path="tirage-abonnes-instagram" element={<TirageAbonnesInstagramPage />} />
+            <Route path="giveaway-instagram" element={<GiveawayInstagramPage />} />
             
-            {/* Satellite pages with trailing slash support (SEO best practice) */}
+            {/* ============================================ */}
+            {/* SEO PAGES - Satellite Pages - TikTok        */}
+            {/* ============================================ */}
+            
+            <Route path="tirage-commentaires-tiktok" element={<TirageCommentairesTiktokPage />} />
+            <Route path="giveaway-tiktok" element={<GiveawayTiktokPage />} />
+            <Route path="concours-tiktok" element={<ConcoursTiktokPage />} />
+            
+            {/* ============================================ */}
+            {/* SEO PAGES - Satellite Pages - Facebook      */}
+            {/* ============================================ */}
+            
+            <Route path="tirage-commentaires-facebook" element={<TirageCommentairesFacebookPage />} />
+            <Route path="concours-page-facebook" element={<ConcoursPageFacebookPage />} />
+            <Route path="tirage-groupe-facebook" element={<TirageGroupeFacebookPage />} />
+            
+            {/* ============================================ */}
+            {/* SEO PAGES - Satellite Pages - YouTube       */}
+            {/* ============================================ */}
+            
+            <Route path="tirage-commentaires-youtube" element={<TirageCommentairesYoutubePage />} />
+            <Route path="giveaway-youtube-shorts" element={<GiveawayYoutubeShortsPage />} />
+            <Route path="concours-youtube" element={<ConcoursYoutubePage />} />
+            
+            {/* ============================================ */}
+            {/* SEO PAGES - Satellite Pages - Twitter/X     */}
+            {/* ============================================ */}
+            
+            <Route path="tirage-retweets" element={<TirageRetweetsPage />} />
+            <Route path="tirage-likes-twitter" element={<TirageLikesTwitterPage />} />
+            <Route path="giveaway-twitter" element={<GiveawayTwitterPage />} />
+            
+            {/* ============================================ */}
+            {/* SEO PAGES - Guide Pages                     */}
+            {/* ============================================ */}
+            
+            <Route path="guide/organiser-jeu-concours" element={<OrganiserJeuConcoursPage />} />
+            <Route path="guide/reglement-jeu-concours" element={<ReglementJeuConcoursPage />} />
+            <Route path="guide/legal-jeu-concours-france" element={<LegalJeuConcoursFrancePage />} />
+            <Route path="guide/augmenter-engagement" element={<AugmenterEngagementPage />} />
+            <Route path="guide/meilleurs-outils-tirage" element={<MeilleursOutilsTiragePage />} />
+            
+            {/* ============================================ */}
+            {/* SEO PAGES - Outils Pages                    */}
+            {/* ============================================ */}
+            
+            <Route path="outils/generateur-reglement" element={<GenerateurReglementPage />} />
+            <Route path="outils/compteur-participants" element={<CompteurParticipantsPage />} />
+            <Route path="outils/verificateur-compte" element={<VerificateurComptePage />} />
+            <Route path="outils/calendrier-concours" element={<CalendrierConcoursPage />} />
+            
+            {/* ============================================ */}
+            {/* TRAILING SLASH SUPPORT (SEO best practice)  */}
+            {/* ============================================ */}
+            
+            {/* Pillar pages */}
             <Route path="tirage-au-sort-instagram/" element={<TirageInstagramPage />} />
             <Route path="tirage-au-sort-tiktok/" element={<TirageTiktokPage />} />
             <Route path="tirage-au-sort-facebook/" element={<TirageFacebookPage />} />
             <Route path="tirage-au-sort-youtube/" element={<TirageYoutubePage />} />
             <Route path="tirage-au-sort-twitter/" element={<TirageTwitterPage />} />
+            
+            {/* Hub pages */}
             <Route path="jeu-concours/" element={<JeuConcoursHub />} />
             <Route path="guide/" element={<GuideHub />} />
             <Route path="outils/" element={<OutilsHub />} />
+            
+            {/* Instagram satellites */}
             <Route path="tirage-commentaires-instagram/" element={<TirageCommentairesInstagramPage />} />
             <Route path="tirage-likes-instagram/" element={<TirageLikesInstagramPage />} />
             <Route path="tirage-stories-instagram/" element={<TirageStoriesInstagramPage />} />
             <Route path="tirage-reels-instagram/" element={<TirageReelsInstagramPage />} />
-
-            {/* ============================================ */}
-            {/* PLACEHOLDER ROUTES - To be created          */}
-            {/* ============================================ */}
+            <Route path="tirage-abonnes-instagram/" element={<TirageAbonnesInstagramPage />} />
+            <Route path="giveaway-instagram/" element={<GiveawayInstagramPage />} />
             
-            {/* TikTok satellites - redirect to pillar for now */}
-            <Route path="tirage-commentaires-tiktok" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
-            <Route path="tirage-commentaires-tiktok/" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
-            <Route path="giveaway-tiktok" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
-            <Route path="giveaway-tiktok/" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
-            <Route path="concours-tiktok" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
-            <Route path="concours-tiktok/" element={<Navigate to="/tirage-au-sort-tiktok/" replace />} />
+            {/* TikTok satellites */}
+            <Route path="tirage-commentaires-tiktok/" element={<TirageCommentairesTiktokPage />} />
+            <Route path="giveaway-tiktok/" element={<GiveawayTiktokPage />} />
+            <Route path="concours-tiktok/" element={<ConcoursTiktokPage />} />
             
             {/* Facebook satellites */}
-            <Route path="tirage-commentaires-facebook" element={<Navigate to="/tirage-au-sort-facebook/" replace />} />
-            <Route path="tirage-commentaires-facebook/" element={<Navigate to="/tirage-au-sort-facebook/" replace />} />
-            <Route path="tirage-groupe-facebook" element={<Navigate to="/tirage-au-sort-facebook/" replace />} />
-            <Route path="tirage-groupe-facebook/" element={<Navigate to="/tirage-au-sort-facebook/" replace />} />
+            <Route path="tirage-commentaires-facebook/" element={<TirageCommentairesFacebookPage />} />
+            <Route path="concours-page-facebook/" element={<ConcoursPageFacebookPage />} />
+            <Route path="tirage-groupe-facebook/" element={<TirageGroupeFacebookPage />} />
             
             {/* YouTube satellites */}
-            <Route path="tirage-commentaires-youtube" element={<Navigate to="/tirage-au-sort-youtube/" replace />} />
-            <Route path="tirage-commentaires-youtube/" element={<Navigate to="/tirage-au-sort-youtube/" replace />} />
-            <Route path="giveaway-youtube-shorts" element={<Navigate to="/tirage-au-sort-youtube/" replace />} />
-            <Route path="giveaway-youtube-shorts/" element={<Navigate to="/tirage-au-sort-youtube/" replace />} />
+            <Route path="tirage-commentaires-youtube/" element={<TirageCommentairesYoutubePage />} />
+            <Route path="giveaway-youtube-shorts/" element={<GiveawayYoutubeShortsPage />} />
+            <Route path="concours-youtube/" element={<ConcoursYoutubePage />} />
             
             {/* Twitter satellites */}
-            <Route path="tirage-retweets" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            <Route path="tirage-retweets/" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            <Route path="tirage-likes-twitter" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            <Route path="tirage-likes-twitter/" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            <Route path="giveaway-twitter-x" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            <Route path="giveaway-twitter-x/" element={<Navigate to="/tirage-au-sort-twitter/" replace />} />
-            
-            {/* Jeu concours by platform */}
-            <Route path="jeu-concours-instagram" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-instagram/" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-facebook" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-facebook/" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-tiktok" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-tiktok/" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-youtube" element={<Navigate to="/jeu-concours/" replace />} />
-            <Route path="jeu-concours-youtube/" element={<Navigate to="/jeu-concours/" replace />} />
+            <Route path="tirage-retweets/" element={<TirageRetweetsPage />} />
+            <Route path="tirage-likes-twitter/" element={<TirageLikesTwitterPage />} />
+            <Route path="giveaway-twitter/" element={<GiveawayTwitterPage />} />
             
             {/* Guide pages */}
-            <Route path="guide/organiser-jeu-concours" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/organiser-jeu-concours/" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/reglement-jeu-concours" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/reglement-jeu-concours/" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/legal-jeu-concours-france" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/legal-jeu-concours-france/" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/augmenter-engagement" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/augmenter-engagement/" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/meilleurs-outils-tirage" element={<Navigate to="/guide/" replace />} />
-            <Route path="guide/meilleurs-outils-tirage/" element={<Navigate to="/guide/" replace />} />
+            <Route path="guide/organiser-jeu-concours/" element={<OrganiserJeuConcoursPage />} />
+            <Route path="guide/reglement-jeu-concours/" element={<ReglementJeuConcoursPage />} />
+            <Route path="guide/legal-jeu-concours-france/" element={<LegalJeuConcoursFrancePage />} />
+            <Route path="guide/augmenter-engagement/" element={<AugmenterEngagementPage />} />
+            <Route path="guide/meilleurs-outils-tirage/" element={<MeilleursOutilsTiragePage />} />
             
             {/* Outils pages */}
-            <Route path="outils/generateur-reglement" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/generateur-reglement/" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/compteur-participants" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/compteur-participants/" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/verificateur-compte" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/verificateur-compte/" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/calendrier-concours" element={<Navigate to="/outils/" replace />} />
-            <Route path="outils/calendrier-concours/" element={<Navigate to="/outils/" replace />} />
+            <Route path="outils/generateur-reglement/" element={<GenerateurReglementPage />} />
+            <Route path="outils/compteur-participants/" element={<CompteurParticipantsPage />} />
+            <Route path="outils/verificateur-compte/" element={<VerificateurComptePage />} />
+            <Route path="outils/calendrier-concours/" element={<CalendrierConcoursPage />} />
             
             {/* Blog placeholder */}
             <Route path="blog" element={<Navigate to="/" replace />} />

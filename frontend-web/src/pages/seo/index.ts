@@ -12,10 +12,57 @@ export { default as JeuConcoursHub } from './JeuConcoursHub';
 export { default as GuideHub } from './GuideHub';
 export { default as OutilsHub } from './OutilsHub';
 
-// Note: Satellite pages to be added as they are created
-// Future exports:
-// - TirageCommentairesInstagramPage
-// - TirageLikesInstagramPage
-// - TirageStoriesInstagramPage
-// - TirageReelsInstagramPage
-// - etc.
+// Instagram Satellites
+export { 
+  TirageCommentairesInstagramPage,
+  TirageLikesInstagramPage,
+  TirageStoriesInstagramPage,
+  TirageReelsInstagramPage,
+  TirageAbonnesInstagramPage,
+  GiveawayInstagramPage,
+} from './satellites';
+
+// TikTok Satellites
+export {
+  TirageCommentairesTiktokPage,
+  GiveawayTiktokPage,
+  ConcoursTiktokPage,
+} from './satellites';
+
+// Facebook Satellites
+export {
+  TirageCommentairesFacebookPage,
+  ConcoursPageFacebookPage,
+  TirageGroupeFacebookPage,
+} from './satellites';
+
+// YouTube Satellites
+export {
+  TirageCommentairesYoutubePage,
+  GiveawayYoutubeShortsPage,
+  ConcoursYoutubePage,
+} from './satellites';
+
+// Twitter/X Satellites
+export {
+  TirageRetweetsPage,
+  TirageLikesTwitterPage,
+  GiveawayTwitterPage,
+} from './satellites';
+
+// Guide Pages
+export {
+  OrganiserJeuConcoursPage,
+  ReglementJeuConcoursPage,
+  LegalJeuConcoursFrancePage,
+  AugmenterEngagementPage,
+  MeilleursOutilsTiragePage,
+} from './guides';
+
+// Outils Pages
+export {
+  GenerateurReglementPage,
+  CompteurParticipantsPage,
+  VerificateurComptePage,
+  CalendrierConcoursPage,
+} from './outils';
