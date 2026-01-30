@@ -71,7 +71,10 @@
     "extra": {
       "eas": {
         "projectId": "contestdraw-project-id"
-      }
+      },
+      "mixpanelToken": "${MIXPANEL_TOKEN}",
+      "sentryDsn": "${SENTRY_DSN}",
+      "environment": "${APP_ENV}"
     }
   }
 }

@@ -7,6 +7,10 @@ import ScrollToTop from "./components/ScrollToTop";
 import "./i18n";
 import "./index.css";
 
+// Initialize analytics & error tracking
+import "./services/analytics";
+import "./services/errorTracking";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <BrowserRouter>

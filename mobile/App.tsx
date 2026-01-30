@@ -10,6 +10,14 @@ import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { NotificationHandler } from './src/components/NotificationHandler';
 import ENV from './src/config/environment';
 
+// Initialize analytics and error tracking
+import { analytics } from './src/services/analytics';
+import { errorTracking } from './src/services/errorTracking';
+
+// Initialize services
+errorTracking.init();
+analytics.init();
+
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
