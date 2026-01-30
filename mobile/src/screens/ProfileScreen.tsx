@@ -42,7 +42,7 @@ export const ProfileScreen: React.FC = () => {
       icon: 'person-outline',
       title: 'Edit Profile',
       subtitle: 'Update your personal information',
-      onPress: () => Alert.alert('Coming Soon', 'This feature is coming soon!'),
+      onPress: () => navigation.navigate('EditProfile' as never),
     },
     {
       icon: 'card-outline',
@@ -54,25 +54,25 @@ export const ProfileScreen: React.FC = () => {
       icon: 'notifications-outline',
       title: 'Notifications',
       subtitle: 'Manage notification preferences',
-      onPress: () => Alert.alert('Coming Soon', 'This feature is coming soon!'),
+      onPress: () => navigation.navigate('Settings' as never),
     },
     {
       icon: 'shield-checkmark-outline',
       title: 'Privacy & Security',
       subtitle: 'Control your privacy settings',
-      onPress: () => Alert.alert('Coming Soon', 'This feature is coming soon!'),
+      onPress: () => navigation.navigate('Settings' as never),
     },
     {
       icon: 'help-circle-outline',
       title: 'Help & Support',
       subtitle: 'Get help or contact us',
-      onPress: () => Alert.alert('Coming Soon', 'This feature is coming soon!'),
+      onPress: () => navigation.navigate('HelpSupport' as never),
     },
     {
       icon: 'information-circle-outline',
       title: 'About',
       subtitle: 'App version and info',
-      onPress: () => Alert.alert('Cleack', 'Version 1.0.0'),
+      onPress: () => navigation.navigate('HelpSupport' as never),
     },
   ];
 

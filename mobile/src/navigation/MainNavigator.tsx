@@ -11,6 +11,9 @@ import { ResultsScreen } from '../screens/ResultsScreen';
 import { CreditsScreen } from '../screens/CreditsScreen';
 import { ProfileScreen } from '../screens/ProfileScreen';
 import { DrawHistoryScreen } from '../screens/DrawHistoryScreen';
+import { EditProfileScreen } from '../screens/EditProfileScreen';
+import { SettingsScreen } from '../screens/SettingsScreen';
+import { HelpSupportScreen } from '../screens/HelpSupportScreen';
 import { MainStackParamList, TabParamList } from '../types/navigation';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -97,6 +100,9 @@ export const MainNavigator: React.FC = () => {
         options={{ animation: 'slide_from_bottom' }}
       />
       <Stack.Screen name="DrawHistory" component={DrawHistoryScreen} />
+      <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="HelpSupport" component={HelpSupportScreen} />
     </Stack.Navigator>
   );
 };

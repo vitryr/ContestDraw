@@ -13,13 +13,19 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { useAuthStore } from '../services/authStore';
+import { apiService } from '../services/apiService';
+import { AuthStackParamList } from '../navigation/AuthNavigator';
+
+type SignupNavigationProp = NativeStackNavigationProp<AuthStackParamList, 'Signup'>;
 
 export const SignupScreen: React.FC = () => {
-  const navigation = useNavigation();
-  const { signup, isLoading, error } = useAuthStore();
+  const navigation = useNavigation<SignupNavigationProp>();
+  const { isLoading, error, clearError } = useAuthStore();
+  const [localLoading, setLocalLoading] = useState(false);
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -50,10 +56,33 @@ export const SignupScreen: React.FC = () => {
     }
 
     try {
+      setLocalLoading(true);
+      clearError();
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-      await signup(email, password, name);
-    } catch (error) {
+
+      // Split name into firstName and lastName
+      const nameParts = name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+
+      // Call signup API directly without auto-login
+      await apiService.post('/auth/signup', {
+        email,
+        password,
+        firstName,
+        lastName,
+      });
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+
+      // Navigate to email verification screen
+      navigation.navigate('EmailVerification', { email });
+    } catch (error: any) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      const errorMessage = error.response?.data?.message || 'Signup failed. Please try again.';
+      Alert.alert('Signup Error', errorMessage);
+    } finally {
+      setLocalLoading(false);
     }
   };
 
@@ -173,16 +202,16 @@ export const SignupScreen: React.FC = () => {
             )}
 
             <TouchableOpacity
-              style={[styles.signupButton, isLoading && styles.signupButtonDisabled]}
+              style={[styles.signupButton, localLoading && styles.signupButtonDisabled]}
               onPress={handleSignup}
-              disabled={isLoading}
+              disabled={localLoading}
             >
               <LinearGradient
                 colors={['#6366F1', '#8B5CF6']}
                 style={styles.signupGradient}
               >
                 <Text style={styles.signupButtonText}>
-                  {isLoading ? 'Creating Account...' : 'Sign Up'}
+                  {localLoading ? 'Creating Account...' : 'Sign Up'}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>

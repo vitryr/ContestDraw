@@ -75,9 +75,27 @@ export const CreditsScreen: React.FC = () => {
           `${totalCredits} credits have been added to your account.`,
           [{ text: 'OK', onPress: () => navigation.goBack() }]
         );
+      } else {
+        // User canceled the payment (Android Stripe flow)
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Warning);
       }
     } catch (error: any) {
-      Alert.alert('Purchase Failed', error.message || 'Please try again later.');
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+
+      // Provide more specific error messages
+      let errorMessage = 'Please try again later.';
+      if (error.message) {
+        if (error.message.includes('network') || error.message.includes('Network')) {
+          errorMessage = 'Network error. Please check your connection and try again.';
+        } else if (error.message.includes('canceled') || error.message.includes('Canceled')) {
+          // User canceled - no need to show error
+          return;
+        } else {
+          errorMessage = error.message;
+        }
+      }
+
+      Alert.alert('Purchase Failed', errorMessage);
     } finally {
       setPurchasingId(null);
     }

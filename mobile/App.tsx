@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
+import { StripeProvider } from '@stripe/stripe-react-native';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { ErrorBoundary } from './src/components/ErrorBoundary';
 import { NotificationHandler } from './src/components/NotificationHandler';
+import ENV from './src/config/environment';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -41,13 +44,28 @@ export default function App() {
     return null;
   }
 
+  // Only wrap with StripeProvider on Android (iOS uses native IAP)
+  const renderApp = () => (
+    <SafeAreaProvider onLayout={onLayoutRootView}>
+      <NotificationHandler />
+      <RootNavigator />
+      <StatusBar style="auto" />
+    </SafeAreaProvider>
+  );
+
   return (
     <ErrorBoundary>
-      <SafeAreaProvider onLayout={onLayoutRootView}>
-        <NotificationHandler />
-        <RootNavigator />
-        <StatusBar style="auto" />
-      </SafeAreaProvider>
+      {Platform.OS === 'android' ? (
+        <StripeProvider
+          publishableKey={ENV.stripePublishableKey}
+          urlScheme="cleack"
+          merchantIdentifier="merchant.com.cleack"
+        >
+          {renderApp()}
+        </StripeProvider>
+      ) : (
+        renderApp()
+      )}
     </ErrorBoundary>
   );
 }

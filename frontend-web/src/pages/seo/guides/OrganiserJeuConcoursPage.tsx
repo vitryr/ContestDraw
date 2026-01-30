@@ -71,13 +71,13 @@ const howToSteps = [
 
 const OrganiserJeuConcoursPage = () => {
   const tocItems = [
-    { id: 'objectifs', title: 'Définir vos objectifs', level: 2 },
-    { id: 'lot', title: 'Choisir le lot parfait', level: 2 },
-    { id: 'reglement', title: 'Rédiger le règlement', level: 2 },
-    { id: 'contenu', title: 'Créer le contenu', level: 2 },
-    { id: 'promotion', title: 'Promouvoir le concours', level: 2 },
-    { id: 'tirage', title: 'Faire le tirage au sort', level: 2 },
-    { id: 'faq', title: 'Questions fréquentes', level: 2 },
+    { id: 'objectifs', title: 'Définir vos objectifs', level: 2 as const },
+    { id: 'lot', title: 'Choisir le lot parfait', level: 2 as const },
+    { id: 'reglement', title: 'Rédiger le règlement', level: 2 as const },
+    { id: 'contenu', title: 'Créer le contenu', level: 2 as const },
+    { id: 'promotion', title: 'Promouvoir le concours', level: 2 as const },
+    { id: 'tirage', title: 'Faire le tirage au sort', level: 2 as const },
+    { id: 'faq', title: 'Questions fréquentes', level: 2 as const },
   ];
 
   return (
