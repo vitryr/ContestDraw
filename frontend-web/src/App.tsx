@@ -35,6 +35,7 @@ import {
   AdminDrawsPage,
   AdminPaymentsPage,
   AdminStatsPage,
+  AdminPromoCodesPage,
 } from "./pages/admin";
 
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -179,6 +180,7 @@ function App() {
         <Route path="users" element={<AdminUsersPage />} />
         <Route path="draws" element={<AdminDrawsPage />} />
         <Route path="payments" element={<AdminPaymentsPage />} />
+        <Route path="promo-codes" element={<AdminPromoCodesPage />} />
         <Route path="stats" element={<AdminStatsPage />} />
       </Route>
 

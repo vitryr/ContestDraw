@@ -13,6 +13,7 @@ const navItems: NavItem[] = [
   { path: '/admin/users', label: 'Utilisateurs', icon: '👥' },
   { path: '/admin/draws', label: 'Tirages', icon: '🎲' },
   { path: '/admin/payments', label: 'Paiements', icon: '💳' },
+  { path: '/admin/promo-codes', label: 'Codes Promo', icon: '🎫' },
   { path: '/admin/stats', label: 'Statistiques', icon: '📈' },
 ];
 

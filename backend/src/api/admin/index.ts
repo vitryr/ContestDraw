@@ -2,12 +2,16 @@ import { Router } from 'express';
 import { authMiddleware, requireAdmin } from '../../middleware/auth.middleware';
 import { prisma } from '../../utils/prisma';
 import { logger } from '../../utils/logger';
+import promoCodesRouter from './promo-codes';
 
 const router = Router();
 
 // All admin routes require authentication and admin role
 router.use(authMiddleware);
 router.use(requireAdmin);
+
+// Sub-routers
+router.use('/promo-codes', promoCodesRouter);
 
 /**
  * GET /admin/stats/overview

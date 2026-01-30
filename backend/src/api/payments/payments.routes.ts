@@ -1,8 +1,12 @@
 import { Router } from "express";
 import { paymentsController } from "./payments.controller";
 import { authenticate } from "../../middleware/auth.middleware";
+import promoRouter from "./promo.controller";
 
 const router = Router();
+
+// Promo code routes
+router.use("/promo", promoRouter);
 
 /**
  * Payment routes

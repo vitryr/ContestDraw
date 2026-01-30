@@ -32,6 +32,7 @@ model User {
   subscription            Subscription?
   verificationTokens      VerificationToken[]
   passwordResetTokens     PasswordResetToken[]
+  promoCodeUsages         PromoCodeUsage[]
 
   @@index([email])
   @@map("users")
@@ -389,4 +390,89 @@ enum VideoJobStatus {
   PROCESSING
   COMPLETED
   FAILED
+}
+
+// ============================================
+// PROMO CODES
+// ============================================
+
+model PromoCode {
+  id                String           @id @default(uuid())
+  code              String           @unique
+  
+  // Discount type
+  discountType      DiscountType     @default(PERCENTAGE)
+  discountValue     Decimal          @db.Decimal(10, 2)
+  
+  // Constraints
+  maxUses           Int?
+  maxUsesPerUser    Int              @default(1)
+  currentUses       Int              @default(0)
+  
+  // Validity
+  validFrom         DateTime         @default(now())
+  validUntil        DateTime?
+  isActive          Boolean          @default(true)
+  
+  // Restrictions
+  minPurchaseAmount Decimal?         @db.Decimal(10, 2)
+  applicableTo      ApplicableTo     @default(ALL)
+  allowedPlans      String[]         @default([])
+  
+  // Stripe sync
+  stripeCouponId    String?          @unique
+  stripePromoId     String?          @unique
+  
+  // Metadata
+  description       String?
+  createdBy         String?
+  metadata          Json?
+  
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  
+  // Relations
+  usages            PromoCodeUsage[]
+
+  @@index([code])
+  @@index([isActive, validUntil])
+  @@map("promo_codes")
+}
+
+model PromoCodeUsage {
+  id              String      @id @default(uuid())
+  promoCodeId     String
+  userId          String
+  
+  // Transaction
+  transactionType String
+  transactionId   String?
+  
+  // Amounts
+  discountAmount  Decimal     @db.Decimal(10, 2)
+  originalAmount  Decimal     @db.Decimal(10, 2)
+  finalAmount     Decimal     @db.Decimal(10, 2)
+  
+  usedAt          DateTime    @default(now())
+  
+  // Relations
+  promoCode       PromoCode   @relation(fields: [promoCodeId], references: [id], onDelete: Cascade)
+  user            User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([promoCodeId, userId, transactionId])
+  @@index([promoCodeId])
+  @@index([userId])
+  @@map("promo_code_usages")
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+enum ApplicableTo {
+  ALL
+  SUBSCRIPTION
+  CREDITS
+  PASS_48H
 }
