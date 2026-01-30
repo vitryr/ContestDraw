@@ -55,7 +55,7 @@ const YoutubeShortsPickerPage = () => (
             <p>Shorts are perfect for quick, viral giveaways. High engagement + easy participation = success.</p>
           </div>
           <FAQSection items={faqItems} title="Shorts Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="youtube" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="youtube" /></div>
         </div>
       </section>
       <section className="py-16">

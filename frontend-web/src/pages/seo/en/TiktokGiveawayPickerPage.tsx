@@ -165,7 +165,7 @@ const TiktokGiveawayPickerPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
-          <Breadcrumb items={breadcrumbItems} dark />
+          <Breadcrumb items={breadcrumbItems} />
         </div>
 
         {/* Hero Section */}
@@ -571,7 +571,7 @@ const TiktokGiveawayPickerPage = () => {
                 {/* Platform Links */}
                 <section className="mb-16">
                   <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Platforms</h2>
-                  <PlatformLinks currentPlatform="tiktok" lang="en" />
+                  <PlatformLinks currentPlatform="tiktok" />
                 </section>
 
                 {/* Final CTA */}

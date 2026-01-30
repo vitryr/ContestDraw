@@ -55,7 +55,7 @@ const YoutubeRandomCommentPickerPage = () => (
             <p>Our random selection is cryptographically secure, ensuring every comment has an equal chance.</p>
           </div>
           <FAQSection items={faqItems} title="Random Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="youtube" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="youtube" /></div>
         </div>
       </section>
       <section className="py-16">

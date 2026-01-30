@@ -363,7 +363,7 @@ const TwitterGiveawayPickerPage = () => {
               {/* Platform Links */}
               <section className="mb-16">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Platforms</h2>
-                <PlatformLinks currentPlatform="twitter" lang="en" />
+                <PlatformLinks currentPlatform="twitter" />
               </section>
 
               {/* CTA */}

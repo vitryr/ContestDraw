@@ -126,7 +126,7 @@ const InstagramCommentPickerPage = () => {
 
             {/* Platform Links */}
             <div className="mt-12">
-              <PlatformLinks currentPlatform="instagram" lang="en" />
+              <PlatformLinks currentPlatform="instagram" />
             </div>
           </div>
         </section>

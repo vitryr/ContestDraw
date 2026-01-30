@@ -55,7 +55,7 @@ const TwitterLikesPickerPage = () => (
             <p>Likes are the easiest way to enter - just one tap. Perfect for quick, high-participation giveaways.</p>
           </div>
           <FAQSection items={faqItems} title="Likes Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="twitter" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="twitter" /></div>
         </div>
       </section>
       <section className="py-16">

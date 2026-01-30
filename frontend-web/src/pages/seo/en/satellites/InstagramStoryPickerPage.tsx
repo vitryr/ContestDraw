@@ -60,7 +60,7 @@ const InstagramStoryPickerPage = () => (
             </ul>
           </div>
           <FAQSection items={faqItems} title="Story Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="instagram" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="instagram" /></div>
         </div>
       </section>
       <section className="py-16">

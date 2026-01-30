@@ -55,7 +55,7 @@ const FacebookCommentPickerPage = () => (
             <p>Facebook comment giveaways are popular for business Pages and Groups. Cleack makes picking winners easy.</p>
           </div>
           <FAQSection items={faqItems} title="Facebook Comment Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="facebook" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="facebook" /></div>
         </div>
       </section>
       <section className="py-16">

@@ -39,7 +39,7 @@ const TiktokCommentPickerPage = () => (
       faqItems={faqItems}
     />
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black">
-      <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} dark /></div>
+      <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -61,7 +61,7 @@ const TiktokCommentPickerPage = () => (
             <p>TikTok videos can go viral quickly, generating thousands of comments. Cleack handles any volume.</p>
           </div>
           <FAQSection items={faqItems} title="TikTok Comment Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="tiktok" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="tiktok" /></div>
         </div>
       </section>
       <section className="py-16 bg-gray-900">

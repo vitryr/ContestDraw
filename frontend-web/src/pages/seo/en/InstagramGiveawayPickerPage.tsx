@@ -896,7 +896,7 @@ const InstagramGiveawayPickerPage = () => {
               {/* Platform Links */}
               <section className="mb-16">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Platforms</h2>
-                <PlatformLinks currentPlatform="instagram" lang="en" />
+                <PlatformLinks currentPlatform="instagram" />
               </section>
 
               {/* Final CTA */}

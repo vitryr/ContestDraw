@@ -61,7 +61,7 @@ const InstagramReelsPickerPage = () => (
             <p>Cleack handles Reels with any number of comments - even 100,000+.</p>
           </div>
           <FAQSection items={faqItems} title="Reels Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="instagram" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="instagram" /></div>
         </div>
       </section>
       <section className="py-16">

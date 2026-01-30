@@ -55,7 +55,7 @@ const FacebookGroupPickerPage = () => (
             <p>Groups are perfect for community giveaways. Members are engaged and contests drive activity.</p>
           </div>
           <FAQSection items={faqItems} title="Group Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="facebook" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="facebook" /></div>
         </div>
       </section>
       <section className="py-16">

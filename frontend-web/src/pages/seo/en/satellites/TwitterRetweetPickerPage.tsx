@@ -55,7 +55,7 @@ const TwitterRetweetPickerPage = () => (
             <p>RTs are the best way to spread your giveaway. Each retweet = exposure to a new audience.</p>
           </div>
           <FAQSection items={faqItems} title="Retweet Picker FAQ" />
-          <div className="mt-12"><PlatformLinks currentPlatform="twitter" lang="en" /></div>
+          <div className="mt-12"><PlatformLinks currentPlatform="twitter" /></div>
         </div>
       </section>
       <section className="py-16">
