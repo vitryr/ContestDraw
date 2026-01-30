@@ -20,6 +20,20 @@ import { FilterConfigComponent } from '../components/FilterConfigComponent';
 import { DrawFilters } from '../types';
 import { MainNavigationProp, MainStackParamList, SupportedPlatform } from '../types/navigation';
 
+// Theme colors
+const THEME = {
+  background: '#0a0a0f',
+  elevated: '#12121a',
+  card: '#1a1a24',
+  accent: '#7c3aed',
+  accentPink: '#ec4899',
+  accentLight: '#a855f7',
+  textPrimary: '#ffffff',
+  textSecondary: '#a1a1aa',
+  textMuted: '#71717a',
+  border: '#27272a',
+};
+
 type DrawConfigRouteProp = RouteProp<MainStackParamList, 'DrawConfig'>;
 
 interface StepIndicatorProps {
@@ -74,7 +88,7 @@ const PLATFORM_CONFIG: Record<SupportedPlatform, {
   tiktok: {
     name: 'TikTok',
     icon: 'musical-notes',
-    colors: ['#000000', '#333333'],
+    colors: ['#00f2ea', '#ff0050'],
   },
   facebook: {
     name: 'Facebook',
@@ -121,7 +135,7 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({
       <View style={styles.analysisStats}>
         <View style={styles.analysisStat}>
           <View style={styles.analysisStatIconContainer}>
-            <Ionicons name="people" size={20} color="#6366F1" />
+            <Ionicons name="people" size={20} color={THEME.accent} />
           </View>
           <View style={styles.analysisStatContent}>
             <Text style={styles.analysisStatValue}>{totalParticipants.toLocaleString()}</Text>
@@ -132,7 +146,7 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({
         <View style={styles.analysisStatDivider} />
 
         <View style={styles.analysisStat}>
-          <View style={[styles.analysisStatIconContainer, { backgroundColor: '#ECFDF5' }]}>
+          <View style={[styles.analysisStatIconContainer, { backgroundColor: 'rgba(16, 185, 129, 0.2)' }]}>
             <Ionicons name="checkmark-circle" size={20} color="#10B981" />
           </View>
           <View style={styles.analysisStatContent}>
@@ -146,11 +160,11 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({
         <View style={styles.analysisStatDivider} />
 
         <View style={styles.analysisStat}>
-          <View style={[styles.analysisStatIconContainer, { backgroundColor: '#FEF3C7' }]}>
-            <Ionicons name="analytics" size={20} color="#D97706" />
+          <View style={[styles.analysisStatIconContainer, { backgroundColor: 'rgba(245, 158, 11, 0.2)' }]}>
+            <Ionicons name="analytics" size={20} color="#f59e0b" />
           </View>
           <View style={styles.analysisStatContent}>
-            <Text style={[styles.analysisStatValue, { color: '#D97706' }]}>{successRate}%</Text>
+            <Text style={[styles.analysisStatValue, { color: '#f59e0b' }]}>{successRate}%</Text>
             <Text style={styles.analysisStatLabel}>Success Rate</Text>
           </View>
         </View>
@@ -158,7 +172,7 @@ const AnalysisPanel: React.FC<AnalysisPanelProps> = ({
 
       {successRate < 50 && (
         <View style={styles.analysisWarning}>
-          <Ionicons name="warning" size={16} color="#D97706" />
+          <Ionicons name="warning" size={16} color="#f59e0b" />
           <Text style={styles.analysisWarningText}>
             Low qualification rate. Consider adjusting your filters.
           </Text>
@@ -331,7 +345,7 @@ export const DrawConfigScreen: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color={THEME.textPrimary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Configure Draw</Text>
         <TouchableOpacity onPress={handleSkip}>
@@ -370,7 +384,7 @@ export const DrawConfigScreen: React.FC = () => {
                 }
               }}
             >
-              <Ionicons name="remove" size={20} color="#6366F1" />
+              <Ionicons name="remove" size={20} color={THEME.accent} />
             </TouchableOpacity>
             <TextInput
               style={styles.winnersInput}
@@ -390,7 +404,7 @@ export const DrawConfigScreen: React.FC = () => {
                 }
               }}
             >
-              <Ionicons name="add" size={20} color="#6366F1" />
+              <Ionicons name="add" size={20} color={THEME.accent} />
             </TouchableOpacity>
           </View>
           <Text style={styles.winnersHint}>
@@ -401,7 +415,7 @@ export const DrawConfigScreen: React.FC = () => {
         {/* Filter Toggle */}
         <View style={styles.toggleSection}>
           <View style={styles.toggleContent}>
-            <Ionicons name="filter" size={24} color="#6366F1" />
+            <Ionicons name="filter" size={24} color={THEME.accent} />
             <View style={styles.toggleText}>
               <Text style={styles.toggleTitle}>Use Advanced Filters</Text>
               <Text style={styles.toggleSubtitle}>
@@ -415,8 +429,8 @@ export const DrawConfigScreen: React.FC = () => {
               setUseFilters(value);
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }}
-            trackColor={{ false: '#D1D5DB', true: '#A5B4FC' }}
-            thumbColor={useFilters ? '#6366F1' : '#F3F4F6'}
+            trackColor={{ false: THEME.border, true: 'rgba(124, 58, 237, 0.5)' }}
+            thumbColor={useFilters ? THEME.accent : THEME.textMuted}
           />
         </View>
 
@@ -446,10 +460,17 @@ export const DrawConfigScreen: React.FC = () => {
           onPress={handleSaveAndContinue}
           disabled={isLoading}
         >
-          <Text style={styles.continueButtonText}>
-            {isLoading ? 'Saving...' : 'Continue to Draw'}
-          </Text>
-          <Ionicons name="play" size={20} color="#FFFFFF" />
+          <LinearGradient
+            colors={[THEME.accent, THEME.accentPink]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.continueButtonGradient}
+          >
+            <Text style={styles.continueButtonText}>
+              {isLoading ? 'Saving...' : 'Continue to Draw'}
+            </Text>
+            <Ionicons name="play" size={20} color="#FFFFFF" />
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -459,7 +480,7 @@ export const DrawConfigScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.background,
   },
   header: {
     flexDirection: 'row',
@@ -468,7 +489,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: THEME.border,
+    backgroundColor: THEME.elevated,
   },
   backButton: {
     padding: 4,
@@ -476,12 +498,12 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   skipText: {
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#6366F1',
+    color: THEME.accent,
   },
   stepIndicator: {
     flexDirection: 'row',
@@ -489,6 +511,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 16,
     paddingHorizontal: 40,
+    backgroundColor: THEME.background,
   },
   stepRow: {
     flexDirection: 'row',
@@ -502,10 +525,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stepDotActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
   },
   stepDotInactive: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
   },
   stepNumber: {
     fontSize: 12,
@@ -515,7 +538,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   stepNumberInactive: {
-    color: '#9CA3AF',
+    color: THEME.textMuted,
   },
   stepLine: {
     width: 60,
@@ -523,10 +546,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   stepLineActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
   },
   stepLineInactive: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
   },
   content: {
     flex: 1,
@@ -538,22 +561,22 @@ const styles = StyleSheet.create({
   stepTitle: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 8,
   },
   stepSubtitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     lineHeight: 20,
   },
   analysisPanel: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.elevated,
     borderRadius: 16,
     padding: 16,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.accent,
   },
   analysisPanelHeader: {
     flexDirection: 'row',
@@ -571,7 +594,7 @@ const styles = StyleSheet.create({
   analysisPanelTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   analysisStats: {
     flexDirection: 'row',
@@ -587,7 +610,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 12,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.2)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -597,22 +620,22 @@ const styles = StyleSheet.create({
   analysisStatValue: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: THEME.accent,
   },
   analysisStatLabel: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
   },
   analysisStatDivider: {
     width: 1,
     height: 50,
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
   },
   analysisWarning: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FEF3C7',
+    backgroundColor: 'rgba(245, 158, 11, 0.15)',
     borderRadius: 8,
     padding: 12,
     marginTop: 16,
@@ -622,7 +645,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#D97706',
+    color: '#f59e0b',
   },
   section: {
     marginBottom: 24,
@@ -630,16 +653,16 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 12,
   },
   winnersInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.elevated,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.border,
     overflow: 'hidden',
   },
   winnersButton: {
@@ -647,26 +670,26 @@ const styles = StyleSheet.create({
     height: 56,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: THEME.card,
   },
   winnersInput: {
     flex: 1,
     height: 56,
     fontSize: 24,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   winnersHint: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     marginTop: 8,
   },
   toggleSection: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 16,
     marginBottom: 24,
@@ -683,53 +706,50 @@ const styles = StyleSheet.create({
   toggleTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 4,
   },
   toggleSubtitle: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
   },
   noFiltersCard: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F0FDF4',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     borderRadius: 16,
     padding: 32,
     marginTop: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(16, 185, 129, 0.3)',
   },
   noFiltersTitle: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
-    color: '#065F46',
+    color: '#10B981',
     marginTop: 16,
     marginBottom: 8,
   },
   noFiltersText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#047857',
+    color: THEME.textSecondary,
     textAlign: 'center',
     lineHeight: 20,
   },
   footer: {
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
-    backgroundColor: '#FFFFFF',
+    borderTopColor: THEME.border,
+    backgroundColor: THEME.elevated,
   },
   continueButton: {
-    backgroundColor: '#6366F1',
     borderRadius: 12,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
+    overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: THEME.accent,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
@@ -738,6 +758,13 @@ const styles = StyleSheet.create({
         elevation: 4,
       },
     }),
+  },
+  continueButtonGradient: {
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
   },
   continueButtonDisabled: {
     opacity: 0.6,

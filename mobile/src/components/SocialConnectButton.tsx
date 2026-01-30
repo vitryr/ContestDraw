@@ -24,7 +24,7 @@ const PLATFORM_CONFIG = {
   tiktok: {
     name: 'TikTok',
     icon: 'musical-notes',
-    colors: ['#000000', '#333333'],
+    colors: ['#00f2ea', '#ff0050'],
   },
   facebook: {
     name: 'Facebook',
@@ -52,12 +52,12 @@ export const SocialConnectButton: React.FC<SocialConnectButtonProps> = ({
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
         >
-          <Ionicons name={config.icon as any} size={24} color="#FFFFFF" />
+          <Ionicons name={config.icon as any} size={24} color="#ffffff" />
           <View style={styles.content}>
             <Text style={styles.connectedText}>{config.name}</Text>
             <Text style={styles.connectedSubtext}>Connected</Text>
           </View>
-          <Ionicons name="checkmark-circle" size={24} color="#FFFFFF" />
+          <Ionicons name="checkmark-circle" size={24} color="#ffffff" />
         </LinearGradient>
       ) : (
         <View style={styles.disconnected}>
@@ -68,7 +68,7 @@ export const SocialConnectButton: React.FC<SocialConnectButtonProps> = ({
             <Text style={styles.disconnectedText}>{config.name}</Text>
             <Text style={styles.disconnectedSubtext}>Tap to connect</Text>
           </View>
-          <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+          <Ionicons name="chevron-forward" size={20} color="#71717a" />
         </View>
       )}
     </TouchableOpacity>
@@ -80,16 +80,16 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     overflow: 'hidden',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
+        shadowOpacity: 0.3,
         shadowRadius: 4,
       },
       android: {
-        elevation: 1,
+        elevation: 2,
       },
     }),
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     gap: 12,
   },
   iconCircle: {
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
   connectedText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: '#ffffff',
     marginBottom: 2,
   },
   connectedSubtext: {
@@ -133,12 +133,12 @@ const styles = StyleSheet.create({
   disconnectedText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 2,
   },
   disconnectedSubtext: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
 });

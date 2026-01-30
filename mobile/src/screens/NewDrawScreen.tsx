@@ -20,6 +20,20 @@ import * as DocumentPicker from 'expo-document-picker';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MainNavigationProp, SupportedPlatform, ImportedData } from '../types/navigation';
 
+// Theme colors
+const THEME = {
+  background: '#0a0a0f',
+  elevated: '#12121a',
+  card: '#1a1a24',
+  accent: '#7c3aed',
+  accentPink: '#ec4899',
+  accentLight: '#a855f7',
+  textPrimary: '#ffffff',
+  textSecondary: '#a1a1aa',
+  textMuted: '#71717a',
+  border: '#27272a',
+};
+
 // Platform detection regex patterns
 const PLATFORM_PATTERNS: Record<SupportedPlatform, RegExp[]> = {
   instagram: [
@@ -55,7 +69,7 @@ const PLATFORM_CONFIG: Record<SupportedPlatform, {
   tiktok: {
     name: 'TikTok',
     icon: 'musical-notes',
-    colors: ['#000000', '#333333'],
+    colors: ['#00f2ea', '#ff0050'],
   },
   facebook: {
     name: 'Facebook',
@@ -299,7 +313,7 @@ export const NewDrawScreen: React.FC = () => {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Ionicons name="arrow-back" size={24} color="#111827" />
+            <Ionicons name="arrow-back" size={24} color={THEME.textPrimary} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>New Draw</Text>
           <View style={styles.headerSpacer} />
@@ -321,7 +335,7 @@ export const NewDrawScreen: React.FC = () => {
             <TextInput
               style={styles.input}
               placeholder="e.g., Summer Giveaway 2024"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={THEME.textMuted}
               value={title}
               onChangeText={setTitle}
               maxLength={100}
@@ -334,7 +348,7 @@ export const NewDrawScreen: React.FC = () => {
             <TextInput
               style={[styles.input, styles.textArea]}
               placeholder="Add details about your draw..."
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor={THEME.textMuted}
               value={description}
               onChangeText={setDescription}
               multiline
@@ -360,7 +374,7 @@ export const NewDrawScreen: React.FC = () => {
               <Ionicons
                 name="link"
                 size={18}
-                color={importMode === 'url' ? '#6366F1' : '#6B7280'}
+                color={importMode === 'url' ? THEME.accent : THEME.textMuted}
               />
               <Text
                 style={[
@@ -382,7 +396,7 @@ export const NewDrawScreen: React.FC = () => {
               <Ionicons
                 name="document-text"
                 size={18}
-                color={importMode === 'csv' ? '#6366F1' : '#6B7280'}
+                color={importMode === 'csv' ? THEME.accent : THEME.textMuted}
               />
               <Text
                 style={[
@@ -403,7 +417,7 @@ export const NewDrawScreen: React.FC = () => {
                 <TextInput
                   style={styles.urlInput}
                   placeholder="Paste Instagram/TikTok/Facebook post URL"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor={THEME.textMuted}
                   value={url}
                   onChangeText={setUrl}
                   autoCapitalize="none"
@@ -416,7 +430,7 @@ export const NewDrawScreen: React.FC = () => {
                   onPress={handlePasteFromClipboard}
                   disabled={isImporting}
                 >
-                  <Ionicons name="clipboard-outline" size={20} color="#6366F1" />
+                  <Ionicons name="clipboard-outline" size={20} color={THEME.accent} />
                 </TouchableOpacity>
               </View>
 
@@ -424,7 +438,7 @@ export const NewDrawScreen: React.FC = () => {
 
               {url && !detectedPlatform && (
                 <View style={styles.warningBadge}>
-                  <Ionicons name="warning" size={16} color="#D97706" />
+                  <Ionicons name="warning" size={16} color="#f59e0b" />
                   <Text style={styles.warningText}>
                     Could not detect platform. Please check the URL.
                   </Text>
@@ -441,7 +455,7 @@ export const NewDrawScreen: React.FC = () => {
                 <View style={styles.csvFileCard}>
                   <View style={styles.csvFileInfo}>
                     <View style={styles.csvIconContainer}>
-                      <Ionicons name="document-text" size={24} color="#6366F1" />
+                      <Ionicons name="document-text" size={24} color={THEME.accent} />
                     </View>
                     <View style={styles.csvFileDetails}>
                       <Text style={styles.csvFileName} numberOfLines={1}>
@@ -455,7 +469,7 @@ export const NewDrawScreen: React.FC = () => {
                     style={styles.csvRemoveButton}
                     disabled={isImporting}
                   >
-                    <Ionicons name="close-circle" size={24} color="#EF4444" />
+                    <Ionicons name="close-circle" size={24} color="#ef4444" />
                   </TouchableOpacity>
                 </View>
               ) : (
@@ -464,7 +478,7 @@ export const NewDrawScreen: React.FC = () => {
                   onPress={handlePickCSV}
                   disabled={isImporting}
                 >
-                  <Ionicons name="cloud-upload-outline" size={32} color="#6366F1" />
+                  <Ionicons name="cloud-upload-outline" size={32} color={THEME.accent} />
                   <Text style={styles.csvUploadText}>Tap to select CSV file</Text>
                   <Text style={styles.csvUploadHint}>
                     CSV should contain username column
@@ -478,7 +492,7 @@ export const NewDrawScreen: React.FC = () => {
           {isImporting && (
             <View style={styles.progressSection}>
               <View style={styles.progressHeader}>
-                <Ionicons name="sync" size={20} color="#6366F1" />
+                <Ionicons name="sync" size={20} color={THEME.accent} />
                 <Text style={styles.progressText}>
                   Importing participants... {importProgress}%
                 </Text>
@@ -501,7 +515,7 @@ export const NewDrawScreen: React.FC = () => {
 
           {/* Info Card */}
           <View style={styles.infoCard}>
-            <Ionicons name="information-circle" size={24} color="#6366F1" />
+            <Ionicons name="information-circle" size={24} color={THEME.accent} />
             <Text style={styles.infoText}>
               We'll import all participants from the post. You can configure
               filters like follower count and engagement in the next step.
@@ -518,10 +532,17 @@ export const NewDrawScreen: React.FC = () => {
             onPress={handleContinue}
             disabled={!isValidInput() || isImporting}
           >
-            <Text style={styles.continueButtonText}>
-              {isImporting ? 'Importing...' : 'Continue to Filters'}
-            </Text>
-            <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
+            <LinearGradient
+              colors={[THEME.accent, THEME.accentPink]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 0 }}
+              style={styles.continueButtonGradient}
+            >
+              <Text style={styles.continueButtonText}>
+                {isImporting ? 'Importing...' : 'Continue to Filters'}
+              </Text>
+              <Ionicons name="arrow-forward" size={20} color="#FFFFFF" />
+            </LinearGradient>
           </TouchableOpacity>
         </View>
       </KeyboardAvoidingView>
@@ -532,7 +553,7 @@ export const NewDrawScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.background,
   },
   keyboardView: {
     flex: 1,
@@ -544,7 +565,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: THEME.border,
+    backgroundColor: THEME.elevated,
   },
   backButton: {
     padding: 4,
@@ -552,7 +574,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   headerSpacer: {
     width: 32,
@@ -563,6 +585,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 16,
     paddingHorizontal: 40,
+    backgroundColor: THEME.background,
   },
   stepRow: {
     flexDirection: 'row',
@@ -576,10 +599,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   stepDotActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
   },
   stepDotInactive: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
   },
   stepNumber: {
     fontSize: 12,
@@ -589,7 +612,7 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   stepNumberInactive: {
-    color: '#9CA3AF',
+    color: THEME.textMuted,
   },
   stepLine: {
     width: 60,
@@ -597,10 +620,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
   },
   stepLineActive: {
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
   },
   stepLineInactive: {
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
   },
   content: {
     flex: 1,
@@ -612,13 +635,13 @@ const styles = StyleSheet.create({
   stepTitle: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 8,
   },
   stepSubtitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     lineHeight: 20,
   },
   section: {
@@ -627,18 +650,18 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.elevated,
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: THEME.textPrimary,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.border,
   },
   textArea: {
     minHeight: 80,
@@ -646,7 +669,7 @@ const styles = StyleSheet.create({
   },
   importTabs: {
     flexDirection: 'row',
-    backgroundColor: '#F3F4F6',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 4,
     marginBottom: 24,
@@ -661,12 +684,12 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   importTabActive: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.elevated,
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 2,
       },
       android: {
@@ -677,30 +700,30 @@ const styles = StyleSheet.create({
   importTabText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#6B7280',
+    color: THEME.textMuted,
   },
   importTabTextActive: {
-    color: '#6366F1',
+    color: THEME.accent,
   },
   urlInputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.elevated,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.border,
   },
   urlInput: {
     flex: 1,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   pasteButton: {
     padding: 16,
     borderLeftWidth: 1,
-    borderLeftColor: '#E5E7EB',
+    borderLeftColor: THEME.border,
   },
   platformBadge: {
     flexDirection: 'row',
@@ -720,7 +743,7 @@ const styles = StyleSheet.create({
   warningBadge: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FEF3C7',
+    backgroundColor: 'rgba(245, 158, 11, 0.15)',
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 8,
@@ -730,15 +753,15 @@ const styles = StyleSheet.create({
   warningText: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#D97706',
+    color: '#f59e0b',
   },
   csvUploadButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.elevated,
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.border,
     borderStyle: 'dashed',
     padding: 32,
     gap: 8,
@@ -746,22 +769,22 @@ const styles = StyleSheet.create({
   csvUploadText: {
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#374151',
+    color: THEME.textPrimary,
   },
   csvUploadHint: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: THEME.textMuted,
   },
   csvFileCard: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#F0FDF4',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 16,
     borderWidth: 1,
-    borderColor: '#BBF7D0',
+    borderColor: THEME.accent,
   },
   csvFileInfo: {
     flexDirection: 'row',
@@ -773,7 +796,7 @@ const styles = StyleSheet.create({
     width: 48,
     height: 48,
     borderRadius: 12,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.2)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -783,22 +806,24 @@ const styles = StyleSheet.create({
   csvFileName: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 2,
   },
   csvFileHint: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#059669',
+    color: '#10b981',
   },
   csvRemoveButton: {
     padding: 4,
   },
   progressSection: {
-    backgroundColor: '#EEF2FF',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 16,
     marginBottom: 24,
+    borderWidth: 1,
+    borderColor: THEME.accent,
   },
   progressHeader: {
     flexDirection: 'row',
@@ -809,51 +834,48 @@ const styles = StyleSheet.create({
   progressText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#4F46E5',
+    color: THEME.accent,
   },
   progressBarContainer: {
     height: 8,
-    backgroundColor: '#C7D2FE',
+    backgroundColor: THEME.border,
     borderRadius: 4,
     overflow: 'hidden',
   },
   progressBar: {
     height: '100%',
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
     borderRadius: 4,
   },
   infoCard: {
     flexDirection: 'row',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 16,
     gap: 12,
     marginBottom: 24,
+    borderWidth: 1,
+    borderColor: THEME.accent,
   },
   infoText: {
     flex: 1,
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#4F46E5',
+    color: THEME.textSecondary,
     lineHeight: 20,
   },
   footer: {
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
-    backgroundColor: '#FFFFFF',
+    borderTopColor: THEME.border,
+    backgroundColor: THEME.elevated,
   },
   continueButton: {
-    backgroundColor: '#6366F1',
     borderRadius: 12,
-    padding: 16,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
+    overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: THEME.accent,
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
@@ -862,6 +884,13 @@ const styles = StyleSheet.create({
         elevation: 4,
       },
     }),
+  },
+  continueButtonGradient: {
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
   },
   continueButtonDisabled: {
     opacity: 0.6,

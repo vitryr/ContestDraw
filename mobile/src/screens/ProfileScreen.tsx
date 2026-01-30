@@ -14,6 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 import { useAuthStore } from '../services/authStore';
+import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 
 export const ProfileScreen: React.FC = () => {
   const navigation = useNavigation();
@@ -80,18 +81,15 @@ export const ProfileScreen: React.FC = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <LinearGradient
-          colors={['#6366F1', '#8B5CF6']}
+          colors={colors.gradients.primary}
           style={styles.profileHeader}
         >
           <View style={styles.avatarContainer}>
-            <LinearGradient
-              colors={['#FFFFFF', '#E0E7FF']}
-              style={styles.avatar}
-            >
+            <View style={styles.avatar}>
               <Text style={styles.avatarText}>
                 {user?.name?.charAt(0).toUpperCase()}
               </Text>
-            </LinearGradient>
+            </View>
           </View>
           <Text style={styles.profileName}>{user?.name}</Text>
           <Text style={styles.profileEmail}>{user?.email}</Text>
@@ -100,12 +98,12 @@ export const ProfileScreen: React.FC = () => {
             style={styles.creditsCard}
             onPress={() => navigation.navigate('Credits' as never)}
           >
-            <Ionicons name="wallet" size={24} color="#6366F1" />
+            <Ionicons name="wallet" size={24} color={colors.accent.primary} />
             <View style={styles.creditsInfo}>
               <Text style={styles.creditsAmount}>{user?.credits || 0}</Text>
               <Text style={styles.creditsLabel}>Credits</Text>
             </View>
-            <Ionicons name="chevron-forward" size={20} color="#6366F1" />
+            <Ionicons name="chevron-forward" size={20} color={colors.accent.primary} />
           </TouchableOpacity>
         </LinearGradient>
 
@@ -120,13 +118,13 @@ export const ProfileScreen: React.FC = () => {
               }}
             >
               <View style={styles.menuIcon}>
-                <Ionicons name={item.icon as any} size={24} color="#6366F1" />
+                <Ionicons name={item.icon as any} size={24} color={colors.accent.primary} />
               </View>
               <View style={styles.menuContent}>
                 <Text style={styles.menuTitle}>{item.title}</Text>
                 <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
               </View>
-              <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+              <Ionicons name="chevron-forward" size={20} color={colors.text.muted} />
             </TouchableOpacity>
           ))}
         </View>
@@ -135,7 +133,7 @@ export const ProfileScreen: React.FC = () => {
           style={styles.logoutButton}
           onPress={handleLogout}
         >
-          <Ionicons name="log-out-outline" size={24} color="#EF4444" />
+          <Ionicons name="log-out-outline" size={24} color={colors.status.error} />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -146,74 +144,67 @@ export const ProfileScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: colors.background.primary,
   },
   content: {
     flex: 1,
   },
   profileHeader: {
     paddingTop: 40,
-    paddingBottom: 24,
-    paddingHorizontal: 20,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
+    paddingBottom: spacing.lg,
+    paddingHorizontal: spacing.lg,
+    borderBottomLeftRadius: borderRadius.xl,
+    borderBottomRightRadius: borderRadius.xl,
     alignItems: 'center',
   },
   avatarContainer: {
-    marginBottom: 16,
+    marginBottom: spacing.md,
   },
   avatar: {
     width: 80,
     height: 80,
     borderRadius: 40,
+    backgroundColor: colors.background.card,
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 3,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
-        shadowRadius: 8,
-      },
+      ios: shadows.lg,
       android: {
-        elevation: 8,
+        elevation: shadows.lg.elevation,
       },
     }),
   },
   avatarText: {
     fontSize: 32,
-    fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    fontFamily: fonts.bold,
+    color: colors.accent.primary,
   },
   profileName: {
     fontSize: 24,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
-    marginBottom: 4,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.xs,
   },
   profileEmail: {
     fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#E0E7FF',
-    marginBottom: 20,
+    fontFamily: fonts.regular,
+    color: 'rgba(255, 255, 255, 0.7)',
+    marginBottom: spacing.lg,
   },
   creditsCard: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 16,
-    gap: 12,
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    gap: spacing.md,
     width: '100%',
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
+      ios: shadows.md,
       android: {
-        elevation: 4,
+        elevation: shadows.md.elevation,
       },
     }),
   },
@@ -222,34 +213,31 @@ const styles = StyleSheet.create({
   },
   creditsAmount: {
     fontSize: 24,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   creditsLabel: {
     fontSize: 13,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
   },
   menu: {
-    padding: 20,
-    gap: 12,
+    padding: spacing.lg,
+    gap: spacing.md,
   },
   menuItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    gap: 12,
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    gap: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border.default,
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
+      ios: shadows.sm,
       android: {
-        elevation: 1,
+        elevation: shadows.sm.elevation,
       },
     }),
   },
@@ -257,7 +245,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: colors.background.elevated,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -266,31 +254,31 @@ const styles = StyleSheet.create({
   },
   menuTitle: {
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
     marginBottom: 2,
   },
   menuSubtitle: {
     fontSize: 13,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
   },
   logoutButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 16,
-    marginHorizontal: 20,
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    marginHorizontal: spacing.lg,
     marginBottom: 40,
-    gap: 8,
+    gap: spacing.sm,
     borderWidth: 1,
-    borderColor: '#FEE2E2',
+    borderColor: 'rgba(239, 68, 68, 0.3)',
   },
   logoutText: {
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#EF4444',
+    fontFamily: fonts.bold,
+    color: colors.status.error,
   },
 });

@@ -28,7 +28,7 @@ export const WinnerCardComponent: React.FC<WinnerCardComponentProps> = ({
       case 3:
         return ['#CD7F32', '#8B4513'];
       default:
-        return ['#6366F1', '#8B5CF6'];
+        return ['#7c3aed', '#ec4899'];
     }
   };
 
@@ -49,7 +49,7 @@ export const WinnerCardComponent: React.FC<WinnerCardComponentProps> = ({
           />
         ) : (
           <View style={styles.avatarPlaceholder}>
-            <Ionicons name="person" size={24} color="#6B7280" />
+            <Ionicons name="person" size={24} color="#a1a1aa" />
           </View>
         )}
       </View>
@@ -59,7 +59,7 @@ export const WinnerCardComponent: React.FC<WinnerCardComponentProps> = ({
         <View style={styles.stats}>
           {winner.followers && (
             <View style={styles.stat}>
-              <Ionicons name="people" size={14} color="#6B7280" />
+              <Ionicons name="people" size={14} color="#a1a1aa" />
               <Text style={styles.statText}>
                 {winner.followers >= 1000
                   ? `${(winner.followers / 1000).toFixed(1)}K`
@@ -69,7 +69,7 @@ export const WinnerCardComponent: React.FC<WinnerCardComponentProps> = ({
           )}
           {winner.engagementRate && (
             <View style={styles.stat}>
-              <Ionicons name="heart" size={14} color="#6B7280" />
+              <Ionicons name="heart" size={14} color="#a1a1aa" />
               <Text style={styles.statText}>{winner.engagementRate}%</Text>
             </View>
           )}
@@ -86,7 +86,7 @@ export const WinnerCardComponent: React.FC<WinnerCardComponentProps> = ({
               : 'logo-facebook'
           }
           size={16}
-          color="#6366F1"
+          color="#a855f7"
         />
       </View>
     </View>
@@ -97,20 +97,22 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     padding: 16,
     marginBottom: 12,
     gap: 12,
+    borderWidth: 1,
+    borderColor: '#27272a',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 8,
       },
       android: {
-        elevation: 2,
+        elevation: 4,
       },
     }),
   },
@@ -124,7 +126,7 @@ const styles = StyleSheet.create({
   badgeText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: '#ffffff',
   },
   avatarContainer: {
     width: 50,
@@ -139,7 +141,7 @@ const styles = StyleSheet.create({
   avatarPlaceholder: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#12121a',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -149,7 +151,7 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 4,
   },
   stats: {
@@ -164,14 +166,16 @@ const styles = StyleSheet.create({
   statText: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   platformBadge: {
     width: 32,
     height: 32,
     borderRadius: 16,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(124, 58, 237, 0.3)',
   },
 });

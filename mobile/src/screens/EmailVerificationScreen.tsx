@@ -229,7 +229,7 @@ export const EmailVerificationScreen: React.FC = () => {
           <Text style={styles.subtitle}>
             Your email has been successfully verified. Redirecting you to login...
           </Text>
-          <ActivityIndicator size="large" color="#6366F1" style={styles.loader} />
+          <ActivityIndicator size="large" color="#7c3aed" style={styles.loader} />
         </View>
       </SafeAreaView>
     );
@@ -239,14 +239,14 @@ export const EmailVerificationScreen: React.FC = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
         <TouchableOpacity onPress={handleGoBack} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color="#ffffff" />
         </TouchableOpacity>
       </View>
 
       <View style={styles.content}>
         <View style={styles.titleSection}>
           <LinearGradient
-            colors={['#6366F1', '#8B5CF6']}
+            colors={['#7c3aed', '#ec4899']}
             style={styles.iconGradient}
           >
             <Ionicons name="mail" size={40} color="#FFFFFF" />
@@ -260,7 +260,7 @@ export const EmailVerificationScreen: React.FC = () => {
 
         <View style={styles.infoCard}>
           <View style={styles.infoRow}>
-            <Ionicons name="information-circle" size={20} color="#6366F1" />
+            <Ionicons name="information-circle" size={20} color="#a855f7" />
             <Text style={styles.infoText}>
               Click the link in the email to verify your account. The link expires in 24 hours.
             </Text>
@@ -274,7 +274,7 @@ export const EmailVerificationScreen: React.FC = () => {
             disabled={isChecking}
           >
             <LinearGradient
-              colors={['#6366F1', '#8B5CF6']}
+              colors={['#7c3aed', '#ec4899']}
               style={styles.buttonGradient}
             >
               {isChecking ? (
@@ -296,7 +296,7 @@ export const EmailVerificationScreen: React.FC = () => {
             disabled={isResending || resendCooldown > 0}
           >
             {isResending ? (
-              <ActivityIndicator size="small" color="#6366F1" />
+              <ActivityIndicator size="small" color="#7c3aed" />
             ) : (
               <Text style={styles.secondaryButtonText}>
                 {resendCooldown > 0
@@ -310,21 +310,21 @@ export const EmailVerificationScreen: React.FC = () => {
         <View style={styles.helpSection}>
           <Text style={styles.helpTitle}>Didn't receive the email?</Text>
           <View style={styles.helpItem}>
-            <Ionicons name="folder-outline" size={16} color="#6B7280" />
+            <Ionicons name="folder-outline" size={16} color="#71717a" />
             <Text style={styles.helpText}>Check your spam or junk folder</Text>
           </View>
           <View style={styles.helpItem}>
-            <Ionicons name="at-outline" size={16} color="#6B7280" />
+            <Ionicons name="at-outline" size={16} color="#71717a" />
             <Text style={styles.helpText}>Make sure {email} is correct</Text>
           </View>
           <View style={styles.helpItem}>
-            <Ionicons name="time-outline" size={16} color="#6B7280" />
+            <Ionicons name="time-outline" size={16} color="#71717a" />
             <Text style={styles.helpText}>Wait a few minutes and check again</Text>
           </View>
         </View>
 
         <View style={styles.autoCheckInfo}>
-          <ActivityIndicator size="small" color="#9CA3AF" />
+          <ActivityIndicator size="small" color="#71717a" />
           <Text style={styles.autoCheckText}>
             Automatically checking verification status...
           </Text>
@@ -337,7 +337,7 @@ export const EmailVerificationScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0a0a0f',
   },
   header: {
     paddingHorizontal: 20,
@@ -371,27 +371,29 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 8,
     textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textAlign: 'center',
   },
   emailText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: '#a855f7',
     marginTop: 4,
   },
   infoCard: {
-    backgroundColor: '#EEF2FF',
+    backgroundColor: '#1a1a24',
     borderRadius: 12,
     padding: 16,
     marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   infoRow: {
     flexDirection: 'row',
@@ -402,7 +404,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#4338CA',
+    color: '#a1a1aa',
     lineHeight: 20,
   },
   actions: {
@@ -414,7 +416,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
@@ -441,11 +443,12 @@ const styles = StyleSheet.create({
   secondaryButton: {
     borderRadius: 12,
     borderWidth: 2,
-    borderColor: '#E5E7EB',
+    borderColor: '#7c3aed',
     padding: 16,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 52,
+    backgroundColor: 'transparent',
   },
   secondaryButtonDisabled: {
     opacity: 0.5,
@@ -453,18 +456,20 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: '#7c3aed',
   },
   helpSection: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#1a1a24',
     borderRadius: 12,
     padding: 16,
     marginBottom: 24,
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   helpTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#374151',
+    color: '#ffffff',
     marginBottom: 12,
   },
   helpItem: {
@@ -476,7 +481,7 @@ const styles = StyleSheet.create({
   helpText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   autoCheckInfo: {
     flexDirection: 'row',
@@ -487,7 +492,7 @@ const styles = StyleSheet.create({
   autoCheckText: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#71717a',
   },
   loader: {
     marginTop: 24,

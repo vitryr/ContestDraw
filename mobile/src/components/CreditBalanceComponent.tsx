@@ -13,10 +13,12 @@ export const CreditBalanceComponent: React.FC<CreditBalanceComponentProps> = ({
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#FFFFFF', '#F3F4F6']}
+        colors={['#7c3aed', '#ec4899']}
         style={styles.gradient}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
       >
-        <Ionicons name="wallet" size={20} color="#6366F1" />
+        <Ionicons name="wallet" size={20} color="#ffffff" />
         <View style={styles.content}>
           <Text style={styles.amount}>{credits}</Text>
           <Text style={styles.label}>Credits</Text>
@@ -34,11 +36,11 @@ const styles = StyleSheet.create({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 4,
       },
       android: {
-        elevation: 2,
+        elevation: 4,
       },
     }),
   },
@@ -55,13 +57,13 @@ const styles = StyleSheet.create({
   amount: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     lineHeight: 20,
   },
   label: {
     fontSize: 11,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: 'rgba(255, 255, 255, 0.8)',
     lineHeight: 12,
   },
 });

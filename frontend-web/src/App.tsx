@@ -103,6 +103,57 @@ const ReglesJeuConcoursInstagram = lazy(() => import("./pages/seo/blog/ReglesJeu
 const JeuConcoursLegalFrance = lazy(() => import("./pages/seo/blog/JeuConcoursLegalFrance"));
 const EviterFauxComptesGiveaway = lazy(() => import("./pages/seo/blog/EviterFauxComptesGiveaway"));
 
+// ============================================
+// EN SEO Pages - Lazy loaded
+// ============================================
+
+// EN Pillar Pages
+const InstagramGiveawayPickerPage = lazy(() => import("./pages/seo/en/InstagramGiveawayPickerPage"));
+const TiktokGiveawayPickerPage = lazy(() => import("./pages/seo/en/TiktokGiveawayPickerPage"));
+const FacebookGiveawayPickerPage = lazy(() => import("./pages/seo/en/FacebookGiveawayPickerPage"));
+const YoutubeCommentPickerPage = lazy(() => import("./pages/seo/en/YoutubeCommentPickerPage"));
+const TwitterGiveawayPickerPage = lazy(() => import("./pages/seo/en/TwitterGiveawayPickerPage"));
+
+// EN Hub Pages
+const GiveawayHubPage = lazy(() => import("./pages/seo/en/GiveawayHubPage"));
+const GuidesHubPage = lazy(() => import("./pages/seo/en/GuidesHubPage"));
+const ToolsHubPage = lazy(() => import("./pages/seo/en/ToolsHubPage"));
+
+// EN Satellite Pages - Instagram
+const InstagramCommentPickerPage = lazy(() => import("./pages/seo/en/satellites/InstagramCommentPickerPage"));
+const InstagramStoryPickerPage = lazy(() => import("./pages/seo/en/satellites/InstagramStoryPickerPage"));
+const InstagramReelsPickerPage = lazy(() => import("./pages/seo/en/satellites/InstagramReelsPickerPage"));
+const InstagramLikesPickerPage = lazy(() => import("./pages/seo/en/satellites/InstagramLikesPickerPage"));
+
+// EN Satellite Pages - TikTok
+const TiktokCommentPickerPage = lazy(() => import("./pages/seo/en/satellites/TiktokCommentPickerPage"));
+const TiktokGiveawayPage = lazy(() => import("./pages/seo/en/satellites/TiktokGiveawayPage"));
+
+// EN Satellite Pages - Facebook
+const FacebookCommentPickerPage = lazy(() => import("./pages/seo/en/satellites/FacebookCommentPickerPage"));
+const FacebookGroupPickerPage = lazy(() => import("./pages/seo/en/satellites/FacebookGroupPickerPage"));
+
+// EN Satellite Pages - YouTube
+const YoutubeRandomCommentPickerPage = lazy(() => import("./pages/seo/en/satellites/YoutubeRandomCommentPickerPage"));
+const YoutubeShortsPickerPage = lazy(() => import("./pages/seo/en/satellites/YoutubeShortsPickerPage"));
+
+// EN Satellite Pages - Twitter
+const TwitterRetweetPickerPage = lazy(() => import("./pages/seo/en/satellites/TwitterRetweetPickerPage"));
+const TwitterLikesPickerPage = lazy(() => import("./pages/seo/en/satellites/TwitterLikesPickerPage"));
+
+// EN Guide Pages
+const HowToRunInstagramGiveawayPage = lazy(() => import("./pages/seo/en/guides/HowToRunInstagramGiveawayPage"));
+const GiveawayRulesTemplatePage = lazy(() => import("./pages/seo/en/guides/GiveawayRulesTemplatePage"));
+const GiveawayLegalGuidePage = lazy(() => import("./pages/seo/en/guides/GiveawayLegalGuidePage"));
+const InstagramGiveawayIdeasPage = lazy(() => import("./pages/seo/en/guides/InstagramGiveawayIdeasPage"));
+const BestGiveawayToolsPage = lazy(() => import("./pages/seo/en/guides/BestGiveawayToolsPage"));
+
+// EN Blog Pages
+const BlogHubEN = lazy(() => import("./pages/seo/en/blog/BlogHubEN"));
+const HowToPickInstagramWinnerPage = lazy(() => import("./pages/seo/en/blog/HowToPickInstagramWinnerPage"));
+const BestGiveawayPickerToolsPage = lazy(() => import("./pages/seo/en/blog/BestGiveawayPickerToolsPage"));
+const InstagramGiveawayRulesPage = lazy(() => import("./pages/seo/en/blog/InstagramGiveawayRulesPage"));
+
 // Loading component for lazy-loaded pages
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -374,6 +425,109 @@ function App() {
             {/* Blog Articles - Guides Avancés */}
             <Route path="blog/eviter-faux-comptes-giveaway" element={<EviterFauxComptesGiveaway />} />
             <Route path="blog/eviter-faux-comptes-giveaway/" element={<EviterFauxComptesGiveaway />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Pillar Pages                 */}
+            {/* ============================================ */}
+            
+            <Route path="en/instagram-giveaway-picker" element={<InstagramGiveawayPickerPage />} />
+            <Route path="en/instagram-giveaway-picker/" element={<InstagramGiveawayPickerPage />} />
+            <Route path="en/tiktok-giveaway-picker" element={<TiktokGiveawayPickerPage />} />
+            <Route path="en/tiktok-giveaway-picker/" element={<TiktokGiveawayPickerPage />} />
+            <Route path="en/facebook-giveaway-picker" element={<FacebookGiveawayPickerPage />} />
+            <Route path="en/facebook-giveaway-picker/" element={<FacebookGiveawayPickerPage />} />
+            <Route path="en/youtube-comment-picker" element={<YoutubeCommentPickerPage />} />
+            <Route path="en/youtube-comment-picker/" element={<YoutubeCommentPickerPage />} />
+            <Route path="en/twitter-giveaway-picker" element={<TwitterGiveawayPickerPage />} />
+            <Route path="en/twitter-giveaway-picker/" element={<TwitterGiveawayPickerPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Hub Pages                    */}
+            {/* ============================================ */}
+            
+            <Route path="en/giveaway" element={<GiveawayHubPage />} />
+            <Route path="en/giveaway/" element={<GiveawayHubPage />} />
+            <Route path="en/guides" element={<GuidesHubPage />} />
+            <Route path="en/guides/" element={<GuidesHubPage />} />
+            <Route path="en/tools" element={<ToolsHubPage />} />
+            <Route path="en/tools/" element={<ToolsHubPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Satellite Pages - Instagram  */}
+            {/* ============================================ */}
+            
+            <Route path="en/instagram-comment-picker" element={<InstagramCommentPickerPage />} />
+            <Route path="en/instagram-comment-picker/" element={<InstagramCommentPickerPage />} />
+            <Route path="en/instagram-story-picker" element={<InstagramStoryPickerPage />} />
+            <Route path="en/instagram-story-picker/" element={<InstagramStoryPickerPage />} />
+            <Route path="en/instagram-reels-picker" element={<InstagramReelsPickerPage />} />
+            <Route path="en/instagram-reels-picker/" element={<InstagramReelsPickerPage />} />
+            <Route path="en/instagram-likes-picker" element={<InstagramLikesPickerPage />} />
+            <Route path="en/instagram-likes-picker/" element={<InstagramLikesPickerPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Satellite Pages - TikTok     */}
+            {/* ============================================ */}
+            
+            <Route path="en/tiktok-comment-picker" element={<TiktokCommentPickerPage />} />
+            <Route path="en/tiktok-comment-picker/" element={<TiktokCommentPickerPage />} />
+            <Route path="en/tiktok-giveaway" element={<TiktokGiveawayPage />} />
+            <Route path="en/tiktok-giveaway/" element={<TiktokGiveawayPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Satellite Pages - Facebook   */}
+            {/* ============================================ */}
+            
+            <Route path="en/facebook-comment-picker" element={<FacebookCommentPickerPage />} />
+            <Route path="en/facebook-comment-picker/" element={<FacebookCommentPickerPage />} />
+            <Route path="en/facebook-group-picker" element={<FacebookGroupPickerPage />} />
+            <Route path="en/facebook-group-picker/" element={<FacebookGroupPickerPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Satellite Pages - YouTube    */}
+            {/* ============================================ */}
+            
+            <Route path="en/youtube-random-comment-picker" element={<YoutubeRandomCommentPickerPage />} />
+            <Route path="en/youtube-random-comment-picker/" element={<YoutubeRandomCommentPickerPage />} />
+            <Route path="en/youtube-shorts-picker" element={<YoutubeShortsPickerPage />} />
+            <Route path="en/youtube-shorts-picker/" element={<YoutubeShortsPickerPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Satellite Pages - Twitter    */}
+            {/* ============================================ */}
+            
+            <Route path="en/twitter-retweet-picker" element={<TwitterRetweetPickerPage />} />
+            <Route path="en/twitter-retweet-picker/" element={<TwitterRetweetPickerPage />} />
+            <Route path="en/twitter-likes-picker" element={<TwitterLikesPickerPage />} />
+            <Route path="en/twitter-likes-picker/" element={<TwitterLikesPickerPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Guide Pages                  */}
+            {/* ============================================ */}
+            
+            <Route path="en/guides/instagram-giveaway-guide" element={<HowToRunInstagramGiveawayPage />} />
+            <Route path="en/guides/instagram-giveaway-guide/" element={<HowToRunInstagramGiveawayPage />} />
+            <Route path="en/guides/giveaway-rules-template" element={<GiveawayRulesTemplatePage />} />
+            <Route path="en/guides/giveaway-rules-template/" element={<GiveawayRulesTemplatePage />} />
+            <Route path="en/guides/giveaway-legal-guide" element={<GiveawayLegalGuidePage />} />
+            <Route path="en/guides/giveaway-legal-guide/" element={<GiveawayLegalGuidePage />} />
+            <Route path="en/guides/instagram-giveaway-ideas" element={<InstagramGiveawayIdeasPage />} />
+            <Route path="en/guides/instagram-giveaway-ideas/" element={<InstagramGiveawayIdeasPage />} />
+            <Route path="en/guides/best-giveaway-tools" element={<BestGiveawayToolsPage />} />
+            <Route path="en/guides/best-giveaway-tools/" element={<BestGiveawayToolsPage />} />
+
+            {/* ============================================ */}
+            {/* EN SEO PAGES - Blog                         */}
+            {/* ============================================ */}
+            
+            <Route path="en/blog" element={<BlogHubEN />} />
+            <Route path="en/blog/" element={<BlogHubEN />} />
+            <Route path="en/blog/how-to-pick-instagram-winner" element={<HowToPickInstagramWinnerPage />} />
+            <Route path="en/blog/how-to-pick-instagram-winner/" element={<HowToPickInstagramWinnerPage />} />
+            <Route path="en/blog/best-giveaway-picker-tools" element={<BestGiveawayPickerToolsPage />} />
+            <Route path="en/blog/best-giveaway-picker-tools/" element={<BestGiveawayPickerToolsPage />} />
+            <Route path="en/blog/instagram-giveaway-rules" element={<InstagramGiveawayRulesPage />} />
+            <Route path="en/blog/instagram-giveaway-rules/" element={<InstagramGiveawayRulesPage />} />
 
             {/* ============================================ */}
             {/* APP ROUTES - Protected                      */}

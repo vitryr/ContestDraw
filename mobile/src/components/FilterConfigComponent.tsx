@@ -37,7 +37,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
             <TextInput
               style={styles.input}
               placeholder="0"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#71717a"
               value={filters.followersMin?.toString() || ''}
               onChangeText={(text) => handleChange('followersMin', parseInt(text) || undefined)}
               keyboardType="number-pad"
@@ -48,7 +48,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
             <TextInput
               style={styles.input}
               placeholder="Unlimited"
-              placeholderTextColor="#9CA3AF"
+              placeholderTextColor="#71717a"
               value={filters.followersMax?.toString() || ''}
               onChangeText={(text) => handleChange('followersMax', parseInt(text) || undefined)}
               keyboardType="number-pad"
@@ -63,7 +63,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
           <TextInput
             style={styles.input}
             placeholder="Minimum % (e.g., 3.5)"
-            placeholderTextColor="#9CA3AF"
+            placeholderTextColor="#71717a"
             value={filters.engagementRate?.toString() || ''}
             onChangeText={(text) => handleChange('engagementRate', parseFloat(text) || undefined)}
             keyboardType="decimal-pad"
@@ -79,7 +79,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
         <TextInput
           style={[styles.input, styles.textArea]}
           placeholder="#giveaway #contest (one per line)"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#71717a"
           value={filters.hashtags?.join('\n') || ''}
           onChangeText={(text) =>
             handleChange('hashtags', text.split('\n').filter((h) => h.trim()))
@@ -97,7 +97,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
         <TextInput
           style={[styles.input, styles.textArea]}
           placeholder="@yourpage @sponsor (one per line)"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#71717a"
           value={filters.mentions?.join('\n') || ''}
           onChangeText={(text) =>
             handleChange('mentions', text.split('\n').filter((m) => m.trim()))
@@ -115,7 +115,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
         <TextInput
           style={[styles.input, styles.textArea]}
           placeholder="United States, Canada, UK (one per line)"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#71717a"
           value={filters.location?.join('\n') || ''}
           onChangeText={(text) =>
             handleChange('location', text.split('\n').filter((l) => l.trim()))
@@ -133,7 +133,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
         <TextInput
           style={[styles.input, styles.textArea]}
           placeholder="@user1 @user2 (one per line)"
-          placeholderTextColor="#9CA3AF"
+          placeholderTextColor="#71717a"
           value={filters.excludeUsers?.join('\n') || ''}
           onChangeText={(text) =>
             handleChange('excludeUsers', text.split('\n').filter((u) => u.trim()))
@@ -147,7 +147,7 @@ export const FilterConfigComponent: React.FC<FilterConfigComponentProps> = ({
       </View>
 
       <View style={styles.infoCard}>
-        <Ionicons name="information-circle" size={20} color="#6366F1" />
+        <Ionicons name="information-circle" size={20} color="#a855f7" />
         <Text style={styles.infoText}>
           All filters are optional. Leave fields empty to include all entries.
         </Text>
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
   },
   row: {
     flexDirection: 'row',
@@ -178,18 +178,18 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 13,
     fontFamily: 'Inter-Medium',
-    color: '#6B7280',
+    color: '#a1a1aa',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#12121a',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   textArea: {
     minHeight: 100,
@@ -198,21 +198,23 @@ const styles = StyleSheet.create({
   inputHint: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#71717a',
     marginTop: 8,
   },
   infoCard: {
     flexDirection: 'row',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
     borderRadius: 12,
     padding: 12,
     gap: 8,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(124, 58, 237, 0.3)',
   },
   infoText: {
     flex: 1,
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#4F46E5',
+    color: '#a855f7',
   },
 });

@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
 import Constants from 'expo-constants';
+import { LinearGradient } from 'expo-linear-gradient';
 
 interface FAQItem {
   id: string;
@@ -106,7 +107,7 @@ export const HelpSupportScreen: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color="#ffffff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Help & Support</Text>
         <View style={styles.placeholder} />
@@ -121,7 +122,7 @@ export const HelpSupportScreen: React.FC = () => {
               onPress={handleContactSupport}
             >
               <View style={styles.actionIcon}>
-                <Ionicons name="mail" size={24} color="#6366F1" />
+                <Ionicons name="mail" size={24} color="#7c3aed" />
               </View>
               <Text style={styles.actionTitle}>Contact Us</Text>
               <Text style={styles.actionSubtitle}>Email support</Text>
@@ -132,7 +133,7 @@ export const HelpSupportScreen: React.FC = () => {
               onPress={handleOpenDocumentation}
             >
               <View style={styles.actionIcon}>
-                <Ionicons name="book" size={24} color="#6366F1" />
+                <Ionicons name="book" size={24} color="#7c3aed" />
               </View>
               <Text style={styles.actionTitle}>Documentation</Text>
               <Text style={styles.actionSubtitle}>Learn more</Text>
@@ -143,7 +144,7 @@ export const HelpSupportScreen: React.FC = () => {
               onPress={handleOpenTwitter}
             >
               <View style={styles.actionIcon}>
-                <Ionicons name="logo-twitter" size={24} color="#6366F1" />
+                <Ionicons name="logo-twitter" size={24} color="#7c3aed" />
               </View>
               <Text style={styles.actionTitle}>Twitter</Text>
               <Text style={styles.actionSubtitle}>Updates</Text>
@@ -166,7 +167,7 @@ export const HelpSupportScreen: React.FC = () => {
                     <Ionicons
                       name={expandedId === item.id ? 'chevron-up' : 'chevron-down'}
                       size={20}
-                      color="#6366F1"
+                      color="#7c3aed"
                     />
                   </View>
                   {expandedId === item.id && (
@@ -186,17 +187,22 @@ export const HelpSupportScreen: React.FC = () => {
             onPress={handleContactSupport}
           >
             <View style={styles.contactIcon}>
-              <Ionicons name="headset" size={32} color="#6366F1" />
+              <Ionicons name="headset" size={32} color="#7c3aed" />
             </View>
             <View style={styles.contactContent}>
               <Text style={styles.contactTitle}>Need More Help?</Text>
               <Text style={styles.contactSubtitle}>
                 Our support team is here to help you with any questions or issues.
               </Text>
-              <View style={styles.contactButton}>
+              <LinearGradient
+                colors={['#7c3aed', '#ec4899']}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 0 }}
+                style={styles.contactButton}
+              >
                 <Text style={styles.contactButtonText}>Send Email</Text>
                 <Ionicons name="arrow-forward" size={16} color="#FFFFFF" />
-              </View>
+              </LinearGradient>
             </View>
           </TouchableOpacity>
         </View>
@@ -244,7 +250,7 @@ export const HelpSupportScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#0a0a0f',
   },
   header: {
     flexDirection: 'row',
@@ -252,9 +258,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#12121a',
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: '#27272a',
   },
   backButton: {
     padding: 4,
@@ -262,7 +268,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
   },
   placeholder: {
     width: 32,
@@ -277,7 +283,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 12,
@@ -289,27 +295,18 @@ const styles = StyleSheet.create({
   },
   actionCard: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     padding: 16,
     alignItems: 'center',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   actionIcon: {
     width: 48,
     height: 48,
     borderRadius: 24,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
@@ -317,31 +314,22 @@ const styles = StyleSheet.create({
   actionTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     textAlign: 'center',
   },
   actionSubtitle: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textAlign: 'center',
     marginTop: 2,
   },
   faqContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   faqItem: {
     padding: 16,
@@ -355,44 +343,35 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 15,
     fontFamily: 'Inter-Medium',
-    color: '#111827',
+    color: '#ffffff',
     paddingRight: 12,
   },
   faqAnswer: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     marginTop: 12,
     lineHeight: 20,
   },
   divider: {
     height: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#27272a',
     marginHorizontal: 16,
   },
   contactCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     padding: 20,
     flexDirection: 'row',
     gap: 16,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   contactIcon: {
     width: 64,
     height: 64,
     borderRadius: 32,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -402,13 +381,13 @@ const styles = StyleSheet.create({
   contactTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 4,
   },
   contactSubtitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     lineHeight: 20,
     marginBottom: 12,
   },
@@ -416,7 +395,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#6366F1',
     borderRadius: 8,
     paddingVertical: 10,
     paddingHorizontal: 16,
@@ -429,20 +407,11 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   infoCard: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   infoRow: {
     flexDirection: 'row',
@@ -453,12 +422,12 @@ const styles = StyleSheet.create({
   infoLabel: {
     fontSize: 15,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   infoValue: {
     fontSize: 15,
     fontFamily: 'Inter-Medium',
-    color: '#111827',
+    color: '#ffffff',
   },
   footer: {
     alignItems: 'center',
@@ -468,12 +437,12 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     marginBottom: 4,
   },
   copyrightText: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#71717a',
   },
 });

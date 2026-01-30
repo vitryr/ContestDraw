@@ -58,15 +58,18 @@ export const ForgotPasswordScreen: React.FC = () => {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Ionicons name="arrow-back" size={24} color="#111827" />
+            <Ionicons name="arrow-back" size={24} color="#ffffff" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.content}>
           <View style={styles.titleSection}>
-            <View style={styles.iconContainer}>
-              <Ionicons name="key" size={40} color="#6366F1" />
-            </View>
+            <LinearGradient
+              colors={['#7c3aed', '#ec4899']}
+              style={styles.iconContainer}
+            >
+              <Ionicons name="key" size={40} color="#FFFFFF" />
+            </LinearGradient>
             <Text style={styles.title}>Forgot Password?</Text>
             <Text style={styles.subtitle}>
               Enter your email address and we'll send you instructions to reset
@@ -80,7 +83,7 @@ export const ForgotPasswordScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 placeholder="your@email.com"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -95,7 +98,7 @@ export const ForgotPasswordScreen: React.FC = () => {
               disabled={isLoading}
             >
               <LinearGradient
-                colors={['#6366F1', '#8B5CF6']}
+                colors={['#7c3aed', '#ec4899']}
                 style={styles.resetGradient}
               >
                 <Text style={styles.resetButtonText}>
@@ -109,7 +112,7 @@ export const ForgotPasswordScreen: React.FC = () => {
             style={styles.backToLogin}
             onPress={() => navigation.goBack()}
           >
-            <Ionicons name="arrow-back" size={16} color="#6366F1" />
+            <Ionicons name="arrow-back" size={16} color="#a855f7" />
             <Text style={styles.backToLoginText}>Back to Login</Text>
           </TouchableOpacity>
         </View>
@@ -121,7 +124,7 @@ export const ForgotPasswordScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0a0a0f',
   },
   keyboardView: {
     flex: 1,
@@ -145,7 +148,6 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
-    backgroundColor: '#EEF2FF',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
@@ -153,13 +155,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 12,
   },
   subtitle: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textAlign: 'center',
     lineHeight: 20,
     paddingHorizontal: 20,
@@ -173,25 +175,25 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#12121a',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   resetButton: {
     borderRadius: 12,
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
@@ -222,6 +224,6 @@ const styles = StyleSheet.create({
   backToLoginText: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: '#a855f7',
   },
 });

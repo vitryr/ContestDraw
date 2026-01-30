@@ -17,6 +17,20 @@ import { useDrawStore } from '../services/drawStore';
 import { DrawAnimationComponent } from '../components/DrawAnimationComponent';
 import { MainNavigationProp } from '../types/navigation';
 
+// Theme colors
+const THEME = {
+  background: '#0a0a0f',
+  elevated: '#12121a',
+  card: '#1a1a24',
+  accent: '#7c3aed',
+  accentPink: '#ec4899',
+  accentLight: '#a855f7',
+  textPrimary: '#ffffff',
+  textSecondary: '#a1a1aa',
+  textMuted: '#71717a',
+  border: '#27272a',
+};
+
 const { width, height } = Dimensions.get('window');
 
 export const DrawAnimationScreen: React.FC = () => {
@@ -78,7 +92,7 @@ export const DrawAnimationScreen: React.FC = () => {
   return (
     <View style={styles.container}>
       <LinearGradient
-        colors={['#1F2937', '#111827']}
+        colors={[THEME.elevated, THEME.background]}
         style={styles.gradient}
       >
         <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
@@ -86,7 +100,7 @@ export const DrawAnimationScreen: React.FC = () => {
             style={styles.closeButton}
             onPress={handleClose}
           >
-            <Ionicons name="close" size={28} color="#FFFFFF" />
+            <Ionicons name="close" size={28} color={THEME.textPrimary} />
           </TouchableOpacity>
 
           {currentDraw && (
@@ -111,8 +125,10 @@ export const DrawAnimationScreen: React.FC = () => {
                   onPress={handleStartDraw}
                 >
                   <LinearGradient
-                    colors={['#6366F1', '#8B5CF6']}
+                    colors={[THEME.accent, THEME.accentPink]}
                     style={styles.startGradient}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
                   >
                     <Ionicons name="play" size={32} color="#FFFFFF" />
                     <Text style={styles.startText}>Start Draw</Text>
@@ -130,7 +146,7 @@ export const DrawAnimationScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#111827',
+    backgroundColor: THEME.background,
   },
   gradient: {
     flex: 1,
@@ -149,6 +165,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: THEME.border,
   },
   content: {
     flex: 1,
@@ -162,14 +180,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: THEME.textPrimary,
     textAlign: 'center',
     marginBottom: 12,
   },
   subtitle: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: THEME.textSecondary,
     textAlign: 'center',
   },
   startButton: {
@@ -181,7 +199,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: THEME.accent,
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.5,
         shadowRadius: 16,

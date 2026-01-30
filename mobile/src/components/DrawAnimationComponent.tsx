@@ -80,7 +80,7 @@ export const DrawAnimationComponent: React.FC<DrawAnimationComponentProps> = ({
 
   return (
     <View style={styles.container}>
-      <BlurView intensity={20} style={styles.blurContainer}>
+      <BlurView intensity={20} tint="dark" style={styles.blurContainer}>
         <View style={styles.animationArea}>
           {isAnimating && (
             <>
@@ -96,7 +96,7 @@ export const DrawAnimationComponent: React.FC<DrawAnimationComponentProps> = ({
                 ]}
               >
                 <LinearGradient
-                  colors={['#6366F1', '#8B5CF6', '#EC4899']}
+                  colors={['#7c3aed', '#a855f7', '#ec4899']}
                   style={styles.gradientCircle}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
@@ -133,7 +133,7 @@ export const DrawAnimationComponent: React.FC<DrawAnimationComponentProps> = ({
                   ]}
                 >
                   <LinearGradient
-                    colors={['#10B981', '#059669']}
+                    colors={['#7c3aed', '#ec4899']}
                     style={styles.winnerBadge}
                   >
                     <Text style={styles.winnerPosition}>#{index + 1}</Text>
@@ -160,11 +160,15 @@ const styles = StyleSheet.create({
     height: height * 0.5,
     borderRadius: 24,
     overflow: 'hidden',
+    backgroundColor: 'rgba(18, 18, 26, 0.8)',
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   animationArea: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'rgba(10, 10, 15, 0.5)',
   },
   spinningCircle: {
     position: 'absolute',
@@ -182,13 +186,13 @@ const styles = StyleSheet.create({
   animationText: {
     fontSize: 32,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: '#ffffff',
     marginBottom: 8,
   },
   animationSubtext: {
     fontSize: 18,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#a1a1aa',
   },
   winnersPreview: {
     alignItems: 'center',
@@ -197,11 +201,13 @@ const styles = StyleSheet.create({
   winnerItem: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+    backgroundColor: '#1a1a24',
     borderRadius: 12,
     padding: 16,
     width: width - 80,
     gap: 12,
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   winnerBadge: {
     width: 40,
@@ -213,11 +219,11 @@ const styles = StyleSheet.create({
   winnerPosition: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: '#ffffff',
   },
   winnerUsername: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    color: '#ffffff',
   },
 });

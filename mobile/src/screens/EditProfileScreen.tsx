@@ -116,7 +116,7 @@ export const EditProfileScreen: React.FC = () => {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Ionicons name="arrow-back" size={24} color="#111827" />
+            <Ionicons name="arrow-back" size={24} color="#ffffff" />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>Edit Profile</Text>
           <TouchableOpacity
@@ -125,7 +125,7 @@ export const EditProfileScreen: React.FC = () => {
             style={styles.saveButton}
           >
             {saving ? (
-              <ActivityIndicator size="small" color="#6366F1" />
+              <ActivityIndicator size="small" color="#7c3aed" />
             ) : (
               <Text
                 style={[
@@ -142,7 +142,7 @@ export const EditProfileScreen: React.FC = () => {
         <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.avatarSection}>
             <LinearGradient
-              colors={['#6366F1', '#8B5CF6']}
+              colors={['#7c3aed', '#ec4899']}
               style={styles.avatar}
             >
               <Text style={styles.avatarText}>
@@ -150,7 +150,7 @@ export const EditProfileScreen: React.FC = () => {
               </Text>
             </LinearGradient>
             <TouchableOpacity style={styles.changeAvatarButton}>
-              <Ionicons name="camera" size={20} color="#6366F1" />
+              <Ionicons name="camera" size={20} color="#7c3aed" />
               <Text style={styles.changeAvatarText}>Change Photo</Text>
             </TouchableOpacity>
             <Text style={styles.avatarHint}>Profile photo (coming soon)</Text>
@@ -166,7 +166,7 @@ export const EditProfileScreen: React.FC = () => {
                 value={firstName}
                 onChangeText={setFirstName}
                 placeholder="Enter your first name"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 autoCapitalize="words"
               />
             </View>
@@ -178,7 +178,7 @@ export const EditProfileScreen: React.FC = () => {
                 value={lastName}
                 onChangeText={setLastName}
                 placeholder="Enter your last name"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 autoCapitalize="words"
               />
             </View>
@@ -189,7 +189,7 @@ export const EditProfileScreen: React.FC = () => {
 
             <View style={styles.emailCard}>
               <View style={styles.emailInfo}>
-                <Ionicons name="mail" size={20} color="#6366F1" />
+                <Ionicons name="mail" size={20} color="#7c3aed" />
                 <Text style={styles.currentEmail}>{user?.email}</Text>
               </View>
               <TouchableOpacity
@@ -209,7 +209,7 @@ export const EditProfileScreen: React.FC = () => {
                   value={newEmail}
                   onChangeText={setNewEmail}
                   placeholder="Enter new email address"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#71717a"
                   keyboardType="email-address"
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -235,7 +235,7 @@ export const EditProfileScreen: React.FC = () => {
           </View>
 
           <View style={styles.infoCard}>
-            <Ionicons name="information-circle" size={24} color="#6366F1" />
+            <Ionicons name="information-circle" size={24} color="#a855f7" />
             <View style={styles.infoContent}>
               <Text style={styles.infoTitle}>About Profile Changes</Text>
               <Text style={styles.infoText}>
@@ -253,7 +253,7 @@ export const EditProfileScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#0a0a0f',
   },
   keyboardView: {
     flex: 1,
@@ -264,9 +264,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#12121a',
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: '#27272a',
   },
   backButton: {
     padding: 4,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
   },
   saveButton: {
     minWidth: 50,
@@ -283,10 +283,10 @@ const styles = StyleSheet.create({
   saveText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: '#7c3aed',
   },
   saveTextDisabled: {
-    color: '#9CA3AF',
+    color: '#71717a',
   },
   content: {
     flex: 1,
@@ -305,9 +305,9 @@ const styles = StyleSheet.create({
     marginBottom: 16,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.3,
         shadowRadius: 8,
       },
       android: {
@@ -327,17 +327,17 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 20,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
   },
   changeAvatarText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#6366F1',
+    color: '#a855f7',
   },
   avatarHint: {
     fontSize: 12,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#71717a',
     marginTop: 8,
   },
   formSection: {
@@ -346,7 +346,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 16,
   },
   inputGroup: {
@@ -355,28 +355,28 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#374151',
+    color: '#a1a1aa',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#12121a',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   emailCard: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 12,
     padding: 16,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   emailInfo: {
     flexDirection: 'row',
@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
   currentEmail: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
     flex: 1,
   },
   changeEmailButton: {
@@ -397,13 +397,13 @@ const styles = StyleSheet.create({
   changeEmailText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#6366F1',
+    color: '#7c3aed',
   },
   emailChangeSection: {
     marginTop: 16,
   },
   requestChangeButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: '#7c3aed',
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
@@ -417,17 +417,19 @@ const styles = StyleSheet.create({
   emailChangeHint: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     marginTop: 12,
     textAlign: 'center',
   },
   infoCard: {
     flexDirection: 'row',
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.1)',
     borderRadius: 12,
     padding: 16,
     gap: 12,
     marginBottom: 40,
+    borderWidth: 1,
+    borderColor: 'rgba(124, 58, 237, 0.2)',
   },
   infoContent: {
     flex: 1,
@@ -435,13 +437,13 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#4F46E5',
+    color: '#a855f7',
     marginBottom: 4,
   },
   infoText: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6366F1',
+    color: '#a1a1aa',
     lineHeight: 18,
   },
 });

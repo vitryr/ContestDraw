@@ -23,6 +23,20 @@ import { useDrawStore } from '../services/drawStore';
 import { WinnerCardComponent } from '../components/WinnerCardComponent';
 import { apiService } from '../services/apiService';
 
+// Theme colors
+const THEME = {
+  background: '#0a0a0f',
+  elevated: '#12121a',
+  card: '#1a1a24',
+  accent: '#7c3aed',
+  accentPink: '#ec4899',
+  accentLight: '#a855f7',
+  textPrimary: '#ffffff',
+  textSecondary: '#a1a1aa',
+  textMuted: '#71717a',
+  border: '#27272a',
+};
+
 // Video generation types
 type VideoStatus = 'IDLE' | 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'FAILED';
 
@@ -168,7 +182,7 @@ export const ResultsScreen: React.FC = () => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
       const winners = currentDraw.winners?.map((w) => w.username).join(', ') || '';
-      const message = `🎉 ${currentDraw.title}\n\nWinners: ${winners}\n\nDrawn with Cleack`;
+      const message = `${currentDraw.title}\n\nWinners: ${winners}\n\nDrawn with Cleack`;
 
       await Share.open({
         title: 'Share Results',
@@ -393,8 +407,10 @@ export const ResultsScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <LinearGradient
-        colors={['#6366F1', '#8B5CF6']}
+        colors={[THEME.accent, THEME.accentPink]}
         style={styles.header}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
       >
         <View style={styles.headerContent}>
           <Ionicons name="trophy" size={48} color="#FFFFFF" />
@@ -432,7 +448,7 @@ export const ResultsScreen: React.FC = () => {
             style={styles.actionButton}
             onPress={handleShare}
           >
-            <Ionicons name="share-social" size={24} color="#6366F1" />
+            <Ionicons name="share-social" size={24} color={THEME.accent} />
             <Text style={styles.actionText}>Share Results</Text>
           </TouchableOpacity>
 
@@ -442,7 +458,7 @@ export const ResultsScreen: React.FC = () => {
               style={styles.actionButton}
               onPress={handleExportVideo}
             >
-              <Ionicons name="videocam" size={24} color="#6366F1" />
+              <Ionicons name="videocam" size={24} color={THEME.accent} />
               <Text style={styles.actionText}>Export Video</Text>
             </TouchableOpacity>
           )}
@@ -453,9 +469,9 @@ export const ResultsScreen: React.FC = () => {
             disabled={isDownloadingCertificate}
           >
             {isDownloadingCertificate ? (
-              <ActivityIndicator size="small" color="#6366F1" />
+              <ActivityIndicator size="small" color={THEME.accent} />
             ) : (
-              <Ionicons name="document-text" size={24} color="#6366F1" />
+              <Ionicons name="document-text" size={24} color={THEME.accent} />
             )}
             <Text style={styles.actionText}>
               {isDownloadingCertificate ? 'Downloading...' : 'Certificate'}
@@ -468,9 +484,9 @@ export const ResultsScreen: React.FC = () => {
             disabled={isExporting}
           >
             {isExporting ? (
-              <ActivityIndicator size="small" color="#6366F1" />
+              <ActivityIndicator size="small" color={THEME.accent} />
             ) : (
-              <Ionicons name="download-outline" size={24} color="#6366F1" />
+              <Ionicons name="download-outline" size={24} color={THEME.accent} />
             )}
             <Text style={styles.actionText}>
               {isExporting ? 'Exporting...' : 'Export CSV'}
@@ -482,7 +498,7 @@ export const ResultsScreen: React.FC = () => {
         {isVideoGenerating && (
           <View style={styles.videoStatusContainer}>
             <View style={styles.videoStatusContent}>
-              <ActivityIndicator size="small" color="#6366F1" />
+              <ActivityIndicator size="small" color={THEME.accent} />
               <Text style={styles.videoStatusText}>{getVideoStatusMessage()}</Text>
             </View>
             {videoProgress > 0 && (
@@ -536,14 +552,14 @@ export const ResultsScreen: React.FC = () => {
         {videoStatus === 'FAILED' && (
           <View style={styles.videoFailedContainer}>
             <View style={styles.videoFailedHeader}>
-              <Ionicons name="alert-circle" size={24} color="#EF4444" />
+              <Ionicons name="alert-circle" size={24} color="#ef4444" />
               <Text style={styles.videoFailedTitle}>Video generation failed</Text>
             </View>
             <TouchableOpacity
               style={styles.retryButton}
               onPress={handleExportVideo}
             >
-              <Ionicons name="refresh" size={20} color="#6366F1" />
+              <Ionicons name="refresh" size={20} color={THEME.accent} />
               <Text style={styles.retryButtonText}>Try Again</Text>
             </TouchableOpacity>
           </View>
@@ -555,7 +571,14 @@ export const ResultsScreen: React.FC = () => {
           style={styles.doneButton}
           onPress={handleDone}
         >
-          <Text style={styles.doneButtonText}>Done</Text>
+          <LinearGradient
+            colors={[THEME.accent, THEME.accentPink]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 0 }}
+            style={styles.doneButtonGradient}
+          >
+            <Text style={styles.doneButtonText}>Done</Text>
+          </LinearGradient>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -565,7 +588,7 @@ export const ResultsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.background,
   },
   header: {
     paddingVertical: 40,
@@ -585,46 +608,37 @@ const styles = StyleSheet.create({
   headerSubtitle: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#E0E7FF',
+    color: 'rgba(255, 255, 255, 0.8)',
   },
   content: {
     flex: 1,
     padding: 20,
   },
   drawInfo: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.card,
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: THEME.border,
   },
   drawTitle: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 8,
   },
   drawDescription: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     lineHeight: 20,
     marginBottom: 12,
   },
   drawStats: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#9CA3AF',
+    color: THEME.textMuted,
   },
   winnersSection: {
     marginBottom: 24,
@@ -632,7 +646,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginBottom: 16,
   },
   actions: {
@@ -644,22 +658,13 @@ const styles = StyleSheet.create({
   actionButton: {
     flex: 1,
     minWidth: 100,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.card,
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
     gap: 8,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: THEME.border,
   },
   actionButtonDisabled: {
     opacity: 0.6,
@@ -667,18 +672,20 @@ const styles = StyleSheet.create({
   actionText: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: THEME.accent,
     textAlign: 'center',
   },
   footer: {
     padding: 20,
     borderTopWidth: 1,
-    borderTopColor: '#E5E7EB',
-    backgroundColor: '#FFFFFF',
+    borderTopColor: THEME.border,
+    backgroundColor: THEME.elevated,
   },
   doneButton: {
-    backgroundColor: '#6366F1',
     borderRadius: 12,
+    overflow: 'hidden',
+  },
+  doneButtonGradient: {
     padding: 16,
     alignItems: 'center',
   },
@@ -689,21 +696,12 @@ const styles = StyleSheet.create({
   },
   // Video Status Styles
   videoStatusContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.card,
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
-      android: {
-        elevation: 2,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: THEME.border,
   },
   videoStatusContent: {
     flexDirection: 'row',
@@ -714,19 +712,19 @@ const styles = StyleSheet.create({
   videoStatusText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     flex: 1,
   },
   progressBarContainer: {
     height: 6,
-    backgroundColor: '#E5E7EB',
+    backgroundColor: THEME.border,
     borderRadius: 3,
     marginBottom: 16,
     overflow: 'hidden',
   },
   progressBar: {
     height: '100%',
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
     borderRadius: 3,
   },
   cancelButton: {
@@ -737,16 +735,16 @@ const styles = StyleSheet.create({
   cancelButtonText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#9CA3AF',
+    color: THEME.textMuted,
   },
   // Video Ready Styles
   videoReadyContainer: {
-    backgroundColor: '#ECFDF5',
+    backgroundColor: 'rgba(16, 185, 129, 0.1)',
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#A7F3D0',
+    borderColor: 'rgba(16, 185, 129, 0.3)',
   },
   videoReadyHeader: {
     flexDirection: 'row',
@@ -757,7 +755,7 @@ const styles = StyleSheet.create({
   videoReadyTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#065F46',
+    color: '#10B981',
   },
   videoActions: {
     flexDirection: 'row',
@@ -774,7 +772,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   playButton: {
-    backgroundColor: '#6366F1',
+    backgroundColor: THEME.accent,
   },
   downloadButton: {
     backgroundColor: '#10B981',
@@ -786,12 +784,12 @@ const styles = StyleSheet.create({
   },
   // Video Failed Styles
   videoFailedContainer: {
-    backgroundColor: '#FEF2F2',
+    backgroundColor: 'rgba(239, 68, 68, 0.1)',
     borderRadius: 16,
     padding: 20,
     marginBottom: 24,
     borderWidth: 1,
-    borderColor: '#FECACA',
+    borderColor: 'rgba(239, 68, 68, 0.3)',
   },
   videoFailedHeader: {
     flexDirection: 'row',
@@ -802,7 +800,7 @@ const styles = StyleSheet.create({
   videoFailedTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#991B1B',
+    color: '#ef4444',
   },
   retryButton: {
     flexDirection: 'row',
@@ -811,14 +809,14 @@ const styles = StyleSheet.create({
     gap: 8,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.card,
     borderRadius: 10,
     borderWidth: 1,
-    borderColor: '#6366F1',
+    borderColor: THEME.accent,
   },
   retryButtonText: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: THEME.accent,
   },
 });

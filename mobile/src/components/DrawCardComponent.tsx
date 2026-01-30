@@ -21,9 +21,9 @@ export const DrawCardComponent: React.FC<DrawCardComponentProps> = ({
   onPress,
 }) => {
   const statusConfig = {
-    draft: { color: '#9CA3AF', text: 'Draft', icon: 'document-text' },
+    draft: { color: '#71717a', text: 'Draft', icon: 'document-text' },
     active: { color: '#10B981', text: 'Active', icon: 'play-circle' },
-    completed: { color: '#6366F1', text: 'Completed', icon: 'checkmark-circle' },
+    completed: { color: '#a855f7', text: 'Completed', icon: 'checkmark-circle' },
   };
 
   const status = statusConfig[draw.status];
@@ -54,11 +54,11 @@ export const DrawCardComponent: React.FC<DrawCardComponentProps> = ({
 
       <View style={styles.stats}>
         <View style={styles.stat}>
-          <Ionicons name="people" size={16} color="#6B7280" />
+          <Ionicons name="people" size={16} color="#a1a1aa" />
           <Text style={styles.statText}>{draw.totalEntries} entries</Text>
         </View>
         <View style={styles.stat}>
-          <Ionicons name="trophy" size={16} color="#6B7280" />
+          <Ionicons name="trophy" size={16} color="#a1a1aa" />
           <Text style={styles.statText}>
             {draw.winnersCount} winner{draw.winnersCount > 1 ? 's' : ''}
           </Text>
@@ -71,7 +71,7 @@ export const DrawCardComponent: React.FC<DrawCardComponentProps> = ({
             ? `Completed ${format(new Date(draw.completedAt), 'MMM d, yyyy')}`
             : `Created ${format(new Date(draw.createdAt), 'MMM d, yyyy')}`}
         </Text>
-        <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
+        <Ionicons name="chevron-forward" size={20} color="#71717a" />
       </View>
     </TouchableOpacity>
   );
@@ -79,19 +79,21 @@ export const DrawCardComponent: React.FC<DrawCardComponentProps> = ({
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     padding: 16,
     marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#27272a',
     ...Platform.select({
       ios: {
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.3,
         shadowRadius: 8,
       },
       android: {
-        elevation: 2,
+        elevation: 4,
       },
     }),
   },
@@ -105,7 +107,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginRight: 12,
   },
   statusBadge: {
@@ -123,7 +125,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     lineHeight: 20,
     marginBottom: 12,
   },
@@ -140,7 +142,7 @@ const styles = StyleSheet.create({
   statText: {
     fontSize: 14,
     fontFamily: 'Inter-Medium',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   footer: {
     flexDirection: 'row',
@@ -148,11 +150,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 12,
     borderTopWidth: 1,
-    borderTopColor: '#F3F4F6',
+    borderTopColor: '#27272a',
   },
   date: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#9CA3AF',
+    color: '#71717a',
   },
 });

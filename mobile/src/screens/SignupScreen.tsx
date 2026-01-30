@@ -97,14 +97,14 @@ export const SignupScreen: React.FC = () => {
             onPress={() => navigation.goBack()}
             style={styles.backButton}
           >
-            <Ionicons name="arrow-back" size={24} color="#111827" />
+            <Ionicons name="arrow-back" size={24} color="#ffffff" />
           </TouchableOpacity>
         </View>
 
         <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
           <View style={styles.titleSection}>
             <LinearGradient
-              colors={['#6366F1', '#8B5CF6']}
+              colors={['#7c3aed', '#ec4899']}
               style={styles.iconGradient}
             >
               <Ionicons name="person-add" size={40} color="#FFFFFF" />
@@ -119,7 +119,7 @@ export const SignupScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 placeholder="John Doe"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 value={name}
                 onChangeText={setName}
                 autoCapitalize="words"
@@ -131,7 +131,7 @@ export const SignupScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 placeholder="your@email.com"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -146,7 +146,7 @@ export const SignupScreen: React.FC = () => {
                 <TextInput
                   style={styles.passwordInput}
                   placeholder="Min. 8 characters"
-                  placeholderTextColor="#9CA3AF"
+                  placeholderTextColor="#71717a"
                   value={password}
                   onChangeText={setPassword}
                   secureTextEntry={!showPassword}
@@ -158,7 +158,7 @@ export const SignupScreen: React.FC = () => {
                   <Ionicons
                     name={showPassword ? 'eye-off' : 'eye'}
                     size={20}
-                    color="#9CA3AF"
+                    color="#71717a"
                   />
                 </TouchableOpacity>
               </View>
@@ -169,7 +169,7 @@ export const SignupScreen: React.FC = () => {
               <TextInput
                 style={styles.input}
                 placeholder="Re-enter password"
-                placeholderTextColor="#9CA3AF"
+                placeholderTextColor="#71717a"
                 value={confirmPassword}
                 onChangeText={setConfirmPassword}
                 secureTextEntry={!showPassword}
@@ -207,7 +207,7 @@ export const SignupScreen: React.FC = () => {
               disabled={localLoading}
             >
               <LinearGradient
-                colors={['#6366F1', '#8B5CF6']}
+                colors={['#7c3aed', '#ec4899']}
                 style={styles.signupGradient}
               >
                 <Text style={styles.signupButtonText}>
@@ -232,7 +232,7 @@ export const SignupScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0a0a0f',
   },
   keyboardView: {
     flex: 1,
@@ -263,13 +263,13 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   form: {
     marginBottom: 32,
@@ -280,33 +280,33 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     marginBottom: 8,
   },
   input: {
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#12121a',
     borderRadius: 12,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#12121a',
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: '#27272a',
   },
   passwordInput: {
     flex: 1,
     padding: 16,
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#111827',
+    color: '#ffffff',
   },
   passwordToggle: {
     padding: 16,
@@ -321,28 +321,29 @@ const styles = StyleSheet.create({
     height: 20,
     borderRadius: 4,
     borderWidth: 2,
-    borderColor: '#D1D5DB',
+    borderColor: '#27272a',
     marginRight: 8,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#12121a',
   },
   checkboxChecked: {
-    backgroundColor: '#6366F1',
-    borderColor: '#6366F1',
+    backgroundColor: '#7c3aed',
+    borderColor: '#7c3aed',
   },
   checkboxText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   linkText: {
-    color: '#6366F1',
+    color: '#a855f7',
     fontFamily: 'Inter-Bold',
   },
   errorContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FEE2E2',
+    backgroundColor: 'rgba(239, 68, 68, 0.15)',
     borderRadius: 8,
     padding: 12,
     gap: 8,
@@ -359,7 +360,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,
@@ -390,11 +391,11 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
   },
   footerLink: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6366F1',
+    color: '#a855f7',
   },
 });

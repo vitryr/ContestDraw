@@ -27,21 +27,21 @@ const SLIDES = [
     icon: 'trophy',
     title: 'Run Fair Draws',
     description: 'Create transparent and verifiable contest draws with advanced filtering options',
-    color: '#6366F1',
+    color: '#7c3aed',
   },
   {
     id: '2',
     icon: 'people',
     title: 'Connect Social Media',
     description: 'Import entries from Instagram, TikTok, and Facebook seamlessly',
-    color: '#8B5CF6',
+    color: '#a855f7',
   },
   {
     id: '3',
     icon: 'videocam',
     title: 'Share Results',
     description: 'Export animated draw videos in vertical Story format to share with your audience',
-    color: '#EC4899',
+    color: '#ec4899',
   },
 ];
 
@@ -148,7 +148,7 @@ export const OnboardingScreen: React.FC = () => {
           onPress={handleNext}
         >
           <LinearGradient
-            colors={['#6366F1', '#8B5CF6']}
+            colors={['#7c3aed', '#ec4899']}
             style={styles.nextGradient}
           >
             <Text style={styles.nextButtonText}>
@@ -165,7 +165,7 @@ export const OnboardingScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#0a0a0f',
   },
   skipButton: {
     alignSelf: 'flex-end',
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
   skipText: {
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#6366F1',
+    color: '#a855f7',
   },
   slide: {
     width,
@@ -193,9 +193,9 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     ...Platform.select({
       ios: {
-        shadowColor: '#000',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 8 },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.4,
         shadowRadius: 16,
       },
       android: {
@@ -206,14 +206,14 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
     textAlign: 'center',
     marginBottom: 16,
   },
   description: {
     fontSize: 16,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textAlign: 'center',
     lineHeight: 24,
   },
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
   dot: {
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#6366F1',
+    backgroundColor: '#7c3aed',
   },
   footer: {
     padding: 20,
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     ...Platform.select({
       ios: {
-        shadowColor: '#6366F1',
+        shadowColor: '#7c3aed',
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.3,
         shadowRadius: 8,

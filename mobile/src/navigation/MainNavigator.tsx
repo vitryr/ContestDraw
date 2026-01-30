@@ -36,12 +36,12 @@ const TabNavigator: React.FC = () => {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#6366F1',
-        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarActiveTintColor: '#7c3aed',
+        tabBarInactiveTintColor: '#71717a',
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
+          backgroundColor: '#12121a',
           borderTopWidth: 1,
-          borderTopColor: '#E5E7EB',
+          borderTopColor: '#27272a',
           paddingBottom: Platform.OS === 'ios' ? 20 : 10,
           height: Platform.OS === 'ios' ? 85 : 65,
         },
@@ -77,6 +77,9 @@ export const MainNavigator: React.FC = () => {
       screenOptions={{
         headerShown: false,
         animation: 'slide_from_right',
+        contentStyle: {
+          backgroundColor: '#0a0a0f',
+        },
       }}
     >
       <Stack.Screen name="HomeTabs" component={TabNavigator} />

@@ -17,6 +17,7 @@ import * as Haptics from 'expo-haptics';
 import { useAuthStore } from '../services/authStore';
 import { paymentService } from '../services/paymentService';
 import { CreditPackage } from '../types';
+import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 
 const CREDIT_PACKAGES: CreditPackage[] = [
   { id: 'credits_10', name: 'Starter', credits: 10, price: 9.99 },
@@ -127,7 +128,7 @@ export const CreditsScreen: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Buy Credits</Text>
         {Platform.OS === 'ios' && (
@@ -139,7 +140,7 @@ export const CreditsScreen: React.FC = () => {
 
       <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
         <LinearGradient
-          colors={['#6366F1', '#8B5CF6']}
+          colors={colors.gradients.primary}
           style={styles.balanceCard}
         >
           <Text style={styles.balanceLabel}>Current Balance</Text>
@@ -151,7 +152,7 @@ export const CreditsScreen: React.FC = () => {
 
         {loading ? (
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#6366F1" />
+            <ActivityIndicator size="large" color={colors.accent.primary} />
           </View>
         ) : (
           <View style={styles.packages}>
@@ -192,11 +193,14 @@ export const CreditsScreen: React.FC = () => {
                 </View>
 
                 {purchasingId === pkg.id ? (
-                  <ActivityIndicator color="#6366F1" style={styles.purchaseLoader} />
+                  <ActivityIndicator color={colors.accent.primary} style={styles.purchaseLoader} />
                 ) : (
-                  <View style={styles.packageButton}>
+                  <LinearGradient
+                    colors={colors.gradients.primary}
+                    style={styles.packageButton}
+                  >
                     <Text style={styles.packageButtonText}>Purchase</Text>
-                  </View>
+                  </LinearGradient>
                 )}
               </TouchableOpacity>
             ))}
@@ -204,14 +208,14 @@ export const CreditsScreen: React.FC = () => {
         )}
 
         <View style={styles.infoCard}>
-          <Ionicons name="information-circle" size={24} color="#6366F1" />
+          <Ionicons name="information-circle" size={24} color={colors.accent.primary} />
           <View style={styles.infoContent}>
             <Text style={styles.infoTitle}>How Credits Work</Text>
             <Text style={styles.infoText}>
-              • 1 credit = 1 draw execution{'\n'}
-              • Credits never expire{'\n'}
-              • Use for unlimited entries per draw{'\n'}
-              • Safe and secure payment
+              - 1 credit = 1 draw execution{'\n'}
+              - Credits never expire{'\n'}
+              - Use for unlimited entries per draw{'\n'}
+              - Safe and secure payment
             </Text>
           </View>
         </View>
@@ -223,188 +227,185 @@ export const CreditsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: colors.background.primary,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
+    backgroundColor: colors.background.elevated,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: colors.border.default,
   },
   backButton: {
-    padding: 4,
+    padding: spacing.xs,
   },
   headerTitle: {
     fontSize: 18,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   restoreText: {
     fontSize: 16,
-    fontFamily: 'Inter-Medium',
-    color: '#6366F1',
+    fontFamily: fonts.medium,
+    color: colors.accent.primary,
   },
   content: {
     flex: 1,
-    padding: 20,
+    padding: spacing.lg,
   },
   balanceCard: {
-    borderRadius: 16,
-    padding: 24,
+    borderRadius: borderRadius.lg,
+    padding: spacing.lg,
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: spacing.xl,
   },
   balanceLabel: {
     fontSize: 14,
-    fontFamily: 'Inter-Medium',
-    color: '#E0E7FF',
-    marginBottom: 8,
+    fontFamily: fonts.medium,
+    color: 'rgba(255, 255, 255, 0.7)',
+    marginBottom: spacing.sm,
   },
   balanceAmount: {
     fontSize: 48,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
-    marginBottom: 4,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.xs,
   },
   balanceHint: {
     fontSize: 13,
-    fontFamily: 'Inter-Regular',
-    color: '#C7D2FE',
+    fontFamily: fonts.regular,
+    color: 'rgba(255, 255, 255, 0.6)',
   },
   sectionTitle: {
     fontSize: 20,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
-    marginBottom: 16,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.md,
   },
   loadingContainer: {
     paddingVertical: 60,
     alignItems: 'center',
   },
   packages: {
-    gap: 16,
-    marginBottom: 24,
+    gap: spacing.md,
+    marginBottom: spacing.lg,
   },
   packageCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.lg,
     borderWidth: 2,
-    borderColor: '#E5E7EB',
+    borderColor: colors.border.default,
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
+      ios: shadows.md,
       android: {
-        elevation: 2,
+        elevation: shadows.md.elevation,
       },
     }),
   },
   packageCardPopular: {
-    borderColor: '#6366F1',
+    borderColor: colors.accent.primary,
   },
   popularBadge: {
-    backgroundColor: '#6366F1',
-    paddingHorizontal: 12,
-    paddingVertical: 4,
-    borderRadius: 8,
+    backgroundColor: colors.accent.primary,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.sm,
     alignSelf: 'flex-start',
-    marginBottom: 12,
+    marginBottom: spacing.md,
   },
   popularText: {
     fontSize: 11,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
     letterSpacing: 0.5,
   },
   packageName: {
     fontSize: 20,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
-    marginBottom: 12,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.md,
   },
   packageCredits: {
     flexDirection: 'row',
     alignItems: 'baseline',
-    marginBottom: 12,
+    marginBottom: spacing.md,
   },
   packageCreditsAmount: {
     fontSize: 40,
-    fontFamily: 'Inter-Bold',
-    color: '#6366F1',
-    marginRight: 8,
+    fontFamily: fonts.bold,
+    color: colors.accent.primary,
+    marginRight: spacing.sm,
   },
   packageCreditsLabel: {
     fontSize: 16,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
   },
   bonusBadge: {
-    backgroundColor: '#10B981',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-    marginLeft: 8,
+    backgroundColor: colors.status.success,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: borderRadius.sm,
+    marginLeft: spacing.sm,
   },
   bonusText: {
     fontSize: 12,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   packagePrice: {
-    marginBottom: 16,
+    marginBottom: spacing.md,
   },
   packagePriceAmount: {
     fontSize: 32,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   packagePriceUnit: {
     fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
   },
   packageButton: {
-    backgroundColor: '#6366F1',
-    borderRadius: 12,
-    padding: 16,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
     alignItems: 'center',
   },
   packageButtonText: {
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   purchaseLoader: {
-    paddingVertical: 16,
+    paddingVertical: spacing.md,
   },
   infoCard: {
     flexDirection: 'row',
-    backgroundColor: '#EEF2FF',
-    borderRadius: 12,
-    padding: 16,
-    gap: 12,
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.md,
+    padding: spacing.md,
+    gap: spacing.md,
+    borderWidth: 1,
+    borderColor: colors.border.default,
+    marginBottom: spacing.xl,
   },
   infoContent: {
     flex: 1,
   },
   infoTitle: {
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#4F46E5',
-    marginBottom: 8,
+    fontFamily: fonts.bold,
+    color: colors.accent.tertiary,
+    marginBottom: spacing.sm,
   },
   infoText: {
     fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#6366F1',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
     lineHeight: 20,
   },
 });

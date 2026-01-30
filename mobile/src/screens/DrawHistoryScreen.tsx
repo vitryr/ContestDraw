@@ -14,6 +14,20 @@ import { useDrawStore } from '../services/drawStore';
 import { DrawCardComponent } from '../components/DrawCardComponent';
 import { MainNavigationProp } from '../types/navigation';
 
+// Theme colors
+const THEME = {
+  background: '#0a0a0f',
+  elevated: '#12121a',
+  card: '#1a1a24',
+  accent: '#7c3aed',
+  accentPink: '#ec4899',
+  accentLight: '#a855f7',
+  textPrimary: '#ffffff',
+  textSecondary: '#a1a1aa',
+  textMuted: '#71717a',
+  border: '#27272a',
+};
+
 export const DrawHistoryScreen: React.FC = () => {
   const navigation = useNavigation<MainNavigationProp>();
   const { draws, fetchDraws, isLoading } = useDrawStore();
@@ -42,7 +56,7 @@ export const DrawHistoryScreen: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color={THEME.textPrimary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Draw History</Text>
         <View style={styles.headerSpacer} />
@@ -78,7 +92,12 @@ export const DrawHistoryScreen: React.FC = () => {
       <ScrollView
         style={styles.content}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={THEME.accent}
+            colors={[THEME.accent]}
+          />
         }
       >
         {filteredDraws.length > 0 ? (
@@ -97,7 +116,7 @@ export const DrawHistoryScreen: React.FC = () => {
           ))
         ) : (
           <View style={styles.emptyState}>
-            <Ionicons name="archive-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="archive-outline" size={64} color={THEME.textMuted} />
             <Text style={styles.emptyTitle}>No Draws Found</Text>
             <Text style={styles.emptyText}>
               {filter === 'all'
@@ -114,7 +133,7 @@ export const DrawHistoryScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.background,
   },
   header: {
     flexDirection: 'row',
@@ -122,9 +141,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: THEME.elevated,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: THEME.border,
   },
   backButton: {
     padding: 4,
@@ -132,7 +151,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
   },
   headerSpacer: {
     width: 32,
@@ -141,25 +160,26 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     padding: 20,
     gap: 12,
+    backgroundColor: THEME.background,
   },
   filterButton: {
     flex: 1,
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 8,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: THEME.card,
     borderWidth: 1,
-    borderColor: '#E5E7EB',
+    borderColor: THEME.border,
     alignItems: 'center',
   },
   filterButtonActive: {
-    backgroundColor: '#6366F1',
-    borderColor: '#6366F1',
+    backgroundColor: THEME.accent,
+    borderColor: THEME.accent,
   },
   filterText: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6B7280',
+    color: THEME.textMuted,
   },
   filterTextActive: {
     color: '#FFFFFF',
@@ -176,14 +196,14 @@ const styles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: THEME.textPrimary,
     marginTop: 16,
     marginBottom: 8,
   },
   emptyText: {
     fontSize: 14,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: THEME.textSecondary,
     textAlign: 'center',
   },
 });

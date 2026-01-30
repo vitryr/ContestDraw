@@ -17,6 +17,7 @@ import { useDrawStore } from '../services/drawStore';
 import { CreditBalanceComponent } from '../components/CreditBalanceComponent';
 import { DrawCardComponent } from '../components/DrawCardComponent';
 import { MainNavigationProp } from '../types/navigation';
+import { colors, spacing, borderRadius, shadows, fonts } from '../theme';
 
 export const HomeScreen: React.FC = () => {
   const navigation = useNavigation<MainNavigationProp>();
@@ -40,7 +41,7 @@ export const HomeScreen: React.FC = () => {
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <LinearGradient
-        colors={['#6366F1', '#8B5CF6']}
+        colors={colors.gradients.primary}
         style={styles.header}
       >
         <View style={styles.headerContent}>
@@ -59,7 +60,11 @@ export const HomeScreen: React.FC = () => {
       <ScrollView
         style={styles.content}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.accent.primary}
+          />
         }
       >
         <View style={styles.section}>
@@ -73,10 +78,10 @@ export const HomeScreen: React.FC = () => {
               onPress={() => navigation.navigate('NewDraw')}
             >
               <LinearGradient
-                colors={['#6366F1', '#8B5CF6']}
+                colors={colors.gradients.primary}
                 style={styles.actionGradient}
               >
-                <Ionicons name="add-circle" size={32} color="#FFFFFF" />
+                <Ionicons name="add-circle" size={32} color={colors.text.primary} />
                 <Text style={styles.actionText}>New Draw</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -86,10 +91,10 @@ export const HomeScreen: React.FC = () => {
               onPress={() => navigation.navigate('DrawHistory')}
             >
               <LinearGradient
-                colors={['#10B981', '#059669']}
+                colors={colors.gradients.success}
                 style={styles.actionGradient}
               >
-                <Ionicons name="time" size={32} color="#FFFFFF" />
+                <Ionicons name="time" size={32} color={colors.text.primary} />
                 <Text style={styles.actionText}>History</Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -133,7 +138,7 @@ export const HomeScreen: React.FC = () => {
 
         {draws.length === 0 && !isLoading && (
           <View style={styles.emptyState}>
-            <Ionicons name="trophy-outline" size={64} color="#9CA3AF" />
+            <Ionicons name="trophy-outline" size={64} color={colors.text.muted} />
             <Text style={styles.emptyTitle}>No Draws Yet</Text>
             <Text style={styles.emptyText}>
               Create your first draw to get started!
@@ -142,7 +147,12 @@ export const HomeScreen: React.FC = () => {
               style={styles.emptyButton}
               onPress={() => navigation.navigate('NewDraw')}
             >
-              <Text style={styles.emptyButtonText}>Create Draw</Text>
+              <LinearGradient
+                colors={colors.gradients.primary}
+                style={styles.emptyButtonGradient}
+              >
+                <Text style={styles.emptyButtonText}>Create Draw</Text>
+              </LinearGradient>
             </TouchableOpacity>
           </View>
         )}
@@ -154,13 +164,13 @@ export const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: colors.background.primary,
   },
   header: {
-    paddingHorizontal: 20,
-    paddingVertical: 24,
-    borderBottomLeftRadius: 24,
-    borderBottomRightRadius: 24,
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.lg,
+    borderBottomLeftRadius: borderRadius.xl,
+    borderBottomRightRadius: borderRadius.xl,
   },
   headerContent: {
     flexDirection: 'row',
@@ -169,69 +179,64 @@ const styles = StyleSheet.create({
   },
   greeting: {
     fontSize: 24,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
-    marginBottom: 4,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginBottom: spacing.xs,
   },
   subtitle: {
     fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#E0E7FF',
+    fontFamily: fonts.regular,
+    color: 'rgba(255, 255, 255, 0.8)',
   },
   content: {
     flex: 1,
-    padding: 20,
+    padding: spacing.lg,
   },
   section: {
-    marginBottom: 24,
+    marginBottom: spacing.lg,
   },
   sectionHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: spacing.md,
   },
   sectionTitle: {
     fontSize: 18,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   sectionCount: {
     fontSize: 14,
-    fontFamily: 'Inter-Medium',
-    color: '#6B7280',
+    fontFamily: fonts.medium,
+    color: colors.text.secondary,
   },
   actionGrid: {
     flexDirection: 'row',
-    gap: 12,
+    gap: spacing.md,
   },
   actionCard: {
     flex: 1,
-    borderRadius: 16,
+    borderRadius: borderRadius.lg,
     overflow: 'hidden',
     ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 8,
-      },
+      ios: shadows.md,
       android: {
-        elevation: 4,
+        elevation: shadows.md.elevation,
       },
     }),
   },
   actionGradient: {
-    padding: 20,
+    padding: spacing.lg,
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 120,
   },
   actionText: {
-    marginTop: 8,
+    marginTop: spacing.sm,
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
   emptyState: {
     alignItems: 'center',
@@ -240,27 +245,29 @@ const styles = StyleSheet.create({
   },
   emptyTitle: {
     fontSize: 20,
-    fontFamily: 'Inter-Bold',
-    color: '#111827',
-    marginTop: 16,
-    marginBottom: 8,
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
+    marginTop: spacing.md,
+    marginBottom: spacing.sm,
   },
   emptyText: {
     fontSize: 14,
-    fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    fontFamily: fonts.regular,
+    color: colors.text.secondary,
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: spacing.lg,
   },
   emptyButton: {
-    backgroundColor: '#6366F1',
-    paddingHorizontal: 24,
-    paddingVertical: 12,
-    borderRadius: 12,
+    borderRadius: borderRadius.md,
+    overflow: 'hidden',
+  },
+  emptyButtonGradient: {
+    paddingHorizontal: spacing.lg,
+    paddingVertical: spacing.md,
   },
   emptyButtonText: {
     fontSize: 16,
-    fontFamily: 'Inter-Bold',
-    color: '#FFFFFF',
+    fontFamily: fonts.bold,
+    color: colors.text.primary,
   },
 });

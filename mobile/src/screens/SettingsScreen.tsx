@@ -123,7 +123,7 @@ export const SettingsScreen: React.FC = () => {
   }> = ({ icon, title, subtitle, value, onToggle }) => (
     <View style={styles.settingItem}>
       <View style={styles.settingIcon}>
-        <Ionicons name={icon as any} size={20} color="#6366F1" />
+        <Ionicons name={icon as any} size={20} color="#7c3aed" />
       </View>
       <View style={styles.settingContent}>
         <Text style={styles.settingTitle}>{title}</Text>
@@ -132,9 +132,9 @@ export const SettingsScreen: React.FC = () => {
       <Switch
         value={value}
         onValueChange={onToggle}
-        trackColor={{ false: '#E5E7EB', true: '#C7D2FE' }}
-        thumbColor={value ? '#6366F1' : '#9CA3AF'}
-        ios_backgroundColor="#E5E7EB"
+        trackColor={{ false: '#27272a', true: 'rgba(124, 58, 237, 0.4)' }}
+        thumbColor={value ? '#7c3aed' : '#71717a'}
+        ios_backgroundColor="#27272a"
       />
     </View>
   );
@@ -146,7 +146,7 @@ export const SettingsScreen: React.FC = () => {
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
-          <Ionicons name="arrow-back" size={24} color="#111827" />
+          <Ionicons name="arrow-back" size={24} color="#ffffff" />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Settings</Text>
         <View style={styles.placeholder} />
@@ -237,18 +237,18 @@ export const SettingsScreen: React.FC = () => {
           <View style={styles.card}>
             <TouchableOpacity style={styles.linkItem} onPress={openPrivacyPolicy}>
               <View style={styles.settingIcon}>
-                <Ionicons name="document-text" size={20} color="#6366F1" />
+                <Ionicons name="document-text" size={20} color="#7c3aed" />
               </View>
               <Text style={styles.linkTitle}>Privacy Policy</Text>
-              <Ionicons name="open-outline" size={20} color="#9CA3AF" />
+              <Ionicons name="open-outline" size={20} color="#71717a" />
             </TouchableOpacity>
             <View style={styles.divider} />
             <TouchableOpacity style={styles.linkItem} onPress={openTermsOfService}>
               <View style={styles.settingIcon}>
-                <Ionicons name="clipboard" size={20} color="#6366F1" />
+                <Ionicons name="clipboard" size={20} color="#7c3aed" />
               </View>
               <Text style={styles.linkTitle}>Terms of Service</Text>
-              <Ionicons name="open-outline" size={20} color="#9CA3AF" />
+              <Ionicons name="open-outline" size={20} color="#71717a" />
             </TouchableOpacity>
           </View>
         </View>
@@ -261,10 +261,10 @@ export const SettingsScreen: React.FC = () => {
             disabled={deleting}
           >
             {deleting ? (
-              <ActivityIndicator size="small" color="#EF4444" />
+              <ActivityIndicator size="small" color="#ffffff" />
             ) : (
               <>
-                <Ionicons name="trash" size={20} color="#EF4444" />
+                <Ionicons name="trash" size={20} color="#ffffff" />
                 <Text style={styles.deleteText}>Delete Account</Text>
               </>
             )}
@@ -284,7 +284,7 @@ export const SettingsScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F9FAFB',
+    backgroundColor: '#0a0a0f',
   },
   header: {
     flexDirection: 'row',
@@ -292,9 +292,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 16,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#12121a',
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: '#27272a',
   },
   backButton: {
     padding: 4,
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     fontSize: 18,
     fontFamily: 'Inter-Bold',
-    color: '#111827',
+    color: '#ffffff',
   },
   placeholder: {
     width: 32,
@@ -317,27 +317,18 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 14,
     fontFamily: 'Inter-Bold',
-    color: '#6B7280',
+    color: '#a1a1aa',
     textTransform: 'uppercase',
     letterSpacing: 0.5,
     marginBottom: 12,
     marginLeft: 4,
   },
   card: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#1a1a24',
     borderRadius: 16,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: {
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
-        shadowRadius: 4,
-      },
-      android: {
-        elevation: 1,
-      },
-    }),
+    borderWidth: 1,
+    borderColor: '#27272a',
   },
   settingItem: {
     flexDirection: 'row',
@@ -349,7 +340,7 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: 18,
-    backgroundColor: '#EEF2FF',
+    backgroundColor: 'rgba(124, 58, 237, 0.15)',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -359,17 +350,17 @@ const styles = StyleSheet.create({
   settingTitle: {
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#111827',
+    color: '#ffffff',
   },
   settingSubtitle: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#a1a1aa',
     marginTop: 2,
   },
   divider: {
     height: 1,
-    backgroundColor: '#F3F4F6',
+    backgroundColor: '#27272a',
     marginLeft: 64,
   },
   linkItem: {
@@ -382,28 +373,26 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     fontFamily: 'Inter-Medium',
-    color: '#111827',
+    color: '#ffffff',
   },
   deleteButton: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#ef4444',
     borderRadius: 12,
     padding: 16,
     gap: 8,
-    borderWidth: 1,
-    borderColor: '#FEE2E2',
   },
   deleteText: {
     fontSize: 16,
     fontFamily: 'Inter-Bold',
-    color: '#EF4444',
+    color: '#ffffff',
   },
   deleteHint: {
     fontSize: 13,
     fontFamily: 'Inter-Regular',
-    color: '#6B7280',
+    color: '#71717a',
     textAlign: 'center',
     marginTop: 12,
     paddingHorizontal: 20,
