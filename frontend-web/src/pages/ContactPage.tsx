@@ -33,15 +33,23 @@ export default function ContactPage() {
   const onSubmit = async (data: ContactForm) => {
     setIsSubmitting(true);
     try {
-      const mailtoLink = `mailto:contact@cleack.io?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(
-        `Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
-      )}`;
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/api/public/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
 
-      window.location.href = mailtoLink;
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
       setIsSubmitted(true);
       reset();
-      toast.success("Opening your email client...");
+      toast.success("Message sent successfully!");
     } catch (error) {
+      console.error('Contact form error:', error);
       toast.error("Failed to send message. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -64,7 +72,7 @@ export default function ContactPage() {
               {t("contact.thankYou", "Thank you!")}
             </h2>
             <p className="text-ink-secondary mb-6">
-              {t("contact.emailOpened", "Your email client should open with your message. If it didn't, please send an email directly to contact@cleack.io")}
+              {t("contact.messageSent", "Your message has been sent successfully. We'll get back to you as soon as possible.")}
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
@@ -144,10 +152,10 @@ export default function ContactPage() {
                       {t("contact.emailDescription", "For general inquiries and support")}
                     </p>
                     <a
-                      href="mailto:contact@cleack.io"
+                      href="mailto:support@cleack.io"
                       className="text-accent-secondary hover:text-accent-tertiary font-medium"
                     >
-                      contact@cleack.io
+                      support@cleack.io
                     </a>
                   </div>
                 </div>

@@ -1,7 +1,11 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense, useCallback } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuthStore } from "./store/useAuthStore";
 import { usePageTracking } from "./hooks/useAnalytics";
+import CookieBanner from "./components/CookieBanner";
+import { analytics } from "./services/analytics";
+import { errorTracking } from "./services/errorTracking";
+import { ConsentPreferences } from "./services/consent";
 import Layout from "./components/Layout";
 import LandingPage from "./pages/LandingPage";
 import AuthPageEnhanced from "./pages/AuthPageEnhanced";
@@ -189,6 +193,15 @@ function App() {
   const { loadUser } = useAuthStore();
   const [isInitialized, setIsInitialized] = useState(false);
 
+  // Handle GDPR consent - initialize tracking services only when user consents
+  const handleConsentGiven = useCallback((preferences: ConsentPreferences) => {
+    if (preferences.analytics) {
+      // Initialize Mixpanel and Sentry with force flag since consent is given
+      analytics.init(true);
+      errorTracking.init(true);
+    }
+  }, []);
+
   // Load user from token on app initialization
   useEffect(() => {
     const initAuth = async () => {
@@ -213,6 +226,7 @@ function App() {
   return (
     <AnalyticsWrapper>
       <Suspense fallback={<PageLoader />}>
+        <CookieBanner onConsentGiven={handleConsentGiven} />
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<LandingPage />} />
@@ -394,37 +408,37 @@ function App() {
             {/* SEO PAGES - Blog                            */}
             {/* ============================================ */}
             
-            {/* Blog Hub */}
-            <Route path="blog" element={<BlogHub />} />
-            <Route path="blog/" element={<BlogHub />} />
+            {/* Blog Hub - accessible via /articles */}
+            <Route path="articles" element={<BlogHub />} />
+            <Route path="articles/" element={<BlogHub />} />
             
-            {/* Blog Articles - Tutoriels */}
-            <Route path="blog/comment-faire-tirage-au-sort-instagram" element={<CommentFaireTirageInstagram />} />
-            <Route path="blog/comment-faire-tirage-au-sort-instagram/" element={<CommentFaireTirageInstagram />} />
-            <Route path="blog/comment-faire-tirage-au-sort-tiktok" element={<CommentFaireTirageTiktok />} />
-            <Route path="blog/comment-faire-tirage-au-sort-tiktok/" element={<CommentFaireTirageTiktok />} />
-            <Route path="blog/comment-faire-tirage-au-sort-facebook" element={<CommentFaireTirageFacebook />} />
-            <Route path="blog/comment-faire-tirage-au-sort-facebook/" element={<CommentFaireTirageFacebook />} />
-            <Route path="blog/comment-faire-tirage-au-sort-youtube" element={<CommentFaireTirageYoutube />} />
-            <Route path="blog/comment-faire-tirage-au-sort-youtube/" element={<CommentFaireTirageYoutube />} />
+            {/* Blog Articles - Tutoriels (first-level URLs) */}
+            <Route path="comment-faire-tirage-au-sort-instagram" element={<CommentFaireTirageInstagram />} />
+            <Route path="comment-faire-tirage-au-sort-instagram/" element={<CommentFaireTirageInstagram />} />
+            <Route path="comment-faire-tirage-au-sort-tiktok" element={<CommentFaireTirageTiktok />} />
+            <Route path="comment-faire-tirage-au-sort-tiktok/" element={<CommentFaireTirageTiktok />} />
+            <Route path="comment-faire-tirage-au-sort-facebook" element={<CommentFaireTirageFacebook />} />
+            <Route path="comment-faire-tirage-au-sort-facebook/" element={<CommentFaireTirageFacebook />} />
+            <Route path="comment-faire-tirage-au-sort-youtube" element={<CommentFaireTirageYoutube />} />
+            <Route path="comment-faire-tirage-au-sort-youtube/" element={<CommentFaireTirageYoutube />} />
             
-            {/* Blog Articles - Idées */}
-            <Route path="blog/idees-concours-instagram-2025" element={<IdeesConcoursInstagram />} />
-            <Route path="blog/idees-concours-instagram-2025/" element={<IdeesConcoursInstagram />} />
+            {/* Blog Articles - Idées (first-level URLs) */}
+            <Route path="idees-concours-instagram-2025" element={<IdeesConcoursInstagram />} />
+            <Route path="idees-concours-instagram-2025/" element={<IdeesConcoursInstagram />} />
             
-            {/* Blog Articles - Comparatifs */}
-            <Route path="blog/meilleur-outil-tirage-au-sort" element={<ComparatifOutilsTirage />} />
-            <Route path="blog/meilleur-outil-tirage-au-sort/" element={<ComparatifOutilsTirage />} />
+            {/* Blog Articles - Comparatifs (first-level URLs) */}
+            <Route path="meilleur-outil-tirage-au-sort" element={<ComparatifOutilsTirage />} />
+            <Route path="meilleur-outil-tirage-au-sort/" element={<ComparatifOutilsTirage />} />
             
-            {/* Blog Articles - Légal */}
-            <Route path="blog/regles-jeu-concours-instagram" element={<ReglesJeuConcoursInstagram />} />
-            <Route path="blog/regles-jeu-concours-instagram/" element={<ReglesJeuConcoursInstagram />} />
-            <Route path="blog/jeu-concours-legal-france" element={<JeuConcoursLegalFrance />} />
-            <Route path="blog/jeu-concours-legal-france/" element={<JeuConcoursLegalFrance />} />
+            {/* Blog Articles - Légal (first-level URLs) */}
+            <Route path="regles-jeu-concours-instagram" element={<ReglesJeuConcoursInstagram />} />
+            <Route path="regles-jeu-concours-instagram/" element={<ReglesJeuConcoursInstagram />} />
+            <Route path="jeu-concours-legal-france" element={<JeuConcoursLegalFrance />} />
+            <Route path="jeu-concours-legal-france/" element={<JeuConcoursLegalFrance />} />
             
-            {/* Blog Articles - Guides Avancés */}
-            <Route path="blog/eviter-faux-comptes-giveaway" element={<EviterFauxComptesGiveaway />} />
-            <Route path="blog/eviter-faux-comptes-giveaway/" element={<EviterFauxComptesGiveaway />} />
+            {/* Blog Articles - Guides Avancés (first-level URLs) */}
+            <Route path="eviter-faux-comptes-giveaway" element={<EviterFauxComptesGiveaway />} />
+            <Route path="eviter-faux-comptes-giveaway/" element={<EviterFauxComptesGiveaway />} />
 
             {/* ============================================ */}
             {/* EN SEO PAGES - Pillar Pages                 */}
@@ -517,17 +531,17 @@ function App() {
             <Route path="en/guides/best-giveaway-tools/" element={<BestGiveawayToolsPage />} />
 
             {/* ============================================ */}
-            {/* EN SEO PAGES - Blog                         */}
+            {/* EN SEO PAGES - Blog (first-level URLs)      */}
             {/* ============================================ */}
             
-            <Route path="en/blog" element={<BlogHubEN />} />
-            <Route path="en/blog/" element={<BlogHubEN />} />
-            <Route path="en/blog/how-to-pick-instagram-winner" element={<HowToPickInstagramWinnerPage />} />
-            <Route path="en/blog/how-to-pick-instagram-winner/" element={<HowToPickInstagramWinnerPage />} />
-            <Route path="en/blog/best-giveaway-picker-tools" element={<BestGiveawayPickerToolsPage />} />
-            <Route path="en/blog/best-giveaway-picker-tools/" element={<BestGiveawayPickerToolsPage />} />
-            <Route path="en/blog/instagram-giveaway-rules" element={<InstagramGiveawayRulesPage />} />
-            <Route path="en/blog/instagram-giveaway-rules/" element={<InstagramGiveawayRulesPage />} />
+            <Route path="en/articles" element={<BlogHubEN />} />
+            <Route path="en/articles/" element={<BlogHubEN />} />
+            <Route path="en/how-to-pick-instagram-winner" element={<HowToPickInstagramWinnerPage />} />
+            <Route path="en/how-to-pick-instagram-winner/" element={<HowToPickInstagramWinnerPage />} />
+            <Route path="en/best-giveaway-picker-tools" element={<BestGiveawayPickerToolsPage />} />
+            <Route path="en/best-giveaway-picker-tools/" element={<BestGiveawayPickerToolsPage />} />
+            <Route path="en/instagram-giveaway-rules" element={<InstagramGiveawayRulesPage />} />
+            <Route path="en/instagram-giveaway-rules/" element={<InstagramGiveawayRulesPage />} />
 
             {/* ============================================ */}
             {/* APP ROUTES - Protected                      */}

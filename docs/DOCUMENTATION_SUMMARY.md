@@ -934,21 +934,21 @@ const RoadmapPage = () => {
 ### Documentation Questions
 
 For questions about these materials:
-- **Email:** docs@cleack.io
+- **Email:** support@cleack.io
 - **Slack:** #documentation channel
 - **GitHub:** Open issue in docs repo
 
 ### Content Updates
 
 To request updates to marketing content:
-- **Email:** marketing@cleack.io
+- **Email:** support@cleack.io
 - **Process:** Submit content change request form
 
 ### Legal Review
 
 For legal document changes:
-- **Email:** legal@cleack.io
-- **DPO:** dpo@cleack.io
+- **Email:** support@cleack.io
+- **DPO:** support@cleack.io
 - **Process:** Legal review required (3-5 business days)
 
 ---
@@ -977,7 +977,7 @@ For legal document changes:
 
 - **Privacy Policy views:** Track via GA4
 - **Terms acceptance rate:** (goal: 100%)
-- **DPO contact rate:** Track emails to dpo@cleack.io
+- **DPO contact rate:** Track emails to support@cleack.io
 - **GDPR requests:** Data subject access/deletion requests (goal: <1/month)
 - **Compliance audits:** Quarterly internal audits
 - **Zero CNIL complaints:** Success metric

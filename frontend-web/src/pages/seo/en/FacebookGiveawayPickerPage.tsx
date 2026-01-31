@@ -123,7 +123,7 @@ const FacebookGiveawayPickerPage = () => {
         softwareFeatures={softwareFeatures}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -142,12 +142,12 @@ const FacebookGiveawayPickerPage = () => {
                   #1 Facebook Giveaway Tool
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Facebook Giveaway Picker{' '}
-                  <span className="text-blue-600">Free</span>
+                  <span className="text-accent-secondary">Free</span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                   Pick a <strong>random winner</strong> from Facebook comments in seconds. 
                   Works with Pages and Groups. Get a <strong>proof video</strong> for transparency.
                 </p>
@@ -162,19 +162,19 @@ const FacebookGiveawayPickerPage = () => {
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:border-accent-secondary/50 transition-all"
                   >
                     How It Works
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     <span>100% Free</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     <span>No Login Required</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -189,20 +189,20 @@ const FacebookGiveawayPickerPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="bg-white rounded-2xl shadow-2xl shadow-blue-500/10 p-8 border border-gray-100">
+                <div className="bg-bg-elevated rounded-2xl shadow-2xl shadow-accent-secondary/20 p-8 border border-white/10">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Facebook className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900">Facebook Giveaway Picker</h2>
-                    <p className="text-gray-500 mt-2">Paste your post link to pick a winner</p>
+                    <h2 className="text-2xl font-bold text-white">Facebook Giveaway Picker</h2>
+                    <p className="text-ink-tertiary mt-2">Paste your post link to pick a winner</p>
                   </div>
 
                   <div className="space-y-4">
                     <input
                       type="text"
                       placeholder="https://www.facebook.com/..."
-                      className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-4 border border-white/10 rounded-xl focus:ring-2 focus:ring-blue-500"
                       readOnly
                     />
                     <Link
@@ -214,21 +214,21 @@ const FacebookGiveawayPickerPage = () => {
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">30s</div>
-                      <div className="text-sm text-gray-500">Average Time</div>
+                      <div className="text-2xl font-bold text-white">30s</div>
+                      <div className="text-sm text-ink-tertiary">Average Time</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">∞</div>
-                      <div className="text-sm text-gray-500">Comments</div>
+                      <div className="text-2xl font-bold text-white">∞</div>
+                      <div className="text-sm text-ink-tertiary">Comments</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                        <span className="text-2xl font-bold text-gray-900">4.8</span>
+                        <span className="text-2xl font-bold text-white">4.8</span>
                       </div>
-                      <div className="text-sm text-gray-500">Rating</div>
+                      <div className="text-sm text-ink-tertiary">Rating</div>
                     </div>
                   </div>
                 </div>
@@ -246,7 +246,7 @@ const FacebookGiveawayPickerPage = () => {
 
             <main className="min-w-0">
               <div className="prose prose-lg max-w-none mb-12">
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-ink-secondary leading-relaxed">
                   Running a <strong>Facebook giveaway</strong> on your Page or in a Group? Cleack is the #1 free 
                   Facebook giveaway picker. Pick random winners from comments or reactions with full transparency.
                 </p>
@@ -254,7 +254,7 @@ const FacebookGiveawayPickerPage = () => {
 
               {/* How It Works */}
               <section id="how-it-works" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   How to Pick a Facebook Giveaway Winner
                 </h2>
                 
@@ -265,15 +265,15 @@ const FacebookGiveawayPickerPage = () => {
                     { step: 3, title: "Set filters", description: "Choose winners count, require tags, or pick from reactions only.", icon: <Filter className="w-6 h-6" /> },
                     { step: 4, title: "Pick winner", description: "Random selection with proof video you can share on your Page.", icon: <Trophy className="w-6 h-6" /> },
                   ].map((item) => (
-                    <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                    <div key={item.step} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white">
                           {item.icon}
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-blue-600 mb-1">Step {item.step}</div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                          <p className="text-gray-600 text-sm">{item.description}</p>
+                          <div className="text-sm font-medium text-accent-secondary mb-1">Step {item.step}</div>
+                          <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                          <p className="text-ink-secondary text-sm">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -283,7 +283,7 @@ const FacebookGiveawayPickerPage = () => {
 
               {/* Features */}
               <section id="features" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Why Use Cleack for Facebook Giveaways?
                 </h2>
                 
@@ -296,12 +296,12 @@ const FacebookGiveawayPickerPage = () => {
                     { icon: <Filter className="w-6 h-6" />, title: "Tag Requirements", description: "Require participants to tag friends to qualify." },
                     { icon: <Shield className="w-6 h-6" />, title: "Privacy First", description: "No Facebook login needed. We never access your account." },
                   ].map((feature, index) => (
-                    <div key={index} className={`bg-white rounded-xl p-6 border ${feature.highlight ? 'border-blue-200 ring-2 ring-blue-100' : 'border-gray-100'}`}>
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${feature.highlight ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-600'}`}>
+                    <div key={index} className={`bg-bg-elevated rounded-xl p-6 border ${feature.highlight ? 'border-blue-200 ring-2 ring-blue-100' : 'border-white/10'}`}>
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${feature.highlight ? 'bg-blue-600 text-white' : 'bg-gray-100 text-ink-secondary'}`}>
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                      <p className="text-ink-secondary text-sm">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -309,7 +309,7 @@ const FacebookGiveawayPickerPage = () => {
 
               {/* Giveaway Types */}
               <section id="giveaway-types" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Facebook Giveaway Types</h2>
+                <h2 className="text-3xl font-bold text-white mb-8">Facebook Giveaway Types</h2>
                 
                 <div className="space-y-4">
                   {[
@@ -318,16 +318,16 @@ const FacebookGiveawayPickerPage = () => {
                     { icon: <Users className="w-6 h-6" />, title: "Group Giveaways", description: "Run giveaways in Facebook Groups with member-only access.", link: "/en/facebook-group-picker/" },
                     { icon: <Share2 className="w-6 h-6" />, title: "Share Giveaways", description: "Track and pick from people who shared your post.", link: "/en/facebook-giveaway-picker/" },
                   ].map((type, index) => (
-                    <Link key={index} to={type.link} className="block bg-white rounded-xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group">
+                    <Link key={index} to={type.link} className="block bg-bg-elevated rounded-xl p-6 border border-white/10 hover:border-accent-secondary/50 hover:shadow-lg transition-all group">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <div className="w-12 h-12 bg-accent-secondary/20 rounded-xl flex items-center justify-center text-accent-secondary group-hover:bg-blue-600 group-hover:text-white transition-all">
                           {type.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600">{type.title}</h3>
-                          <p className="text-gray-600 text-sm">{type.description}</p>
+                          <h3 className="text-lg font-semibold text-white group-hover:text-accent-secondary">{type.title}</h3>
+                          <p className="text-ink-secondary text-sm">{type.description}</p>
                         </div>
-                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-blue-500" />
+                        <ArrowRight className="w-5 h-5 text-ink-tertiary group-hover:text-accent-secondary" />
                       </div>
                     </Link>
                   ))}
@@ -336,7 +336,7 @@ const FacebookGiveawayPickerPage = () => {
 
               {/* Tips */}
               <section id="tips" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">Facebook Giveaway Tips</h2>
+                <h2 className="text-3xl font-bold text-white mb-8">Facebook Giveaway Tips</h2>
                 
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
@@ -345,12 +345,12 @@ const FacebookGiveawayPickerPage = () => {
                     { icon: <Gift className="w-6 h-6" />, title: "Relevant Prizes", description: "Choose prizes your Facebook audience actually wants." },
                     { icon: <Users className="w-6 h-6" />, title: "Boost Your Post", description: "Consider Facebook ads to reach more potential participants." },
                   ].map((tip, index) => (
-                    <div key={index} className="bg-blue-50 rounded-xl p-6 border border-blue-100">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 mb-4">
+                    <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-blue-100">
+                      <div className="w-12 h-12 bg-bg-elevated rounded-xl flex items-center justify-center text-accent-secondary mb-4">
                         {tip.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{tip.title}</h3>
-                      <p className="text-gray-600 text-sm">{tip.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{tip.title}</h3>
+                      <p className="text-ink-secondary text-sm">{tip.description}</p>
                     </div>
                   ))}
                 </div>
@@ -363,7 +363,7 @@ const FacebookGiveawayPickerPage = () => {
 
               {/* Platform Links */}
               <section className="mb-16">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Platforms</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Other Platforms</h2>
                 <PlatformLinks currentPlatform="facebook" />
               </section>
 
@@ -373,7 +373,7 @@ const FacebookGiveawayPickerPage = () => {
                 <p className="text-lg text-blue-100 mb-8 max-w-2xl mx-auto">
                   Fair, transparent, and free. Pick your Facebook giveaway winner in seconds.
                 </p>
-                <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
+                <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-elevated text-accent-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
                   <Sparkles className="w-5 h-5" />
                   Pick Winner Free
                 </Link>

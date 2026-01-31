@@ -88,7 +88,7 @@ const TirageGroupeFacebookPage = () => {
         softwareRatingCount={687}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -101,19 +101,19 @@ const TirageGroupeFacebookPage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Users2 className="w-4 h-4" />
                   Tirage Groupe Facebook
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                     Groupe Facebook
                   </span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Organisez des concours engageants dans vos <strong>Groupes Facebook</strong>. 
                   Tirez au sort parmi les commentaires des membres - groupes publics ou privés.
                 </p>
@@ -128,19 +128,19 @@ const TirageGroupeFacebookPage = () => {
                   </Link>
                   <Link
                     to="/tirage-au-sort-facebook/"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-blue-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-accent-secondary/50 transition-all"
                   >
                     Guide complet Facebook
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Groupes publics
                   </span>
                   <span className="flex items-center gap-2">
-                    <Lock className="w-5 h-5 text-blue-500" />
+                    <Lock className="w-5 h-5 text-accent-secondary" />
                     Groupes privés
                   </span>
                   <span className="flex items-center gap-2">
@@ -153,21 +153,21 @@ const TirageGroupeFacebookPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Users2 className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Groupe Facebook</h2>
-                  <p className="text-gray-500 text-sm mt-2">Collez le lien de la publication du groupe</p>
+                  <h2 className="text-xl font-bold text-white">Tirage Groupe Facebook</h2>
+                  <p className="text-ink-tertiary text-sm mt-2">Collez le lien de la publication du groupe</p>
                 </div>
 
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.facebook.com/groups/.../posts/..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     readOnly
                   />
                   <Link
@@ -179,8 +179,8 @@ const TirageGroupeFacebookPage = () => {
                   </Link>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Users className="w-4 h-4" />
                       687+ tirages
@@ -197,13 +197,13 @@ const TirageGroupeFacebookPage = () => {
         </section>
 
         {/* Avantages Groupes */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Pourquoi les Groupes Facebook sont Parfaits pour les Concours
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Les Groupes Facebook offrent des avantages uniques pour vos jeux concours.
               </p>
             </div>
@@ -236,13 +236,13 @@ const TirageGroupeFacebookPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100"
+                  className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-blue-100"
                 >
-                  <div className="w-12 h-12 bg-white text-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-bg-elevated text-accent-secondary rounded-xl flex items-center justify-center mb-4 shadow-sm">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+                  <p className="text-ink-secondary text-sm">{benefit.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -253,27 +253,27 @@ const TirageGroupeFacebookPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Cleack Fonctionne avec Tous les Types de Groupes
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+              <div className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-green-100 text-green-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-bg-elevated0/20 text-green-600 rounded-xl flex items-center justify-center">
                     <Globe className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">Groupes Publics</h3>
+                    <h3 className="text-xl font-semibold text-white">Groupes Publics</h3>
                     <span className="text-sm text-green-600">Accès direct</span>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Tout le monde peut voir les publications. Cleack peut analyser les commentaires 
                   directement sans authentification.
                 </p>
-                <ul className="space-y-2 text-sm text-gray-600">
+                <ul className="space-y-2 text-sm text-ink-secondary">
                   <li className="flex items-center gap-2">
                     <CheckCircle2 className="w-4 h-4 text-green-500" />
                     Pas de connexion requise
@@ -289,31 +289,31 @@ const TirageGroupeFacebookPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+              <div className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-accent-secondary/20 text-accent-secondary rounded-xl flex items-center justify-center">
                     <Lock className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900">Groupes Privés</h3>
-                    <span className="text-sm text-blue-600">Connexion requise</span>
+                    <h3 className="text-xl font-semibold text-white">Groupes Privés</h3>
+                    <span className="text-sm text-accent-secondary">Connexion requise</span>
                   </div>
                 </div>
-                <p className="text-gray-600 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Seuls les membres peuvent voir le contenu. Connectez votre compte Facebook 
                   pour que Cleack accède aux commentaires.
                 </p>
-                <ul className="space-y-2 text-sm text-gray-600">
+                <ul className="space-y-2 text-sm text-ink-secondary">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                    <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                     Connexion Facebook sécurisée
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                    <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                     Vous devez être membre
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500" />
+                    <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
                     Parfait pour les communautés VIP
                   </li>
                 </ul>
@@ -323,10 +323,10 @@ const TirageGroupeFacebookPage = () => {
         </section>
 
         {/* Guide étape par étape */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Comment Organiser un Concours dans un Groupe Facebook
               </h2>
             </div>
@@ -339,15 +339,15 @@ const TirageGroupeFacebookPage = () => {
                       {index + 1}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">{step.name}</h3>
-                      <p className="text-gray-600">{step.text}</p>
+                      <h3 className="text-lg font-semibold text-white mb-1">{step.name}</h3>
+                      <p className="text-ink-secondary">{step.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-                <h3 className="text-xl font-bold text-gray-900 mb-6">Bonnes Pratiques pour les Groupes</h3>
+              <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-2xl p-8 border border-blue-100">
+                <h3 className="text-xl font-bold text-white mb-6">Bonnes Pratiques pour les Groupes</h3>
                 <ul className="space-y-4">
                   {[
                     { icon: <MessageSquare className="w-5 h-5" />, text: "Prévenez les admins avant de lancer un concours" },
@@ -357,10 +357,10 @@ const TirageGroupeFacebookPage = () => {
                     { icon: <Shield className="w-5 h-5" />, text: "Respectez les règles du groupe" },
                   ].map((item, index) => (
                     <li key={index} className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-white text-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 bg-bg-elevated text-accent-secondary rounded-lg flex items-center justify-center flex-shrink-0">
                         {item.icon}
                       </div>
-                      <span className="text-gray-700">{item.text}</span>
+                      <span className="text-ink-secondary">{item.text}</span>
                     </li>
                   ))}
                 </ul>
@@ -373,7 +373,7 @@ const TirageGroupeFacebookPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Idées de Concours pour Groupes Facebook
               </h2>
             </div>
@@ -411,10 +411,10 @@ const TirageGroupeFacebookPage = () => {
                   ideal: "Groupes publics",
                 },
               ].map((idea, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{idea.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{idea.description}</p>
-                  <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-medium rounded-full">
+                <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm hover:shadow-md transition-all">
+                  <h3 className="text-lg font-semibold text-white mb-2">{idea.title}</h3>
+                  <p className="text-ink-secondary text-sm mb-4">{idea.description}</p>
+                  <span className="inline-block px-3 py-1 bg-bg-elevated text-blue-700 text-xs font-medium rounded-full">
                     Idéal pour : {idea.ideal}
                   </span>
                 </div>
@@ -424,14 +424,14 @@ const TirageGroupeFacebookPage = () => {
         </section>
 
         {/* Attention / Règles */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-4xl mx-auto px-4">
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
               <div className="flex items-start gap-4">
                 <AlertCircle className="w-8 h-8 text-amber-600 flex-shrink-0" />
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Points d'Attention pour les Groupes</h3>
-                  <ul className="space-y-2 text-gray-700 text-sm">
+                  <h3 className="text-lg font-semibold text-white mb-2">Points d'Attention pour les Groupes</h3>
+                  <ul className="space-y-2 text-ink-secondary text-sm">
                     <li>• <strong>Demandez toujours l'accord des admins</strong> avant de lancer un concours si vous n'êtes pas admin</li>
                     <li>• <strong>Respectez les règles du groupe</strong> - certains interdisent les concours</li>
                     <li>• <strong>Ne spammez pas</strong> - un concours de temps en temps, pas toutes les semaines</li>
@@ -455,9 +455,9 @@ const TirageGroupeFacebookPage = () => {
         </section>
 
         {/* Related Pages */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Ressources Facebook</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Ressources Facebook</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires Facebook", url: "/tirage-commentaires-facebook/" },
@@ -467,10 +467,10 @@ const TirageGroupeFacebookPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-blue-100 hover:border-accent-secondary/50 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-accent-secondary" />
                 </Link>
               ))}
             </div>
@@ -482,7 +482,7 @@ const TirageGroupeFacebookPage = () => {
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Link
               to="/tirage-au-sort-facebook/"
-              className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 text-accent-secondary font-medium hover:text-blue-700 transition-colors"
             >
               ← Retour au guide complet Tirage au Sort Facebook
             </Link>
@@ -501,7 +501,7 @@ const TirageGroupeFacebookPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Commencer gratuitement

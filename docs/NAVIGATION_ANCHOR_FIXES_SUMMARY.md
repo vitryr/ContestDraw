@@ -33,9 +33,9 @@ Fixed all footer links:
 - ✅ Documentation → `/faq` page
 
 **Company Section:**
-- ✅ About → `mailto:contact@cleack.io`
+- ✅ About → `mailto:support@cleack.io`
 - ✅ Blog → External link with `target="_blank"`
-- ✅ Contact → `mailto:contact@cleack.io`
+- ✅ Contact → `mailto:support@cleack.io`
 
 **Legal Section:**
 - ✅ Privacy → `/privacy` route (page needs creation)

@@ -72,27 +72,27 @@ const BestGiveawayToolsPage = () => (
       breadcrumbs={breadcrumbItems}
       faqItems={faqItems}
     />
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       
       <article className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Trophy className="w-4 h-4" /> Comparison
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Best Giveaway Picker Tools
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-ink-secondary">
               Honest comparison of the top giveaway picker tools in 2025.
             </p>
           </div>
 
           <div className="overflow-x-auto mb-12">
-            <table className="w-full bg-white rounded-xl border border-gray-200">
+            <table className="w-full bg-bg-primary rounded-xl border border-white/10">
               <thead>
-                <tr className="bg-gray-50">
+                <tr className="bg-bg-elevated">
                   <th className="px-4 py-3 text-left font-semibold">Tool</th>
                   <th className="px-4 py-3 text-center font-semibold">Free</th>
                   <th className="px-4 py-3 text-center font-semibold">Proof Video</th>
@@ -103,16 +103,16 @@ const BestGiveawayToolsPage = () => (
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {tools.map((tool) => (
-                  <tr key={tool.name} className={tool.highlight ? 'bg-emerald-50' : ''}>
+                  <tr key={tool.name} className={tool.highlight ? 'bg-accent-secondary/10' : ''}>
                     <td className="px-4 py-3">
-                      <div className="font-semibold text-gray-900">{tool.name}</div>
-                      <div className="text-sm text-gray-500">{tool.description}</div>
+                      <div className="font-semibold text-white">{tool.name}</div>
+                      <div className="text-sm text-ink-muted">{tool.description}</div>
                     </td>
                     <td className="px-4 py-3 text-center">
                       {tool.free === true ? (
                         <CheckCircle2 className="w-5 h-5 text-green-500 mx-auto" />
                       ) : (
-                        <span className="text-gray-500 text-sm">{tool.free}</span>
+                        <span className="text-ink-muted text-sm">{tool.free}</span>
                       )}
                     </td>
                     <td className="px-4 py-3 text-center">
@@ -143,7 +143,7 @@ const BestGiveawayToolsPage = () => (
             </table>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-invert max-w-none">
             <h2>Our Verdict</h2>
             <p>
               <strong>Cleack</strong> is the clear winner for most users. It's the only tool that offers 
@@ -161,9 +161,9 @@ const BestGiveawayToolsPage = () => (
             </ul>
           </div>
 
-          <div className="mt-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 text-center text-white">
+          <div className="mt-12 bg-gradient-to-r from-bg-primary0 to-teal-500 rounded-2xl p-8 text-center text-white">
             <h3 className="text-2xl font-bold mb-4">Try the #1 Giveaway Picker</h3>
-            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               <Sparkles className="w-5 h-5" /> Pick Winner Free
             </Link>
           </div>

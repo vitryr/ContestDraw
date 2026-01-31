@@ -32,8 +32,8 @@ const faqItems = [
 
 export const CommentFaireTirageFacebook = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Tirage au sort Facebook', url: 'https://cleack.io/blog/comment-faire-tirage-au-sort-facebook/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Tirage au sort Facebook', url: 'https://cleack.io/comment-faire-tirage-au-sort-facebook/' },
   ];
 
   return (
@@ -42,7 +42,7 @@ export const CommentFaireTirageFacebook = () => {
         title="Comment Organiser un Tirage au Sort Facebook (Guide 2025)"
         description="Tout savoir pour réaliser un tirage au sort sur Facebook : pages, groupes, publications. Méthode conforme aux règles de la plateforme."
         keywords="tirage au sort facebook, concours facebook, tirage commentaires facebook, giveaway facebook"
-        canonicalUrl="https://cleack.io/blog/comment-faire-tirage-au-sort-facebook/"
+        canonicalUrl="https://cleack.io/comment-faire-tirage-au-sort-facebook/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -53,13 +53,13 @@ export const CommentFaireTirageFacebook = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         <header className="bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-blue-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 📖 Tutoriel
               </span>
               
@@ -86,9 +86,9 @@ export const CommentFaireTirageFacebook = () => {
             <aside className="lg:w-80 flex-shrink-0">
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
-                <div className="mt-6 p-6 bg-blue-50 rounded-xl">
-                  <h3 className="font-bold text-gray-900 mb-2">🎯 Tirage Facebook</h3>
-                  <p className="text-sm text-gray-600 mb-4">Faites votre tirage en 2 minutes.</p>
+                <div className="mt-6 p-6 bg-accent-secondary/10 rounded-xl">
+                  <h3 className="font-bold text-white mb-2">🎯 Tirage Facebook</h3>
+                  <p className="text-sm text-ink-secondary mb-4">Faites votre tirage en 2 minutes.</p>
                   <Link to="/tirage-au-sort-facebook" className="block w-full text-center bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">
                     Lancer un tirage
                   </Link>
@@ -97,24 +97,24 @@ export const CommentFaireTirageFacebook = () => {
             </aside>
 
             <main className="flex-1 max-w-3xl">
-              <section id="types-concours" className="prose prose-lg max-w-none mb-12">
+              <section id="types-concours" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Types de concours Facebook</h2>
                 <p>Facebook offre plusieurs façons d'organiser un concours :</p>
                 
                 <div className="grid md:grid-cols-2 gap-4 not-prose my-6">
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">📄 Sur une Page</h3>
-                    <p className="text-gray-600 text-sm">Idéal pour les marques et entreprises. Touchez vos fans et au-delà.</p>
+                  <div className="p-4 bg-accent-secondary/10 rounded-lg">
+                    <h3 className="font-bold text-white mb-2">📄 Sur une Page</h3>
+                    <p className="text-ink-secondary text-sm">Idéal pour les marques et entreprises. Touchez vos fans et au-delà.</p>
                   </div>
-                  <div className="p-4 bg-indigo-50 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">👥 Dans un Groupe</h3>
-                    <p className="text-gray-600 text-sm">Parfait pour les communautés. Engagement très élevé.</p>
+                  <div className="p-4 bg-bg-elevated rounded-lg">
+                    <h3 className="font-bold text-white mb-2">👥 Dans un Groupe</h3>
+                    <p className="text-ink-secondary text-sm">Parfait pour les communautés. Engagement très élevé.</p>
                   </div>
                 </div>
               </section>
 
               <section id="tirage-publication" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Tirage sur une publication de Page</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Tirage sur une publication de Page</h2>
                 
                 <div className="space-y-4">
                   {[
@@ -124,13 +124,13 @@ export const CommentFaireTirageFacebook = () => {
                     { step: 4, title: "Utilisez Cleack", desc: "Collez le lien sur cleack.io/tirage-au-sort-facebook" },
                     { step: 5, title: "Lancez le tirage", desc: "Configurez les filtres et obtenez votre gagnant !" },
                   ].map((item) => (
-                    <div key={item.step} className="flex gap-4 p-4 bg-blue-50 rounded-lg">
+                    <div key={item.step} className="flex gap-4 p-4 bg-accent-secondary/10 rounded-lg">
                       <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                         {item.step}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <h3 className="font-bold text-white">{item.title}</h3>
+                        <p className="text-ink-secondary text-sm">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -138,14 +138,14 @@ export const CommentFaireTirageFacebook = () => {
               </section>
 
               <section id="tirage-groupe" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Tirage dans un Groupe Facebook</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Tirage dans un Groupe Facebook</h2>
                 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Les groupes Facebook ont généralement un meilleur taux d'engagement. 
                   Le processus est similaire :
                 </p>
 
-                <div className="p-4 bg-indigo-50 border border-indigo-200 rounded-lg mb-6">
+                <div className="p-4 bg-bg-elevated border border-indigo-200 rounded-lg mb-6">
                   <h4 className="font-bold text-indigo-900 mb-2">💡 Astuce Groupe</h4>
                   <p className="text-indigo-800 text-sm">
                     Dans les groupes privés, seuls les membres peuvent voir et participer. 
@@ -155,10 +155,10 @@ export const CommentFaireTirageFacebook = () => {
               </section>
 
               <section id="regles-facebook" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Règles officielles Facebook</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Règles officielles Facebook</h2>
                 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="p-4 bg-success/10 rounded-lg">
                     <h3 className="font-bold text-green-900 mb-2 flex items-center gap-2">
                       <CheckCircle className="w-5 h-5" /> Autorisé
                     </h3>
@@ -169,7 +169,7 @@ export const CommentFaireTirageFacebook = () => {
                       <li>• Rejoindre un groupe</li>
                     </ul>
                   </div>
-                  <div className="p-4 bg-red-50 rounded-lg">
+                  <div className="p-4 bg-error/10 rounded-lg">
                     <h3 className="font-bold text-red-900 mb-2 flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5" /> Interdit
                     </h3>
@@ -184,7 +184,7 @@ export const CommentFaireTirageFacebook = () => {
               </section>
 
               <section id="astuces" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Astuces pour maximiser la participation</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Astuces pour maximiser la participation</h2>
                 
                 <div className="space-y-3">
                   {[
@@ -195,9 +195,9 @@ export const CommentFaireTirageFacebook = () => {
                     "Répondez aux commentaires pour booster l'algo",
                     "Faites des rappels avant la fin",
                   ].map((tip, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                      <span className="text-gray-700">{tip}</span>
+                    <div key={index} className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-accent-secondary flex-shrink-0" />
+                      <span className="text-ink-secondary">{tip}</span>
                     </div>
                   ))}
                 </div>
@@ -210,22 +210,22 @@ export const CommentFaireTirageFacebook = () => {
               <section className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white rounded-2xl p-8 text-center">
                 <h2 className="text-2xl font-bold mb-4">Prêt pour votre tirage Facebook ?</h2>
                 <p className="text-blue-100 mb-6">Utilisez Cleack pour un tirage gratuit et équitable.</p>
-                <Link to="/tirage-au-sort-facebook" className="inline-flex items-center gap-2 bg-white text-blue-700 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition-colors">
+                <Link to="/tirage-au-sort-facebook" className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-3 rounded-lg font-bold hover:bg-accent-secondary/10 transition-colors">
                   Faire un tirage
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </section>
 
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/comment-faire-tirage-au-sort-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Tirage Instagram</h3>
-                    <p className="text-gray-600 text-sm">Guide complet</p>
+                  <Link to="/comment-faire-tirage-au-sort-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Tirage Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Guide complet</p>
                   </Link>
-                  <Link to="/blog/regles-jeu-concours-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Règles des concours</h3>
-                    <p className="text-gray-600 text-sm">Cadre légal</p>
+                  <Link to="/regles-jeu-concours-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Règles des concours</h3>
+                    <p className="text-ink-secondary text-sm">Cadre légal</p>
                   </Link>
                 </div>
               </section>

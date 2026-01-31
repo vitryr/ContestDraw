@@ -67,7 +67,7 @@ const LegalJeuConcoursFrancePage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-slate-50 via-white to-blue-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -79,29 +79,29 @@ const LegalJeuConcoursFrancePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-white/10 text-ink-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Scale className="w-4 h-4" />
                 Guide Juridique
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Jeux Concours en France :{' '}
                 <span className="bg-gradient-to-r from-slate-700 to-blue-700 bg-clip-text text-transparent">
                   Guide Légal Complet
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Tout ce que vous devez savoir sur la législation française des jeux concours. 
                 Organisez vos concours en toute conformité.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-                <span className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                <span className="flex items-center gap-2 bg-bg-elevated0/20 text-success px-3 py-1 rounded-full">
                   <CheckCircle2 className="w-4 h-4" />
                   Mis à jour 2024
                 </span>
-                <span className="flex items-center gap-2 bg-blue-100 text-blue-700 px-3 py-1 rounded-full">
+                <span className="flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-3 py-1 rounded-full">
                   <Scale className="w-4 h-4" />
                   Droit français
                 </span>
@@ -113,12 +113,12 @@ const LegalJeuConcoursFrancePage = () => {
         {/* Avertissement */}
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4">
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+            <div className="bg-warning/10 border border-amber-200 rounded-xl p-6">
               <div className="flex items-start gap-4">
                 <AlertCircle className="w-8 h-8 text-amber-600 flex-shrink-0" />
                 <div>
                   <h3 className="font-semibold text-amber-800 mb-2">Avertissement</h3>
-                  <p className="text-amber-700 text-sm">
+                  <p className="text-warning text-sm">
                     Ce guide est fourni à titre informatif et ne constitue pas un conseil juridique. 
                     Pour des situations complexes ou des enjeux importants, consultez un avocat spécialisé. 
                     La législation peut évoluer.
@@ -130,31 +130,31 @@ const LegalJeuConcoursFrancePage = () => {
         </section>
 
         {/* Types de jeux */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Les 3 Types de Jeux : Ce qui est Légal ou Non
               </h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {/* Loteries gratuites */}
-              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+              <div className="bg-success/10 border-2 border-green-200 rounded-xl p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <CheckCircle2 className="w-10 h-10 text-green-600" />
+                  <CheckCircle2 className="w-10 h-10 text-success" />
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900">Loteries Gratuites</h3>
-                    <span className="text-green-600 font-medium">✓ LÉGAL</span>
+                    <h3 className="text-lg font-bold text-white">Loteries Gratuites</h3>
+                    <span className="text-success font-medium">✓ LÉGAL</span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Tirage au sort <strong>sans obligation d'achat</strong>. C'est le cas de la plupart 
                   des concours sur les réseaux sociaux.
                 </p>
-                <div className="bg-white rounded-lg p-4">
-                  <p className="text-sm text-gray-600 font-medium mb-2">Exemples :</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                <div className="bg-bg-primary rounded-lg p-4">
+                  <p className="text-sm text-ink-secondary font-medium mb-2">Exemples :</p>
+                  <ul className="text-sm text-ink-secondary space-y-1">
                     <li>• Concours Instagram « commente pour participer »</li>
                     <li>• Giveaway Twitter « RT pour gagner »</li>
                     <li>• Jeu Facebook « like + partage »</li>
@@ -163,21 +163,21 @@ const LegalJeuConcoursFrancePage = () => {
               </div>
 
               {/* Concours de compétence */}
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+              <div className="bg-accent-secondary/10 border-2 border-blue-200 rounded-xl p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <CheckCircle2 className="w-10 h-10 text-blue-600" />
+                  <CheckCircle2 className="w-10 h-10 text-accent-secondary" />
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900">Concours de Talents</h3>
-                    <span className="text-blue-600 font-medium">✓ LÉGAL</span>
+                    <h3 className="text-lg font-bold text-white">Concours de Talents</h3>
+                    <span className="text-accent-secondary font-medium">✓ LÉGAL</span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Le gagnant est désigné par ses <strong>compétences ou sa créativité</strong>, 
                   pas par le hasard.
                 </p>
-                <div className="bg-white rounded-lg p-4">
-                  <p className="text-sm text-gray-600 font-medium mb-2">Exemples :</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                <div className="bg-bg-primary rounded-lg p-4">
+                  <p className="text-sm text-ink-secondary font-medium mb-2">Exemples :</p>
+                  <ul className="text-sm text-ink-secondary space-y-1">
                     <li>• Concours photo « meilleure création »</li>
                     <li>• Quiz avec sélection des bonnes réponses</li>
                     <li>• Challenge créatif jugé par un jury</li>
@@ -186,21 +186,21 @@ const LegalJeuConcoursFrancePage = () => {
               </div>
 
               {/* Loteries payantes */}
-              <div className="bg-red-50 border-2 border-red-200 rounded-xl p-6">
+              <div className="bg-error/10 border-2 border-red-200 rounded-xl p-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <Ban className="w-10 h-10 text-red-600" />
+                  <Ban className="w-10 h-10 text-red-400" />
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900">Loteries Payantes</h3>
-                    <span className="text-red-600 font-medium">✗ ILLÉGAL</span>
+                    <h3 className="text-lg font-bold text-white">Loteries Payantes</h3>
+                    <span className="text-red-400 font-medium">✗ ILLÉGAL</span>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Tout jeu de hasard avec <strong>obligation d'achat</strong> pour participer 
                   est une loterie illicite.
                 </p>
-                <div className="bg-white rounded-lg p-4">
-                  <p className="text-sm text-gray-600 font-medium mb-2">Exemples interdits :</p>
-                  <ul className="text-sm text-gray-600 space-y-1">
+                <div className="bg-bg-primary rounded-lg p-4">
+                  <p className="text-sm text-ink-secondary font-medium mb-2">Exemples interdits :</p>
+                  <ul className="text-sm text-ink-secondary space-y-1">
                     <li>• « Achetez X pour participer au tirage »</li>
                     <li>• Jeux où l'achat augmente les chances</li>
                     <li>• Tombolas payantes (sauf associations)</li>
@@ -215,16 +215,16 @@ const LegalJeuConcoursFrancePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Vos Obligations Légales en tant qu'Organisateur
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* Obligatoire */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <Shield className="w-6 h-6 text-green-600" />
+              <div className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <Shield className="w-6 h-6 text-success" />
                   Obligatoire
                 </h3>
                 <div className="space-y-4">
@@ -239,8 +239,8 @@ const LegalJeuConcoursFrancePage = () => {
                     <div key={index} className="flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-medium text-gray-900">{item.title}</p>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <p className="font-medium text-white">{item.title}</p>
+                        <p className="text-ink-secondary text-sm">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -248,9 +248,9 @@ const LegalJeuConcoursFrancePage = () => {
               </div>
 
               {/* Recommandé */}
-              <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <BookOpen className="w-6 h-6 text-blue-600" />
+              <div className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm">
+                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <BookOpen className="w-6 h-6 text-accent-secondary" />
                   Recommandé (non obligatoire)
                 </h3>
                 <div className="space-y-4">
@@ -263,10 +263,10 @@ const LegalJeuConcoursFrancePage = () => {
                     { title: "Conservation preuves", desc: "Garder les traces du tirage et des participations" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-5 h-5 text-accent-secondary flex-shrink-0 mt-0.5" />
                       <div>
-                        <p className="font-medium text-gray-900">{item.title}</p>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <p className="font-medium text-white">{item.title}</p>
+                        <p className="text-ink-secondary text-sm">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -277,21 +277,21 @@ const LegalJeuConcoursFrancePage = () => {
         </section>
 
         {/* RGPD Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 RGPD et Jeux Concours
               </h2>
             </div>
 
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-8 border border-blue-100">
-              <p className="text-gray-700 mb-6">
+            <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-8 border border-blue-100">
+              <p className="text-ink-secondary mb-6">
                 Depuis mai 2018, le <strong>Règlement Général sur la Protection des Données (RGPD)</strong> 
                 s'applique à tout traitement de données personnelles, y compris les jeux concours.
               </p>
 
-              <h3 className="font-semibold text-gray-900 mb-4">Ce que vous devez faire :</h3>
+              <h3 className="font-semibold text-white mb-4">Ce que vous devez faire :</h3>
               <div className="grid md:grid-cols-2 gap-4">
                 {[
                   "Informer sur les données collectées",
@@ -303,14 +303,14 @@ const LegalJeuConcoursFrancePage = () => {
                   "Permettre la suppression",
                   "Nommer un contact DPO",
                 ].map((item, index) => (
-                  <div key={index} className="flex items-center gap-2 bg-white rounded-lg p-3">
-                    <CheckCircle2 className="w-4 h-4 text-blue-500" />
-                    <span className="text-sm text-gray-700">{item}</span>
+                  <div key={index} className="flex items-center gap-2 bg-bg-primary rounded-lg p-3">
+                    <CheckCircle2 className="w-4 h-4 text-accent-secondary" />
+                    <span className="text-sm text-ink-secondary">{item}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+              <div className="mt-6 p-4 bg-warning/10 border border-amber-200 rounded-lg">
                 <p className="text-amber-800 text-sm">
                   <strong>⚠️ Attention :</strong> Les amendes RGPD peuvent atteindre 4% du CA annuel 
                   ou 20 millions d'euros. Ne négligez pas cette partie de votre règlement !
@@ -324,7 +324,7 @@ const LegalJeuConcoursFrancePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Sanctions en Cas de Non-Conformité
               </h2>
             </div>
@@ -366,10 +366,10 @@ const LegalJeuConcoursFrancePage = () => {
                   <div className={`w-12 h-12 bg-${item.color}-100 text-${item.color}-600 rounded-lg flex items-center justify-center mb-4`}>
                     {item.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">{item.title}</h3>
+                  <h3 className="text-lg font-semibold text-white mb-4">{item.title}</h3>
                   <ul className="space-y-2">
                     {item.items.map((i, idx) => (
-                      <li key={idx} className="text-gray-700 text-sm flex items-start gap-2">
+                      <li key={idx} className="text-ink-secondary text-sm flex items-start gap-2">
                         <AlertCircle className={`w-4 h-4 text-${item.color}-500 flex-shrink-0 mt-0.5`} />
                         {i}
                       </li>
@@ -382,15 +382,15 @@ const LegalJeuConcoursFrancePage = () => {
         </section>
 
         {/* Checklist */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Checklist Conformité Légale
               </h2>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-8 border border-green-100">
+            <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-8 border border-green-100">
               <div className="space-y-4">
                 {[
                   "Participation gratuite, sans obligation d'achat",
@@ -405,8 +405,8 @@ const LegalJeuConcoursFrancePage = () => {
                   "Loi applicable et juridiction compétente indiquées",
                 ].map((item, index) => (
                   <label key={index} className="flex items-center gap-3 cursor-pointer group">
-                    <input type="checkbox" className="w-5 h-5 rounded border-green-300 text-green-600 focus:ring-green-500" />
-                    <span className="text-gray-700 group-hover:text-gray-900">{item}</span>
+                    <input type="checkbox" className="w-5 h-5 rounded border-green-300 text-success focus:ring-green-500" />
+                    <span className="text-ink-secondary group-hover:text-white">{item}</span>
                   </label>
                 ))}
               </div>
@@ -422,9 +422,9 @@ const LegalJeuConcoursFrancePage = () => {
         </section>
 
         {/* Related Guides */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides Connexes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Guides Connexes</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Organiser un Jeu Concours", url: "/guide/organiser-jeu-concours/" },
@@ -434,10 +434,10 @@ const LegalJeuConcoursFrancePage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-slate-50 rounded-lg border border-slate-100 hover:border-slate-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-white/10 hover:border-slate-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-slate-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-muted group-hover:text-ink-secondary" />
                 </Link>
               ))}
             </div>
@@ -457,14 +457,14 @@ const LegalJeuConcoursFrancePage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
                   to="/outils/generateur-reglement/"
-                  className="inline-flex items-center gap-2 bg-white text-slate-700 px-6 py-3 rounded-xl font-semibold hover:bg-slate-50 transition-all"
+                  className="inline-flex items-center gap-2 bg-bg-primary text-ink-secondary px-6 py-3 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
                 >
                   <FileText className="w-5 h-5" />
                   Générer un règlement
                 </Link>
                 <Link
                   to="/draw/new"
-                  className="inline-flex items-center gap-2 bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all"
+                  className="inline-flex items-center gap-2 bg-accent-secondary/100 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-all"
                 >
                   <Sparkles className="w-5 h-5" />
                   Lancer un tirage

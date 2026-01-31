@@ -248,7 +248,7 @@ export default function DrawConfigPage() {
               </h2>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-white mb-2">
                     Draw Title *
                   </label>
                   <input
@@ -260,7 +260,7 @@ export default function DrawConfigPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                  <label className="block text-sm font-medium text-white mb-3">
                     <Trophy className="w-4 h-4 inline mr-2" />
                     Number of Winners *
                   </label>
@@ -276,7 +276,7 @@ export default function DrawConfigPage() {
                           ${
                             editNumberOfWinners === num
                               ? "border-primary-600 bg-primary-600 text-white shadow-lg shadow-primary-200"
-                              : "border-gray-200 bg-white text-gray-700 hover:border-primary-300 hover:bg-primary-50"
+                              : "border-gray-200 bg-white text-white hover:border-primary-300 hover:bg-primary-50"
                           }
                         `}
                       >
@@ -286,7 +286,7 @@ export default function DrawConfigPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                  <label className="block text-sm font-medium text-white mb-3">
                     <Upload className="w-4 h-4 inline mr-2" />
                     Participant Source *
                   </label>
@@ -372,7 +372,7 @@ export default function DrawConfigPage() {
                       <Users className="w-5 h-5 inline mr-2" />
                       Participants
                       {currentDraw.participants && (
-                        <span className="ml-2 bg-gray-100 text-gray-700 px-2 py-1 rounded-full text-xs">
+                        <span className="ml-2 bg-gray-100 text-white px-2 py-1 rounded-full text-xs">
                           {currentDraw.participants.length}
                         </span>
                       )}
@@ -429,7 +429,7 @@ export default function DrawConfigPage() {
                             Choose CSV File
                           </button>
                           <div className="mt-6 bg-gray-50 border border-gray-200 rounded-lg p-4 text-left max-w-md mx-auto">
-                            <p className="text-xs font-medium text-gray-700 mb-2">
+                            <p className="text-xs font-medium text-white mb-2">
                               Expected CSV format:
                             </p>
                             <code className="text-xs text-gray-600 block">

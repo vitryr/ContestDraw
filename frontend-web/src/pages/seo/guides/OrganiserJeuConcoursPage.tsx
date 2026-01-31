@@ -94,7 +94,7 @@ const OrganiserJeuConcoursPage = () => {
         howToName="Comment organiser un jeu concours réussi"
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-indigo-50 via-white to-purple-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -106,19 +106,19 @@ const OrganiserJeuConcoursPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <BookOpen className="w-4 h-4" />
                 Guide Complet
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Comment Organiser un{' '}
                 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Jeu Concours Réussi
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Le guide ultime pour organiser un jeu concours qui atteint vos objectifs : 
                 de la définition des règles au tirage au sort, en passant par la promotion.
               </p>
@@ -133,14 +133,14 @@ const OrganiserJeuConcoursPage = () => {
                 </Link>
                 <Link
                   to="/outils/generateur-reglement/"
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-indigo-300 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-bg-primary border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-indigo-300 transition-all"
                 >
                   <FileText className="w-5 h-5" />
                   Générer un règlement
                 </Link>
               </div>
 
-              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
+              <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-ink-muted">
                 <span className="flex items-center gap-2">
                   <Clock className="w-5 h-5 text-indigo-500" />
                   15 min de lecture
@@ -166,11 +166,11 @@ const OrganiserJeuConcoursPage = () => {
               </aside>
 
               {/* Main Content */}
-              <main className="lg:col-span-3 prose prose-lg max-w-none">
+              <main className="lg:col-span-3 prose prose-lg prose-invert max-w-none">
                 
                 {/* Introduction */}
-                <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 mb-12">
-                  <p className="text-gray-700 leading-relaxed">
+                <div className="bg-bg-primary rounded-2xl p-8 shadow-sm border border-white/10 mb-12">
+                  <p className="text-ink-secondary leading-relaxed">
                     Un <strong>jeu concours bien organisé</strong> peut transformer votre présence en ligne : 
                     augmentation de la notoriété, gain de followers, engagement de votre communauté, et même 
                     génération de leads qualifiés. Mais attention, un concours mal préparé peut avoir l'effet 
@@ -180,13 +180,13 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 1: Objectifs */}
                 <section id="objectifs" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <Target className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Target className="w-8 h-8 text-accent-secondary" />
                     1. Définir vos Objectifs
                   </h2>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100 mb-6">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-bg-primary rounded-xl p-6 border border-white/10 mb-6">
+                    <p className="text-ink-secondary mb-6">
                       Avant de penser au lot ou aux règles, posez-vous cette question : 
                       <strong> Qu'est-ce que je veux accomplir avec ce concours ?</strong>
                     </p>
@@ -198,21 +198,21 @@ const OrganiserJeuConcoursPage = () => {
                         { title: "Engagement", description: "Réactiver votre communauté existante", kpi: "Likes, Commentaires, Partages, Saves" },
                         { title: "Génération de Leads", description: "Collecter des emails ou des contacts qualifiés", kpi: "Inscriptions, Taux de conversion" },
                       ].map((obj, index) => (
-                        <div key={index} className="bg-indigo-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-gray-900 mb-1">{obj.title}</h4>
-                          <p className="text-gray-600 text-sm mb-2">{obj.description}</p>
-                          <p className="text-indigo-600 text-xs font-medium">KPIs : {obj.kpi}</p>
+                        <div key={index} className="bg-accent-secondary/10 rounded-lg p-4">
+                          <h4 className="font-semibold text-white mb-1">{obj.title}</h4>
+                          <p className="text-ink-secondary text-sm mb-2">{obj.description}</p>
+                          <p className="text-accent-secondary text-xs font-medium">KPIs : {obj.kpi}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                  <div className="bg-bg-elevated border border-yellow-200 rounded-xl p-6">
                     <div className="flex items-start gap-3">
-                      <Lightbulb className="w-6 h-6 text-yellow-600 flex-shrink-0" />
+                      <Lightbulb className="w-6 h-6 text-yellow-400 flex-shrink-0" />
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-2">Conseil Pro</h4>
-                        <p className="text-gray-700 text-sm">
+                        <h4 className="font-semibold text-white mb-2">Conseil Pro</h4>
+                        <p className="text-ink-secondary text-sm">
                           Fixez des objectifs SMART (Spécifiques, Mesurables, Atteignables, Réalistes, Temporels). 
                           Par exemple : « Gagner 1000 nouveaux followers Instagram en 10 jours » plutôt que 
                           « Avoir plus de followers ».
@@ -224,24 +224,24 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 2: Lot */}
                 <section id="lot" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <Gift className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Gift className="w-8 h-8 text-accent-secondary" />
                     2. Choisir le Lot Parfait
                   </h2>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100 mb-6">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-bg-primary rounded-xl p-6 border border-white/10 mb-6">
+                    <p className="text-ink-secondary mb-6">
                       Le lot est le cœur de votre concours. Un bon lot attire les bons participants ; 
                       un mauvais lot attire les chasseurs de concours.
                     </p>
 
                     <div className="grid md:grid-cols-2 gap-6">
-                      <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                      <div className="bg-success/10 border border-green-200 rounded-lg p-4">
                         <h4 className="font-semibold text-green-800 mb-3 flex items-center gap-2">
                           <CheckCircle2 className="w-5 h-5" />
                           Ce qui fonctionne
                         </h4>
-                        <ul className="space-y-2 text-gray-700 text-sm">
+                        <ul className="space-y-2 text-ink-secondary text-sm">
                           <li>✓ Lot en lien avec votre activité/niche</li>
                           <li>✓ Produit exclusif ou édition limitée</li>
                           <li>✓ Valeur perçue élevée (même si coût faible)</li>
@@ -250,12 +250,12 @@ const OrganiserJeuConcoursPage = () => {
                         </ul>
                       </div>
 
-                      <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                      <div className="bg-error/10 border border-red-200 rounded-lg p-4">
                         <h4 className="font-semibold text-red-800 mb-3 flex items-center gap-2">
                           <AlertCircle className="w-5 h-5" />
                           À éviter
                         </h4>
-                        <ul className="space-y-2 text-gray-700 text-sm">
+                        <ul className="space-y-2 text-ink-secondary text-sm">
                           <li>✗ Lot trop générique (iPhone, argent cash)</li>
                           <li>✗ Valeur trop faible (&lt;30€)</li>
                           <li>✗ Sans rapport avec votre audience</li>
@@ -266,23 +266,23 @@ const OrganiserJeuConcoursPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-6">
-                    <h4 className="font-semibold text-gray-900 mb-3">💰 Quel budget pour le lot ?</h4>
+                  <div className="bg-accent-secondary/10 border border-indigo-200 rounded-xl p-6">
+                    <h4 className="font-semibold text-white mb-3">💰 Quel budget pour le lot ?</h4>
                     <div className="grid md:grid-cols-3 gap-4 text-sm">
-                      <div className="bg-white rounded-lg p-3">
-                        <p className="font-medium text-indigo-600">Petit budget</p>
-                        <p className="text-gray-600">50-100€</p>
-                        <p className="text-gray-500 text-xs mt-1">Idéal pour concours réguliers</p>
+                      <div className="bg-bg-primary rounded-lg p-3">
+                        <p className="font-medium text-accent-secondary">Petit budget</p>
+                        <p className="text-ink-secondary">50-100€</p>
+                        <p className="text-ink-muted text-xs mt-1">Idéal pour concours réguliers</p>
                       </div>
-                      <div className="bg-white rounded-lg p-3">
-                        <p className="font-medium text-indigo-600">Budget moyen</p>
-                        <p className="text-gray-600">100-500€</p>
-                        <p className="text-gray-500 text-xs mt-1">Bon équilibre impact/coût</p>
+                      <div className="bg-bg-primary rounded-lg p-3">
+                        <p className="font-medium text-accent-secondary">Budget moyen</p>
+                        <p className="text-ink-secondary">100-500€</p>
+                        <p className="text-ink-muted text-xs mt-1">Bon équilibre impact/coût</p>
                       </div>
-                      <div className="bg-white rounded-lg p-3">
-                        <p className="font-medium text-indigo-600">Gros budget</p>
-                        <p className="text-gray-600">500€+</p>
-                        <p className="text-gray-500 text-xs mt-1">Pour les temps forts</p>
+                      <div className="bg-bg-primary rounded-lg p-3">
+                        <p className="font-medium text-accent-secondary">Gros budget</p>
+                        <p className="text-ink-secondary">500€+</p>
+                        <p className="text-ink-muted text-xs mt-1">Pour les temps forts</p>
                       </div>
                     </div>
                   </div>
@@ -290,18 +290,18 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 3: Règlement */}
                 <section id="reglement" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <FileText className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <FileText className="w-8 h-8 text-accent-secondary" />
                     3. Rédiger le Règlement
                   </h2>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100 mb-6">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-bg-primary rounded-xl p-6 border border-white/10 mb-6">
+                    <p className="text-ink-secondary mb-6">
                       Le règlement est <strong>obligatoire légalement en France</strong> pour tout jeu concours 
                       avec tirage au sort. Il vous protège et informe les participants.
                     </p>
 
-                    <h4 className="font-semibold text-gray-900 mb-4">Mentions obligatoires :</h4>
+                    <h4 className="font-semibold text-white mb-4">Mentions obligatoires :</h4>
                     <div className="grid md:grid-cols-2 gap-3">
                       {[
                         "Identité de l'organisateur (nom, adresse, SIRET)",
@@ -315,7 +315,7 @@ const OrganiserJeuConcoursPage = () => {
                         "Mention RGPD (données personnelles)",
                         "Loi applicable et juridiction compétente",
                       ].map((item, index) => (
-                        <div key={index} className="flex items-center gap-2 text-sm text-gray-700">
+                        <div key={index} className="flex items-center gap-2 text-sm text-ink-secondary">
                           <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0" />
                           {item}
                         </div>
@@ -331,7 +331,7 @@ const OrganiserJeuConcoursPage = () => {
                     </p>
                     <Link
                       to="/outils/generateur-reglement/"
-                      className="inline-flex items-center gap-2 bg-white text-indigo-600 px-6 py-2 rounded-lg font-medium hover:bg-indigo-50 transition-all"
+                      className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-6 py-2 rounded-lg font-medium hover:bg-accent-secondary/10 transition-all"
                     >
                       <FileText className="w-4 h-4" />
                       Générer mon règlement
@@ -341,21 +341,21 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 4: Contenu */}
                 <section id="contenu" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <Megaphone className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Megaphone className="w-8 h-8 text-accent-secondary" />
                     4. Créer le Contenu
                   </h2>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-bg-primary rounded-xl p-6 border border-white/10">
+                    <p className="text-ink-secondary mb-6">
                       Le contenu de votre concours doit être clair, attractif, et adapté à chaque plateforme.
                     </p>
 
-                    <h4 className="font-semibold text-gray-900 mb-4">Checklist du post parfait :</h4>
+                    <h4 className="font-semibold text-white mb-4">Checklist du post parfait :</h4>
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <h5 className="font-medium text-gray-900 mb-3">📸 Le Visuel</h5>
-                        <ul className="space-y-2 text-sm text-gray-700">
+                        <h5 className="font-medium text-white mb-3">📸 Le Visuel</h5>
+                        <ul className="space-y-2 text-sm text-ink-secondary">
                           <li>✓ Photo HD du lot bien mise en valeur</li>
                           <li>✓ Texte « CONCOURS » ou « GIVEAWAY » visible</li>
                           <li>✓ Couleurs vives qui attirent l'œil</li>
@@ -364,8 +364,8 @@ const OrganiserJeuConcoursPage = () => {
                         </ul>
                       </div>
                       <div>
-                        <h5 className="font-medium text-gray-900 mb-3">✍️ Le Texte</h5>
-                        <ul className="space-y-2 text-sm text-gray-700">
+                        <h5 className="font-medium text-white mb-3">✍️ Le Texte</h5>
+                        <ul className="space-y-2 text-sm text-ink-secondary">
                           <li>✓ Accroche percutante en 1ère ligne</li>
                           <li>✓ Règles numérotées et simples</li>
                           <li>✓ Date de fin bien visible</li>
@@ -379,13 +379,13 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 5: Promotion */}
                 <section id="promotion" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <BarChart3 className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <BarChart3 className="w-8 h-8 text-accent-secondary" />
                     5. Promouvoir le Concours
                   </h2>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-bg-primary rounded-xl p-6 border border-white/10">
+                    <p className="text-ink-secondary mb-6">
                       Un concours ne se suffit pas à lui-même. Activez tous vos canaux pour maximiser la portée.
                     </p>
 
@@ -395,9 +395,9 @@ const OrganiserJeuConcoursPage = () => {
                         { title: "Payant", items: ["Boost du post", "Ads ciblées", "Influence marketing", "Partenariats"] },
                         { title: "Communautaire", items: ["Groupes Facebook", "Forums niche", "Discord/Slack", "Ambassadeurs"] },
                       ].map((channel, index) => (
-                        <div key={index} className="bg-gray-50 rounded-lg p-4">
-                          <h4 className="font-semibold text-gray-900 mb-3">{channel.title}</h4>
-                          <ul className="space-y-1 text-sm text-gray-600">
+                        <div key={index} className="bg-bg-elevated rounded-lg p-4">
+                          <h4 className="font-semibold text-white mb-3">{channel.title}</h4>
+                          <ul className="space-y-1 text-sm text-ink-secondary">
                             {channel.items.map((item, i) => (
                               <li key={i}>• {item}</li>
                             ))}
@@ -410,37 +410,37 @@ const OrganiserJeuConcoursPage = () => {
 
                 {/* Section 6: Tirage */}
                 <section id="tirage" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                    <Trophy className="w-8 h-8 text-indigo-600" />
+                  <h2 className="text-3xl font-bold text-white mb-6 flex items-center gap-3">
+                    <Trophy className="w-8 h-8 text-accent-secondary" />
                     6. Faire le Tirage au Sort
                   </h2>
 
-                  <div className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-6 border border-indigo-100">
-                    <p className="text-gray-700 mb-6">
+                  <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-indigo-100">
+                    <p className="text-ink-secondary mb-6">
                       C'est le moment crucial ! Un tirage transparent renforce la confiance de votre communauté.
                     </p>
 
                     <div className="grid md:grid-cols-3 gap-4 text-center mb-6">
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="bg-bg-primary rounded-lg p-4">
+                        <div className="w-12 h-12 bg-accent-secondary/20 rounded-full flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl">📋</span>
                         </div>
-                        <h4 className="font-medium text-gray-900">1. Copiez le lien</h4>
-                        <p className="text-gray-600 text-sm">Du post concours</p>
+                        <h4 className="font-medium text-white">1. Copiez le lien</h4>
+                        <p className="text-ink-secondary text-sm">Du post concours</p>
                       </div>
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="bg-bg-primary rounded-lg p-4">
+                        <div className="w-12 h-12 bg-accent-secondary/20 rounded-full flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl">⚙️</span>
                         </div>
-                        <h4 className="font-medium text-gray-900">2. Configurez</h4>
-                        <p className="text-gray-600 text-sm">Filtres et gagnants</p>
+                        <h4 className="font-medium text-white">2. Configurez</h4>
+                        <p className="text-ink-secondary text-sm">Filtres et gagnants</p>
                       </div>
-                      <div className="bg-white rounded-lg p-4">
-                        <div className="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <div className="bg-bg-primary rounded-lg p-4">
+                        <div className="w-12 h-12 bg-accent-secondary/20 rounded-full flex items-center justify-center mx-auto mb-3">
                           <span className="text-2xl">🎉</span>
                         </div>
-                        <h4 className="font-medium text-gray-900">3. Partagez</h4>
-                        <p className="text-gray-600 text-sm">La vidéo preuve</p>
+                        <h4 className="font-medium text-white">3. Partagez</h4>
+                        <p className="text-ink-secondary text-sm">La vidéo preuve</p>
                       </div>
                     </div>
 
@@ -467,9 +467,9 @@ const OrganiserJeuConcoursPage = () => {
         </section>
 
         {/* Related Guides */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides Connexes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Guides Connexes</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Rédiger un Règlement", url: "/guide/reglement-jeu-concours/" },
@@ -479,10 +479,10 @@ const OrganiserJeuConcoursPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-indigo-50 rounded-lg border border-indigo-100 hover:border-indigo-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-accent-secondary/10 rounded-lg border border-indigo-100 hover:border-indigo-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-indigo-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-muted group-hover:text-accent-secondary" />
                 </Link>
               ))}
             </div>
@@ -501,7 +501,7 @@ const OrganiserJeuConcoursPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-indigo-600 px-8 py-4 rounded-xl font-semibold hover:bg-indigo-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-accent-secondary/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Commencer gratuitement

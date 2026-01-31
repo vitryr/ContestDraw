@@ -101,14 +101,14 @@ const TirageCommentairesTiktokPage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-bg-primary0/20 to-bg-primary0/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
                   <MessageCircle className="w-4 h-4" />
                   Tirage Commentaires TikTok
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
-                  <span className="bg-gradient-to-r from-pink-500 via-red-500 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-bg-primary0 via-red-500 to-cyan-400 bg-clip-text text-transparent">
                     Commentaires TikTok
                   </span>
                 </h1>
@@ -121,20 +121,20 @@ const TirageCommentairesTiktokPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Lancer un tirage
                   </Link>
                   <Link
                     to="/tirage-au-sort-tiktok/"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated/20 transition-all"
                   >
                     Guide complet TikTok
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     100% Gratuit
@@ -156,11 +156,11 @@ const TirageCommentairesTiktokPage = () => {
                 className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-700"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <MessageCircle className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-xl font-bold text-white">Tirage Commentaires TikTok</h2>
-                  <p className="text-gray-400 text-sm mt-2">Collez votre lien TikTok</p>
+                  <p className="text-ink-tertiary text-sm mt-2">Collez votre lien TikTok</p>
                 </div>
 
                 <div className="space-y-4">
@@ -172,7 +172,7 @@ const TirageCommentairesTiktokPage = () => {
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Tirer au sort
@@ -180,7 +180,7 @@ const TirageCommentairesTiktokPage = () => {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-700">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Users className="w-4 h-4" />
                       892+ utilisateurs
@@ -203,7 +203,7 @@ const TirageCommentairesTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Pourquoi Organiser un Tirage sur les Commentaires TikTok ?
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Les commentaires TikTok sont le format idéal pour maximiser l'engagement et la viralité de vos concours.
               </p>
             </div>
@@ -238,11 +238,11 @@ const TirageCommentairesTiktokPage = () => {
                   transition={{ delay: index * 0.1 }}
                   className="bg-gray-800/50 border border-gray-700 rounded-xl p-6 hover:border-pink-500/50 transition-all"
                 >
-                  <div className="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 text-pink-400 rounded-xl flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-br from-bg-primary0/20 to-bg-primary0/20 text-pink-400 rounded-xl flex items-center justify-center mb-4">
                     {benefit.icon}
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
-                  <p className="text-gray-400 text-sm">{benefit.description}</p>
+                  <p className="text-ink-tertiary text-sm">{benefit.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -256,7 +256,7 @@ const TirageCommentairesTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Filtres Avancés pour vos Tirages TikTok
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Personnalisez votre tirage avec nos filtres pour ne garder que les participants qui respectent vos règles.
               </p>
             </div>
@@ -287,7 +287,7 @@ const TirageCommentairesTiktokPage = () => {
                     {filter.icon}
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">{filter.title}</h3>
-                  <p className="text-gray-400 text-sm">{filter.description}</p>
+                  <p className="text-ink-tertiary text-sm">{filter.description}</p>
                 </div>
               ))}
             </div>
@@ -301,7 +301,7 @@ const TirageCommentairesTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Comment Faire un Tirage au Sort TikTok en 4 Étapes
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Suivez ce guide simple pour organiser votre tirage au sort parmi les commentaires TikTok.
               </p>
             </div>
@@ -310,15 +310,15 @@ const TirageCommentairesTiktokPage = () => {
               {howToSteps.map((step, index) => (
                 <div key={index} className="relative">
                   <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 h-full">
-                    <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold mb-4">
                       {index + 1}
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{step.name}</h3>
-                    <p className="text-gray-400 text-sm">{step.text}</p>
+                    <p className="text-ink-tertiary text-sm">{step.text}</p>
                   </div>
                   {index < howToSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                      <ArrowRight className="w-6 h-6 text-gray-600" />
+                      <ArrowRight className="w-6 h-6 text-ink-secondary" />
                     </div>
                   )}
                 </div>
@@ -334,7 +334,7 @@ const TirageCommentairesTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Types de Concours TikTok Populaires
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Découvrez les formats de concours qui fonctionnent le mieux sur TikTok.
               </p>
             </div>
@@ -368,12 +368,12 @@ const TirageCommentairesTiktokPage = () => {
               ].map((useCase, index) => (
                 <div key={index} className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-pink-500/20 text-pink-400 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-bg-elevated0/20 text-pink-400 rounded-xl flex items-center justify-center flex-shrink-0">
                       {useCase.icon}
                     </div>
                     <div>
                       <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
-                      <p className="text-gray-400 text-sm mb-3">{useCase.description}</p>
+                      <p className="text-ink-tertiary text-sm mb-3">{useCase.description}</p>
                       <p className="text-cyan-400 text-sm italic">{useCase.tips}</p>
                     </div>
                   </div>
@@ -386,12 +386,12 @@ const TirageCommentairesTiktokPage = () => {
         {/* Statistiques TikTok */}
         <section className="py-16 bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-pink-500/10 to-cyan-500/10 rounded-2xl p-8 border border-pink-500/20">
+            <div className="bg-gradient-to-r from-bg-primary0/10 to-bg-primary0/10 rounded-2xl p-8 border border-pink-500/20">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-white mb-2">
                   TikTok en Chiffres (France 2024)
                 </h2>
-                <p className="text-gray-400">Pourquoi TikTok est incontournable pour vos concours</p>
+                <p className="text-ink-tertiary">Pourquoi TikTok est incontournable pour vos concours</p>
               </div>
 
               <div className="grid md:grid-cols-4 gap-6 text-center">
@@ -405,7 +405,7 @@ const TirageCommentairesTiktokPage = () => {
                     <div className="text-3xl font-bold bg-gradient-to-r from-pink-400 to-cyan-400 bg-clip-text text-transparent mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-gray-400 text-sm">{stat.label}</div>
+                    <div className="text-ink-tertiary text-sm">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -439,7 +439,7 @@ const TirageCommentairesTiktokPage = () => {
                   className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-pink-500/50 transition-all group"
                 >
                   <span className="font-medium text-white">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-pink-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-pink-400" />
                 </Link>
               ))}
             </div>
@@ -458,7 +458,7 @@ const TirageCommentairesTiktokPage = () => {
                   className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-cyan-500/50 transition-all group"
                 >
                   <span className="font-medium text-white">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-cyan-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-cyan-400" />
                 </Link>
               ))}
             </div>
@@ -480,7 +480,7 @@ const TirageCommentairesTiktokPage = () => {
         {/* CTA Final */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="bg-gradient-to-r from-pink-500 to-cyan-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 text-white">
               <Trophy className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Prêt à Lancer Votre Tirage TikTok ?</h2>
               <p className="text-white/90 mb-6">
@@ -489,7 +489,7 @@ const TirageCommentairesTiktokPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Commencer gratuitement

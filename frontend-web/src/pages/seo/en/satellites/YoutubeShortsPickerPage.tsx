@@ -32,15 +32,15 @@ const YoutubeShortsPickerPage = () => (
       breadcrumbs={breadcrumbItems}
       faqItems={faqItems}
     />
-    <div className="min-h-screen bg-gradient-to-b from-red-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
             <Video className="w-4 h-4" /> Shorts Picker
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">YouTube Shorts Picker</h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">YouTube Shorts Picker</h1>
+          <p className="text-xl text-ink-secondary mb-8 max-w-2xl mx-auto">
             Pick winners from <strong>YouTube Shorts</strong> comments. Short-form content, big engagement.
           </p>
           <Link to="/draw/new" className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-red-700 transition-all">
@@ -48,7 +48,7 @@ const YoutubeShortsPickerPage = () => (
           </Link>
         </div>
       </section>
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg-elevated">
         <div className="max-w-4xl mx-auto px-4">
           <div className="prose prose-lg max-w-none mb-12">
             <h2>YouTube Shorts Giveaways</h2>
@@ -62,7 +62,7 @@ const YoutubeShortsPickerPage = () => (
         <div className="max-w-4xl mx-auto px-4">
           <div className="bg-red-600 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Pick Your Shorts Winner</h2>
-            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-red-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-elevated text-red-400 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               <Sparkles className="w-5 h-5" /> Pick Winner Free
             </Link>
           </div>

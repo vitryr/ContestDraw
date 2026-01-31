@@ -23,7 +23,7 @@ export const AuthNavigator: React.FC = () => {
         headerShown: false,
         animation: 'slide_from_right',
         contentStyle: {
-          backgroundColor: '#0a0a0f',
+          backgroundColor: '#09090b',
         },
       }}
     >

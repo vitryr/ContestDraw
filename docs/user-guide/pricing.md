@@ -135,7 +135,7 @@ Cleack uses a **credit-based system** where you pay for what you use:
   - Compliance certifications (SOC 2, GDPR)
   - Training & onboarding
 
-**Contact us:** sales@cleack.io
+**Contact us:** support@cleack.io
 
 ---
 
@@ -309,7 +309,7 @@ We offer custom pricing for:
 
 ### Contact Sales
 
-**Email:** sales@cleack.io
+**Email:** support@cleack.io
 **Phone:** +33 1 23 45 67 89
 **Schedule a Demo:** [Book a call](https://calendly.com/cleack)
 
@@ -389,4 +389,4 @@ A: You can run a "redraw" to select a new winner at 50% of the original cost.
 **Ready to get started?**
 - [Create Free Account](https://cleack.io/register)
 - [View Pricing Plans](https://cleack.io/pricing)
-- [Contact Sales for Enterprise](mailto:sales@cleack.io)
+- [Contact Sales for Enterprise](mailto:support@cleack.io)

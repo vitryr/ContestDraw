@@ -45,7 +45,7 @@ const TirageLikesInstagramPage = () => {
         softwareRatingCount={856}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-red-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -55,17 +55,17 @@ const TirageLikesInstagramPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Heart className="w-4 h-4" />
                   Engagement Facile
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
                   <span className="text-red-500">Likes Instagram</span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Sélectionnez un gagnant aléatoire parmi les personnes qui ont <strong>aimé</strong> votre 
                   publication Instagram. Format idéal pour maximiser la participation.
                 </p>
@@ -73,20 +73,20 @@ const TirageLikesInstagramPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-600 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated0 text-white px-8 py-4 rounded-xl font-semibold hover:bg-red-600 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Lancer un tirage
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Gratuit
                   </span>
                   <span className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     Sans inscription
                   </span>
                   <span className="flex items-center gap-2">
@@ -99,24 +99,24 @@ const TirageLikesInstagramPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-bg-elevated0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Heart className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Likes</h2>
+                  <h2 className="text-xl font-bold text-white">Tirage Likes</h2>
                 </div>
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.instagram.com/p/..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl"
                     readOnly
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-red-500 text-white px-6 py-3 rounded-xl font-semibold"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-bg-elevated0 text-white px-6 py-3 rounded-xl font-semibold"
                   >
                     <Sparkles className="w-5 h-5" />
                     Tirer au sort
@@ -128,9 +128,9 @@ const TirageLikesInstagramPage = () => {
         </section>
 
         {/* Avantages */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
               Avantages du Tirage Likes
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -148,9 +148,9 @@ const TirageLikesInstagramPage = () => {
                   description: "Les likes des comptes privés sont inclus, contrairement aux commentaires qui peuvent être cachés.",
                 },
               ].map((avantage, index) => (
-                <div key={index} className="bg-red-50 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{avantage.title}</h3>
-                  <p className="text-gray-600 text-sm">{avantage.description}</p>
+                <div key={index} className="bg-bg-elevated rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">{avantage.title}</h3>
+                  <p className="text-ink-secondary text-sm">{avantage.description}</p>
                 </div>
               ))}
             </div>
@@ -165,9 +165,9 @@ const TirageLikesInstagramPage = () => {
         </section>
 
         {/* Related */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Types de Tirages Instagram</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Types de Tirages Instagram</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires", url: "/tirage-commentaires-instagram/" },
@@ -177,10 +177,10 @@ const TirageLikesInstagramPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-red-50 transition-all"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg hover:bg-bg-elevated transition-all"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary" />
                 </Link>
               ))}
             </div>
@@ -190,7 +190,7 @@ const TirageLikesInstagramPage = () => {
         {/* Back */}
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <Link to="/tirage-au-sort-instagram/" className="text-red-600 font-medium hover:text-red-700">
+            <Link to="/tirage-au-sort-instagram/" className="text-red-400 font-medium hover:text-red-400">
               ← Retour au guide complet Tirage au Sort Instagram
             </Link>
           </div>

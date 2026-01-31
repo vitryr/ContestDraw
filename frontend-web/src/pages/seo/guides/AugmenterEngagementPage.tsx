@@ -65,7 +65,7 @@ const AugmenterEngagementPage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-amber-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-amber-50">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -77,20 +77,20 @@ const AugmenterEngagementPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <TrendingUp className="w-4 h-4" />
                 Guide Engagement
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Comment Augmenter{' '}
-                <span className="bg-gradient-to-r from-orange-500 to-amber-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-bg-primary0 to-amber-500 bg-clip-text text-transparent">
                   l'Engagement
                 </span>{' '}
                 sur les Réseaux Sociaux
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Stratégies éprouvées pour booster vos likes, commentaires et partages. 
                 Transformez vos abonnés passifs en communauté engagée.
               </p>
@@ -99,10 +99,10 @@ const AugmenterEngagementPage = () => {
         </section>
 
         {/* Comprendre l'engagement */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Qu'est-ce que l'Engagement ?
               </h2>
             </div>
@@ -114,20 +114,20 @@ const AugmenterEngagementPage = () => {
                 { icon: <Share2 className="w-6 h-6" />, title: "Partages", desc: "Recommandation", weight: "3x" },
                 { icon: <Eye className="w-6 h-6" />, title: "Saves", desc: "Contenu de valeur", weight: "3x" },
               ].map((metric, index) => (
-                <div key={index} className="bg-orange-50 rounded-xl p-6 text-center">
-                  <div className="w-12 h-12 bg-white text-orange-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <div key={index} className="bg-bg-elevated rounded-xl p-6 text-center">
+                  <div className="w-12 h-12 bg-bg-primary text-orange-400 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
                     {metric.icon}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{metric.title}</h3>
-                  <p className="text-gray-600 text-sm mb-2">{metric.desc}</p>
-                  <span className="inline-block px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full">
+                  <h3 className="font-semibold text-white mb-1">{metric.title}</h3>
+                  <p className="text-ink-secondary text-sm mb-2">{metric.desc}</p>
+                  <span className="inline-block px-2 py-1 bg-orange-500/20 text-orange-400 text-xs rounded-full">
                     Poids : {metric.weight}
                   </span>
                 </div>
               ))}
             </div>
 
-            <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-xl p-6 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 to-amber-500 rounded-xl p-6 text-white">
               <div className="flex items-center gap-4">
                 <BarChart3 className="w-10 h-10" />
                 <div>
@@ -145,7 +145,7 @@ const AugmenterEngagementPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 10 Stratégies pour Booster l'Engagement
               </h2>
             </div>
@@ -213,13 +213,13 @@ const AugmenterEngagementPage = () => {
                   tip: "Les posts authentiques ont 38% plus d'engagement",
                 },
               ].map((strategy, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div key={index} className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm hover:shadow-md transition-all">
                   <div className="flex items-start gap-4">
                     <span className="text-3xl font-bold text-orange-200">{strategy.num}</span>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{strategy.title}</h3>
-                      <p className="text-gray-600 text-sm mb-3">{strategy.desc}</p>
-                      <div className="flex items-center gap-2 text-orange-600 text-sm">
+                      <h3 className="text-lg font-semibold text-white mb-2">{strategy.title}</h3>
+                      <p className="text-ink-secondary text-sm mb-3">{strategy.desc}</p>
+                      <div className="flex items-center gap-2 text-orange-400 text-sm">
                         <Lightbulb className="w-4 h-4" />
                         <span>{strategy.tip}</span>
                       </div>
@@ -232,10 +232,10 @@ const AugmenterEngagementPage = () => {
         </section>
 
         {/* Meilleurs moments */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Meilleurs Moments pour Poster (France)
               </h2>
             </div>
@@ -247,23 +247,23 @@ const AugmenterEngagementPage = () => {
                 { platform: "Facebook", best: "12h-13h, 19h-20h", days: "Mercredi, Jeudi", avoid: "Samedi matin" },
                 { platform: "Twitter/X", best: "12h-13h, 17h-18h", days: "Mardi, Mercredi", avoid: "Week-end" },
               ].map((platform, index) => (
-                <div key={index} className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-100">
-                  <h3 className="font-bold text-gray-900 mb-4">{platform.platform}</h3>
+                <div key={index} className="bg-gradient-to-br from-bg-primary to-amber-50 rounded-xl p-6 border border-orange-100">
+                  <h3 className="font-bold text-white mb-4">{platform.platform}</h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center gap-2">
-                      <Clock className="w-4 h-4 text-green-600" />
-                      <span className="text-gray-600">Heures :</span>
-                      <span className="text-gray-900 font-medium">{platform.best}</span>
+                      <Clock className="w-4 h-4 text-success" />
+                      <span className="text-ink-secondary">Heures :</span>
+                      <span className="text-white font-medium">{platform.best}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-blue-600" />
-                      <span className="text-gray-600">Jours :</span>
-                      <span className="text-gray-900 font-medium">{platform.days}</span>
+                      <Calendar className="w-4 h-4 text-accent-secondary" />
+                      <span className="text-ink-secondary">Jours :</span>
+                      <span className="text-white font-medium">{platform.days}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-red-500">✗</span>
-                      <span className="text-gray-600">Éviter :</span>
-                      <span className="text-gray-900">{platform.avoid}</span>
+                      <span className="text-ink-secondary">Éviter :</span>
+                      <span className="text-white">{platform.avoid}</span>
                     </div>
                   </div>
                 </div>
@@ -276,15 +276,15 @@ const AugmenterEngagementPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Les Concours : Arme Ultime de l'Engagement
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+              <div className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm">
                 <Trophy className="w-10 h-10 text-orange-500 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Pourquoi ça Marche</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Pourquoi ça Marche</h3>
                 <ul className="space-y-3">
                   {[
                     "Motivation claire : gagner quelque chose",
@@ -293,7 +293,7 @@ const AugmenterEngagementPage = () => {
                     "Acquisition de nouveaux followers",
                     "Création de buzz autour de la marque",
                   ].map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-gray-700">
+                    <li key={index} className="flex items-start gap-2 text-ink-secondary">
                       <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                       {item}
                     </li>
@@ -301,9 +301,9 @@ const AugmenterEngagementPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+              <div className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm">
                 <Zap className="w-10 h-10 text-amber-500 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Statistiques Concours</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Statistiques Concours</h3>
                 <div className="space-y-4">
                   {[
                     { stat: "+34%", label: "de followers en moyenne" },
@@ -313,7 +313,7 @@ const AugmenterEngagementPage = () => {
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-4">
                       <span className="text-2xl font-bold text-orange-500">{item.stat}</span>
-                      <span className="text-gray-600">{item.label}</span>
+                      <span className="text-ink-secondary">{item.label}</span>
                     </div>
                   ))}
                 </div>
@@ -323,7 +323,7 @@ const AugmenterEngagementPage = () => {
             <div className="mt-8 text-center">
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-amber-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-bg-primary0 to-amber-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer un concours avec Cleack
@@ -333,24 +333,24 @@ const AugmenterEngagementPage = () => {
         </section>
 
         {/* Benchmarks */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Benchmarks Taux d'Engagement
               </h2>
             </div>
 
-            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl p-8 border border-orange-100">
+            <div className="bg-gradient-to-br from-bg-primary to-amber-50 rounded-xl p-8 border border-orange-100">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
                     <tr className="border-b border-orange-200">
-                      <th className="text-left py-3 font-semibold text-gray-900">Plateforme</th>
-                      <th className="text-center py-3 font-semibold text-red-600">Faible</th>
-                      <th className="text-center py-3 font-semibold text-yellow-600">Moyen</th>
-                      <th className="text-center py-3 font-semibold text-green-600">Bon</th>
-                      <th className="text-center py-3 font-semibold text-emerald-600">Excellent</th>
+                      <th className="text-left py-3 font-semibold text-white">Plateforme</th>
+                      <th className="text-center py-3 font-semibold text-red-400">Faible</th>
+                      <th className="text-center py-3 font-semibold text-yellow-400">Moyen</th>
+                      <th className="text-center py-3 font-semibold text-success">Bon</th>
+                      <th className="text-center py-3 font-semibold text-accent-secondary">Excellent</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -362,11 +362,11 @@ const AugmenterEngagementPage = () => {
                       { platform: "YouTube", low: "<2%", med: "2-4%", good: "4-6%", excellent: ">6%" },
                     ].map((row, index) => (
                       <tr key={index} className="border-b border-orange-100">
-                        <td className="py-3 font-medium text-gray-900">{row.platform}</td>
-                        <td className="py-3 text-center text-gray-600">{row.low}</td>
-                        <td className="py-3 text-center text-gray-600">{row.med}</td>
-                        <td className="py-3 text-center text-gray-600">{row.good}</td>
-                        <td className="py-3 text-center text-gray-600">{row.excellent}</td>
+                        <td className="py-3 font-medium text-white">{row.platform}</td>
+                        <td className="py-3 text-center text-ink-secondary">{row.low}</td>
+                        <td className="py-3 text-center text-ink-secondary">{row.med}</td>
+                        <td className="py-3 text-center text-ink-secondary">{row.good}</td>
+                        <td className="py-3 text-center text-ink-secondary">{row.excellent}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -384,9 +384,9 @@ const AugmenterEngagementPage = () => {
         </section>
 
         {/* Related Guides */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides Connexes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Guides Connexes</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Organiser un Jeu Concours", url: "/guide/organiser-jeu-concours/" },
@@ -396,10 +396,10 @@ const AugmenterEngagementPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-orange-50 rounded-lg border border-orange-100 hover:border-orange-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-orange-100 hover:border-orange-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-orange-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-muted group-hover:text-orange-400" />
                 </Link>
               ))}
             </div>
@@ -409,7 +409,7 @@ const AugmenterEngagementPage = () => {
         {/* CTA Final */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 to-amber-500 rounded-2xl p-8 text-white">
               <TrendingUp className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Prêt à Booster votre Engagement ?</h2>
               <p className="text-white/90 mb-6">
@@ -418,7 +418,7 @@ const AugmenterEngagementPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-xl font-semibold hover:bg-orange-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-orange-400 px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer mon concours

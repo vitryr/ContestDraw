@@ -337,6 +337,50 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Supported Platforms - SEO Links */}
+      <section className="py-16 bg-bg-elevated">
+        <div className="container-custom">
+          <h2 className="text-2xl font-bold text-white text-center mb-8">
+            Plateformes supportées
+          </h2>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Link to="/tirage-au-sort-instagram" className="px-4 py-2 bg-bg-card border border-white/[0.06] rounded-lg text-white hover:border-accent-secondary/50 transition-colors">
+              📸 Instagram
+            </Link>
+            <Link to="/tirage-au-sort-tiktok" className="px-4 py-2 bg-bg-card border border-white/[0.06] rounded-lg text-white hover:border-accent-secondary/50 transition-colors">
+              🎵 TikTok
+            </Link>
+            <Link to="/tirage-au-sort-facebook" className="px-4 py-2 bg-bg-card border border-white/[0.06] rounded-lg text-white hover:border-accent-secondary/50 transition-colors">
+              👥 Facebook
+            </Link>
+            <Link to="/tirage-au-sort-youtube" className="px-4 py-2 bg-bg-card border border-white/[0.06] rounded-lg text-white hover:border-accent-secondary/50 transition-colors">
+              ▶️ YouTube
+            </Link>
+            <Link to="/tirage-au-sort-twitter" className="px-4 py-2 bg-bg-card border border-white/[0.06] rounded-lg text-white hover:border-accent-secondary/50 transition-colors">
+              🐦 Twitter/X
+            </Link>
+          </div>
+          <div className="text-center">
+            <p className="text-ink-secondary mb-4">
+              Besoin d'aide pour choisir ? Consultez nos guides :
+            </p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <Link to="/guide/organiser-jeu-concours" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                Comment organiser un jeu-concours
+              </Link>
+              <span className="text-ink-muted">•</span>
+              <Link to="/meilleur-outil-tirage-au-sort" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                Comparatif des outils
+              </Link>
+              <span className="text-ink-muted">•</span>
+              <Link to="/faq" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                FAQ
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20">
         <div className="container-custom">

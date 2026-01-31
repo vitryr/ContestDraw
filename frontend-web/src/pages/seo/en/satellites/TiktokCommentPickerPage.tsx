@@ -42,19 +42,19 @@ const TiktokCommentPickerPage = () => (
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       <section className="py-16 lg:py-24">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-bg-primary0 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
             <MessageCircle className="w-4 h-4" /> Comment Picker
           </div>
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">TikTok Comment Picker</h1>
           <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
             Pick winners from <strong className="text-white">TikTok comments</strong>. Handle viral videos with thousands of comments.
           </p>
-          <Link to="/draw/new" className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
+          <Link to="/draw/new" className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all">
             <Play className="w-5 h-5" /> Pick TikTok Winner Free
           </Link>
         </div>
       </section>
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-bg-elevated">
         <div className="max-w-4xl mx-auto px-4">
           <div className="prose prose-lg max-w-none mb-12">
             <h2>Pick TikTok Comment Winners</h2>
@@ -66,9 +66,9 @@ const TiktokCommentPickerPage = () => (
       </section>
       <section className="py-16 bg-gray-900">
         <div className="max-w-4xl mx-auto px-4">
-          <div className="bg-gradient-to-r from-cyan-500 to-pink-500 rounded-2xl p-8 text-center text-white">
+          <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 text-center text-white">
             <h2 className="text-2xl font-bold mb-4">Pick Your TikTok Winner</h2>
-            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-pink-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-elevated text-accent-primary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               <Sparkles className="w-5 h-5" /> Pick Winner Free
             </Link>
           </div>

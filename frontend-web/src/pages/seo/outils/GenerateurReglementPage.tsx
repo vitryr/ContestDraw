@@ -157,7 +157,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-teal-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -169,19 +169,19 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <FileText className="w-4 h-4" />
                 Outil Gratuit
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Générateur de{' '}
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                   Règlement Concours
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Créez un règlement de jeu concours conforme à la loi française en quelques clics. 
                 100% gratuit, sans inscription.
               </p>
@@ -192,13 +192,13 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
         {/* Formulaire */}
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Informations du Concours</h2>
+            <div className="bg-bg-primary rounded-2xl shadow-lg p-8 border border-white/10">
+              <h2 className="text-2xl font-bold text-white mb-6">Informations du Concours</h2>
 
               <div className="grid md:grid-cols-2 gap-6">
                 {/* Organisateur */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Building2 className="w-4 h-4 inline mr-2" />
                     Nom de l'organisateur *
                   </label>
@@ -208,12 +208,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.organisateur}
                     onChange={handleChange}
                     placeholder="Votre nom ou société"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     SIRET (optionnel)
                   </label>
                   <input
@@ -222,12 +222,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.siret}
                     onChange={handleChange}
                     placeholder="123 456 789 00012"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Adresse *
                   </label>
                   <input
@@ -236,13 +236,13 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.adresse}
                     onChange={handleChange}
                     placeholder="Adresse complète"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 {/* Concours */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Nom du concours *
                   </label>
                   <input
@@ -251,12 +251,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.nomConcours}
                     onChange={handleChange}
                     placeholder="Ex: Grand Giveaway de Noël 2024"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Calendar className="w-4 h-4 inline mr-2" />
                     Date de début *
                   </label>
@@ -265,12 +265,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     name="dateDebut"
                     value={formData.dateDebut}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Calendar className="w-4 h-4 inline mr-2" />
                     Date de fin *
                   </label>
@@ -279,12 +279,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     name="dateFin"
                     value={formData.dateFin}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Clock className="w-4 h-4 inline mr-2" />
                     Date du tirage *
                   </label>
@@ -293,19 +293,19 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     name="dateTirage"
                     value={formData.dateTirage}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Plateforme
                   </label>
                   <select
                     name="plateforme"
                     value={formData.plateforme}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   >
                     <option>Instagram</option>
                     <option>TikTok</option>
@@ -317,7 +317,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
 
                 {/* Lot */}
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Gift className="w-4 h-4 inline mr-2" />
                     Description du lot *
                   </label>
@@ -327,12 +327,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     onChange={handleChange}
                     placeholder="Ex: Un iPhone 15 Pro 128Go coloris noir"
                     rows={2}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Valeur estimée (€) *
                   </label>
                   <input
@@ -341,12 +341,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.valeurLot}
                     onChange={handleChange}
                     placeholder="Ex: 1199"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Nombre de gagnants
                   </label>
                   <input
@@ -355,13 +355,13 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.nombreGagnants}
                     onChange={handleChange}
                     min="1"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 {/* Conditions */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Users className="w-4 h-4 inline mr-2" />
                     Conditions de participation
                   </label>
@@ -369,7 +369,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     name="conditionsParticipation"
                     value={formData.conditionsParticipation}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   >
                     <option>Follow + Like + Commentaire</option>
                     <option>Follow + Like + Tag 2 amis</option>
@@ -380,14 +380,14 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Âge minimum
                   </label>
                   <select
                     name="ageMinimum"
                     value={formData.ageMinimum}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   >
                     <option value="13">13 ans</option>
                     <option value="16">16 ans</option>
@@ -396,7 +396,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Mail className="w-4 h-4 inline mr-2" />
                     Email de contact *
                   </label>
@@ -406,12 +406,12 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     value={formData.emailContact}
                     onChange={handleChange}
                     placeholder="contact@example.com"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Shield className="w-4 h-4 inline mr-2" />
                     Durée conservation données
                   </label>
@@ -419,7 +419,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                     name="dureeConservation"
                     value={formData.dureeConservation}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
                   >
                     <option>1 mois</option>
                     <option>3 mois</option>
@@ -446,13 +446,13 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
         {generatedReglement && (
           <section className="py-8">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-                <div className="bg-emerald-50 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
+              <div className="bg-bg-primary rounded-2xl shadow-lg border border-white/10 overflow-hidden">
+                <div className="bg-accent-secondary/10 px-6 py-4 border-b border-emerald-100 flex items-center justify-between">
                   <span className="font-semibold text-emerald-800">Votre règlement est prêt !</span>
                   <div className="flex gap-2">
                     <button
                       onClick={copyToClipboard}
-                      className="inline-flex items-center gap-2 bg-white text-emerald-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-emerald-50 transition-all"
+                      className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-4 py-2 rounded-lg text-sm font-medium hover:bg-accent-secondary/10 transition-all"
                     >
                       {copied ? <CheckCircle2 className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
                       {copied ? 'Copié !' : 'Copier'}
@@ -467,7 +467,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
                   </div>
                 </div>
                 <div className="p-6">
-                  <pre className="whitespace-pre-wrap text-sm text-gray-700 font-mono bg-gray-50 rounded-lg p-4 max-h-96 overflow-y-auto">
+                  <pre className="whitespace-pre-wrap text-sm text-ink-secondary font-mono bg-bg-elevated rounded-lg p-4 max-h-96 overflow-y-auto">
                     {generatedReglement}
                   </pre>
                 </div>
@@ -484,7 +484,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <div className="bg-gradient-to-r from-emerald-600 to-teal-600 rounded-2xl p-8 text-white">
               <Sparkles className="w-12 h-12 mx-auto mb-4" />
@@ -494,7 +494,7 @@ Fait le ${new Date().toLocaleDateString('fr-FR')}`;
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-accent-secondary/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer un tirage au sort

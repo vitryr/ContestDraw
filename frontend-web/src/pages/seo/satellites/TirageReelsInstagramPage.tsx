@@ -39,7 +39,7 @@ const TirageReelsInstagramPage = () => {
         includeSoftwareSchema
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-pink-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -48,17 +48,17 @@ const TirageReelsInstagramPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <TrendingUp className="w-4 h-4" />
                   Format Viral
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
                   <span className="text-orange-500">Reels Instagram</span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Les <strong>Reels</strong> sont le format le plus viral sur Instagram. 
                   Profitez de leur portée pour des concours à très forte participation.
                 </p>
@@ -66,14 +66,14 @@ const TirageReelsInstagramPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-orange-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated0 text-white px-8 py-4 rounded-xl font-semibold hover:bg-orange-600 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Lancer un tirage
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Gratuit
@@ -88,24 +88,24 @@ const TirageReelsInstagramPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Video className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Reels</h2>
+                  <h2 className="text-xl font-bold text-white">Tirage Reels</h2>
                 </div>
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.instagram.com/reel/..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl"
                     readOnly
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-orange-500 text-white px-6 py-3 rounded-xl font-semibold"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-bg-elevated0 text-white px-6 py-3 rounded-xl font-semibold"
                   >
                     <Sparkles className="w-5 h-5" />
                     Tirer au sort
@@ -117,9 +117,9 @@ const TirageReelsInstagramPage = () => {
         </section>
 
         {/* Avantages Reels */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
               Pourquoi les Reels pour vos Concours ?
             </h2>
             <div className="grid md:grid-cols-3 gap-6">
@@ -137,9 +137,9 @@ const TirageReelsInstagramPage = () => {
                   description: "Un bon Reel peut devenir viral et générer des milliers de participations.",
                 },
               ].map((avantage, index) => (
-                <div key={index} className="bg-orange-50 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{avantage.title}</h3>
-                  <p className="text-gray-600 text-sm">{avantage.description}</p>
+                <div key={index} className="bg-bg-elevated rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">{avantage.title}</h3>
+                  <p className="text-ink-secondary text-sm">{avantage.description}</p>
                 </div>
               ))}
             </div>
@@ -154,9 +154,9 @@ const TirageReelsInstagramPage = () => {
         </section>
 
         {/* Related */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Types de Tirages</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Types de Tirages</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires", url: "/tirage-commentaires-instagram/" },
@@ -166,10 +166,10 @@ const TirageReelsInstagramPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-orange-50 transition-all"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg hover:bg-bg-elevated transition-all"
                 >
                   <span className="font-medium">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary" />
                 </Link>
               ))}
             </div>
@@ -178,7 +178,7 @@ const TirageReelsInstagramPage = () => {
 
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <Link to="/tirage-au-sort-instagram/" className="text-orange-600 font-medium">
+            <Link to="/tirage-au-sort-instagram/" className="text-orange-400 font-medium">
               ← Retour au guide complet
             </Link>
           </div>

@@ -4,7 +4,7 @@ import { BookOpen, ArrowRight, Calendar } from 'lucide-react';
 import { SEOHead, Breadcrumb } from '../../../../components/seo';
 import type { BreadcrumbItem } from '../../../../components/seo';
 
-const CANONICAL_URL = 'https://cleack.io/en/blog/';
+const CANONICAL_URL = 'https://cleack.io/en/';
 
 const breadcrumbItems: BreadcrumbItem[] = [
   { name: 'Blog', url: CANONICAL_URL },
@@ -12,8 +12,8 @@ const breadcrumbItems: BreadcrumbItem[] = [
 
 const hrefLangAlternates = [
   { lang: 'fr', url: 'https://cleack.io/blog/' },
-  { lang: 'en', url: 'https://cleack.io/en/blog/' },
-  { lang: 'x-default', url: 'https://cleack.io/en/blog/' },
+  { lang: 'en', url: 'https://cleack.io/en/' },
+  { lang: 'x-default', url: 'https://cleack.io/en/' },
 ];
 
 const articles = [
@@ -55,7 +55,7 @@ const BlogHubEN = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -67,10 +67,10 @@ const BlogHubEN = () => {
               <BookOpen className="w-4 h-4" />
               Blog
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Giveaway Tips & Guides
             </h1>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-ink-secondary max-w-2xl mx-auto">
               Expert advice for running successful social media giveaways.
             </p>
           </div>
@@ -79,7 +79,7 @@ const BlogHubEN = () => {
         {/* Featured Articles */}
         <section className="py-8">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Articles</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">Featured Articles</h2>
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {articles.filter(a => a.featured).map((article, index) => (
                 <motion.div
@@ -90,18 +90,18 @@ const BlogHubEN = () => {
                 >
                   <Link
                     to={article.url}
-                    className="block bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:border-primary-200 transition-all group h-full"
+                    className="block bg-bg-primary rounded-2xl p-8 border border-white/10 hover:shadow-xl hover:border-primary-200 transition-all group h-full"
                   >
-                    <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
+                    <div className="flex items-center gap-2 text-sm text-ink-muted mb-4">
                       <Calendar className="w-4 h-4" />
                       <span>{new Date(article.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
                       <span>•</span>
                       <span>{article.readTime} read</span>
                     </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                    <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary-600 transition-colors">
                       {article.title}
                     </h3>
-                    <p className="text-gray-600 mb-4">{article.description}</p>
+                    <p className="text-ink-secondary mb-4">{article.description}</p>
                     <span className="inline-flex items-center gap-1 text-primary-600 font-medium group-hover:gap-2 transition-all">
                       Read Article <ArrowRight className="w-4 h-4" />
                     </span>
@@ -113,24 +113,24 @@ const BlogHubEN = () => {
         </section>
 
         {/* All Articles */}
-        <section className="py-8 bg-white">
+        <section className="py-8 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">All Articles</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">All Articles</h2>
             <div className="space-y-4">
               {articles.map((article) => (
                 <Link
                   key={article.url}
                   to={article.url}
-                  className="block bg-gray-50 rounded-xl p-6 hover:bg-primary-50 transition-colors group"
+                  className="block bg-bg-elevated rounded-xl p-6 hover:bg-primary-50 transition-colors group"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-primary-600 transition-colors">
+                      <h3 className="text-lg font-semibold text-white group-hover:text-primary-600 transition-colors">
                         {article.title}
                       </h3>
-                      <p className="text-gray-600 text-sm">{article.description}</p>
+                      <p className="text-ink-secondary text-sm">{article.description}</p>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-primary-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                    <ArrowRight className="w-5 h-5 text-ink-muted group-hover:text-primary-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
                   </div>
                 </Link>
               ))}

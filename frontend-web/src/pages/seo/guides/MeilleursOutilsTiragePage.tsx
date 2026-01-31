@@ -165,7 +165,7 @@ const MeilleursOutilsTiragePage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-violet-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -182,7 +182,7 @@ const MeilleursOutilsTiragePage = () => {
                 Comparatif 2024
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Les{' '}
                 <span className="bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">
                   Meilleurs Outils
@@ -190,13 +190,13 @@ const MeilleursOutilsTiragePage = () => {
                 de Tirage au Sort
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Comparatif complet des outils pour tirer au sort sur Instagram, TikTok, Facebook et plus. 
                 Trouvez l'outil parfait pour vos concours.
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-                <span className="flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full">
+                <span className="flex items-center gap-2 bg-bg-elevated0/20 text-success px-3 py-1 rounded-full">
                   <CheckCircle2 className="w-4 h-4" />
                   5 outils testés
                 </span>
@@ -210,10 +210,10 @@ const MeilleursOutilsTiragePage = () => {
         </section>
 
         {/* Critères */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Nos Critères de Sélection
               </h2>
             </div>
@@ -225,12 +225,12 @@ const MeilleursOutilsTiragePage = () => {
                 { icon: <Zap className="w-6 h-6" />, title: "Facilité", desc: "Simplicité d'utilisation" },
                 { icon: <Video className="w-6 h-6" />, title: "Preuve", desc: "Vidéo ou certificat de tirage" },
               ].map((criterion, index) => (
-                <div key={index} className="bg-violet-50 rounded-xl p-6 text-center">
-                  <div className="w-12 h-12 bg-white text-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <div key={index} className="bg-bg-elevated rounded-xl p-6 text-center">
+                  <div className="w-12 h-12 bg-bg-primary text-violet-600 rounded-xl flex items-center justify-center mx-auto mb-4 shadow-sm">
                     {criterion.icon}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{criterion.title}</h3>
-                  <p className="text-gray-600 text-sm">{criterion.desc}</p>
+                  <h3 className="font-semibold text-white mb-1">{criterion.title}</h3>
+                  <p className="text-ink-secondary text-sm">{criterion.desc}</p>
                 </div>
               ))}
             </div>
@@ -241,7 +241,7 @@ const MeilleursOutilsTiragePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Comparatif Détaillé
               </h2>
             </div>
@@ -253,7 +253,7 @@ const MeilleursOutilsTiragePage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className={`bg-white rounded-2xl p-6 border-2 ${tool.best ? 'border-violet-400 shadow-lg shadow-violet-100' : 'border-gray-100'}`}
+                  className={`bg-bg-primary rounded-2xl p-6 border-2 ${tool.best ? 'border-violet-400 shadow-lg shadow-violet-100' : 'border-white/10'}`}
                 >
                   {tool.best && (
                     <div className="flex justify-center mb-4">
@@ -270,7 +270,7 @@ const MeilleursOutilsTiragePage = () => {
                       <div className="flex items-center gap-3 mb-4">
                         <span className="text-4xl">{tool.logo}</span>
                         <div>
-                          <h3 className="text-xl font-bold text-gray-900">{tool.name}</h3>
+                          <h3 className="text-xl font-bold text-white">{tool.name}</h3>
                           <div className="flex items-center gap-1">
                             {[...Array(5)].map((_, i) => (
                               <Star
@@ -278,14 +278,14 @@ const MeilleursOutilsTiragePage = () => {
                                 className={`w-4 h-4 ${i < Math.floor(tool.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-200'}`}
                               />
                             ))}
-                            <span className="text-sm text-gray-600 ml-1">{tool.rating}</span>
+                            <span className="text-sm text-ink-secondary ml-1">{tool.rating}</span>
                           </div>
                         </div>
                       </div>
-                      <p className="text-gray-600 text-sm mb-4">{tool.description}</p>
+                      <p className="text-ink-secondary text-sm mb-4">{tool.description}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {tool.platforms.map((platform, i) => (
-                          <span key={i} className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                          <span key={i} className="px-2 py-1 bg-bg-card text-ink-secondary text-xs rounded-full">
                             {platform}
                           </span>
                         ))}
@@ -295,13 +295,13 @@ const MeilleursOutilsTiragePage = () => {
 
                     {/* Pros */}
                     <div className="md:col-span-1">
-                      <h4 className="font-semibold text-green-700 mb-3 flex items-center gap-2">
+                      <h4 className="font-semibold text-success mb-3 flex items-center gap-2">
                         <CheckCircle2 className="w-5 h-5" />
                         Points Forts
                       </h4>
                       <ul className="space-y-2">
                         {tool.pros.map((pro, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <li key={i} className="flex items-start gap-2 text-sm text-ink-secondary">
                             <CheckCircle2 className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                             {pro}
                           </li>
@@ -311,13 +311,13 @@ const MeilleursOutilsTiragePage = () => {
 
                     {/* Cons */}
                     <div className="md:col-span-1">
-                      <h4 className="font-semibold text-red-700 mb-3 flex items-center gap-2">
+                      <h4 className="font-semibold text-error mb-3 flex items-center gap-2">
                         <X className="w-5 h-5" />
                         Points Faibles
                       </h4>
                       <ul className="space-y-2">
                         {tool.cons.map((con, i) => (
-                          <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+                          <li key={i} className="flex items-start gap-2 text-sm text-ink-secondary">
                             <X className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                             {con}
                           </li>
@@ -336,7 +336,7 @@ const MeilleursOutilsTiragePage = () => {
                           Essayer Cleack
                         </Link>
                       ) : (
-                        <span className="text-gray-400 text-sm">Voir le site</span>
+                        <span className="text-ink-muted text-sm">Voir le site</span>
                       )}
                     </div>
                   </div>
@@ -347,10 +347,10 @@ const MeilleursOutilsTiragePage = () => {
         </section>
 
         {/* Tableau comparatif rapide */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Tableau Comparatif Rapide
               </h2>
             </div>
@@ -358,13 +358,13 @@ const MeilleursOutilsTiragePage = () => {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-4 font-semibold text-gray-900">Outil</th>
-                    <th className="text-center py-4 font-semibold text-gray-900">Gratuit</th>
-                    <th className="text-center py-4 font-semibold text-gray-900">Vidéo Preuve</th>
-                    <th className="text-center py-4 font-semibold text-gray-900">Multi-Plateforme</th>
-                    <th className="text-center py-4 font-semibold text-gray-900">Français</th>
-                    <th className="text-center py-4 font-semibold text-gray-900">Note</th>
+                  <tr className="border-b border-white/10">
+                    <th className="text-left py-4 font-semibold text-white">Outil</th>
+                    <th className="text-center py-4 font-semibold text-white">Gratuit</th>
+                    <th className="text-center py-4 font-semibold text-white">Vidéo Preuve</th>
+                    <th className="text-center py-4 font-semibold text-white">Multi-Plateforme</th>
+                    <th className="text-center py-4 font-semibold text-white">Français</th>
+                    <th className="text-center py-4 font-semibold text-white">Note</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -375,8 +375,8 @@ const MeilleursOutilsTiragePage = () => {
                     { name: "Gleam", free: false, video: false, multi: true, french: false, rating: "3.7/5" },
                     { name: "Easypromos", free: false, video: false, multi: true, french: true, rating: "3.6/5" },
                   ].map((row, index) => (
-                    <tr key={index} className="border-b border-gray-100">
-                      <td className="py-4 font-medium text-gray-900">{row.name}</td>
+                    <tr key={index} className="border-b border-white/10">
+                      <td className="py-4 font-medium text-white">{row.name}</td>
                       <td className="py-4 text-center">
                         {row.free ? <CheckCircle2 className="w-5 h-5 text-green-500 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />}
                       </td>
@@ -389,7 +389,7 @@ const MeilleursOutilsTiragePage = () => {
                       <td className="py-4 text-center">
                         {row.french ? <CheckCircle2 className="w-5 h-5 text-green-500 mx-auto" /> : <X className="w-5 h-5 text-red-400 mx-auto" />}
                       </td>
-                      <td className="py-4 text-center font-medium text-gray-900">{row.rating}</td>
+                      <td className="py-4 text-center font-medium text-white">{row.rating}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -416,7 +416,7 @@ const MeilleursOutilsTiragePage = () => {
                   { icon: <Zap className="w-6 h-6" />, title: "Sans Inscription", desc: "Lancez un tirage en 30 secondes, pas de compte requis" },
                   { icon: <Users className="w-6 h-6" />, title: "Fait en France", desc: "Support en français, conforme RGPD" },
                 ].map((feature, index) => (
-                  <div key={index} className="bg-white/10 rounded-xl p-4">
+                  <div key={index} className="bg-bg-primary/10 rounded-xl p-4">
                     <div className="flex items-center gap-3 mb-2">
                       {feature.icon}
                       <h3 className="font-semibold">{feature.title}</h3>
@@ -429,7 +429,7 @@ const MeilleursOutilsTiragePage = () => {
               <div className="text-center mt-8">
                 <Link
                   to="/draw/new"
-                  className="inline-flex items-center gap-2 bg-white text-violet-600 px-8 py-4 rounded-xl font-semibold hover:bg-violet-50 transition-all"
+                  className="inline-flex items-center gap-2 bg-bg-primary text-violet-600 px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
                 >
                   <Sparkles className="w-5 h-5" />
                   Essayer Cleack gratuitement
@@ -440,7 +440,7 @@ const MeilleursOutilsTiragePage = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4">
             <FAQSection items={faqItems} title="Questions Fréquentes" />
           </div>
@@ -449,7 +449,7 @@ const MeilleursOutilsTiragePage = () => {
         {/* Related Guides */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides Connexes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Guides Connexes</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Organiser un Jeu Concours", url: "/guide/organiser-jeu-concours/" },
@@ -459,10 +459,10 @@ const MeilleursOutilsTiragePage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-violet-50 rounded-lg border border-violet-100 hover:border-violet-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-violet-100 hover:border-violet-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-violet-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-muted group-hover:text-violet-600" />
                 </Link>
               ))}
             </div>

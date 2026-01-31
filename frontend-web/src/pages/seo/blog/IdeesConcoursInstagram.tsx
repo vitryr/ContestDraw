@@ -206,8 +206,8 @@ const ideas = [
 
 export const IdeesConcoursInstagram = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: '10 Idées de Concours Instagram 2025', url: 'https://cleack.io/blog/idees-concours-instagram-2025/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: '10 Idées de Concours Instagram 2025', url: 'https://cleack.io/idees-concours-instagram-2025/' },
   ];
 
   return (
@@ -216,7 +216,7 @@ export const IdeesConcoursInstagram = () => {
         title="10 Idées de Concours Instagram pour 2025 (+ Exemples)"
         description="Inspirez-vous de ces 10 idées originales de jeux concours Instagram pour booster votre engagement et gagner des abonnés. Exemples et conseils inclus."
         keywords="idées concours instagram, jeu concours instagram idées, giveaway instagram idées, concours instagram exemples"
-        canonicalUrl="https://cleack.io/blog/idees-concours-instagram-2025/"
+        canonicalUrl="https://cleack.io/idees-concours-instagram-2025/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -227,14 +227,14 @@ export const IdeesConcoursInstagram = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         {/* Hero */}
-        <header className="bg-gradient-to-br from-purple-500 via-pink-600 to-rose-700 text-white py-12">
+        <header className="bg-gradient-to-br from-bg-primary0 via-pink-600 to-rose-700 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-purple-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 💡 Idées & Inspiration
               </span>
               
@@ -272,11 +272,11 @@ export const IdeesConcoursInstagram = () => {
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
                 
-                <div className="mt-6 p-6 bg-gradient-to-br from-purple-50 to-pink-100 rounded-xl">
-                  <h3 className="font-bold text-gray-900 mb-2">
+                <div className="mt-6 p-6 bg-gradient-to-br from-bg-primary to-pink-100 rounded-xl">
+                  <h3 className="font-bold text-white mb-2">
                     🎯 Lancez votre concours
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-ink-secondary mb-4">
                     Une idée en tête ? Faites votre tirage au sort avec Cleack.
                   </p>
                   <Link
@@ -292,7 +292,7 @@ export const IdeesConcoursInstagram = () => {
             {/* Main Content */}
             <main className="flex-1 max-w-3xl">
               {/* Introduction */}
-              <section id="intro" className="prose prose-lg max-w-none mb-12">
+              <section id="intro" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi organiser un concours Instagram ?</h2>
                 
                 <p>
@@ -318,14 +318,14 @@ export const IdeesConcoursInstagram = () => {
               {ideas.map((idea) => {
                 const Icon = idea.icon;
                 const colorClasses = {
-                  pink: 'from-pink-50 to-pink-100 border-pink-200',
-                  purple: 'from-purple-50 to-purple-100 border-purple-200',
-                  yellow: 'from-yellow-50 to-yellow-100 border-yellow-200',
-                  blue: 'from-blue-50 to-blue-100 border-blue-200',
-                  green: 'from-green-50 to-green-100 border-green-200',
-                  orange: 'from-orange-50 to-orange-100 border-orange-200',
-                  indigo: 'from-indigo-50 to-indigo-100 border-indigo-200',
-                  red: 'from-red-50 to-red-100 border-red-200',
+                  pink: 'from-bg-primary to-pink-100 border-pink-200',
+                  purple: 'from-bg-primary to-purple-100 border-purple-200',
+                  yellow: 'from-bg-primary to-yellow-100 border-yellow-200',
+                  blue: 'from-bg-primary to-blue-100 border-blue-200',
+                  green: 'from-bg-primary to-green-100 border-green-200',
+                  orange: 'from-bg-primary to-orange-100 border-orange-200',
+                  indigo: 'from-bg-primary to-indigo-100 border-indigo-200',
+                  red: 'from-bg-primary to-red-100 border-red-200',
                   amber: 'from-amber-50 to-amber-100 border-amber-200',
                 };
                 
@@ -333,32 +333,32 @@ export const IdeesConcoursInstagram = () => {
                   <section key={idea.id} id={idea.id} className="mb-10">
                     <div className={`p-6 bg-gradient-to-br ${colorClasses[idea.color as keyof typeof colorClasses]} border rounded-2xl`}>
                       <div className="flex items-start gap-4 mb-4">
-                        <div className="p-3 bg-white rounded-xl shadow-sm">
-                          <Icon className="w-6 h-6 text-gray-700" />
+                        <div className="p-3 bg-bg-primary rounded-xl shadow-sm">
+                          <Icon className="w-6 h-6 text-ink-secondary" />
                         </div>
                         <div className="flex-1">
-                          <h2 className="text-xl font-bold text-gray-900 mb-1">{idea.title}</h2>
+                          <h2 className="text-xl font-bold text-white mb-1">{idea.title}</h2>
                           <div className="flex items-center gap-4 text-sm">
-                            <span className="text-gray-600">Difficulté : {idea.difficulty}</span>
-                            <span className="text-gray-600">Engagement : {idea.engagement}</span>
+                            <span className="text-ink-secondary">Difficulté : {idea.difficulty}</span>
+                            <span className="text-ink-secondary">Engagement : {idea.engagement}</span>
                           </div>
                         </div>
                       </div>
                       
-                      <p className="text-gray-700 mb-4">{idea.description}</p>
+                      <p className="text-ink-secondary mb-4">{idea.description}</p>
                       
-                      <div className="bg-white/70 rounded-lg p-4 mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2">📋 Comment faire :</h4>
-                        <ol className="text-gray-600 text-sm space-y-1">
+                      <div className="bg-bg-primary/70 rounded-lg p-4 mb-4">
+                        <h4 className="font-semibold text-white mb-2">📋 Comment faire :</h4>
+                        <ol className="text-ink-secondary text-sm space-y-1">
                           {idea.howTo.map((step, i) => (
                             <li key={i}>{i + 1}. {step}</li>
                           ))}
                         </ol>
                       </div>
                       
-                      <div className="bg-white/70 rounded-lg p-4">
-                        <h4 className="font-semibold text-gray-900 mb-2">💬 Exemple de texte :</h4>
-                        <p className="text-gray-600 text-sm italic">"{idea.example}"</p>
+                      <div className="bg-bg-primary/70 rounded-lg p-4">
+                        <h4 className="font-semibold text-white mb-2">💬 Exemple de texte :</h4>
+                        <p className="text-ink-secondary text-sm italic">"{idea.example}"</p>
                       </div>
                     </div>
                   </section>
@@ -367,7 +367,7 @@ export const IdeesConcoursInstagram = () => {
 
               {/* Tips Section */}
               <section id="conseils" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Conseils pour réussir vos concours
                 </h2>
 
@@ -380,13 +380,13 @@ export const IdeesConcoursInstagram = () => {
                     { title: "Utilisez un outil fiable", desc: "Cleack garantit un tirage équitable et génère un certificat de transparence." },
                     { title: "Annoncez les résultats publiquement", desc: "Montrez le gagnant, remerciez les participants, créez l'anticipation pour le prochain." },
                   ].map((tip, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex gap-4 p-4 bg-bg-elevated rounded-lg">
                       <div className="flex-shrink-0 w-8 h-8 bg-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{tip.title}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{tip.desc}</p>
+                        <h3 className="font-bold text-white">{tip.title}</h3>
+                        <p className="text-ink-secondary text-sm mt-1">{tip.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -412,7 +412,7 @@ export const IdeesConcoursInstagram = () => {
                 </p>
                 <Link
                   to="/tirage-au-sort-instagram"
-                  className="inline-flex items-center gap-2 bg-white text-purple-700 px-8 py-3 rounded-lg font-bold hover:bg-purple-50 transition-colors"
+                  className="inline-flex items-center gap-2 bg-bg-primary text-purple-700 px-8 py-3 rounded-lg font-bold hover:bg-bg-elevated transition-colors"
                 >
                   Faire un tirage au sort
                   <ArrowRight className="w-5 h-5" />
@@ -420,26 +420,26 @@ export const IdeesConcoursInstagram = () => {
               </section>
 
               {/* Related */}
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/comment-faire-tirage-au-sort-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Comment faire un tirage Instagram</h3>
-                    <p className="text-gray-600 text-sm">Guide étape par étape</p>
+                  <Link to="/comment-faire-tirage-au-sort-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Comment faire un tirage Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Guide étape par étape</p>
                   </Link>
-                  <Link to="/blog/regles-jeu-concours-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Règles des jeux concours</h3>
-                    <p className="text-gray-600 text-sm">Cadre légal et bonnes pratiques</p>
+                  <Link to="/regles-jeu-concours-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Règles des jeux concours</h3>
+                    <p className="text-ink-secondary text-sm">Cadre légal et bonnes pratiques</p>
                   </Link>
                 </div>
               </section>
 
               {/* Share */}
-              <section className="mt-8 pt-8 border-t border-gray-200">
+              <section className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex items-center justify-between">
-                  <p className="text-gray-600">Cet article vous a inspiré ? Partagez-le !</p>
-                  <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                    <Share2 className="w-5 h-5 text-gray-600" />
+                  <p className="text-ink-secondary">Cet article vous a inspiré ? Partagez-le !</p>
+                  <button className="p-2 bg-bg-card rounded-lg hover:bg-bg-hover transition-colors">
+                    <Share2 className="w-5 h-5 text-ink-secondary" />
                   </button>
                 </div>
               </section>

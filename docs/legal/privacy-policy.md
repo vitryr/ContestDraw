@@ -240,7 +240,7 @@ Data in backups is retained for 30 days and then permanently deleted.
 
 **Correction:** You can update your information at any time through account settings.
 
-**Deletion:** You can request account deletion via account settings or by emailing privacy@cleack.io.
+**Deletion:** You can request account deletion via account settings or by emailing support@cleack.io.
 
 **Opt-out of Marketing:** Unsubscribe from marketing emails via the link in each email.
 
@@ -264,7 +264,7 @@ If you are in the European Economic Area (EEA), you have additional rights under
 
 **Right to Lodge a Complaint:** File a complaint with your local data protection authority.
 
-**To exercise these rights, email privacy@cleack.io with your request.**
+**To exercise these rights, email support@cleack.io with your request.**
 
 ### 5.3 CCPA Rights (California Users)
 
@@ -278,7 +278,7 @@ If you are a California resident, you have rights under the California Consumer 
 
 **Right to Non-Discrimination:** We will not discriminate against you for exercising your rights.
 
-**To exercise these rights, email privacy@cleack.io or call +33 1 23 45 67 89.**
+**To exercise these rights, email support@cleack.io or call +33 1 23 45 67 89.**
 
 ### 5.4 Response Time
 
@@ -401,7 +401,7 @@ The Service is NOT intended for children under 18 years old. We do not knowingly
 
 ### 8.2 Parental Notice
 
-If you believe we have collected information from a child under 18, please contact us immediately at privacy@cleack.io. We will delete the information promptly.
+If you believe we have collected information from a child under 18, please contact us immediately at support@cleack.io. We will delete the information promptly.
 
 ---
 
@@ -453,7 +453,7 @@ Continued use of the Service after changes constitutes acceptance of the updated
 For questions about this Privacy Policy or our data practices, contact:
 
 **Data Protection Officer**
-Email: privacy@cleack.io
+Email: support@cleack.io
 Address: 123 Rue de la Paix, 75001 Paris, France
 Phone: +33 1 23 45 67 89
 

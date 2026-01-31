@@ -31,7 +31,7 @@ const tools = [
     icon: FileText,
     url: '/en/tools/rules-generator/',
     badge: 'Most Popular',
-    color: 'bg-blue-500',
+    color: 'bg-accent-secondary/100',
   },
   {
     title: 'Participant Counter',
@@ -45,14 +45,14 @@ const tools = [
     description: 'Check if a social media account is real or fake. Verify winner accounts before sending prizes.',
     icon: UserCheck,
     url: '/en/tools/account-verifier/',
-    color: 'bg-purple-500',
+    color: 'bg-accent-secondary/100',
   },
   {
     title: 'Giveaway Calendar',
     description: 'Plan your giveaways around holidays and seasonal events for maximum engagement.',
     icon: Calendar,
     url: '/en/tools/giveaway-calendar/',
-    color: 'bg-orange-500',
+    color: 'bg-bg-elevated0',
   },
 ];
 
@@ -69,7 +69,7 @@ const ToolsHubPage = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -87,12 +87,12 @@ const ToolsHubPage = () => {
                 Free Tools
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Giveaway{' '}
                 <span className="text-amber-600">Tools</span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
                 Free tools to help you run <strong>better social media giveaways</strong>. 
                 Generate rules, count participants, verify accounts, and more.
               </p>
@@ -115,7 +115,7 @@ const ToolsHubPage = () => {
                   >
                     <Link
                       to={tool.url}
-                      className="block bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:border-amber-200 transition-all group h-full"
+                      className="block bg-bg-primary rounded-2xl p-8 border border-white/10 hover:shadow-xl hover:border-amber-200 transition-all group h-full"
                     >
                       <div className="flex items-start gap-4">
                         <div className={`w-14 h-14 ${tool.color} rounded-xl flex items-center justify-center text-white flex-shrink-0`}>
@@ -123,7 +123,7 @@ const ToolsHubPage = () => {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-amber-600 transition-colors">
+                            <h3 className="text-xl font-bold text-white group-hover:text-amber-600 transition-colors">
                               {tool.title}
                             </h3>
                             {tool.badge && (
@@ -132,7 +132,7 @@ const ToolsHubPage = () => {
                               </span>
                             )}
                           </div>
-                          <p className="text-gray-600 mb-4">{tool.description}</p>
+                          <p className="text-ink-secondary mb-4">{tool.description}</p>
                           <span className="inline-flex items-center gap-1 text-amber-600 font-medium group-hover:gap-2 transition-all">
                             Use Tool <ArrowRight className="w-4 h-4" />
                           </span>
@@ -147,9 +147,9 @@ const ToolsHubPage = () => {
         </section>
 
         {/* Main Giveaway Picker CTA */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-primary-500 to-purple-500 rounded-2xl p-8 md:p-12">
+            <div className="bg-gradient-to-r from-primary-500 to-bg-primary0 rounded-2xl p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="text-white">
                   <h2 className="text-3xl font-bold mb-4">The Main Event: Giveaway Picker</h2>
@@ -169,7 +169,7 @@ const ToolsHubPage = () => {
                 <div className="text-center md:text-right">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 bg-bg-primary text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Pick a Winner Free
@@ -183,27 +183,27 @@ const ToolsHubPage = () => {
         {/* All Tools List */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">All Free Tools</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">All Free Tools</h2>
             
-            <div className="bg-white rounded-xl border border-gray-100 divide-y divide-gray-100">
+            <div className="bg-bg-primary rounded-xl border border-white/10 divide-y divide-gray-100">
               {tools.map((tool) => {
                 const IconComponent = tool.icon;
                 return (
                   <Link
                     key={tool.title}
                     to={tool.url}
-                    className="flex items-center gap-4 p-6 hover:bg-gray-50 transition-colors group"
+                    className="flex items-center gap-4 p-6 hover:bg-bg-elevated transition-colors group"
                   >
                     <div className={`w-12 h-12 ${tool.color} rounded-xl flex items-center justify-center text-white flex-shrink-0`}>
                       <IconComponent className="w-6 h-6" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-lg font-semibold text-gray-900 group-hover:text-amber-600 transition-colors">
+                      <h3 className="text-lg font-semibold text-white group-hover:text-amber-600 transition-colors">
                         {tool.title}
                       </h3>
-                      <p className="text-gray-600 text-sm truncate">{tool.description}</p>
+                      <p className="text-ink-secondary text-sm truncate">{tool.description}</p>
                     </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                    <ArrowRight className="w-5 h-5 text-ink-muted group-hover:text-amber-500 group-hover:translate-x-1 transition-all flex-shrink-0" />
                   </Link>
                 );
               })}

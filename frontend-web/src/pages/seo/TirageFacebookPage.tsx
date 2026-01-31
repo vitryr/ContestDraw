@@ -161,7 +161,7 @@ const TirageFacebookPage = () => {
         reviews={reviews}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-bg-primary">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
@@ -181,13 +181,13 @@ const TirageFacebookPage = () => {
                   Pages & Groupes
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Tirage au Sort{' '}
-                  <span className="text-blue-600">Facebook</span>{' '}
+                  <span className="text-accent-secondary">Facebook</span>{' '}
                   Gratuit
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                   Sélectionnez un <strong>gagnant aléatoire</strong> parmi les commentaires ou réactions 
                   de vos publications Facebook. Fonctionne avec les <strong>pages</strong> et les{' '}
                   <strong>groupes</strong>.
@@ -203,19 +203,19 @@ const TirageFacebookPage = () => {
                   </Link>
                   <a
                     href="#comment-ca-marche"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-blue-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:border-accent-secondary/50 transition-all"
                   >
                     Comment ça marche ?
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     <span>100% Gratuit</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     <span>Sans inscription</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -230,20 +230,20 @@ const TirageFacebookPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="bg-white rounded-2xl shadow-2xl shadow-blue-500/10 p-8 border border-gray-100">
+                <div className="bg-bg-elevated rounded-2xl shadow-2xl shadow-accent-secondary/20 p-8 border border-white/10">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Facebook className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900">Tirage au Sort Facebook</h2>
-                    <p className="text-gray-500 mt-2">Collez le lien de votre publication</p>
+                    <h2 className="text-2xl font-bold text-white">Tirage au Sort Facebook</h2>
+                    <p className="text-ink-tertiary mt-2">Collez le lien de votre publication</p>
                   </div>
 
                   <div className="space-y-4">
                     <input
                       type="text"
                       placeholder="https://www.facebook.com/..."
-                      className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-4 border border-white/10 rounded-xl focus:ring-2 focus:ring-blue-500"
                       readOnly
                     />
                     <Link
@@ -255,21 +255,21 @@ const TirageFacebookPage = () => {
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">30s</div>
-                      <div className="text-sm text-gray-500">Durée</div>
+                      <div className="text-2xl font-bold text-white">30s</div>
+                      <div className="text-sm text-ink-tertiary">Durée</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">∞</div>
-                      <div className="text-sm text-gray-500">Participants</div>
+                      <div className="text-2xl font-bold text-white">∞</div>
+                      <div className="text-sm text-ink-tertiary">Participants</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                        <span className="text-2xl font-bold text-gray-900">4.7</span>
+                        <span className="text-2xl font-bold text-white">4.7</span>
                       </div>
-                      <div className="text-sm text-gray-500">Note</div>
+                      <div className="text-sm text-ink-tertiary">Note</div>
                     </div>
                   </div>
                 </div>
@@ -288,13 +288,13 @@ const TirageFacebookPage = () => {
             <main className="min-w-0">
               {/* Intro */}
               <div className="prose prose-lg max-w-none mb-12">
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-ink-secondary leading-relaxed">
                   Facebook reste la plateforme incontournable pour les <strong>concours et jeux</strong> en ligne, 
                   particulièrement pour les entreprises locales, commerces et marques. Avec plus de 
                   <strong> 40 millions d'utilisateurs actifs</strong> en France, c'est l'endroit idéal pour 
                   engager votre communauté et attirer de nouveaux clients.
                 </p>
-                <p className="text-gray-600">
+                <p className="text-ink-secondary">
                   Cleack vous permet de faire un tirage au sort Facebook en quelques clics, que ce soit sur 
                   votre page professionnelle ou dans un groupe. Notre outil analyse tous les commentaires et 
                   réactions pour sélectionner un gagnant de manière 100% aléatoire et transparente.
@@ -303,7 +303,7 @@ const TirageFacebookPage = () => {
 
               {/* Section: Comment ça marche */}
               <section id="comment-ca-marche" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Comment Faire un Tirage au Sort Facebook ?
                 </h2>
                 
@@ -334,15 +334,15 @@ const TirageFacebookPage = () => {
                       icon: <Trophy className="w-6 h-6" />,
                     },
                   ].map((item) => (
-                    <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                    <div key={item.step} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white flex-shrink-0">
                           {item.icon}
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-blue-600 mb-1">Étape {item.step}</div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                          <p className="text-gray-600 text-sm">{item.description}</p>
+                          <div className="text-sm font-medium text-accent-secondary mb-1">Étape {item.step}</div>
+                          <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                          <p className="text-ink-secondary text-sm">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -352,7 +352,7 @@ const TirageFacebookPage = () => {
 
               {/* Section: Fonctionnalités */}
               <section id="fonctionnalites" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Fonctionnalités du Tirage au Sort Facebook
                 </h2>
 
@@ -389,12 +389,12 @@ const TirageFacebookPage = () => {
                       description: "Détection automatique des comptes suspects et des bots pour un tirage équitable.",
                     },
                   ].map((feature, index) => (
-                    <div key={index} className="bg-white rounded-xl p-6 border border-gray-100">
-                      <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 mb-4">
+                    <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                      <div className="w-12 h-12 bg-bg-elevated rounded-xl flex items-center justify-center text-accent-secondary mb-4">
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                      <p className="text-ink-secondary text-sm">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -402,7 +402,7 @@ const TirageFacebookPage = () => {
 
               {/* Section: Types de tirages */}
               <section id="types-tirages" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Types de Tirages Facebook
                 </h2>
 
@@ -430,18 +430,18 @@ const TirageFacebookPage = () => {
                     <Link
                       key={index}
                       to={type.link}
-                      className="block bg-white rounded-xl p-6 border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all group"
+                      className="block bg-bg-elevated rounded-xl p-6 border border-white/10 hover:border-accent-secondary/50 hover:shadow-lg transition-all group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <div className="w-14 h-14 bg-bg-elevated rounded-xl flex items-center justify-center text-accent-secondary flex-shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
                           {type.icon}
                         </div>
                         <div className="flex-1">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-blue-600">
+                          <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent-secondary">
                             {type.title}
                           </h3>
-                          <p className="text-gray-600 text-sm mb-3">{type.description}</p>
-                          <span className="inline-flex items-center gap-1 text-blue-600 text-sm font-medium">
+                          <p className="text-ink-secondary text-sm mb-3">{type.description}</p>
+                          <span className="inline-flex items-center gap-1 text-accent-secondary text-sm font-medium">
                             En savoir plus <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>
@@ -453,19 +453,19 @@ const TirageFacebookPage = () => {
 
               {/* Section: Pages vs Groupes */}
               <section id="pages-vs-groupes" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Pages Facebook vs Groupes : Quel Format Choisir ?
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center text-white">
                         <Building2 className="w-6 h-6" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Pages Facebook</h3>
+                      <h3 className="text-xl font-semibold text-white">Pages Facebook</h3>
                     </div>
-                    <ul className="space-y-2 text-gray-600 mb-4">
+                    <ul className="space-y-2 text-ink-secondary mb-4">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                         <span>Idéal pour les marques et entreprises</span>
@@ -483,19 +483,19 @@ const TirageFacebookPage = () => {
                         <span>Statistiques détaillées disponibles</span>
                       </li>
                     </ul>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-ink-tertiary">
                       <strong>Recommandé pour :</strong> acquisition de nouveaux fans, visibilité de marque
                     </p>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-indigo-600 rounded-xl flex items-center justify-center text-white">
                         <UsersRound className="w-6 h-6" />
                       </div>
-                      <h3 className="text-xl font-semibold text-gray-900">Groupes Facebook</h3>
+                      <h3 className="text-xl font-semibold text-white">Groupes Facebook</h3>
                     </div>
-                    <ul className="space-y-2 text-gray-600 mb-4">
+                    <ul className="space-y-2 text-ink-secondary mb-4">
                       <li className="flex items-start gap-2">
                         <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                         <span>Engagement plus élevé (communauté active)</span>
@@ -513,7 +513,7 @@ const TirageFacebookPage = () => {
                         <span>Discussion et interaction facilitées</span>
                       </li>
                     </ul>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-ink-tertiary">
                       <strong>Recommandé pour :</strong> fidélisation, communauté, engagement local
                     </p>
                   </div>
@@ -522,20 +522,20 @@ const TirageFacebookPage = () => {
 
               {/* Section: Tutoriel */}
               <section id="tutoriel" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Tutoriel : Organiser un Concours Facebook Réussi
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-accent-secondary/20 text-accent-secondary rounded-full flex items-center justify-center font-bold text-sm">1</span>
                       Créez un visuel attractif
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-ink-secondary mb-4">
                       Sur Facebook, le visuel est crucial pour attirer l'attention dans le fil d'actualité :
                     </p>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>• <strong>Format carré (1080x1080)</strong> ou portrait pour mobile</li>
                       <li>• Mettez le lot en évidence avec une belle photo</li>
                       <li>• Ajoutez "CONCOURS" ou "GIVEAWAY" bien visible</li>
@@ -544,15 +544,15 @@ const TirageFacebookPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-accent-secondary/20 text-accent-secondary rounded-full flex items-center justify-center font-bold text-sm">2</span>
                       Rédigez une description claire
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-ink-secondary mb-4">
                       La description doit inclure toutes les informations essentielles :
                     </p>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>• Description du lot et sa valeur</li>
                       <li>• Conditions de participation claires</li>
                       <li>• Date de début et de fin du concours</li>
@@ -562,12 +562,12 @@ const TirageFacebookPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-accent-secondary/20 text-accent-secondary rounded-full flex items-center justify-center font-bold text-sm">3</span>
                       Promouvez votre concours
                     </h3>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>• <strong>Épinglez le post</strong> en haut de votre page</li>
                       <li>• Partagez dans les groupes pertinents (si autorisé)</li>
                       <li>• Sponsorisez pour toucher plus de monde</li>
@@ -580,13 +580,13 @@ const TirageFacebookPage = () => {
 
               {/* Section: Règles Facebook */}
               <section id="regles-facebook" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Règles Facebook pour les Concours
                 </h2>
 
-                <div className="bg-blue-50 rounded-xl p-6 border border-blue-100 mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">✅ Ce qui est autorisé</h3>
-                  <ul className="space-y-2 text-gray-600">
+                <div className="bg-bg-elevated rounded-xl p-6 border border-blue-100 mb-6">
+                  <h3 className="text-lg font-semibold text-white mb-4">✅ Ce qui est autorisé</h3>
+                  <ul className="space-y-2 text-ink-secondary">
                     <li className="flex items-start gap-2">
                       <CheckCircle2 className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
                       <span>Demander de liker, commenter ou réagir à un post</span>
@@ -606,9 +606,9 @@ const TirageFacebookPage = () => {
                   </ul>
                 </div>
 
-                <div className="bg-red-50 rounded-xl p-6 border border-red-100">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">❌ Ce qui est interdit</h3>
-                  <ul className="space-y-2 text-gray-600">
+                <div className="bg-bg-elevated rounded-xl p-6 border border-red-100">
+                  <h3 className="text-lg font-semibold text-white mb-4">❌ Ce qui est interdit</h3>
+                  <ul className="space-y-2 text-ink-secondary">
                     <li className="flex items-start gap-2">
                       <span className="text-red-500 font-bold">✕</span>
                       <span>Demander de partager sur le profil personnel pour participer</span>
@@ -652,7 +652,7 @@ const TirageFacebookPage = () => {
                   </p>
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                    className="inline-flex items-center gap-2 bg-bg-elevated text-accent-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Commencer gratuitement

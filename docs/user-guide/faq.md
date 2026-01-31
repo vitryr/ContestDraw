@@ -466,7 +466,7 @@ Cleack is a tool; how you use it is your responsibility.
 - 📧 **Email:** support@cleack.io
 - 💬 **Live Chat:** Available in app (Pro/Business users)
 - 📞 **Phone:** +33 1 23 45 67 89 (Business/Enterprise only)
-- 🐛 **Bug Reports:** bugs@cleack.io
+- 🐛 **Bug Reports:** support@cleack.io
 
 **Response Times:**
 - Free tier: 48 hours
@@ -486,7 +486,7 @@ Cleack is a tool; how you use it is your responsibility.
 
 We love hearing your ideas! Submit feature requests via:
 - In-app feedback form
-- Email: features@cleack.io
+- Email: support@cleack.io
 - Community forum: [community.cleack.io](https://community.cleack.io)
 
 ---

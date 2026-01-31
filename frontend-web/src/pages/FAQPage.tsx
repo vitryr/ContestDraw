@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -367,14 +368,8 @@ const FAQPage: React.FC = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <a
-                  href="mailto:support@cleack.io"
-                  className="px-6 py-3 bg-white text-accent-secondary rounded-xl font-semibold hover:bg-white/90 transition-all"
-                >
-                  Email Support
-                </a>
-                <a
                   href="/contact"
-                  className="px-6 py-3 bg-transparent border-2 border-white text-white rounded-xl font-semibold hover:bg-white/10 transition-all"
+                  className="px-6 py-3 bg-white text-accent-secondary rounded-xl font-semibold hover:bg-white/90 transition-all"
                 >
                   Contact Us
                 </a>
@@ -389,9 +384,9 @@ const FAQPage: React.FC = () => {
             Popular Resources
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
-            <a
-              href="/docs/user-guide/getting-started"
-              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated transition-colors"
+            <Link
+              to="/guide/organiser-jeu-concours"
+              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated hover:border-accent-secondary/30 transition-colors"
             >
               <h4 className="font-bold text-white mb-2">
                 Getting Started Guide
@@ -399,25 +394,47 @@ const FAQPage: React.FC = () => {
               <p className="text-ink-secondary text-sm">
                 Step-by-step tutorial for your first giveaway
               </p>
-            </a>
-            <a
-              href="/docs/user-guide/filters-guide"
-              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated transition-colors"
+            </Link>
+            <Link
+              to="/comment-faire-tirage-au-sort-instagram"
+              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated hover:border-accent-secondary/30 transition-colors"
             >
-              <h4 className="font-bold text-white mb-2">Advanced Filters</h4>
+              <h4 className="font-bold text-white mb-2">Instagram Tutorial</h4>
               <p className="text-ink-secondary text-sm">
-                Learn how to filter bots and fake accounts
+                Complete guide for Instagram giveaways
               </p>
-            </a>
-            <a
-              href="/privacy"
-              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated transition-colors"
+            </Link>
+            <Link
+              to="/guide/legal-jeu-concours-france"
+              className="block p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:bg-bg-elevated hover:border-accent-secondary/30 transition-colors"
             >
-              <h4 className="font-bold text-white mb-2">GDPR Compliance</h4>
+              <h4 className="font-bold text-white mb-2">Legal & GDPR</h4>
               <p className="text-ink-secondary text-sm">
-                Understand our data protection practices
+                Understand legal requirements in France
               </p>
-            </a>
+            </Link>
+          </div>
+          
+          {/* Additional SEO Links */}
+          <div className="mt-8 text-center">
+            <p className="text-ink-secondary mb-4">Explore more resources:</p>
+            <div className="flex flex-wrap justify-center gap-4 text-sm">
+              <Link to="/guide" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                All Guides
+              </Link>
+              <span className="text-ink-muted">•</span>
+              <Link to="/articles" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                Blog & Tutorials
+              </Link>
+              <span className="text-ink-muted">•</span>
+              <Link to="/outils" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                Free Tools
+              </Link>
+              <span className="text-ink-muted">•</span>
+              <Link to="/jeu-concours" className="text-accent-secondary hover:text-accent-primary transition-colors">
+                Contest Hub
+              </Link>
+            </div>
           </div>
         </div>
       </div>

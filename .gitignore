@@ -70,3 +70,4 @@ mobile/android/app/build/
 .cache/
 .temp/
 tmp/
+.mcp.json

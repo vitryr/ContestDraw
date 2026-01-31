@@ -101,14 +101,14 @@ const GiveawayTiktokPage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-bg-primary0/20 to-bg-primary0/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
                   <Gift className="w-4 h-4" />
                   Guide Giveaway TikTok
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Giveaway TikTok :{' '}
-                  <span className="bg-gradient-to-r from-pink-500 via-red-500 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-bg-primary0 via-red-500 to-cyan-400 bg-clip-text text-transparent">
                     Le Guide Ultime 2024
                   </span>
                 </h1>
@@ -122,20 +122,20 @@ const GiveawayTiktokPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Tirer au sort maintenant
                   </Link>
                   <a
                     href="#guide"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated/20 transition-all"
                   >
                     Lire le guide
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     Guide complet
@@ -157,11 +157,11 @@ const GiveawayTiktokPage = () => {
                 className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-700"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Gift className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-xl font-bold text-white">Tirage Giveaway TikTok</h2>
-                  <p className="text-gray-400 text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
+                  <p className="text-ink-tertiary text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
                 </div>
 
                 <div className="space-y-4">
@@ -173,7 +173,7 @@ const GiveawayTiktokPage = () => {
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Désigner le gagnant
@@ -181,7 +181,7 @@ const GiveawayTiktokPage = () => {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-700">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Trophy className="w-4 h-4" />
                       12,000+ tirages
@@ -204,7 +204,7 @@ const GiveawayTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Comment Organiser un Giveaway TikTok en 2024
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Suivez ce guide étape par étape pour créer un giveaway TikTok qui génère un maximum d'engagement.
               </p>
             </div>
@@ -212,7 +212,7 @@ const GiveawayTiktokPage = () => {
             {/* Étape 1: Choisir le lot */}
             <div className="mb-16">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   1
                 </div>
                 <h3 className="text-2xl font-bold text-white">Choisir le Lot Parfait</h3>
@@ -274,7 +274,7 @@ const GiveawayTiktokPage = () => {
             {/* Étape 2: Définir les règles */}
             <div className="mb-16">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   2
                 </div>
                 <h3 className="text-2xl font-bold text-white">Définir des Règles Simples</h3>
@@ -286,21 +286,21 @@ const GiveawayTiktokPage = () => {
                   <div className="bg-gray-700/50 rounded-lg p-4 text-center">
                     <Heart className="w-8 h-8 text-pink-400 mx-auto mb-2" />
                     <p className="text-white font-medium">Like la vidéo</p>
-                    <p className="text-gray-400 text-sm">Booste l'algorithme</p>
+                    <p className="text-ink-tertiary text-sm">Booste l'algorithme</p>
                   </div>
                   <div className="bg-gray-700/50 rounded-lg p-4 text-center">
                     <Users className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
                     <p className="text-white font-medium">Follow le compte</p>
-                    <p className="text-gray-400 text-sm">Fidélise l'audience</p>
+                    <p className="text-ink-tertiary text-sm">Fidélise l'audience</p>
                   </div>
                   <div className="bg-gray-700/50 rounded-lg p-4 text-center">
                     <Share2 className="w-8 h-8 text-purple-400 mx-auto mb-2" />
                     <p className="text-white font-medium">Tag 2 amis</p>
-                    <p className="text-gray-400 text-sm">Viralité garantie</p>
+                    <p className="text-ink-tertiary text-sm">Viralité garantie</p>
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-cyan-500/10 border border-cyan-500/30 rounded-lg">
+                <div className="mt-6 p-4 bg-bg-elevated0/10 border border-cyan-500/30 rounded-lg">
                   <p className="text-cyan-400 text-sm">
                     <strong>💡 Pro Tip :</strong> N'ajoutez pas trop de règles ! Plus c'est simple, plus les gens participent. 
                     3 actions maximum.
@@ -312,7 +312,7 @@ const GiveawayTiktokPage = () => {
             {/* Étape 3: Créer la vidéo */}
             <div className="mb-16">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   3
                 </div>
                 <h3 className="text-2xl font-bold text-white">Créer une Vidéo Engageante</h3>
@@ -358,7 +358,7 @@ const GiveawayTiktokPage = () => {
             {/* Étape 4: Timing */}
             <div className="mb-16">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   4
                 </div>
                 <h3 className="text-2xl font-bold text-white">Choisir le Bon Timing</h3>
@@ -406,7 +406,7 @@ const GiveawayTiktokPage = () => {
                         <span className="text-yellow-400">Correct</span>
                       </div>
                     </div>
-                    <p className="text-gray-400 text-sm mt-4">
+                    <p className="text-ink-tertiary text-sm mt-4">
                       Durée recommandée : <strong className="text-white">5-7 jours</strong>
                     </p>
                   </div>
@@ -417,41 +417,41 @@ const GiveawayTiktokPage = () => {
             {/* Étape 5: Tirage */}
             <div>
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   5
                 </div>
                 <h3 className="text-2xl font-bold text-white">Tirer au Sort avec Cleack</h3>
               </div>
 
-              <div className="ml-16 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 border border-pink-500/30 rounded-xl p-6">
+              <div className="ml-16 bg-gradient-to-br from-bg-primary0/10 to-bg-primary0/10 border border-pink-500/30 rounded-xl p-6">
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-bg-elevated/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <Link to="/draw/new" className="text-pink-400">🔗</Link>
                     </div>
                     <h4 className="text-white font-medium">Collez le lien</h4>
-                    <p className="text-gray-400 text-sm">De votre vidéo giveaway</p>
+                    <p className="text-ink-tertiary text-sm">De votre vidéo giveaway</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-bg-elevated/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-2xl">⚙️</span>
                     </div>
                     <h4 className="text-white font-medium">Configurez</h4>
-                    <p className="text-gray-400 text-sm">Filtres et nombre de gagnants</p>
+                    <p className="text-ink-tertiary text-sm">Filtres et nombre de gagnants</p>
                   </div>
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-bg-elevated/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <span className="text-2xl">🎉</span>
                     </div>
                     <h4 className="text-white font-medium">Partagez</h4>
-                    <p className="text-gray-400 text-sm">La vidéo preuve du tirage</p>
+                    <p className="text-ink-tertiary text-sm">La vidéo preuve du tirage</p>
                   </div>
                 </div>
 
                 <div className="mt-6 text-center">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Trophy className="w-5 h-5" />
                     Lancer mon tirage maintenant
@@ -488,7 +488,7 @@ const GiveawayTiktokPage = () => {
                   className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-pink-500/50 transition-all group"
                 >
                   <span className="font-medium text-white">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-pink-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-pink-400" />
                 </Link>
               ))}
             </div>
@@ -510,7 +510,7 @@ const GiveawayTiktokPage = () => {
         {/* CTA Final */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="bg-gradient-to-r from-pink-500 to-cyan-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 text-white">
               <Gift className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Votre Giveaway TikTok est Prêt ?</h2>
               <p className="text-white/90 mb-6">
@@ -519,7 +519,7 @@ const GiveawayTiktokPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Tirer au sort maintenant

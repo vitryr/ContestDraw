@@ -84,15 +84,15 @@ const VerificateurComptePage = () => {
   };
 
   const getScoreColor = (score: number) => {
-    if (score >= 75) return 'text-green-600';
-    if (score >= 50) return 'text-yellow-600';
-    return 'text-red-600';
+    if (score >= 75) return 'text-success';
+    if (score >= 50) return 'text-yellow-400';
+    return 'text-red-400';
   };
 
   const getStatusBg = (status: 'safe' | 'warning' | 'danger') => {
-    if (status === 'safe') return 'bg-green-50 border-green-200';
-    if (status === 'warning') return 'bg-yellow-50 border-yellow-200';
-    return 'bg-red-50 border-red-200';
+    if (status === 'safe') return 'bg-success/10 border-green-200';
+    if (status === 'warning') return 'bg-bg-elevated border-yellow-200';
+    return 'bg-error/10 border-red-200';
   };
 
   return (
@@ -107,7 +107,7 @@ const VerificateurComptePage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-cyan-50 via-white to-teal-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -119,19 +119,19 @@ const VerificateurComptePage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-cyan-500/20 text-cyan-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <ShieldCheck className="w-4 h-4" />
                 Outil Gratuit
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Vérificateur de{' '}
                 <span className="bg-gradient-to-r from-cyan-600 to-teal-600 bg-clip-text text-transparent">
                   Compte Social
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Vérifiez si un compte est légitime avant de lui attribuer votre lot. 
                 Détectez les bots et faux comptes.
               </p>
@@ -142,16 +142,16 @@ const VerificateurComptePage = () => {
         {/* Tool */}
         <section className="py-8">
           <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <div className="bg-bg-primary rounded-2xl shadow-lg p-8 border border-white/10">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     Plateforme
                   </label>
                   <select
                     value={platform}
                     onChange={(e) => setPlatform(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
                   >
                     <option>Instagram</option>
                     <option>TikTok</option>
@@ -161,12 +161,12 @@ const VerificateurComptePage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <User className="w-4 h-4 inline mr-2" />
                     Nom d'utilisateur
                   </label>
                   <div className="flex">
-                    <span className="inline-flex items-center px-4 bg-gray-100 border border-r-0 border-gray-200 rounded-l-xl text-gray-500">
+                    <span className="inline-flex items-center px-4 bg-bg-card border border-r-0 border-white/10 rounded-l-xl text-ink-muted">
                       @
                     </span>
                     <input
@@ -174,7 +174,7 @@ const VerificateurComptePage = () => {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="pseudo_du_compte"
-                      className="flex-1 px-4 py-3 border border-gray-200 rounded-r-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
+                      className="flex-1 px-4 py-3 border border-white/10 rounded-r-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500"
                     />
                   </div>
                 </div>
@@ -203,32 +203,32 @@ const VerificateurComptePage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-8 pt-8 border-t border-gray-100"
+                  className="mt-8 pt-8 border-t border-white/10"
                 >
                   {/* Score */}
                   <div className={`rounded-xl p-6 border ${getStatusBg(result.status)} mb-6`}>
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-3">
-                        {result.status === 'safe' && <CheckCircle2 className="w-8 h-8 text-green-600" />}
-                        {result.status === 'warning' && <AlertTriangle className="w-8 h-8 text-yellow-600" />}
-                        {result.status === 'danger' && <X className="w-8 h-8 text-red-600" />}
+                        {result.status === 'safe' && <CheckCircle2 className="w-8 h-8 text-success" />}
+                        {result.status === 'warning' && <AlertTriangle className="w-8 h-8 text-yellow-400" />}
+                        {result.status === 'danger' && <X className="w-8 h-8 text-red-400" />}
                         <div>
-                          <h3 className="font-semibold text-gray-900">@{username}</h3>
-                          <p className="text-gray-600 text-sm">{platform}</p>
+                          <h3 className="font-semibold text-white">@{username}</h3>
+                          <p className="text-ink-secondary text-sm">{platform}</p>
                         </div>
                       </div>
                       <div className="text-right">
                         <div className={`text-4xl font-bold ${getScoreColor(result.score)}`}>
                           {result.score}%
                         </div>
-                        <div className="text-gray-600 text-sm">Score de confiance</div>
+                        <div className="text-ink-secondary text-sm">Score de confiance</div>
                       </div>
                     </div>
 
                     <div className={`rounded-lg p-3 ${
-                      result.status === 'safe' ? 'bg-green-100 text-green-800' :
-                      result.status === 'warning' ? 'bg-yellow-100 text-yellow-800' :
-                      'bg-red-100 text-red-800'
+                      result.status === 'safe' ? 'bg-bg-elevated0/20 text-green-800' :
+                      result.status === 'warning' ? 'bg-yellow-500/20 text-yellow-800' :
+                      'bg-red-500/20 text-red-800'
                     }`}>
                       {result.status === 'safe' && '✅ Ce compte semble légitime. Vous pouvez lui attribuer le lot.'}
                       {result.status === 'warning' && '⚠️ Quelques signaux d\'alerte. Vérifiez manuellement avant validation.'}
@@ -237,19 +237,19 @@ const VerificateurComptePage = () => {
                   </div>
 
                   {/* Détails */}
-                  <h4 className="font-semibold text-gray-900 mb-4">Détails de l'analyse</h4>
+                  <h4 className="font-semibold text-white mb-4">Détails de l'analyse</h4>
                   <div className="space-y-3">
                     {result.checks.map((check, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                      <div key={index} className="flex items-center justify-between p-3 bg-bg-elevated rounded-lg">
                         <div className="flex items-center gap-3">
                           {check.status ? (
                             <CheckCircle2 className="w-5 h-5 text-green-500" />
                           ) : (
                             <X className="w-5 h-5 text-red-500" />
                           )}
-                          <span className="font-medium text-gray-900">{check.label}</span>
+                          <span className="font-medium text-white">{check.label}</span>
                         </div>
-                        <span className={`text-sm ${check.status ? 'text-green-600' : 'text-red-600'}`}>
+                        <span className={`text-sm ${check.status ? 'text-success' : 'text-red-400'}`}>
                           {check.detail}
                         </span>
                       </div>
@@ -260,7 +260,7 @@ const VerificateurComptePage = () => {
                     <div className="mt-6">
                       <Link
                         to="/draw/new"
-                        className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                        className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
                       >
                         <Sparkles className="w-5 h-5" />
                         Tirer un autre gagnant
@@ -274,9 +274,9 @@ const VerificateurComptePage = () => {
         </section>
 
         {/* Critères analysés */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Critères Analysés</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Critères Analysés</h2>
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { icon: <Image className="w-6 h-6" />, title: 'Photo de profil', desc: 'Présence d\'une vraie photo' },
@@ -286,12 +286,12 @@ const VerificateurComptePage = () => {
                 { icon: <Activity className="w-6 h-6" />, title: 'Activité', desc: 'Fréquence et régularité' },
                 { icon: <ShieldCheck className="w-6 h-6" />, title: 'Patterns', desc: 'Détection de comportements bots' },
               ].map((criterion, index) => (
-                <div key={index} className="bg-cyan-50 rounded-xl p-5 text-center">
-                  <div className="w-12 h-12 bg-white text-cyan-600 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
+                <div key={index} className="bg-bg-elevated rounded-xl p-5 text-center">
+                  <div className="w-12 h-12 bg-bg-primary text-cyan-400 rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
                     {criterion.icon}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-1">{criterion.title}</h3>
-                  <p className="text-gray-600 text-sm">{criterion.desc}</p>
+                  <h3 className="font-semibold text-white mb-1">{criterion.title}</h3>
+                  <p className="text-ink-secondary text-sm">{criterion.desc}</p>
                 </div>
               ))}
             </div>
@@ -306,7 +306,7 @@ const VerificateurComptePage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <div className="bg-gradient-to-r from-cyan-600 to-teal-600 rounded-2xl p-8 text-white">
               <Sparkles className="w-12 h-12 mx-auto mb-4" />
@@ -317,7 +317,7 @@ const VerificateurComptePage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-cyan-600 px-8 py-4 rounded-xl font-semibold hover:bg-cyan-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-cyan-400 px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer un tirage sécurisé

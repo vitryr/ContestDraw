@@ -89,7 +89,7 @@ const ConcoursPageFacebookPage = () => {
         softwareRatingCount={923}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -102,12 +102,12 @@ const ConcoursPageFacebookPage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Building2 className="w-4 h-4" />
                   Guide Concours Page Facebook
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Concours{' '}
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                     Page Facebook
@@ -115,7 +115,7 @@ const ConcoursPageFacebookPage = () => {
                   : Le Guide 2024
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Tout ce que vous devez savoir pour organiser un <strong>concours sur votre Page Facebook</strong> : 
                   règles, bonnes pratiques, promotion et tirage au sort transparent.
                 </p>
@@ -130,19 +130,19 @@ const ConcoursPageFacebookPage = () => {
                   </Link>
                   <a
                     href="#guide"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-blue-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-accent-secondary/50 transition-all"
                   >
                     Voir le guide
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Conforme Facebook
                   </span>
                   <span className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     Légal en France
                   </span>
                   <span className="flex items-center gap-2">
@@ -155,21 +155,21 @@ const ConcoursPageFacebookPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Trophy className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Concours Facebook</h2>
-                  <p className="text-gray-500 text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
+                  <h2 className="text-xl font-bold text-white">Tirage Concours Facebook</h2>
+                  <p className="text-ink-tertiary text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
                 </div>
 
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.facebook.com/VotrePage/posts/..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                     readOnly
                   />
                   <Link
@@ -181,8 +181,8 @@ const ConcoursPageFacebookPage = () => {
                   </Link>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Building2 className="w-4 h-4" />
                       923+ Pages
@@ -199,13 +199,13 @@ const ConcoursPageFacebookPage = () => {
         </section>
 
         {/* Avantages Concours Page */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Pourquoi Organiser un Concours sur Votre Page Facebook ?
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Un concours bien organisé peut transformer votre Page Facebook.
               </p>
             </div>
@@ -242,14 +242,14 @@ const ConcoursPageFacebookPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100"
+                  className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-blue-100"
                 >
-                  <div className="w-12 h-12 bg-white text-blue-600 rounded-xl flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-bg-elevated text-accent-secondary rounded-xl flex items-center justify-center mb-4 shadow-sm">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{benefit.description}</p>
-                  <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+                  <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+                  <p className="text-ink-secondary text-sm mb-3">{benefit.description}</p>
+                  <span className="inline-block px-3 py-1 bg-accent-secondary/20 text-accent-secondary text-xs font-medium rounded-full">
                     {benefit.stat}
                   </span>
                 </motion.div>
@@ -262,7 +262,7 @@ const ConcoursPageFacebookPage = () => {
         <section id="guide" className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Guide Complet : Organiser un Concours sur Votre Page Facebook
               </h2>
             </div>
@@ -273,14 +273,14 @@ const ConcoursPageFacebookPage = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   1
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Préparer le Concours</h3>
+                <h3 className="text-2xl font-bold text-white">Préparer le Concours</h3>
               </div>
 
               <div className="ml-16 grid md:grid-cols-2 gap-6">
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                  <Award className="w-8 h-8 text-blue-600 mb-4" />
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Choisir le Lot</h4>
-                  <ul className="space-y-2 text-gray-600 text-sm">
+                <div className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
+                  <Award className="w-8 h-8 text-accent-secondary mb-4" />
+                  <h4 className="text-lg font-semibold text-white mb-3">Choisir le Lot</h4>
+                  <ul className="space-y-2 text-ink-secondary text-sm">
                     <li>• Valeur recommandée : 50€ à 500€</li>
                     <li>• En lien avec votre activité (fidélise)</li>
                     <li>• Exclusif si possible (édition limitée)</li>
@@ -288,10 +288,10 @@ const ConcoursPageFacebookPage = () => {
                   </ul>
                 </div>
 
-                <div className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                  <MessageSquare className="w-8 h-8 text-indigo-600 mb-4" />
-                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Définir les Règles</h4>
-                  <ul className="space-y-2 text-gray-600 text-sm">
+                <div className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
+                  <MessageSquare className="w-8 h-8 text-accent-secondary mb-4" />
+                  <h4 className="text-lg font-semibold text-white mb-3">Définir les Règles</h4>
+                  <ul className="space-y-2 text-ink-secondary text-sm">
                     <li>• ✅ Liker la publication</li>
                     <li>• ✅ Commenter (avec ou sans tag)</li>
                     <li>• ✅ Suivre la Page</li>
@@ -307,16 +307,16 @@ const ConcoursPageFacebookPage = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   2
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Créer la Publication</h3>
+                <h3 className="text-2xl font-bold text-white">Créer la Publication</h3>
               </div>
 
-              <div className="ml-16 bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                <Image className="w-8 h-8 text-blue-600 mb-4" />
-                <h4 className="text-lg font-semibold text-gray-900 mb-3">Checklist Publication Parfaite</h4>
+              <div className="ml-16 bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
+                <Image className="w-8 h-8 text-accent-secondary mb-4" />
+                <h4 className="text-lg font-semibold text-white mb-3">Checklist Publication Parfaite</h4>
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <h5 className="font-medium text-gray-900 mb-2">Le Visuel</h5>
-                    <ul className="space-y-2 text-gray-600 text-sm">
+                    <h5 className="font-medium text-white mb-2">Le Visuel</h5>
+                    <ul className="space-y-2 text-ink-secondary text-sm">
                       <li>✓ Image haute qualité du lot</li>
                       <li>✓ Texte « CONCOURS » ou « GIVEAWAY » visible</li>
                       <li>✓ Format carré ou 4:5 (optimal mobile)</li>
@@ -324,8 +324,8 @@ const ConcoursPageFacebookPage = () => {
                     </ul>
                   </div>
                   <div>
-                    <h5 className="font-medium text-gray-900 mb-2">Le Texte</h5>
-                    <ul className="space-y-2 text-gray-600 text-sm">
+                    <h5 className="font-medium text-white mb-2">Le Texte</h5>
+                    <ul className="space-y-2 text-ink-secondary text-sm">
                       <li>✓ Accroche percutante en 1ère ligne</li>
                       <li>✓ Règles numérotées et claires</li>
                       <li>✓ Date de fin précise</li>
@@ -334,7 +334,7 @@ const ConcoursPageFacebookPage = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                <div className="mt-6 p-4 bg-bg-elevated rounded-lg">
                   <p className="text-blue-800 text-sm">
                     <strong>💡 Template :</strong> « 🎁 CONCOURS 🎁 Pour participer : 1️⃣ Like ce post 
                     2️⃣ Follow @VotrePage 3️⃣ Commente en taguant 2 amis | Tirage le [DATE] ! 
@@ -350,7 +350,7 @@ const ConcoursPageFacebookPage = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   3
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Promouvoir le Concours</h3>
+                <h3 className="text-2xl font-bold text-white">Promouvoir le Concours</h3>
               </div>
 
               <div className="ml-16 grid md:grid-cols-3 gap-6">
@@ -371,12 +371,12 @@ const ConcoursPageFacebookPage = () => {
                     description: "Stories de rappel à J-3, J-1, et le dernier jour. Créez l'urgence.",
                   },
                 ].map((item, index) => (
-                  <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-                    <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mb-4">
+                  <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
+                    <div className="w-10 h-10 bg-accent-secondary/20 text-accent-secondary rounded-lg flex items-center justify-center mb-4">
                       {item.icon}
                     </div>
-                    <h4 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h4>
-                    <p className="text-gray-600 text-sm">{item.description}</p>
+                    <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
+                    <p className="text-ink-secondary text-sm">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -388,31 +388,31 @@ const ConcoursPageFacebookPage = () => {
                 <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   4
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900">Tirer au Sort et Annoncer</h3>
+                <h3 className="text-2xl font-bold text-white">Tirer au Sort et Annoncer</h3>
               </div>
 
-              <div className="ml-16 bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 rounded-xl p-6">
+              <div className="ml-16 bg-gradient-to-br from-bg-primary to-bg-primary border border-blue-200 rounded-xl p-6">
                 <div className="grid md:grid-cols-3 gap-6 text-center">
                   <div>
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="w-16 h-16 bg-bg-elevated rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
                       <span className="text-2xl">📋</span>
                     </div>
-                    <h4 className="text-gray-900 font-medium">Copiez le lien</h4>
-                    <p className="text-gray-600 text-sm">De votre publication concours</p>
+                    <h4 className="text-white font-medium">Copiez le lien</h4>
+                    <p className="text-ink-secondary text-sm">De votre publication concours</p>
                   </div>
                   <div>
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="w-16 h-16 bg-bg-elevated rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
                       <span className="text-2xl">🎰</span>
                     </div>
-                    <h4 className="text-gray-900 font-medium">Tirez au sort</h4>
-                    <p className="text-gray-600 text-sm">Avec les filtres activés</p>
+                    <h4 className="text-white font-medium">Tirez au sort</h4>
+                    <p className="text-ink-secondary text-sm">Avec les filtres activés</p>
                   </div>
                   <div>
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <div className="w-16 h-16 bg-bg-elevated rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
                       <span className="text-2xl">📢</span>
                     </div>
-                    <h4 className="text-gray-900 font-medium">Annoncez</h4>
-                    <p className="text-gray-600 text-sm">Avec la vidéo preuve Cleack</p>
+                    <h4 className="text-white font-medium">Annoncez</h4>
+                    <p className="text-ink-secondary text-sm">Avec la vidéo preuve Cleack</p>
                   </div>
                 </div>
 
@@ -431,22 +431,22 @@ const ConcoursPageFacebookPage = () => {
         </section>
 
         {/* Règles Facebook */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Règles Officielles de Facebook pour les Concours
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Respectez ces règles pour éviter les restrictions sur votre Page.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <div className="bg-bg-elevated border border-green-200 rounded-xl p-6">
                 <CheckCircle2 className="w-10 h-10 text-green-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Autorisé ✅</h3>
-                <ul className="space-y-3 text-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">Autorisé ✅</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
                     <span className="text-green-600 mt-1">✓</span>
                     <span>Demander de <strong>liker</strong> la publication</span>
@@ -470,28 +470,28 @@ const ConcoursPageFacebookPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                <AlertCircle className="w-10 h-10 text-red-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Interdit ❌</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-bg-elevated border border-red-200 rounded-xl p-6">
+                <AlertCircle className="w-10 h-10 text-red-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-4">Interdit ❌</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Exiger de <strong>partager sur le profil personnel</strong></span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Demander de <strong>taguer sur une photo</strong> (qui n'y figure pas)</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Utiliser les <strong>fonctions Facebook de manière détournée</strong></span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Impliquer que <strong>Facebook sponsorise</strong> le concours</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Collecter des <strong>données sans consentement</strong></span>
                   </li>
                 </ul>
@@ -511,9 +511,9 @@ const ConcoursPageFacebookPage = () => {
         </section>
 
         {/* Related Pages */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Ressources Facebook</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Ressources Facebook</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires Facebook", url: "/tirage-commentaires-facebook/" },
@@ -523,10 +523,10 @@ const ConcoursPageFacebookPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-blue-50 rounded-lg border border-blue-100 hover:border-blue-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-blue-100 hover:border-accent-secondary/50 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-accent-secondary" />
                 </Link>
               ))}
             </div>
@@ -538,7 +538,7 @@ const ConcoursPageFacebookPage = () => {
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Link
               to="/tirage-au-sort-facebook/"
-              className="inline-flex items-center gap-2 text-blue-600 font-medium hover:text-blue-700 transition-colors"
+              className="inline-flex items-center gap-2 text-accent-secondary font-medium hover:text-blue-700 transition-colors"
             >
               ← Retour au guide complet Tirage au Sort Facebook
             </Link>
@@ -557,7 +557,7 @@ const ConcoursPageFacebookPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Tirer au sort maintenant

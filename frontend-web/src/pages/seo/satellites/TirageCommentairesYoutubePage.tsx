@@ -87,7 +87,7 @@ const TirageCommentairesYoutubePage = () => {
         softwareRatingCount={1123}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-red-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -100,19 +100,19 @@ const TirageCommentairesYoutubePage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <MessageCircle className="w-4 h-4" />
                   Tirage Commentaires YouTube
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
-                  <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-red-600 to-bg-primary0 bg-clip-text text-transparent">
                     Commentaires YouTube
                   </span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Sélectionnez un gagnant aléatoire parmi les <strong>commentaires</strong> de vos 
                   vidéos YouTube. Parfait pour vos giveaways et concours de chaîne.
                 </p>
@@ -127,19 +127,19 @@ const TirageCommentairesYoutubePage = () => {
                   </Link>
                   <Link
                     to="/tirage-au-sort-youtube/"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-red-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-red-300 transition-all"
                   >
                     Guide complet YouTube
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     100% Gratuit
                   </span>
                   <span className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     Sans inscription
                   </span>
                   <span className="flex items-center gap-2">
@@ -152,21 +152,21 @@ const TirageCommentairesYoutubePage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Youtube className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Commentaires YouTube</h2>
-                  <p className="text-gray-500 text-sm mt-2">Collez le lien de votre vidéo</p>
+                  <h2 className="text-xl font-bold text-white">Tirage Commentaires YouTube</h2>
+                  <p className="text-ink-tertiary text-sm mt-2">Collez le lien de votre vidéo</p>
                 </div>
 
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.youtube.com/watch?v=..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     readOnly
                   />
                   <Link
@@ -178,8 +178,8 @@ const TirageCommentairesYoutubePage = () => {
                   </Link>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Users className="w-4 h-4" />
                       1,123+ utilisateurs
@@ -196,13 +196,13 @@ const TirageCommentairesYoutubePage = () => {
         </section>
 
         {/* Pourquoi les commentaires YouTube */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Pourquoi les Commentaires YouTube pour vos Giveaways ?
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Les concours en commentaires sont le format préféré des YouTubers pour récompenser leur communauté.
               </p>
             </div>
@@ -235,13 +235,13 @@ const TirageCommentairesYoutubePage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-red-50 rounded-xl p-6 hover:bg-red-100 transition-all"
+                  className="bg-bg-elevated rounded-xl p-6 hover:bg-red-500/20 transition-all"
                 >
-                  <div className="w-12 h-12 bg-white text-red-600 rounded-xl flex items-center justify-center mb-4 shadow-sm">
+                  <div className="w-12 h-12 bg-bg-elevated text-red-400 rounded-xl flex items-center justify-center mb-4 shadow-sm">
                     {benefit.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-gray-600 text-sm">{benefit.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{benefit.title}</h3>
+                  <p className="text-ink-secondary text-sm">{benefit.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -252,7 +252,7 @@ const TirageCommentairesYoutubePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Filtres Disponibles pour les Commentaires YouTube
               </h2>
             </div>
@@ -275,12 +275,12 @@ const TirageCommentairesYoutubePage = () => {
                   description: "Filtrez les commentaires trop courts (ex: minimum 10 caractères) pour éviter les participations vides.",
                 },
               ].map((filter, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-all">
-                  <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center mb-4">
+                <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm hover:shadow-md transition-all">
+                  <div className="w-12 h-12 bg-red-500/20 text-red-400 rounded-xl flex items-center justify-center mb-4">
                     {filter.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{filter.title}</h3>
-                  <p className="text-gray-600 text-sm">{filter.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{filter.title}</h3>
+                  <p className="text-ink-secondary text-sm">{filter.description}</p>
                 </div>
               ))}
             </div>
@@ -288,10 +288,10 @@ const TirageCommentairesYoutubePage = () => {
         </section>
 
         {/* Comment ça marche */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Comment Faire un Tirage au Sort YouTube en 4 Étapes
               </h2>
             </div>
@@ -299,12 +299,12 @@ const TirageCommentairesYoutubePage = () => {
             <div className="grid md:grid-cols-4 gap-6">
               {howToSteps.map((step, index) => (
                 <div key={index} className="relative">
-                  <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 border border-red-100 h-full">
+                  <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-red-100 h-full">
                     <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mb-4">
                       {index + 1}
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.name}</h3>
-                    <p className="text-gray-600 text-sm">{step.text}</p>
+                    <h3 className="text-lg font-semibold text-white mb-2">{step.name}</h3>
+                    <p className="text-ink-secondary text-sm">{step.text}</p>
                   </div>
                   {index < howToSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
@@ -321,7 +321,7 @@ const TirageCommentairesYoutubePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Types de Concours YouTube Populaires
               </h2>
             </div>
@@ -353,15 +353,15 @@ const TirageCommentairesYoutubePage = () => {
                   example: "Exemple : « Devine le nombre de vues que fera cette vidéo ! Tirage parmi les plus proches. »",
                 },
               ].map((useCase, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-red-100 text-red-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-red-500/20 text-red-400 rounded-xl flex items-center justify-center flex-shrink-0">
                       {useCase.icon}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{useCase.title}</h3>
-                      <p className="text-gray-600 text-sm mb-3">{useCase.description}</p>
-                      <p className="text-red-600 text-sm italic">{useCase.example}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{useCase.title}</h3>
+                      <p className="text-ink-secondary text-sm mb-3">{useCase.description}</p>
+                      <p className="text-red-400 text-sm italic">{useCase.example}</p>
                     </div>
                   </div>
                 </div>
@@ -371,9 +371,9 @@ const TirageCommentairesYoutubePage = () => {
         </section>
 
         {/* Statistiques YouTube */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-red-600 to-red-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-red-600 to-bg-primary0 rounded-2xl p-8 text-white">
               <div className="text-center mb-8">
                 <Youtube className="w-12 h-12 mx-auto mb-4" />
                 <h2 className="text-2xl font-bold mb-2">
@@ -412,9 +412,9 @@ const TirageCommentairesYoutubePage = () => {
         </section>
 
         {/* Related Pages */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Types de Tirages YouTube</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Types de Tirages YouTube</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Giveaway YouTube Shorts", url: "/giveaway-youtube-shorts/" },
@@ -424,15 +424,15 @@ const TirageCommentairesYoutubePage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100 hover:border-red-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-red-100 hover:border-red-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-red-400" />
                 </Link>
               ))}
             </div>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-6 mt-12">Tirages sur Autres Plateformes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6 mt-12">Tirages sur Autres Plateformes</h2>
             <div className="grid md:grid-cols-4 gap-4">
               {[
                 { title: "Tirage Instagram", url: "/tirage-au-sort-instagram/" },
@@ -443,10 +443,10 @@ const TirageCommentairesYoutubePage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-100 hover:border-gray-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-white/10 hover:border-white/20 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-ink-secondary" />
                 </Link>
               ))}
             </div>
@@ -458,7 +458,7 @@ const TirageCommentairesYoutubePage = () => {
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Link
               to="/tirage-au-sort-youtube/"
-              className="inline-flex items-center gap-2 text-red-600 font-medium hover:text-red-700 transition-colors"
+              className="inline-flex items-center gap-2 text-red-400 font-medium hover:text-red-400 transition-colors"
             >
               ← Retour au guide complet Tirage au Sort YouTube
             </Link>
@@ -477,7 +477,7 @@ const TirageCommentairesYoutubePage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-semibold hover:bg-red-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-red-400 px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Commencer gratuitement

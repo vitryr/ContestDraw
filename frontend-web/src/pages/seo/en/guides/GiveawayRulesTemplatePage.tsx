@@ -32,24 +32,24 @@ const GiveawayRulesTemplatePage = () => (
       breadcrumbs={breadcrumbItems}
       faqItems={faqItems}
     />
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       
       <article className="py-16">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Shield className="w-4 h-4" /> Free Template
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Giveaway Rules Template
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-ink-secondary">
               Free, customizable giveaway rules for Instagram, TikTok, and other social media platforms.
             </p>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-invert max-w-none">
             <h2>Why You Need Official Rules</h2>
             <p>
               Official giveaway rules protect you legally and set clear expectations for participants. 
@@ -71,14 +71,14 @@ const GiveawayRulesTemplatePage = () => (
             <h2>Template</h2>
           </div>
 
-          <div className="bg-gray-100 rounded-xl p-6 my-8 font-mono text-sm">
+          <div className="bg-bg-card rounded-xl p-6 my-8 font-mono text-sm">
             <div className="flex justify-between items-center mb-4">
-              <span className="font-semibold text-gray-700">Giveaway Rules Template</span>
-              <button className="flex items-center gap-1 text-emerald-600 hover:text-emerald-700">
+              <span className="font-semibold text-ink-secondary">Giveaway Rules Template</span>
+              <button className="flex items-center gap-1 text-accent-secondary hover:text-accent-secondary">
                 <Copy className="w-4 h-4" /> Copy
               </button>
             </div>
-            <pre className="whitespace-pre-wrap text-gray-700">
+            <pre className="whitespace-pre-wrap text-ink-secondary">
 {`OFFICIAL GIVEAWAY RULES
 
 1. SPONSOR
@@ -118,7 +118,7 @@ For questions, contact [Email].`}
             </pre>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-invert max-w-none">
             <h2>Tips for Giveaway Rules</h2>
             <ul>
               <li>Keep language simple and clear</li>
@@ -129,10 +129,10 @@ For questions, contact [Email].`}
             </ul>
           </div>
 
-          <div className="mt-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 text-center text-white">
+          <div className="mt-12 bg-gradient-to-r from-bg-primary0 to-teal-500 rounded-2xl p-8 text-center text-white">
             <h3 className="text-2xl font-bold mb-4">Use Our Rules Generator</h3>
             <p className="mb-6 text-emerald-100">Create custom rules with our interactive tool</p>
-            <Link to="/en/tools/rules-generator/" className="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/en/tools/rules-generator/" className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               Generate Rules
             </Link>
           </div>

@@ -464,7 +464,7 @@ These Terms do not create rights for any third parties.
 For questions about these Terms, please contact us:
 
 **Cleack**
-Email: legal@cleack.io
+Email: support@cleack.io
 Address: 123 Rue de la Paix, 75001 Paris, France
 Phone: +33 1 23 45 67 89
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -17,6 +17,9 @@ import { useNavigation } from '@react-navigation/native';
 import * as Haptics from 'expo-haptics';
 import { useAuthStore } from '../services/authStore';
 import { apiService } from '../services/apiService';
+import { consentService, ConsentCategory, ConsentState } from '../services/consent';
+import { analytics } from '../services/analytics';
+import { errorTracking } from '../services/errorTracking';
 
 interface SettingsState {
   pushNotifications: boolean;
@@ -33,6 +36,7 @@ export const SettingsScreen: React.FC = () => {
   const navigation = useNavigation();
   const { logout } = useAuthStore();
   const [deleting, setDeleting] = useState(false);
+  const [loadingConsent, setLoadingConsent] = useState(true);
 
   const [settings, setSettings] = useState<SettingsState>({
     pushNotifications: true,
@@ -45,10 +49,72 @@ export const SettingsScreen: React.FC = () => {
     analytics: true,
   });
 
+  // Load consent preferences on mount
+  useEffect(() => {
+    const loadConsentPreferences = async () => {
+      try {
+        const consent = await consentService.getConsent();
+        if (consent) {
+          setSettings((prev) => ({
+            ...prev,
+            analytics: consent[ConsentCategory.ANALYTICS] ?? true,
+            marketing: consent[ConsentCategory.MARKETING] ?? false,
+            dataCollection: consent[ConsentCategory.ANALYTICS] ?? true,
+          }));
+        }
+      } catch (error) {
+        console.error('Failed to load consent preferences:', error);
+      } finally {
+        setLoadingConsent(false);
+      }
+    };
+
+    loadConsentPreferences();
+  }, []);
+
   const toggleSetting = (key: keyof SettingsState) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
+  // Handle privacy-related toggle changes (GDPR consent)
+  const handlePrivacyToggle = useCallback(async (key: 'analytics' | 'marketing' | 'dataCollection') => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+
+    const newValue = !settings[key];
+    setSettings((prev) => ({ ...prev, [key]: newValue }));
+
+    try {
+      const currentConsent = await consentService.getConsent();
+      const newConsent: ConsentState = {
+        ...currentConsent,
+        [ConsentCategory.ESSENTIAL]: true, // Always enabled
+        [ConsentCategory.ANALYTICS]: key === 'analytics' || key === 'dataCollection' ? newValue : currentConsent?.[ConsentCategory.ANALYTICS] ?? true,
+        [ConsentCategory.MARKETING]: key === 'marketing' ? newValue : currentConsent?.[ConsentCategory.MARKETING] ?? false,
+        [ConsentCategory.PREFERENCES]: currentConsent?.[ConsentCategory.PREFERENCES] ?? true,
+      };
+
+      await consentService.setConsent(newConsent);
+
+      // Update tracking services based on new consent
+      if (key === 'analytics' || key === 'dataCollection') {
+        if (newValue) {
+          await analytics.init(true);
+          errorTracking.init(true);
+        } else {
+          analytics.disable();
+          errorTracking.disable();
+        }
+      }
+
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    } catch (error) {
+      console.error('Failed to update consent:', error);
+      // Revert the UI change
+      setSettings((prev) => ({ ...prev, [key]: !newValue }));
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+    }
+  }, [settings]);
 
   const handleDeleteAccount = () => {
     Alert.alert(
@@ -212,24 +278,35 @@ export const SettingsScreen: React.FC = () => {
         </View>
 
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Privacy</Text>
+          <Text style={styles.sectionTitle}>Confidentialite (RGPD)</Text>
           <View style={styles.card}>
             <SettingToggle
               icon="analytics"
-              title="Analytics"
-              subtitle="Help us improve with usage data"
+              title="Cookies analytiques"
+              subtitle="Mixpanel et Sentry pour ameliorer l'app"
               value={settings.analytics}
-              onToggle={() => toggleSetting('analytics')}
+              onToggle={() => handlePrivacyToggle('analytics')}
+            />
+            <View style={styles.divider} />
+            <SettingToggle
+              icon="megaphone"
+              title="Cookies marketing"
+              subtitle="Communications et offres personnalisees"
+              value={settings.marketing}
+              onToggle={() => handlePrivacyToggle('marketing')}
             />
             <View style={styles.divider} />
             <SettingToggle
               icon="server"
-              title="Data Collection"
-              subtitle="Allow data collection for improvements"
+              title="Collecte de donnees"
+              subtitle="Donnees de performance et diagnostics"
               value={settings.dataCollection}
-              onToggle={() => toggleSetting('dataCollection')}
+              onToggle={() => handlePrivacyToggle('dataCollection')}
             />
           </View>
+          <Text style={styles.privacyHint}>
+            Vous pouvez modifier vos preferences a tout moment. Les cookies essentiels sont toujours actifs pour le bon fonctionnement de l'application.
+          </Text>
         </View>
 
         <View style={styles.section}>
@@ -396,6 +473,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 12,
     paddingHorizontal: 20,
+  },
+  privacyHint: {
+    fontSize: 12,
+    fontFamily: 'Inter-Regular',
+    color: '#71717a',
+    marginTop: 8,
+    paddingHorizontal: 4,
+    lineHeight: 18,
   },
   bottomPadding: {
     height: 40,

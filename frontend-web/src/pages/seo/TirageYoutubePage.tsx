@@ -160,7 +160,7 @@ const TirageYoutubePage = () => {
         reviews={reviews}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-red-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
@@ -180,13 +180,13 @@ const TirageYoutubePage = () => {
                   Vidéos & Shorts
                 </div>
 
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Tirage au Sort{' '}
-                  <span className="text-red-600">YouTube</span>{' '}
+                  <span className="text-red-400">YouTube</span>{' '}
                   Gratuit
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                   Sélectionnez un <strong>gagnant aléatoire</strong> parmi les commentaires de vos vidéos YouTube. 
                   Idéal pour récompenser vos abonnés et créer de l'engagement. Fonctionne avec les{' '}
                   <strong>vidéos classiques</strong> et les <strong>Shorts</strong>.
@@ -202,19 +202,19 @@ const TirageYoutubePage = () => {
                   </Link>
                   <a
                     href="#comment-ca-marche"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-red-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:border-red-300 transition-all"
                   >
                     Comment ça marche ?
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     <span>100% Gratuit</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     <span>Sans inscription</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -229,20 +229,20 @@ const TirageYoutubePage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="bg-white rounded-2xl shadow-2xl shadow-red-500/10 p-8 border border-gray-100">
+                <div className="bg-bg-elevated rounded-2xl shadow-2xl shadow-red-500/10 p-8 border border-white/10">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <Youtube className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-900">Tirage au Sort YouTube</h2>
-                    <p className="text-gray-500 mt-2">Collez le lien de votre vidéo</p>
+                    <h2 className="text-2xl font-bold text-white">Tirage au Sort YouTube</h2>
+                    <p className="text-ink-tertiary mt-2">Collez le lien de votre vidéo</p>
                   </div>
 
                   <div className="space-y-4">
                     <input
                       type="text"
                       placeholder="https://www.youtube.com/watch?v=..."
-                      className="w-full px-4 py-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-red-500"
+                      className="w-full px-4 py-4 border border-white/10 rounded-xl focus:ring-2 focus:ring-red-500"
                       readOnly
                     />
                     <Link
@@ -254,21 +254,21 @@ const TirageYoutubePage = () => {
                     </Link>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-100">
+                  <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">1min</div>
-                      <div className="text-sm text-gray-500">Durée</div>
+                      <div className="text-2xl font-bold text-white">1min</div>
+                      <div className="text-sm text-ink-tertiary">Durée</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-gray-900">∞</div>
-                      <div className="text-sm text-gray-500">Commentaires</div>
+                      <div className="text-2xl font-bold text-white">∞</div>
+                      <div className="text-sm text-ink-tertiary">Commentaires</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                        <span className="text-2xl font-bold text-gray-900">4.8</span>
+                        <span className="text-2xl font-bold text-white">4.8</span>
                       </div>
-                      <div className="text-sm text-gray-500">Note</div>
+                      <div className="text-sm text-ink-tertiary">Note</div>
                     </div>
                   </div>
                 </div>
@@ -287,12 +287,12 @@ const TirageYoutubePage = () => {
             <main className="min-w-0">
               {/* Intro */}
               <div className="prose prose-lg max-w-none mb-12">
-                <p className="text-xl text-gray-600 leading-relaxed">
+                <p className="text-xl text-ink-secondary leading-relaxed">
                   YouTube est la plateforme idéale pour organiser des <strong>giveaways</strong> et fidéliser 
                   votre audience. Avec plus de <strong>2 milliards d'utilisateurs actifs</strong> par mois, 
                   les concours YouTube permettent d'augmenter l'engagement, les commentaires et les abonnements.
                 </p>
-                <p className="text-gray-600">
+                <p className="text-ink-secondary">
                   Cleack analyse tous les commentaires de vos vidéos, même celles avec des dizaines de milliers 
                   de participations, et sélectionne un gagnant de manière 100% aléatoire. Plus besoin de passer 
                   des heures à copier-coller des noms dans un fichier Excel !
@@ -301,7 +301,7 @@ const TirageYoutubePage = () => {
 
               {/* Section: Comment ça marche */}
               <section id="comment-ca-marche" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Comment Faire un Tirage au Sort YouTube ?
                 </h2>
 
@@ -332,15 +332,15 @@ const TirageYoutubePage = () => {
                       icon: <Trophy className="w-6 h-6" />,
                     },
                   ].map((item) => (
-                    <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
+                    <div key={item.step} className="bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
                       <div className="flex items-start gap-4">
                         <div className="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-white flex-shrink-0">
                           {item.icon}
                         </div>
                         <div>
-                          <div className="text-sm font-medium text-red-600 mb-1">Étape {item.step}</div>
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                          <p className="text-gray-600 text-sm">{item.description}</p>
+                          <div className="text-sm font-medium text-red-400 mb-1">Étape {item.step}</div>
+                          <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                          <p className="text-ink-secondary text-sm">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -350,7 +350,7 @@ const TirageYoutubePage = () => {
 
               {/* Section: Fonctionnalités */}
               <section id="fonctionnalites" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Fonctionnalités du Tirage au Sort YouTube
                 </h2>
 
@@ -391,17 +391,17 @@ const TirageYoutubePage = () => {
                   ].map((feature, index) => (
                     <div
                       key={index}
-                      className={`bg-white rounded-xl p-6 border ${
-                        feature.highlight ? 'border-red-200 ring-1 ring-red-100' : 'border-gray-100'
+                      className={`bg-bg-elevated rounded-xl p-6 border ${
+                        feature.highlight ? 'border-red-200 ring-1 ring-red-100' : 'border-white/10'
                       }`}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                        feature.highlight ? 'bg-red-600 text-white' : 'bg-red-50 text-red-600'
+                        feature.highlight ? 'bg-red-600 text-white' : 'bg-bg-elevated text-red-400'
                       }`}>
                         {feature.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                      <p className="text-gray-600 text-sm">{feature.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                      <p className="text-ink-secondary text-sm">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -409,7 +409,7 @@ const TirageYoutubePage = () => {
 
               {/* Section: Types de tirages */}
               <section id="types-tirages" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Types de Giveaways YouTube
                 </h2>
 
@@ -440,23 +440,23 @@ const TirageYoutubePage = () => {
                     <Link
                       key={index}
                       to={type.link}
-                      className="block bg-white rounded-xl p-6 border border-gray-100 hover:border-red-200 hover:shadow-lg transition-all group"
+                      className="block bg-bg-elevated rounded-xl p-6 border border-white/10 hover:border-red-200 hover:shadow-lg transition-all group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-red-50 rounded-xl flex items-center justify-center text-red-600 flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition-all">
+                        <div className="w-14 h-14 bg-bg-elevated rounded-xl flex items-center justify-center text-red-400 flex-shrink-0 group-hover:bg-red-600 group-hover:text-white transition-all">
                           {type.icon}
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
-                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-red-600">
+                            <h3 className="text-lg font-semibold text-white group-hover:text-red-400">
                               {type.title}
                             </h3>
-                            <span className="text-xs font-medium text-red-600 bg-red-50 px-2 py-1 rounded">
+                            <span className="text-xs font-medium text-red-400 bg-bg-elevated px-2 py-1 rounded">
                               {type.badge}
                             </span>
                           </div>
-                          <p className="text-gray-600 text-sm mb-3">{type.description}</p>
-                          <span className="inline-flex items-center gap-1 text-red-600 text-sm font-medium">
+                          <p className="text-ink-secondary text-sm mb-3">{type.description}</p>
+                          <span className="inline-flex items-center gap-1 text-red-400 text-sm font-medium">
                             En savoir plus <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>
@@ -468,25 +468,25 @@ const TirageYoutubePage = () => {
 
               {/* Section: YouTube Shorts */}
               <section id="youtube-shorts" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Tirage au Sort pour YouTube Shorts
                 </h2>
 
-                <div className="bg-gradient-to-r from-red-50 to-orange-50 rounded-xl p-6 border border-red-100 mb-6">
+                <div className="bg-gradient-to-r from-bg-primary to-bg-primary rounded-xl p-6 border border-red-100 mb-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-red-600 flex-shrink-0">
+                    <div className="w-14 h-14 bg-bg-elevated rounded-xl flex items-center justify-center text-red-400 flex-shrink-0">
                       <Tv className="w-7 h-7" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      <h3 className="text-xl font-semibold text-white mb-2">
                         Les Shorts : un format en explosion
                       </h3>
-                      <p className="text-gray-600 mb-4">
+                      <p className="text-ink-secondary mb-4">
                         Les YouTube Shorts génèrent des <strong>millions de vues</strong> et d'engagement. 
                         Ils sont parfaits pour des giveaways rapides et viraux. Cleack analyse les commentaires 
                         des Shorts exactement comme les vidéos classiques.
                       </p>
-                      <ul className="space-y-2 text-gray-600">
+                      <ul className="space-y-2 text-ink-secondary">
                         <li className="flex items-center gap-2">
                           <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
                           <span>Portée organique massive</span>
@@ -514,20 +514,20 @@ const TirageYoutubePage = () => {
 
               {/* Section: Tutoriel */}
               <section id="tutoriel" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Tutoriel : Organiser un Giveaway YouTube Réussi
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center font-bold text-sm">1</span>
                       Choisissez un lot attractif pour votre niche
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-ink-secondary mb-4">
                       Le lot doit être pertinent pour votre audience :
                     </p>
-                    <ul className="grid md:grid-cols-2 gap-2 text-gray-600">
+                    <ul className="grid md:grid-cols-2 gap-2 text-ink-secondary">
                       <li>🎮 Gaming : jeux, consoles, accessoires</li>
                       <li>💄 Beauté : produits, coffrets makeup</li>
                       <li>📱 Tech : gadgets, smartphones, écouteurs</li>
@@ -537,12 +537,12 @@ const TirageYoutubePage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center font-bold text-sm">2</span>
                       Créez une vidéo dédiée au giveaway
                     </h3>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>• <strong>Annoncez clairement le giveaway</strong> dès le titre et la miniature</li>
                       <li>• <strong>Montrez le lot</strong> de manière attractive (unboxing, démonstration)</li>
                       <li>• <strong>Expliquez les conditions</strong> de participation de façon claire</li>
@@ -551,15 +551,15 @@ const TirageYoutubePage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center font-bold text-sm">3</span>
                       Définissez des conditions simples
                     </h3>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-ink-secondary mb-4">
                       Les conditions les plus efficaces sur YouTube :
                     </p>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>✓ « Abonnez-vous et activez la cloche 🔔 » (mentionnez l'emoji dans le commentaire)</li>
                       <li>✓ « Likez la vidéo et commentez [réponse à une question] »</li>
                       <li>✓ « Commentez votre [jeu/produit/film] préféré »</li>
@@ -567,12 +567,12 @@ const TirageYoutubePage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white rounded-xl p-6 border border-gray-100">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-red-100 text-red-600 rounded-full flex items-center justify-center font-bold text-sm">4</span>
+                  <div className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                    <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
+                      <span className="w-8 h-8 bg-red-500/20 text-red-400 rounded-full flex items-center justify-center font-bold text-sm">4</span>
                       Promouvez et rappellez
                     </h3>
-                    <ul className="space-y-2 text-gray-600">
+                    <ul className="space-y-2 text-ink-secondary">
                       <li>• Publiez un <strong>Community Post</strong> de rappel</li>
                       <li>• Mentionnez le giveaway dans vos <strong>autres vidéos</strong></li>
                       <li>• Faites un <strong>compte à rebours</strong> avant la fin</li>
@@ -584,7 +584,7 @@ const TirageYoutubePage = () => {
 
               {/* Section: Conseils */}
               <section id="conseils" className="mb-16">
-                <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                <h2 className="text-3xl font-bold text-white mb-8">
                   Conseils pour Créateurs YouTube
                 </h2>
 
@@ -611,12 +611,12 @@ const TirageYoutubePage = () => {
                       description: "Demandez d'inclure 🔔 dans le commentaire. Vous pourrez filtrer ces commentaires dans Cleack pour ne garder que les vrais abonnés engagés.",
                     },
                   ].map((conseil, index) => (
-                    <div key={index} className="bg-white rounded-xl p-6 border border-gray-100">
-                      <div className="w-12 h-12 bg-red-50 rounded-xl flex items-center justify-center text-red-600 mb-4">
+                    <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                      <div className="w-12 h-12 bg-bg-elevated rounded-xl flex items-center justify-center text-red-400 mb-4">
                         {conseil.icon}
                       </div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{conseil.title}</h3>
-                      <p className="text-gray-600 text-sm">{conseil.description}</p>
+                      <h3 className="text-lg font-semibold text-white mb-2">{conseil.title}</h3>
+                      <p className="text-ink-secondary text-sm">{conseil.description}</p>
                     </div>
                   ))}
                 </div>
@@ -645,7 +645,7 @@ const TirageYoutubePage = () => {
                   </p>
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                    className="inline-flex items-center gap-2 bg-bg-elevated text-red-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Commencer gratuitement

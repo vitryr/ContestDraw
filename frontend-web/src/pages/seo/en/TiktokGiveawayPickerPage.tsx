@@ -178,14 +178,14 @@ const TiktokGiveawayPickerPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-400 to-bg-primary0 text-white px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <TikTokIcon className="w-4 h-4" />
                   #1 TikTok Giveaway Tool
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   TikTok Giveaway Picker{' '}
-                  <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-cyan-400 to-bg-primary0 bg-clip-text text-transparent">
                     Free
                   </span>
                 </h1>
@@ -199,21 +199,21 @@ const TiktokGiveawayPickerPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-pink-500/25 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-pink-500/25 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Pick TikTok Winner Free
                   </Link>
                   <a
                     href="#how-it-works"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur border-2 border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 backdrop-blur border-2 border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated/20 transition-all"
                   >
                     How It Works
                   </a>
                 </div>
 
                 {/* Trust badges */}
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     <span>100% Free</span>
@@ -236,13 +236,13 @@ const TiktokGiveawayPickerPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="relative"
               >
-                <div className="bg-white/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
+                <div className="bg-bg-elevated/10 backdrop-blur-xl rounded-2xl p-8 border border-white/20">
                   <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-400 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <TikTokIcon className="w-8 h-8 text-white" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">TikTok Giveaway Picker</h2>
-                    <p className="text-gray-400 mt-2">Paste your video link to pick a winner</p>
+                    <p className="text-ink-tertiary mt-2">Paste your video link to pick a winner</p>
                   </div>
 
                   <div className="space-y-4">
@@ -250,17 +250,17 @@ const TiktokGiveawayPickerPage = () => {
                       <input
                         type="text"
                         placeholder="https://www.tiktok.com/@user/video/..."
-                        className="w-full px-4 py-4 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                        className="w-full px-4 py-4 bg-bg-elevated/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                         readOnly
                       />
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-tertiary">
                         <TikTokIcon className="w-5 h-5" />
                       </span>
                     </div>
 
                     <Link
                       to="/draw/new"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-pink-500 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-400 to-bg-primary0 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
                     >
                       <Sparkles className="w-5 h-5" />
                       Pick Winner Free
@@ -271,18 +271,18 @@ const TiktokGiveawayPickerPage = () => {
                   <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">30s</div>
-                      <div className="text-sm text-gray-400">Pick Time</div>
+                      <div className="text-sm text-ink-tertiary">Pick Time</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">∞</div>
-                      <div className="text-sm text-gray-400">Comments</div>
+                      <div className="text-sm text-ink-tertiary">Comments</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                         <span className="text-2xl font-bold text-white">4.9</span>
                       </div>
-                      <div className="text-sm text-gray-400">Rating</div>
+                      <div className="text-sm text-ink-tertiary">Rating</div>
                     </div>
                   </div>
                 </div>
@@ -292,7 +292,7 @@ const TiktokGiveawayPickerPage = () => {
         </section>
 
         {/* Main Content */}
-        <div className="bg-white">
+        <div className="bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="grid lg:grid-cols-[280px_1fr] gap-12">
               {/* Sidebar TOC */}
@@ -304,7 +304,7 @@ const TiktokGiveawayPickerPage = () => {
               <main className="min-w-0">
                 {/* Intro */}
                 <div className="prose prose-lg max-w-none mb-12">
-                  <p className="text-xl text-gray-600 leading-relaxed">
+                  <p className="text-xl text-ink-secondary leading-relaxed">
                     Running a <strong>TikTok giveaway</strong> and need to pick a fair winner? Cleack is the #1 
                     free TikTok giveaway picker, trusted by creators worldwide. Pick winners from comments on 
                     any TikTok video, even viral ones with thousands of entries.
@@ -313,7 +313,7 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* How It Works */}
                 <section id="how-it-works" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-8">
                     How to Pick a TikTok Giveaway Winner
                   </h2>
                   
@@ -344,15 +344,15 @@ const TiktokGiveawayPickerPage = () => {
                         icon: <Trophy className="w-6 h-6" />,
                       },
                     ].map((item) => (
-                      <div key={item.step} className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                      <div key={item.step} className="bg-bg-elevated rounded-xl p-6 border border-white/10">
                         <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-xl flex items-center justify-center text-white flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-bg-primary0 rounded-xl flex items-center justify-center text-white flex-shrink-0">
                             {item.icon}
                           </div>
                           <div>
-                            <div className="text-sm font-medium text-pink-600 mb-1">Step {item.step}</div>
-                            <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                            <p className="text-gray-600 text-sm">{item.description}</p>
+                            <div className="text-sm font-medium text-accent-primary mb-1">Step {item.step}</div>
+                            <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                            <p className="text-ink-secondary text-sm">{item.description}</p>
                           </div>
                         </div>
                       </div>
@@ -362,7 +362,7 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* Features */}
                 <section id="features" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-8">
                     Why Cleack for TikTok Giveaways?
                   </h2>
                   
@@ -403,19 +403,19 @@ const TiktokGiveawayPickerPage = () => {
                     ].map((feature, index) => (
                       <div
                         key={index}
-                        className={`bg-white rounded-xl p-6 border ${
-                          feature.highlight ? 'border-pink-200 ring-2 ring-pink-100' : 'border-gray-100'
+                        className={`bg-bg-elevated rounded-xl p-6 border ${
+                          feature.highlight ? 'border-pink-200 ring-2 ring-pink-100' : 'border-white/10'
                         }`}
                       >
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
                           feature.highlight 
-                            ? 'bg-gradient-to-br from-cyan-400 to-pink-500 text-white' 
-                            : 'bg-gray-100 text-gray-600'
+                            ? 'bg-gradient-to-br from-cyan-400 to-bg-primary0 text-white' 
+                            : 'bg-gray-100 text-ink-secondary'
                         }`}>
                           {feature.icon}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                        <p className="text-gray-600 text-sm">{feature.description}</p>
+                        <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                        <p className="text-ink-secondary text-sm">{feature.description}</p>
                       </div>
                     ))}
                   </div>
@@ -423,7 +423,7 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* Giveaway Types */}
                 <section id="giveaway-types" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-8">
                     TikTok Giveaway Types We Support
                   </h2>
                   
@@ -451,19 +451,19 @@ const TiktokGiveawayPickerPage = () => {
                       <Link
                         key={index}
                         to={type.link}
-                        className="block bg-white rounded-xl p-6 border border-gray-100 hover:border-pink-200 hover:shadow-lg transition-all group"
+                        className="block bg-bg-elevated rounded-xl p-6 border border-white/10 hover:border-accent-primary/50 hover:shadow-lg transition-all group"
                       >
                         <div className="flex items-start gap-4">
-                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-pink-100 rounded-xl flex items-center justify-center text-pink-600 group-hover:from-cyan-400 group-hover:to-pink-500 group-hover:text-white transition-all">
+                          <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-pink-100 rounded-xl flex items-center justify-center text-accent-primary group-hover:from-cyan-400 group-hover:to-bg-primary0 group-hover:text-white transition-all">
                             {type.icon}
                           </div>
                           <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-gray-900 group-hover:text-pink-600 mb-2">
+                            <h3 className="text-lg font-semibold text-white group-hover:text-accent-primary mb-2">
                               {type.title}
                             </h3>
-                            <p className="text-gray-600 text-sm">{type.description}</p>
+                            <p className="text-ink-secondary text-sm">{type.description}</p>
                           </div>
-                          <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-pink-500 group-hover:translate-x-1 transition-all" />
+                          <ArrowRight className="w-5 h-5 text-ink-tertiary group-hover:text-accent-primary group-hover:translate-x-1 transition-all" />
                         </div>
                       </Link>
                     ))}
@@ -472,14 +472,14 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* Why Cleack */}
                 <section id="why-cleack" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-8">
                     Cleack vs Other TikTok Pickers
                   </h2>
                   
                   <div className="overflow-x-auto">
-                    <table className="w-full bg-white rounded-xl border border-gray-200">
+                    <table className="w-full bg-bg-elevated rounded-xl border border-white/10">
                       <thead>
-                        <tr className="bg-gradient-to-r from-cyan-500 to-pink-500 text-white">
+                        <tr className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white">
                           <th className="px-6 py-4 text-left font-semibold">Feature</th>
                           <th className="px-6 py-4 text-center font-semibold">Cleack</th>
                           <th className="px-6 py-4 text-center font-semibold">Others</th>
@@ -495,12 +495,12 @@ const TiktokGiveawayPickerPage = () => {
                           { feature: "Advanced filters", cleack: true, others: "Basic" },
                         ].map((row, index) => (
                           <tr key={index}>
-                            <td className="px-6 py-3 font-medium text-gray-900">{row.feature}</td>
+                            <td className="px-6 py-3 font-medium text-white">{row.feature}</td>
                             <td className="px-6 py-3 text-center">
                               {row.cleack === true ? (
                                 <CheckCircle2 className="w-5 h-5 text-green-500 mx-auto" />
                               ) : (
-                                <span className="text-gray-500">{row.cleack}</span>
+                                <span className="text-ink-tertiary">{row.cleack}</span>
                               )}
                             </td>
                             <td className="px-6 py-3 text-center">
@@ -509,7 +509,7 @@ const TiktokGiveawayPickerPage = () => {
                               ) : row.others === false ? (
                                 <span className="text-red-500">✕</span>
                               ) : (
-                                <span className="text-gray-500">{row.others}</span>
+                                <span className="text-ink-tertiary">{row.others}</span>
                               )}
                             </td>
                           </tr>
@@ -521,7 +521,7 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* Tips */}
                 <section id="tips" className="mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 mb-8">
+                  <h2 className="text-3xl font-bold text-white mb-8">
                     TikTok Giveaway Tips
                   </h2>
                   
@@ -548,12 +548,12 @@ const TiktokGiveawayPickerPage = () => {
                         description: "State entry rules clearly in your video and caption. 'Comment + follow to enter' is simple and effective.",
                       },
                     ].map((tip, index) => (
-                      <div key={index} className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-                        <div className="w-12 h-12 bg-pink-100 rounded-xl flex items-center justify-center text-pink-600 mb-4">
+                      <div key={index} className="bg-bg-elevated rounded-xl p-6 border border-white/10">
+                        <div className="w-12 h-12 bg-accent-primary/20 rounded-xl flex items-center justify-center text-accent-primary mb-4">
                           {tip.icon}
                         </div>
-                        <h3 className="text-lg font-semibold text-gray-900 mb-2">{tip.title}</h3>
-                        <p className="text-gray-600 text-sm">{tip.description}</p>
+                        <h3 className="text-lg font-semibold text-white mb-2">{tip.title}</h3>
+                        <p className="text-ink-secondary text-sm">{tip.description}</p>
                       </div>
                     ))}
                   </div>
@@ -570,19 +570,19 @@ const TiktokGiveawayPickerPage = () => {
 
                 {/* Platform Links */}
                 <section className="mb-16">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Platforms</h2>
+                  <h2 className="text-2xl font-bold text-white mb-6">Other Platforms</h2>
                   <PlatformLinks currentPlatform="tiktok" />
                 </section>
 
                 {/* Final CTA */}
-                <section className="bg-gradient-to-r from-cyan-500 to-pink-500 rounded-2xl p-8 md:p-12 text-center text-white">
+                <section className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 md:p-12 text-center text-white">
                   <h2 className="text-3xl font-bold mb-4">Ready to Pick Your TikTok Winner?</h2>
                   <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
                     Join thousands of TikTok creators using Cleack for fair giveaways. Free, fast, and with proof video.
                   </p>
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                    className="inline-flex items-center gap-2 bg-bg-elevated text-accent-primary px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Pick TikTok Winner Free

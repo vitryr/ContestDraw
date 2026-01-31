@@ -418,7 +418,7 @@ Have an idea? We'd love to hear it!
 
 **Submit Feature Request:**
 - 🌐 [Public roadmap](https://cleack.io/roadmap)
-- 📧 Email: features@cleack.io
+- 📧 Email: support@cleack.io
 - 💬 Community forum: [community.cleack.io](https://community.cleack.io)
 - 🐦 Twitter: [@Cleack](https://twitter.com/cleack)
 
@@ -520,7 +520,7 @@ Effort: Engineering time (1-100 days)
 
 ## Questions?
 
-- 📧 **Email:** product@cleack.io
+- 📧 **Email:** support@cleack.io
 - 💬 **Live Chat:** Available 24/7 in app
 - 🌐 **Community:** [community.cleack.io](https://community.cleack.io)
 - 📖 **Help Center:** [docs.cleack.io](https://docs.cleack.io)

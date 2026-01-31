@@ -68,7 +68,7 @@ const ReglementJeuConcoursPage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-teal-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -80,19 +80,19 @@ const ReglementJeuConcoursPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <FileText className="w-4 h-4" />
                 Guide Règlement
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Règlement Jeu Concours :{' '}
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                   Guide et Modèle Gratuit
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Tout ce que vous devez savoir pour rédiger un règlement de jeu concours conforme 
                 à la législation française. Modèle gratuit inclus.
               </p>
@@ -107,7 +107,7 @@ const ReglementJeuConcoursPage = () => {
                 </Link>
                 <a
                   href="#modele"
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-emerald-300 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-bg-primary border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-emerald-300 transition-all"
                 >
                   <Download className="w-5 h-5" />
                   Voir le modèle
@@ -118,37 +118,37 @@ const ReglementJeuConcoursPage = () => {
         </section>
 
         {/* Pourquoi un règlement */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Pourquoi un Règlement est-il Obligatoire ?
               </h2>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-emerald-50 rounded-xl p-6 border border-emerald-100">
-                <Scale className="w-10 h-10 text-emerald-600 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Obligation Légale</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-accent-secondary/10 rounded-xl p-6 border border-emerald-100">
+                <Scale className="w-10 h-10 text-accent-secondary mb-4" />
+                <h3 className="text-lg font-semibold text-white mb-2">Obligation Légale</h3>
+                <p className="text-ink-secondary text-sm">
                   En France, l'article L121-20 du Code de la consommation impose un règlement 
                   pour toute loterie publicitaire avec tirage au sort.
                 </p>
               </div>
 
-              <div className="bg-teal-50 rounded-xl p-6 border border-teal-100">
-                <Shield className="w-10 h-10 text-teal-600 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Protection Juridique</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-bg-elevated rounded-xl p-6 border border-teal-100">
+                <Shield className="w-10 h-10 text-teal-400 mb-4" />
+                <h3 className="text-lg font-semibold text-white mb-2">Protection Juridique</h3>
+                <p className="text-ink-secondary text-sm">
                   Le règlement vous protège en cas de litige. Il définit clairement les règles 
                   et peut être utilisé comme preuve.
                 </p>
               </div>
 
-              <div className="bg-cyan-50 rounded-xl p-6 border border-cyan-100">
-                <Users className="w-10 h-10 text-cyan-600 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Transparence</h3>
-                <p className="text-gray-600 text-sm">
+              <div className="bg-bg-elevated rounded-xl p-6 border border-cyan-100">
+                <Users className="w-10 h-10 text-cyan-400 mb-4" />
+                <h3 className="text-lg font-semibold text-white mb-2">Transparence</h3>
+                <p className="text-ink-secondary text-sm">
                   Les participants savent exactement à quoi s'attendre. Cela renforce la confiance 
                   et la crédibilité de votre marque.
                 </p>
@@ -161,10 +161,10 @@ const ReglementJeuConcoursPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Les 12 Mentions Obligatoires
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Votre règlement doit contenir au minimum ces informations pour être conforme.
               </p>
             </div>
@@ -232,14 +232,14 @@ const ReglementJeuConcoursPage = () => {
                   content: "Où et comment consulter le règlement complet",
                 },
               ].map((item, index) => (
-                <div key={index} className="bg-white rounded-xl p-5 border border-gray-100 shadow-sm">
+                <div key={index} className="bg-bg-primary rounded-xl p-5 border border-white/10 shadow-sm">
                   <div className="flex items-start gap-3">
-                    <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 bg-emerald-500/20 text-accent-secondary rounded-lg flex items-center justify-center flex-shrink-0">
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 mb-1">{item.title}</h3>
-                      <p className="text-gray-600 text-sm">{item.content}</p>
+                      <h3 className="font-semibold text-white mb-1">{item.title}</h3>
+                      <p className="text-ink-secondary text-sm">{item.content}</p>
                     </div>
                   </div>
                 </div>
@@ -249,18 +249,18 @@ const ReglementJeuConcoursPage = () => {
         </section>
 
         {/* Clause RGPD */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 La Clause RGPD Obligatoire
               </h2>
             </div>
 
-            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-8 border border-emerald-100">
-              <Lock className="w-10 h-10 text-emerald-600 mb-6" />
+            <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-8 border border-emerald-100">
+              <Lock className="w-10 h-10 text-accent-secondary mb-6" />
               
-              <p className="text-gray-700 mb-6">
+              <p className="text-ink-secondary mb-6">
                 Depuis 2018, le RGPD impose d'informer clairement les participants sur le traitement 
                 de leurs données personnelles. Votre clause doit inclure :
               </p>
@@ -278,8 +278,8 @@ const ReglementJeuConcoursPage = () => {
                   <div key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-medium text-gray-900">{item.title} :</span>{' '}
-                      <span className="text-gray-600">{item.content}</span>
+                      <span className="font-medium text-white">{item.title} :</span>{' '}
+                      <span className="text-ink-secondary">{item.content}</span>
                     </div>
                   </div>
                 ))}
@@ -292,23 +292,23 @@ const ReglementJeuConcoursPage = () => {
         <section id="modele" className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Modèle de Règlement Type
               </h2>
-              <p className="text-gray-600">
+              <p className="text-ink-secondary">
                 Voici la structure d'un règlement conforme. Adaptez les [crochets] à votre situation.
               </p>
             </div>
 
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 flex items-center justify-between">
-                <span className="font-medium text-gray-900">Règlement du Jeu Concours</span>
-                <button className="inline-flex items-center gap-2 text-emerald-600 hover:text-emerald-700 text-sm font-medium">
+            <div className="bg-bg-primary rounded-xl border border-white/10 overflow-hidden">
+              <div className="bg-bg-elevated px-6 py-4 border-b border-white/10 flex items-center justify-between">
+                <span className="font-medium text-white">Règlement du Jeu Concours</span>
+                <button className="inline-flex items-center gap-2 text-accent-secondary hover:text-accent-secondary text-sm font-medium">
                   <Copy className="w-4 h-4" />
                   Copier
                 </button>
               </div>
-              <div className="p-6 font-mono text-sm text-gray-700 whitespace-pre-wrap bg-gray-50/50">
+              <div className="p-6 font-mono text-sm text-ink-secondary whitespace-pre-wrap bg-bg-elevated/50">
 {`RÈGLEMENT DU JEU CONCOURS « [NOM DU CONCOURS] »
 
 ARTICLE 1 – ORGANISATION
@@ -385,10 +385,10 @@ Fait à [VILLE], le [DATE]`}
         </section>
 
         {/* Erreurs courantes */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Erreurs Courantes à Éviter
               </h2>
             </div>
@@ -402,11 +402,11 @@ Fait à [VILLE], le [DATE]`}
                 { error: "Pas de clause RGPD", fix: "Obligatoire depuis 2018" },
                 { error: "Modifier le règlement après", fix: "Prévoir une clause de modification si vraiment nécessaire" },
               ].map((item, index) => (
-                <div key={index} className="flex items-start gap-4 bg-red-50 rounded-lg p-4">
+                <div key={index} className="flex items-start gap-4 bg-error/10 rounded-lg p-4">
                   <AlertCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
                   <div>
                     <p className="font-medium text-red-800">{item.error}</p>
-                    <p className="text-red-600 text-sm mt-1">✓ {item.fix}</p>
+                    <p className="text-red-400 text-sm mt-1">✓ {item.fix}</p>
                   </div>
                 </div>
               ))}
@@ -422,9 +422,9 @@ Fait à [VILLE], le [DATE]`}
         </section>
 
         {/* Related Guides */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Guides Connexes</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Guides Connexes</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Organiser un Jeu Concours", url: "/guide/organiser-jeu-concours/" },
@@ -434,10 +434,10 @@ Fait à [VILLE], le [DATE]`}
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-emerald-50 rounded-lg border border-emerald-100 hover:border-emerald-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-accent-secondary/10 rounded-lg border border-emerald-100 hover:border-emerald-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-emerald-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-muted group-hover:text-accent-secondary" />
                 </Link>
               ))}
             </div>
@@ -456,7 +456,7 @@ Fait à [VILLE], le [DATE]`}
               </p>
               <Link
                 to="/outils/generateur-reglement/"
-                className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold hover:bg-emerald-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-accent-secondary/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Générer mon règlement

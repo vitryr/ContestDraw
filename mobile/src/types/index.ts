@@ -66,3 +66,6 @@ export interface AppError {
   message: string;
   details?: any;
 }
+
+// Re-export advanced filters types
+export * from './filters';

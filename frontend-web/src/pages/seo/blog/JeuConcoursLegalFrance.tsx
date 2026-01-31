@@ -37,8 +37,8 @@ const faqItems = [
 
 export const JeuConcoursLegalFrance = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Jeu Concours Légal en France', url: 'https://cleack.io/blog/jeu-concours-legal-france/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Jeu Concours Légal en France', url: 'https://cleack.io/jeu-concours-legal-france/' },
   ];
 
   return (
@@ -47,7 +47,7 @@ export const JeuConcoursLegalFrance = () => {
         title="Jeu Concours en France : Cadre Légal Complet 2025"
         description="Le guide juridique des jeux concours en France. Loteries, tirages au sort, règlements : restez conforme à la loi française."
         keywords="jeu concours légal france, loi jeu concours, règlementation concours france, loterie illégale"
-        canonicalUrl="https://cleack.io/blog/jeu-concours-legal-france/"
+        canonicalUrl="https://cleack.io/jeu-concours-legal-france/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -58,13 +58,13 @@ export const JeuConcoursLegalFrance = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         <header className="bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-slate-300" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 ⚖️ Légal
               </span>
               
@@ -91,10 +91,10 @@ export const JeuConcoursLegalFrance = () => {
             <aside className="lg:w-80 flex-shrink-0">
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
-                <div className="mt-6 p-6 bg-slate-100 rounded-xl">
-                  <Scale className="w-8 h-8 text-slate-700 mb-3" />
-                  <h3 className="font-bold text-gray-900 mb-2">Créer un règlement</h3>
-                  <p className="text-sm text-gray-600 mb-4">Générez un règlement conforme gratuitement.</p>
+                <div className="mt-6 p-6 bg-white/10 rounded-xl">
+                  <Scale className="w-8 h-8 text-ink-secondary mb-3" />
+                  <h3 className="font-bold text-white mb-2">Créer un règlement</h3>
+                  <p className="text-sm text-ink-secondary mb-4">Générez un règlement conforme gratuitement.</p>
                   <Link to="/outils/generateur-reglement" className="block w-full text-center bg-slate-700 text-white py-2 rounded-lg font-medium hover:bg-slate-800 transition-colors">
                     Générer un règlement
                   </Link>
@@ -104,9 +104,9 @@ export const JeuConcoursLegalFrance = () => {
 
             <main className="flex-1 max-w-3xl">
               {/* Warning */}
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-8">
+              <div className="bg-bg-elevated border-l-4 border-yellow-500 p-4 rounded-r-lg mb-8">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-6 h-6 text-yellow-600 flex-shrink-0" />
+                  <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0" />
                   <div>
                     <strong className="text-yellow-900">Avertissement</strong>
                     <p className="text-yellow-800 mt-1 text-sm">
@@ -117,7 +117,7 @@ export const JeuConcoursLegalFrance = () => {
                 </div>
               </div>
 
-              <section id="definition" className="prose prose-lg max-w-none mb-12">
+              <section id="definition" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Définition légale d'un jeu concours</h2>
                 <p>
                   En droit français, un <strong>jeu concours</strong> est une opération promotionnelle 
@@ -136,13 +136,13 @@ export const JeuConcoursLegalFrance = () => {
               </section>
 
               <section id="jeu-vs-loterie" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <Scale className="w-7 h-7 text-slate-600" />
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <Scale className="w-7 h-7 text-ink-secondary" />
                   Jeu concours vs Loterie : la distinction cruciale
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                  <div className="p-5 bg-green-50 border border-green-200 rounded-xl">
+                  <div className="p-5 bg-success/10 border border-green-200 rounded-xl">
                     <h3 className="font-bold text-green-900 mb-3">✅ Jeu concours (LÉGAL)</h3>
                     <ul className="text-green-800 text-sm space-y-2">
                       <li>• Participation <strong>gratuite</strong></li>
@@ -153,7 +153,7 @@ export const JeuConcoursLegalFrance = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-5 bg-red-50 border border-red-200 rounded-xl">
+                  <div className="p-5 bg-error/10 border border-red-200 rounded-xl">
                     <h3 className="font-bold text-red-900 mb-3">❌ Loterie (ILLÉGAL)</h3>
                     <ul className="text-red-800 text-sm space-y-2">
                       <li>• Participation <strong>payante</strong></li>
@@ -165,8 +165,8 @@ export const JeuConcoursLegalFrance = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                  <h4 className="font-bold text-blue-900 mb-2">🔍 Le test du gratuit</h4>
+                <div className="mt-6 p-4 bg-accent-secondary/10 rounded-lg">
+                  <h4 className="font-bold text-white mb-2">🔍 Le test du gratuit</h4>
                   <p className="text-blue-800 text-sm">
                     Pour savoir si votre opération est légale, posez-vous la question : 
                     "Peut-on participer gratuitement, sans rien acheter ?" Si oui, c'est un jeu concours légal.
@@ -175,8 +175,8 @@ export const JeuConcoursLegalFrance = () => {
               </section>
 
               <section id="obligations" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <FileText className="w-7 h-7 text-slate-600" />
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <FileText className="w-7 h-7 text-ink-secondary" />
                   Obligations de l'organisateur
                 </h2>
 
@@ -189,13 +189,13 @@ export const JeuConcoursLegalFrance = () => {
                     { title: "Remettre les lots", desc: "Obligation de délivrer les prix promis aux gagnants" },
                     { title: "Conserver les preuves", desc: "Garder trace du tirage pendant 2 ans minimum" },
                   ].map((item, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div key={index} className="flex gap-4 p-4 bg-bg-elevated rounded-lg">
                       <div className="w-8 h-8 bg-slate-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0 text-sm">
                         {index + 1}
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900">{item.title}</h4>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <h4 className="font-bold text-white">{item.title}</h4>
+                        <p className="text-ink-secondary text-sm">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -203,14 +203,14 @@ export const JeuConcoursLegalFrance = () => {
               </section>
 
               <section id="reglement" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Le règlement obligatoire</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Le règlement obligatoire</h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Le règlement est le document juridique qui encadre votre jeu concours. 
                   Il doit contenir :
                 </p>
 
-                <div className="bg-slate-50 rounded-xl p-6 space-y-3">
+                <div className="bg-bg-elevated rounded-xl p-6 space-y-3">
                   {[
                     "Identité complète de l'organisateur",
                     "Dates de début et fin du concours",
@@ -224,13 +224,13 @@ export const JeuConcoursLegalFrance = () => {
                     "Mentions RGPD sur les données",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-3">
-                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                      <span className="text-gray-700">{item}</span>
+                      <CheckCircle className="w-5 h-5 text-success flex-shrink-0" />
+                      <span className="text-ink-secondary">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 p-4 bg-primary-50 border border-primary-200 rounded-lg text-center">
+                <div className="mt-6 p-4 bg-bg-elevated border border-primary-200 rounded-lg text-center">
                   <p className="text-primary-900 mb-3">
                     Créez votre règlement en quelques minutes avec notre outil gratuit :
                   </p>
@@ -242,9 +242,9 @@ export const JeuConcoursLegalFrance = () => {
               </section>
 
               <section id="rgpd" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">RGPD et données personnelles</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">RGPD et données personnelles</h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   La collecte de données (pseudo, email...) lors d'un concours est soumise au RGPD :
                 </p>
 
@@ -256,18 +256,18 @@ export const JeuConcoursLegalFrance = () => {
                     "Droits des participants : accès, rectification, suppression",
                     "Sécurité : protection des données collectées",
                   ].map((item, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-blue-600 flex-shrink-0" />
-                      <span className="text-blue-900">{item}</span>
+                    <div key={index} className="flex items-center gap-3 p-3 bg-accent-secondary/10 rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-accent-secondary flex-shrink-0" />
+                      <span className="text-white">{item}</span>
                     </div>
                   ))}
                 </div>
               </section>
 
               <section id="sanctions" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Sanctions en cas de non-respect</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Sanctions en cas de non-respect</h2>
 
-                <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div className="bg-error/10 border border-red-200 rounded-xl p-6">
                   <div className="space-y-4">
                     {[
                       { sanction: "Loterie illégale", peine: "Jusqu'à 30 000€ d'amende et 2 ans de prison" },
@@ -275,9 +275,9 @@ export const JeuConcoursLegalFrance = () => {
                       { sanction: "Non-remise des lots", peine: "Dommages et intérêts + réputation" },
                       { sanction: "Violation RGPD", peine: "Jusqu'à 4% du CA annuel" },
                     ].map((item, index) => (
-                      <div key={index} className="flex justify-between items-center p-3 bg-white rounded-lg">
+                      <div key={index} className="flex justify-between items-center p-3 bg-bg-primary rounded-lg">
                         <span className="font-medium text-red-900">{item.sanction}</span>
-                        <span className="text-red-700 text-sm">{item.peine}</span>
+                        <span className="text-error text-sm">{item.peine}</span>
                       </div>
                     ))}
                   </div>
@@ -294,26 +294,26 @@ export const JeuConcoursLegalFrance = () => {
                   Cleack vous aide à créer des tirages au sort conformes avec certificat vérifiable.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link to="/outils/generateur-reglement" className="inline-flex items-center justify-center gap-2 bg-white text-slate-800 px-6 py-3 rounded-lg font-bold hover:bg-slate-100">
+                  <Link to="/outils/generateur-reglement" className="inline-flex items-center justify-center gap-2 bg-bg-primary text-white px-6 py-3 rounded-lg font-bold hover:bg-white/10">
                     Créer un règlement
                   </Link>
-                  <Link to="/tirage-au-sort-instagram" className="inline-flex items-center justify-center gap-2 bg-slate-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-slate-500">
+                  <Link to="/tirage-au-sort-instagram" className="inline-flex items-center justify-center gap-2 bg-slate-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-bg-elevated0">
                     Faire un tirage
                     <ArrowRight className="w-5 h-5" />
                   </Link>
                 </div>
               </section>
 
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/regles-jeu-concours-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Règles Concours Instagram</h3>
-                    <p className="text-gray-600 text-sm">Spécificités de la plateforme</p>
+                  <Link to="/regles-jeu-concours-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Règles Concours Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Spécificités de la plateforme</p>
                   </Link>
-                  <Link to="/blog/modeles-reglement-concours" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Modèles de Règlement</h3>
-                    <p className="text-gray-600 text-sm">Templates gratuits</p>
+                  <Link to="/modeles-reglement-concours" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Modèles de Règlement</h3>
+                    <p className="text-ink-secondary text-sm">Templates gratuits</p>
                   </Link>
                 </div>
               </section>

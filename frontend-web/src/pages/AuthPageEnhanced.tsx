@@ -181,7 +181,7 @@ export default function AuthPageEnhanced() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-accent-50 py-12 px-4">
+    <div className="min-h-[80vh] flex items-center justify-center bg-bg-primary py-12 px-4">
       <AnimatePresence mode="wait">
         {showSuccess ? (
           <motion.div
@@ -204,7 +204,7 @@ export default function AuthPageEnhanced() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-2xl font-bold text-gray-900"
+              className="text-2xl font-bold text-white"
             >
               {isLogin ? "Welcome Back!" : "Account Created!"}
             </motion.h2>
@@ -212,7 +212,7 @@ export default function AuthPageEnhanced() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-gray-600 mt-2"
+              className="text-ink-secondary mt-2"
             >
               Redirecting to your dashboard...
             </motion.p>
@@ -230,10 +230,10 @@ export default function AuthPageEnhanced() {
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-600 rounded-full mb-4">
                 <Trophy className="w-8 h-8 text-white" />
               </div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">
+              <h1 className="text-3xl font-bold text-white mb-2">
                 {isLogin ? "Welcome Back" : "Create Account"}
               </h1>
-              <p className="text-gray-600">
+              <p className="text-ink-secondary">
                 {isLogin
                   ? "Sign in to continue to your draws"
                   : "Start creating fair contest draws today"}
@@ -243,7 +243,7 @@ export default function AuthPageEnhanced() {
             <div className="card">
               {/* Tab Switcher */}
               <div
-                className="flex mb-6 bg-gray-100 rounded-lg p-1"
+                className="flex mb-6 bg-bg-elevated rounded-lg p-1"
                 role="tablist"
               >
                 <button
@@ -255,8 +255,8 @@ export default function AuthPageEnhanced() {
                   disabled={isLoading}
                   className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
                     isLogin
-                      ? "bg-white text-primary-600 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "bg-accent-secondary text-white shadow-sm"
+                      : "text-ink-secondary hover:text-white"
                   }`}
                 >
                   Sign In
@@ -270,8 +270,8 @@ export default function AuthPageEnhanced() {
                   disabled={isLoading}
                   className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
                     !isLogin
-                      ? "bg-white text-primary-600 shadow-sm"
-                      : "text-gray-600 hover:text-gray-900"
+                      ? "bg-accent-secondary text-white shadow-sm"
+                      : "text-ink-secondary hover:text-white"
                   }`}
                 >
                   Sign Up
@@ -298,7 +298,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="login-email"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Email Address
                         </label>
@@ -335,7 +335,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="login-password"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Password
                         </label>
@@ -430,7 +430,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="register-name"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Full Name
                         </label>
@@ -467,7 +467,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="register-email"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Email Address
                         </label>
@@ -504,7 +504,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="register-password"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Password
                         </label>
@@ -562,7 +562,7 @@ export default function AuthPageEnhanced() {
                       <div>
                         <label
                           htmlFor="register-confirm-password"
-                          className="block text-sm font-medium text-gray-700 mb-2"
+                          className="block text-sm font-medium text-white mb-2"
                         >
                           Confirm Password
                         </label>
@@ -642,7 +642,7 @@ export default function AuthPageEnhanced() {
               </AnimatePresence>
 
               {/* Toggle Link */}
-              <div className="mt-6 text-center text-sm text-gray-600">
+              <div className="mt-6 text-center text-sm text-white">
                 {isLogin
                   ? "Don't have an account? "
                   : "Already have an account? "}
@@ -650,7 +650,7 @@ export default function AuthPageEnhanced() {
                   type="button"
                   onClick={toggleMode}
                   disabled={isLoading}
-                  className="text-primary-600 hover:text-primary-700 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                  className="text-accent-primary hover:text-accent-secondary font-medium disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
                   {isLogin ? "Sign up" : "Sign in"}
                 </button>

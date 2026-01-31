@@ -284,7 +284,7 @@ We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md)
 
 - **Bugs**: [Report an issue](https://github.com/yourusername/cleack/issues/new?template=bug_report.md)
 - **Features**: [Request a feature](https://github.com/yourusername/cleack/issues/new?template=feature_request.md)
-- **Security**: Email security@cleack.io (do not create public issues)
+- **Security**: Email support@cleack.io (do not create public issues)
 
 ## 📜 License
 

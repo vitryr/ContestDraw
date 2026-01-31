@@ -97,7 +97,7 @@ export default function VerifyHash({
       {/* Expected Hash Display */}
       <div className="bg-gray-50 rounded-lg p-4 mb-4">
         <div className="flex items-center justify-between mb-2">
-          <label className="text-sm font-semibold text-gray-700">
+          <label className="text-sm font-semibold text-white">
             Certificate Hash (SHA-256)
           </label>
           <button
@@ -132,7 +132,7 @@ export default function VerifyHash({
       <div className="mb-4">
         <label
           htmlFor="hash-input"
-          className="block text-sm font-medium text-gray-700 mb-2"
+          className="block text-sm font-medium text-white mb-2"
         >
           Verify Certificate Authenticity
         </label>
@@ -192,7 +192,7 @@ export default function VerifyHash({
 
       {/* Information */}
       <div className="mt-4 pt-4 border-t border-gray-200">
-        <h4 className="text-sm font-semibold text-gray-700 mb-2">
+        <h4 className="text-sm font-semibold text-white mb-2">
           How Hash Verification Works
         </h4>
         <ul className="text-sm text-gray-600 space-y-1">

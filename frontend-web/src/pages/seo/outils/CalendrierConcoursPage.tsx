@@ -157,7 +157,7 @@ const CalendrierConcoursPage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -169,19 +169,19 @@ const CalendrierConcoursPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Calendar className="w-4 h-4" />
                 Planning 2024
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Calendrier des{' '}
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   Concours 2024
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Les meilleures dates pour organiser vos concours et giveaways. 
                 Planifiez vos temps forts pour maximiser l'engagement.
               </p>
@@ -199,7 +199,7 @@ const CalendrierConcoursPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden"
+                  className="bg-bg-primary rounded-xl border border-white/10 shadow-sm overflow-hidden"
                 >
                   <div className={`bg-${month.color}-100 px-4 py-3`}>
                     <h3 className={`font-bold text-${month.color}-800 text-lg`}>{month.month}</h3>
@@ -212,10 +212,10 @@ const CalendrierConcoursPage = () => {
                         </div>
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="text-gray-500 text-xs">{event.date}</span>
-                            <span className="font-medium text-gray-900 text-sm">{event.name}</span>
+                            <span className="text-ink-muted text-xs">{event.date}</span>
+                            <span className="font-medium text-white text-sm">{event.name}</span>
                           </div>
-                          <p className="text-gray-600 text-xs mt-1">{event.idea}</p>
+                          <p className="text-ink-secondary text-xs mt-1">{event.idea}</p>
                         </div>
                       </div>
                     ))}
@@ -227,15 +227,15 @@ const CalendrierConcoursPage = () => {
         </section>
 
         {/* Conseils */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Conseils de Timing</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Conseils de Timing</h2>
             
             <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-                <CheckCircle2 className="w-8 h-8 text-green-600 mb-4" />
-                <h3 className="font-semibold text-gray-900 mb-3">Périodes Idéales</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-success/10 border border-green-200 rounded-xl p-6">
+                <CheckCircle2 className="w-8 h-8 text-success mb-4" />
+                <h3 className="font-semibold text-white mb-3">Périodes Idéales</h3>
+                <ul className="space-y-2 text-ink-secondary text-sm">
                   <li>✓ Fêtes commerciales (Noël, Black Friday)</li>
                   <li>✓ Événements saisonniers (rentrée, été)</li>
                   <li>✓ Anniversaires de marque</li>
@@ -244,10 +244,10 @@ const CalendrierConcoursPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                <Calendar className="w-8 h-8 text-red-600 mb-4" />
-                <h3 className="font-semibold text-gray-900 mb-3">Périodes à Éviter</h3>
-                <ul className="space-y-2 text-gray-700 text-sm">
+              <div className="bg-error/10 border border-red-200 rounded-xl p-6">
+                <Calendar className="w-8 h-8 text-red-400 mb-4" />
+                <h3 className="font-semibold text-white mb-3">Périodes à Éviter</h3>
+                <ul className="space-y-2 text-ink-secondary text-sm">
                   <li>✗ Plein été (juillet-août) - engagement bas</li>
                   <li>✗ Entre deux fêtes (période creuse)</li>
                   <li>✗ Trop de concours à la suite (lassitude)</li>
@@ -261,7 +261,7 @@ const CalendrierConcoursPage = () => {
         {/* Idées par saison */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Idées de Lots par Saison</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Idées de Lots par Saison</h2>
             
             <div className="grid md:grid-cols-4 gap-6">
               {[
@@ -274,10 +274,10 @@ const CalendrierConcoursPage = () => {
                   <div className={`text-${season.color}-600 mb-4`}>
                     {season.icon}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-3">{season.season}</h3>
+                  <h3 className="font-semibold text-white mb-3">{season.season}</h3>
                   <ul className="space-y-1">
                     {season.ideas.map((idea, i) => (
-                      <li key={i} className="text-gray-600 text-sm flex items-center gap-2">
+                      <li key={i} className="text-ink-secondary text-sm flex items-center gap-2">
                         <span className={`w-1.5 h-1.5 bg-${season.color}-400 rounded-full`}></span>
                         {idea}
                       </li>
@@ -290,7 +290,7 @@ const CalendrierConcoursPage = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4">
             <FAQSection items={faqItems} title="Questions Fréquentes" />
           </div>
@@ -308,7 +308,7 @@ const CalendrierConcoursPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-purple-600 px-8 py-4 rounded-xl font-semibold hover:bg-purple-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-accent-secondary/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer un tirage

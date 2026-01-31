@@ -1,8 +1,10 @@
 /**
  * Analytics Service using Mixpanel
  * Tracks user behavior, conversion funnels, and product usage
+ * GDPR-compliant: requires consent before initialization
  */
 import mixpanel from "mixpanel-browser";
+import { consentService, ConsentCategory } from "./consent";
 
 // Types for analytics events
 interface UserProperties {
@@ -30,11 +32,19 @@ interface PaymentEventProperties {
 
 class AnalyticsService {
   private initialized = false;
+  private isEnabled = false;
 
   /**
    * Initialize Mixpanel with token from environment
+   * @param forceInit - If true, initialize regardless of consent status
    */
-  init(): void {
+  init(forceInit?: boolean): void {
+    // Check consent before initializing (unless forced)
+    if (!forceInit && !consentService.hasConsent(ConsentCategory.ANALYTICS)) {
+      console.log("[Analytics] No analytics consent - skipping initialization");
+      return;
+    }
+
     const token = import.meta.env.VITE_MIXPANEL_TOKEN;
 
     if (!token) {
@@ -53,6 +63,7 @@ class AnalyticsService {
       });
 
       this.initialized = true;
+      this.isEnabled = true;
       console.log("[Analytics] Mixpanel initialized");
     } catch (error) {
       console.error("[Analytics] Failed to initialize Mixpanel:", error);
@@ -60,10 +71,52 @@ class AnalyticsService {
   }
 
   /**
+   * Disable analytics tracking
+   * Opts out of Mixpanel tracking and disables all tracking methods
+   */
+  disable(): void {
+    try {
+      if (this.initialized) {
+        mixpanel.opt_out_tracking();
+        console.log("[Analytics] Mixpanel tracking disabled");
+      }
+    } catch (error) {
+      console.error("[Analytics] Failed to opt out of tracking:", error);
+    }
+
+    this.initialized = false;
+    this.isEnabled = false;
+  }
+
+  /**
+   * Dynamically enable or disable analytics
+   * @param enabled - Whether analytics should be enabled
+   */
+  setEnabled(enabled: boolean): void {
+    if (enabled) {
+      if (!this.initialized) {
+        // Initialize if not already done
+        this.init(true);
+      } else {
+        // Re-enable tracking if already initialized
+        try {
+          mixpanel.opt_in_tracking();
+          this.isEnabled = true;
+          console.log("[Analytics] Tracking re-enabled");
+        } catch (error) {
+          console.error("[Analytics] Failed to opt in to tracking:", error);
+        }
+      }
+    } else {
+      this.disable();
+    }
+  }
+
+  /**
    * Track a custom event
    */
   track(event: string, properties: Record<string, any> = {}): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     try {
       mixpanel.track(event, {
@@ -79,7 +132,7 @@ class AnalyticsService {
    * Identify a user (after login/signup)
    */
   identify(userId: string, properties: UserProperties = {}): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     try {
       mixpanel.identify(userId);
@@ -96,7 +149,7 @@ class AnalyticsService {
    * Set user properties once (only if not already set)
    */
   setOnce(properties: UserProperties): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     try {
       mixpanel.people.set_once(properties);
@@ -109,7 +162,7 @@ class AnalyticsService {
    * Reset user identity (on logout)
    */
   reset(): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     try {
       mixpanel.reset();
@@ -263,8 +316,5 @@ class AnalyticsService {
 
 // Export singleton instance
 export const analytics = new AnalyticsService();
-
-// Auto-initialize on import
-analytics.init();
 
 export default analytics;

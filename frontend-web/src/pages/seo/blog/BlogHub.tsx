@@ -225,11 +225,11 @@ const categories = [
 
 const getCategoryLabel = (category: BlogArticle['category']) => {
   const labels = {
-    tutoriel: { name: 'Tutoriel', color: 'bg-blue-100 text-blue-800' },
-    idees: { name: 'Idées', color: 'bg-purple-100 text-purple-800' },
-    comparatif: { name: 'Comparatif', color: 'bg-orange-100 text-orange-800' },
-    legal: { name: 'Légal', color: 'bg-red-100 text-red-800' },
-    guide: { name: 'Guide', color: 'bg-green-100 text-green-800' },
+    tutoriel: { name: 'Tutoriel', color: 'bg-accent-secondary/20 text-blue-800' },
+    idees: { name: 'Idées', color: 'bg-accent-secondary/20 text-purple-800' },
+    comparatif: { name: 'Comparatif', color: 'bg-orange-500/20 text-orange-800' },
+    legal: { name: 'Légal', color: 'bg-red-500/20 text-red-800' },
+    guide: { name: 'Guide', color: 'bg-bg-elevated0/20 text-green-800' },
   };
   return labels[category];
 };
@@ -248,7 +248,7 @@ const ArticleCard = ({ article, featured = false }: { article: BlogArticle; feat
   
   return (
     <article 
-      className={`bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 group ${
+      className={`bg-bg-primary rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-white/10 group ${
         featured ? 'md:col-span-2 md:flex' : ''
       }`}
     >
@@ -264,14 +264,14 @@ const ArticleCard = ({ article, featured = false }: { article: BlogArticle; feat
             {categoryInfo.name}
           </span>
           {featured && (
-            <span className="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+            <span className="px-3 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-800">
               ⭐ À la une
             </span>
           )}
         </div>
         
         {/* Title */}
-        <h3 className={`font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors ${
+        <h3 className={`font-bold text-white mb-2 group-hover:text-primary-600 transition-colors ${
           featured ? 'text-2xl' : 'text-lg'
         }`}>
           <Link to={`/blog/${article.slug}`}>
@@ -280,12 +280,12 @@ const ArticleCard = ({ article, featured = false }: { article: BlogArticle; feat
         </h3>
         
         {/* Excerpt */}
-        <p className={`text-gray-600 mb-4 ${featured ? '' : 'line-clamp-2'}`}>
+        <p className={`text-ink-secondary mb-4 ${featured ? '' : 'line-clamp-2'}`}>
           {article.excerpt}
         </p>
         
         {/* Meta info */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+        <div className="flex items-center gap-4 text-sm text-ink-muted mb-4">
           <span className="flex items-center gap-1">
             <Calendar className="w-4 h-4" />
             {formatDate(article.dateModified)}
@@ -331,7 +331,7 @@ export const BlogHub = () => {
   
   // SEO data
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
   ];
   
   // Schema.org BlogPosting list
@@ -345,7 +345,7 @@ export const BlogHub = () => {
       "@type": "Organization",
       "name": "Cleack"
     },
-    "url": `https://cleack.io/blog/${article.slug}/`
+    "url": `https://cleack.io/${article.slug}/`
   }));
 
   return (
@@ -354,7 +354,7 @@ export const BlogHub = () => {
         title="Blog Cleack - Guides, Tutoriels et Astuces Tirage au Sort"
         description="Découvrez nos guides complets sur les tirages au sort Instagram, TikTok, Facebook. Tutoriels, idées de concours, aspects légaux et comparatifs d'outils."
         keywords="blog tirage au sort, tutoriel concours instagram, guide giveaway, règles jeu concours"
-        canonicalUrl="https://cleack.io/blog/"
+        canonicalUrl="https://cleack.io/"
         ogType="website"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -370,7 +370,7 @@ export const BlogHub = () => {
           "@type": "Blog",
           "name": "Blog Cleack",
           "description": "Guides et tutoriels sur les tirages au sort et concours en ligne",
-          "url": "https://cleack.io/blog/",
+          "url": "https://cleack.io/",
           "publisher": {
             "@type": "Organization",
             "name": "Cleack",
@@ -380,7 +380,7 @@ export const BlogHub = () => {
         })}
       </script>
       
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-bg-elevated">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white py-16">
           <div className="container mx-auto px-4">
@@ -396,13 +396,13 @@ export const BlogHub = () => {
               
               {/* Search Bar */}
               <div className="relative max-w-xl">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ink-muted" />
                 <input
                   type="text"
                   placeholder="Rechercher un article..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-12 pr-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-300"
+                  className="w-full pl-12 pr-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-300"
                 />
               </div>
             </div>
@@ -410,10 +410,10 @@ export const BlogHub = () => {
         </section>
         
         {/* Categories Filter */}
-        <section className="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <section className="bg-bg-primary border-b border-white/10 sticky top-0 z-10">
           <div className="container mx-auto px-4">
             <div className="flex items-center gap-2 py-4 overflow-x-auto">
-              <Filter className="w-5 h-5 text-gray-400 flex-shrink-0" />
+              <Filter className="w-5 h-5 text-ink-muted flex-shrink-0" />
               {categories.map(category => (
                 <button
                   key={category.id}
@@ -421,7 +421,7 @@ export const BlogHub = () => {
                   className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-colors ${
                     selectedCategory === category.id
                       ? 'bg-primary-600 text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      : 'bg-bg-card text-ink-secondary hover:bg-bg-hover'
                   }`}
                 >
                   {category.icon} {category.name}
@@ -435,14 +435,14 @@ export const BlogHub = () => {
         <section className="py-12">
           <div className="container mx-auto px-4">
             {/* Results count */}
-            <p className="text-gray-600 mb-6">
+            <p className="text-ink-secondary mb-6">
               {filteredArticles.length} article{filteredArticles.length > 1 ? 's' : ''} trouvé{filteredArticles.length > 1 ? 's' : ''}
             </p>
             
             {/* Featured Articles */}
             {featuredArticles.length > 0 && (
               <div className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   ⭐ Articles à la une
                 </h2>
                 <div className="grid md:grid-cols-2 gap-6">
@@ -456,7 +456,7 @@ export const BlogHub = () => {
             {/* Regular Articles */}
             {regularArticles.length > 0 && (
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   📚 Tous les articles
                 </h2>
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -470,7 +470,7 @@ export const BlogHub = () => {
             {/* No results */}
             {filteredArticles.length === 0 && (
               <div className="text-center py-12">
-                <p className="text-gray-500 text-lg">
+                <p className="text-ink-muted text-lg">
                   Aucun article trouvé pour cette recherche.
                 </p>
                 <button
@@ -485,12 +485,12 @@ export const BlogHub = () => {
         </section>
         
         {/* Newsletter CTA */}
-        <section className="bg-primary-50 py-16">
+        <section className="bg-bg-elevated py-16">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Restez informé
             </h2>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-ink-secondary mb-8 max-w-2xl mx-auto">
               Recevez nos derniers guides et astuces pour réussir vos concours sur les réseaux sociaux.
             </p>
             <Link
@@ -504,31 +504,31 @@ export const BlogHub = () => {
         </section>
         
         {/* Internal Links Section */}
-        <section className="py-12 bg-white">
+        <section className="py-12 bg-bg-primary">
           <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">
               Ressources complémentaires
             </h2>
             <div className="grid md:grid-cols-4 gap-6">
-              <Link to="/tirage-au-sort-instagram" className="p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl hover:shadow-md transition-shadow text-center">
+              <Link to="/tirage-au-sort-instagram" className="p-6 bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl hover:shadow-md transition-shadow text-center">
                 <span className="text-3xl mb-2 block">📸</span>
-                <h3 className="font-bold text-gray-900">Tirage Instagram</h3>
-                <p className="text-sm text-gray-600 mt-1">L'outil n°1 en France</p>
+                <h3 className="font-bold text-white">Tirage Instagram</h3>
+                <p className="text-sm text-ink-secondary mt-1">L'outil n°1 en France</p>
               </Link>
-              <Link to="/tirage-au-sort-tiktok" className="p-6 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-xl hover:shadow-md transition-shadow text-center">
+              <Link to="/tirage-au-sort-tiktok" className="p-6 bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl hover:shadow-md transition-shadow text-center">
                 <span className="text-3xl mb-2 block">🎵</span>
-                <h3 className="font-bold text-gray-900">Tirage TikTok</h3>
-                <p className="text-sm text-gray-600 mt-1">Giveaways viraux</p>
+                <h3 className="font-bold text-white">Tirage TikTok</h3>
+                <p className="text-sm text-ink-secondary mt-1">Giveaways viraux</p>
               </Link>
-              <Link to="/guide" className="p-6 bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl hover:shadow-md transition-shadow text-center">
+              <Link to="/guide" className="p-6 bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl hover:shadow-md transition-shadow text-center">
                 <span className="text-3xl mb-2 block">📖</span>
-                <h3 className="font-bold text-gray-900">Guides</h3>
-                <p className="text-sm text-gray-600 mt-1">Tutoriels complets</p>
+                <h3 className="font-bold text-white">Guides</h3>
+                <p className="text-sm text-ink-secondary mt-1">Tutoriels complets</p>
               </Link>
-              <Link to="/outils" className="p-6 bg-gradient-to-br from-orange-50 to-amber-50 rounded-xl hover:shadow-md transition-shadow text-center">
+              <Link to="/outils" className="p-6 bg-gradient-to-br from-bg-primary to-amber-50 rounded-xl hover:shadow-md transition-shadow text-center">
                 <span className="text-3xl mb-2 block">🛠️</span>
-                <h3 className="font-bold text-gray-900">Outils</h3>
-                <p className="text-sm text-gray-600 mt-1">Générateurs gratuits</p>
+                <h3 className="font-bold text-white">Outils</h3>
+                <p className="text-sm text-ink-secondary mt-1">Générateurs gratuits</p>
               </Link>
             </div>
           </div>

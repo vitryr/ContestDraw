@@ -89,7 +89,7 @@ const GiveawayInstagramPage = () => {
         softwareRatingCount={2345}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-pink-50 via-white to-purple-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -107,14 +107,14 @@ const GiveawayInstagramPage = () => {
                   Guide Giveaway Instagram
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Giveaway Instagram :{' '}
-                  <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-bg-primary0 via-purple-500 to-bg-primary0 bg-clip-text text-transparent">
                     Le Guide Ultime 2024
                   </span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Tout ce que vous devez savoir pour organiser un <strong>giveaway Instagram</strong> qui 
                   explose : formats, règles légales, timing et tirage au sort transparent.
                 </p>
@@ -122,26 +122,26 @@ const GiveawayInstagramPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Tirer au sort
                   </Link>
                   <a
                     href="#guide"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-pink-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-accent-primary/50 transition-all"
                   >
                     Lire le guide
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Guide complet
                   </span>
                   <span className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     Conforme Instagram
                   </span>
                   <span className="flex items-center gap-2">
@@ -154,34 +154,34 @@ const GiveawayInstagramPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 via-purple-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 via-purple-500 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Gift className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Giveaway Instagram</h2>
-                  <p className="text-gray-500 text-sm mt-2">Votre giveaway est terminé ?</p>
+                  <h2 className="text-xl font-bold text-white">Tirage Giveaway Instagram</h2>
+                  <p className="text-ink-tertiary text-sm mt-2">Votre giveaway est terminé ?</p>
                 </div>
 
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.instagram.com/p/..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
                     readOnly
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-purple-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Désigner le gagnant
                   </Link>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Trophy className="w-4 h-4" />
                       2,345+ giveaways
@@ -198,13 +198,13 @@ const GiveawayInstagramPage = () => {
         </section>
 
         {/* Formats de Giveaway */}
-        <section id="guide" className="py-16 bg-white">
+        <section id="guide" className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 5 Formats de Giveaway Instagram qui Cartonnent
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Choisissez le format adapté à vos objectifs : viralité, engagement, ou croissance.
               </p>
             </div>
@@ -265,27 +265,27 @@ const GiveawayInstagramPage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 border border-pink-100"
+                  className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-pink-100"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 bg-white text-pink-600 rounded-lg flex items-center justify-center shadow-sm">
+                    <div className="w-10 h-10 bg-bg-elevated text-accent-primary rounded-lg flex items-center justify-center shadow-sm">
                       {format.icon}
                     </div>
-                    <span className="px-2 py-1 bg-white text-pink-600 text-xs font-medium rounded-full">
+                    <span className="px-2 py-1 bg-bg-elevated text-accent-primary text-xs font-medium rounded-full">
                       {format.format}
                     </span>
                   </div>
 
-                  <h3 className="font-semibold text-gray-900 mb-2">{format.title}</h3>
-                  <p className="text-gray-600 text-sm mb-3">{format.description}</p>
+                  <h3 className="font-semibold text-white mb-2">{format.title}</h3>
+                  <p className="text-ink-secondary text-sm mb-3">{format.description}</p>
                   
-                  <div className="bg-white rounded-lg p-3 mb-3">
-                    <p className="text-pink-600 text-sm font-medium">{format.rules}</p>
+                  <div className="bg-bg-elevated rounded-lg p-3 mb-3">
+                    <p className="text-accent-primary text-sm font-medium">{format.rules}</p>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
                     {format.pros.map((pro, i) => (
-                      <span key={i} className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                      <span key={i} className="px-2 py-1 bg-bg-elevated0/20 text-green-400 text-xs rounded-full">
                         ✓ {pro}
                       </span>
                     ))}
@@ -300,13 +300,13 @@ const GiveawayInstagramPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Template de Description Giveaway
               </h2>
             </div>
 
-            <div className="max-w-2xl mx-auto bg-white rounded-xl p-6 border border-gray-100 shadow-sm">
-              <div className="bg-gradient-to-r from-pink-50 to-purple-50 rounded-lg p-4 font-mono text-sm whitespace-pre-wrap text-gray-700">
+            <div className="max-w-2xl mx-auto bg-bg-elevated rounded-xl p-6 border border-white/10 shadow-sm">
+              <div className="bg-gradient-to-r from-bg-primary to-bg-primary rounded-lg p-4 font-mono text-sm whitespace-pre-wrap text-ink-secondary">
 {`🎁 GIVEAWAY 🎁
 
 À GAGNER : [Description du lot] 🎉
@@ -329,7 +329,7 @@ Règlement complet dans notre Story à la une "Règlement".
 #Giveaway #Concours #AGagner #JeuConcours #[VotreNiche]`}
               </div>
               
-              <div className="mt-4 p-3 bg-yellow-50 rounded-lg">
+              <div className="mt-4 p-3 bg-bg-elevated rounded-lg">
                 <p className="text-yellow-800 text-sm">
                   <strong>💡 Tips :</strong> Personnalisez avec vos emojis préférés, adaptez le nombre de tags 
                   selon votre audience, et ajoutez des hashtags de votre niche !
@@ -340,60 +340,60 @@ Règlement complet dans notre Story à la une "Règlement".
         </section>
 
         {/* Timing */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Timing Optimal pour vos Giveaways Instagram
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 border border-pink-100">
-                <Calendar className="w-8 h-8 text-pink-500 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Meilleurs Moments</h3>
+              <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-pink-100">
+                <Calendar className="w-8 h-8 text-accent-primary mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-4">Meilleurs Moments</h3>
                 
                 <div className="space-y-3">
-                  <div className="flex justify-between items-center p-3 bg-white rounded-lg">
-                    <span className="text-gray-700">Mardi - Mercredi</span>
+                  <div className="flex justify-between items-center p-3 bg-bg-elevated rounded-lg">
+                    <span className="text-ink-secondary">Mardi - Mercredi</span>
                     <span className="text-green-600 font-medium">⭐ Optimal</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-white rounded-lg">
-                    <span className="text-gray-700">12h - 14h</span>
+                  <div className="flex justify-between items-center p-3 bg-bg-elevated rounded-lg">
+                    <span className="text-ink-secondary">12h - 14h</span>
                     <span className="text-green-600 font-medium">Pause déj</span>
                   </div>
-                  <div className="flex justify-between items-center p-3 bg-white rounded-lg">
-                    <span className="text-gray-700">18h - 21h</span>
+                  <div className="flex justify-between items-center p-3 bg-bg-elevated rounded-lg">
+                    <span className="text-ink-secondary">18h - 21h</span>
                     <span className="text-green-600 font-medium">Après travail</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-xl p-6 border border-purple-100">
+              <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-purple-100">
                 <Clock className="w-8 h-8 text-purple-500 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Durée Recommandée</h3>
+                <h3 className="text-xl font-semibold text-white mb-4">Durée Recommandée</h3>
                 
                 <div className="space-y-3">
-                  <div className="p-3 bg-white rounded-lg">
+                  <div className="p-3 bg-bg-elevated rounded-lg">
                     <div className="flex justify-between mb-1">
                       <span className="font-medium">Giveaway Flash</span>
-                      <span className="text-purple-600">3-5 jours</span>
+                      <span className="text-accent-secondary">3-5 jours</span>
                     </div>
-                    <p className="text-gray-600 text-sm">Crée l'urgence</p>
+                    <p className="text-ink-secondary text-sm">Crée l'urgence</p>
                   </div>
-                  <div className="p-3 bg-purple-100 rounded-lg border border-purple-200">
+                  <div className="p-3 bg-accent-secondary/20 rounded-lg border border-purple-200">
                     <div className="flex justify-between mb-1">
                       <span className="font-medium">Standard ⭐</span>
-                      <span className="text-purple-600">7-10 jours</span>
+                      <span className="text-accent-secondary">7-10 jours</span>
                     </div>
-                    <p className="text-gray-600 text-sm">Équilibre parfait</p>
+                    <p className="text-ink-secondary text-sm">Équilibre parfait</p>
                   </div>
-                  <div className="p-3 bg-white rounded-lg">
+                  <div className="p-3 bg-bg-elevated rounded-lg">
                     <div className="flex justify-between mb-1">
                       <span className="font-medium">Long (gros lot)</span>
-                      <span className="text-purple-600">2-3 semaines</span>
+                      <span className="text-accent-secondary">2-3 semaines</span>
                     </div>
-                    <p className="text-gray-600 text-sm">Max de participants</p>
+                    <p className="text-ink-secondary text-sm">Max de participants</p>
                   </div>
                 </div>
               </div>
@@ -405,16 +405,16 @@ Règlement complet dans notre Story à la une "Règlement".
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Règles Officielles d'Instagram pour les Giveaways
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <div className="bg-bg-elevated border border-green-200 rounded-xl p-6">
                 <CheckCircle2 className="w-10 h-10 text-green-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Obligatoire ✅</h3>
-                <ul className="space-y-3 text-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">Obligatoire ✅</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
                     <span className="text-green-600 mt-1">✓</span>
                     <span>Mentionner que Instagram n'est pas associé au concours</span>
@@ -434,24 +434,24 @@ Règlement complet dans notre Story à la une "Règlement".
                 </ul>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                <AlertCircle className="w-10 h-10 text-red-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Interdit ❌</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-bg-elevated border border-red-200 rounded-xl p-6">
+                <AlertCircle className="w-10 h-10 text-red-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-4">Interdit ❌</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Demander de taguer des contenus non appropriés</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Encourager les faux comptes ou le spam</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Demander des informations personnelles excessives</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Faire de fausses promesses sur les lots</span>
                   </li>
                 </ul>
@@ -461,7 +461,7 @@ Règlement complet dans notre Story à la une "Règlement".
         </section>
 
         {/* FAQ */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-4xl mx-auto px-4">
             <FAQSection
               items={faqItems}
@@ -473,7 +473,7 @@ Règlement complet dans notre Story à la une "Règlement".
         {/* Related Pages */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Ressources Instagram</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Ressources Instagram</h2>
             <div className="grid md:grid-cols-4 gap-4">
               {[
                 { title: "Tirage Commentaires", url: "/tirage-commentaires-instagram/" },
@@ -484,10 +484,10 @@ Règlement complet dans notre Story à la une "Règlement".
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-pink-50 rounded-lg border border-pink-100 hover:border-pink-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-pink-100 hover:border-accent-primary/50 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-pink-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-accent-primary" />
                 </Link>
               ))}
             </div>
@@ -499,7 +499,7 @@ Règlement complet dans notre Story à la une "Règlement".
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Link
               to="/tirage-au-sort-instagram/"
-              className="inline-flex items-center gap-2 text-pink-600 font-medium hover:text-pink-700 transition-colors"
+              className="inline-flex items-center gap-2 text-accent-primary font-medium hover:text-pink-700 transition-colors"
             >
               ← Retour au guide complet Tirage au Sort Instagram
             </Link>
@@ -509,7 +509,7 @@ Règlement complet dans notre Story à la une "Règlement".
         {/* CTA Final */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="bg-gradient-to-r from-pink-500 via-purple-500 to-orange-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 via-purple-500 to-bg-primary0 rounded-2xl p-8 text-white">
               <Gift className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Votre Giveaway Instagram est Prêt ?</h2>
               <p className="text-white/90 mb-6">
@@ -518,7 +518,7 @@ Règlement complet dans notre Story à la une "Règlement".
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-pink-600 px-8 py-4 rounded-xl font-semibold hover:bg-pink-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-accent-primary px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Tirer au sort maintenant

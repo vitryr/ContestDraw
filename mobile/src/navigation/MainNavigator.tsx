@@ -14,6 +14,7 @@ import { DrawHistoryScreen } from '../screens/DrawHistoryScreen';
 import { EditProfileScreen } from '../screens/EditProfileScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { HelpSupportScreen } from '../screens/HelpSupportScreen';
+import DrawFiltersScreen from '../screens/DrawFiltersScreen';
 import { MainStackParamList, TabParamList } from '../types/navigation';
 
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -39,9 +40,9 @@ const TabNavigator: React.FC = () => {
         tabBarActiveTintColor: '#7c3aed',
         tabBarInactiveTintColor: '#71717a',
         tabBarStyle: {
-          backgroundColor: '#12121a',
+          backgroundColor: '#13092b',
           borderTopWidth: 1,
-          borderTopColor: '#27272a',
+          borderTopColor: 'rgba(255,255,255,0.06)',
           paddingBottom: Platform.OS === 'ios' ? 20 : 10,
           height: Platform.OS === 'ios' ? 85 : 65,
         },
@@ -78,7 +79,7 @@ export const MainNavigator: React.FC = () => {
         headerShown: false,
         animation: 'slide_from_right',
         contentStyle: {
-          backgroundColor: '#0a0a0f',
+          backgroundColor: '#09090b',
         },
       }}
     >
@@ -87,6 +88,11 @@ export const MainNavigator: React.FC = () => {
         name="DrawConfig"
         component={DrawConfigScreen}
         options={{ animation: 'slide_from_bottom' }}
+      />
+      <Stack.Screen
+        name="DrawFilters"
+        component={DrawFiltersScreen}
+        options={{ animation: 'slide_from_right' }}
       />
       <Stack.Screen
         name="DrawAnimation"

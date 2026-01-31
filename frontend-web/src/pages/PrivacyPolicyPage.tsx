@@ -71,7 +71,7 @@ export default function PrivacyPolicyPage() {
                 <p><strong className="text-white">Numéro d'enregistrement :</strong> 17371835</p>
                 <p><strong className="text-white">Adresse :</strong> Sepapaja tn 6, Tallinn 15551, Estonia</p>
                 <p><strong className="text-white">Email DPO :</strong>{" "}
-                  <a href="mailto:privacy@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">privacy@cleack.io</a>
+                  <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
                 </p>
               </div>
             </section>
@@ -238,7 +238,7 @@ export default function PrivacyPolicyPage() {
               </ul>
               <p className="text-ink-secondary">
                 Pour exercer vos droits, contactez-nous à{" "}
-                <a href="mailto:privacy@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">privacy@cleack.io</a>
+                <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
               </p>
             </section>
 
@@ -272,7 +272,7 @@ export default function PrivacyPolicyPage() {
               </div>
               <div className="bg-bg-elevated rounded-xl p-6 space-y-2 text-ink-secondary">
                 <p><strong className="text-white">Pour toute question sur cette politique :</strong></p>
-                <p>Email : <a href="mailto:privacy@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">privacy@cleack.io</a></p>
+                <p>Email : <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a></p>
                 <p>Adresse : Flowrigin OÜ, Sepapaja tn 6, Tallinn 15551, Estonia</p>
               </div>
             </section>

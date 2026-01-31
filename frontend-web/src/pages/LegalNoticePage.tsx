@@ -69,7 +69,7 @@ export default function LegalNoticePage() {
                 <p><strong className="text-white">Siège social :</strong> Sepapaja tn 6, Tallinn 15551, Estonia</p>
                 <p><strong className="text-white">Téléphone :</strong> +33 6 25 75 44 20</p>
                 <p><strong className="text-white">Email :</strong>{" "}
-                  <a href="mailto:contact@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">contact@cleack.io</a>
+                  <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
                 </p>
                 <p><strong className="text-white">Site web :</strong>{" "}
                   <a href="https://cleack.io" className="text-accent-secondary hover:text-accent-tertiary">https://cleack.io</a>
@@ -91,7 +91,7 @@ export default function LegalNoticePage() {
                 <p><strong className="text-white">Nom :</strong> Romain Vitry</p>
                 <p><strong className="text-white">Fonction :</strong> Membre du conseil d'administration (Board Member)</p>
                 <p><strong className="text-white">Email :</strong>{" "}
-                  <a href="mailto:contact@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">contact@cleack.io</a>
+                  <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
                 </p>
               </div>
             </section>
@@ -161,7 +161,7 @@ export default function LegalNoticePage() {
                     <p><strong className="text-white">Nom :</strong> Flowrigin OÜ</p>
                     <p><strong className="text-white">Numéro d'enregistrement :</strong> 17371835</p>
                     <p><strong className="text-white">Email DPO :</strong>{" "}
-                      <a href="mailto:privacy@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">privacy@cleack.io</a>
+                      <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
                     </p>
                   </div>
                 </div>
@@ -207,7 +207,7 @@ export default function LegalNoticePage() {
               </div>
               <div className="bg-bg-elevated rounded-xl p-6 space-y-2 text-ink-secondary">
                 <p><strong className="text-white">Email :</strong>{" "}
-                  <a href="mailto:contact@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">contact@cleack.io</a>
+                  <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a>
                 </p>
                 <p><strong className="text-white">Téléphone :</strong> +33 6 25 75 44 20</p>
                 <p><strong className="text-white">Adresse :</strong> Flowrigin OÜ, Sepapaja tn 6, Tallinn 15551, Estonia</p>

@@ -174,7 +174,7 @@ A: Yes! We use cryptographically secure random number generation. Each draw incl
 - 📖 **Documentation**: [docs.cleack.io](https://docs.cleack.io)
 - 💬 **Live Chat**: Available in the bottom-right corner (Pro users)
 - 📧 **Email Support**: support@cleack.io (response within 24h)
-- 🐛 **Bug Reports**: bugs@cleack.io
+- 🐛 **Bug Reports**: support@cleack.io
 
 ## Next Steps
 

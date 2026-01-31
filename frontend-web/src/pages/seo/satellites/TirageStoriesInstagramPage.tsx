@@ -39,7 +39,7 @@ const TirageStoriesInstagramPage = () => {
         includeSoftwareSchema
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -48,17 +48,17 @@ const TirageStoriesInstagramPage = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}>
-                <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Eye className="w-4 h-4" />
                   Format Interactif
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Tirage au Sort{' '}
-                  <span className="text-purple-600">Stories Instagram</span>
+                  <span className="text-accent-secondary">Stories Instagram</span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Sélectionnez un gagnant parmi les <strong>réponses et mentions</strong> de vos stories Instagram. 
                   Format éphémère et engageant pour des concours interactifs.
                 </p>
@@ -73,7 +73,7 @@ const TirageStoriesInstagramPage = () => {
                   </Link>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Gratuit
@@ -88,13 +88,13 @@ const TirageStoriesInstagramPage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Eye className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Stories</h2>
+                  <h2 className="text-xl font-bold text-white">Tirage Stories</h2>
                 </div>
                 <Link
                   to="/draw/new"
@@ -109,9 +109,9 @@ const TirageStoriesInstagramPage = () => {
         </section>
 
         {/* Types de concours Stories */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
               Types de Concours en Stories
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -133,9 +133,9 @@ const TirageStoriesInstagramPage = () => {
                   description: "Demandez de partager votre story. Trackez les partages pour sélectionner un gagnant.",
                 },
               ].map((type, index) => (
-                <div key={index} className="bg-purple-50 rounded-xl p-6">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{type.title}</h3>
-                  <p className="text-gray-600">{type.description}</p>
+                <div key={index} className="bg-bg-elevated rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2">{type.title}</h3>
+                  <p className="text-ink-secondary">{type.description}</p>
                 </div>
               ))}
             </div>
@@ -150,9 +150,9 @@ const TirageStoriesInstagramPage = () => {
         </section>
 
         {/* Related */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Types de Tirages</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Types de Tirages</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires", url: "/tirage-commentaires-instagram/" },
@@ -162,10 +162,10 @@ const TirageStoriesInstagramPage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-purple-50 transition-all"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg hover:bg-bg-elevated transition-all"
                 >
                   <span className="font-medium">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary" />
                 </Link>
               ))}
             </div>
@@ -174,7 +174,7 @@ const TirageStoriesInstagramPage = () => {
 
         <section className="py-8">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <Link to="/tirage-au-sort-instagram/" className="text-purple-600 font-medium">
+            <Link to="/tirage-au-sort-instagram/" className="text-accent-secondary font-medium">
               ← Retour au guide complet
             </Link>
           </div>

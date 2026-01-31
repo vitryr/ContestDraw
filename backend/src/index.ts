@@ -24,6 +24,7 @@ import organizationsRoutes from "./api/organizations/organizations.routes";
 import brandsRoutes from "./api/brands/brands.routes";
 import brandingRoutes from "./api/branding/branding.routes";
 import paymentsRoutes from "./api/payments/payments.routes";
+import filtersRoutes from "./api/filters/filters.routes";
 import adminRoutes from "./api/admin";
 
 // Load environment variables
@@ -127,6 +128,7 @@ class App {
     this.app.use("/api/social", socialPlatformsRoutes);
     this.app.use("/api/public", publicRoutes); // Public verification routes (no auth)
     this.app.use("/api/blacklist", blacklistRoutes);
+    this.app.use("/api/filters", filtersRoutes);
     this.app.use("/api/verification", verificationRoutes);
     // Payments & Subscriptions
     this.app.use("/api/payments", paymentsRoutes);

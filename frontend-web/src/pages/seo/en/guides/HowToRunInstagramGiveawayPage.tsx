@@ -33,24 +33,24 @@ const HowToRunInstagramGiveawayPage = () => (
       breadcrumbs={breadcrumbItems}
       faqItems={faqItems}
     />
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       
       <article className="py-16">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <BookOpen className="w-4 h-4" /> Complete Guide
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               How to Run an Instagram Giveaway
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-ink-secondary">
               The complete guide to running successful Instagram giveaways that grow your audience and engagement.
             </p>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-invert max-w-none">
             <h2>Why Run an Instagram Giveaway?</h2>
             <p>
               Instagram giveaways are one of the most effective ways to grow your account organically. 
@@ -94,7 +94,7 @@ const HowToRunInstagramGiveawayPage = () => (
               <li>How winners will be notified</li>
             </ul>
             <p>
-              <Link to="/en/guides/giveaway-rules-template/" className="text-emerald-600 hover:underline">
+              <Link to="/en/guides/giveaway-rules-template/" className="text-accent-secondary hover:underline">
                 Get our free rules template →
               </Link>
             </p>
@@ -130,9 +130,9 @@ const HowToRunInstagramGiveawayPage = () => (
             </ol>
           </div>
 
-          <div className="mt-12 bg-gradient-to-r from-pink-500 to-purple-500 rounded-2xl p-8 text-center text-white">
+          <div className="mt-12 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 text-center text-white">
             <h3 className="text-2xl font-bold mb-4">Ready to Pick Your Winner?</h3>
-            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-pink-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-primary text-accent-primary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               <Sparkles className="w-5 h-5" /> Pick Winner Free
             </Link>
           </div>

@@ -432,8 +432,184 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Platform Section - SEO Internal Links */}
+      <section className="py-20 bg-bg-elevated">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Tirage au sort par plateforme
+            </h2>
+            <p className="text-xl text-ink-secondary max-w-2xl mx-auto">
+              Choisissez votre réseau social et lancez un tirage au sort équitable en quelques clics
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {[
+              { name: "Instagram", path: "/tirage-au-sort-instagram", color: "from-pink-500 to-purple-600", icon: "📸" },
+              { name: "TikTok", path: "/tirage-au-sort-tiktok", color: "from-black to-gray-800", icon: "🎵" },
+              { name: "Facebook", path: "/tirage-au-sort-facebook", color: "from-blue-600 to-blue-800", icon: "👥" },
+              { name: "YouTube", path: "/tirage-au-sort-youtube", color: "from-red-600 to-red-800", icon: "▶️" },
+              { name: "Twitter/X", path: "/tirage-au-sort-twitter", color: "from-sky-500 to-blue-600", icon: "🐦" },
+            ].map((platform) => (
+              <Link
+                key={platform.name}
+                to={platform.path}
+                className="group relative overflow-hidden rounded-xl p-6 bg-bg-card border border-white/[0.06] hover:border-accent-secondary/50 transition-all"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-br ${platform.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
+                <div className="relative z-10 text-center">
+                  <span className="text-3xl mb-3 block">{platform.icon}</span>
+                  <h3 className="font-bold text-white group-hover:text-accent-secondary transition-colors">
+                    {platform.name}
+                  </h3>
+                  <p className="text-sm text-ink-muted mt-1">Tirage au sort</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* Sub-links for Instagram (most popular) */}
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link to="/tirage-commentaires-instagram" className="text-sm text-ink-secondary hover:text-accent-secondary transition-colors">
+              Tirage commentaires Instagram
+            </Link>
+            <span className="text-ink-muted">•</span>
+            <Link to="/tirage-likes-instagram" className="text-sm text-ink-secondary hover:text-accent-secondary transition-colors">
+              Tirage likes Instagram
+            </Link>
+            <span className="text-ink-muted">•</span>
+            <Link to="/tirage-stories-instagram" className="text-sm text-ink-secondary hover:text-accent-secondary transition-colors">
+              Tirage stories
+            </Link>
+            <span className="text-ink-muted">•</span>
+            <Link to="/giveaway-instagram" className="text-sm text-ink-secondary hover:text-accent-secondary transition-colors">
+              Giveaway Instagram
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Resources Section - SEO Hubs */}
       <section className="py-20 bg-bg-primary">
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Ressources & Guides
+            </h2>
+            <p className="text-xl text-ink-secondary max-w-2xl mx-auto">
+              Tout ce dont vous avez besoin pour organiser des concours réussis
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Guides Hub */}
+            <Link
+              to="/guide"
+              className="group p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:border-accent-secondary/50 transition-all"
+            >
+              <div className="w-12 h-12 rounded-lg bg-accent-secondary/10 flex items-center justify-center mb-4">
+                <span className="text-2xl">📚</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent-secondary transition-colors">
+                Guides complets
+              </h3>
+              <p className="text-ink-secondary mb-4">
+                Apprenez à organiser des jeux-concours légaux et efficaces
+              </p>
+              <div className="space-y-2 text-sm">
+                <Link to="/guide/organiser-jeu-concours" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Comment organiser un jeu-concours
+                </Link>
+                <Link to="/guide/reglement-jeu-concours" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Rédiger un règlement conforme
+                </Link>
+                <Link to="/guide/legal-jeu-concours-france" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Aspects légaux en France
+                </Link>
+              </div>
+            </Link>
+
+            {/* Blog Hub */}
+            <Link
+              to="/articles"
+              className="group p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:border-accent-secondary/50 transition-all"
+            >
+              <div className="w-12 h-12 rounded-lg bg-accent-primary/10 flex items-center justify-center mb-4">
+                <span className="text-2xl">✍️</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent-secondary transition-colors">
+                Blog & Tutoriels
+              </h3>
+              <p className="text-ink-secondary mb-4">
+                Tutoriels détaillés et conseils d'experts pour vos concours
+              </p>
+              <div className="space-y-2 text-sm">
+                <Link to="/comment-faire-tirage-au-sort-instagram" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Tirage au sort Instagram pas à pas
+                </Link>
+                <Link to="/idees-concours-instagram-2025" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Idées de concours Instagram 2025
+                </Link>
+                <Link to="/meilleur-outil-tirage-au-sort" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Comparatif des outils de tirage
+                </Link>
+              </div>
+            </Link>
+
+            {/* Tools Hub */}
+            <Link
+              to="/outils"
+              className="group p-6 bg-bg-card border border-white/[0.06] rounded-xl hover:border-accent-secondary/50 transition-all"
+            >
+              <div className="w-12 h-12 rounded-lg bg-success/10 flex items-center justify-center mb-4">
+                <span className="text-2xl">🛠️</span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent-secondary transition-colors">
+                Outils gratuits
+              </h3>
+              <p className="text-ink-secondary mb-4">
+                Outils complémentaires pour vos concours
+              </p>
+              <div className="space-y-2 text-sm">
+                <Link to="/outils/generateur-reglement" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Générateur de règlement
+                </Link>
+                <Link to="/outils/compteur-participants" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Compteur de participants
+                </Link>
+                <Link to="/outils/verificateur-compte" className="block text-ink-muted hover:text-accent-secondary transition-colors">
+                  → Vérificateur de compte
+                </Link>
+              </div>
+            </Link>
+          </div>
+
+          {/* Jeu-Concours Hub Link */}
+          <div className="mt-8 text-center">
+            <Link
+              to="/jeu-concours"
+              className="inline-flex items-center gap-2 text-accent-secondary hover:text-accent-primary transition-colors"
+            >
+              Découvrir tous nos guides jeux-concours
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-bg-elevated">
         <div className="container-custom text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

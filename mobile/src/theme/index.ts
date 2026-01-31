@@ -5,9 +5,10 @@
 
 export const colors = {
   background: {
-    primary: '#0a0a0f',    // Near black - main background
-    elevated: '#12121a',   // Dark gray - elevated surfaces
-    card: '#1a1a24',       // Card background
+    primary: '#09090b',    // Near black - main background
+    elevated: '#13092b',   // Dark purple - header/elevated surfaces
+    card: '#18181b',       // Card background
+    header: '#13092b',     // Header specific dark purple
   },
   accent: {
     primary: '#7c3aed',    // Vibrant purple

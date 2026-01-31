@@ -242,7 +242,7 @@ export default function TermsOfServicePage() {
               </div>
               <div className="bg-bg-elevated rounded-xl p-6 space-y-2 text-ink-secondary">
                 <p><strong className="text-white">Pour toute question sur ces CGU :</strong></p>
-                <p>Email : <a href="mailto:legal@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">legal@cleack.io</a></p>
+                <p>Email : <a href="mailto:support@cleack.io" className="text-accent-secondary hover:text-accent-tertiary">support@cleack.io</a></p>
                 <p>Adresse : Flowrigin OÜ, Sepapaja tn 6, Tallinn 15551, Estonia</p>
               </div>
             </section>

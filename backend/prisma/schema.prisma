@@ -76,10 +76,14 @@ model Draw {
   status          DrawStatus    @default(DRAFT)
   platform        String?
   postUrl         String?
+  postId          String?
   filters         Json?
+  advancedFilters Json?         // New advanced filters
   algorithm       String?
   seed            String?
   certificateHash String?
+  lockedAt        DateTime?     // Lock for concurrent execution prevention
+  preScanResult   Json?         // Pre-scan result cache
   completedAt     DateTime?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
@@ -90,6 +94,7 @@ model Draw {
 
   @@index([userId, status])
   @@index([createdAt])
+  @@index([lockedAt])
   @@map("draws")
 }
 
@@ -477,4 +482,34 @@ enum ApplicableTo {
   SUBSCRIPTION
   CREDITS
   PASS_48H
+}
+
+// ============================================
+// USER PASSES (48h unlimited draws)
+// ============================================
+
+model UserPass {
+  id              String       @id @default(uuid())
+  userId          String
+  type            PassType     @default(PASS_48H)
+  purchasePrice   Decimal      @db.Decimal(10, 2)
+  currency        String       @default("EUR")
+  stripePaymentId String?
+  activatedAt     DateTime     @default(now())
+  expiresAt       DateTime
+  isActive        Boolean      @default(true)
+  drawsUsed       Int          @default(0)
+  metadata        Json?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  @@index([userId, expiresAt])
+  @@index([isActive, expiresAt])
+  @@map("user_passes")
+}
+
+enum PassType {
+  PASS_48H
+  PASS_24H
+  PASS_WEEK
 }

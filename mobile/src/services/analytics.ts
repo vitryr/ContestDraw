@@ -1,9 +1,11 @@
 /**
  * Analytics Service using Mixpanel for React Native
  * Tracks user behavior, conversion funnels, and product usage
+ * Supports GDPR consent-based initialization
  */
 import { Mixpanel } from 'mixpanel-react-native';
 import Constants from 'expo-constants';
+import { consentService, ConsentCategory } from './consent';
 
 // Types
 interface UserProperties {
@@ -24,11 +26,22 @@ interface DrawEventProperties {
 class AnalyticsService {
   private mixpanel: Mixpanel | null = null;
   private initialized = false;
+  private isEnabled = false;
 
   /**
-   * Initialize Mixpanel
+   * Initialize Mixpanel with GDPR consent check
+   * @param forceInit - If true, skip consent check and initialize anyway
    */
-  async init(): Promise<void> {
+  async init(forceInit?: boolean): Promise<void> {
+    // Check consent before initializing (unless forced)
+    if (!forceInit) {
+      const hasConsent = consentService.hasConsent(ConsentCategory.ANALYTICS);
+      if (!hasConsent) {
+        console.log('[Analytics] No consent for analytics, skipping initialization');
+        return;
+      }
+    }
+
     const token = Constants.expoConfig?.extra?.mixpanelToken;
 
     if (!token) {
@@ -40,6 +53,7 @@ class AnalyticsService {
       this.mixpanel = new Mixpanel(token, true);
       await this.mixpanel.init();
       this.initialized = true;
+      this.isEnabled = true;
       console.log('[Analytics] Mixpanel initialized');
     } catch (error) {
       console.error('[Analytics] Failed to initialize:', error);
@@ -47,10 +61,29 @@ class AnalyticsService {
   }
 
   /**
+   * Disable analytics and clear mixpanel instance
+   */
+  disable(): void {
+    this.initialized = false;
+    this.isEnabled = false;
+    this.mixpanel = null;
+    console.log('[Analytics] Analytics disabled');
+  }
+
+  /**
+   * Dynamically enable or disable analytics tracking
+   * @param enabled - Whether analytics should be enabled
+   */
+  setEnabled(enabled: boolean): void {
+    this.isEnabled = enabled;
+    console.log(`[Analytics] Analytics ${enabled ? 'enabled' : 'disabled'}`);
+  }
+
+  /**
    * Track a custom event
    */
   track(event: string, properties: Record<string, any> = {}): void {
-    if (!this.initialized || !this.mixpanel) return;
+    if (!this.isEnabled || !this.mixpanel) return;
 
     try {
       this.mixpanel.track(event, {
@@ -67,7 +100,7 @@ class AnalyticsService {
    * Identify a user
    */
   identify(userId: string, properties: UserProperties = {}): void {
-    if (!this.initialized || !this.mixpanel) return;
+    if (!this.isEnabled || !this.mixpanel) return;
 
     try {
       this.mixpanel.identify(userId);
@@ -81,7 +114,7 @@ class AnalyticsService {
    * Reset on logout
    */
   reset(): void {
-    if (!this.initialized || !this.mixpanel) return;
+    if (!this.isEnabled || !this.mixpanel) return;
 
     try {
       this.mixpanel.reset();

@@ -169,7 +169,7 @@ const TirageTwitterPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-800 to-black text-white">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
-          <Breadcrumb items={breadcrumbItems} className="text-gray-400" />
+          <Breadcrumb items={breadcrumbItems} className="text-ink-tertiary" />
         </div>
 
         {/* Hero Section */}
@@ -181,7 +181,7 @@ const TirageTwitterPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="inline-flex items-center gap-2 bg-white text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-bg-elevated text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <XIcon className="w-4 h-4" />
                   Twitter / X
                 </div>
@@ -203,20 +203,20 @@ const TirageTwitterPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated text-black px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Lancer un tirage gratuit
                   </Link>
                   <a
                     href="#comment-ca-marche"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated/20 transition-all"
                   >
                     Comment ça marche ?
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     <span>100% Gratuit</span>
@@ -237,25 +237,25 @@ const TirageTwitterPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+                <div className="bg-bg-elevated/5 backdrop-blur rounded-2xl p-8 border border-white/10">
                   <div className="text-center mb-6">
-                    <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <div className="w-16 h-16 bg-bg-elevated rounded-2xl flex items-center justify-center mx-auto mb-4">
                       <XIcon className="w-8 h-8 text-black" />
                     </div>
                     <h2 className="text-2xl font-bold">Tirage au Sort Twitter/X</h2>
-                    <p className="text-gray-400 mt-2">Collez le lien de votre tweet</p>
+                    <p className="text-ink-tertiary mt-2">Collez le lien de votre tweet</p>
                   </div>
 
                   <div className="space-y-4">
                     <input
                       type="text"
                       placeholder="https://twitter.com/user/status/..."
-                      className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-white/50"
+                      className="w-full px-4 py-4 bg-bg-elevated/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-white/50"
                       readOnly
                     />
                     <Link
                       to="/draw/new"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-white text-black px-6 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-bg-elevated text-black px-6 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
                     >
                       <Sparkles className="w-5 h-5" />
                       Tirer au sort gratuitement
@@ -265,18 +265,18 @@ const TirageTwitterPage = () => {
                   <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
                       <div className="text-2xl font-bold">30s</div>
-                      <div className="text-sm text-gray-500">Durée</div>
+                      <div className="text-sm text-ink-tertiary">Durée</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold">∞</div>
-                      <div className="text-sm text-gray-500">Participants</div>
+                      <div className="text-sm text-ink-tertiary">Participants</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                         <span className="text-2xl font-bold">4.6</span>
                       </div>
-                      <div className="text-sm text-gray-500">Note</div>
+                      <div className="text-sm text-ink-tertiary">Note</div>
                     </div>
                   </div>
                 </div>
@@ -289,7 +289,7 @@ const TirageTwitterPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="grid lg:grid-cols-[280px_1fr] gap-12">
             <aside className="hidden lg:block">
-              <TableOfContents items={tocItems} sticky className="bg-white/5 border-white/10" />
+              <TableOfContents items={tocItems} sticky className="bg-bg-elevated/5 border-white/10" />
             </aside>
 
             <main className="min-w-0">
@@ -300,7 +300,7 @@ const TirageTwitterPage = () => {
                   viraux. Avec son format instantané et ses fonctionnalités de partage (retweets), vos concours 
                   peuvent atteindre une audience massive en quelques heures.
                 </p>
-                <p className="text-gray-400">
+                <p className="text-ink-tertiary">
                   Cleack analyse les retweets, likes et réponses de vos tweets pour sélectionner un gagnant 
                   de manière totalement aléatoire et transparente. Plus besoin de compter manuellement ou 
                   de faire confiance à des outils douteux !
@@ -340,15 +340,15 @@ const TirageTwitterPage = () => {
                       icon: <Trophy className="w-6 h-6" />,
                     },
                   ].map((item) => (
-                    <div key={item.step} className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <div key={item.step} className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-black flex-shrink-0">
+                        <div className="w-12 h-12 bg-bg-elevated rounded-xl flex items-center justify-center text-black flex-shrink-0">
                           {item.icon}
                         </div>
                         <div>
                           <div className="text-sm font-medium text-sky-400 mb-1">Étape {item.step}</div>
                           <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                          <p className="text-gray-400 text-sm">{item.description}</p>
+                          <p className="text-ink-tertiary text-sm">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -399,17 +399,17 @@ const TirageTwitterPage = () => {
                   ].map((feature, index) => (
                     <div
                       key={index}
-                      className={`bg-white/5 rounded-xl p-6 border ${
+                      className={`bg-bg-elevated/5 rounded-xl p-6 border ${
                         feature.highlight ? 'border-sky-500/50' : 'border-white/10'
                       }`}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
-                        feature.highlight ? 'bg-white text-black' : 'bg-white/10 text-white'
+                        feature.highlight ? 'bg-bg-elevated text-black' : 'bg-bg-elevated/10 text-white'
                       }`}>
                         {feature.icon}
                       </div>
                       <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                      <p className="text-gray-400 text-sm">{feature.description}</p>
+                      <p className="text-ink-tertiary text-sm">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -455,10 +455,10 @@ const TirageTwitterPage = () => {
                     <Link
                       key={index}
                       to={type.link}
-                      className="block bg-white/5 rounded-xl p-6 border border-white/10 hover:border-sky-500/50 transition-all group"
+                      className="block bg-bg-elevated/5 rounded-xl p-6 border border-white/10 hover:border-sky-500/50 transition-all group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:bg-white group-hover:text-black transition-all">
+                        <div className="w-14 h-14 bg-bg-elevated/10 rounded-xl flex items-center justify-center text-white flex-shrink-0 group-hover:bg-bg-elevated group-hover:text-black transition-all">
                           {type.icon}
                         </div>
                         <div className="flex-1">
@@ -470,7 +470,7 @@ const TirageTwitterPage = () => {
                               {type.badge}
                             </span>
                           </div>
-                          <p className="text-gray-400 text-sm mb-3">{type.description}</p>
+                          <p className="text-ink-tertiary text-sm mb-3">{type.description}</p>
                           <span className="inline-flex items-center gap-1 text-sky-400 text-sm font-medium">
                             En savoir plus <ArrowRight className="w-4 h-4" />
                           </span>
@@ -487,16 +487,16 @@ const TirageTwitterPage = () => {
                   Twitter vs X : Qu'est-ce qui Change ?
                 </h2>
 
-                <div className="bg-white/5 rounded-xl p-6 border border-white/10 mb-6">
+                <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10 mb-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-black flex-shrink-0">
+                    <div className="w-14 h-14 bg-bg-elevated rounded-xl flex items-center justify-center text-black flex-shrink-0">
                       <XIcon className="w-7 h-7" />
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-2">
                         Depuis le rebranding en X (juillet 2023)
                       </h3>
-                      <p className="text-gray-400 mb-4">
+                      <p className="text-ink-tertiary mb-4">
                         Twitter a été renommé X par Elon Musk, mais les fonctionnalités de base restent 
                         identiques. Cleack fonctionne parfaitement avec les deux domaines :
                       </p>
@@ -530,19 +530,19 @@ const TirageTwitterPage = () => {
                 </h2>
 
                 <div className="space-y-6">
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-white/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                      <span className="w-8 h-8 bg-bg-elevated/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">1</span>
                       Rédigez un tweet accrocheur
                     </h3>
-                    <ul className="space-y-2 text-gray-400">
+                    <ul className="space-y-2 text-ink-tertiary">
                       <li>• Commencez par <strong className="text-white">🎁 GIVEAWAY</strong> ou <strong className="text-white">🎉 CONCOURS</strong></li>
                       <li>• Décrivez clairement le lot et sa valeur</li>
                       <li>• Listez les conditions de participation</li>
                       <li>• Précisez la date de fin</li>
                       <li>• Ajoutez une image attractive du lot</li>
                     </ul>
-                    <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
+                    <div className="mt-4 p-4 bg-bg-elevated/5 rounded-lg border border-white/10">
                       <p className="text-sm text-gray-300 font-mono">
                         🎁 GIVEAWAY 🎁<br/><br/>
                         Je vous offre [LOT] ! 🎉<br/><br/>
@@ -555,12 +555,12 @@ const TirageTwitterPage = () => {
                     </div>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-white/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                      <span className="w-8 h-8 bg-bg-elevated/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">2</span>
                       Boostez la visibilité
                     </h3>
-                    <ul className="space-y-2 text-gray-400">
+                    <ul className="space-y-2 text-ink-tertiary">
                       <li>• Publiez aux <strong className="text-white">heures de pointe</strong> (12h-14h, 18h-21h)</li>
                       <li>• Utilisez des <strong className="text-white">hashtags pertinents</strong> (#giveaway #concours + niche)</li>
                       <li>• <strong className="text-white">Épinglez le tweet</strong> sur votre profil</li>
@@ -569,15 +569,15 @@ const TirageTwitterPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-white/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                      <span className="w-8 h-8 bg-bg-elevated/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">3</span>
                       Tirez au sort avec Cleack
                     </h3>
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-ink-tertiary mb-4">
                       Une fois le concours terminé, utilisez Cleack pour le tirage :
                     </p>
-                    <ol className="space-y-2 text-gray-400 list-decimal list-inside">
+                    <ol className="space-y-2 text-ink-tertiary list-decimal list-inside">
                       <li>Copiez le lien de votre tweet de concours</li>
                       <li>Collez-le dans Cleack</li>
                       <li>Sélectionnez « Retweets » comme source</li>
@@ -586,12 +586,12 @@ const TirageTwitterPage = () => {
                     </ol>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-white/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">4</span>
+                      <span className="w-8 h-8 bg-bg-elevated/10 text-sky-400 rounded-full flex items-center justify-center font-bold text-sm">4</span>
                       Annoncez le gagnant
                     </h3>
-                    <ul className="space-y-2 text-gray-400">
+                    <ul className="space-y-2 text-ink-tertiary">
                       <li>• <strong className="text-white">Quote tweet</strong> votre concours avec le nom du gagnant</li>
                       <li>• Joignez la <strong className="text-white">vidéo preuve Cleack</strong></li>
                       <li>• <strong className="text-white">Mentionnez le gagnant</strong> (@username)</li>
@@ -631,12 +631,12 @@ const TirageTwitterPage = () => {
                       description: "Répondez aux participants, likez leurs RT. Ça booste l'engagement et rend votre concours plus visible dans l'algorithme.",
                     },
                   ].map((conseil, index) => (
-                    <div key={index} className="bg-white/5 rounded-xl p-6 border border-white/10">
-                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-sky-400 mb-4">
+                    <div key={index} className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
+                      <div className="w-12 h-12 bg-bg-elevated/10 rounded-xl flex items-center justify-center text-sky-400 mb-4">
                         {conseil.icon}
                       </div>
                       <h3 className="text-lg font-semibold mb-2">{conseil.title}</h3>
-                      <p className="text-gray-400 text-sm">{conseil.description}</p>
+                      <p className="text-ink-tertiary text-sm">{conseil.description}</p>
                     </div>
                   ))}
                 </div>
@@ -644,7 +644,7 @@ const TirageTwitterPage = () => {
 
               {/* FAQ */}
               <section id="faq" className="mb-16">
-                <div className="bg-white rounded-2xl p-8">
+                <div className="bg-bg-elevated rounded-2xl p-8">
                   <FAQSection
                     items={faqItems}
                     title="Questions Fréquentes sur le Tirage au Sort Twitter/X"
@@ -654,20 +654,20 @@ const TirageTwitterPage = () => {
               </section>
 
               {/* Other Platforms */}
-              <div className="bg-white rounded-2xl p-8 mb-16">
+              <div className="bg-bg-elevated rounded-2xl p-8 mb-16">
                 <PlatformLinks currentPlatform="twitter" />
               </div>
 
               {/* Final CTA */}
               <section className="mt-16">
-                <div className="bg-white rounded-2xl p-8 md:p-12 text-center">
+                <div className="bg-bg-elevated rounded-2xl p-8 md:p-12 text-center">
                   <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-6">
                     <XIcon className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
                     Prêt à Lancer Votre Giveaway Twitter/X ?
                   </h2>
-                  <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                  <p className="text-lg text-ink-secondary mb-8 max-w-2xl mx-auto">
                     Utilisez Cleack pour choisir un gagnant parmi vos retweets ou likes. 
                     Gratuit, rapide et avec preuve vidéo.
                   </p>

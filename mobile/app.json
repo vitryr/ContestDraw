@@ -1,27 +1,27 @@
 {
   "expo": {
-    "name": "ContestDraw",
-    "slug": "contestdraw",
+    "name": "Cleack",
+    "slug": "cleack",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#6366F1"
+      "backgroundColor": "#13092b"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.contestdraw.app",
+      "bundleIdentifier": "com.cleack.app",
       "infoPlist": {
-        "NSCameraUsageDescription": "We need access to your camera to save draw animations.",
-        "NSPhotoLibraryUsageDescription": "We need access to your photo library to save draw videos.",
-        "NSPhotoLibraryAddUsageDescription": "We need access to save draw videos to your library.",
-        "NSFaceIDUsageDescription": "We use Face ID to secure your account."
+        "NSCameraUsageDescription": "Cleack needs access to your camera to save draw animations.",
+        "NSPhotoLibraryUsageDescription": "Cleack needs access to your photo library to save draw videos.",
+        "NSPhotoLibraryAddUsageDescription": "Cleack needs access to save draw videos to your library.",
+        "NSFaceIDUsageDescription": "Cleack uses Face ID to secure your account."
       },
       "config": {
         "usesNonExemptEncryption": false
@@ -30,9 +30,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#6366F1"
+        "backgroundColor": "#13092b"
       },
-      "package": "com.contestdraw.app",
+      "package": "com.cleack.app",
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
@@ -50,27 +50,27 @@
         "expo-notifications",
         {
           "icon": "./assets/notification-icon.png",
-          "color": "#6366F1"
+          "color": "#13092b"
         }
       ],
       [
         "expo-media-library",
         {
-          "photosPermission": "Allow ContestDraw to save draw videos.",
-          "savePhotosPermission": "Allow ContestDraw to save draw videos to your photos.",
+          "photosPermission": "Allow Cleack to save draw videos.",
+          "savePhotosPermission": "Allow Cleack to save draw videos to your photos.",
           "isAccessMediaLocationEnabled": true
         }
       ],
       [
         "expo-local-authentication",
         {
-          "faceIDPermission": "Allow ContestDraw to use Face ID for secure authentication."
+          "faceIDPermission": "Allow Cleack to use Face ID for secure authentication."
         }
       ]
     ],
     "extra": {
       "eas": {
-        "projectId": "contestdraw-project-id"
+        "projectId": "cleack-project-id"
       },
       "mixpanelToken": "${MIXPANEL_TOKEN}",
       "sentryDsn": "${SENTRY_DSN}",

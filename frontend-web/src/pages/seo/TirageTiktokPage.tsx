@@ -170,7 +170,7 @@ const TirageTiktokPage = () => {
       <div className="min-h-screen bg-gradient-to-b from-gray-900 via-gray-900 to-black">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
-          <Breadcrumb items={breadcrumbItems} className="text-gray-400" />
+          <Breadcrumb items={breadcrumbItems} className="text-ink-tertiary" />
         </div>
 
         {/* Hero Section */}
@@ -183,14 +183,14 @@ const TirageTiktokPage = () => {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
+                <div className="inline-flex items-center gap-2 bg-bg-elevated/10 backdrop-blur text-white px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
                   <TikTokIcon className="w-4 h-4" />
                   Outil Giveaway #1
                 </div>
 
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                   Tirage au Sort{' '}
-                  <span className="bg-gradient-to-r from-cyan-400 to-pink-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-cyan-400 to-bg-primary0 bg-clip-text text-transparent">
                     TikTok
                   </span>{' '}
                   Gratuit
@@ -205,21 +205,21 @@ const TirageTiktokPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Lancer un tirage gratuit
                   </Link>
                   <a
                     href="#comment-ca-marche"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 backdrop-blur border border-white/20 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated/20 transition-all"
                   >
                     Comment ça marche ?
                   </a>
                 </div>
 
                 {/* Trust badges */}
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     <span>100% Gratuit</span>
@@ -242,13 +242,13 @@ const TirageTiktokPage = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="relative"
               >
-                <div className="bg-white/5 backdrop-blur rounded-2xl p-8 border border-white/10">
+                <div className="bg-bg-elevated/5 backdrop-blur rounded-2xl p-8 border border-white/10">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-black rounded-2xl flex items-center justify-center mx-auto mb-4 border border-white/20">
                       <TikTokIcon className="w-8 h-8 text-white" />
                     </div>
                     <h2 className="text-2xl font-bold text-white">Tirage au Sort TikTok</h2>
-                    <p className="text-gray-400 mt-2">Collez le lien de votre vidéo</p>
+                    <p className="text-ink-tertiary mt-2">Collez le lien de votre vidéo</p>
                   </div>
 
                   <div className="space-y-4">
@@ -256,17 +256,17 @@ const TirageTiktokPage = () => {
                       <input
                         type="text"
                         placeholder="https://www.tiktok.com/@user/video/..."
-                        className="w-full px-4 py-4 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                        className="w-full px-4 py-4 bg-bg-elevated/10 border border-white/20 rounded-xl text-white placeholder-gray-500 focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                         readOnly
                       />
-                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-ink-tertiary">
                         <TikTokIcon className="w-5 h-5" />
                       </span>
                     </div>
 
                     <Link
                       to="/draw/new"
-                      className="w-full inline-flex items-center justify-center gap-2 bg-white text-gray-900 px-6 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+                      className="w-full inline-flex items-center justify-center gap-2 bg-bg-elevated text-white px-6 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
                     >
                       <Sparkles className="w-5 h-5" />
                       Tirer au sort gratuitement
@@ -276,18 +276,18 @@ const TirageTiktokPage = () => {
                   <div className="grid grid-cols-3 gap-4 mt-6 pt-6 border-t border-white/10">
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">30s</div>
-                      <div className="text-sm text-gray-500">Durée moyenne</div>
+                      <div className="text-sm text-ink-tertiary">Durée moyenne</div>
                     </div>
                     <div className="text-center">
                       <div className="text-2xl font-bold text-white">∞</div>
-                      <div className="text-sm text-gray-500">Commentaires</div>
+                      <div className="text-sm text-ink-tertiary">Commentaires</div>
                     </div>
                     <div className="text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                         <span className="text-2xl font-bold text-white">4.7</span>
                       </div>
-                      <div className="text-sm text-gray-500">Note</div>
+                      <div className="text-sm text-ink-tertiary">Note</div>
                     </div>
                   </div>
                 </div>
@@ -301,7 +301,7 @@ const TirageTiktokPage = () => {
           <div className="grid lg:grid-cols-[280px_1fr] gap-12">
             {/* Sidebar TOC */}
             <aside className="hidden lg:block">
-              <TableOfContents items={tocItems} sticky className="bg-white/5 border-white/10" />
+              <TableOfContents items={tocItems} sticky className="bg-bg-elevated/5 border-white/10" />
             </aside>
 
             {/* Main Content */}
@@ -314,7 +314,7 @@ const TirageTiktokPage = () => {
                   générer des milliers de participants. Cleack vous aide à gérer ce flux massif de commentaires et à 
                   sélectionner un gagnant de manière <strong className="text-white">transparente et équitable</strong>.
                 </p>
-                <p className="text-gray-400">
+                <p className="text-ink-tertiary">
                   Que vous soyez un créateur de contenu, une marque ou un influenceur, notre outil de tirage au sort 
                   TikTok gratuit s'adapte à tous vos besoins. Pas besoin de connexion, pas de compte à créer — collez 
                   simplement le lien de votre vidéo et laissez Cleack faire le reste.
@@ -327,7 +327,7 @@ const TirageTiktokPage = () => {
                   Comment Faire un Tirage au Sort TikTok ?
                 </h2>
                 
-                <p className="text-gray-400 mb-8">
+                <p className="text-ink-tertiary mb-8">
                   Organiser un giveaway TikTok et choisir un gagnant n'a jamais été aussi simple. 
                   Suivez ces 4 étapes pour un tirage au sort transparent et rapide.
                 </p>
@@ -359,15 +359,15 @@ const TirageTiktokPage = () => {
                       icon: <Trophy className="w-6 h-6" />,
                     },
                   ].map((item) => (
-                    <div key={item.step} className="bg-white/5 rounded-xl p-6 border border-white/10">
+                    <div key={item.step} className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                       <div className="flex items-start gap-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-pink-500 rounded-xl flex items-center justify-center text-white flex-shrink-0">
+                        <div className="w-12 h-12 bg-gradient-to-br from-cyan-400 to-bg-primary0 rounded-xl flex items-center justify-center text-white flex-shrink-0">
                           {item.icon}
                         </div>
                         <div>
                           <div className="text-sm font-medium text-cyan-400 mb-1">Étape {item.step}</div>
                           <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                          <p className="text-gray-400 text-sm">{item.description}</p>
+                          <p className="text-ink-tertiary text-sm">{item.description}</p>
                         </div>
                       </div>
                     </div>
@@ -381,7 +381,7 @@ const TirageTiktokPage = () => {
                   Fonctionnalités du Tirage au Sort TikTok
                 </h2>
                 
-                <p className="text-gray-400 mb-8">
+                <p className="text-ink-tertiary mb-8">
                   Cleack est conçu pour gérer les spécificités de TikTok : vidéos virales, milliers de commentaires, 
                   bots, et besoin de transparence.
                 </p>
@@ -423,19 +423,19 @@ const TirageTiktokPage = () => {
                   ].map((feature, index) => (
                     <div
                       key={index}
-                      className={`bg-white/5 rounded-xl p-6 border ${
+                      className={`bg-bg-elevated/5 rounded-xl p-6 border ${
                         feature.highlight ? 'border-cyan-500/50' : 'border-white/10'
                       }`}
                     >
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${
                         feature.highlight 
-                          ? 'bg-gradient-to-br from-cyan-400 to-pink-500 text-white' 
-                          : 'bg-white/10 text-gray-400'
+                          ? 'bg-gradient-to-br from-cyan-400 to-bg-primary0 text-white' 
+                          : 'bg-bg-elevated/10 text-ink-tertiary'
                       }`}>
                         {feature.icon}
                       </div>
                       <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
-                      <p className="text-gray-400 text-sm">{feature.description}</p>
+                      <p className="text-ink-tertiary text-sm">{feature.description}</p>
                     </div>
                   ))}
                 </div>
@@ -447,7 +447,7 @@ const TirageTiktokPage = () => {
                   Types de Giveaways TikTok
                 </h2>
                 
-                <p className="text-gray-400 mb-8">
+                <p className="text-ink-tertiary mb-8">
                   TikTok offre plusieurs formats pour organiser des concours. Voici les plus populaires et 
                   comment Cleack peut vous aider.
                 </p>
@@ -479,10 +479,10 @@ const TirageTiktokPage = () => {
                     <Link
                       key={index}
                       to={type.link}
-                      className="block bg-white/5 rounded-xl p-6 border border-white/10 hover:border-cyan-500/50 transition-all group"
+                      className="block bg-bg-elevated/5 rounded-xl p-6 border border-white/10 hover:border-cyan-500/50 transition-all group"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center text-gray-400 flex-shrink-0 group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-pink-500 group-hover:text-white transition-all">
+                        <div className="w-14 h-14 bg-bg-elevated/10 rounded-xl flex items-center justify-center text-ink-tertiary flex-shrink-0 group-hover:bg-gradient-to-br group-hover:from-cyan-400 group-hover:to-bg-primary0 group-hover:text-white transition-all">
                           {type.icon}
                         </div>
                         <div className="flex-1">
@@ -490,11 +490,11 @@ const TirageTiktokPage = () => {
                             <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors">
                               {type.title}
                             </h3>
-                            <span className="text-xs font-medium text-gray-500 bg-white/10 px-2 py-1 rounded">
+                            <span className="text-xs font-medium text-ink-tertiary bg-bg-elevated/10 px-2 py-1 rounded">
                               {type.stats}
                             </span>
                           </div>
-                          <p className="text-gray-400 text-sm mb-3">{type.description}</p>
+                          <p className="text-ink-tertiary text-sm mb-3">{type.description}</p>
                           <span className="inline-flex items-center gap-1 text-cyan-400 text-sm font-medium group-hover:gap-2 transition-all">
                             En savoir plus <ArrowRight className="w-4 h-4" />
                           </span>
@@ -512,7 +512,7 @@ const TirageTiktokPage = () => {
                 </h2>
                 
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  <div className="bg-gradient-to-br from-cyan-500/10 to-pink-500/10 rounded-xl p-6 border border-white/10">
+                  <div className="bg-gradient-to-br from-bg-primary0/10 to-bg-primary0/10 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-white mb-4">📈 Avantages de TikTok</h3>
                     <ul className="space-y-3 text-gray-300">
                       <li className="flex items-start gap-2">
@@ -534,34 +534,34 @@ const TirageTiktokPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-white mb-4">📊 TikTok en chiffres (France)</h3>
                     <div className="space-y-4">
                       <div>
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-400">Utilisateurs actifs</span>
+                          <span className="text-ink-tertiary">Utilisateurs actifs</span>
                           <span className="text-white font-semibold">21 millions</span>
                         </div>
-                        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full" style={{ width: '85%' }}></div>
+                        <div className="h-2 bg-bg-elevated/10 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-cyan-400 to-bg-primary0 rounded-full" style={{ width: '85%' }}></div>
                         </div>
                       </div>
                       <div>
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-400">Temps moyen/jour</span>
+                          <span className="text-ink-tertiary">Temps moyen/jour</span>
                           <span className="text-white font-semibold">95 minutes</span>
                         </div>
-                        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full" style={{ width: '70%' }}></div>
+                        <div className="h-2 bg-bg-elevated/10 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-cyan-400 to-bg-primary0 rounded-full" style={{ width: '70%' }}></div>
                         </div>
                       </div>
                       <div>
                         <div className="flex justify-between text-sm mb-1">
-                          <span className="text-gray-400">Taux d'engagement</span>
+                          <span className="text-ink-tertiary">Taux d'engagement</span>
                           <span className="text-white font-semibold">5.96%</span>
                         </div>
-                        <div className="h-2 bg-white/10 rounded-full overflow-hidden">
-                          <div className="h-full bg-gradient-to-r from-cyan-400 to-pink-500 rounded-full" style={{ width: '60%' }}></div>
+                        <div className="h-2 bg-bg-elevated/10 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-cyan-400 to-bg-primary0 rounded-full" style={{ width: '60%' }}></div>
                         </div>
                       </div>
                     </div>
@@ -576,12 +576,12 @@ const TirageTiktokPage = () => {
                 </h2>
                 
                 <div className="space-y-6">
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">1</span>
+                      <span className="w-8 h-8 bg-bg-elevated0/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">1</span>
                       Choisissez un lot qui résonne avec TikTok
                     </h3>
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-ink-tertiary mb-4">
                       L'audience TikTok est jeune et connectée. Les lots qui fonctionnent le mieux :
                     </p>
                     <ul className="grid md:grid-cols-2 gap-2 text-gray-300">
@@ -594,12 +594,12 @@ const TirageTiktokPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">2</span>
+                      <span className="w-8 h-8 bg-bg-elevated0/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">2</span>
                       Créez une vidéo de concours engageante
                     </h3>
-                    <p className="text-gray-400 mb-4">
+                    <p className="text-ink-tertiary mb-4">
                       Votre vidéo de concours doit capter l'attention dans les 3 premières secondes :
                     </p>
                     <ul className="space-y-2 text-gray-300">
@@ -611,9 +611,9 @@ const TirageTiktokPage = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                  <div className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
                     <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-3">
-                      <span className="w-8 h-8 bg-cyan-500/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">3</span>
+                      <span className="w-8 h-8 bg-bg-elevated0/20 text-cyan-400 rounded-full flex items-center justify-center font-bold text-sm">3</span>
                       Boostez la viralité
                     </h3>
                     <ul className="space-y-2 text-gray-300">
@@ -656,12 +656,12 @@ const TirageTiktokPage = () => {
                       description: "Après le tirage avec Cleack, postez la vidéo preuve sur TikTok. Ça montre votre transparence et encourage la participation aux futurs concours.",
                     },
                   ].map((conseil, index) => (
-                    <div key={index} className="bg-white/5 rounded-xl p-6 border border-white/10">
-                      <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center text-cyan-400 mb-4">
+                    <div key={index} className="bg-bg-elevated/5 rounded-xl p-6 border border-white/10">
+                      <div className="w-12 h-12 bg-bg-elevated/10 rounded-xl flex items-center justify-center text-cyan-400 mb-4">
                         {conseil.icon}
                       </div>
                       <h3 className="text-lg font-semibold text-white mb-2">{conseil.title}</h3>
-                      <p className="text-gray-400 text-sm">{conseil.description}</p>
+                      <p className="text-ink-tertiary text-sm">{conseil.description}</p>
                     </div>
                   ))}
                 </div>
@@ -669,7 +669,7 @@ const TirageTiktokPage = () => {
 
               {/* Section: FAQ */}
               <section id="faq" className="mb-16">
-                <div className="bg-white rounded-2xl p-8">
+                <div className="bg-bg-elevated rounded-2xl p-8">
                   <FAQSection
                     items={faqItems}
                     title="Questions Fréquentes sur le Tirage au Sort TikTok"
@@ -679,13 +679,13 @@ const TirageTiktokPage = () => {
               </section>
 
               {/* Other Platforms */}
-              <div className="bg-white rounded-2xl p-8 mb-16">
+              <div className="bg-bg-elevated rounded-2xl p-8 mb-16">
                 <PlatformLinks currentPlatform="tiktok" />
               </div>
 
               {/* Final CTA */}
               <section className="mt-16">
-                <div className="bg-gradient-to-r from-cyan-500 to-pink-500 rounded-2xl p-8 md:p-12 text-white text-center">
+                <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 md:p-12 text-white text-center">
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
                     Prêt à Lancer Votre Giveaway TikTok ?
                   </h2>
@@ -695,7 +695,7 @@ const TirageTiktokPage = () => {
                   </p>
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-100 transition-all"
+                    className="inline-flex items-center gap-2 bg-bg-elevated text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Commencer gratuitement

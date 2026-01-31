@@ -36,9 +36,9 @@ const platforms = [
   {
     name: 'Instagram',
     icon: <Instagram className="w-8 h-8" />,
-    color: 'from-pink-500 to-purple-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     borderColor: 'border-pink-200',
-    hoverColor: 'hover:border-pink-300',
+    hoverColor: 'hover:border-accent-primary/50',
     url: '/jeu-concours-instagram/',
     description: 'Organisez des concours Instagram engageants avec tirages automatiques',
     volume: '9,900 recherches/mois',
@@ -47,7 +47,7 @@ const platforms = [
     name: 'TikTok',
     icon: <TikTokIcon className="w-8 h-8" />,
     color: 'from-gray-800 to-black',
-    borderColor: 'border-gray-300',
+    borderColor: 'border-white/20',
     hoverColor: 'hover:border-gray-400',
     url: '/jeu-concours-tiktok/',
     description: 'Créez des giveaways viraux sur TikTok',
@@ -58,7 +58,7 @@ const platforms = [
     icon: <Facebook className="w-8 h-8" />,
     color: 'from-blue-600 to-blue-700',
     borderColor: 'border-blue-200',
-    hoverColor: 'hover:border-blue-300',
+    hoverColor: 'hover:border-accent-secondary/50',
     url: '/jeu-concours-facebook/',
     description: 'Concours sur pages et groupes Facebook',
     volume: '880 recherches/mois',
@@ -66,7 +66,7 @@ const platforms = [
   {
     name: 'YouTube',
     icon: <Youtube className="w-8 h-8" />,
-    color: 'from-red-500 to-red-600',
+    color: 'from-bg-primary0 to-red-600',
     borderColor: 'border-red-200',
     hoverColor: 'hover:border-red-300',
     url: '/jeu-concours-youtube/',
@@ -111,7 +111,7 @@ const JeuConcoursHub = () => {
         softwareRatingCount={1523}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-pink-50">
+      <div className="min-h-screen bg-bg-primary">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
@@ -126,12 +126,12 @@ const JeuConcoursHub = () => {
               transition={{ duration: 0.5 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Gift className="w-4 h-4" />
                 Guide Complet
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Organisez des{' '}
                 <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                   Jeux Concours
@@ -139,7 +139,7 @@ const JeuConcoursHub = () => {
                 qui Fonctionnent
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                 Créez des concours engageants sur tous les réseaux sociaux. Utilisez Cleack pour 
                 tirer au sort vos gagnants avec une <strong>preuve vidéo certifiée</strong>.
               </p>
@@ -154,7 +154,7 @@ const JeuConcoursHub = () => {
                 </Link>
                 <a
                   href="#platforms"
-                  className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-bg-primary border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:border-purple-300 transition-all"
                 >
                   Voir par plateforme
                 </a>
@@ -168,12 +168,12 @@ const JeuConcoursHub = () => {
                   { label: 'Plateformes', value: '5+', icon: <Target className="w-5 h-5" /> },
                   { label: 'Note moyenne', value: '4.8/5', icon: <CheckCircle2 className="w-5 h-5" /> },
                 ].map((stat, index) => (
-                  <div key={index} className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm">
-                    <div className="flex items-center justify-center gap-2 text-purple-600 mb-2">
+                  <div key={index} className="bg-bg-primary rounded-xl p-4 border border-white/10 shadow-sm">
+                    <div className="flex items-center justify-center gap-2 text-accent-secondary mb-2">
                       {stat.icon}
                     </div>
-                    <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                    <div className="text-sm text-gray-500">{stat.label}</div>
+                    <div className="text-2xl font-bold text-white">{stat.value}</div>
+                    <div className="text-sm text-ink-muted">{stat.label}</div>
                   </div>
                 ))}
               </div>
@@ -182,13 +182,13 @@ const JeuConcoursHub = () => {
         </section>
 
         {/* Platforms Section */}
-        <section id="platforms" className="py-16 bg-white">
+        <section id="platforms" className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Jeux Concours par Plateforme
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Chaque réseau social a ses spécificités. Découvrez nos guides dédiés pour organiser 
                 des concours adaptés à chaque plateforme.
               </p>
@@ -199,7 +199,7 @@ const JeuConcoursHub = () => {
                 <Link
                   key={platform.name}
                   to={platform.url}
-                  className={`group bg-white rounded-2xl p-6 border-2 ${platform.borderColor} ${platform.hoverColor} hover:shadow-lg transition-all`}
+                  className={`group bg-bg-elevated rounded-2xl p-6 border-2 ${platform.borderColor} ${platform.hoverColor} hover:shadow-lg transition-all`}
                 >
                   <div className="flex items-start gap-4">
                     <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${platform.color} text-white flex items-center justify-center flex-shrink-0`}>
@@ -207,15 +207,15 @@ const JeuConcoursHub = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold text-gray-900">
+                        <h3 className="text-xl font-semibold text-white">
                           Jeu Concours {platform.name}
                         </h3>
-                        <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                        <span className="text-xs text-ink-muted bg-bg-card px-2 py-1 rounded">
                           {platform.volume}
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-4">{platform.description}</p>
-                      <span className="inline-flex items-center gap-1 text-purple-600 font-medium group-hover:gap-2 transition-all">
+                      <p className="text-ink-secondary mb-4">{platform.description}</p>
+                      <span className="inline-flex items-center gap-1 text-accent-secondary font-medium group-hover:gap-2 transition-all">
                         Voir le guide <ArrowRight className="w-4 h-4" />
                       </span>
                     </div>
@@ -230,10 +230,10 @@ const JeuConcoursHub = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Comment Organiser un Jeu Concours ?
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Un concours réussi suit 4 étapes clés. Cleack vous accompagne de la création 
                 jusqu'au tirage au sort.
               </p>
@@ -266,13 +266,13 @@ const JeuConcoursHub = () => {
                   icon: <Trophy className="w-6 h-6" />,
                 },
               ].map((item) => (
-                <div key={item.step} className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm text-center">
-                  <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center mx-auto mb-4">
+                <div key={item.step} className="bg-bg-primary rounded-xl p-6 border border-white/10 shadow-sm text-center">
+                  <div className="w-12 h-12 bg-accent-secondary/20 text-accent-secondary rounded-xl flex items-center justify-center mx-auto mb-4">
                     {item.icon}
                   </div>
-                  <div className="text-sm font-medium text-purple-600 mb-2">Étape {item.step}</div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
+                  <div className="text-sm font-medium text-accent-secondary mb-2">Étape {item.step}</div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-ink-secondary text-sm">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -280,13 +280,13 @@ const JeuConcoursHub = () => {
         </section>
 
         {/* Guides Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Guides & Ressources
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Tout ce dont vous avez besoin pour organiser des concours conformes et efficaces.
               </p>
             </div>
@@ -296,16 +296,16 @@ const JeuConcoursHub = () => {
                 <Link
                   key={index}
                   to={guide.url}
-                  className="group bg-gray-50 rounded-xl p-6 hover:bg-purple-50 hover:shadow-md transition-all"
+                  className="group bg-bg-elevated rounded-xl p-6 hover:bg-accent-secondary/10 hover:shadow-md transition-all"
                 >
-                  <div className="w-12 h-12 bg-white text-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-purple-100 transition-colors">
+                  <div className="w-12 h-12 bg-bg-primary text-accent-secondary rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent-secondary/20 transition-colors">
                     {guide.icon}
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-purple-600">
+                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-accent-secondary">
                     {guide.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4">{guide.description}</p>
-                  <span className="inline-flex items-center gap-1 text-purple-600 text-sm font-medium group-hover:gap-2 transition-all">
+                  <p className="text-ink-secondary text-sm mb-4">{guide.description}</p>
+                  <span className="inline-flex items-center gap-1 text-accent-secondary text-sm font-medium group-hover:gap-2 transition-all">
                     Lire le guide <ArrowRight className="w-4 h-4" />
                   </span>
                 </Link>
@@ -339,7 +339,7 @@ const JeuConcoursHub = () => {
                   </ul>
                 </div>
                 <div className="text-center">
-                  <div className="bg-white/10 backdrop-blur rounded-xl p-6 border border-white/20">
+                  <div className="bg-bg-primary/10 backdrop-blur rounded-xl p-6 border border-white/20">
                     <Clock className="w-12 h-12 text-white mx-auto mb-4" />
                     <h3 className="text-xl font-semibold text-white mb-2">
                       Tirage en 30 secondes
@@ -350,7 +350,7 @@ const JeuConcoursHub = () => {
                     </p>
                     <Link
                       to="/draw/new"
-                      className="inline-flex items-center gap-2 bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-all"
+                      className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-6 py-3 rounded-lg font-semibold hover:bg-bg-elevated transition-all"
                     >
                       <Sparkles className="w-5 h-5" />
                       Essayer maintenant
@@ -363,12 +363,12 @@ const JeuConcoursHub = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Prêt à Lancer Votre Jeu Concours ?
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-ink-secondary mb-8">
               Utilisez Cleack pour tirer au sort vos gagnants sur Instagram, TikTok, Facebook, 
               YouTube ou Twitter. Gratuit, rapide et transparent.
             </p>
@@ -382,7 +382,7 @@ const JeuConcoursHub = () => {
               </Link>
               <Link
                 to="/guide/organiser-jeu-concours/"
-                className="inline-flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-200 transition-all"
+                className="inline-flex items-center justify-center gap-2 bg-bg-card text-ink-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-hover transition-all"
               >
                 <BookOpen className="w-5 h-5" />
                 Lire le guide complet

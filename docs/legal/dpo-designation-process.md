@@ -61,7 +61,7 @@ This document outlines Cleack's Data Protection Officer (DPO) designation proces
 **Location:** Paris, France
 
 **Contact Information:**
-- **Email:** dpo@cleack.io
+- **Email:** support@cleack.io
 - **Phone:** +33 1 23 45 67 89 (ext. 101)
 - **Office Hours:** Monday-Friday, 9:00 AM - 6:00 PM CET
 - **Response Time:** Within 48 hours (business days)
@@ -184,7 +184,7 @@ In addition to statutory duties, our DPO handles:
 
 #### Email (Recommended)
 ```
-To: dpo@cleack.io
+To: support@cleack.io
 Subject: [GDPR Request] [Nature of Request]
 
 Body:
@@ -220,7 +220,7 @@ Data Protection Officer
 ### For Cleack Employees
 
 **Internal Contact:**
-- **Email:** dpo@cleack.io (external) or dpo@internal.cleack.io (internal)
+- **Email:** support@cleack.io (external) or dpo@internal.cleack.io (internal)
 - **Slack:** #data-protection channel
 - **Office:** Meeting room booking via Calendly
 
@@ -237,7 +237,7 @@ Data Protection Officer
 ### For Supervisory Authorities (CNIL)
 
 **CNIL can contact our DPO:**
-- **Email:** dpo@cleack.io
+- **Email:** support@cleack.io
 - **Phone:** +33 1 23 45 67 89 (ext. 101)
 - **Portal:** CNIL's online platform (registered)
 
@@ -252,7 +252,7 @@ Data Protection Officer
 ```
 Data Subject Request (DSR)
         ↓
-   DPO Receives Request (dpo@cleack.io)
+   DPO Receives Request (support@cleack.io)
         ↓
    DPO Validates Request (identity verification)
         ↓
@@ -310,7 +310,7 @@ Data Breach Detected
 
 1. **Website:**
    - Footer: "Data Protection" link → DPO contact page
-   - Privacy Policy: Section "Contact Us" → dpo@cleack.io
+   - Privacy Policy: Section "Contact Us" → support@cleack.io
    - Terms of Service: GDPR section → DPO mention
 
 2. **In-App:**
@@ -410,7 +410,7 @@ Anyone can verify our DPO registration via CNIL's public registry by searching f
 **Backup DPO (Temporary Coverage):**
 - **Name:** [BACKUP DPO NAME]
 - **Position:** Legal Counsel
-- **Contact:** backup-dpo@cleack.io
+- **Contact:** support@cleack.io
 
 ---
 
@@ -431,7 +431,7 @@ Anyone can verify our DPO registration via CNIL's public registry by searching f
 
 **For GDPR-related questions or data subject requests:**
 
-📧 **Email:** dpo@cleack.io
+📧 **Email:** support@cleack.io
 📞 **Phone:** +33 1 23 45 67 89 (ext. 101)
 📬 **Postal:** Cleack DPO, 123 Rue de la Paix, 75001 Paris, France
 

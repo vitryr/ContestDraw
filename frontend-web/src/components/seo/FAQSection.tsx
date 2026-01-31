@@ -35,12 +35,12 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
         <div className="text-center mb-8">
           <h2 
             id="faq-title" 
-            className="text-3xl font-bold text-gray-900 mb-3"
+            className="text-3xl font-bold text-white mb-3"
           >
             {title}
           </h2>
           {subtitle && (
-            <p className="text-gray-600 text-lg">{subtitle}</p>
+            <p className="text-ink-secondary text-lg">{subtitle}</p>
           )}
         </div>
 
@@ -49,7 +49,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
           {items.map((item, index) => (
             <div
               key={index}
-              className="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow"
+              className="border border-white/10 rounded-lg overflow-hidden bg-bg-elevated shadow-sm hover:shadow-md transition-shadow"
             >
               <button
                 onClick={() => toggleItem(index)}
@@ -57,7 +57,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                 aria-expanded={openIndex === index}
                 aria-controls={`faq-answer-${index}`}
               >
-                <h3 className="font-semibold text-gray-900 text-lg pr-4">
+                <h3 className="font-semibold text-white text-lg pr-4">
                   {item.question}
                 </h3>
                 <span className="flex-shrink-0 text-primary-600">
@@ -78,7 +78,7 @@ export const FAQSection: React.FC<FAQSectionProps> = ({
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="px-6 pb-4 text-gray-600 leading-relaxed border-t border-gray-100 pt-4">
+                    <div className="px-6 pb-4 text-ink-secondary leading-relaxed border-t border-white/10 pt-4">
                       {/* Support for HTML content with links */}
                       <div 
                         dangerouslySetInnerHTML={{ __html: item.answer }}

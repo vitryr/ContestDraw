@@ -75,11 +75,11 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   return (
     <nav
       aria-label="Table des matières"
-      className={`bg-gray-50 rounded-xl p-6 ${containerClasses}`}
+      className={`bg-bg-elevated rounded-xl p-6 ${containerClasses}`}
     >
       <div className="flex items-center gap-2 mb-4">
         <List className="w-5 h-5 text-primary-600" />
-        <h2 className="font-bold text-gray-900">{title}</h2>
+        <h2 className="font-bold text-white">{title}</h2>
       </div>
 
       <ol className="space-y-2">
@@ -93,10 +93,10 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               className={`text-left w-full py-1 px-2 rounded transition-colors text-sm ${
                 activeId === item.id
                   ? 'bg-primary-100 text-primary-700 font-medium'
-                  : 'text-gray-600 hover:text-primary-600 hover:bg-gray-100'
+                  : 'text-ink-secondary hover:text-primary-600 hover:bg-white/10'
               }`}
             >
-              <span className="mr-2 text-gray-400">{index + 1}.</span>
+              <span className="mr-2 text-ink-tertiary">{index + 1}.</span>
               {item.title}
             </button>
           </li>
@@ -106,7 +106,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       {showBackToTop && (
         <button
           onClick={scrollToTop}
-          className="flex items-center gap-2 mt-6 pt-4 border-t border-gray-200 text-sm text-gray-500 hover:text-primary-600 transition-colors w-full"
+          className="flex items-center gap-2 mt-6 pt-4 border-t border-white/10 text-sm text-ink-tertiary hover:text-primary-600 transition-colors w-full"
         >
           <ChevronUp className="w-4 h-4" />
           Retour en haut

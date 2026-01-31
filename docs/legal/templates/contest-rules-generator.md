@@ -435,7 +435,7 @@ Any entry not meeting the requirements will be considered void.
 
 **Need Help?**
 
-📧 Email: legal@cleack.io
+📧 Email: support@cleack.io
 💬 Live Chat: [cleack.io](https://cleack.io)
 📖 FAQ: [docs.cleack.io/faq](https://docs.cleack.io/faq)
 

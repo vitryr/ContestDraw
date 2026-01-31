@@ -407,3 +407,88 @@ export async function getPublicStats(
     next(error);
   }
 }
+
+/**
+ * POST /api/public/contact
+ * Send contact form email via Resend
+ */
+export async function sendContactEmail(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> {
+  try {
+    const { name, email, subject, message } = req.body;
+
+    // Validation
+    if (!name || !email || !subject || !message) {
+      res.status(400).json({ error: "All fields are required" });
+      return;
+    }
+
+    // Import Resend
+    const { Resend } = await import("resend");
+    const resend = new Resend(process.env.RESEND_API_KEY);
+
+    // Send email to support
+    const { data, error } = await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "Cleack <support@cleack.io>",
+      to: ["support@cleack.io"],
+      replyTo: email,
+      subject: `[Contact Form] ${subject}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7c3aed;">New Contact Form Submission</h2>
+          <div style="background: #f4f4f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>From:</strong> ${name}</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>Subject:</strong> ${subject}</p>
+          </div>
+          <div style="padding: 20px; border-left: 4px solid #7c3aed;">
+            <h3>Message:</h3>
+            <p style="white-space: pre-wrap;">${message}</p>
+          </div>
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e4e4e7;" />
+          <p style="color: #71717a; font-size: 12px;">
+            This message was sent from the Cleack contact form.
+          </p>
+        </div>
+      `,
+    });
+
+    if (error) {
+      console.error("[Contact] Resend error:", error);
+      res.status(500).json({ error: "Failed to send email" });
+      return;
+    }
+
+    // Send confirmation email to user
+    await resend.emails.send({
+      from: process.env.RESEND_FROM_EMAIL || "Cleack <support@cleack.io>",
+      to: [email],
+      subject: "We received your message - Cleack",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #7c3aed;">Thank you for contacting us!</h2>
+          <p>Hi ${name},</p>
+          <p>We've received your message and will get back to you as soon as possible.</p>
+          <div style="background: #f4f4f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <p><strong>Your message:</strong></p>
+            <p style="white-space: pre-wrap; color: #52525b;">${message}</p>
+          </div>
+          <p>Best regards,<br/>The Cleack Team</p>
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e4e4e7;" />
+          <p style="color: #71717a; font-size: 12px;">
+            Cleack - Fair & Automated Contest Draws<br/>
+            <a href="https://cleack.io" style="color: #7c3aed;">cleack.io</a>
+          </p>
+        </div>
+      `,
+    });
+
+    res.json({ success: true, messageId: data?.id });
+  } catch (error) {
+    console.error("[Contact] Error:", error);
+    next(error);
+  }
+}

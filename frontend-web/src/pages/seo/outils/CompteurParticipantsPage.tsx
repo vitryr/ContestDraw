@@ -118,12 +118,12 @@ const CompteurParticipantsPage = () => {
 
   const getPlatformIcon = (platform: string) => {
     switch (platform) {
-      case 'Instagram': return <Instagram className="w-8 h-8 text-pink-500" />;
+      case 'Instagram': return <Instagram className="w-8 h-8 text-accent-primary" />;
       case 'YouTube': return <Youtube className="w-8 h-8 text-red-500" />;
       case 'TikTok': return <span className="text-2xl">🎵</span>;
       case 'Twitter/X': return <Twitter className="w-8 h-8 text-sky-500" />;
-      case 'Facebook': return <Facebook className="w-8 h-8 text-blue-500" />;
-      default: return <Users className="w-8 h-8 text-gray-500" />;
+      case 'Facebook': return <Facebook className="w-8 h-8 text-accent-secondary" />;
+      default: return <Users className="w-8 h-8 text-ink-muted" />;
     }
   };
 
@@ -139,7 +139,7 @@ const CompteurParticipantsPage = () => {
         faqItems={faqItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-indigo-50">
+      <div className="min-h-screen bg-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -151,19 +151,19 @@ const CompteurParticipantsPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
             >
-              <div className="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Users className="w-4 h-4" />
                 Outil Gratuit
               </div>
 
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Compteur de{' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Participants
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto">
                 Découvrez combien de personnes participent à votre concours. 
                 Collez le lien et obtenez instantanément les statistiques.
               </p>
@@ -174,10 +174,10 @@ const CompteurParticipantsPage = () => {
         {/* Tool */}
         <section className="py-8">
           <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <div className="bg-bg-primary rounded-2xl shadow-lg p-8 border border-white/10">
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-ink-secondary mb-2">
                     <Link2 className="w-4 h-4 inline mr-2" />
                     Lien de votre publication concours
                   </label>
@@ -186,7 +186,7 @@ const CompteurParticipantsPage = () => {
                     value={url}
                     onChange={(e) => setUrl(e.target.value)}
                     placeholder="https://www.instagram.com/p/... ou autre plateforme"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-accent-secondary focus:ring-1 focus:ring-blue-500"
                   />
                 </div>
 
@@ -214,35 +214,35 @@ const CompteurParticipantsPage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-8 pt-8 border-t border-gray-100"
+                  className="mt-8 pt-8 border-t border-white/10"
                 >
                   <div className="flex items-center gap-3 mb-6">
                     {getPlatformIcon(results.platform)}
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">{results.platform}</h3>
-                      <p className="text-gray-500 text-sm">Statistiques de votre publication</p>
+                      <h3 className="text-lg font-semibold text-white">{results.platform}</h3>
+                      <p className="text-ink-muted text-sm">Statistiques de votre publication</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 mb-6">
                     {results.metrics.map((metric, index) => (
-                      <div key={index} className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center">
-                        <div className="flex justify-center text-blue-600 mb-2">
+                      <div key={index} className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-4 text-center">
+                        <div className="flex justify-center text-accent-secondary mb-2">
                           {metric.icon}
                         </div>
-                        <div className="text-2xl font-bold text-gray-900">
+                        <div className="text-2xl font-bold text-white">
                           {metric.value.toLocaleString()}
                         </div>
-                        <div className="text-gray-600 text-sm">{metric.label}</div>
+                        <div className="text-ink-secondary text-sm">{metric.label}</div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-4 mb-6">
+                  <div className="bg-success/10 border border-green-200 rounded-xl p-4 mb-6">
                     <p className="text-green-800 text-center">
                       <strong>Participants potentiels estimés :</strong>{' '}
                       <span className="text-2xl font-bold">{results.metrics[0].value.toLocaleString()}</span>
-                      <span className="text-green-600 text-sm block mt-1">
+                      <span className="text-success text-sm block mt-1">
                         Basé sur le nombre de {results.metrics[0].label.toLowerCase()}
                       </span>
                     </p>
@@ -250,7 +250,7 @@ const CompteurParticipantsPage = () => {
 
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Lancer le tirage au sort
@@ -265,7 +265,7 @@ const CompteurParticipantsPage = () => {
         {/* Plateformes supportées */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Plateformes Supportées</h2>
+            <h2 className="text-2xl font-bold text-white mb-8 text-center">Plateformes Supportées</h2>
             <div className="grid grid-cols-5 gap-4">
               {[
                 { name: 'Instagram', icon: <Instagram className="w-8 h-8" />, color: 'pink' },
@@ -274,11 +274,11 @@ const CompteurParticipantsPage = () => {
                 { name: 'YouTube', icon: <Youtube className="w-8 h-8" />, color: 'red' },
                 { name: 'Twitter/X', icon: <Twitter className="w-8 h-8" />, color: 'sky' },
               ].map((platform, index) => (
-                <div key={index} className="bg-white rounded-xl p-4 text-center border border-gray-100 shadow-sm">
+                <div key={index} className="bg-bg-primary rounded-xl p-4 text-center border border-white/10 shadow-sm">
                   <div className={`text-${platform.color}-500 flex justify-center mb-2`}>
                     {platform.icon}
                   </div>
-                  <span className="text-gray-700 text-sm font-medium">{platform.name}</span>
+                  <span className="text-ink-secondary text-sm font-medium">{platform.name}</span>
                 </div>
               ))}
             </div>
@@ -286,7 +286,7 @@ const CompteurParticipantsPage = () => {
         </section>
 
         {/* FAQ */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4">
             <FAQSection items={faqItems} title="Questions Fréquentes" />
           </div>
@@ -303,7 +303,7 @@ const CompteurParticipantsPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold hover:bg-accent-secondary/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Lancer un tirage

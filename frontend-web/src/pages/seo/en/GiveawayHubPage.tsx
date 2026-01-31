@@ -40,8 +40,8 @@ const platforms = [
   {
     name: 'Instagram',
     icon: Instagram,
-    color: 'from-pink-500 to-purple-500',
-    bgColor: 'bg-gradient-to-br from-pink-50 to-purple-50',
+    color: 'from-bg-primary0 to-bg-primary0',
+    bgColor: 'bg-gradient-to-br from-bg-primary to-bg-primary',
     borderColor: 'border-pink-200',
     volume: '33,100',
     url: '/en/instagram-giveaway-picker/',
@@ -50,7 +50,7 @@ const platforms = [
   {
     name: 'TikTok',
     icon: TikTokIcon,
-    color: 'from-cyan-400 to-pink-500',
+    color: 'from-cyan-400 to-bg-primary0',
     bgColor: 'bg-gradient-to-br from-gray-900 to-black',
     borderColor: 'border-gray-700',
     textColor: 'text-white',
@@ -61,8 +61,8 @@ const platforms = [
   {
     name: 'YouTube',
     icon: Youtube,
-    color: 'from-red-500 to-red-600',
-    bgColor: 'bg-red-50',
+    color: 'from-bg-primary0 to-red-600',
+    bgColor: 'bg-bg-elevated',
     borderColor: 'border-red-200',
     volume: '8,100',
     url: '/en/youtube-comment-picker/',
@@ -71,8 +71,8 @@ const platforms = [
   {
     name: 'Facebook',
     icon: Facebook,
-    color: 'from-blue-500 to-blue-600',
-    bgColor: 'bg-blue-50',
+    color: 'from-bg-primary0 to-blue-600',
+    bgColor: 'bg-accent-secondary/10',
     borderColor: 'border-blue-200',
     volume: '6,600',
     url: '/en/facebook-giveaway-picker/',
@@ -126,7 +126,7 @@ const GiveawayHubPage = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -144,28 +144,28 @@ const GiveawayHubPage = () => {
                 All Platforms, One Tool
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Social Media{' '}
-                <span className="bg-gradient-to-r from-primary-500 to-purple-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary-500 to-bg-primary0 bg-clip-text text-transparent">
                   Giveaway Picker
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
                 Pick random winners from <strong>Instagram, TikTok, YouTube, Facebook, and Twitter</strong> giveaways. 
                 Free, fast, and with certified proof video for full transparency.
               </p>
 
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-purple-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-primary-500/25 transition-all"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary-500 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg hover:shadow-primary-500/25 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Pick a Winner Free
               </Link>
 
               {/* Trust indicators */}
-              <div className="flex flex-wrap justify-center items-center gap-6 mt-8 text-sm text-gray-500">
+              <div className="flex flex-wrap justify-center items-center gap-6 mt-8 text-sm text-ink-muted">
                 <div className="flex items-center gap-2">
                   <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                   <span>4.8/5 rating</span>
@@ -184,11 +184,11 @@ const GiveawayHubPage = () => {
         </section>
 
         {/* Platforms Grid */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Choose Your Platform</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-white mb-4">Choose Your Platform</h2>
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Select the social media platform where your giveaway is running. 
                 Cleack works with all major platforms.
               </p>
@@ -213,15 +213,15 @@ const GiveawayHubPage = () => {
                           <IconComponent className="w-7 h-7 text-white" />
                         </div>
                         <div>
-                          <h3 className={`text-xl font-bold ${platform.textColor || 'text-gray-900'}`}>
+                          <h3 className={`text-xl font-bold ${platform.textColor || 'text-white'}`}>
                             {platform.name}
                           </h3>
-                          <p className={`text-sm ${platform.textColor ? 'text-gray-400' : 'text-gray-500'}`}>
+                          <p className={`text-sm ${platform.textColor ? 'text-ink-muted' : 'text-ink-muted'}`}>
                             {platform.volume} monthly searches
                           </p>
                         </div>
                       </div>
-                      <p className={`${platform.textColor ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
+                      <p className={`${platform.textColor ? 'text-gray-300' : 'text-ink-secondary'} mb-4`}>
                         {platform.description}
                       </p>
                       <span className={`inline-flex items-center gap-1 font-medium ${platform.textColor ? 'text-cyan-400' : 'text-primary-600'} group-hover:gap-2 transition-all`}>
@@ -239,8 +239,8 @@ const GiveawayHubPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Creators Love Cleack</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-white mb-4">Why Creators Love Cleack</h2>
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 The most complete giveaway picker tool on the market.
               </p>
             </div>
@@ -251,13 +251,13 @@ const GiveawayHubPage = () => {
                 return (
                   <div
                     key={index}
-                    className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-shadow"
+                    className="bg-bg-primary rounded-xl p-6 border border-white/10 hover:shadow-lg transition-shadow"
                   >
                     <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center text-primary-600 mb-4">
                       <IconComponent className="w-6 h-6" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                    <p className="text-gray-600 text-sm">{feature.description}</p>
+                    <h3 className="text-lg font-semibold text-white mb-2">{feature.title}</h3>
+                    <p className="text-ink-secondary text-sm">{feature.description}</p>
                   </div>
                 );
               })}
@@ -266,19 +266,19 @@ const GiveawayHubPage = () => {
         </section>
 
         {/* Resources Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Giveaway Resources</h2>
-              <p className="text-gray-600">Learn how to run successful social media giveaways.</p>
+              <h2 className="text-3xl font-bold text-white mb-4">Giveaway Resources</h2>
+              <p className="text-ink-secondary">Learn how to run successful social media giveaways.</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <Link to="/en/guides/" className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all group">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600">
+              <Link to="/en/guides/" className="bg-bg-primary rounded-xl p-6 border border-white/10 hover:shadow-lg transition-all group">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-600">
                   Giveaway Guides
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-ink-secondary text-sm mb-4">
                   Step-by-step guides for running successful giveaways on every platform.
                 </p>
                 <span className="inline-flex items-center gap-1 text-primary-600 font-medium group-hover:gap-2 transition-all">
@@ -286,11 +286,11 @@ const GiveawayHubPage = () => {
                 </span>
               </Link>
 
-              <Link to="/en/tools/" className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all group">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600">
+              <Link to="/en/tools/" className="bg-bg-primary rounded-xl p-6 border border-white/10 hover:shadow-lg transition-all group">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-600">
                   Free Tools
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-ink-secondary text-sm mb-4">
                   Rules generator, participant counter, and other free giveaway tools.
                 </p>
                 <span className="inline-flex items-center gap-1 text-primary-600 font-medium group-hover:gap-2 transition-all">
@@ -298,11 +298,11 @@ const GiveawayHubPage = () => {
                 </span>
               </Link>
 
-              <Link to="/en/blog/" className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-all group">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary-600">
+              <Link to="/en/articles/" className="bg-bg-primary rounded-xl p-6 border border-white/10 hover:shadow-lg transition-all group">
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-600">
                   Blog & Tips
                 </h3>
-                <p className="text-gray-600 text-sm mb-4">
+                <p className="text-ink-secondary text-sm mb-4">
                   Expert tips, ideas, and best practices for social media giveaways.
                 </p>
                 <span className="inline-flex items-center gap-1 text-primary-600 font-medium group-hover:gap-2 transition-all">
@@ -316,14 +316,14 @@ const GiveawayHubPage = () => {
         {/* CTA */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-primary-500 to-purple-500 rounded-2xl p-8 md:p-12 text-center text-white">
+            <div className="bg-gradient-to-r from-primary-500 to-bg-primary0 rounded-2xl p-8 md:p-12 text-center text-white">
               <h2 className="text-3xl font-bold mb-4">Ready to Pick Your Winner?</h2>
               <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
                 Join over 50,000 creators who trust Cleack for fair and transparent giveaways.
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-primary-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Pick a Winner Free

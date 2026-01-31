@@ -32,8 +32,8 @@ const faqItems = [
 
 export const CommentFaireTirageYoutube = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Tirage au sort YouTube', url: 'https://cleack.io/blog/comment-faire-tirage-au-sort-youtube/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Tirage au sort YouTube', url: 'https://cleack.io/comment-faire-tirage-au-sort-youtube/' },
   ];
 
   return (
@@ -42,7 +42,7 @@ export const CommentFaireTirageYoutube = () => {
         title="Tirage au Sort YouTube : Comment Choisir un Gagnant (2025)"
         description="Méthode simple pour sélectionner aléatoirement un gagnant parmi les commentaires YouTube. Compatible avec les Shorts et vidéos classiques."
         keywords="tirage au sort youtube, choisir gagnant youtube, concours youtube, giveaway youtube"
-        canonicalUrl="https://cleack.io/blog/comment-faire-tirage-au-sort-youtube/"
+        canonicalUrl="https://cleack.io/comment-faire-tirage-au-sort-youtube/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -53,13 +53,13 @@ export const CommentFaireTirageYoutube = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         <header className="bg-gradient-to-br from-red-600 via-red-700 to-rose-800 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-red-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 📖 Tutoriel
               </span>
               
@@ -86,10 +86,10 @@ export const CommentFaireTirageYoutube = () => {
             <aside className="lg:w-80 flex-shrink-0">
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
-                <div className="mt-6 p-6 bg-red-50 rounded-xl">
-                  <Play className="w-8 h-8 text-red-600 mb-3" />
-                  <h3 className="font-bold text-gray-900 mb-2">Tirage YouTube</h3>
-                  <p className="text-sm text-gray-600 mb-4">Désignez un gagnant en 2 minutes.</p>
+                <div className="mt-6 p-6 bg-error/10 rounded-xl">
+                  <Play className="w-8 h-8 text-red-400 mb-3" />
+                  <h3 className="font-bold text-white mb-2">Tirage YouTube</h3>
+                  <p className="text-sm text-ink-secondary mb-4">Désignez un gagnant en 2 minutes.</p>
                   <Link to="/tirage-au-sort-youtube" className="block w-full text-center bg-red-600 text-white py-2 rounded-lg font-medium hover:bg-red-700 transition-colors">
                     Lancer un tirage
                   </Link>
@@ -98,7 +98,7 @@ export const CommentFaireTirageYoutube = () => {
             </aside>
 
             <main className="flex-1 max-w-3xl">
-              <section id="pourquoi" className="prose prose-lg max-w-none mb-12">
+              <section id="pourquoi" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi organiser un giveaway YouTube ?</h2>
                 <p>
                   YouTube est la deuxième plateforme de recherche au monde. Organiser un concours 
@@ -113,7 +113,7 @@ export const CommentFaireTirageYoutube = () => {
               </section>
 
               <section id="etapes" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Étapes du tirage au sort YouTube</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Étapes du tirage au sort YouTube</h2>
                 
                 <div className="space-y-4">
                   {[
@@ -123,13 +123,13 @@ export const CommentFaireTirageYoutube = () => {
                     { step: 4, title: "Collez sur Cleack", desc: "cleack.io/tirage-au-sort-youtube récupère tous les commentaires." },
                     { step: 5, title: "Filtrez et tirez au sort", desc: "Excluez les doublons et lancez le tirage équitable." },
                   ].map((item) => (
-                    <div key={item.step} className="flex gap-4 p-4 bg-red-50 rounded-lg">
+                    <div key={item.step} className="flex gap-4 p-4 bg-error/10 rounded-lg">
                       <div className="w-10 h-10 bg-red-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
                         {item.step}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600 text-sm">{item.desc}</p>
+                        <h3 className="font-bold text-white">{item.title}</h3>
+                        <p className="text-ink-secondary text-sm">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -137,14 +137,14 @@ export const CommentFaireTirageYoutube = () => {
               </section>
 
               <section id="shorts" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Tirage sur YouTube Shorts</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Tirage sur YouTube Shorts</h2>
                 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Les Shorts génèrent souvent beaucoup plus de commentaires que les vidéos longues. 
                   Le tirage fonctionne exactement de la même manière :
                 </p>
 
-                <div className="p-4 bg-gradient-to-r from-red-50 to-rose-50 border border-red-200 rounded-lg">
+                <div className="p-4 bg-gradient-to-r from-bg-primary to-rose-50 border border-red-200 rounded-lg">
                   <h4 className="font-bold text-red-900 mb-2">🎬 Astuce Shorts</h4>
                   <p className="text-red-800 text-sm">
                     Les Shorts sont parfaits pour les concours flash (24-48h). Leur viralité 
@@ -154,7 +154,7 @@ export const CommentFaireTirageYoutube = () => {
               </section>
 
               <section id="regles-youtube" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Règles YouTube à respecter</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Règles YouTube à respecter</h2>
                 
                 <div className="space-y-3">
                   {[
@@ -164,16 +164,16 @@ export const CommentFaireTirageYoutube = () => {
                     "Ne pas inclure de contenu trompeur ou spam",
                     "Avoir un règlement accessible (description ou lien)",
                   ].map((rule, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0" />
-                      <span className="text-gray-700">{rule}</span>
+                    <div key={index} className="flex items-center gap-3 p-3 bg-bg-elevated rounded-lg">
+                      <CheckCircle className="w-5 h-5 text-red-400 flex-shrink-0" />
+                      <span className="text-ink-secondary">{rule}</span>
                     </div>
                   ))}
                 </div>
               </section>
 
               <section id="conseils" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Conseils pour réussir</h2>
+                <h2 className="text-2xl font-bold text-white mb-6">Conseils pour réussir</h2>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
@@ -184,9 +184,9 @@ export const CommentFaireTirageYoutube = () => {
                     { icon: "⏰", tip: "Fixez une deadline claire" },
                     { icon: "🎬", tip: "Filmez le tirage pour plus de transparence" },
                   ].map((item, index) => (
-                    <div key={index} className="p-4 bg-gray-50 rounded-lg">
+                    <div key={index} className="p-4 bg-bg-elevated rounded-lg">
                       <span className="text-2xl mb-2 block">{item.icon}</span>
-                      <p className="text-gray-700 text-sm">{item.tip}</p>
+                      <p className="text-ink-secondary text-sm">{item.tip}</p>
                     </div>
                   ))}
                 </div>
@@ -199,22 +199,22 @@ export const CommentFaireTirageYoutube = () => {
               <section className="bg-gradient-to-br from-red-600 to-rose-700 text-white rounded-2xl p-8 text-center">
                 <h2 className="text-2xl font-bold mb-4">Prêt pour votre tirage YouTube ?</h2>
                 <p className="text-red-100 mb-6">Désignez un gagnant parmi vos commentaires en quelques clics.</p>
-                <Link to="/tirage-au-sort-youtube" className="inline-flex items-center gap-2 bg-white text-red-700 px-8 py-3 rounded-lg font-bold hover:bg-red-50 transition-colors">
+                <Link to="/tirage-au-sort-youtube" className="inline-flex items-center gap-2 bg-bg-primary text-error px-8 py-3 rounded-lg font-bold hover:bg-error/10 transition-colors">
                   Faire un tirage
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </section>
 
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/comment-faire-tirage-au-sort-tiktok" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Tirage TikTok</h3>
-                    <p className="text-gray-600 text-sm">Guide complet</p>
+                  <Link to="/comment-faire-tirage-au-sort-tiktok" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Tirage TikTok</h3>
+                    <p className="text-ink-secondary text-sm">Guide complet</p>
                   </Link>
-                  <Link to="/giveaway-youtube-shorts" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100">
-                    <h3 className="font-bold text-gray-900 mb-1">Giveaway YouTube Shorts</h3>
-                    <p className="text-gray-600 text-sm">Outil spécialisé</p>
+                  <Link to="/giveaway-youtube-shorts" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card">
+                    <h3 className="font-bold text-white mb-1">Giveaway YouTube Shorts</h3>
+                    <p className="text-ink-secondary text-sm">Outil spécialisé</p>
                   </Link>
                 </div>
               </section>

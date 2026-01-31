@@ -32,4 +32,7 @@ router.get(
 // Public statistics
 router.get("/stats", publicController.getPublicStats);
 
+// Contact form
+router.post("/contact", publicController.sendContactEmail);
+
 export default router;

@@ -399,7 +399,7 @@ For more information, visit: https://cleack.io
 
 Contact:
 [Name]
-press@cleack.io
+support@cleack.io
 +33 1 23 45 67 89
 ```
 
@@ -918,6 +918,6 @@ Expansion (Month 7-12):
 
 ---
 
-**Document Owner:** Marketing Team (marketing@cleack.io)
+**Document Owner:** Marketing Team (support@cleack.io)
 **Last Review:** January 15, 2025
 **Next Review:** February 15, 2025

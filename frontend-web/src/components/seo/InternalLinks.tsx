@@ -60,10 +60,10 @@ export const InternalLinks: React.FC<InternalLinksProps> = ({
       <section className={`py-8 ${className}`}>
         <div className="max-w-4xl mx-auto">
           {title && (
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{title}</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">{title}</h2>
           )}
           {subtitle && (
-            <p className="text-gray-600 mb-6">{subtitle}</p>
+            <p className="text-ink-secondary mb-6">{subtitle}</p>
           )}
           <ul className="space-y-3">
             {links.map((link, index) => (
@@ -88,17 +88,17 @@ export const InternalLinks: React.FC<InternalLinksProps> = ({
       <section className={`py-12 ${className}`}>
         <div className="max-w-6xl mx-auto">
           {title && (
-            <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">{title}</h2>
+            <h2 className="text-2xl font-bold text-white mb-2 text-center">{title}</h2>
           )}
           {subtitle && (
-            <p className="text-gray-600 mb-8 text-center">{subtitle}</p>
+            <p className="text-ink-secondary mb-8 text-center">{subtitle}</p>
           )}
           <div className={`grid gap-6 ${gridCols[columns]}`}>
             {links.map((link, index) => (
               <Link
                 key={index}
                 to={link.url}
-                className="group bg-white rounded-xl border border-gray-200 p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
+                className="group bg-bg-elevated rounded-xl border border-white/10 p-6 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
               >
                 {link.platform && (
                   <div className={`w-12 h-12 rounded-lg ${platformColors[link.platform]} text-white flex items-center justify-center mb-4`}>
@@ -110,11 +110,11 @@ export const InternalLinks: React.FC<InternalLinksProps> = ({
                     {link.icon}
                   </div>
                 )}
-                <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                <h3 className="font-semibold text-white mb-2 group-hover:text-primary-600 transition-colors">
                   {link.title}
                 </h3>
                 {link.description && (
-                  <p className="text-gray-600 text-sm">{link.description}</p>
+                  <p className="text-ink-secondary text-sm">{link.description}</p>
                 )}
                 <span className="inline-flex items-center gap-1 text-primary-600 text-sm mt-3 group-hover:gap-2 transition-all">
                   En savoir plus <ArrowRight className="w-4 h-4" />
@@ -132,17 +132,17 @@ export const InternalLinks: React.FC<InternalLinksProps> = ({
     <section className={`py-8 ${className}`}>
       <div className="max-w-6xl mx-auto">
         {title && (
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">{title}</h2>
+          <h2 className="text-2xl font-bold text-white mb-2">{title}</h2>
         )}
         {subtitle && (
-          <p className="text-gray-600 mb-6">{subtitle}</p>
+          <p className="text-ink-secondary mb-6">{subtitle}</p>
         )}
         <div className={`grid gap-4 ${gridCols[columns]}`}>
           {links.map((link, index) => (
             <Link
               key={index}
               to={link.url}
-              className="flex items-center gap-3 p-4 bg-gray-50 rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors group"
+              className="flex items-center gap-3 p-4 bg-bg-elevated rounded-lg hover:bg-primary-50 hover:text-primary-700 transition-colors group"
             >
               {link.platform && (
                 <span className={`p-2 rounded-lg ${platformColors[link.platform]} text-white`}>
@@ -155,14 +155,14 @@ export const InternalLinks: React.FC<InternalLinksProps> = ({
                 </span>
               )}
               <div className="flex-1 min-w-0">
-                <span className="font-medium text-gray-900 group-hover:text-primary-700">
+                <span className="font-medium text-white group-hover:text-primary-700">
                   {link.title}
                 </span>
                 {link.description && (
-                  <p className="text-sm text-gray-500 truncate">{link.description}</p>
+                  <p className="text-sm text-ink-tertiary truncate">{link.description}</p>
                 )}
               </div>
-              <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
+              <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-primary-600 group-hover:translate-x-1 transition-all flex-shrink-0" />
             </Link>
           ))}
         </div>

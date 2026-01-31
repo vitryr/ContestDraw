@@ -89,7 +89,7 @@ const ConcoursYoutubePage = () => {
         softwareRatingCount={789}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-red-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -102,19 +102,19 @@ const ConcoursYoutubePage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center gap-2 bg-red-500/20 text-red-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                   <Award className="w-4 h-4" />
                   Guide Concours YouTube
                 </div>
 
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Concours YouTube :{' '}
-                  <span className="bg-gradient-to-r from-red-600 to-red-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-red-600 to-bg-primary0 bg-clip-text text-transparent">
                     Le Guide Complet 2024
                   </span>
                 </h1>
 
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-xl text-ink-secondary mb-8">
                   Tout ce que vous devez savoir pour organiser un <strong>concours YouTube</strong> réussi : 
                   formats, règles légales, bonnes pratiques et tirage au sort transparent.
                 </p>
@@ -129,19 +129,19 @@ const ConcoursYoutubePage = () => {
                   </Link>
                   <a
                     href="#formats"
-                    className="inline-flex items-center justify-center gap-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-red-300 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated border-2 border-white/10 text-ink-secondary px-8 py-4 rounded-xl font-semibold hover:border-red-300 transition-all"
                   >
                     Voir les formats
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-500">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-500" />
                     Conforme YouTube
                   </span>
                   <span className="flex items-center gap-2">
-                    <Shield className="w-5 h-5 text-blue-500" />
+                    <Shield className="w-5 h-5 text-accent-secondary" />
                     Légal en France
                   </span>
                   <span className="flex items-center gap-2">
@@ -154,21 +154,21 @@ const ConcoursYoutubePage = () => {
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100"
+                className="bg-bg-elevated rounded-2xl shadow-xl p-8 border border-white/10"
               >
                 <div className="text-center mb-6">
                   <div className="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Trophy className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-xl font-bold text-gray-900">Tirage Concours YouTube</h2>
-                  <p className="text-gray-500 text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
+                  <h2 className="text-xl font-bold text-white">Tirage Concours YouTube</h2>
+                  <p className="text-ink-tertiary text-sm mt-2">Votre concours est terminé ? Tirez au sort !</p>
                 </div>
 
                 <div className="space-y-4">
                   <input
                     type="text"
                     placeholder="https://www.youtube.com/watch?v=..."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500"
+                    className="w-full px-4 py-3 border border-white/10 rounded-xl focus:border-red-500 focus:ring-1 focus:ring-red-500"
                     readOnly
                   />
                   <Link
@@ -180,8 +180,8 @@ const ConcoursYoutubePage = () => {
                   </Link>
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-100">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-500">
+                <div className="mt-6 pt-6 border-t border-white/10">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Award className="w-4 h-4" />
                       789+ concours
@@ -198,13 +198,13 @@ const ConcoursYoutubePage = () => {
         </section>
 
         {/* Formats de Concours */}
-        <section id="formats" className="py-16 bg-white">
+        <section id="formats" className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 5 Formats de Concours YouTube qui Fonctionnent
               </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Choisissez le format adapté à vos objectifs et votre audience.
               </p>
             </div>
@@ -265,35 +265,35 @@ const ConcoursYoutubePage = () => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 border border-red-100"
+                  className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-red-100"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-white text-red-600 rounded-xl flex items-center justify-center shadow-sm">
+                    <div className="w-12 h-12 bg-bg-elevated text-red-400 rounded-xl flex items-center justify-center shadow-sm">
                       {format.icon}
                     </div>
                     <span className={`px-2 py-1 text-xs rounded-full ${
-                      format.difficulty === 'Facile' ? 'bg-green-100 text-green-700' :
-                      format.difficulty === 'Moyen' ? 'bg-yellow-100 text-yellow-700' :
-                      'bg-red-100 text-red-700'
+                      format.difficulty === 'Facile' ? 'bg-bg-elevated0/20 text-green-400' :
+                      format.difficulty === 'Moyen' ? 'bg-yellow-500/20 text-yellow-700' :
+                      'bg-red-500/20 text-red-400'
                     }`}>
                       {format.difficulty}
                     </span>
                   </div>
 
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{format.title}</h3>
-                  <p className="text-gray-600 text-sm mb-4">{format.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{format.title}</h3>
+                  <p className="text-ink-secondary text-sm mb-4">{format.description}</p>
 
                   <div className="mb-4">
                     <div className="flex flex-wrap gap-2">
                       {format.pros.map((pro, i) => (
-                        <span key={i} className="px-2 py-1 bg-white text-gray-600 text-xs rounded-full">
+                        <span key={i} className="px-2 py-1 bg-bg-elevated text-ink-secondary text-xs rounded-full">
                           ✓ {pro}
                         </span>
                       ))}
                     </div>
                   </div>
 
-                  <p className="text-red-600 text-sm italic">{format.example}</p>
+                  <p className="text-red-400 text-sm italic">{format.example}</p>
                 </motion.div>
               ))}
             </div>
@@ -304,16 +304,16 @@ const ConcoursYoutubePage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Règles Légales pour un Concours YouTube en France
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <div className="bg-bg-elevated border border-green-200 rounded-xl p-6">
                 <CheckCircle2 className="w-10 h-10 text-green-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Ce qui est Autorisé ✅</h3>
-                <ul className="space-y-3 text-gray-700">
+                <h3 className="text-xl font-semibold text-white mb-4">Ce qui est Autorisé ✅</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
                     <span className="text-green-600 mt-1">✓</span>
                     <span>Tirage au sort gratuit parmi les participants</span>
@@ -337,28 +337,28 @@ const ConcoursYoutubePage = () => {
                 </ul>
               </div>
 
-              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
-                <AlertCircle className="w-10 h-10 text-red-600 mb-4" />
-                <h3 className="text-xl font-semibold text-gray-900 mb-4">Ce qui est Interdit ❌</h3>
-                <ul className="space-y-3 text-gray-700">
+              <div className="bg-bg-elevated border border-red-200 rounded-xl p-6">
+                <AlertCircle className="w-10 h-10 text-red-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-4">Ce qui est Interdit ❌</h3>
+                <ul className="space-y-3 text-ink-secondary">
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Obligation d'achat pour participer</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Fausses promesses ou lots inexistants</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Collecter des données sans consentement RGPD</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Impliquer que YouTube sponsorise le concours</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-red-600 mt-1">✗</span>
+                    <span className="text-red-400 mt-1">✗</span>
                     <span>Cibler les mineurs sans précautions</span>
                   </li>
                 </ul>
@@ -366,22 +366,22 @@ const ConcoursYoutubePage = () => {
             </div>
 
             {/* Règlement */}
-            <div className="mt-12 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-8">
+            <div className="mt-12 bg-gradient-to-r from-bg-primary to-bg-primary border border-red-200 rounded-xl p-8">
               <div className="flex items-start gap-4">
-                <FileText className="w-10 h-10 text-red-600 flex-shrink-0" />
+                <FileText className="w-10 h-10 text-red-400 flex-shrink-0" />
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">Rédiger un Règlement Conforme</h3>
-                  <p className="text-gray-600 mb-4">
+                  <h3 className="text-xl font-semibold text-white mb-3">Rédiger un Règlement Conforme</h3>
+                  <p className="text-ink-secondary mb-4">
                     Un règlement est obligatoire pour tout concours avec tirage au sort. Voici les éléments à inclure :
                   </p>
                   <div className="grid md:grid-cols-2 gap-4">
-                    <ul className="space-y-2 text-gray-700 text-sm">
+                    <ul className="space-y-2 text-ink-secondary text-sm">
                       <li>• Identité de l'organisateur (nom, adresse)</li>
                       <li>• Dates de début et de fin précises</li>
                       <li>• Conditions de participation</li>
                       <li>• Description exacte du lot</li>
                     </ul>
-                    <ul className="space-y-2 text-gray-700 text-sm">
+                    <ul className="space-y-2 text-ink-secondary text-sm">
                       <li>• Modalités du tirage au sort</li>
                       <li>• Comment le gagnant sera contacté</li>
                       <li>• Délai de réponse exigé</li>
@@ -391,7 +391,7 @@ const ConcoursYoutubePage = () => {
                   <div className="mt-6">
                     <Link
                       to="/outils/generateur-reglement/"
-                      className="inline-flex items-center gap-2 text-red-600 hover:text-red-700 font-medium transition-colors"
+                      className="inline-flex items-center gap-2 text-red-400 hover:text-red-400 font-medium transition-colors"
                     >
                       <Scale className="w-4 h-4" />
                       Utiliser notre générateur de règlement gratuit →
@@ -404,10 +404,10 @@ const ConcoursYoutubePage = () => {
         </section>
 
         {/* Guide étape par étape */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Organiser Votre Concours YouTube en 4 Étapes
               </h2>
             </div>
@@ -415,12 +415,12 @@ const ConcoursYoutubePage = () => {
             <div className="grid md:grid-cols-4 gap-6">
               {howToSteps.map((step, index) => (
                 <div key={index} className="relative">
-                  <div className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 border border-red-100 h-full">
+                  <div className="bg-gradient-to-br from-bg-primary to-bg-primary rounded-xl p-6 border border-red-100 h-full">
                     <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-bold mb-4">
                       {index + 1}
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{step.name}</h3>
-                    <p className="text-gray-600 text-sm">{step.text}</p>
+                    <h3 className="text-lg font-semibold text-white mb-2">{step.name}</h3>
+                    <p className="text-ink-secondary text-sm">{step.text}</p>
                   </div>
                   {index < howToSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
@@ -444,9 +444,9 @@ const ConcoursYoutubePage = () => {
         </section>
 
         {/* Related Pages */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Autres Ressources YouTube</h2>
+            <h2 className="text-2xl font-bold text-white mb-6">Autres Ressources YouTube</h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 { title: "Tirage Commentaires YouTube", url: "/tirage-commentaires-youtube/" },
@@ -456,10 +456,10 @@ const ConcoursYoutubePage = () => {
                 <Link
                   key={index}
                   to={link.url}
-                  className="flex items-center justify-between p-4 bg-red-50 rounded-lg border border-red-100 hover:border-red-300 transition-all group"
+                  className="flex items-center justify-between p-4 bg-bg-elevated rounded-lg border border-red-100 hover:border-red-300 transition-all group"
                 >
-                  <span className="font-medium text-gray-900">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-red-600" />
+                  <span className="font-medium text-white">{link.title}</span>
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-red-400" />
                 </Link>
               ))}
             </div>
@@ -471,7 +471,7 @@ const ConcoursYoutubePage = () => {
           <div className="max-w-4xl mx-auto px-4 text-center">
             <Link
               to="/tirage-au-sort-youtube/"
-              className="inline-flex items-center gap-2 text-red-600 font-medium hover:text-red-700 transition-colors"
+              className="inline-flex items-center gap-2 text-red-400 font-medium hover:text-red-400 transition-colors"
             >
               ← Retour au guide complet Tirage au Sort YouTube
             </Link>
@@ -490,7 +490,7 @@ const ConcoursYoutubePage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-red-600 px-8 py-4 rounded-xl font-semibold hover:bg-red-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-red-400 px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Tirer au sort maintenant

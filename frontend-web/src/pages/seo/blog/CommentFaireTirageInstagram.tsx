@@ -42,8 +42,8 @@ const faqItems = [
 
 export const CommentFaireTirageInstagram = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Comment faire un tirage au sort Instagram', url: 'https://cleack.io/blog/comment-faire-tirage-au-sort-instagram/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Comment faire un tirage au sort Instagram', url: 'https://cleack.io/comment-faire-tirage-au-sort-instagram/' },
   ];
 
   const articleDate = {
@@ -57,7 +57,7 @@ export const CommentFaireTirageInstagram = () => {
         title="Comment Faire un Tirage au Sort Instagram en 2025 (Guide Complet)"
         description="Apprenez à organiser un tirage au sort Instagram étape par étape. Méthode gratuite, légale et équitable pour désigner un gagnant parmi vos commentaires."
         keywords="comment faire tirage au sort instagram, tirage au sort instagram gratuit, choisir gagnant concours instagram, tirage commentaires instagram"
-        canonicalUrl="https://cleack.io/blog/comment-faire-tirage-au-sort-instagram/"
+        canonicalUrl="https://cleack.io/comment-faire-tirage-au-sort-instagram/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -80,14 +80,14 @@ export const CommentFaireTirageInstagram = () => {
         howToTotalTime="PT5M"
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         {/* Hero Section */}
-        <header className="bg-gradient-to-br from-pink-500 via-purple-600 to-indigo-700 text-white py-12">
+        <header className="bg-gradient-to-br from-bg-primary0 via-purple-600 to-indigo-700 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-pink-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 📖 Tutoriel
               </span>
               
@@ -128,10 +128,10 @@ export const CommentFaireTirageInstagram = () => {
                 
                 {/* CTA Box */}
                 <div className="mt-6 p-6 bg-gradient-to-br from-primary-50 to-primary-100 rounded-xl">
-                  <h3 className="font-bold text-gray-900 mb-2">
+                  <h3 className="font-bold text-white mb-2">
                     🎯 Prêt à faire votre tirage ?
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-ink-secondary mb-4">
                     Utilisez Cleack pour un tirage au sort gratuit et équitable.
                   </p>
                   <Link
@@ -147,7 +147,7 @@ export const CommentFaireTirageInstagram = () => {
             {/* Main Content */}
             <main className="flex-1 max-w-3xl">
               {/* Introduction */}
-              <section id="introduction" className="prose prose-lg max-w-none mb-12">
+              <section id="introduction" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi faire un tirage au sort Instagram ?</h2>
                 
                 <p>
@@ -163,11 +163,11 @@ export const CommentFaireTirageInstagram = () => {
                   le tirage garantit à chaque participant une chance égale de gagner.
                 </p>
 
-                <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg my-6">
+                <div className="bg-accent-secondary/10 border-l-4 border-accent-secondary p-4 rounded-r-lg my-6">
                   <div className="flex items-start gap-3">
-                    <Lightbulb className="w-6 h-6 text-blue-500 flex-shrink-0 mt-1" />
+                    <Lightbulb className="w-6 h-6 text-accent-secondary flex-shrink-0 mt-1" />
                     <div>
-                      <strong className="text-blue-900">Le saviez-vous ?</strong>
+                      <strong className="text-white">Le saviez-vous ?</strong>
                       <p className="text-blue-800 mt-1 mb-0">
                         Un concours Instagram bien organisé peut générer jusqu'à <strong>10x plus d'engagement</strong> 
                         qu'une publication classique et faire gagner des centaines de nouveaux abonnés.
@@ -189,11 +189,11 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Method 1: Cleack */}
               <section id="methode-cleack" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Méthode 1 : Utiliser Cleack (Recommandé)
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   <Link to="/tirage-au-sort-instagram" className="text-primary-600 font-medium hover:underline">Cleack</Link> est 
                   l'outil de tirage au sort le plus utilisé en France. Gratuit, simple et fiable, 
                   il vous permet de faire un tirage en moins de 2 minutes.
@@ -208,21 +208,21 @@ export const CommentFaireTirageInstagram = () => {
                     { step: 5, title: "Configurez vos filtres", desc: "Excluez les doublons, les comptes privés, exigez un follow... Personnalisez selon vos règles." },
                     { step: 6, title: "Lancez le tirage", desc: "Cliquez sur le bouton et obtenez instantanément votre gagnant avec un certificat de tirage." },
                   ].map((item) => (
-                    <div key={item.step} className="flex gap-4 p-4 bg-gray-50 rounded-lg">
+                    <div key={item.step} className="flex gap-4 p-4 bg-bg-elevated rounded-lg">
                       <div className="flex-shrink-0 w-10 h-10 bg-primary-600 text-white rounded-full flex items-center justify-center font-bold">
                         {item.step}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
+                        <h3 className="font-bold text-white">{item.title}</h3>
+                        <p className="text-ink-secondary text-sm mt-1">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 p-6 bg-green-50 border border-green-200 rounded-xl">
+                <div className="mt-6 p-6 bg-success/10 border border-green-200 rounded-xl">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-6 h-6 text-green-600 flex-shrink-0" />
+                    <CheckCircle className="w-6 h-6 text-success flex-shrink-0" />
                     <div>
                       <strong className="text-green-900">Avantages de Cleack</strong>
                       <ul className="text-green-800 mt-2 space-y-1 text-sm">
@@ -239,18 +239,18 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Method 2: Manual */}
               <section id="methode-manuelle" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Méthode 2 : Tirage manuel (déconseillé)
                 </h2>
 
-                <p className="text-gray-600 mb-4">
+                <p className="text-ink-secondary mb-4">
                   Il est techniquement possible de faire un tirage manuellement, mais cette méthode 
                   présente de nombreux inconvénients :
                 </p>
 
-                <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6">
+                <div className="bg-bg-elevated border-l-4 border-yellow-500 p-4 rounded-r-lg mb-6">
                   <div className="flex items-start gap-3">
-                    <AlertTriangle className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-1" />
+                    <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
                     <div>
                       <strong className="text-yellow-900">Attention aux risques</strong>
                       <ul className="text-yellow-800 mt-2 space-y-1 text-sm">
@@ -264,11 +264,11 @@ export const CommentFaireTirageInstagram = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-600">
+                <p className="text-ink-secondary">
                   Si vous tenez à faire un tirage manuel, voici les étapes :
                 </p>
 
-                <ol className="list-decimal list-inside space-y-2 text-gray-600 mt-4">
+                <ol className="list-decimal list-inside space-y-2 text-ink-secondary mt-4">
                   <li>Listez tous les commentaires dans un fichier Excel</li>
                   <li>Supprimez les doublons manuellement</li>
                   <li>Attribuez un numéro à chaque participant</li>
@@ -279,17 +279,17 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Instagram Rules */}
               <section id="regles-instagram" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Les règles officielles Instagram à respecter
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Instagram a des <a href="https://help.instagram.com/179379842258600" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">directives strictes</a> concernant 
                   les concours. Les ignorer peut entraîner la suppression de votre publication ou la suspension de votre compte.
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="p-4 bg-success/10 rounded-lg">
                     <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                       <CheckCircle className="w-5 h-5" /> Ce qui est autorisé
                     </h3>
@@ -302,7 +302,7 @@ export const CommentFaireTirageInstagram = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-4 bg-red-50 rounded-lg">
+                  <div className="p-4 bg-error/10 rounded-lg">
                     <h3 className="font-bold text-red-900 mb-3 flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5" /> Ce qui est interdit
                     </h3>
@@ -316,12 +316,12 @@ export const CommentFaireTirageInstagram = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                  <h3 className="font-bold text-gray-900 mb-2">📋 Mentions obligatoires dans votre post</h3>
-                  <p className="text-gray-600 text-sm mb-3">
+                <div className="mt-6 p-4 bg-bg-card rounded-lg">
+                  <h3 className="font-bold text-white mb-2">📋 Mentions obligatoires dans votre post</h3>
+                  <p className="text-ink-secondary text-sm mb-3">
                     Pour être conforme, votre publication de concours doit inclure :
                   </p>
-                  <ul className="text-gray-700 text-sm space-y-1">
+                  <ul className="text-ink-secondary text-sm space-y-1">
                     <li>✓ Les conditions de participation</li>
                     <li>✓ La date de fin du concours</li>
                     <li>✓ Le lot à gagner</li>
@@ -333,42 +333,42 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Filtering participants */}
               <section id="filtrer-participants" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Comment filtrer les participants
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Tous les participants ne sont pas légitimes. Voici comment garantir l'équité de votre tirage :
                 </p>
 
                 <div className="space-y-4">
-                  <div className="p-4 border border-gray-200 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">🔍 Filtrer les doublons</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="p-4 border border-white/10 rounded-lg">
+                    <h3 className="font-bold text-white mb-2">🔍 Filtrer les doublons</h3>
+                    <p className="text-ink-secondary text-sm">
                       Certains utilisateurs commentent plusieurs fois pour augmenter leurs chances. 
                       Cleack détecte et compte chaque participant une seule fois automatiquement.
                     </p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">🤖 Éliminer les bots</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="p-4 border border-white/10 rounded-lg">
+                    <h3 className="font-bold text-white mb-2">🤖 Éliminer les bots</h3>
+                    <p className="text-ink-secondary text-sm">
                       Les faux comptes polluent vos concours. Filtrez les comptes sans photo de profil, 
                       sans publications, ou avec des noms suspects.
                     </p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">👥 Vérifier les abonnés</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="p-4 border border-white/10 rounded-lg">
+                    <h3 className="font-bold text-white mb-2">👥 Vérifier les abonnés</h3>
+                    <p className="text-ink-secondary text-sm">
                       Si votre règle impose de suivre votre compte, Cleack peut vérifier que le gagnant 
                       est bien abonné au moment du tirage.
                     </p>
                   </div>
                   
-                  <div className="p-4 border border-gray-200 rounded-lg">
-                    <h3 className="font-bold text-gray-900 mb-2">💬 Valider les mentions</h3>
-                    <p className="text-gray-600 text-sm">
+                  <div className="p-4 border border-white/10 rounded-lg">
+                    <h3 className="font-bold text-white mb-2">💬 Valider les mentions</h3>
+                    <p className="text-ink-secondary text-sm">
                       Si vous demandez de tagger des amis, vérifiez que le commentaire contient 
                       bien des mentions (@) valides.
                     </p>
@@ -378,27 +378,27 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Announcing winner */}
               <section id="annoncer-gagnant" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Annoncer le gagnant : les bonnes pratiques
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Une fois le tirage effectué, l'annonce du gagnant est cruciale pour votre crédibilité. 
                   Voici comment procéder :
                 </p>
 
                 <div className="space-y-6">
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-3">1. Contactez le gagnant en privé</h3>
-                    <p className="text-gray-600 text-sm">
+                    <h3 className="font-bold text-white mb-3">1. Contactez le gagnant en privé</h3>
+                    <p className="text-ink-secondary text-sm">
                       Envoyez un DM au gagnant pour l'informer et récupérer ses coordonnées pour 
                       l'envoi du lot. Donnez-lui un délai de réponse (48-72h généralement).
                     </p>
                   </div>
                   
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-3">2. Publiez l'annonce publique</h3>
-                    <p className="text-gray-600 text-sm">
+                    <h3 className="font-bold text-white mb-3">2. Publiez l'annonce publique</h3>
+                    <p className="text-ink-secondary text-sm">
                       Créez une Story ou un post annonçant le gagnant. Taguez-le et remerciez 
                       tous les participants. Partagez le certificat de tirage Cleack pour prouver 
                       la transparence.
@@ -406,8 +406,8 @@ export const CommentFaireTirageInstagram = () => {
                   </div>
                   
                   <div>
-                    <h3 className="font-bold text-gray-900 mb-3">3. En cas de non-réponse</h3>
-                    <p className="text-gray-600 text-sm">
+                    <h3 className="font-bold text-white mb-3">3. En cas de non-réponse</h3>
+                    <p className="text-ink-secondary text-sm">
                       Si le gagnant ne répond pas dans le délai imparti, vous pouvez relancer le 
                       tirage pour désigner un nouveau gagnant. Précisez cette règle dans votre 
                       règlement initial.
@@ -418,7 +418,7 @@ export const CommentFaireTirageInstagram = () => {
 
               {/* Mistakes to avoid */}
               <section id="erreurs-eviter" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Les 7 erreurs à éviter
                 </h2>
 
@@ -432,8 +432,8 @@ export const CommentFaireTirageInstagram = () => {
                     { title: "Trop de conditions", desc: "Liker + commenter + suivre + tagger 5 amis + partager = trop compliqué, vous perdrez des participants." },
                     { title: "Délai de réponse trop court", desc: "Donnez au moins 48h au gagnant pour répondre avant de relancer le tirage." },
                   ].map((error, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-red-50 rounded-lg">
-                      <div className="flex-shrink-0 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    <div key={index} className="flex gap-4 p-4 bg-error/10 rounded-lg">
+                      <div className="flex-shrink-0 w-8 h-8 bg-error/100 text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                       <div>
@@ -464,7 +464,7 @@ export const CommentFaireTirageInstagram = () => {
                 </p>
                 <Link
                   to="/tirage-au-sort-instagram"
-                  className="inline-flex items-center gap-2 bg-white text-primary-700 px-8 py-3 rounded-lg font-bold hover:bg-primary-50 transition-colors"
+                  className="inline-flex items-center gap-2 bg-bg-elevated text-primary-700 px-8 py-3 rounded-lg font-bold hover:bg-bg-elevated transition-colors"
                 >
                   Faire un tirage maintenant
                   <ArrowRight className="w-5 h-5" />
@@ -472,39 +472,39 @@ export const CommentFaireTirageInstagram = () => {
               </section>
 
               {/* Related Articles */}
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Articles connexes
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/regles-jeu-concours-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Règles d'un Jeu Concours Instagram</h3>
-                    <p className="text-gray-600 text-sm">Guide légal complet pour vos concours</p>
+                  <Link to="/regles-jeu-concours-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Règles d'un Jeu Concours Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Guide légal complet pour vos concours</p>
                   </Link>
-                  <Link to="/blog/idees-concours-instagram-2025" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">10 Idées de Concours Instagram 2025</h3>
-                    <p className="text-gray-600 text-sm">Inspiration pour vos prochains giveaways</p>
+                  <Link to="/idees-concours-instagram-2025" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">10 Idées de Concours Instagram 2025</h3>
+                    <p className="text-ink-secondary text-sm">Inspiration pour vos prochains giveaways</p>
                   </Link>
-                  <Link to="/blog/eviter-faux-comptes-giveaway" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Éviter les Faux Comptes</h3>
-                    <p className="text-gray-600 text-sm">Techniques pour filtrer les bots</p>
+                  <Link to="/eviter-faux-comptes-giveaway" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Éviter les Faux Comptes</h3>
+                    <p className="text-ink-secondary text-sm">Techniques pour filtrer les bots</p>
                   </Link>
-                  <Link to="/tirage-commentaires-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Tirage Commentaires Instagram</h3>
-                    <p className="text-gray-600 text-sm">Outil spécialisé pour les commentaires</p>
+                  <Link to="/tirage-commentaires-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Tirage Commentaires Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Outil spécialisé pour les commentaires</p>
                   </Link>
                 </div>
               </section>
 
               {/* Share Section */}
-              <section className="mt-8 pt-8 border-t border-gray-200">
+              <section className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex items-center justify-between">
-                  <p className="text-gray-600">
+                  <p className="text-ink-secondary">
                     Cet article vous a été utile ? Partagez-le !
                   </p>
                   <div className="flex items-center gap-3">
-                    <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                      <Share2 className="w-5 h-5 text-gray-600" />
+                    <button className="p-2 bg-bg-card rounded-lg hover:bg-bg-hover transition-colors">
+                      <Share2 className="w-5 h-5 text-ink-secondary" />
                     </button>
                   </div>
                 </div>

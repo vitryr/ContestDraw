@@ -168,8 +168,8 @@ const tools = [
 
 export const ComparatifOutilsTirage = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Comparatif outils de tirage au sort', url: 'https://cleack.io/blog/meilleur-outil-tirage-au-sort/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Comparatif outils de tirage au sort', url: 'https://cleack.io/meilleur-outil-tirage-au-sort/' },
   ];
 
   return (
@@ -178,7 +178,7 @@ export const ComparatifOutilsTirage = () => {
         title="Comparatif 2025 : Les Meilleurs Outils de Tirage au Sort"
         description="Analyse détaillée des outils de tirage au sort en ligne. Cleack, Wask, App Sorteos, Easypromos... Lequel choisir pour vos concours ?"
         keywords="meilleur outil tirage au sort, comparatif tirage au sort, cleack vs easypromos, app sorteos avis"
-        canonicalUrl="https://cleack.io/blog/meilleur-outil-tirage-au-sort/"
+        canonicalUrl="https://cleack.io/meilleur-outil-tirage-au-sort/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -189,14 +189,14 @@ export const ComparatifOutilsTirage = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         {/* Hero */}
-        <header className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-700 text-white py-12">
+        <header className="bg-gradient-to-br from-bg-primary0 via-amber-600 to-yellow-700 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-orange-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 ⚖️ Comparatif
               </span>
               
@@ -234,12 +234,12 @@ export const ComparatifOutilsTirage = () => {
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
                 
-                <div className="mt-6 p-6 bg-gradient-to-br from-orange-50 to-amber-100 rounded-xl">
-                  <Award className="w-8 h-8 text-orange-600 mb-3" />
-                  <h3 className="font-bold text-gray-900 mb-2">
+                <div className="mt-6 p-6 bg-gradient-to-br from-bg-primary to-amber-100 rounded-xl">
+                  <Award className="w-8 h-8 text-orange-400 mb-3" />
+                  <h3 className="font-bold text-white mb-2">
                     Notre recommandation
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-ink-secondary mb-4">
                     Cleack est le meilleur choix pour le marché français.
                   </p>
                   <Link
@@ -255,7 +255,7 @@ export const ComparatifOutilsTirage = () => {
             {/* Main Content */}
             <main className="flex-1 max-w-3xl">
               {/* Introduction */}
-              <section id="intro" className="prose prose-lg max-w-none mb-12">
+              <section id="intro" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi utiliser un outil de tirage au sort ?</h2>
                 
                 <p>
@@ -279,7 +279,7 @@ export const ComparatifOutilsTirage = () => {
 
               {/* Criteria */}
               <section id="criteres" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Critères de comparaison
                 </h2>
 
@@ -292,11 +292,11 @@ export const ComparatifOutilsTirage = () => {
                     { icon: '⚡', title: 'Facilité', desc: 'Prise en main et rapidité d\'exécution' },
                     { icon: '⭐', title: 'Fiabilité', desc: 'Avis utilisateurs et stabilité' },
                   ].map((criteria, index) => (
-                    <div key={index} className="p-4 bg-gray-50 rounded-lg flex items-start gap-3">
+                    <div key={index} className="p-4 bg-bg-elevated rounded-lg flex items-start gap-3">
                       <span className="text-2xl">{criteria.icon}</span>
                       <div>
-                        <h3 className="font-bold text-gray-900">{criteria.title}</h3>
-                        <p className="text-gray-600 text-sm">{criteria.desc}</p>
+                        <h3 className="font-bold text-white">{criteria.title}</h3>
+                        <p className="text-ink-secondary text-sm">{criteria.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -306,16 +306,16 @@ export const ComparatifOutilsTirage = () => {
               {/* Tools Reviews */}
               {tools.map((tool, index) => (
                 <section key={tool.id} id={tool.id} className="mb-10">
-                  <div className={`p-6 rounded-2xl border-2 ${index === 0 ? 'border-orange-300 bg-orange-50' : 'border-gray-200 bg-white'}`}>
+                  <div className={`p-6 rounded-2xl border-2 ${index === 0 ? 'border-orange-300 bg-bg-elevated' : 'border-white/10 bg-bg-primary'}`}>
                     {/* Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex items-center gap-3">
                         <span className="text-4xl">{tool.logo}</span>
                         <div>
-                          <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                          <h2 className="text-xl font-bold text-white flex items-center gap-2">
                             {index + 1}. {tool.name}
                             {tool.badge && (
-                              <span className="px-2 py-1 bg-orange-500 text-white text-xs rounded-full">
+                              <span className="px-2 py-1 bg-bg-elevated0 text-white text-xs rounded-full">
                                 {tool.badge}
                               </span>
                             )}
@@ -327,33 +327,33 @@ export const ComparatifOutilsTirage = () => {
                                 className={`w-4 h-4 ${i < Math.floor(tool.rating) ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}`}
                               />
                             ))}
-                            <span className="text-sm text-gray-600 ml-1">{tool.rating}/5</span>
+                            <span className="text-sm text-ink-secondary ml-1">{tool.rating}/5</span>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-600 mb-4">{tool.description}</p>
+                    <p className="text-ink-secondary mb-4">{tool.description}</p>
 
                     {/* Pricing */}
                     <div className="grid md:grid-cols-2 gap-4 mb-4">
-                      <div className="p-3 bg-white rounded-lg border border-gray-200">
-                        <p className="text-xs text-gray-500 mb-1">Gratuit</p>
-                        <p className="font-bold text-gray-900">{tool.pricing.free}</p>
+                      <div className="p-3 bg-bg-primary rounded-lg border border-white/10">
+                        <p className="text-xs text-ink-muted mb-1">Gratuit</p>
+                        <p className="font-bold text-white">{tool.pricing.free}</p>
                       </div>
-                      <div className="p-3 bg-white rounded-lg border border-gray-200">
-                        <p className="text-xs text-gray-500 mb-1">Payant</p>
-                        <p className="font-bold text-gray-900">{tool.pricing.paid}</p>
+                      <div className="p-3 bg-bg-primary rounded-lg border border-white/10">
+                        <p className="text-xs text-ink-muted mb-1">Payant</p>
+                        <p className="font-bold text-white">{tool.pricing.paid}</p>
                       </div>
                     </div>
 
                     {/* Platforms */}
                     <div className="mb-4">
-                      <p className="text-sm text-gray-500 mb-2">Plateformes supportées :</p>
+                      <p className="text-sm text-ink-muted mb-2">Plateformes supportées :</p>
                       <div className="flex flex-wrap gap-2">
                         {tool.platforms.map((platform) => (
-                          <span key={platform} className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">
+                          <span key={platform} className="px-2 py-1 bg-bg-card text-ink-secondary text-xs rounded-full">
                             {platform}
                           </span>
                         ))}
@@ -363,12 +363,12 @@ export const ComparatifOutilsTirage = () => {
                     {/* Pros & Cons */}
                     <div className="grid md:grid-cols-2 gap-4 mb-4">
                       <div>
-                        <p className="font-bold text-green-700 mb-2 flex items-center gap-1">
+                        <p className="font-bold text-success mb-2 flex items-center gap-1">
                           <Check className="w-4 h-4" /> Points forts
                         </p>
                         <ul className="space-y-1">
                           {tool.pros.map((pro, i) => (
-                            <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
+                            <li key={i} className="text-sm text-ink-secondary flex items-start gap-2">
                               <Check className="w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" />
                               {pro}
                             </li>
@@ -376,12 +376,12 @@ export const ComparatifOutilsTirage = () => {
                         </ul>
                       </div>
                       <div>
-                        <p className="font-bold text-red-700 mb-2 flex items-center gap-1">
+                        <p className="font-bold text-error mb-2 flex items-center gap-1">
                           <X className="w-4 h-4" /> Points faibles
                         </p>
                         <ul className="space-y-1">
                           {tool.cons.map((con, i) => (
-                            <li key={i} className="text-sm text-gray-600 flex items-start gap-2">
+                            <li key={i} className="text-sm text-ink-secondary flex items-start gap-2">
                               <X className="w-4 h-4 text-red-500 flex-shrink-0 mt-0.5" />
                               {con}
                             </li>
@@ -391,9 +391,9 @@ export const ComparatifOutilsTirage = () => {
                     </div>
 
                     {/* Best For */}
-                    <div className="p-3 bg-blue-50 rounded-lg">
+                    <div className="p-3 bg-accent-secondary/10 rounded-lg">
                       <p className="text-sm">
-                        <strong className="text-blue-900">Idéal pour :</strong>{' '}
+                        <strong className="text-white">Idéal pour :</strong>{' '}
                         <span className="text-blue-800">{tool.bestFor}</span>
                       </p>
                     </div>
@@ -402,7 +402,7 @@ export const ComparatifOutilsTirage = () => {
                     {tool.url && (
                       <Link
                         to={tool.url}
-                        className="inline-flex items-center gap-2 mt-4 text-orange-600 font-medium hover:text-orange-700"
+                        className="inline-flex items-center gap-2 mt-4 text-orange-400 font-medium hover:text-orange-400"
                       >
                         Essayer {tool.name}
                         <ArrowRight className="w-4 h-4" />
@@ -414,14 +414,14 @@ export const ComparatifOutilsTirage = () => {
 
               {/* Comparison Table */}
               <section id="tableau-comparatif" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Tableau comparatif
                 </h2>
 
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm border-collapse">
                     <thead>
-                      <tr className="bg-gray-100">
+                      <tr className="bg-bg-card">
                         <th className="p-3 text-left font-bold">Critère</th>
                         <th className="p-3 text-center font-bold">Cleack</th>
                         <th className="p-3 text-center font-bold">Wask</th>
@@ -441,7 +441,7 @@ export const ComparatifOutilsTirage = () => {
                         { criteria: 'Filtrage bots', cleack: '✅', wask: '✅', appsorteos: '⚠️', easypromos: '✅' },
                         { criteria: 'Note globale', cleack: '⭐ 4.9', wask: '⭐ 4.2', appsorteos: '⭐ 4.0', easypromos: '⭐ 4.3' },
                       ].map((row, index) => (
-                        <tr key={index} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                        <tr key={index} className={index % 2 === 0 ? 'bg-bg-primary' : 'bg-bg-elevated'}>
                           <td className="p-3 font-medium">{row.criteria}</td>
                           <td className="p-3 text-center">{row.cleack}</td>
                           <td className="p-3 text-center">{row.wask}</td>
@@ -456,39 +456,39 @@ export const ComparatifOutilsTirage = () => {
 
               {/* Verdict */}
               <section id="verdict" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Notre verdict
                 </h2>
 
                 <div className="bg-gradient-to-br from-orange-100 to-amber-100 border-2 border-orange-300 rounded-2xl p-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <Award className="w-10 h-10 text-orange-600" />
+                    <Award className="w-10 h-10 text-orange-400" />
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900">Cleack - Le meilleur choix pour la France</h3>
-                      <p className="text-orange-700">⭐ 4.9/5 - Recommandé par notre équipe</p>
+                      <h3 className="text-xl font-bold text-white">Cleack - Le meilleur choix pour la France</h3>
+                      <p className="text-orange-400">⭐ 4.9/5 - Recommandé par notre équipe</p>
                     </div>
                   </div>
 
-                  <p className="text-gray-700 mb-4">
+                  <p className="text-ink-secondary mb-4">
                     Après avoir testé tous ces outils, <strong>Cleack</strong> se démarque clairement 
                     pour le marché français :
                   </p>
 
                   <ul className="space-y-2 mb-6">
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                       <span><strong>Interface 100% française</strong> - Pas de barrière de langue</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                       <span><strong>Version gratuite généreuse</strong> - 3 tirages/mois sans carte bancaire</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                       <span><strong>Tous les réseaux</strong> - Instagram, TikTok, Facebook, YouTube, Twitter</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Check className="w-5 h-5 text-orange-600 flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-orange-400 flex-shrink-0 mt-0.5" />
                       <span><strong>Prix imbattable</strong> - À partir de 4,99€/mois pour un usage pro</span>
                     </li>
                   </ul>
@@ -512,26 +512,26 @@ export const ComparatifOutilsTirage = () => {
               </section>
 
               {/* Related */}
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/cleack-vs-app-sorteos" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Cleack vs App Sorteos</h3>
-                    <p className="text-gray-600 text-sm">Comparaison détaillée</p>
+                  <Link to="/cleack-vs-app-sorteos" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Cleack vs App Sorteos</h3>
+                    <p className="text-ink-secondary text-sm">Comparaison détaillée</p>
                   </Link>
-                  <Link to="/blog/cleack-vs-easypromos" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Cleack vs Easypromos</h3>
-                    <p className="text-gray-600 text-sm">Quel outil choisir ?</p>
+                  <Link to="/cleack-vs-easypromos" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Cleack vs Easypromos</h3>
+                    <p className="text-ink-secondary text-sm">Quel outil choisir ?</p>
                   </Link>
                 </div>
               </section>
 
               {/* Share */}
-              <section className="mt-8 pt-8 border-t border-gray-200">
+              <section className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex items-center justify-between">
-                  <p className="text-gray-600">Ce comparatif vous a aidé ? Partagez-le !</p>
-                  <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                    <Share2 className="w-5 h-5 text-gray-600" />
+                  <p className="text-ink-secondary">Ce comparatif vous a aidé ? Partagez-le !</p>
+                  <button className="p-2 bg-bg-card rounded-lg hover:bg-bg-hover transition-colors">
+                    <Share2 className="w-5 h-5 text-ink-secondary" />
                   </button>
                 </div>
               </section>

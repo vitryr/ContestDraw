@@ -82,7 +82,7 @@ export default function SocialShare({
 
       {/* Quick Copy Link */}
       <div className="bg-gray-50 rounded-lg p-4 mb-4">
-        <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <label className="block text-sm font-semibold text-white mb-2">
           Verification Link
         </label>
         <div className="flex gap-2">
@@ -90,7 +90,7 @@ export default function SocialShare({
             type="text"
             value={shortUrl}
             readOnly
-            className="flex-1 px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-mono text-gray-700"
+            className="flex-1 px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-mono text-white"
           />
           <button
             onClick={() => copyToClipboard(shortUrl)}
@@ -116,7 +116,7 @@ export default function SocialShare({
 
       {/* Social Media Buttons */}
       <div className="mb-4">
-        <label className="block text-sm font-semibold text-gray-700 mb-3">
+        <label className="block text-sm font-semibold text-white mb-3">
           Share on Social Media
         </label>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -200,7 +200,7 @@ export default function SocialShare({
                 Scan this QR code to verify draw results on any device
               </p>
               <Dialog.Close asChild>
-                <button className="w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                <button className="w-full px-4 py-2 bg-gray-100 text-white rounded-lg hover:bg-gray-200 transition-colors">
                   Close
                 </button>
               </Dialog.Close>
@@ -249,7 +249,7 @@ export default function SocialShare({
                     )}
                   </button>
                   <Dialog.Close asChild>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors">
+                    <button className="px-4 py-2 bg-gray-100 text-white rounded-lg hover:bg-gray-200 transition-colors">
                       Close
                     </button>
                   </Dialog.Close>

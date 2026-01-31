@@ -41,8 +41,8 @@ const faqItems = [
 
 export const CommentFaireTirageTiktok = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Comment faire un tirage au sort TikTok', url: 'https://cleack.io/blog/comment-faire-tirage-au-sort-tiktok/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Comment faire un tirage au sort TikTok', url: 'https://cleack.io/comment-faire-tirage-au-sort-tiktok/' },
   ];
 
   return (
@@ -51,7 +51,7 @@ export const CommentFaireTirageTiktok = () => {
         title="Comment Faire un Tirage au Sort TikTok : Tutoriel 2025"
         description="Guide complet pour organiser un giveaway TikTok réussi. Choisissez un gagnant parmi les commentaires de vos vidéos facilement avec Cleack."
         keywords="comment faire tirage tiktok, giveaway tiktok, tirage au sort tiktok, concours tiktok"
-        canonicalUrl="https://cleack.io/blog/comment-faire-tirage-au-sort-tiktok/"
+        canonicalUrl="https://cleack.io/comment-faire-tirage-au-sort-tiktok/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -71,14 +71,14 @@ export const CommentFaireTirageTiktok = () => {
         ]}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         {/* Hero Section */}
-        <header className="bg-gradient-to-br from-cyan-500 via-teal-600 to-emerald-700 text-white py-12">
+        <header className="bg-gradient-to-br from-bg-primary0 via-teal-600 to-emerald-700 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-cyan-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 📖 Tutoriel
               </span>
               
@@ -116,11 +116,11 @@ export const CommentFaireTirageTiktok = () => {
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
                 
-                <div className="mt-6 p-6 bg-gradient-to-br from-cyan-50 to-teal-100 rounded-xl">
-                  <h3 className="font-bold text-gray-900 mb-2">
+                <div className="mt-6 p-6 bg-gradient-to-br from-bg-primary to-teal-100 rounded-xl">
+                  <h3 className="font-bold text-white mb-2">
                     🎵 Tirage TikTok instantané
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-ink-secondary mb-4">
                     Sélectionnez un gagnant parmi vos commentaires TikTok en 2 minutes.
                   </p>
                   <Link
@@ -136,7 +136,7 @@ export const CommentFaireTirageTiktok = () => {
             {/* Main Content */}
             <main className="flex-1 max-w-3xl">
               {/* Introduction */}
-              <section id="pourquoi-tiktok" className="prose prose-lg max-w-none mb-12">
+              <section id="pourquoi-tiktok" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi organiser un giveaway TikTok ?</h2>
                 
                 <p>
@@ -146,20 +146,20 @@ export const CommentFaireTirageTiktok = () => {
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-4 not-prose my-8">
-                  <div className="p-4 bg-cyan-50 rounded-lg text-center">
-                    <Video className="w-8 h-8 text-cyan-600 mx-auto mb-2" />
-                    <p className="font-bold text-gray-900">10x plus d'engagement</p>
-                    <p className="text-sm text-gray-600">vs Instagram</p>
+                  <div className="p-4 bg-bg-elevated rounded-lg text-center">
+                    <Video className="w-8 h-8 text-cyan-400 mx-auto mb-2" />
+                    <p className="font-bold text-white">10x plus d'engagement</p>
+                    <p className="text-sm text-ink-secondary">vs Instagram</p>
                   </div>
-                  <div className="p-4 bg-teal-50 rounded-lg text-center">
-                    <Zap className="w-8 h-8 text-teal-600 mx-auto mb-2" />
-                    <p className="font-bold text-gray-900">Viralité naturelle</p>
-                    <p className="text-sm text-gray-600">Algorithme favorable</p>
+                  <div className="p-4 bg-bg-elevated rounded-lg text-center">
+                    <Zap className="w-8 h-8 text-teal-400 mx-auto mb-2" />
+                    <p className="font-bold text-white">Viralité naturelle</p>
+                    <p className="text-sm text-ink-secondary">Algorithme favorable</p>
                   </div>
-                  <div className="p-4 bg-emerald-50 rounded-lg text-center">
-                    <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto mb-2" />
-                    <p className="font-bold text-gray-900">Audience 16-30 ans</p>
-                    <p className="text-sm text-gray-600">Très réactive</p>
+                  <div className="p-4 bg-bg-elevated rounded-lg text-center">
+                    <CheckCircle className="w-8 h-8 text-emerald-400 mx-auto mb-2" />
+                    <p className="font-bold text-white">Audience 16-30 ans</p>
+                    <p className="text-sm text-ink-secondary">Très réactive</p>
                   </div>
                 </div>
 
@@ -175,21 +175,21 @@ export const CommentFaireTirageTiktok = () => {
 
               {/* Prepare Contest */}
               <section id="preparer-concours" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Préparer votre concours TikTok
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Un bon giveaway TikTok se prépare. Voici les étapes clés avant de publier votre vidéo :
                 </p>
 
                 <div className="space-y-6">
-                  <div className="p-6 bg-gray-50 rounded-xl">
-                    <h3 className="font-bold text-gray-900 mb-3">1. Choisir un lot attractif</h3>
-                    <p className="text-gray-600 mb-3">
+                  <div className="p-6 bg-bg-elevated rounded-xl">
+                    <h3 className="font-bold text-white mb-3">1. Choisir un lot attractif</h3>
+                    <p className="text-ink-secondary mb-3">
                       Le lot doit correspondre à votre audience. Pour TikTok, privilégiez :
                     </p>
-                    <ul className="text-gray-600 space-y-1 text-sm">
+                    <ul className="text-ink-secondary space-y-1 text-sm">
                       <li>• Tech : AirPods, PS5, iPhone</li>
                       <li>• Mode : cartes cadeaux, sneakers</li>
                       <li>• Beauté : coffrets makeup, soins</li>
@@ -197,23 +197,23 @@ export const CommentFaireTirageTiktok = () => {
                     </ul>
                   </div>
 
-                  <div className="p-6 bg-gray-50 rounded-xl">
-                    <h3 className="font-bold text-gray-900 mb-3">2. Définir des règles simples</h3>
-                    <p className="text-gray-600 mb-3">
+                  <div className="p-6 bg-bg-elevated rounded-xl">
+                    <h3 className="font-bold text-white mb-3">2. Définir des règles simples</h3>
+                    <p className="text-ink-secondary mb-3">
                       Sur TikTok, la simplicité est reine. Évitez les règles complexes :
                     </p>
                     <div className="grid md:grid-cols-2 gap-4">
-                      <div className="p-3 bg-green-50 rounded-lg">
+                      <div className="p-3 bg-success/10 rounded-lg">
                         <p className="font-medium text-green-800 text-sm">✓ Recommandé</p>
-                        <ul className="text-green-700 text-xs mt-2 space-y-1">
+                        <ul className="text-success text-xs mt-2 space-y-1">
                           <li>Follow + commentaire</li>
                           <li>Tag 1-2 amis</li>
                           <li>Like la vidéo</li>
                         </ul>
                       </div>
-                      <div className="p-3 bg-red-50 rounded-lg">
+                      <div className="p-3 bg-error/10 rounded-lg">
                         <p className="font-medium text-red-800 text-sm">✗ À éviter</p>
-                        <ul className="text-red-700 text-xs mt-2 space-y-1">
+                        <ul className="text-error text-xs mt-2 space-y-1">
                           <li>Duet obligatoire</li>
                           <li>Tag 5+ amis</li>
                           <li>Conditions multiples</li>
@@ -222,12 +222,12 @@ export const CommentFaireTirageTiktok = () => {
                     </div>
                   </div>
 
-                  <div className="p-6 bg-gray-50 rounded-xl">
-                    <h3 className="font-bold text-gray-900 mb-3">3. Créer une vidéo engageante</h3>
-                    <p className="text-gray-600 mb-3">
+                  <div className="p-6 bg-bg-elevated rounded-xl">
+                    <h3 className="font-bold text-white mb-3">3. Créer une vidéo engageante</h3>
+                    <p className="text-ink-secondary mb-3">
                       Votre vidéo doit capter l'attention en moins de 3 secondes :
                     </p>
-                    <ul className="text-gray-600 space-y-1 text-sm">
+                    <ul className="text-ink-secondary space-y-1 text-sm">
                       <li>• Hook accrocheur : "Je donne un iPhone à l'un de vous..."</li>
                       <li>• Montrez le lot visuellement</li>
                       <li>• Expliquez les règles clairement</li>
@@ -240,11 +240,11 @@ export const CommentFaireTirageTiktok = () => {
 
               {/* Tirage with Cleack */}
               <section id="tirage-cleack" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Faire le tirage avec Cleack
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Une fois votre concours terminé, utilisez Cleack pour désigner le gagnant équitablement :
                 </p>
 
@@ -256,19 +256,19 @@ export const CommentFaireTirageTiktok = () => {
                     { step: 4, title: "Appliquez les filtres", desc: "Excluez les doublons, vérifiez les follows si nécessaire" },
                     { step: 5, title: "Lancez le tirage", desc: "Cliquez et obtenez votre gagnant avec certificat" },
                   ].map((item) => (
-                    <div key={item.step} className="flex gap-4 p-4 bg-cyan-50 rounded-lg">
+                    <div key={item.step} className="flex gap-4 p-4 bg-bg-elevated rounded-lg">
                       <div className="flex-shrink-0 w-10 h-10 bg-cyan-600 text-white rounded-full flex items-center justify-center font-bold">
                         {item.step}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{item.title}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
+                        <h3 className="font-bold text-white">{item.title}</h3>
+                        <p className="text-ink-secondary text-sm mt-1">{item.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 p-4 bg-cyan-100 rounded-lg">
+                <div className="mt-6 p-4 bg-cyan-500/20 rounded-lg">
                   <p className="text-cyan-900 text-sm">
                     <strong>💡 Astuce :</strong> Filmez votre écran pendant le tirage et partagez 
                     la vidéo en Story pour prouver la transparence du processus !
@@ -278,17 +278,17 @@ export const CommentFaireTirageTiktok = () => {
 
               {/* TikTok Rules */}
               <section id="regles-tiktok" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Règles officielles TikTok pour les concours
                 </h2>
 
-                <p className="text-gray-600 mb-6">
-                  TikTok a des <a href="https://www.tiktok.com/community-guidelines" target="_blank" rel="noopener noreferrer" className="text-cyan-600 hover:underline">règles communautaires</a> qui 
+                <p className="text-ink-secondary mb-6">
+                  TikTok a des <a href="https://www.tiktok.com/community-guidelines" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">règles communautaires</a> qui 
                   encadrent les concours. Respectez-les pour éviter toute sanction :
                 </p>
 
                 <div className="space-y-4">
-                  <div className="p-4 border-l-4 border-green-500 bg-green-50">
+                  <div className="p-4 border-l-4 border-success bg-success/10">
                     <h3 className="font-bold text-green-900">✓ Autorisé</h3>
                     <ul className="text-green-800 text-sm mt-2 space-y-1">
                       <li>• Demander des likes et commentaires</li>
@@ -298,7 +298,7 @@ export const CommentFaireTirageTiktok = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-4 border-l-4 border-red-500 bg-red-50">
+                  <div className="p-4 border-l-4 border-error bg-error/10">
                     <h3 className="font-bold text-red-900">✗ Interdit</h3>
                     <ul className="text-red-800 text-sm mt-2 space-y-1">
                       <li>• Promettre des gains contre de l'argent</li>
@@ -309,12 +309,12 @@ export const CommentFaireTirageTiktok = () => {
                   </div>
                 </div>
 
-                <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-                  <h3 className="font-bold text-gray-900 mb-2">📋 Mentions obligatoires</h3>
-                  <p className="text-gray-600 text-sm">
+                <div className="mt-6 p-4 bg-bg-card rounded-lg">
+                  <h3 className="font-bold text-white mb-2">📋 Mentions obligatoires</h3>
+                  <p className="text-ink-secondary text-sm">
                     Dans votre vidéo ou description, précisez :
                   </p>
-                  <ul className="text-gray-700 text-sm mt-2 space-y-1">
+                  <ul className="text-ink-secondary text-sm mt-2 space-y-1">
                     <li>• Les dates du concours</li>
                     <li>• Le lot exact à gagner</li>
                     <li>• Les conditions de participation</li>
@@ -325,48 +325,48 @@ export const CommentFaireTirageTiktok = () => {
 
               {/* Contest Formats */}
               <section id="formats-concours" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Les meilleurs formats de concours TikTok
                 </h2>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-5 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-2">🎵 Concours commentaire</h3>
-                    <p className="text-gray-600 text-sm mb-3">
+                  <div className="p-5 border border-white/10 rounded-xl hover:shadow-md transition-shadow">
+                    <h3 className="font-bold text-white mb-2">🎵 Concours commentaire</h3>
+                    <p className="text-ink-secondary text-sm mb-3">
                       Le plus simple : demandez aux gens de commenter pour participer.
                     </p>
-                    <p className="text-cyan-600 text-xs font-medium">Idéal pour débuter</p>
+                    <p className="text-cyan-400 text-xs font-medium">Idéal pour débuter</p>
                   </div>
                   
-                  <div className="p-5 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-2">🤝 Concours tag</h3>
-                    <p className="text-gray-600 text-sm mb-3">
+                  <div className="p-5 border border-white/10 rounded-xl hover:shadow-md transition-shadow">
+                    <h3 className="font-bold text-white mb-2">🤝 Concours tag</h3>
+                    <p className="text-ink-secondary text-sm mb-3">
                       Les participants taguent 1-2 amis pour multiplier la visibilité.
                     </p>
-                    <p className="text-cyan-600 text-xs font-medium">Maximise la portée</p>
+                    <p className="text-cyan-400 text-xs font-medium">Maximise la portée</p>
                   </div>
                   
-                  <div className="p-5 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-2">💬 Concours créatif</h3>
-                    <p className="text-gray-600 text-sm mb-3">
+                  <div className="p-5 border border-white/10 rounded-xl hover:shadow-md transition-shadow">
+                    <h3 className="font-bold text-white mb-2">💬 Concours créatif</h3>
+                    <p className="text-ink-secondary text-sm mb-3">
                       Demandez une réponse originale : "Dites-moi pourquoi vous méritez ce lot"
                     </p>
-                    <p className="text-cyan-600 text-xs font-medium">Engagement qualité</p>
+                    <p className="text-cyan-400 text-xs font-medium">Engagement qualité</p>
                   </div>
                   
-                  <div className="p-5 border border-gray-200 rounded-xl hover:shadow-md transition-shadow">
-                    <h3 className="font-bold text-gray-900 mb-2">🎬 Concours duet</h3>
-                    <p className="text-gray-600 text-sm mb-3">
+                  <div className="p-5 border border-white/10 rounded-xl hover:shadow-md transition-shadow">
+                    <h3 className="font-bold text-white mb-2">🎬 Concours duet</h3>
+                    <p className="text-ink-secondary text-sm mb-3">
                       Les participants font un duet avec votre vidéo (plus complexe à gérer).
                     </p>
-                    <p className="text-cyan-600 text-xs font-medium">UGC viral</p>
+                    <p className="text-cyan-400 text-xs font-medium">UGC viral</p>
                   </div>
                 </div>
               </section>
 
               {/* Maximize Virality */}
               <section id="maximiser-viralite" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Maximiser la viralité de votre giveaway
                 </h2>
 
@@ -379,13 +379,13 @@ export const CommentFaireTirageTiktok = () => {
                     { tip: "Collaborez avec d'autres créateurs", desc: "Les duos et collabs multiplient votre audience" },
                     { tip: "Annoncez le gagnant en vidéo", desc: "Crée de l'anticipation pour vos prochains concours" },
                   ].map((item, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-gradient-to-r from-cyan-50 to-teal-50 rounded-lg">
+                    <div key={index} className="flex gap-4 p-4 bg-gradient-to-r from-bg-primary to-bg-primary rounded-lg">
                       <div className="flex-shrink-0 w-8 h-8 bg-cyan-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
                         {index + 1}
                       </div>
                       <div>
-                        <h3 className="font-bold text-gray-900">{item.tip}</h3>
-                        <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
+                        <h3 className="font-bold text-white">{item.tip}</h3>
+                        <p className="text-ink-secondary text-sm mt-1">{item.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -411,7 +411,7 @@ export const CommentFaireTirageTiktok = () => {
                 </p>
                 <Link
                   to="/tirage-au-sort-tiktok"
-                  className="inline-flex items-center gap-2 bg-white text-cyan-700 px-8 py-3 rounded-lg font-bold hover:bg-cyan-50 transition-colors"
+                  className="inline-flex items-center gap-2 bg-bg-primary text-cyan-700 px-8 py-3 rounded-lg font-bold hover:bg-bg-elevated transition-colors"
                 >
                   Faire un tirage TikTok
                   <ArrowRight className="w-5 h-5" />
@@ -419,28 +419,28 @@ export const CommentFaireTirageTiktok = () => {
               </section>
 
               {/* Related Articles */}
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">
                   Articles connexes
                 </h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/idees-giveaway-tiktok" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Idées de Giveaway TikTok</h3>
-                    <p className="text-gray-600 text-sm">12 concepts viraux pour vos concours</p>
+                  <Link to="/idees-giveaway-tiktok" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Idées de Giveaway TikTok</h3>
+                    <p className="text-ink-secondary text-sm">12 concepts viraux pour vos concours</p>
                   </Link>
-                  <Link to="/blog/comment-faire-tirage-au-sort-instagram" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Tirage au Sort Instagram</h3>
-                    <p className="text-gray-600 text-sm">Guide complet pour Instagram</p>
+                  <Link to="/comment-faire-tirage-au-sort-instagram" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Tirage au Sort Instagram</h3>
+                    <p className="text-ink-secondary text-sm">Guide complet pour Instagram</p>
                   </Link>
                 </div>
               </section>
 
               {/* Share */}
-              <section className="mt-8 pt-8 border-t border-gray-200">
+              <section className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex items-center justify-between">
-                  <p className="text-gray-600">Partagez cet article !</p>
-                  <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                    <Share2 className="w-5 h-5 text-gray-600" />
+                  <p className="text-ink-secondary">Partagez cet article !</p>
+                  <button className="p-2 bg-bg-card rounded-lg hover:bg-bg-hover transition-colors">
+                    <Share2 className="w-5 h-5 text-ink-secondary" />
                   </button>
                 </div>
               </section>

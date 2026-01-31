@@ -103,14 +103,14 @@ const ConcoursTiktokPage = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
               >
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-cyan-500/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
+                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-bg-primary0/20 to-bg-primary0/20 text-cyan-400 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-cyan-500/30">
                   <Award className="w-4 h-4" />
                   Guide Concours TikTok
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
                   Concours TikTok :{' '}
-                  <span className="bg-gradient-to-r from-pink-500 via-red-500 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-bg-primary0 via-red-500 to-cyan-400 bg-clip-text text-transparent">
                     Guide Complet 2024
                   </span>
                 </h1>
@@ -123,20 +123,20 @@ const ConcoursTiktokPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 mb-8">
                   <Link
                     to="/draw/new"
-                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-lg hover:shadow-pink-500/25 transition-all"
                   >
                     <Play className="w-5 h-5" />
                     Tirer au sort le gagnant
                   </Link>
                   <a
                     href="#types"
-                    className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-elevated/10 border border-white/20 text-white px-8 py-4 rounded-xl font-semibold hover:bg-bg-elevated/20 transition-all"
                   >
                     Types de concours
                   </a>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex flex-wrap items-center gap-6 text-sm text-ink-tertiary">
                   <span className="flex items-center gap-2">
                     <CheckCircle2 className="w-5 h-5 text-green-400" />
                     Légal en France
@@ -158,11 +158,11 @@ const ConcoursTiktokPage = () => {
                 className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 border border-gray-700"
               >
                 <div className="text-center mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gradient-to-br from-bg-primary0 to-bg-primary0 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Trophy className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-xl font-bold text-white">Tirage Concours TikTok</h2>
-                  <p className="text-gray-400 text-sm mt-2">Désignez votre gagnant en toute transparence</p>
+                  <p className="text-ink-tertiary text-sm mt-2">Désignez votre gagnant en toute transparence</p>
                 </div>
 
                 <div className="space-y-4">
@@ -174,7 +174,7 @@ const ConcoursTiktokPage = () => {
                   />
                   <Link
                     to="/draw/new"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-bg-primary0 to-bg-primary0 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-lg transition-all"
                   >
                     <Sparkles className="w-5 h-5" />
                     Lancer le tirage
@@ -182,7 +182,7 @@ const ConcoursTiktokPage = () => {
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-gray-700">
-                  <div className="flex items-center justify-center gap-4 text-sm text-gray-400">
+                  <div className="flex items-center justify-center gap-4 text-sm text-ink-tertiary">
                     <span className="flex items-center gap-1">
                       <Award className="w-4 h-4" />
                       8,500+ concours
@@ -205,7 +205,7 @@ const ConcoursTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 5 Types de Concours TikTok qui Fonctionnent
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Choisissez le format adapté à vos objectifs : engagement, viralité, ou création de contenu.
               </p>
             </div>
@@ -275,18 +275,18 @@ const ConcoursTiktokPage = () => {
                   className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 hover:border-pink-500/50 transition-all"
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 text-pink-400 rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-bg-primary0/20 to-bg-primary0/20 text-pink-400 rounded-xl flex items-center justify-center">
                       {type.icon}
                     </div>
                     <div className="flex gap-2">
-                      <span className="px-2 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-full">
+                      <span className="px-2 py-1 bg-bg-elevated0/20 text-cyan-400 text-xs rounded-full">
                         {type.difficulty}
                       </span>
                     </div>
                   </div>
 
                   <h3 className="text-lg font-semibold text-white mb-2">{type.title}</h3>
-                  <p className="text-gray-400 text-sm mb-4">{type.description}</p>
+                  <p className="text-ink-tertiary text-sm mb-4">{type.description}</p>
                   
                   <div className="bg-gray-700/50 rounded-lg p-3 mb-4">
                     <p className="text-cyan-400 text-sm italic">{type.example}</p>
@@ -294,7 +294,7 @@ const ConcoursTiktokPage = () => {
 
                   <div className="flex flex-wrap gap-2">
                     {type.pros.map((pro, i) => (
-                      <span key={i} className="px-2 py-1 bg-green-500/10 text-green-400 text-xs rounded-full">
+                      <span key={i} className="px-2 py-1 bg-bg-elevated0/10 text-green-400 text-xs rounded-full">
                         ✓ {pro}
                       </span>
                     ))}
@@ -312,13 +312,13 @@ const ConcoursTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 Concours TikTok : Les Règles Légales en France
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Assurez-vous que votre concours respecte la législation française.
               </p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gradient-to-br from-green-500/10 to-green-500/5 border border-green-500/30 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-bg-primary0/10 to-green-500/5 border border-green-500/30 rounded-xl p-6">
                 <Scale className="w-10 h-10 text-green-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-4">Ce qui est Autorisé ✅</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -341,7 +341,7 @@ const ConcoursTiktokPage = () => {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-red-500/10 to-red-500/5 border border-red-500/30 rounded-xl p-6">
+              <div className="bg-gradient-to-br from-bg-primary0/10 to-bg-primary0/5 border border-red-500/30 rounded-xl p-6">
                 <AlertCircle className="w-10 h-10 text-red-400 mb-4" />
                 <h3 className="text-xl font-semibold text-white mb-4">Ce qui est Interdit ❌</h3>
                 <ul className="space-y-3 text-gray-300">
@@ -371,7 +371,7 @@ const ConcoursTiktokPage = () => {
                 <FileText className="w-10 h-10 text-cyan-400 flex-shrink-0" />
                 <div>
                   <h3 className="text-xl font-semibold text-white mb-3">Rédiger un Règlement Valide</h3>
-                  <p className="text-gray-400 mb-4">
+                  <p className="text-ink-tertiary mb-4">
                     Tout concours doit avoir un règlement accessible aux participants. Voici les mentions obligatoires :
                   </p>
                   <div className="grid md:grid-cols-2 gap-4">
@@ -416,15 +416,15 @@ const ConcoursTiktokPage = () => {
               {howToSteps.map((step, index) => (
                 <div key={index} className="relative">
                   <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 border border-gray-700 h-full">
-                    <div className="w-10 h-10 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold mb-4">
                       {index + 1}
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-2">{step.name}</h3>
-                    <p className="text-gray-400 text-sm">{step.text}</p>
+                    <p className="text-ink-tertiary text-sm">{step.text}</p>
                   </div>
                   {index < howToSteps.length - 1 && (
                     <div className="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2">
-                      <ArrowRight className="w-6 h-6 text-gray-600" />
+                      <ArrowRight className="w-6 h-6 text-ink-secondary" />
                     </div>
                   )}
                 </div>
@@ -440,7 +440,7 @@ const ConcoursTiktokPage = () => {
               <h2 className="text-3xl font-bold text-white mb-4">
                 10 Idées de Concours TikTok pour 2024
               </h2>
-              <p className="text-gray-400 max-w-2xl mx-auto">
+              <p className="text-ink-tertiary max-w-2xl mx-auto">
                 Inspirez-vous de ces formats qui ont prouvé leur efficacité.
               </p>
             </div>
@@ -459,12 +459,12 @@ const ConcoursTiktokPage = () => {
                 { title: "Collab Contest", desc: "Gagnez une collaboration/apparition avec vous." },
               ].map((idea, index) => (
                 <div key={index} className="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-                  <div className="w-8 h-8 bg-gradient-to-r from-pink-500 to-cyan-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
+                  <div className="w-8 h-8 bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
                     {index + 1}
                   </div>
                   <div>
                     <h4 className="text-white font-medium">{idea.title}</h4>
-                    <p className="text-gray-400 text-sm">{idea.desc}</p>
+                    <p className="text-ink-tertiary text-sm">{idea.desc}</p>
                   </div>
                 </div>
               ))}
@@ -498,7 +498,7 @@ const ConcoursTiktokPage = () => {
                   className="flex items-center justify-between p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-pink-500/50 transition-all group"
                 >
                   <span className="font-medium text-white">{link.title}</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-pink-400" />
+                  <ArrowRight className="w-4 h-4 text-ink-tertiary group-hover:text-pink-400" />
                 </Link>
               ))}
             </div>
@@ -520,7 +520,7 @@ const ConcoursTiktokPage = () => {
         {/* CTA Final */}
         <section className="py-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <div className="bg-gradient-to-r from-pink-500 to-cyan-500 rounded-2xl p-8 text-white">
+            <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 text-white">
               <Trophy className="w-12 h-12 mx-auto mb-4" />
               <h2 className="text-2xl font-bold mb-4">Prêt à Lancer Votre Concours TikTok ?</h2>
               <p className="text-white/90 mb-6">
@@ -529,7 +529,7 @@ const ConcoursTiktokPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-elevated text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Tirer au sort maintenant

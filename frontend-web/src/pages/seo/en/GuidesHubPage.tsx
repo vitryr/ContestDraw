@@ -83,7 +83,7 @@ const GuidesHubPage = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-gray-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
@@ -96,17 +96,17 @@ const GuidesHubPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <BookOpen className="w-4 h-4" />
                 Expert Guides
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Giveaway{' '}
-                <span className="text-emerald-600">Guides</span>
+                <span className="text-accent-secondary">Guides</span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 max-w-3xl mx-auto leading-relaxed">
                 Everything you need to know about running <strong>successful social media giveaways</strong>. 
                 From legal requirements to creative ideas, we've got you covered.
               </p>
@@ -117,7 +117,7 @@ const GuidesHubPage = () => {
         {/* Featured Guides */}
         <section className="py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Featured Guides</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">Featured Guides</h2>
             
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               {guides.filter(g => g.featured).map((guide, index) => {
@@ -131,26 +131,26 @@ const GuidesHubPage = () => {
                   >
                     <Link
                       to={guide.url}
-                      className="block bg-white rounded-2xl p-8 border border-gray-100 hover:shadow-xl hover:border-emerald-200 transition-all group h-full"
+                      className="block bg-bg-primary rounded-2xl p-8 border border-white/10 hover:shadow-xl hover:border-accent-secondary/30 transition-all group h-full"
                     >
                       <div className="flex items-start gap-4">
-                        <div className="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white transition-all flex-shrink-0">
+                        <div className="w-14 h-14 bg-emerald-500/20 rounded-xl flex items-center justify-center text-accent-secondary group-hover:bg-emerald-600 group-hover:text-white transition-all flex-shrink-0">
                           <IconComponent className="w-7 h-7" />
                         </div>
                         <div className="flex-1">
                           <div className="flex items-center gap-2 mb-2">
-                            <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                            <span className="text-xs font-medium text-accent-secondary bg-accent-secondary/10 px-2 py-1 rounded">
                               {guide.volume} monthly searches
                             </span>
-                            <span className="text-xs text-gray-500">
+                            <span className="text-xs text-ink-muted">
                               {guide.readTime} read
                             </span>
                           </div>
-                          <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                          <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent-secondary transition-colors">
                             {guide.title}
                           </h3>
-                          <p className="text-gray-600 mb-4">{guide.description}</p>
-                          <span className="inline-flex items-center gap-1 text-emerald-600 font-medium group-hover:gap-2 transition-all">
+                          <p className="text-ink-secondary mb-4">{guide.description}</p>
+                          <span className="inline-flex items-center gap-1 text-accent-secondary font-medium group-hover:gap-2 transition-all">
                             Read Guide <ArrowRight className="w-4 h-4" />
                           </span>
                         </div>
@@ -164,9 +164,9 @@ const GuidesHubPage = () => {
         </section>
 
         {/* All Guides */}
-        <section className="py-8 bg-white">
+        <section className="py-8 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">All Guides</h2>
+            <h2 className="text-2xl font-bold text-white mb-8">All Guides</h2>
             
             <div className="space-y-4">
               {guides.map((guide, index) => {
@@ -175,21 +175,21 @@ const GuidesHubPage = () => {
                   <Link
                     key={guide.title}
                     to={guide.url}
-                    className="block bg-gray-50 rounded-xl p-6 hover:bg-emerald-50 hover:border-emerald-200 border border-transparent transition-all group"
+                    className="block bg-bg-elevated rounded-xl p-6 hover:bg-accent-secondary/10 hover:border-accent-secondary/30 border border-transparent transition-all group"
                   >
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-emerald-600 shadow-sm group-hover:shadow-md transition-all flex-shrink-0">
+                      <div className="w-12 h-12 bg-bg-primary rounded-xl flex items-center justify-center text-accent-secondary shadow-sm group-hover:shadow-md transition-all flex-shrink-0">
                         <IconComponent className="w-6 h-6" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-lg font-semibold text-gray-900 group-hover:text-emerald-600 transition-colors">
+                        <h3 className="text-lg font-semibold text-white group-hover:text-accent-secondary transition-colors">
                           {guide.title}
                         </h3>
-                        <p className="text-gray-600 text-sm truncate">{guide.description}</p>
+                        <p className="text-ink-secondary text-sm truncate">{guide.description}</p>
                       </div>
-                      <div className="hidden md:flex items-center gap-4 text-sm text-gray-500">
+                      <div className="hidden md:flex items-center gap-4 text-sm text-ink-muted">
                         <span>{guide.readTime}</span>
-                        <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
+                        <ArrowRight className="w-5 h-5 text-ink-muted group-hover:text-emerald-500 group-hover:translate-x-1 transition-all" />
                       </div>
                     </div>
                   </Link>
@@ -203,8 +203,8 @@ const GuidesHubPage = () => {
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">What You'll Learn</h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-white mb-4">What You'll Learn</h2>
+              <p className="text-ink-secondary max-w-2xl mx-auto">
                 Our guides cover everything from beginner basics to advanced strategies.
               </p>
             </div>
@@ -216,10 +216,10 @@ const GuidesHubPage = () => {
                 { title: 'Entry Strategies', description: 'Maximize participation and engagement' },
                 { title: 'Winner Selection', description: 'Pick winners fairly and transparently' },
               ].map((item, index) => (
-                <div key={index} className="bg-white rounded-xl p-6 border border-gray-100">
+                <div key={index} className="bg-bg-primary rounded-xl p-6 border border-white/10">
                   <CheckCircle2 className="w-8 h-8 text-emerald-500 mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.description}</p>
+                  <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                  <p className="text-ink-secondary text-sm">{item.description}</p>
                 </div>
               ))}
             </div>
@@ -227,7 +227,7 @@ const GuidesHubPage = () => {
         </section>
 
         {/* CTA */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-bg-elevated">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-emerald-600 rounded-2xl p-8 md:p-12 text-center text-white">
               <h2 className="text-3xl font-bold mb-4">Ready to Run Your Giveaway?</h2>
@@ -236,7 +236,7 @@ const GuidesHubPage = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-emerald-600 px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
               >
                 Pick a Winner Free
               </Link>

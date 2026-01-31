@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Trophy, Menu, X, User, LogOut, CreditCard, Zap } from "lucide-react";
+import { Trophy, Menu, X, User, LogOut, CreditCard } from "lucide-react";
 import { useEffect, useState, ReactNode } from "react";
 import { useAuthStore } from "../store/useAuthStore";
 import { useCreditsStore } from "../store/useCreditsStore";
@@ -39,18 +39,17 @@ export default function Layout({ children }: LayoutProps = {}) {
     <div className="min-h-screen flex flex-col bg-bg-primary">
       <OnboardingModal />
 
-      {/* Header - Dark themed */}
-      <header className="sticky top-0 z-50 bg-bg-primary/80 backdrop-blur-xl border-b border-white/[0.06]">
+      {/* Header - Dark purple themed */}
+      <header className="sticky top-0 z-50 bg-[#13092b]/95 backdrop-blur-xl border-b border-white/[0.06]">
         <nav className="container-custom py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-3xl bg-gradient-to-b from-accent-secondary to-accent-tertiary flex items-center justify-center">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <span className="text-xl font-bold text-white">
-                {t("app.name")}
-              </span>
+            <Link to="/" className="flex items-center">
+              <img 
+                src="/logo.png" 
+                alt="Cleack" 
+                className="h-11 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}
@@ -284,16 +283,17 @@ export default function Layout({ children }: LayoutProps = {}) {
       {/* Main Content */}
       <main className="flex-1">{children || <Outlet />}</main>
 
-      {/* Footer - Dark themed */}
-      <footer className="bg-bg-primary border-t border-white/[0.06]">
+      {/* Footer - Dark purple themed */}
+      <footer className="bg-[#13092b] border-t border-white/[0.06]">
         <div className="container-custom py-12">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
             {/* Logo */}
-            <div className="flex items-center gap-3">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-b from-accent-secondary to-accent-tertiary flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
-              </div>
-              <span className="font-bold text-white">{t("app.name")}</span>
+            <div className="flex items-center">
+              <img 
+                src="/logo.png" 
+                alt="Cleack" 
+                className="h-7 w-auto"
+              />
             </div>
 
             {/* Links */}

@@ -86,13 +86,13 @@ import { handleAnchorClick } from '../utils/scrollUtils';
 
 #### Company Section:
 1. **About**:
-   - Opens email client: `mailto:contact@cleack.io`
+   - Opens email client: `mailto:support@cleack.io`
    - Prevents default and uses `window.location.href`
 2. **Blog**:
    - External link: `https://blog.cleack.io`
    - Opens in new tab: `target="_blank" rel="noopener noreferrer"`
 3. **Contact**:
-   - Direct mailto link: `mailto:contact@cleack.io`
+   - Direct mailto link: `mailto:support@cleack.io`
 
 #### Legal Section:
 1. **Privacy**: Routes to `/privacy` page
@@ -306,7 +306,7 @@ The codebase is now more maintainable, user-friendly, and follows React best pra
 ## Support
 
 For questions or issues:
-- Email: contact@cleack.io
+- Email: support@cleack.io
 - Documentation: /faq
 - GitHub Issues: [Repository URL]
 

@@ -27,7 +27,7 @@ const tools = [
     description: 'Créez un règlement de jeu concours conforme à la loi française en 2 minutes. Téléchargez en PDF ou copiez le texte.',
     url: '/outils/generateur-reglement/',
     icon: <FileText className="w-8 h-8" />,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     status: 'Disponible',
     features: ['Conforme RGPD', 'Export PDF', 'Personnalisable'],
   },
@@ -36,7 +36,7 @@ const tools = [
     description: 'Comptez automatiquement le nombre de participants à votre concours Instagram, TikTok ou Facebook.',
     url: '/outils/compteur-participants/',
     icon: <Users className="w-8 h-8" />,
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     status: 'Bientôt',
     features: ['Multi-plateforme', 'Temps réel', 'Statistiques'],
   },
@@ -45,7 +45,7 @@ const tools = [
     description: 'Vérifiez si un compte Instagram ou TikTok est un vrai compte ou un bot/faux compte.',
     url: '/outils/verificateur-compte/',
     icon: <CheckCircle className="w-8 h-8" />,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     status: 'Bientôt',
     features: ['Détection bots', 'Score de confiance', 'Historique'],
   },
@@ -54,7 +54,7 @@ const tools = [
     description: 'Planifiez vos concours avec les dates clés de l\'année : événements, fêtes, périodes propices.',
     url: '/outils/calendrier-concours/',
     icon: <Calendar className="w-8 h-8" />,
-    color: 'from-orange-500 to-red-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     status: 'Disponible',
     features: ['Événements FR', 'Export iCal', 'Rappels'],
   },
@@ -90,7 +90,7 @@ const OutilsHub = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-orange-50 via-white to-yellow-50">
+      <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-yellow-50">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
@@ -105,12 +105,12 @@ const OutilsHub = () => {
               transition={{ duration: 0.5 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 bg-orange-100 text-orange-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <Wrench className="w-4 h-4" />
                 Boîte à Outils
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Outils{' '}
                 <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
                   Gratuits
@@ -118,7 +118,7 @@ const OutilsHub = () => {
                 pour vos Concours
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                 Des outils pratiques pour organiser, gérer et analyser vos jeux concours. 
                 Tous gratuits, sans inscription.
               </p>
@@ -126,7 +126,7 @@ const OutilsHub = () => {
               {/* Benefits */}
               <div className="flex flex-wrap justify-center gap-6 mb-12">
                 {benefits.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-2 text-gray-600">
+                  <div key={index} className="flex items-center gap-2 text-ink-secondary">
                     <span className="text-orange-500">{benefit.icon}</span>
                     <span>{benefit.title}</span>
                   </div>
@@ -137,14 +137,14 @@ const OutilsHub = () => {
         </section>
 
         {/* Tools Grid */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-2 gap-6">
               {tools.map((tool) => (
                 <Link
                   key={tool.url}
                   to={tool.url}
-                  className={`group bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all ${
+                  className={`group bg-bg-elevated rounded-2xl p-6 border border-white/10 hover:border-white/10 hover:shadow-xl transition-all ${
                     tool.status === 'Bientôt' ? 'opacity-75 pointer-events-none' : ''
                   }`}
                 >
@@ -154,27 +154,27 @@ const OutilsHub = () => {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-semibold text-gray-900 group-hover:text-orange-600 transition-colors">
+                        <h3 className="text-xl font-semibold text-white group-hover:text-orange-400 transition-colors">
                           {tool.title}
                         </h3>
                         <span className={`text-xs font-medium px-2 py-1 rounded ${
                           tool.status === 'Disponible' 
-                            ? 'text-green-600 bg-green-50' 
-                            : 'text-gray-500 bg-gray-100'
+                            ? 'text-success bg-success/10' 
+                            : 'text-ink-muted bg-bg-card'
                         }`}>
                           {tool.status}
                         </span>
                       </div>
-                      <p className="text-gray-600 mb-4">{tool.description}</p>
+                      <p className="text-ink-secondary mb-4">{tool.description}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {tool.features.map((feature, index) => (
-                          <span key={index} className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                          <span key={index} className="text-xs text-ink-muted bg-bg-card px-2 py-1 rounded">
                             {feature}
                           </span>
                         ))}
                       </div>
                       {tool.status === 'Disponible' && (
-                        <span className="inline-flex items-center gap-1 text-orange-600 font-medium group-hover:gap-2 transition-all">
+                        <span className="inline-flex items-center gap-1 text-orange-400 font-medium group-hover:gap-2 transition-all">
                           Utiliser l'outil <ArrowRight className="w-4 h-4" />
                         </span>
                       )}
@@ -189,7 +189,7 @@ const OutilsHub = () => {
         {/* Main CTA */}
         <section className="py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-8 md:p-12 text-white text-center">
+            <div className="bg-gradient-to-r from-bg-primary0 to-bg-primary0 rounded-2xl p-8 md:p-12 text-white text-center">
               <Sparkles className="w-12 h-12 mx-auto mb-6" />
               <h2 className="text-3xl font-bold mb-4">
                 Notre Outil Principal : le Tirage au Sort
@@ -200,7 +200,7 @@ const OutilsHub = () => {
               </p>
               <Link
                 to="/draw/new"
-                className="inline-flex items-center gap-2 bg-white text-orange-600 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-gray-50 transition-all"
+                className="inline-flex items-center gap-2 bg-bg-primary text-orange-400 px-8 py-4 rounded-xl font-semibold text-lg hover:bg-bg-elevated transition-all"
               >
                 <Sparkles className="w-5 h-5" />
                 Faire un tirage au sort gratuit
@@ -213,17 +213,17 @@ const OutilsHub = () => {
         </section>
 
         {/* Suggest Tool */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl font-bold text-white mb-4">
               Un outil vous manque ?
             </h2>
-            <p className="text-gray-600 mb-6">
+            <p className="text-ink-secondary mb-6">
               Suggérez-nous de nouveaux outils à développer. Nous sommes à l'écoute de vos besoins.
             </p>
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 text-orange-600 font-medium hover:text-orange-700"
+              className="inline-flex items-center gap-2 text-orange-400 font-medium hover:text-orange-400"
             >
               Nous contacter <ArrowRight className="w-4 h-4" />
             </Link>

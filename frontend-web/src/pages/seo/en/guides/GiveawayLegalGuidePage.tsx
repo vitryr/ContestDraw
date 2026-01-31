@@ -32,19 +32,19 @@ const GiveawayLegalGuidePage = () => (
       breadcrumbs={breadcrumbItems}
       faqItems={faqItems}
     />
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-bg-primary via-bg-elevated to-bg-primary">
       <div className="max-w-7xl mx-auto px-4 pt-4"><Breadcrumb items={breadcrumbItems} /></div>
       
       <article className="py-16">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
               <Scale className="w-4 h-4" /> Legal Guide
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
               Giveaway Legal Guide
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-ink-secondary">
               Run legally compliant social media giveaways without worry.
             </p>
           </div>
@@ -59,7 +59,7 @@ const GiveawayLegalGuidePage = () => (
             </div>
           </div>
 
-          <div className="prose prose-lg max-w-none">
+          <div className="prose prose-lg prose-invert max-w-none">
             <h2>Types of Promotions</h2>
             <p>Understanding the difference is crucial for compliance:</p>
             <ul>
@@ -112,10 +112,10 @@ const GiveawayLegalGuidePage = () => (
             </ol>
           </div>
 
-          <div className="mt-12 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 text-center text-white">
+          <div className="mt-12 bg-gradient-to-r from-bg-primary0 to-teal-500 rounded-2xl p-8 text-center text-white">
             <h3 className="text-2xl font-bold mb-4">Run Transparent Giveaways</h3>
             <p className="mb-6 text-emerald-100">Cleack generates proof videos to show your giveaway was fair</p>
-            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-white text-emerald-600 px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+            <Link to="/draw/new" className="inline-flex items-center gap-2 bg-bg-primary text-accent-secondary px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
               <Sparkles className="w-5 h-5" /> Pick Winner with Proof
             </Link>
           </div>

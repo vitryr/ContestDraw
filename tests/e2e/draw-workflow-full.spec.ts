@@ -62,7 +62,7 @@ test.describe("Full Draw Workflow with Animation", () => {
       );
       // Use an existing test user instead
       await page.goto("/login");
-      await page.fill('input[name="email"]', "test@cleack.io");
+      await page.fill('input[name="email"]', "support@cleack.io");
       await page.fill('input[name="password"]', "Password123!");
       await page.click('button[type="submit"]');
       await expect(page).toHaveURL(/\/dashboard/, { timeout: 15000 });

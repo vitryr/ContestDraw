@@ -21,7 +21,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' })
   return (
     <nav 
       aria-label="Fil d'ariane" 
-      className={`flex items-center text-sm text-gray-500 ${className}`}
+      className={`flex items-center text-sm text-ink-tertiary ${className}`}
     >
       <ol className="flex items-center flex-wrap gap-1">
         {allItems.map((item, index) => {
@@ -31,12 +31,12 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' })
           return (
             <li key={item.url} className="flex items-center">
               {index > 0 && (
-                <ChevronRight className="w-4 h-4 mx-1 text-gray-400 flex-shrink-0" />
+                <ChevronRight className="w-4 h-4 mx-1 text-ink-tertiary flex-shrink-0" />
               )}
               
               {isLast ? (
                 <span 
-                  className="text-gray-700 font-medium"
+                  className="text-ink-secondary font-medium"
                   aria-current="page"
                 >
                   {item.name}

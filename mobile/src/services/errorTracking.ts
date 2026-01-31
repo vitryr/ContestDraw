@@ -1,17 +1,30 @@
 /**
  * Error Tracking Service using Sentry for React Native
  * Captures errors, exceptions, and performance data
+ * Supports GDPR consent-based initialization
  */
 import * as Sentry from '@sentry/react-native';
 import Constants from 'expo-constants';
+import { consentService, ConsentCategory } from './consent';
 
 class ErrorTrackingService {
   private initialized = false;
+  private isEnabled = false;
 
   /**
    * Initialize Sentry
+   * @param forceInit - If true, bypasses consent check and initializes anyway
    */
-  init(): void {
+  init(forceInit?: boolean): void {
+    // Check consent unless forceInit is true
+    if (!forceInit) {
+      const hasConsent = consentService.hasConsent(ConsentCategory.ANALYTICS);
+      if (!hasConsent) {
+        console.log('[Sentry] Analytics consent not granted, skipping initialization');
+        return;
+      }
+    }
+
     const dsn = Constants.expoConfig?.extra?.sentryDsn;
     const environment = Constants.expoConfig?.extra?.environment || 'development';
 
@@ -45,6 +58,7 @@ class ErrorTrackingService {
       });
 
       this.initialized = true;
+      this.isEnabled = true;
       console.log('[Sentry] Initialized for', environment);
     } catch (error) {
       console.error('[Sentry] Init failed:', error);
@@ -52,11 +66,40 @@ class ErrorTrackingService {
   }
 
   /**
+   * Disable error tracking and stop sending events
+   */
+  disable(): void {
+    if (this.initialized) {
+      Sentry.close();
+      console.log('[Sentry] Disabled and closed');
+    }
+    this.initialized = false;
+    this.isEnabled = false;
+  }
+
+  /**
+   * Dynamically enable or disable error tracking
+   * @param enabled - Whether to enable or disable error tracking
+   */
+  setEnabled(enabled: boolean): void {
+    if (enabled && !this.initialized) {
+      // If enabling and not initialized, try to initialize
+      this.init();
+    } else if (!enabled && this.initialized) {
+      // If disabling and initialized, disable
+      this.disable();
+    } else {
+      // Just update the enabled flag
+      this.isEnabled = enabled;
+    }
+  }
+
+  /**
    * Capture an exception
    */
   captureException(error: Error, context?: Record<string, any>): void {
-    if (!this.initialized) {
-      console.error('[Sentry] Not initialized:', error);
+    if (!this.isEnabled) {
+      console.error('[Sentry] Not enabled:', error);
       return;
     }
 
@@ -67,7 +110,7 @@ class ErrorTrackingService {
    * Capture a message
    */
   captureMessage(message: string, level: Sentry.SeverityLevel = 'info'): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     Sentry.captureMessage(message, level);
   }
@@ -76,7 +119,7 @@ class ErrorTrackingService {
    * Set user context
    */
   setUser(user: { id: string; email?: string; username?: string } | null): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     Sentry.setUser(user);
   }
@@ -85,7 +128,7 @@ class ErrorTrackingService {
    * Add breadcrumb
    */
   addBreadcrumb(message: string, category: string, data?: Record<string, any>): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     Sentry.addBreadcrumb({
       message,
@@ -99,7 +142,7 @@ class ErrorTrackingService {
    * Set context
    */
   setContext(name: string, context: Record<string, any>): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     Sentry.setContext(name, context);
   }
@@ -108,7 +151,7 @@ class ErrorTrackingService {
    * Set tag
    */
   setTag(key: string, value: string): void {
-    if (!this.initialized) return;
+    if (!this.isEnabled) return;
 
     Sentry.setTag(key, value);
   }

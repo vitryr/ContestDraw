@@ -43,8 +43,8 @@ const faqItems = [
 
 export const ReglesJeuConcoursInstagram = () => {
   const breadcrumbItems = [
-    { name: 'Blog', url: 'https://cleack.io/blog/' },
-    { name: 'Règles d\'un Jeu Concours Instagram', url: 'https://cleack.io/blog/regles-jeu-concours-instagram/' },
+    { name: 'Articles', url: 'https://cleack.io/articles/' },
+    { name: 'Règles d\'un Jeu Concours Instagram', url: 'https://cleack.io/regles-jeu-concours-instagram/' },
   ];
 
   return (
@@ -53,7 +53,7 @@ export const ReglesJeuConcoursInstagram = () => {
         title="Règles d'un Jeu Concours Instagram : Guide Légal 2025"
         description="Tout ce qu'il faut savoir sur les règles légales des concours Instagram en France. Règlement, mentions obligatoires, dépôt huissier : le guide complet."
         keywords="règles jeu concours instagram, règlement concours instagram, concours instagram légal, loi jeu concours france"
-        canonicalUrl="https://cleack.io/blog/regles-jeu-concours-instagram/"
+        canonicalUrl="https://cleack.io/regles-jeu-concours-instagram/"
         ogType="article"
         breadcrumbs={breadcrumbItems}
         articleData={{
@@ -64,14 +64,14 @@ export const ReglesJeuConcoursInstagram = () => {
         faqItems={faqItems}
       />
 
-      <article className="min-h-screen bg-white">
+      <article className="min-h-screen bg-bg-primary">
         {/* Hero */}
         <header className="bg-gradient-to-br from-red-600 via-rose-700 to-pink-800 text-white py-12">
           <div className="container mx-auto px-4">
             <Breadcrumb items={breadcrumbItems} className="mb-6 text-red-100" />
             
             <div className="max-w-4xl">
-              <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-sm font-medium mb-4">
+              <span className="inline-block px-3 py-1 bg-bg-elevated/20 rounded-full text-sm font-medium mb-4">
                 ⚖️ Légal & Règles
               </span>
               
@@ -109,11 +109,11 @@ export const ReglesJeuConcoursInstagram = () => {
               <div className="lg:sticky lg:top-24">
                 <TableOfContents items={tocItems} />
                 
-                <div className="mt-6 p-6 bg-gradient-to-br from-red-50 to-rose-100 rounded-xl">
-                  <h3 className="font-bold text-gray-900 mb-2">
+                <div className="mt-6 p-6 bg-gradient-to-br from-bg-primary to-rose-100 rounded-xl">
+                  <h3 className="font-bold text-white mb-2">
                     📋 Générer un règlement
                   </h3>
-                  <p className="text-sm text-gray-600 mb-4">
+                  <p className="text-sm text-ink-secondary mb-4">
                     Créez un règlement conforme en quelques clics avec notre outil gratuit.
                   </p>
                   <Link
@@ -129,9 +129,9 @@ export const ReglesJeuConcoursInstagram = () => {
             {/* Main Content */}
             <main className="flex-1 max-w-3xl">
               {/* Alert Box */}
-              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg mb-8">
+              <div className="bg-bg-elevated border-l-4 border-yellow-500 p-4 rounded-r-lg mb-8">
                 <div className="flex items-start gap-3">
-                  <AlertTriangle className="w-6 h-6 text-yellow-600 flex-shrink-0 mt-1" />
+                  <AlertTriangle className="w-6 h-6 text-yellow-400 flex-shrink-0 mt-1" />
                   <div>
                     <strong className="text-yellow-900">Avertissement</strong>
                     <p className="text-yellow-800 mt-1 text-sm">
@@ -143,7 +143,7 @@ export const ReglesJeuConcoursInstagram = () => {
               </div>
 
               {/* Introduction */}
-              <section id="intro" className="prose prose-lg max-w-none mb-12">
+              <section id="intro" className="prose prose-lg prose-invert max-w-none mb-12">
                 <h2>Pourquoi un cadre légal pour les concours Instagram ?</h2>
                 
                 <p>
@@ -166,18 +166,18 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Instagram Rules */}
               <section id="regles-instagram" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-pink-100 rounded-lg">📱</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-accent-primary/20 rounded-lg">📱</span>
                   Règles officielles Instagram
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Instagram a ses propres <a href="https://help.instagram.com/179379842258600" target="_blank" rel="noopener noreferrer" className="text-primary-600 hover:underline">directives pour les promotions</a>. 
                   Les voici résumées :
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4 mb-6">
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="p-4 bg-success/10 border border-green-200 rounded-lg">
                     <h3 className="font-bold text-green-900 mb-3 flex items-center gap-2">
                       <CheckCircle className="w-5 h-5" />
                       Autorisé
@@ -191,7 +191,7 @@ export const ReglesJeuConcoursInstagram = () => {
                     </ul>
                   </div>
                   
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="p-4 bg-error/10 border border-red-200 rounded-lg">
                     <h3 className="font-bold text-red-900 mb-3 flex items-center gap-2">
                       <AlertTriangle className="w-5 h-5" />
                       Interdit
@@ -206,9 +206,9 @@ export const ReglesJeuConcoursInstagram = () => {
                   </div>
                 </div>
 
-                <div className="p-4 bg-gray-100 rounded-lg">
-                  <h4 className="font-bold text-gray-900 mb-2">🔒 Mention obligatoire Instagram</h4>
-                  <p className="text-gray-700 text-sm">
+                <div className="p-4 bg-bg-card rounded-lg">
+                  <h4 className="font-bold text-white mb-2">🔒 Mention obligatoire Instagram</h4>
+                  <p className="text-ink-secondary text-sm">
                     Vous devez inclure cette mention dans votre post ou règlement :<br/>
                     <em>"Ce concours n'est pas administré, soutenu ou associé à Instagram/Meta."</em>
                   </p>
@@ -217,22 +217,22 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* French Law */}
               <section id="legislation-france" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-blue-100 rounded-lg">🇫🇷</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-accent-secondary/20 rounded-lg">🇫🇷</span>
                   Législation française
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   En France, les jeux concours sont régis par plusieurs textes de loi. Voici les points essentiels :
                 </p>
 
                 <div className="space-y-4">
-                  <div className="p-5 border border-gray-200 rounded-xl">
+                  <div className="p-5 border border-white/10 rounded-xl">
                     <div className="flex items-start gap-3">
-                      <Scale className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                      <Scale className="w-6 h-6 text-accent-secondary flex-shrink-0" />
                       <div>
-                        <h3 className="font-bold text-gray-900 mb-2">Jeu concours vs Loterie</h3>
-                        <p className="text-gray-600 text-sm">
+                        <h3 className="font-bold text-white mb-2">Jeu concours vs Loterie</h3>
+                        <p className="text-ink-secondary text-sm">
                           Un <strong>jeu concours</strong> (sans obligation d'achat) est légal. 
                           Une <strong>loterie</strong> (avec obligation d'achat) est illégale en France 
                           (sauf exceptions comme la Française des Jeux).
@@ -241,12 +241,12 @@ export const ReglesJeuConcoursInstagram = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 border border-gray-200 rounded-xl">
+                  <div className="p-5 border border-white/10 rounded-xl">
                     <div className="flex items-start gap-3">
-                      <FileText className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                      <FileText className="w-6 h-6 text-accent-secondary flex-shrink-0" />
                       <div>
-                        <h3 className="font-bold text-gray-900 mb-2">Règlement obligatoire</h3>
-                        <p className="text-gray-600 text-sm">
+                        <h3 className="font-bold text-white mb-2">Règlement obligatoire</h3>
+                        <p className="text-ink-secondary text-sm">
                           Tout jeu concours doit avoir un règlement écrit, même simplifié. 
                           Il doit être accessible aux participants sur demande.
                         </p>
@@ -254,12 +254,12 @@ export const ReglesJeuConcoursInstagram = () => {
                     </div>
                   </div>
 
-                  <div className="p-5 border border-gray-200 rounded-xl">
+                  <div className="p-5 border border-white/10 rounded-xl">
                     <div className="flex items-start gap-3">
-                      <CheckCircle className="w-6 h-6 text-blue-600 flex-shrink-0" />
+                      <CheckCircle className="w-6 h-6 text-accent-secondary flex-shrink-0" />
                       <div>
-                        <h3 className="font-bold text-gray-900 mb-2">Participation gratuite</h3>
-                        <p className="text-gray-600 text-sm">
+                        <h3 className="font-bold text-white mb-2">Participation gratuite</h3>
+                        <p className="text-ink-secondary text-sm">
                           Vous ne pouvez JAMAIS exiger un achat pour participer. 
                           Si vous proposez des chances supplémentaires contre achat, 
                           une voie de participation gratuite doit exister.
@@ -272,16 +272,16 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Mandatory Rules */}
               <section id="reglement-obligatoire" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-purple-100 rounded-lg">📝</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-accent-secondary/20 rounded-lg">📝</span>
                   Le règlement obligatoire
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Votre règlement de jeu concours doit contenir au minimum les éléments suivants :
                 </p>
 
-                <div className="bg-gray-50 rounded-xl p-6">
+                <div className="bg-bg-elevated rounded-xl p-6">
                   <ol className="space-y-4">
                     {[
                       { title: "Identité de l'organisateur", desc: "Nom, adresse, SIRET si entreprise" },
@@ -300,8 +300,8 @@ export const ReglesJeuConcoursInstagram = () => {
                           {index + 1}
                         </div>
                         <div>
-                          <h4 className="font-bold text-gray-900">{item.title}</h4>
-                          <p className="text-gray-600 text-sm">{item.desc}</p>
+                          <h4 className="font-bold text-white">{item.title}</h4>
+                          <p className="text-ink-secondary text-sm">{item.desc}</p>
                         </div>
                       </li>
                     ))}
@@ -311,18 +311,18 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Legal Mentions */}
               <section id="mentions-legales" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-green-100 rounded-lg">✅</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-bg-elevated0/20 rounded-lg">✅</span>
                   Mentions légales à inclure dans votre post
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Votre publication Instagram doit contenir certaines informations essentielles :
                 </p>
 
-                <div className="bg-gradient-to-br from-pink-50 to-purple-50 border border-pink-200 rounded-xl p-6">
-                  <h4 className="font-bold text-gray-900 mb-4">Exemple de post conforme :</h4>
-                  <div className="bg-white rounded-lg p-4 text-sm text-gray-700">
+                <div className="bg-gradient-to-br from-bg-primary to-bg-primary border border-pink-200 rounded-xl p-6">
+                  <h4 className="font-bold text-white mb-4">Exemple de post conforme :</h4>
+                  <div className="bg-bg-primary rounded-lg p-4 text-sm text-ink-secondary">
                     <p className="mb-2">🎁 <strong>CONCOURS</strong> 🎁</p>
                     <p className="mb-2">Gagnez [description du lot] d'une valeur de [X]€ !</p>
                     <p className="mb-2">Pour participer :</p>
@@ -331,7 +331,7 @@ export const ReglesJeuConcoursInstagram = () => {
                     <p className="mb-2">3️⃣ Commentez avec votre emoji préféré</p>
                     <p className="mb-2">📅 Fin du concours : [date]</p>
                     <p className="mb-2">🎲 Tirage au sort le [date] via @cleack.io</p>
-                    <p className="text-xs text-gray-500 mt-4">
+                    <p className="text-xs text-ink-muted mt-4">
                       Concours ouvert aux résidents français, +18 ans. Règlement complet disponible sur demande. 
                       Ce concours n'est pas administré ou associé à Instagram.
                     </p>
@@ -341,18 +341,18 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Huissier */}
               <section id="depot-huissier" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
                   <span className="p-2 bg-amber-100 rounded-lg">⚖️</span>
                   Dépôt chez l'huissier
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Le dépôt du règlement chez un huissier de justice n'est plus obligatoire depuis 2014, 
                   mais reste recommandé dans certains cas :
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-4">
-                  <div className="p-4 bg-green-50 rounded-lg">
+                  <div className="p-4 bg-success/10 rounded-lg">
                     <h4 className="font-bold text-green-900 mb-2">✓ Recommandé si :</h4>
                     <ul className="text-green-800 text-sm space-y-1">
                       <li>• Lot d'une valeur supérieure à 500€</li>
@@ -361,9 +361,9 @@ export const ReglesJeuConcoursInstagram = () => {
                       <li>• Collaboration avec une grande marque</li>
                     </ul>
                   </div>
-                  <div className="p-4 bg-gray-100 rounded-lg">
-                    <h4 className="font-bold text-gray-900 mb-2">💰 Coût estimé :</h4>
-                    <ul className="text-gray-700 text-sm space-y-1">
+                  <div className="p-4 bg-bg-card rounded-lg">
+                    <h4 className="font-bold text-white mb-2">💰 Coût estimé :</h4>
+                    <ul className="text-ink-secondary text-sm space-y-1">
                       <li>• Dépôt simple : 80-150€</li>
                       <li>• Avec constat de tirage : 150-300€</li>
                       <li>• Service en ligne : ~50€</li>
@@ -374,8 +374,8 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Common Mistakes */}
               <section id="erreurs-courantes" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-red-100 rounded-lg">⚠️</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-red-500/20 rounded-lg">⚠️</span>
                   Erreurs courantes à éviter
                 </h2>
 
@@ -389,13 +389,13 @@ export const ReglesJeuConcoursInstagram = () => {
                     { error: "Tirage non transparent", consequence: "Contestations et perte de crédibilité" },
                     { error: "Ignorer le RGPD", consequence: "Amendes CNIL jusqu'à 4% du CA" },
                   ].map((item, index) => (
-                    <div key={index} className="flex gap-4 p-4 bg-red-50 rounded-lg">
+                    <div key={index} className="flex gap-4 p-4 bg-error/10 rounded-lg">
                       <div className="flex-shrink-0">
-                        <AlertTriangle className="w-5 h-5 text-red-600" />
+                        <AlertTriangle className="w-5 h-5 text-red-400" />
                       </div>
                       <div>
                         <h4 className="font-bold text-red-900">{item.error}</h4>
-                        <p className="text-red-700 text-sm">{item.consequence}</p>
+                        <p className="text-error text-sm">{item.consequence}</p>
                       </div>
                     </div>
                   ))}
@@ -404,22 +404,22 @@ export const ReglesJeuConcoursInstagram = () => {
 
               {/* Template */}
               <section id="modele-reglement" className="mb-12">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                  <span className="p-2 bg-primary-100 rounded-lg">📋</span>
+                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <span className="p-2 bg-accent-secondary/20 rounded-lg">📋</span>
                   Modèle de règlement gratuit
                 </h2>
 
-                <p className="text-gray-600 mb-6">
+                <p className="text-ink-secondary mb-6">
                   Utilisez notre générateur de règlement gratuit pour créer un document conforme 
                   en quelques minutes :
                 </p>
 
                 <div className="bg-gradient-to-br from-primary-50 to-primary-100 border border-primary-200 rounded-xl p-6 text-center">
                   <FileText className="w-12 h-12 text-primary-600 mx-auto mb-4" />
-                  <h3 className="font-bold text-gray-900 text-xl mb-2">
+                  <h3 className="font-bold text-white text-xl mb-2">
                     Générateur de Règlement
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-ink-secondary mb-4">
                     Remplissez un formulaire simple et obtenez un règlement complet 
                     au format PDF, conforme à la législation française.
                   </p>
@@ -453,7 +453,7 @@ export const ReglesJeuConcoursInstagram = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link
                     to="/outils/generateur-reglement"
-                    className="inline-flex items-center justify-center gap-2 bg-white text-red-700 px-6 py-3 rounded-lg font-bold hover:bg-red-50 transition-colors"
+                    className="inline-flex items-center justify-center gap-2 bg-bg-primary text-error px-6 py-3 rounded-lg font-bold hover:bg-error/10 transition-colors"
                   >
                     Créer un règlement
                   </Link>
@@ -468,26 +468,26 @@ export const ReglesJeuConcoursInstagram = () => {
               </section>
 
               {/* Related */}
-              <section className="mt-12 pt-12 border-t border-gray-200">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Articles connexes</h2>
+              <section className="mt-12 pt-12 border-t border-white/10">
+                <h2 className="text-2xl font-bold text-white mb-6">Articles connexes</h2>
                 <div className="grid md:grid-cols-2 gap-4">
-                  <Link to="/blog/jeu-concours-legal-france" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Jeu Concours Légal en France</h3>
-                    <p className="text-gray-600 text-sm">Guide juridique complet</p>
+                  <Link to="/jeu-concours-legal-france" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Jeu Concours Légal en France</h3>
+                    <p className="text-ink-secondary text-sm">Guide juridique complet</p>
                   </Link>
-                  <Link to="/blog/modeles-reglement-concours" className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <h3 className="font-bold text-gray-900 mb-1">Modèles de Règlement</h3>
-                    <p className="text-gray-600 text-sm">Templates gratuits 2025</p>
+                  <Link to="/modeles-reglement-concours" className="p-4 bg-bg-elevated rounded-lg hover:bg-bg-card transition-colors">
+                    <h3 className="font-bold text-white mb-1">Modèles de Règlement</h3>
+                    <p className="text-ink-secondary text-sm">Templates gratuits 2025</p>
                   </Link>
                 </div>
               </section>
 
               {/* Share */}
-              <section className="mt-8 pt-8 border-t border-gray-200">
+              <section className="mt-8 pt-8 border-t border-white/10">
                 <div className="flex items-center justify-between">
-                  <p className="text-gray-600">Partagez ce guide !</p>
-                  <button className="p-2 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
-                    <Share2 className="w-5 h-5 text-gray-600" />
+                  <p className="text-ink-secondary">Partagez ce guide !</p>
+                  <button className="p-2 bg-bg-card rounded-lg hover:bg-bg-hover transition-colors">
+                    <Share2 className="w-5 h-5 text-ink-secondary" />
                   </button>
                 </div>
               </section>

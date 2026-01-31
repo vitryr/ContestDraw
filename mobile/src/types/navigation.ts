@@ -31,6 +31,13 @@ export type MainStackParamList = {
     title?: string;
     description?: string;
   };
+  DrawFilters: {
+    drawId: string;
+    postUrl?: string;
+  };
+  DrawExecution: {
+    drawId: string;
+  };
   DrawAnimation: { drawId: string };
   Results: { drawId: string };
   Credits: undefined;

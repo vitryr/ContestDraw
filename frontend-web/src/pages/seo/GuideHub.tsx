@@ -29,7 +29,7 @@ const mainGuides = [
     description: 'Guide complet de A à Z pour créer un concours réussi sur les réseaux sociaux. Stratégie, création, promotion et tirage au sort.',
     url: '/guide/organiser-jeu-concours/',
     icon: <BookOpen className="w-8 h-8" />,
-    color: 'from-purple-500 to-pink-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     readTime: '15 min',
     featured: true,
   },
@@ -38,7 +38,7 @@ const mainGuides = [
     description: 'Modèle de règlement conforme à la loi française. Téléchargez notre template et personnalisez-le pour votre concours.',
     url: '/guide/reglement-jeu-concours/',
     icon: <FileText className="w-8 h-8" />,
-    color: 'from-blue-500 to-cyan-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     readTime: '10 min',
     featured: true,
   },
@@ -47,7 +47,7 @@ const mainGuides = [
     description: 'Ce que dit la loi sur les concours et loteries. RGPD, déclarations obligatoires, conditions légales et pièges à éviter.',
     url: '/guide/legal-jeu-concours-france/',
     icon: <Scale className="w-8 h-8" />,
-    color: 'from-green-500 to-emerald-500',
+    color: 'from-bg-primary0 to-bg-primary0',
     readTime: '12 min',
     featured: true,
   },
@@ -71,7 +71,7 @@ const additionalGuides = [
   {
     title: '10 Idées de Concours Instagram',
     description: 'Inspirez-vous de ces idées de concours qui fonctionnent pour engager votre audience.',
-    url: '/blog/idees-concours-instagram/',
+    url: '/idees-concours-instagram/',
     icon: <Lightbulb className="w-6 h-6" />,
     readTime: '6 min',
   },
@@ -119,14 +119,14 @@ const GuideHub = () => {
         breadcrumbs={breadcrumbItems}
       />
 
-      <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-blue-50">
+      <div className="min-h-screen bg-bg-primary">
         {/* Breadcrumb */}
         <div className="max-w-7xl mx-auto px-4 pt-4">
           <Breadcrumb items={breadcrumbItems} />
         </div>
 
         {/* Hero Section */}
-        <section className="py-16 lg:py-24">
+        <section className="py-16 lg:py-24 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -134,19 +134,19 @@ const GuideHub = () => {
               transition={{ duration: 0.5 }}
               className="text-center max-w-4xl mx-auto"
             >
-              <div className="inline-flex items-center gap-2 bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <div className="inline-flex items-center gap-2 bg-accent-secondary/20 text-accent-secondary px-4 py-2 rounded-full text-sm font-medium mb-6">
                 <BookOpen className="w-4 h-4" />
                 Centre de Ressources
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
                 Guides{' '}
-                <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-accent-secondary to-accent-primary bg-clip-text text-transparent">
                   Jeux Concours
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+              <p className="text-xl text-ink-secondary mb-8 leading-relaxed">
                 Tout ce que vous devez savoir pour organiser des concours réussis et conformes. 
                 Règlements, aspects légaux, stratégies et meilleures pratiques.
               </p>
@@ -155,13 +155,13 @@ const GuideHub = () => {
         </section>
 
         {/* Main Guides */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Guides Essentiels
               </h2>
-              <p className="text-gray-600">
+              <p className="text-ink-secondary">
                 Les ressources indispensables pour organiser vos concours
               </p>
             </div>
@@ -171,26 +171,26 @@ const GuideHub = () => {
                 <Link
                   key={guide.url}
                   to={guide.url}
-                  className="group bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all"
+                  className="group bg-bg-elevated rounded-2xl p-6 border border-white/10 hover:border-white/10 hover:shadow-xl transition-all"
                 >
                   <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${guide.color} text-white flex items-center justify-center mb-6`}>
                     {guide.icon}
                   </div>
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="text-xs font-medium text-gray-500 bg-gray-100 px-2 py-1 rounded">
+                    <span className="text-xs font-medium text-ink-muted bg-bg-card px-2 py-1 rounded">
                       {guide.readTime} de lecture
                     </span>
                     {guide.featured && (
-                      <span className="text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-1 rounded">
+                      <span className="text-xs font-medium text-accent-secondary bg-accent-secondary/10 px-2 py-1 rounded">
                         Essentiel
                       </span>
                     )}
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
+                  <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-accent-secondary transition-colors">
                     {guide.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{guide.description}</p>
-                  <span className="inline-flex items-center gap-1 text-emerald-600 font-medium group-hover:gap-2 transition-all">
+                  <p className="text-ink-secondary mb-4">{guide.description}</p>
+                  <span className="inline-flex items-center gap-1 text-accent-secondary font-medium group-hover:gap-2 transition-all">
                     Lire le guide <ArrowRight className="w-4 h-4" />
                   </span>
                 </Link>
@@ -200,13 +200,13 @@ const GuideHub = () => {
         </section>
 
         {/* Additional Guides */}
-        <section className="py-16">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-white mb-4">
                 Plus de Ressources
               </h2>
-              <p className="text-gray-600">
+              <p className="text-ink-secondary">
                 Approfondissez vos connaissances avec ces guides complémentaires
               </p>
             </div>
@@ -216,16 +216,16 @@ const GuideHub = () => {
                 <Link
                   key={guide.url}
                   to={guide.url}
-                  className="group bg-white rounded-xl p-5 border border-gray-100 hover:border-emerald-200 hover:shadow-md transition-all"
+                  className="group bg-bg-elevated rounded-xl p-5 border border-white/10 hover:border-accent-secondary/30 hover:shadow-md transition-all"
                 >
-                  <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald-100 transition-colors">
+                  <div className="w-12 h-12 bg-accent-secondary/10 text-accent-secondary rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent-secondary/20 transition-colors">
                     {guide.icon}
                   </div>
-                  <span className="text-xs text-gray-500 mb-2 block">{guide.readTime}</span>
-                  <h3 className="font-semibold text-gray-900 mb-2 group-hover:text-emerald-600 transition-colors">
+                  <span className="text-xs text-ink-muted mb-2 block">{guide.readTime}</span>
+                  <h3 className="font-semibold text-white mb-2 group-hover:text-accent-secondary transition-colors">
                     {guide.title}
                   </h3>
-                  <p className="text-gray-600 text-sm">{guide.description}</p>
+                  <p className="text-ink-secondary text-sm">{guide.description}</p>
                 </Link>
               ))}
             </div>
@@ -233,9 +233,9 @@ const GuideHub = () => {
         </section>
 
         {/* Tips Section */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl p-8 md:p-12">
+            <div className="bg-gradient-to-r from-accent-secondary to-accent-primary rounded-2xl p-8 md:p-12">
               <div className="text-center text-white mb-8">
                 <h2 className="text-3xl font-bold mb-4">
                   4 Clés pour un Concours Réussi
@@ -247,8 +247,8 @@ const GuideHub = () => {
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {tips.map((tip, index) => (
-                  <div key={index} className="bg-white/10 backdrop-blur rounded-xl p-5 border border-white/20">
-                    <div className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center text-white mb-4">
+                  <div key={index} className="bg-bg-primary/10 backdrop-blur rounded-xl p-5 border border-white/20">
+                    <div className="w-10 h-10 bg-bg-elevated/20 rounded-lg flex items-center justify-center text-white mb-4">
                       {tip.icon}
                     </div>
                     <h3 className="font-semibold text-white mb-2">{tip.title}</h3>
@@ -261,18 +261,18 @@ const GuideHub = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16">
+        <section className="py-16 bg-bg-primary">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Prêt à Mettre en Pratique ?
             </h2>
-            <p className="text-gray-600 mb-8">
+            <p className="text-ink-secondary mb-8">
               Utilisez Cleack pour tirer au sort vos gagnants avec une preuve vidéo certifiée. 
               Gratuit, rapide et transparent.
             </p>
             <Link
               to="/draw/new"
-              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
+              className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-accent-secondary to-accent-primary text-white px-8 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transition-all"
             >
               Faire un tirage au sort gratuit
               <ArrowRight className="w-5 h-5" />
