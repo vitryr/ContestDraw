@@ -299,12 +299,7 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     borderWidth: 2,
     borderColor: colors.border.default,
-    ...Platform.select({
-      ios: shadows.md,
-      android: {
-        elevation: shadows.md.elevation,
-      },
-    }),
+    ...shadows.md,
   },
   packageCardPopular: {
     borderColor: colors.accent.primary,

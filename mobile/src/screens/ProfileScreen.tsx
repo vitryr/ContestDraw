@@ -169,12 +169,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderWidth: 3,
     borderColor: 'rgba(255, 255, 255, 0.2)',
-    ...Platform.select({
-      ios: shadows.lg,
-      android: {
-        elevation: shadows.lg.elevation,
-      },
-    }),
+    ...shadows.lg,
   },
   avatarText: {
     fontSize: 32,
@@ -201,12 +196,7 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     gap: spacing.md,
     width: '100%',
-    ...Platform.select({
-      ios: shadows.md,
-      android: {
-        elevation: shadows.md.elevation,
-      },
-    }),
+    ...shadows.md,
   },
   creditsInfo: {
     flex: 1,
@@ -234,12 +224,7 @@ const styles = StyleSheet.create({
     gap: spacing.md,
     borderWidth: 1,
     borderColor: colors.border.default,
-    ...Platform.select({
-      ios: shadows.sm,
-      android: {
-        elevation: shadows.sm.elevation,
-      },
-    }),
+    ...shadows.sm,
   },
   menuIcon: {
     width: 40,

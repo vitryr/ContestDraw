@@ -219,12 +219,7 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: borderRadius.lg,
     overflow: 'hidden',
-    ...Platform.select({
-      ios: shadows.md,
-      android: {
-        elevation: shadows.md.elevation,
-      },
-    }),
+    ...shadows.md,
   },
   actionGradient: {
     padding: spacing.lg,

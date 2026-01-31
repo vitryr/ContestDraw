@@ -18,6 +18,7 @@ export interface Draw {
   totalEntries: number;
   winnersCount: number;
   filters?: DrawFilters;
+  platform?: 'instagram' | 'tiktok' | 'facebook' | 'youtube';
   status: 'draft' | 'active' | 'completed';
   createdAt: string;
   completedAt?: string;
@@ -25,7 +26,7 @@ export interface Draw {
 }
 
 export interface DrawFilters {
-  platform?: 'instagram' | 'tiktok' | 'facebook';
+  platform?: 'instagram' | 'tiktok' | 'facebook' | 'youtube';
   followersMin?: number;
   followersMax?: number;
   engagementRate?: number;
